@@ -1,0 +1,1766 @@
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Splide from "@splidejs/splide";
+import "@splidejs/splide/css/core";
+import confetti from "canvas-confetti";
+
+gsap.registerPlugin(ScrollTrigger);
+
+if (typeof window !== "undefined") {
+  (window as any).gsap = gsap;
+  (window as any).ScrollTrigger = ScrollTrigger;
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="100%" height="100%" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M14.1255 19.7628C11.0656 19.8708 8.22317 18.9049 5.93495 16.846C4.47939 15.5356 3.386 13.8723 2.76021 12.0164C2.62187 11.6157 2.48585 11.2023 2.44064 10.7747C2.34121 10.0684 3.35659 9.76884 3.65706 10.365C3.84475 10.7374 3.92284 11.2876 4.07246 11.7023C4.58843 13.1699 5.43808 14.4978 6.55443 15.5813C8.45906 17.44 11.0264 18.4623 13.6874 18.4216C16.4386 18.3889 18.929 17.2713 20.8443 15.313C21.9258 14.1223 22.7385 12.8566 23.1727 11.2896C22.6501 11.6705 22.1253 12.0483 21.5983 12.4232C21.2917 12.6426 21.0064 12.8674 20.6642 13.0538C20.3212 13.2407 19.9159 13.0637 19.7399 12.7308C19.6321 12.5269 19.7386 12.1287 19.9234 11.9784C20.2204 11.7367 20.5451 11.5134 20.8618 11.288L22.372 10.2147C23.0189 9.75549 23.6958 9.2389 24.3816 8.84082C24.4655 8.79211 24.7301 8.83579 24.8205 8.87576C25.244 9.06291 25.2366 9.59525 25.3249 9.98057C25.391 10.3075 25.4501 10.6403 25.5132 10.9681L25.9183 13.074C26 13.4993 26.2317 14.3897 26.1173 14.8172C26.031 15.1398 25.4683 15.2925 25.2013 15.1156C25.1247 15.0648 25.0017 15.0014 24.9563 14.9001C24.7186 14.3244 24.6779 13.6405 24.5413 13.0347C24.4666 12.7031 24.4368 12.4232 24.328 12.1029C24.2205 12.3637 24.141 12.6276 24.0213 12.9031C23.5454 14.0084 22.8965 15.0308 22.0988 15.9319C20.0272 18.2869 17.2347 19.5627 14.1255 19.7628Z"
+        fill="#292929"
+      />
+    </svg>
+  );
+}
+
+function WebflowButton({
+  text,
+  href,
+  onClick,
+  className = "",
+  target,
+}: {
+  text: string;
+  href?: string;
+  onClick?: (e: React.MouseEvent) => void;
+  className?: string;
+  target?: string;
+}) {
+  return (
+    <a
+      href={href || "#"}
+      onClick={onClick}
+      target={target}
+      className={`button ${className}`}
+    >
+      <div className="icon_box is-left">
+        <div className="arrow_icon">
+          <ArrowIcon />
+        </div>
+      </div>
+      <div className="text_box">
+        <div>{text}</div>
+      </div>
+      <div className="icon_box is-right">
+        <div className="arrow_icon">
+          <ArrowIcon />
+        </div>
+      </div>
+    </a>
+  );
+}
+
+const heroSlides = [
+  {
+    image: "/__l5e/assets-v1/7c7891ba-66b4-45ea-8321-415616b6042a/00-hero-1.avif",
+    alt: "Modern bedroom with a neatly made bed, patterned rug, desk, lamp, and curtains.",
+    tips: [
+      { id: "comod", label: "Within reach", x: "26%", y: "68%", deg: 180 },
+      { id: "bed", label: "Designed to recharge", x: "55%", y: "43%", deg: 130 },
+      { id: "table", label: "Built for focus", x: "68%", y: "59%", deg: 135 },
+    ],
+  },
+  {
+    image: "/__l5e/assets-v1/4007da14-b7d3-4254-b5b3-ab2e92bc51e8/01-image-2.avif",
+    alt: "Cozy living room with black leather sofas, beige throw blanket, and gold-framed mirror.",
+    tips: [
+      { id: "living", label: "Comfort in every corner", x: "32%", y: "58%", deg: 120 },
+      { id: "accent", label: "Little details matter", x: "72%", y: "52%", deg: 200 },
+    ],
+  },
+  {
+    image: "/__l5e/assets-v1/8b316e41-ba0b-485b-ade0-169d61814f5e/02-image-3.avif",
+    alt: "Modern living room with beige sofas, coffee tables, large windows, and TV wall.",
+    tips: [
+      { id: "builtins", label: "Movie nights ready", x: "78%", y: "48%", deg: 160 },
+      { id: "overhead", label: "Sink into comfort", x: "82%", y: "28%", deg: 180 },
+      { id: "lounge", label: "Spaces meant to connect", x: "48%", y: "72%", deg: 90 },
+    ],
+  },
+];
+
+const apartments = [
+  {
+    id: "d1",
+    name: "D1",
+    price: "695.00",
+    beds: "4 Bed",
+    baths: "2 Baths",
+    sqft: "1,108",
+    image: "/__l5e/assets-v1/99fd06dd-6afa-4b67-abf8-39ede97c7f0c/13-D1-Gen.avif",
+    desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
+  },
+  {
+    id: "d1-premium",
+    name: "D1 Premium",
+    price: "730.00",
+    beds: "4 Bed",
+    baths: "2 Baths",
+    sqft: "1,108",
+    image: "/__l5e/assets-v1/acd690d1-5688-4922-bb11-74d7b9907009/14-D1-Hero.avif",
+    desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
+  },
+  {
+    id: "d2",
+    name: "D2",
+    price: "760.00",
+    beds: "4 Bed",
+    baths: "4 Baths",
+    sqft: "1,372",
+    image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
+    desc: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
+  },
+  {
+    id: "d2-premium",
+    name: "D2 Premium",
+    price: "820.00",
+    beds: "4 Bed",
+    baths: "4 Baths",
+    sqft: "1,372",
+    image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
+    desc: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
+  },
+  {
+    id: "c1",
+    name: "C1",
+    price: "815.00",
+    beds: "3 Bed",
+    baths: "3 Baths",
+    sqft: "1,107",
+    image: "/assets/plans/C1-Gen.avif",
+    desc: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
+  },
+  {
+    id: "c1-premium",
+    name: "C1 Premium",
+    price: "865.00",
+    beds: "3 Bed",
+    baths: "3 Baths",
+    sqft: "1,107",
+    image: "/assets/plans/C1-Hero.avif",
+    desc: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
+  },
+];
+
+const amenitiesList = [
+  {
+    title: "Grilling Courtyard",
+    desc: "Host easy evenings with friends in the outdoor social zone.",
+    image: "/assets/amenities/amenity-1.avif",
+  },
+  {
+    title: "Resort-Style Pool",
+    desc: "Unwind, cool off, and recharge between classes.",
+    image: "/assets/amenities/amenity-2.avif",
+  },
+  {
+    title: "Study Spaces",
+    desc: "Quiet corners built for deep focus and productive days.",
+    image: "/assets/amenities/amenity-3.avif",
+  },
+  {
+    title: "Fitness Center",
+    desc: "Train on your schedule with modern cardio and strength equipment.",
+    image: "/assets/amenities/amenity-4.avif",
+  },
+  {
+    title: "Campus Shuttle",
+    desc: "Fast, reliable rides that keep your day moving.",
+    image: "/assets/amenities/amenity-5.avif",
+  },
+];
+
+const testimonialsList = [
+  {
+    author: "Emily Carter",
+    photo: "/assets/authors/author-1.avif",
+    quote:
+      "“I can't say enough about how great all of the improvements are going. The entire leasing team went above and beyond to ensure a smooth move in and thoroughly explained the entire process. The property is very well kept. Convenient to the stadium perfect for games! A great place to call home at a great value. You won't be disappointed!”",
+  },
+  {
+    author: "Ryan Mitchell",
+    photo: "/assets/authors/author-2.avif",
+    quote:
+      "“I wasn’t sure what to expect at first, but everything turned out way better than I thought. The apartment is clean, well-designed, and actually feels comfortable to live in. The whole move-in process was simple, and the team was always responsive. It’s been a really solid experience so far.”",
+  },
+  {
+    author: "Daniel Brooks",
+    photo: "/assets/authors/author-3.avif",
+    quote:
+      "“Living here has been easy from day one. Everything you need is already set up, and the layout just works. It’s quiet when you need it to be, but still close to everything around campus. Honestly, it just makes daily life simpler, which is exactly what I was looking for.”",
+  },
+];
+
+const faqsList = [
+  {
+    q: "How do I apply for an apartment?",
+    a: "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan.",
+  },
+  {
+    q: "What does by-the-bed leasing mean?",
+    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+  },
+  {
+    q: "What do I need to apply?",
+    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
+  },
+  {
+    q: "Do I need a guarantor?",
+    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
+  },
+  {
+    q: "How long does approval take?",
+    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
+  },
+  {
+    q: "Can I apply if I’m not a student?",
+    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
+  },
+  {
+    q: "How is rent paid?",
+    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
+  },
+];
+
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
+  const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
+  const [brightness, setBrightness] = useState(65);
+  const [hoveredTip, setHoveredTip] = useState<string | null>(null);
+  const [activeAuthor, setActiveAuthor] = useState(0);
+  const [authorProgress, setAuthorProgress] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
+
+  const bgCurrentRef = useRef<HTMLImageElement>(null);
+  const bgNextRef = useRef<HTMLImageElement>(null);
+  const dynamicSectionRef = useRef<HTMLElement>(null);
+  const apartmentsSectionRef = useRef<HTMLElement>(null);
+  const linesSectionRef = useRef<HTMLDivElement>(null);
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const heroBusyRef = useRef(false);
+
+  // 1. Dynamic Header theme with data-section detector
+  useEffect(() => {
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-section="hero"], [data-section="light"], [data-section="dark"]')
+    );
+    if (!sections.length) return;
+
+    const header = document.querySelector<HTMLElement>(".header");
+    const headerH = header ? header.offsetHeight : 80;
+
+    const updateHeader = () => {
+      const y = headerH + 1;
+      let mode: string | null = null;
+
+      for (const el of sections) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom > y) {
+          mode = el.getAttribute("data-section");
+          break;
+        }
+      }
+
+      if (!mode) {
+        const hero = document.querySelector<HTMLElement>('[data-section="hero"]');
+        if (hero && hero.getBoundingClientRect().bottom <= y) {
+          mode = "light";
+        } else {
+          mode = "hero";
+        }
+      }
+
+      document.body.classList.toggle("is-hero", mode === "hero");
+      document.body.classList.toggle("is-light", mode === "light");
+      document.body.classList.toggle("is-dark", mode === "dark");
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    window.addEventListener("resize", updateHeader);
+    return () => {
+      window.removeEventListener("scroll", updateHeader);
+      window.removeEventListener("resize", updateHeader);
+    };
+  }, []);
+
+  // 2. Hero Circular Mask Transition with GSAP
+  const handleSlideChange = (index: number) => {
+    if (index === activeSlide || heroBusyRef.current) return;
+    heroBusyRef.current = true;
+
+    const targetImg = heroSlides[index].image;
+    setNextHeroImg(targetImg);
+    setActiveSlide(index);
+
+    const bgNext = bgNextRef.current;
+    const bgCurrent = bgCurrentRef.current;
+
+    if (bgNext && bgCurrent) {
+      gsap.killTweensOf([bgNext, bgCurrent]);
+
+      gsap.set(bgCurrent, { opacity: 1, scale: 1 });
+      gsap.set(bgNext, {
+        opacity: 1,
+        clipPath: "circle(0% at 100% 50%)",
+        willChange: "clip-path",
+      });
+
+      gsap.to(bgNext, {
+        clipPath: "circle(150% at 100% 50%)",
+        duration: 1.25,
+        ease: "power3.out",
+        onComplete: () => {
+          setCurrentHeroImg(targetImg);
+          gsap.set(bgCurrent, { opacity: 1 });
+          gsap.set(bgNext, { opacity: 0, clipPath: "circle(0% at 100% 50%)" });
+          heroBusyRef.current = false;
+        },
+      });
+    } else {
+      setCurrentHeroImg(targetImg);
+      heroBusyRef.current = false;
+    }
+  };
+
+  // 3. Dynamic Section Photos GSAP ScrollTrigger (Pinning + Outward Flyout Physics)
+  useEffect(() => {
+    const section = dynamicSectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const title = section.querySelector(".middle");
+      const gallery = section.querySelector(".interaction_gallery");
+      const center = section.querySelector(".photo--center");
+
+      const lt = section.querySelector(".photo--lt");
+      const lm = section.querySelector(".photo--lm");
+      const lb = section.querySelector(".photo--lb");
+      const rt = section.querySelector(".photo--rt");
+      const rm = section.querySelector(".photo--rm");
+      const rb = section.querySelector(".photo--rb");
+
+      if (!title || !gallery || !center) return;
+
+      const left = [lt, lm, lb];
+      const right = [rt, rm, rb];
+
+      const offLeft = (el: HTMLElement) =>
+        -(window.innerWidth + el.getBoundingClientRect().width + 160);
+      const offRight = (el: HTMLElement) =>
+        window.innerWidth + el.getBoundingClientRect().width + 160;
+
+      gsap.set(center, { scale: 0.85, transformOrigin: "50% 50%" });
+      gsap.set([lt, lm, lb, rt, rm, rb], { autoAlpha: 0, y: 180, scale: 0.9, x: 0 });
+
+      // Title zoom scrub
+      gsap.to(center, {
+        scale: 1.12,
+        ease: "none",
+        scrollTrigger: {
+          trigger: title,
+          start: "top top",
+          end: "bottom -120%",
+          scrub: true,
+        },
+      });
+
+      // Gallery stage pin & scatter timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: gallery,
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          pinSpacing: true,
+          scrub: 1.2,
+          anticipatePin: 1,
+          fastScrollEnd: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(
+        [lt, lm, lb, rt, rm, rb],
+        {
+          autoAlpha: 1,
+          scale: 1,
+          ease: "none",
+          duration: 0.2,
+          stagger: 0.02,
+        },
+        0.02
+      );
+
+      tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
+      tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
+      tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
+      tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
+      tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
+      tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
+
+      tl.to(
+        left,
+        {
+          x: (_: any, el: any) => offLeft(el),
+          y: "-=52",
+          ease: "none",
+          duration: 1.1,
+          stagger: 0.05,
+        },
+        1.25
+      );
+
+      tl.to(
+        right,
+        {
+          x: (_: any, el: any) => offRight(el),
+          y: "-=52",
+          ease: "none",
+          duration: 1.1,
+          stagger: 0.05,
+        },
+        1.25
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
+  // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const parallaxConfigs = [
+        { trigger: ".sides_f .right_side", img: ".sides_f .right_side .image" },
+        { trigger: ".sides_s .right_side", img: ".sides_s .right_side .image" },
+        { trigger: ".fs_box_m", img: ".fs_box_m .image" },
+        { trigger: ".fs_cta", img: ".fs_bg .image" },
+      ];
+
+      parallaxConfigs.forEach(({ trigger, img }) => {
+        const triggerEl = document.querySelector<HTMLElement>(trigger);
+        const imgEl = document.querySelector<HTMLElement>(img);
+        if (!triggerEl || !imgEl) return;
+
+        gsap.set(imgEl, { scale: 1.12, transformOrigin: "50% 50%", force3D: true });
+        gsap.fromTo(
+          imgEl,
+          { yPercent: -8 },
+          {
+            yPercent: 8,
+            ease: "none",
+            scrollTrigger: {
+              trigger: triggerEl,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  // 4. Apartments Cards Horizontal Scroll GSAP ScrollTrigger (Desktop)
+  useEffect(() => {
+    const section = apartmentsSectionRef.current;
+    if (!section) return;
+
+    const sticky = section.querySelector<HTMLElement>(".wrapper_apartments");
+    const title = section.querySelector<HTMLElement>(".heading_apartments");
+    const desktopViewport = section.querySelector<HTMLElement>(".apart_cards_viewport.only_desktop");
+    const track = desktopViewport?.querySelector<HTMLElement>(".apart_cards_track");
+    const cards = gsap.utils.toArray<HTMLElement>(track?.querySelectorAll(".apart_card") || []);
+    const scribbles = gsap.utils.toArray<HTMLElement>(
+      title?.querySelectorAll('[data-scribble="4"].scribble-wrap') || []
+    );
+
+    if (!sticky || !title || !desktopViewport || !track || cards.length < 2) return;
+    const trackEl = track;
+
+    let bg = sticky.querySelector<HTMLElement>(".apartments_bg_gradient");
+    if (!bg) {
+      bg = document.createElement("div");
+      bg.className = "apartments_bg_gradient";
+      sticky.prepend(bg);
+    }
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 992px)", () => {
+      const vw = window.innerWidth;
+      const getTrackWidth = () => trackEl.scrollWidth || (cards.length * 360 + (cards.length - 1) * 40);
+      const xStart = vw + 220;
+
+      gsap.set(trackEl, { x: xStart, force3D: true });
+      gsap.set(title, { y: 0, opacity: 1, scale: 1 });
+      gsap.set(bg, { opacity: 0 });
+      gsap.set(scribbles, { "--scribble-line-color": "#E8CEFF" });
+
+      const presets = [
+        { dir: 1, baseRot: -3.2, xAmp: 8, yAmp: 3.5, rotAmp: 3.2 },
+        { dir: -1, baseRot: 3.0, xAmp: 9, yAmp: 4.5, rotAmp: 3.4 },
+        { dir: 1, baseRot: -2.8, xAmp: 7, yAmp: 3.0, rotAmp: 2.9 },
+        { dir: -1, baseRot: 3.4, xAmp: 8, yAmp: 4.0, rotAmp: 3.6 },
+      ];
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+        gsap.set(card, {
+          xPercent: 0,
+          yPercent: 0,
+          rotation: p.baseRot,
+          force3D: true,
+        });
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=430%",
+          pin: sticky,
+          pinSpacing: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(title, { y: -240, duration: 0.3 }, 0.0)
+        .to(bg, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.06)
+        .to(
+          scribbles,
+          { "--scribble-line-color": "#292929", duration: 0.45, ease: "power2.out" },
+          0.1
+        )
+        .to(trackEl, { x: () => -(getTrackWidth() + 220), duration: 1.0 }, 0.08)
+        .to(title, { y: 0, duration: 0.24 }, 0.82);
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+
+        tl.to(
+          card,
+          {
+            xPercent: p.dir * p.xAmp,
+            yPercent: -p.yAmp,
+            rotation: p.baseRot + p.rotAmp,
+            duration: 0.24,
+          },
+          0.1
+        )
+          .to(
+            card,
+            {
+              xPercent: -p.dir * (p.xAmp * 0.7),
+              yPercent: p.yAmp * 0.55,
+              rotation: p.baseRot - p.rotAmp * 0.7,
+              duration: 0.26,
+            },
+            0.36
+          )
+          .to(
+            card,
+            {
+              xPercent: p.dir * (p.xAmp * 0.35),
+              yPercent: -p.yAmp * 0.3,
+              rotation: p.baseRot + 0.8,
+              duration: 0.24,
+            },
+            0.64
+          );
+      });
+
+      // Refresh on image / font load
+      const imgs = Array.from(desktopViewport.querySelectorAll("img"));
+      imgs.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+          img.addEventListener("error", () => ScrollTrigger.refresh(), { once: true });
+        }
+      });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
+      }
+
+      ScrollTrigger.refresh();
+      const tId = setTimeout(() => ScrollTrigger.refresh(), 250);
+
+      return () => {
+        clearTimeout(tId);
+        gsap.set(trackEl, { clearProps: "x,transform" });
+        gsap.set(title, { clearProps: "y,opacity,scale,transform" });
+        gsap.set(bg, { clearProps: "opacity" });
+        gsap.set(scribbles, { "--scribble-line-color": "#E8CEFF" });
+        cards.forEach((card: any) =>
+          gsap.set(card, { clearProps: "xPercent,yPercent,rotation,transform" })
+        );
+      };
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
+
+  // 5. Splide Carousel for Amenities and Mobile Apartments
+  useEffect(() => {
+    const splideEls = document.querySelectorAll<HTMLElement>(".slider1");
+    const instances: Splide[] = [];
+
+    splideEls.forEach((el) => {
+      try {
+        const inst = new Splide(el, {
+          perPage: 3,
+          perMove: 1,
+          focus: 0,
+          type: "slide",
+          gap: "1.5rem",
+          arrows: false,
+          pagination: true,
+          speed: 800,
+          breakpoints: {
+            991: { perPage: 2, gap: "1rem" },
+            767: { perPage: 1, gap: "0.8rem" },
+            479: { perPage: 1, gap: "0.5rem" },
+          },
+        });
+        inst.mount();
+        instances.push(inst);
+      } catch (err) {
+        console.warn("Splide init notice:", err);
+      }
+    });
+
+    const handleResize = () => {
+      instances.forEach((inst) => inst.refresh());
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      instances.forEach((inst) => inst.destroy());
+    };
+  }, []);
+
+  // 6. Scribbles dynamic reveal on viewport entry
+  useEffect(() => {
+    const nodes = document.querySelectorAll<HTMLElement>("[data-scribble]");
+    if (!nodes.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("scribble-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    nodes.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // 7. Location Distance Bars Animation (IntersectionObserver)
+  useEffect(() => {
+    const el = linesSectionRef.current;
+    if (!el) return;
+
+    const bars = Array.from(el.querySelectorAll(".lines_dynamic .active_bar")) as HTMLElement[];
+    const targets = ["35%", "55%", "70%"];
+    bars.forEach((b) => (b.style.width = "0%"));
+
+    let played = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || played) return;
+          played = true;
+
+          bars.forEach((bar, i) => {
+            bar.style.transition = "width 900ms cubic-bezier(0.22, 1, 0.36, 1)";
+            bar.style.transitionDelay = `${i * 140}ms`;
+            bar.style.width = targets[i] || "0%";
+          });
+
+          observer.disconnect();
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // 8. Testimonials Auto-play Progress Ring & Smooth Fade
+  useEffect(() => {
+    const interval = 8000;
+    const stepTime = 50;
+    const increment = (stepTime / interval) * 100;
+
+    const timer = setInterval(() => {
+      setAuthorProgress((prev) => {
+        if (prev >= 100) {
+          setActiveAuthor((curr) => {
+            const nextIdx = (curr + 1) % testimonialsList.length;
+            if (quoteRef.current) {
+              gsap.fromTo(
+                quoteRef.current,
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+              );
+            }
+            return nextIdx;
+          });
+          return 0;
+        }
+        return prev + increment;
+      });
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // 9. Delayed ScrollTrigger refresh on fonts ready
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+      });
+    }
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleAuthorSelect = (idx: number) => {
+    setActiveAuthor(idx);
+    setAuthorProgress(0);
+    if (quoteRef.current) {
+      gsap.fromTo(
+        quoteRef.current,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
+      );
+    }
+  };
+
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopyFeedback(label);
+    setTimeout(() => setCopyFeedback(null), 2000);
+  };
+
+  const handleApplyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
+    window.open("https://calendly.com/propertyjs/21-oaks-25", "_blank");
+  };
+
+  const handleScrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const startY = window.pageYOffset;
+    if (startY <= 0) return;
+    const duration = 1000;
+    const startTime = performance.now();
+
+    function step(now: number) {
+      const elapsed = now - startTime;
+      const p = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, Math.round(startY * (1 - easeInOutCubic(p))));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  };
+
+  return (
+    <div className="page-wrapper">
+      {/* HEADER */}
+      <header className="header">
+        <div className="wrapper_header">
+          <div className="grid_header">
+            {/* Logo */}
+            <div className="logo_box">
+              <a href="#top" className="logo w-inline-block">
+                <div>21Oaks</div>
+              </a>
+            </div>
+
+            {/* Mobile / Fullscreen Drawer Navigation */}
+            {menuOpen && (
+              <div className="menu_fs" style={{ display: "block" }}>
+                <div className="grid_menu_mobile">
+                  {[
+                    { label: "Home", href: "#top" },
+                    { label: "Apartments", href: "#apartments" },
+                    { label: "Amenities", href: "#amenities" },
+                    { label: "Location", href: "#location" },
+                    { label: "How to Apply", href: "#how-it-works" },
+                    { label: "Gallery", href: "#gallery" },
+                    { label: "FAQ", href: "#faq" },
+                  ].map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="mobile_link w-inline-block"
+                    >
+                      <div>{item.label}</div>
+                    </a>
+                  ))}
+                </div>
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="contact_button w-inline-block"
+                >
+                  <div>Contact</div>
+                </a>
+              </div>
+            )}
+
+            {/* Center Menu & Schedule a Tour Button */}
+            <div className="menu">
+              <div className="flex_menu">
+                <div
+                  className="menu_link"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="hamburger">
+                    <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
+                    <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
+                  </div>
+                  <div className="menu_txt close_txt" style={{ display: menuOpen ? "block" : "none" }}>
+                    Close
+                  </div>
+                  <div className="menu_txt open_txt" style={{ display: menuOpen ? "none" : "block" }}>
+                    Menu
+                  </div>
+                </div>
+
+                <a
+                  href="https://calendly.com/propertyjs/21-oaks-25"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="header_button w-inline-block"
+                >
+                  <div>Schedule a Tour</div>
+                </a>
+              </div>
+            </div>
+
+            {/* Apply Now Button with signature interactive arrow */}
+            <div className="apply_button">
+              <WebflowButton
+                text="Apply Now"
+                href="https://calendly.com/propertyjs/21-oaks-25"
+                onClick={handleApplyClick}
+                className="header_cta"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="main" id="top">
+        {/* HERO SECTION */}
+        <section data-section="hero" className="hero" data-hero-slide={activeSlide}>
+          <div className="wrapper_hero">
+            <div className="heading_box">
+              <div className="heading_h1">
+                <h1 className="h1">
+                  Live <span data-scribble="hero" className="scribble-wrap scribble-visible">better,</span>
+                  <br />
+                  closer to USC
+                </h1>
+              </div>
+              <div className="p_box">
+                <div className="p_gen">
+                  Freshly renovated and upgraded. Minutes from Williams-Brice. Designed for focused mornings, long nights, and balanced student living.
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Thumbnails with active indicator */}
+            <div className="thumbnails_images">
+              {heroSlides.map((slide, i) => (
+                <div
+                  key={slide.image}
+                  className={`image_thumbnail ${activeSlide === i ? "is-active" : ""}`}
+                  onClick={() => handleSlideChange(i)}
+                  title={slide.alt}
+                >
+                  <div className="thumb_media">
+                    <img src={slide.image} alt={slide.alt} className="image thumbnail_image" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive Tooltips */}
+          <div className="hero-tooltips">
+            {heroSlides[activeSlide].tips.map((tip) => (
+              <div
+                key={tip.id}
+                className={`hero-tip ${hoveredTip === tip.id ? "is-active" : ""}`}
+                style={{ left: tip.x, top: tip.y }}
+              >
+                <img
+                  src="/assets/svg/arrow-hover.png"
+                  alt=""
+                  style={{ transform: `rotate(${tip.deg}deg)` }}
+                />
+                <span>{tip.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Brightness Adjustment Panel */}
+          {activeSlide === 0 && (
+            <div className="hero-brightness-panel">
+              <img
+                className="hero-brightness-icon"
+                src="/assets/svg/sun.svg"
+                alt="Brightness"
+              />
+              <input
+                className="hero-brightness-range"
+                type="range"
+                min="20"
+                max="100"
+                value={brightness}
+                onChange={(e) => setBrightness(Number(e.target.value))}
+                title="Adjust room lighting"
+              />
+            </div>
+          )}
+
+          {/* Background Images Layer with GSAP circular reveal */}
+          <div className="hero-shade" />
+          <div className="background">
+            <img
+              ref={bgCurrentRef}
+              src={currentHeroImg}
+              alt="Current hero"
+              className="image bg-layer"
+              style={{ filter: `brightness(${brightness / 65})` }}
+            />
+            <img
+              ref={bgNextRef}
+              src={nextHeroImg}
+              alt="Next hero"
+              className="image bg-layer"
+              style={{
+                filter: `brightness(${brightness / 65})`,
+                opacity: 0,
+                clipPath: "circle(0% at 100% 50%)",
+              }}
+            />
+          </div>
+
+          {/* Interactive Hover Zones Overlay */}
+          <svg className="hero-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            {activeSlide === 0 && (
+              <>
+                <path
+                  className="zone"
+                  d="M442 538L101.5 532.5H97.5V1081H442.5L466.5 918L472.5 535L442 538Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("comod")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+                <path
+                  className="zone"
+                  d="M946.5 882H928.5V871L918 863.5L906.5 848.5L895 830L888 815V785.5L881.5 779.5L870.5 770.5L865 769L862 766L853 759L846.5 756.5L832 737.5L820 727L809.5 712L799 705.5L787.5 699.5L781 689L772 684.5L760 671.5L753 668L751 631.5L738 620.5L742.5 611.5L746.5 593.5L758 579.5L779 570V503L776 492.5L790.5 496V484.5L787.5 476L790.5 461L798.5 464L812 472L825 483L838 488L845.5 492.5L848 489.5L854.5 483L864.5 476L870 469L874.5 467.5L880.5 475H887.5L913 481.5L928 489.5H942.5L949 486L970 474L983 472L983.5 476.5L982 492.842L988.5 493.5L997 489.5L1004.5 491.5L1012 489.5L1017.5 492V509L1020.5 516.5L1033 564H1046.5L1066.5 560.5L1083.5 566L1198 564L1212 568.5L1256.5 587L1257.87 633L1194.5 639L1179 635.5L1174.5 630.5L1165.5 634.5L1162 642L1165.5 654L1168.5 656.5L1182.5 706L1109.5 709L1105 706L1091.5 710.5H1064.5L1060 715H1046.5L1026.5 719L1017.5 715L1005.5 721H993.5V725L987.5 727V741L979 744.5L974.5 770.5L967 782V803H954L946.5 815V882Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("bed")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+                <path
+                  className="zone"
+                  d="M1921 961.5L1238 755L1380 724.177V715L1371.5 708.5V697.152H1504.5L1572 682.5L1859.5 723.5L1921 748V961.5Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("table")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+              </>
+            )}
+            {activeSlide === 1 && (
+              <>
+                <path
+                  className="zone"
+                  d="M168 502H-0.5V1082H701.5L809.5 1057.5L980.5 1022L996 1008.5L974.5 994L980.5 976.5L1002.5 984.5L1012.5 969L1002.5 947.5L1012.5 926.5L1037 917.5L1022 897.5L1037 880L1050 862L1048 842.5L1052 823L1071 830L1075.5 812L1087 813.5L1099 806L1121.5 799L1150.5 813.5L1162 801L1180.5 796L1187 813.5L1162 828L1171.5 834L1183.5 850.5L1213 837.5L1216.5 862L1204.5 886L1221.5 917.5V866.5L1218.5 775V686.5L1203.5 678L1159.5 675L997.5 671.5L994 651V622L996 609L997.5 570.5L1002.5 560.5V537L1009.5 486L1012.5 461L1016.5 440L1004.5 438L991.5 440H981.5L971 444.5L898 461L831 478L823.5 486L800.5 483.5L785 486L744.5 483.5L571 475L548 483.5V502L201.5 495L181 519L168 502Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("living")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+                <path
+                  className="zone"
+                  d="M1367 562L1375.5 574.5V603L1228 599.5H1162.5L1151.5 591.5V550H1162.5H1176.5L1198 545.5L1221.5 539L1228 562L1235 591.5H1249V574.5L1244.5 558.5L1240 545.5L1265 539H1363V550L1367 562Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("accent")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+              </>
+            )}
+            {activeSlide === 2 && (
+              <>
+                <path
+                  className="zone"
+                  d="M1086.5 839V645L1197.5 640.5L1201.5 630.5L1205.5 613L1210 610.5H1216.5L1224.5 613L1229.5 611.5L1241.5 613L1251.5 616H1259L1269.5 620L1271.5 610.5L1275.5 603L1280.5 604.5L1303 613H1310.5L1321 610.5H1331L1343.5 603L1353.5 604.5V611.5L1349.5 630.5H1363.5L1387 633L1401 640.5L1412.5 637.5L1431 635.5L1458.5 633L1476 629.5H1484.5L1489 633V642L1484.5 650.5L1478.5 663L1922 724V1080.5H1544L1322 964.5L1086.5 839Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("builtins")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+                <path
+                  className="zone"
+                  d="M784.5 874L617 895C617 895 600.299 900.24 592 906C583.701 911.76 574.5 924.5 574.5 924.5L568.5 938V961.5L592.5 1079.5H1166.5C1166.5 1079.5 1195.18 1076.12 1208.5 1065C1218.98 1056.25 1224.07 1049.07 1228 1036C1231.82 1023.28 1228 1002 1228 1002L1215.5 982.5L1113.5 916.5L1035 863.5C1035 863.5 1016.19 855.985 1003.5 854C989.224 851.768 966.5 854 966.5 854L784.5 874Z"
+                  fill="white"
+                  onMouseEnter={() => setHoveredTip("lounge")}
+                  onMouseLeave={() => setHoveredTip(null)}
+                />
+              </>
+            )}
+          </svg>
+        </section>
+
+        {/* DYNAMIC SECTION (Everything student living should be) */}
+        <section ref={dynamicSectionRef} className="dynamic_section" id="gallery">
+          <div className="middle">
+            <h2 className="h2 second_h">
+              Everything student<br />
+              living <span data-scribble="1" className="scribble-wrap scribble-visible">should be</span>
+            </h2>
+          </div>
+
+          <div className="interaction_gallery">
+            <div className="wrapper_dynamic">
+              <div className="interaction__stage">
+                <div className="photo--rt">
+                  <img src="/__l5e/assets-v1/26dff71b-e437-435a-a1c1-7f0cbdd53355/03-2.avif" alt="Building entrance" className="image" />
+                </div>
+                <div className="photo--lt">
+                  <img src="/__l5e/assets-v1/5d59d808-a506-4c4b-8c74-2801a86cd4ae/04-1.avif" alt="Cozy bedroom" className="image" />
+                </div>
+                <div className="photo--center">
+                  <img src="/assets/poster-video.avif" alt="Community video poster" className="image" style={{ borderRadius: "8px", width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+                <div className="photo--lm">
+                  <img src="/__l5e/assets-v1/e191da4b-145f-4c04-8b62-8520fbfe4ed4/05-3.avif" alt="Modern living room" className="image" />
+                </div>
+                <div className="photo--rm">
+                  <img src="/__l5e/assets-v1/32a60dd3-daf3-46b1-a4fa-322ff798b673/06-4.avif" alt="Aerial pool view" className="image" />
+                </div>
+                <div className="photo--lb">
+                  <img src="/__l5e/assets-v1/08167de4-c814-4a18-81db-6700ea1da5b7/07-5.avif" alt="Poolside lounging area" className="image" />
+                </div>
+                <div className="photo--rb">
+                  <img src="/__l5e/assets-v1/1f3f8102-62fb-4c8b-a481-de996943190b/08-6.avif" alt="Bedroom with ceiling fan" className="image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* SIDES SECTION (Made for everyday living) */}
+      <section data-section="light" className="sides">
+        <div className="wrapper_sides">
+            <div className="sides_f">
+              <div className="sides_wrap">
+                <div className="left_side">
+                  <h2 className="h2 smaller">
+                    Made for<br />
+                    <span data-scribble="2" className="scribble-wrap scribble-visible">everyday</span> living
+                  </h2>
+                  <div className="small_box">
+                    <div className="image_small">
+                      <img src="/__l5e/assets-v1/fdca1142-750b-49c2-8bdc-c3cd82c28270/09-small-image-left.avif" alt="Bright bathroom detail" className="image" />
+                    </div>
+                    <div className="caption_info">
+                      <div className="purple_dot"></div>
+                      <div className="flex_txt">
+                        <div className="title_txt">Private space</div>
+                        <div className="caption_txt">Your space to reset and focus</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="right_side">
+                  <img src="/__l5e/assets-v1/8817c3b0-0e08-4885-a31a-e9e420d0c11a/10-side-right.avif" alt="Cozy bedroom with striped bedding" className="image" />
+                </div>
+              </div>
+            </div>
+
+            <div className="sides_s">
+              <div className="sides_wrap">
+                <div className="right_side">
+                  <img src="/__l5e/assets-v1/e386325a-f447-45ef-af20-6335dcbefe69/11-side-left.avif" alt="Aerial view of community" className="image" />
+                </div>
+                <div className="left_side">
+                  <div className="small_box caption_info right_box second_b">
+                    <div className="image_small">
+                      <img src="/__l5e/assets-v1/19a43f63-86e1-4159-b244-e78a4f0f6ce5/12-small-image-right.avif" alt="Outdoor swimming pool" className="image" />
+                    </div>
+                    <div className="caption_info">
+                      <div className="purple_dot"></div>
+                      <div className="flex_txt">
+                        <div className="title_txt">Shared spaces</div>
+                        <div className="caption_txt">Room to connect, relax, and live beyond your apartment</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* APARTMENTS SECTION (Where student life feels balanced) */}
+        <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
+          <div className="wrapper_apartments">
+            <div className="apartments_bg_gradient"></div>
+            <div className="heading_apartments">
+              <h2 className="h2 smaller">
+                Where student life<br />
+                feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
+              </h2>
+            </div>
+
+            {/* Desktop Horizontal Track */}
+            <div className="apart_cards_viewport only_desktop">
+              <div className="apart_cards_track">
+                {apartments.slice(0, 4).map((apart) => (
+                  <div className="apart_card" key={apart.id}>
+                    <div className="apart_image">
+                      <div className="overlay_tags">
+                        <div className="tag_available">
+                          <div className="dot_available"></div>
+                          <div>Available</div>
+                        </div>
+                        <div className="tags_info">
+                          <div className="tag_info">
+                            <div className="icon_tag">
+                              <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                            </div>
+                            <div>{apart.beds}</div>
+                          </div>
+                          <div className="tag_info">
+                            <div className="icon_tag">
+                              <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                            </div>
+                            <div>{apart.baths}</div>
+                          </div>
+                          <div className="tag_info">
+                            <div className="icon_tag">
+                              <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                            </div>
+                            <div>{apart.sqft}</div>
+                            <div>ft<sup>2</sup></div>
+                          </div>
+                        </div>
+                      </div>
+                      <img src={apart.image} alt={apart.name} className="image" />
+                    </div>
+
+                    <div className="content_apart">
+                      <div className="apart_title_line">
+                        <div>
+                          <div className="apart_title">{apart.name}</div>
+                        </div>
+                        <div className="price_box">
+                          <div className="icon_price">
+                            <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                          </div>
+                          <div className="price_txt">{apart.price}</div>
+                        </div>
+                      </div>
+
+                      <div className="desc_home">
+                        <div className="p_gen black specific">{apart.desc}</div>
+                      </div>
+
+                      <div className="explore_button" style={{ marginTop: "18px" }}>
+                        <WebflowButton
+                          text="Explore Details"
+                          href="https://calendly.com/propertyjs/21-oaks-25"
+                          target="_blank"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Touch Splide Slider */}
+            <div className="container only_mobile">
+              <div className="splide slider1">
+                <div className="splide__track">
+                  <div className="splide__list">
+                    {apartments.map((apart) => (
+                      <div className="splide__slide apart_card" key={apart.id}>
+                        <div className="apart_image">
+                          <div className="overlay_tags">
+                            <div className="tag_available">
+                              <div className="dot_available"></div>
+                              <div>Available</div>
+                            </div>
+                            <div className="tags_info">
+                              <div className="tag_info">
+                                <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
+                                <div>{apart.beds}</div>
+                              </div>
+                              <div className="tag_info">
+                                <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
+                                <div>{apart.baths}</div>
+                              </div>
+                              <div className="tag_info">
+                                <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
+                                <div>{apart.sqft}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <img src={apart.image} alt={apart.name} className="image" />
+                        </div>
+                        <div className="content_apart">
+                          <div className="apart_title_line">
+                            <div className="apart_title">{apart.name}</div>
+                            <div className="price_box"><div className="price_txt">${apart.price}</div></div>
+                          </div>
+                          <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
+                          <div className="explore_button" style={{ marginTop: "16px" }}>
+                            <WebflowButton text="Explore Details" href="https://calendly.com/propertyjs/21-oaks-25" target="_blank" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FULLSCREEN SECTION (Closer than you think) */}
+        <section className="fs" id="location">
+          <div className="fs_box">
+            <div className="txt_wrap">
+              <div className="heading_fs">
+                <h2 className="h2 white">
+                  <span data-scribble="3" className="scribble-wrap scribble-visible">Closer</span> than<br />
+                  you think
+                </h2>
+              </div>
+            </div>
+            <div className="svg_items">
+              <div className="clouds_top">
+                <div className="cloud_f"></div>
+                <div className="cloud_s"></div>
+                <div className="cloud_t"></div>
+              </div>
+              <div className="pin_ill"></div>
+            </div>
+            <div className="overlay_fs"></div>
+            <div className="fs_box_m">
+              <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of 21Oaks" className="image" />
+            </div>
+          </div>
+        </section>
+
+        {/* EVERYTHING YOU NEED SECTION */}
+        <section className="everything_u_need">
+          <div className="wrapper_general">
+            <div className="heading_times">
+              <h2 className="h2 everything_you_need">
+                Everything you<br />
+                <span data-scribble="1" className="scribble-wrap scribble-visible">need</span>, within reach
+              </h2>
+            </div>
+
+            <div className="txt_sides" ref={linesSectionRef}>
+              <div className="left_lines">
+                <div className="lines_caption">
+                  <div className="p_gen black">
+                    From campus to everyday essentials — everything is closer than you think.
+                  </div>
+                </div>
+
+                <div className="lines_list">
+                  <div className="lines_dynamic">
+                    <div className="flex_dyn">
+                      <div className="title_line">Campus</div>
+                      <div className="timing_txt">3 min</div>
+                    </div>
+                    <div className="bar_dynamic">
+                      <div className="active_bar" style={{ width: "0%" }}></div>
+                    </div>
+                  </div>
+
+                  <div className="lines_dynamic">
+                    <div className="flex_dyn">
+                      <div className="title_line">Daily Essentials</div>
+                      <div className="timing_txt">5 min</div>
+                    </div>
+                    <div className="bar_dynamic">
+                      <div className="active_bar" style={{ width: "0%" }}></div>
+                    </div>
+                  </div>
+
+                  <div className="lines_dynamic">
+                    <div className="flex_dyn">
+                      <div className="title_line">Food &amp; Social Spots</div>
+                      <div className="timing_txt">10 min</div>
+                    </div>
+                    <div className="bar_dynamic">
+                      <div className="active_bar" style={{ width: "0%" }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p_right">
+                <div className="md_p">
+                  Designed around your routine, so everything feels easy and connected. From campus to everyday essentials, you’re always close to what matters — without the hassle of long commutes or planning around distance.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AMENITIES SECTION */}
+        <section className="amenities_section" id="amenities">
+          <div className="wrapper_general basic slider_spec">
+            <div className="amenities_heading">
+              <h2 className="h2 middle_spec">
+                Just <span data-scribble="1" className="scribble-wrap scribble-visible">outside</span><br />
+                your door
+              </h2>
+              <div className="button_amenities">
+                <WebflowButton
+                  text="Discover Amenities"
+                  href="https://calendly.com/propertyjs/21-oaks-25"
+                  target="_blank"
+                />
+              </div>
+            </div>
+
+            {/* Desktop and Mobile Splide Carousel */}
+            <div className="container only_amenities">
+              <div className="splide slider1 second_splide">
+                <div className="splide__track">
+                  <div className="splide__list" style={{ display: "flex", gap: "24px" }}>
+                    {amenitiesList.map((amenity) => (
+                      <div className="splide__slide" key={amenity.title} style={{ minWidth: "300px", flex: "0 0 300px" }}>
+                        <div className="image_amenities" style={{ position: "relative", borderRadius: "6px", overflow: "hidden" }}>
+                          <div className="overlay_amenities">
+                            <div className="heading_text">
+                              <div className="title_amenities">{amenity.title}</div>
+                            </div>
+                            <div className="bottom_amenities">
+                              <div className="desc_amenities">
+                                <div className="p_gen">{amenity.desc}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="overlay_color"></div>
+                          <img src={amenity.image} alt={amenity.title} className="image" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* HOW IT WORKS SECTION */}
+        <section className="how_it_works" id="how-it-works">
+          <div className="wrapper_general basic">
+            <div className="flex_how">
+              <div className="left_title">
+                <div className="sticky_how">
+                  <div className="top_how">
+                    <div className="cap_box">
+                      <div className="caption_small">Simple Move-In</div>
+                    </div>
+                    <div className="headline_box">
+                      <h2 className="h2 smaller">
+                        How it <span data-scribble="2" className="scribble-wrap scribble-visible">Works</span>
+                      </h2>
+                    </div>
+                  </div>
+
+                  <div className="bottom_how only_desktop">
+                    <div className="p_gen black">
+                      Sounds like a fit? <br />
+                      Apply now or book a tour.
+                    </div>
+                    <div style={{ marginTop: "16px" }}>
+                      <WebflowButton
+                        text="Schedule a Tour"
+                        href="https://calendly.com/propertyjs/21-oaks-25"
+                        target="_blank"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="right_cards">
+                <div className="how_cms">
+                  <div style={{ backgroundColor: "#e8ceff" }} className="how_card">
+                    <div className="wrapper_how">
+                      <div className="icon_how">
+                        <img src="/assets/icons/find-1.avif" alt="Find your space" />
+                      </div>
+                      <div className="content_how">
+                        <div className="title_how">Find your space</div>
+                        <div className="p_gen black">
+                          Explore different layouts, compare options, and choose a space that fits your routine, lifestyle, and daily flow.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ backgroundColor: "#feb7b9" }} className="how_card">
+                    <div className="wrapper_how">
+                      <div className="icon_how">
+                        <img src="/assets/icons/apply-2.avif" alt="Apply in minutes" />
+                      </div>
+                      <div className="content_how">
+                        <div className="title_how">Apply in minutes</div>
+                        <div className="p_gen black">
+                          Complete your application online in just a few steps. The process is simple, fast, and designed to get you approved without delays.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ backgroundColor: "#f3ede6" }} className="how_card">
+                    <div className="wrapper_how">
+                      <div className="icon_how">
+                        <img src="/assets/icons/move-3.avif" alt="Move in, settle fast" />
+                      </div>
+                      <div className="content_how">
+                        <div className="title_how">Move in, settle fast</div>
+                        <div className="p_gen black">
+                          Once approved, everything is ready for your arrival. Move in seamlessly and start living comfortably from day one.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS SECTION */}
+        <section className="testimonials">
+          <div className="wrapper_general basic">
+            <div className="testimonials_heading">
+              <h2 className="h2 bigger">
+                <span data-scribble="2" className="scribble-wrap scribble-visible">Real</span> student<br />
+                experiences
+              </h2>
+            </div>
+
+            <div className="cms_testimonials">
+              <div className="authors">
+                <div className="author_coll" style={{ display: "flex", gap: "20px" }}>
+                  {testimonialsList.map((item, idx) => {
+                    const isActive = activeAuthor === idx;
+                    return (
+                      <div
+                        key={item.author}
+                        className={`author_item ${isActive ? "is-active" : ""}`}
+                        onClick={() => handleAuthorSelect(idx)}
+                        style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "12px" }}
+                      >
+                        <div
+                          className="author_circle"
+                          style={{
+                            background: isActive
+                              ? `conic-gradient(from -90deg, #d6b2ff ${authorProgress}%, #e6e6e6 0)`
+                              : "transparent",
+                          }}
+                        >
+                          <img src={item.photo} alt={item.author} className="image" />
+                        </div>
+                        <div className="author_name">
+                          <div className="author_name_txt" style={{ fontWeight: isActive ? 700 : 500 }}>
+                            {item.author}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="quotes" style={{ marginTop: "40px" }}>
+                <div
+                  ref={quoteRef}
+                  className="testimonial_txt"
+                  style={{ fontSize: "clamp(22px, 2.6vw, 36px)", lineHeight: 1.25, fontStyle: "italic" }}
+                >
+                  {testimonialsList[activeAuthor].quote}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQS SECTION */}
+        <section className="faqs" id="faq">
+          <div className="wrapper_general basic">
+            <div className="faq_heading">
+              <h2 className="h2 smaller">
+                Frequently asked<br />questions
+              </h2>
+            </div>
+
+            <div className="sides_faq">
+              <div className="short_left">
+                <div className="caption_faq">
+                  <div>Everything you might want to know before moving in.</div>
+                </div>
+                <div className="bottom_faq">
+                  <div className="p_gen black caption_cta">
+                    Didn’t find what you were<br />looking for?
+                  </div>
+                  <div style={{ marginTop: "16px" }}>
+                    <WebflowButton
+                      text="Explore FAQ"
+                      href="#faq"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="faq_general">
+                <div className="collection_faq">
+                  {faqsList.map((faq, index) => {
+                    const isOpen = openFaq === index;
+                    return (
+                      <div
+                        className="accordion-item"
+                        key={faq.q}
+                        style={{ borderTop: "1px solid #292929", padding: "18px 0" }}
+                      >
+                        <div
+                          className="accordion_head-wrapper"
+                          onClick={() => setOpenFaq(isOpen ? null : index)}
+                          style={{ cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                        >
+                          <div className="item_title" style={{ fontSize: "20px", fontWeight: 500 }}>
+                            {faq.q}
+                          </div>
+                          <div style={{ transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.2s ease", fontSize: "24px" }}>
+                            +
+                          </div>
+                        </div>
+
+                        {isOpen && (
+                          <div className="item_content-wrapper" style={{ marginTop: "12px", color: "rgba(0,0,0,0.75)", fontSize: "14px", lineHeight: 1.5 }}>
+                            <p>{faq.a}</p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PRE-FOOTER CTA SECTION */}
+        <section data-section="dark" id="contact">
+          <section className="fs_cta">
+            <div className="abs_box">
+              <div className="pink_cta">
+                <div className="wrapper_box_cta">
+                  <div className="heading_cta">
+                    <div className="txt_cta">
+                      Find your place.<br />
+                      Make it yours.
+                    </div>
+                  </div>
+
+                  <div className="flex_cta" style={{ marginTop: "24px" }}>
+                    <div className="black_button">
+                      <WebflowButton
+                        text="Schedule a Tour"
+                        href="https://calendly.com/propertyjs/21-oaks-25"
+                        target="_blank"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="fs_bg">
+              <img src="/assets/image_cta.avif" alt="21Oaks luxury lounge" className="image" />
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer className="footer">
+            <div className="wrapper_footer">
+              <div className="flex_f_top">
+                <div className="caption_left">
+                  <div className="cap_footer" style={{ fontSize: "44px", fontWeight: 700 }}>21Oaks</div>
+                  <div className="cap_footer" style={{ marginTop: "8px" }}>
+                    Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
+                  </div>
+                </div>
+
+                <div className="menu_footer">
+                  <div className="box_menu">
+                    <div className="title_footer">Discover</div>
+                    <div className="links_list">
+                      <a href="#apartments" className="link_f">Apartments</a>
+                      <a href="#amenities" className="link_f">Amenities</a>
+                      <a href="#location" className="link_f">Location</a>
+                      <a href="#gallery" className="link_f">Gallery</a>
+                      <a href="#how-it-works" className="link_f">How to apply</a>
+                      <a href="#contact" className="link_f">Contact</a>
+                    </div>
+                  </div>
+
+                  <div className="box_menu">
+                    <div className="title_footer">Contact</div>
+                    <div className="links_list">
+                      <div
+                        className="link_f"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleCopy("21 National Guard Rd, Columbia, SC 29201", "Address Copied!")}
+                      >
+                        21 National Guard Rd<br />Columbia, SC 29201
+                      </div>
+                      <div
+                        className="link_f"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleCopy("+1 (803) 937-2431", "Phone Copied!")}
+                      >
+                        +1 (803) 937-2431
+                      </div>
+                      <div
+                        className="link_f"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleCopy("21oaks@bhom.com", "Email Copied!")}
+                      >
+                        21oaks@bhom.com
+                      </div>
+                      {copyFeedback && (
+                        <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
+                          ✓ {copyFeedback}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="box_menu">
+                    <div className="title_footer">Office Hours</div>
+                    <div className="links_list">
+                      <div className="link_f">Mon - Fri: 10am - 6pm</div>
+                      <div className="link_f">Sat: 10am - 5pm</div>
+                      <div className="link_f">Sun: 1pm - 5pm</div>
+                    </div>
+                  </div>
+
+                  <div className="box_menu">
+                    <div className="title_footer">Legals</div>
+                    <div className="links_list">
+                      <a href="#" className="link_f">Privacy Policy</a>
+                      <a href="#" className="link_f">Accessibility Policy</a>
+                      <a href="#" className="link_f">Equal Housing</a>
+                      <a href="#" className="link_f">Disclosures</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="back_socials">
+                <div>
+                  <a id="to-top" href="#top" onClick={handleScrollToTop} className="back_top w-inline-block">
+                    <div>Back to top ↑</div>
+                  </a>
+                </div>
+                <div className="socials_box">
+                  <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                    <div className="social_icon ig">IG</div>
+                  </a>
+                  <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                    <div className="social_icon fb">FB</div>
+                  </a>
+                  <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                    <div className="social_icon tiktok">TT</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Lamp SVG with flickering glow animation */}
+            <div className="ill_interactive">
+              <div className="ill_svg_footer">
+                <div className="footer-lamp-wrap" style={{ width: "100%", height: "auto" }}>
+                  <svg width="100%" height="100%" viewBox="0 0 1920 469" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="lamp-glow" opacity="0.8">
+                      <path d="M1328.96 193C1332.93 195.308 1354.44 212.175 1356.54 215.621L1355.3 217.16C1337.14 223.873 1324.31 211.304 1328.96 193Z" fill="#FFDA55"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div className="last_line ll_fs">
+              <div className="last_txt">© B.HOM Student Living</div>
+              <div className="web_dev_by">
+                <span className="op_spec">Website by </span>
+                <a href="https://www.artemiilebedev.com" target="_blank" rel="noreferrer" className="spec_link">
+                  Artemii Lebedev
+                </a>
+              </div>
+              <div className="last_txt">All Rights Reserved 2026</div>
+            </div>
+          </footer>
+        </section>
+    </div>
+  );
+}
