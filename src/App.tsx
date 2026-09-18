@@ -253,14 +253,23 @@ export default function App() {
   const activeSlideRef = useRef(0);
   activeSlideRef.current = activeSlide;
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const handleSlideChangeRef = useRef<(index: number) => void>(() => {});
 
   const startAutoTimer = useCallback(() => {
     if (autoTimerRef.current) clearInterval(autoTimerRef.current);
     autoTimerRef.current = setInterval(() => {
       if (document.hidden || heroBusyRef.current) return;
       const next = (activeSlideRef.current + 1) % heroSlides.length;
-      handleSlideChange(next);
+      handleSlideChangeRef.current(next);
     }, 4500);
+  }, []);
+
+  // Preload all hero slide images immediately to avoid any load latency
+  useEffect(() => {
+    heroSlides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+    });
   }, []);
 
   // 1. Dynamic Header theme with data-section detector
@@ -309,48 +318,84 @@ export default function App() {
   }, []);
 
   // 2. Hero Circular Mask Transition with GSAP & Auto Advance
-  const handleSlideChange = (index: number) => {
-    if (index === activeSlideRef.current || heroBusyRef.current) return;
-    heroBusyRef.current = true;
+  const handleSlideChange = useCallback(
+    async (index: number) => {
+      if (index === activeSlideRef.current || heroBusyRef.current) return;
+      heroBusyRef.current = true;
 
-    const targetImg = heroSlides[index].image;
-    setNextHeroImg(targetImg);
-    setActiveSlide(index);
-    activeSlideRef.current = index;
+      const targetImg = heroSlides[index].image;
+      setActiveSlide(index);
+      activeSlideRef.current = index;
 
-    // Restart timer so new slide displays for full 4.5s
-    startAutoTimer();
+      // Restart timer so new slide displays for full 4.5s
+      startAutoTimer();
 
-    const bgNext = bgNextRef.current;
-    const bgCurrent = bgCurrentRef.current;
+      const bgNext = bgNextRef.current;
+      const bgCurrent = bgCurrentRef.current;
 
-    if (bgNext && bgCurrent) {
-      bgNext.src = targetImg;
-      gsap.killTweensOf([bgNext, bgCurrent]);
+      if (!bgNext || !bgCurrent) {
+        setCurrentHeroImg(targetImg);
+        heroBusyRef.current = false;
+        return;
+      }
 
-      gsap.set(bgCurrent, { opacity: 1, scale: 1 });
-      gsap.set(bgNext, {
-        opacity: 1,
-        clipPath: "circle(0% at 100% 50%)",
-        willChange: "clip-path",
-      });
+      try {
+        // 1. Pre-decode the target image in memory so it renders immediately
+        const preloadImg = new Image();
+        preloadImg.src = targetImg;
+        if (typeof preloadImg.decode === "function") {
+          await preloadImg.decode().catch(() => {});
+        }
 
-      gsap.to(bgNext, {
-        clipPath: "circle(150% at 100% 50%)",
-        duration: 1.25,
-        ease: "power3.out",
-        onComplete: () => {
-          setCurrentHeroImg(targetImg);
-          gsap.set(bgCurrent, { opacity: 1 });
-          gsap.set(bgNext, { opacity: 0, clipPath: "circle(0% at 100% 50%)" });
-          heroBusyRef.current = false;
-        },
-      });
-    } else {
-      setCurrentHeroImg(targetImg);
-      heroBusyRef.current = false;
-    }
-  };
+        // 2. Set next image source and decode on the element
+        bgNext.src = targetImg;
+        if (typeof bgNext.decode === "function") {
+          await bgNext.decode().catch(() => {});
+        }
+        setNextHeroImg(targetImg);
+
+        gsap.killTweensOf([bgNext, bgCurrent]);
+
+        // 3. Keep current image visible underneath and reset next image masked
+        gsap.set(bgCurrent, { opacity: 1, scale: 1 });
+        gsap.set(bgNext, {
+          opacity: 1,
+          clipPath: "circle(0% at 100% 50%)",
+          willChange: "clip-path",
+        });
+
+        // 4. Smooth circular mask reveal
+        gsap.to(bgNext, {
+          clipPath: "circle(150% at 100% 50%)",
+          duration: 1.25,
+          ease: "power3.out",
+          onComplete: () => {
+            // Immediately mirror targetImg on the bgCurrent DOM element before resetting bgNext.
+            // This guarantees bgCurrent already displays the new image, preventing any 1-frame flash.
+            bgCurrent.src = targetImg;
+            setCurrentHeroImg(targetImg);
+
+            gsap.set(bgCurrent, { opacity: 1 });
+            gsap.set(bgNext, {
+              opacity: 0,
+              clipPath: "circle(0% at 100% 50%)",
+              clearProps: "willChange",
+            });
+            heroBusyRef.current = false;
+          },
+        });
+      } catch (err) {
+        console.error("Hero slide transition error:", err);
+        setCurrentHeroImg(targetImg);
+        heroBusyRef.current = false;
+      }
+    },
+    [startAutoTimer]
+  );
+
+  useEffect(() => {
+    handleSlideChangeRef.current = handleSlideChange;
+  }, [handleSlideChange]);
 
   useEffect(() => {
     startAutoTimer();
