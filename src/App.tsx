@@ -63,7 +63,7 @@ function WebflowButton({
 
 const heroSlides = [
   {
-    image: "/__l5e/assets-v1/7c7891ba-66b4-45ea-8321-415616b6042a/00-hero-1.avif",
+    image: "/assets/hero-banner-1.avif",
     alt: "Modern bedroom with a neatly made bed, patterned rug, desk, lamp, and curtains.",
     tips: [
       { id: "comod", label: "Within reach", x: "26%", y: "68%", deg: 180 },
