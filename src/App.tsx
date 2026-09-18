@@ -251,6 +251,7 @@ export default function App() {
   activeSlideRef.current = activeSlide;
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const handleSlideChangeRef = useRef<(index: number) => void>(() => {});
+  const splideInstancesRef = useRef<Splide[]>([]);
 
   const startAutoTimer = useCallback(() => {
     if (autoTimerRef.current) clearInterval(autoTimerRef.current);
@@ -429,18 +430,23 @@ export default function App() {
 
       if (!title || !gallery || !center) return;
 
-      const left = [lt, lm, lb];
-      const right = [rt, rm, rb];
+      const left = [lt, lm, lb].filter(Boolean) as HTMLElement[];
+      const right = [rt, rm, rb].filter(Boolean) as HTMLElement[];
 
       const offLeft = (el: HTMLElement) =>
-        -(window.innerWidth + el.getBoundingClientRect().width + 160);
+        -(window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160);
       const offRight = (el: HTMLElement) =>
-        window.innerWidth + el.getBoundingClientRect().width + 160;
+        window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160;
 
-      gsap.set(center, { scale: 0.85, transformOrigin: "50% 50%" });
-      gsap.set([lt, lm, lb, rt, rm, rb], { autoAlpha: 0, y: 180, scale: 0.9, x: 0 });
+      gsap.set(center, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set([lt, lm, lb, rt, rm, rb].filter(Boolean), {
+        autoAlpha: 0,
+        y: 180,
+        scale: 0.9,
+        x: 0,
+      });
 
-      // Title zoom scrub
+      // Title zoom scrub matching live 21oaks.org
       gsap.to(center, {
         scale: 1.12,
         ease: "none",
@@ -453,6 +459,7 @@ export default function App() {
       });
 
       // Gallery stage pin & scatter timeline
+      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: gallery,
@@ -460,15 +467,15 @@ export default function App() {
           end: "+=300%",
           pin: true,
           pinSpacing: true,
-          scrub: 1.2,
-          anticipatePin: 1,
+          scrub: isDesktop ? 1.2 : true,
+          anticipatePin: isDesktop ? 1 : 0,
           fastScrollEnd: true,
           invalidateOnRefresh: true,
         },
       });
 
       tl.to(
-        [lt, lm, lb, rt, rm, rb],
+        [lt, lm, lb, rt, rm, rb].filter(Boolean),
         {
           autoAlpha: 1,
           scale: 1,
@@ -479,12 +486,12 @@ export default function App() {
         0.02
       );
 
-      tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
-      tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
-      tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
-      tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
-      tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
-      tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
+      if (lt) tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
+      if (lm) tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
+      if (lb) tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
+      if (rt) tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
+      if (rm) tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
+      if (rb) tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
 
       tl.to(
         left,
@@ -509,6 +516,15 @@ export default function App() {
         },
         1.25
       );
+
+      const onResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", onResize);
+      window.addEventListener("load", onResize);
+
+      return () => {
+        window.removeEventListener("resize", onResize);
+        window.removeEventListener("load", onResize);
+      };
     }, section);
 
     return () => ctx.revert();
@@ -738,8 +754,10 @@ export default function App() {
                 perMove: 1,
                 focus: 0,
                 type: "slide",
+                rewind: true,
+                rewindSpeed: 500,
                 gap: "1rem",
-                arrows: false,
+                arrows: true,
                 pagination: true,
                 drag: true,
                 flickPower: 600,
@@ -770,6 +788,8 @@ export default function App() {
         console.warn("Splide init notice:", err);
       }
     });
+
+    splideInstancesRef.current = instances;
 
     // Observe size changes so Splide recalculates slide widths instantly on viewport change
     const observer = new ResizeObserver(() => {
@@ -1211,8 +1231,21 @@ export default function App() {
               </div>
             </div>
 
-            {/* Apply Now Button with signature interactive arrow */}
+            {/* Apply Now Button & Mobile Header Navigation Button */}
             <div className="apply_button">
+              <div
+                className="mobile_header_toggle only_mobile"
+                onClick={() => setMenuOpen(!menuOpen)}
+                role="button"
+                aria-label="Navigation Menu"
+              >
+                <div className="hamburger">
+                  <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
+                  <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
+                </div>
+                <span className="mobile_header_toggle_txt">{menuOpen ? "Close" : "Menu"}</span>
+              </div>
+
               <WebflowButton
                 text="Apply Now"
                 href="https://calendly.com/propertyjs/21-oaks-25"
@@ -1367,7 +1400,7 @@ export default function App() {
           <div className="middle">
             <h2 className="h2 second_h">
               Everything student<br />
-              living <span data-scribble="1" className="scribble-wrap scribble-visible">should be</span>
+              living <span data-scribble="1" className="scribble-wrap">should be</span>
             </h2>
           </div>
 
@@ -1573,6 +1606,39 @@ export default function App() {
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+
+                {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
+                <div className="pagination_arrows">
+                  <ul className="splide__pagination"></ul>
+                  <div className="splide__arrows">
+                    <button
+                      className="splide__arrow splide__arrow--prev"
+                      type="button"
+                      aria-label="Previous apartment"
+                      onClick={() => {
+                        const apartInst = splideInstancesRef.current.find(
+                          (inst) => !inst.root.classList.contains("second_splide")
+                        );
+                        apartInst?.go("<");
+                      }}
+                    >
+                      <img src="/assets/icons/chevron-left.svg" alt="Previous" />
+                    </button>
+                    <button
+                      className="splide__arrow splide__arrow--next"
+                      type="button"
+                      aria-label="Next apartment"
+                      onClick={() => {
+                        const apartInst = splideInstancesRef.current.find(
+                          (inst) => !inst.root.classList.contains("second_splide")
+                        );
+                        apartInst?.go(">");
+                      }}
+                    >
+                      <img src="/assets/icons/chevron-right.svg" alt="Next" />
+                    </button>
                   </div>
                 </div>
               </div>
