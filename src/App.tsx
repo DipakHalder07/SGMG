@@ -64,19 +64,16 @@ function WebflowButton({
 const heroSlides = [
   {
     image: "/assets/hero-banner-1.avif",
-    alt: "Modern bedroom with a neatly made bed, patterned rug, desk, lamp, and curtains.",
+    alt: "Vega Circle commercial and retail center with modern architecture and landscaped surroundings.",
     tips: [
-      { id: "comod", label: "Within reach", x: "26%", y: "68%", deg: 180 },
       { id: "bed", label: "Designed to recharge", x: "55%", y: "43%", deg: 130 },
-      { id: "table", label: "Built for focus", x: "68%", y: "59%", deg: 135 },
     ],
   },
   {
-    image: "/__l5e/assets-v1/4007da14-b7d3-4254-b5b3-ab2e92bc51e8/01-image-2.avif",
-    alt: "Cozy living room with black leather sofas, beige throw blanket, and gold-framed mirror.",
+    image: "/assets/hero-banner-2.avif",
+    alt: "Vega Circle modern interior space and amenities.",
     tips: [
       { id: "living", label: "Comfort in every corner", x: "32%", y: "58%", deg: 120 },
-      { id: "accent", label: "Little details matter", x: "72%", y: "52%", deg: 200 },
     ],
   },
   {
@@ -1273,47 +1270,22 @@ export default function App() {
           {/* Interactive Hover Zones Overlay */}
           <svg className="hero-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
             {activeSlide === 0 && (
-              <>
-                <path
-                  className="zone"
-                  d="M442 538L101.5 532.5H97.5V1081H442.5L466.5 918L472.5 535L442 538Z"
-                  fill="white"
-                  onMouseEnter={() => setHoveredTip("comod")}
-                  onMouseLeave={() => setHoveredTip(null)}
-                />
-                <path
-                  className="zone"
-                  d="M946.5 882H928.5V871L918 863.5L906.5 848.5L895 830L888 815V785.5L881.5 779.5L870.5 770.5L865 769L862 766L853 759L846.5 756.5L832 737.5L820 727L809.5 712L799 705.5L787.5 699.5L781 689L772 684.5L760 671.5L753 668L751 631.5L738 620.5L742.5 611.5L746.5 593.5L758 579.5L779 570V503L776 492.5L790.5 496V484.5L787.5 476L790.5 461L798.5 464L812 472L825 483L838 488L845.5 492.5L848 489.5L854.5 483L864.5 476L870 469L874.5 467.5L880.5 475H887.5L913 481.5L928 489.5H942.5L949 486L970 474L983 472L983.5 476.5L982 492.842L988.5 493.5L997 489.5L1004.5 491.5L1012 489.5L1017.5 492V509L1020.5 516.5L1033 564H1046.5L1066.5 560.5L1083.5 566L1198 564L1212 568.5L1256.5 587L1257.87 633L1194.5 639L1179 635.5L1174.5 630.5L1165.5 634.5L1162 642L1165.5 654L1168.5 656.5L1182.5 706L1109.5 709L1105 706L1091.5 710.5H1064.5L1060 715H1046.5L1026.5 719L1017.5 715L1005.5 721H993.5V725L987.5 727V741L979 744.5L974.5 770.5L967 782V803H954L946.5 815V882Z"
-                  fill="white"
-                  onMouseEnter={() => setHoveredTip("bed")}
-                  onMouseLeave={() => setHoveredTip(null)}
-                />
-                <path
-                  className="zone"
-                  d="M1921 961.5L1238 755L1380 724.177V715L1371.5 708.5V697.152H1504.5L1572 682.5L1859.5 723.5L1921 748V961.5Z"
-                  fill="white"
-                  onMouseEnter={() => setHoveredTip("table")}
-                  onMouseLeave={() => setHoveredTip(null)}
-                />
-              </>
+              <path
+                className="zone"
+                d="M1166 208L1213 210L1215 229L1224 229L1241 596L1260 609L1260 628L1138 634L1101 647L1086 666L1029 683L973 683L973 673L936 666L932 656L829 643L698 645L699 673L711 683L795 694L791 750L765 782L699 791L675 842L497 844L422 816L420 806L401 803L315 743L308 686L341 630L369 630L381 617L396 568L546 564L549 293L624 289L638 300L722 300L881 291L1153 219Z"
+                fill="white"
+                onMouseEnter={() => setHoveredTip("bed")}
+                onMouseLeave={() => setHoveredTip(null)}
+              />
             )}
             {activeSlide === 1 && (
-              <>
-                <path
-                  className="zone"
-                  d="M168 502H-0.5V1082H701.5L809.5 1057.5L980.5 1022L996 1008.5L974.5 994L980.5 976.5L1002.5 984.5L1012.5 969L1002.5 947.5L1012.5 926.5L1037 917.5L1022 897.5L1037 880L1050 862L1048 842.5L1052 823L1071 830L1075.5 812L1087 813.5L1099 806L1121.5 799L1150.5 813.5L1162 801L1180.5 796L1187 813.5L1162 828L1171.5 834L1183.5 850.5L1213 837.5L1216.5 862L1204.5 886L1221.5 917.5V866.5L1218.5 775V686.5L1203.5 678L1159.5 675L997.5 671.5L994 651V622L996 609L997.5 570.5L1002.5 560.5V537L1009.5 486L1012.5 461L1016.5 440L1004.5 438L991.5 440H981.5L971 444.5L898 461L831 478L823.5 486L800.5 483.5L785 486L744.5 483.5L571 475L548 483.5V502L201.5 495L181 519L168 502Z"
-                  fill="white"
-                  onMouseEnter={() => setHoveredTip("living")}
-                  onMouseLeave={() => setHoveredTip(null)}
-                />
-                <path
-                  className="zone"
-                  d="M1367 562L1375.5 574.5V603L1228 599.5H1162.5L1151.5 591.5V550H1162.5H1176.5L1198 545.5L1221.5 539L1228 562L1235 591.5H1249V574.5L1244.5 558.5L1240 545.5L1265 539H1363V550L1367 562Z"
-                  fill="white"
-                  onMouseEnter={() => setHoveredTip("accent")}
-                  onMouseLeave={() => setHoveredTip(null)}
-                />
-              </>
+              <path
+                className="zone"
+                d="M638 229L671 251L716 255L761 246L801 261L846 268L878 283L911 266L956 263L996 279L1041 283L1086 289L1125 279L1170 279L1202 302L1247 304L1245 339L1247 384L1239 422L1239 459L1238 499L1230 542L1232 587L1230 632L1226 677L1232 722L1209 761L1170 795L1129 825L1084 823L1039 812L994 795L951 774L906 778L861 761L816 741L771 722L726 705L681 688L636 668L591 647L566 609L561 579L563 534L559 489L553 444L546 399L542 354L540 309L529 272L581 264L604 236Z"
+                fill="white"
+                onMouseEnter={() => setHoveredTip("living")}
+                onMouseLeave={() => setHoveredTip(null)}
+              />
             )}
             {activeSlide === 2 && (
               <>
