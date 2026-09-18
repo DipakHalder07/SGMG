@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
+import FooterIllustration from "./components/FooterIllustration";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,15 +44,15 @@ function WebflowButton({
       target={target}
       className={`button ${className}`}
     >
-      <div className="icon_box is-left">
+      <div className={`icon_box is-left ${className}`}>
         <div className="arrow_icon">
           <ArrowIcon />
         </div>
       </div>
-      <div className="text_box">
+      <div className={`text_box ${className}`}>
         <div>{text}</div>
       </div>
-      <div className="icon_box is-right">
+      <div className={`icon_box is-right ${className}`}>
         <div className="arrow_icon">
           <ArrowIcon />
         </div>
@@ -239,8 +240,6 @@ export default function App() {
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
   const [brightness, setBrightness] = useState(65);
   const [hoveredTip, setHoveredTip] = useState<string | null>(null);
-  const [activeAuthor, setActiveAuthor] = useState(0);
-  const [authorProgress, setAuthorProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
@@ -248,9 +247,21 @@ export default function App() {
   const bgNextRef = useRef<HTMLImageElement>(null);
   const dynamicSectionRef = useRef<HTMLElement>(null);
   const apartmentsSectionRef = useRef<HTMLElement>(null);
+  const testimonialsSectionRef = useRef<HTMLElement>(null);
   const linesSectionRef = useRef<HTMLDivElement>(null);
-  const quoteRef = useRef<HTMLDivElement>(null);
   const heroBusyRef = useRef(false);
+  const activeSlideRef = useRef(0);
+  activeSlideRef.current = activeSlide;
+  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startAutoTimer = useCallback(() => {
+    if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+    autoTimerRef.current = setInterval(() => {
+      if (document.hidden || heroBusyRef.current) return;
+      const next = (activeSlideRef.current + 1) % heroSlides.length;
+      handleSlideChange(next);
+    }, 4500);
+  }, []);
 
   // 1. Dynamic Header theme with data-section detector
   useEffect(() => {
@@ -297,19 +308,24 @@ export default function App() {
     };
   }, []);
 
-  // 2. Hero Circular Mask Transition with GSAP
+  // 2. Hero Circular Mask Transition with GSAP & Auto Advance
   const handleSlideChange = (index: number) => {
-    if (index === activeSlide || heroBusyRef.current) return;
+    if (index === activeSlideRef.current || heroBusyRef.current) return;
     heroBusyRef.current = true;
 
     const targetImg = heroSlides[index].image;
     setNextHeroImg(targetImg);
     setActiveSlide(index);
+    activeSlideRef.current = index;
+
+    // Restart timer so new slide displays for full 4.5s
+    startAutoTimer();
 
     const bgNext = bgNextRef.current;
     const bgCurrent = bgCurrentRef.current;
 
     if (bgNext && bgCurrent) {
+      bgNext.src = targetImg;
       gsap.killTweensOf([bgNext, bgCurrent]);
 
       gsap.set(bgCurrent, { opacity: 1, scale: 1 });
@@ -335,6 +351,22 @@ export default function App() {
       heroBusyRef.current = false;
     }
   };
+
+  useEffect(() => {
+    startAutoTimer();
+    const handleVisibility = () => {
+      if (document.hidden) {
+        if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+      } else {
+        startAutoTimer();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => {
+      if (autoTimerRef.current) clearInterval(autoTimerRef.current);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [startAutoTimer]);
 
   // 3. Dynamic Section Photos GSAP ScrollTrigger (Pinning + Outward Flyout Physics)
   useEffect(() => {
@@ -628,6 +660,7 @@ export default function App() {
 
     splideEls.forEach((el) => {
       try {
+        const isAmenities = el.classList.contains("second_splide");
         const inst = new Splide(el, {
           perPage: 3,
           perMove: 1,
@@ -635,12 +668,24 @@ export default function App() {
           type: "slide",
           gap: "1.5rem",
           arrows: false,
-          pagination: true,
+          pagination: !isAmenities,
           speed: 800,
           breakpoints: {
-            991: { perPage: 2, gap: "1rem" },
-            767: { perPage: 1, gap: "0.8rem" },
-            479: { perPage: 1, gap: "0.5rem" },
+            991: {
+              perPage: 2,
+              gap: "1rem",
+              padding: isAmenities ? { right: "2rem" } : 0,
+            },
+            767: {
+              perPage: 1,
+              gap: "1rem",
+              padding: isAmenities ? { right: "2rem" } : 0,
+            },
+            479: {
+              perPage: 1,
+              gap: "0.85rem",
+              padding: isAmenities ? { left: "0rem", right: "2.6rem" } : 0,
+            },
           },
         });
         inst.mount();
@@ -716,33 +761,236 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  // 8. Testimonials Auto-play Progress Ring & Smooth Fade
+  // 8. Testimonials Interactive Controller matching Webflow
   useEffect(() => {
-    const interval = 8000;
-    const stepTime = 50;
-    const increment = (stepTime / interval) * 100;
+    const section = testimonialsSectionRef.current;
+    if (!section) return;
 
-    const timer = setInterval(() => {
-      setAuthorProgress((prev) => {
-        if (prev >= 100) {
-          setActiveAuthor((curr) => {
-            const nextIdx = (curr + 1) % testimonialsList.length;
-            if (quoteRef.current) {
-              gsap.fromTo(
-                quoteRef.current,
-                { opacity: 0, y: 12 },
-                { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
-              );
-            }
-            return nextIdx;
-          });
-          return 0;
-        }
-        return prev + increment;
+    const authors = Array.from(section.querySelectorAll<HTMLElement>(".author_item"));
+    const quotes = Array.from(section.querySelectorAll<HTMLElement>(".testimonial_item"));
+    const desktopMq = window.matchMedia("(min-width: 992px)");
+
+    if (!authors.length || authors.length !== quotes.length) return;
+
+    const INTERVAL_MS = 10000;
+    let current = 0;
+    let ringTween: gsap.core.Tween | null = null;
+    let quoteTween: gsap.core.Timeline | null = null;
+    let isAnimating = false;
+    let isInViewport = true;
+    let isDesktop = desktopMq.matches;
+
+    function getRingEl(author: HTMLElement) {
+      return author.querySelector<HTMLElement>(".author_circle") || author;
+    }
+
+    function canAnimateNow() {
+      return isInViewport && !document.hidden;
+    }
+
+    function canAutoplay() {
+      return isDesktop && canAnimateNow();
+    }
+
+    function hardResetQuotes(activeIndex: number) {
+      if (quoteTween) {
+        quoteTween.kill();
+        quoteTween = null;
+      }
+      isAnimating = false;
+      quotes.forEach((q, i) => {
+        gsap.killTweensOf(q);
+        q.classList.toggle("is-active", i === activeIndex);
+        gsap.set(q, {
+          display: i === activeIndex ? "flex" : "none",
+          opacity: i === activeIndex ? 1 : 0,
+          y: i === activeIndex ? 0 : 12,
+        });
       });
-    }, stepTime);
+    }
 
-    return () => clearInterval(timer);
+    function animateQuoteChange(nextIndex: number) {
+      if (isAnimating) return;
+
+      const currentQuote = quotes.find((q) => q.classList.contains("is-active"));
+      const nextQuote = quotes[nextIndex];
+      if (!nextQuote) return;
+
+      if (!canAnimateNow() || !currentQuote || currentQuote === nextQuote) {
+        hardResetQuotes(nextIndex);
+        return;
+      }
+
+      if (quoteTween) {
+        quoteTween.kill();
+        quoteTween = null;
+      }
+
+      gsap.killTweensOf([currentQuote, nextQuote]);
+      isAnimating = true;
+
+      quoteTween = gsap.timeline({
+        defaults: { overwrite: "auto" },
+        onComplete: () => {
+          isAnimating = false;
+          quoteTween = null;
+        },
+      });
+
+      quoteTween.to(currentQuote, {
+        opacity: 0,
+        y: 12,
+        duration: 0.25,
+        ease: "power2.out",
+        onComplete: () => {
+          currentQuote.classList.remove("is-active");
+          gsap.set(currentQuote, { display: "none" });
+          nextQuote.classList.add("is-active");
+          gsap.set(nextQuote, { display: "flex" });
+        },
+      });
+
+      quoteTween.fromTo(
+        nextQuote,
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.35,
+          ease: "power2.out",
+        }
+      );
+    }
+
+    function clearRingProgress() {
+      authors.forEach((author, i) => {
+        const ring = getRingEl(author);
+        ring.style.setProperty("--p", i === current && !isDesktop ? "100" : "0");
+      });
+    }
+
+    function startRing() {
+      if (ringTween) {
+        ringTween.kill();
+        ringTween = null;
+      }
+
+      const activeAuthor = authors[current];
+      const activeRing = getRingEl(activeAuthor);
+      if (!activeAuthor || !activeRing) return;
+
+      if (!isDesktop) {
+        clearRingProgress();
+        return;
+      }
+
+      authors.forEach((author) => {
+        const ring = getRingEl(author);
+        ring.style.setProperty("--p", "0");
+      });
+
+      const progressState = { value: 0 };
+      ringTween = gsap.to(progressState, {
+        value: 100,
+        duration: INTERVAL_MS / 1000,
+        ease: "none",
+        paused: !canAutoplay(),
+        onUpdate() {
+          activeRing.style.setProperty("--p", progressState.value.toFixed(2));
+        },
+        onComplete() {
+          next();
+        },
+      });
+    }
+
+    function pausePlayback() {
+      if (ringTween) ringTween.pause();
+      if (quoteTween) quoteTween.pause();
+    }
+
+    function resumePlayback() {
+      if (quoteTween && quoteTween.paused() && canAnimateNow()) {
+        quoteTween.resume();
+      }
+      if (ringTween && ringTween.paused() && canAutoplay()) {
+        ringTween.resume();
+      }
+    }
+
+    function setActive(index: number, instant = false) {
+      current = (index + authors.length) % authors.length;
+
+      authors.forEach((el, i) => {
+        el.classList.toggle("is-active", i === current);
+        const ring = getRingEl(el);
+        if (i !== current) ring.style.setProperty("--p", "0");
+      });
+
+      if (instant) {
+        hardResetQuotes(current);
+      } else {
+        animateQuoteChange(current);
+      }
+
+      startRing();
+    }
+
+    function next() {
+      setActive(current + 1, false);
+    }
+
+    function syncDesktopMode() {
+      isDesktop = desktopMq.matches;
+      startRing();
+    }
+
+    authors.forEach((el, i) => {
+      el.addEventListener("click", () => {
+        setActive(i, !canAnimateNow());
+      });
+    });
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        pausePlayback();
+      } else {
+        resumePlayback();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewport = !!entry?.isIntersecting;
+        if (isInViewport) {
+          resumePlayback();
+        } else {
+          pausePlayback();
+        }
+      },
+      {
+        threshold: 0.01,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+    observer.observe(section);
+
+    if (desktopMq.addEventListener) {
+      desktopMq.addEventListener("change", syncDesktopMode);
+    }
+
+    setActive(0, true);
+
+    return () => {
+      if (ringTween) ringTween.kill();
+      if (quoteTween) quoteTween.kill();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      if (desktopMq.removeEventListener) {
+        desktopMq.removeEventListener("change", syncDesktopMode);
+      }
+      observer.disconnect();
+    };
   }, []);
 
   // 9. Delayed ScrollTrigger refresh on fonts ready
@@ -759,18 +1007,6 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleAuthorSelect = (idx: number) => {
-    setActiveAuthor(idx);
-    setAuthorProgress(0);
-    if (quoteRef.current) {
-      gsap.fromTo(
-        quoteRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
-      );
-    }
-  };
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -915,7 +1151,7 @@ export default function App() {
             <div className="thumbnails_images">
               {heroSlides.map((slide, i) => (
                 <div
-                  key={slide.image}
+                  key={`${slide.image}-${activeSlide === i ? "active" : "inactive"}`}
                   className={`image_thumbnail ${activeSlide === i ? "is-active" : ""}`}
                   onClick={() => handleSlideChange(i)}
                   title={slide.alt}
@@ -1380,10 +1616,10 @@ export default function App() {
             <div className="container only_amenities">
               <div className="splide slider1 second_splide">
                 <div className="splide__track">
-                  <div className="splide__list" style={{ display: "flex", gap: "24px" }}>
+                  <div className="splide__list">
                     {amenitiesList.map((amenity) => (
-                      <div className="splide__slide" key={amenity.title} style={{ minWidth: "300px", flex: "0 0 300px" }}>
-                        <div className="image_amenities" style={{ position: "relative", borderRadius: "6px", overflow: "hidden" }}>
+                      <div className="splide__slide" key={amenity.title}>
+                        <div className="image_amenities">
                           <div className="overlay_amenities">
                             <div className="heading_text">
                               <div className="title_amenities">{amenity.title}</div>
@@ -1489,7 +1725,7 @@ export default function App() {
         </section>
 
         {/* TESTIMONIALS SECTION */}
-        <section className="testimonials">
+        <section ref={testimonialsSectionRef} data-section="light" className="testimonials" id="testimonials">
           <div className="wrapper_general basic">
             <div className="testimonials_heading">
               <h2 className="h2 bigger">
@@ -1500,44 +1736,43 @@ export default function App() {
 
             <div className="cms_testimonials">
               <div className="authors">
-                <div className="author_coll" style={{ display: "flex", gap: "20px" }}>
-                  {testimonialsList.map((item, idx) => {
-                    const isActive = activeAuthor === idx;
-                    return (
+                <div className="collection-list-wrapper w-dyn-list">
+                  <div role="list" className="author_coll w-dyn-items">
+                    {testimonialsList.map((item, idx) => (
                       <div
+                        role="listitem"
                         key={item.author}
-                        className={`author_item ${isActive ? "is-active" : ""}`}
-                        onClick={() => handleAuthorSelect(idx)}
-                        style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "12px" }}
+                        className={`author_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
+                        data-index={idx}
                       >
-                        <div
-                          className="author_circle"
-                          style={{
-                            background: isActive
-                              ? `conic-gradient(from -90deg, #d6b2ff ${authorProgress}%, #e6e6e6 0)`
-                              : "transparent",
-                          }}
-                        >
-                          <img src={item.photo} alt={item.author} className="image" />
-                        </div>
-                        <div className="author_name">
-                          <div className="author_name_txt" style={{ fontWeight: isActive ? 700 : 500 }}>
-                            {item.author}
+                        <div className="author_circle">
+                          <div className="author_photo">
+                            <img src={item.photo} alt={item.author} className="image" />
                           </div>
                         </div>
+                        <div className="author_name">
+                          <div className="author_name_txt">{item.author}</div>
+                        </div>
                       </div>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="quotes" style={{ marginTop: "40px" }}>
-                <div
-                  ref={quoteRef}
-                  className="testimonial_txt"
-                  style={{ fontSize: "clamp(22px, 2.6vw, 36px)", lineHeight: 1.25, fontStyle: "italic" }}
-                >
-                  {testimonialsList[activeAuthor].quote}
+              <div className="quotes">
+                <div className="testimonial_coll w-dyn-list">
+                  <div role="list" className="testimonial_list w-dyn-items">
+                    {testimonialsList.map((item, idx) => (
+                      <div
+                        role="listitem"
+                        key={item.author}
+                        className={`testimonial_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
+                        data-index={idx}
+                      >
+                        <div className="testimonial_txt">{item.quote}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1545,7 +1780,7 @@ export default function App() {
         </section>
 
         {/* FAQS SECTION */}
-        <section className="faqs" id="faq">
+        <section data-section="light" className="faqs" id="faq">
           <div className="wrapper_general basic">
             <div className="faq_heading">
               <h2 className="h2 smaller">
@@ -1562,7 +1797,7 @@ export default function App() {
                   <div className="p_gen black caption_cta">
                     Didn’t find what you were<br />looking for?
                   </div>
-                  <div style={{ marginTop: "16px" }}>
+                  <div>
                     <WebflowButton
                       text="Explore FAQ"
                       href="#faq"
@@ -1572,36 +1807,37 @@ export default function App() {
               </div>
 
               <div className="faq_general">
-                <div className="collection_faq">
-                  {faqsList.map((faq, index) => {
-                    const isOpen = openFaq === index;
-                    return (
-                      <div
-                        className="accordion-item"
-                        key={faq.q}
-                        style={{ borderTop: "1px solid #292929", padding: "18px 0" }}
-                      >
+                <div className="collection_faq w-dyn-list">
+                  <div role="list" className="w-dyn-items">
+                    {faqsList.map((faq, index) => {
+                      const isOpen = openFaq === index;
+                      return (
                         <div
-                          className="accordion_head-wrapper"
+                          role="listitem"
+                          key={faq.q}
+                          className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
                           onClick={() => setOpenFaq(isOpen ? null : index)}
-                          style={{ cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
                         >
-                          <div className="item_title" style={{ fontSize: "20px", fontWeight: 500 }}>
-                            {faq.q}
+                          <div className="accordion_head-wrapper">
+                            <div className="item_head">
+                              <div className="title_wrapper">
+                                <div className="item_title">{faq.q}</div>
+                                <div className="icon_wrapper" />
+                              </div>
+                            </div>
                           </div>
-                          <div style={{ transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.2s ease", fontSize: "24px" }}>
-                            +
+
+                          <div className="item_content-wrapper">
+                            <div className="accordion_paragraph">
+                              <div className="item_paragraph w-richtext">
+                                <p>{faq.a}</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
-
-                        {isOpen && (
-                          <div className="item_content-wrapper" style={{ marginTop: "12px", color: "rgba(0,0,0,0.75)", fontSize: "14px", lineHeight: 1.5 }}>
-                            <p>{faq.a}</p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1621,13 +1857,17 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex_cta" style={{ marginTop: "24px" }}>
+                  <div className="flex_cta">
                     <div className="black_button">
                       <WebflowButton
                         text="Schedule a Tour"
                         href="https://calendly.com/propertyjs/21-oaks-25"
                         target="_blank"
+                        className="black"
                       />
+                    </div>
+                    <div className="icon_right">
+                      <img src="/assets/icons/move-3.png" alt="Moon outline" className="image" />
                     </div>
                   </div>
                 </div>
@@ -1644,8 +1884,8 @@ export default function App() {
             <div className="wrapper_footer">
               <div className="flex_f_top">
                 <div className="caption_left">
-                  <div className="cap_footer" style={{ fontSize: "44px", fontWeight: 700 }}>21Oaks</div>
-                  <div className="cap_footer" style={{ marginTop: "8px" }}>
+                  <div className="cap_footer">21Oaks</div>
+                  <div className="cap_footer">
                     Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
                   </div>
                 </div>
@@ -1707,10 +1947,10 @@ export default function App() {
                   <div className="box_menu">
                     <div className="title_footer">Legals</div>
                     <div className="links_list">
-                      <a href="#" className="link_f">Privacy Policy</a>
-                      <a href="#" className="link_f">Accessibility Policy</a>
-                      <a href="#" className="link_f">Equal Housing</a>
-                      <a href="#" className="link_f">Disclosures</a>
+                      <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
+                      <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
+                      <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
+                      <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
                     </div>
                   </div>
                 </div>
@@ -1719,34 +1959,26 @@ export default function App() {
               <div className="back_socials">
                 <div>
                   <a id="to-top" href="#top" onClick={handleScrollToTop} className="back_top w-inline-block">
-                    <div>Back to top ↑</div>
+                    <div>Back to top</div>
                   </a>
                 </div>
                 <div className="socials_box">
                   <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon ig">IG</div>
+                    <div className="social_icon ig" />
                   </a>
                   <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon fb">FB</div>
+                    <div className="social_icon fb" />
                   </a>
                   <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon tiktok">TT</div>
+                    <div className="social_icon tiktok" />
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Lamp SVG with flickering glow animation */}
+            {/* Lamp SVG interactive illustration */}
             <div className="ill_interactive">
-              <div className="ill_svg_footer">
-                <div className="footer-lamp-wrap" style={{ width: "100%", height: "auto" }}>
-                  <svg width="100%" height="100%" viewBox="0 0 1920 469" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="lamp-glow" opacity="0.8">
-                      <path d="M1328.96 193C1332.93 195.308 1354.44 212.175 1356.54 215.621L1355.3 217.16C1337.14 223.873 1324.31 211.304 1328.96 193Z" fill="#FFDA55"/>
-                    </g>
-                  </svg>
-                </div>
-              </div>
+              <FooterIllustration />
             </div>
 
             <div className="last_line ll_fs">
