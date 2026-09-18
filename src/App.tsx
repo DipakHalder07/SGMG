@@ -77,8 +77,8 @@ const heroSlides = [
     ],
   },
   {
-    image: "/__l5e/assets-v1/8b316e41-ba0b-485b-ade0-169d61814f5e/02-image-3.avif",
-    alt: "Modern living room with beige sofas, coffee tables, large windows, and TV wall.",
+    image: "/assets/hero-banner-3.avif",
+    alt: "Vega Circle wide architectural view and surrounding area.",
     tips: [
       { id: "builtins", label: "Movie nights ready", x: "78%", y: "48%", deg: 160 },
       { id: "overhead", label: "Sink into comfort", x: "82%", y: "28%", deg: 180 },
