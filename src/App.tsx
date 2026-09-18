@@ -703,39 +703,86 @@ export default function App() {
     splideEls.forEach((el) => {
       try {
         const isAmenities = el.classList.contains("second_splide");
-        const inst = new Splide(el, {
-          perPage: 3,
-          perMove: 1,
-          focus: 0,
-          type: "slide",
-          gap: "1.5rem",
-          arrows: false,
-          pagination: !isAmenities,
-          speed: 800,
-          breakpoints: {
-            991: {
-              perPage: 2,
-              gap: "1rem",
-              padding: isAmenities ? { right: "2rem" } : 0,
-            },
-            767: {
-              perPage: 1,
-              gap: "1rem",
-              padding: isAmenities ? { right: "2rem" } : 0,
-            },
-            479: {
-              perPage: 1,
-              gap: "0.85rem",
-              padding: isAmenities ? { left: "0rem", right: "2.6rem" } : 0,
-            },
-          },
-        });
+        const inst = new Splide(
+          el,
+          isAmenities
+            ? {
+                perPage: 3,
+                perMove: 1,
+                focus: 0,
+                type: "slide",
+                gap: "1.5rem",
+                arrows: false,
+                pagination: false,
+                speed: 800,
+                breakpoints: {
+                  991: {
+                    perPage: 2,
+                    gap: "1rem",
+                    padding: { right: "2rem" },
+                  },
+                  767: {
+                    perPage: 1,
+                    gap: "1rem",
+                    padding: { right: "2rem" },
+                  },
+                  479: {
+                    perPage: 1,
+                    gap: "0.85rem",
+                    padding: { left: "0rem", right: "2.6rem" },
+                  },
+                },
+              }
+            : {
+                perPage: 1,
+                perMove: 1,
+                focus: 0,
+                type: "slide",
+                gap: "1rem",
+                arrows: false,
+                pagination: true,
+                drag: true,
+                flickPower: 600,
+                speed: 600,
+                padding: { left: "0rem", right: "14%" },
+                breakpoints: {
+                  991: {
+                    perPage: 2,
+                    gap: "1rem",
+                    padding: { right: "2.5rem" },
+                  },
+                  767: {
+                    perPage: 1,
+                    gap: "1rem",
+                    padding: { left: "0rem", right: "14%" },
+                  },
+                  479: {
+                    perPage: 1,
+                    gap: "0.85rem",
+                    padding: { left: "0rem", right: "12%" },
+                  },
+                },
+              }
+        );
         inst.mount();
         instances.push(inst);
       } catch (err) {
         console.warn("Splide init notice:", err);
       }
     });
+
+    // Observe size changes so Splide recalculates slide widths instantly on viewport change
+    const observer = new ResizeObserver(() => {
+      instances.forEach((inst) => {
+        try {
+          inst.refresh();
+        } catch {
+          // ignore
+        }
+      });
+    });
+
+    splideEls.forEach((el) => observer.observe(el));
 
     const handleResize = () => {
       instances.forEach((inst) => inst.refresh());
@@ -745,8 +792,15 @@ export default function App() {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
-      instances.forEach((inst) => inst.destroy());
+      instances.forEach((inst) => {
+        try {
+          inst.destroy();
+        } catch {
+          // ignore
+        }
+      });
     };
   }, []);
 
@@ -1321,25 +1375,25 @@ export default function App() {
             <div className="wrapper_dynamic">
               <div className="interaction__stage">
                 <div className="photo--rt">
-                  <img src="/__l5e/assets-v1/26dff71b-e437-435a-a1c1-7f0cbdd53355/03-2.avif" alt="Building entrance" className="image" />
+                  <img src="/assets/gallery/Elevation_Evening_1.webp" alt="Elevation Evening" className="image" />
                 </div>
                 <div className="photo--lt">
-                  <img src="/__l5e/assets-v1/5d59d808-a506-4c4b-8c74-2801a86cd4ae/04-1.avif" alt="Cozy bedroom" className="image" />
+                  <img src="/assets/gallery/Gym_1.webp" alt="Gym" className="image" />
                 </div>
                 <div className="photo--center">
-                  <img src="/assets/poster-video.avif" alt="Community video poster" className="image" style={{ borderRadius: "8px", width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src="/assets/gallery/center.webp" alt="Aerial view" className="image" style={{ borderRadius: "8px", width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <div className="photo--lm">
-                  <img src="/__l5e/assets-v1/e191da4b-145f-4c04-8b62-8520fbfe4ed4/05-3.avif" alt="Modern living room" className="image" />
+                  <img src="/assets/gallery/CommunityHall_1.webp" alt="Community Hall" className="image" />
                 </div>
                 <div className="photo--rm">
-                  <img src="/__l5e/assets-v1/32a60dd3-daf3-46b1-a4fa-322ff798b673/06-4.avif" alt="Aerial pool view" className="image" />
+                  <img src="/assets/gallery/Swimming_Pool_1.webp" alt="Swimming Pool" className="image" />
                 </div>
                 <div className="photo--lb">
-                  <img src="/__l5e/assets-v1/08167de4-c814-4a18-81db-6700ea1da5b7/07-5.avif" alt="Poolside lounging area" className="image" />
+                  <img src="/assets/gallery/Landscape_Lawn_1.webp" alt="Landscape Lawn" className="image" />
                 </div>
                 <div className="photo--rb">
-                  <img src="/__l5e/assets-v1/1f3f8102-62fb-4c8b-a481-de996943190b/08-6.avif" alt="Bedroom with ceiling fan" className="image" />
+                  <img src="/assets/gallery/Indoor_Games_Arena_1.webp" alt="Indoor Games Arena" className="image" />
                 </div>
               </div>
             </div>
@@ -1359,7 +1413,7 @@ export default function App() {
                   </h2>
                   <div className="small_box">
                     <div className="image_small">
-                      <img src="/__l5e/assets-v1/fdca1142-750b-49c2-8bdc-c3cd82c28270/09-small-image-left.avif" alt="Bright bathroom detail" className="image" />
+                      <img src="/assets/Sinage_Presentation.avif" alt="Signage Presentation" className="image" />
                     </div>
                     <div className="caption_info">
                       <div className="purple_dot"></div>
@@ -1371,7 +1425,7 @@ export default function App() {
                   </div>
                 </div>
                 <div className="right_side">
-                  <img src="/__l5e/assets-v1/8817c3b0-0e08-4885-a31a-e9e420d0c11a/10-side-right.avif" alt="Cozy bedroom with striped bedding" className="image" />
+                  <img src="/assets/Front_Elevation_View.webp" alt="Front Elevation View" className="image" />
                 </div>
               </div>
             </div>
@@ -1379,12 +1433,12 @@ export default function App() {
             <div className="sides_s">
               <div className="sides_wrap">
                 <div className="right_side">
-                  <img src="/__l5e/assets-v1/e386325a-f447-45ef-af20-6335dcbefe69/11-side-left.avif" alt="Aerial view of community" className="image" />
+                  <img src="/assets/SwimmingPoolView_Night_.avif" alt="Swimming Pool Night View" className="image" />
                 </div>
                 <div className="left_side">
                   <div className="small_box caption_info right_box second_b">
                     <div className="image_small">
-                      <img src="/__l5e/assets-v1/19a43f63-86e1-4159-b244-e78a4f0f6ce5/12-small-image-right.avif" alt="Outdoor swimming pool" className="image" />
+                      <img src="/assets/SideElevation_Day_.avif" alt="Side Elevation Day View" className="image" />
                     </div>
                     <div className="caption_info">
                       <div className="purple_dot"></div>
