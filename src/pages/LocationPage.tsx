@@ -15,40 +15,37 @@ interface SlideData {
 
 const HERO_SLIDES: SlideData[] = [
   {
-    id: "usc",
-    title: "University of South Carolina",
+    id: "vega-circle-mall",
+    title: "Vega Circle Mall, Sevoke Road",
     description:
-      "A major public research university known for its vibrant student life, SEC athletics, and nationally recognized academic programs in the heart of Columbia.",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7daba7_Slide%201.avif",
-    alt: "University of South Carolina campus in Columbia, SC",
-    walk: "14 min walk",
-    bike: "5 min bike",
-    drive: "5 min drive",
+      "Siliguri’s premier shopping, dining & cinema destination located on Sevoke Road, offering top international brands, multiplex entertainment, food courts, and daily excitement.",
+    image: "/assets/locations/vega-circle-mall.jpg",
+    alt: "Vega Circle Mall on Sevoke Road in Siliguri",
+    walk: "5 min walk",
+    bike: "2 min bike",
+    drive: "1 min drive",
   },
   {
-    id: "colonial-arena",
-    title: "Colonial Life Arena",
+    id: "city-centre",
+    title: "City Centre Mall, Siliguri",
     description:
-      "Columbia’s premier entertainment venue hosting concerts, basketball games, live events, and major performances throughout the year.",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6ce946f82f1fc4ef6f6e_untitled_Topaz%20Image%20Upscale_2026-07-17_17-56-39%20(1).avif",
-    alt: "Colonial Life Arena entertainment and athletics venue",
-    walk: "9 min walk",
-    bike: "3 min bike",
-    drive: "4 min drive",
+      "A flagship lifestyle landmark in Uttorayon Matigara with grand plazas, premier fashion retailers, gourmet restaurants, and family entertainment zones.",
+    image: "/assets/locations/city-centre.jpg",
+    alt: "City Centre Mall in Siliguri",
+    walk: "35 min walk",
+    bike: "15 min bike",
+    drive: "12 min drive",
   },
   {
-    id: "sc-museum",
-    title: "South Carolina State Museum",
+    id: "cosmos-mall",
+    title: "Cosmos Mall & Sevoke Road Hub",
     description:
-      "A large multidisciplinary museum featuring South Carolina history, art, science, technology, and immersive planetarium experiences.",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6f0663982887dfcb990d_SCSM%20Museum.avif",
-    alt: "South Carolina State Museum Columbia",
-    walk: "10 min walk",
+      "A bustling shopping and retail center on 2nd Mile Sevoke Road with hypermarkets, PVR Cinemas, popular cafés, and vibrant weekend gatherings.",
+    image: "/assets/locations/cosmos-mall.jpg",
+    alt: "Cosmos Mall on Sevoke Road Siliguri",
+    walk: "8 min walk",
     bike: "3 min bike",
-    drive: "4 min drive",
+    drive: "2 min drive",
   },
 ];
 
@@ -67,120 +64,106 @@ interface MapPlace {
 
 const MAP_PLACES: MapPlace[] = [
   {
-    id: "soda-city",
-    name: "Soda City Market",
-    category: "Groceries",
-    coords: [-81.0349, 34.0007],
-    address: "Main St, Columbia, SC 29201, United States",
-    hours: "Saturdays 9am – 1pm",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8a_1%20(1).avif",
-    walk: "12 min walk",
-    bike: "4 min bike",
-    drive: "4 min drive",
+    id: "vega-circle-mall",
+    name: "Vega Circle Mall",
+    category: "Shopping & Movies",
+    coords: [88.4385, 26.7465],
+    address: "3rd Mile, Sevoke Road, Siliguri, West Bengal 734008",
+    hours: "10:30 AM – 9:30 PM",
+    image: "/assets/locations/thumbs/vega-circle-mall.jpg",
+    walk: "5 min walk",
+    bike: "2 min bike",
+    drive: "1 min drive",
   },
   {
-    id: "orangetheory",
-    name: "Orangetheory Fitness",
-    category: "Workouts",
-    coords: [-81.0342, 34.0002],
-    address: "1230 Main St, Columbia, SC 29201, United States",
-    hours: "Open daily",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8b_2%20(1).avif",
-    walk: "13 min walk",
-    bike: "4 min bike",
-    drive: "5 min drive",
-  },
-  {
-    id: "usc-campus",
-    name: "University of South Carolina",
-    category: "Campus",
-    coords: [-81.0286, 33.9987],
-    address: "1522 Greene St, Columbia, SC 29208, United States",
-    hours: "Campus grounds open",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8c_3%20(1).avif",
-    walk: "14 min walk",
-    bike: "5 min bike",
-    drive: "5 min drive",
-  },
-  {
-    id: "colonial-arena-map",
-    name: "Colonial Life Arena",
-    category: "Events",
-    coords: [-81.036, 33.9948],
-    address: "801 Lincoln St, Columbia, SC 29208, United States",
-    hours: "Event dependent",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8d_4%20(1).avif",
-    walk: "9 min walk",
+    id: "cosmos-mall",
+    name: "Cosmos Mall",
+    category: "Retail & Dining",
+    coords: [88.4339, 26.7386],
+    address: "Sevoke Road, 2nd Mile, Siliguri, West Bengal 734001",
+    hours: "10:00 AM – 10:00 PM",
+    image: "/assets/locations/thumbs/cosmos-mall.jpg",
+    walk: "8 min walk",
     bike: "3 min bike",
-    drive: "4 min drive",
+    drive: "2 min drive",
   },
   {
-    id: "dipratos",
-    name: "DiPrato's",
-    category: "Coffee & Bites",
-    coords: [-81.029, 34.0072],
-    address: "342 Pickens St, Columbia, SC 29205, United States",
-    hours: "10am – 2pm",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8e_5%20(1).avif",
-    walk: "16 min walk",
-    bike: "6 min bike",
+    id: "city-centre-mall",
+    name: "City Centre Siliguri",
+    category: "Lifestyle Mall",
+    coords: [88.3887, 26.7152],
+    address: "Uttorayon Township, Matigara, Siliguri, West Bengal 734010",
+    hours: "11:00 AM – 9:30 PM",
+    image: "/assets/locations/thumbs/city-centre.jpg",
+    walk: "35 min walk",
+    bike: "15 min bike",
+    drive: "12 min drive",
+  },
+  {
+    id: "hong-kong-market",
+    name: "Hong Kong Market",
+    category: "Bazaar & Street Food",
+    coords: [88.4285, 26.7176],
+    address: "Hill Cart Road / 10th Ward, Siliguri, West Bengal 734001",
+    hours: "10:00 AM – 9:00 PM",
+    image: "/assets/locations/thumbs/hong-kong-market.jpg",
+    walk: "20 min walk",
+    bike: "8 min bike",
     drive: "6 min drive",
   },
   {
-    id: "sc-museum-map",
-    name: "South Carolina State Museum",
-    category: "Culture",
-    coords: [-81.0453, 33.9986],
-    address: "301 Gervais St, Columbia, SC 29201, United States",
-    hours: "10am – 5pm",
-    image:
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8f_6.avif",
-    walk: "10 min walk",
-    bike: "3 min bike",
-    drive: "4 min drive",
+    id: "nbu-campus",
+    name: "North Bengal University",
+    category: "University",
+    coords: [88.3533, 26.7093],
+    address: "Raja Rammohunpur, Siliguri, West Bengal 734013",
+    hours: "Campus grounds open",
+    image: "/assets/locations/thumbs/nbu-campus.jpg",
+    walk: "45 min walk",
+    bike: "18 min bike",
+    drive: "15 min drive",
+  },
+  {
+    id: "savin-kingdom",
+    name: "Savin Kingdom Amusement Park",
+    category: "Entertainment & Rides",
+    coords: [88.4045, 26.7335],
+    address: "Dagapur, Siliguri, West Bengal 734003",
+    hours: "10:30 AM – 7:30 PM",
+    image: "/assets/locations/thumbs/savin-kingdom.jpg",
+    walk: "30 min walk",
+    bike: "12 min bike",
+    drive: "10 min drive",
   },
 ];
 
-const OAKS = {
-  name: "21Oaks",
-  coords: [-81.0373, 34.0008] as [number, number],
-  address: "21 National Guard Rd, Columbia, SC 29201, United States",
-  hours: "Open 24 hours",
+const SGMG_LOCATION = {
+  name: "SGMG Siliguri",
+  coords: [88.4350, 26.7420] as [number, number],
+  address: "Sevoke Road, Siliguri, West Bengal 734008, India",
+  hours: "Site Office: 9:00 AM – 7:00 PM",
 };
 
 const LOCATION_FAQS = [
   {
-    q: "How do I apply for an apartment?",
-    a: "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan.",
+    q: "How close is SGMG to Vega Circle Mall and Cosmos Mall?",
+    a: "Vega Circle Mall is just a 5-minute walk (1-minute drive) along Sevoke Road, and Cosmos Mall is only 8 minutes away. You have world-class shopping, cinemas, restaurants, and hypermarkets practically at your doorstep.",
   },
   {
-    q: "What does by-the-bed leasing mean?",
-    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+    q: "How is the connectivity to NJP Railway Station and Bagdogra Airport?",
+    a: "New Jalpaiguri (NJP) Railway Station is approximately 20–25 minutes away via Eastern Bypass / Sevoke Road, and Bagdogra International Airport (IXB) is easily reachable within 30–35 minutes via NH-27/NH-31.",
   },
   {
-    q: "What do I need to apply?",
-    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
+    q: "What healthcare and educational facilities are nearby in Siliguri?",
+    a: "Leading hospitals like Medica North Bengal Clinic, Anandaloke Hospital, and Neotia Getwel Healthcare are within a 10–15 minute radius. Renowned schools and universities like Delhi Public School, Don Bosco, and North Bengal University are conveniently accessible.",
   },
   {
-    q: "Do I need a guarantor?",
-    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
+    q: "Is public transport easily available along Sevoke Road?",
+    a: "Yes. Auto-rickshaws, city e-rickshaws (totos), taxis, and app-based cabs operate continuously along Sevoke Road 24/7, making commuting across Siliguri effortless.",
   },
   {
-    q: "How long does approval take?",
-    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
-  },
-  {
-    q: "Can I apply if I’m not a student?",
-    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
-  },
-  {
-    q: "How is rent paid?",
-    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
+    q: "How do I schedule a visit to the SGMG site in Siliguri?",
+    a: "You can click “Schedule a Tour” on the website or contact our Siliguri site office directly. Our team is available 7 days a week from 9:00 AM to 7:00 PM for private walkthroughs.",
   },
 ];
 
@@ -192,9 +175,9 @@ const MAPBOX_TOKEN =
 const MAP_STYLE = "mapbox://styles/svdness/cmo8wd30r001p01qwa1jtgq5a";
 
 // Static map images for instantaneous rendering & fallback
-const DESKTOP_STATIC_MAP = `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+E8CEFF(-81.0349,34.0007),pin-s+E8CEFF(-81.0342,34.0002),pin-s+E8CEFF(-81.0286,33.9987),pin-s+E8CEFF(-81.036,33.9948),pin-s+E8CEFF(-81.029,34.0072),pin-s+E8CEFF(-81.0453,33.9986),pin-l+E8CEFF(-81.0373,34.0008)/-81.0373,34.0008,14,0/1200x900@2x?access_token=${MAPBOX_TOKEN}`;
+const DESKTOP_STATIC_MAP = `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+E8CEFF(88.4385,26.7465),pin-s+E8CEFF(88.4339,26.7386),pin-s+E8CEFF(88.3887,26.7152),pin-s+E8CEFF(88.4285,26.7176),pin-s+E8CEFF(88.3533,26.7093),pin-s+E8CEFF(88.4045,26.7335),pin-l+E8CEFF(88.4350,26.7420)/88.4200,26.7300,12.2,0/1200x900@2x?access_token=${MAPBOX_TOKEN}`;
 
-const MOBILE_STATIC_MAP = `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-l+E8CEFF(-81.0373,34.0008)/-81.0373,34.0008,14,0/800x1000@2x?access_token=${MAPBOX_TOKEN}`;
+const MOBILE_STATIC_MAP = `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-l+E8CEFF(88.4350,26.7420)/88.4350,26.7420,13.5,0/800x1000@2x?access_token=${MAPBOX_TOKEN}`;
 
 const ICON_WALK =
   "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b47_walk.png";
@@ -211,7 +194,7 @@ export default function LocationPage() {
   const touchStartXRef = useRef<number | null>(null);
 
   // --- Map State ---
-  const [activePlaceId, setActivePlaceId] = useState<string>("soda-city");
+  const [activePlaceId, setActivePlaceId] = useState<string>("vega-circle-mall");
   const [isLiveMapLoaded, setIsLiveMapLoaded] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(
     typeof window !== "undefined" ? window.innerWidth <= 991 : false
@@ -320,8 +303,8 @@ export default function LocationPage() {
         const map = new mapboxgl.Map({
           container: mapContainerRef.current,
           style: MAP_STYLE,
-          center: OAKS.coords,
-          zoom: mobileView ? 14.4 : 15.2,
+          center: SGMG_LOCATION.coords,
+          zoom: mobileView ? 13.8 : 14.5,
           pitch: 0,
           bearing: 0,
           antialias: false,
@@ -335,7 +318,7 @@ export default function LocationPage() {
           setIsLiveMapLoaded(true);
           map.resize();
 
-          // 1. Home Pin (21Oaks)
+          // 1. Home Pin (SGMG Siliguri)
           const homeEl = document.createElement("div");
           homeEl.style.width = "28px";
           homeEl.style.height = "28px";
@@ -351,17 +334,17 @@ export default function LocationPage() {
             '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="#121214" d="M12 3.2 3.5 10v10.2h6.2v-5.6h4.6v5.6h6.2V10L12 3.2zm7 15.5h-3.2v-5.6H8.2v5.6H5V10.7l7-5.6 7 5.6v8z"/></svg>';
 
           const homePopup = new mapboxgl.Popup({ offset: 20 }).setHTML(
-            `<div class="popup-title">${OAKS.name}</div><div class="popup-address">${OAKS.address}</div><div class="popup-hours">${OAKS.hours}</div>`
+            `<div class="popup-title">${SGMG_LOCATION.name}</div><div class="popup-address">${SGMG_LOCATION.address}</div><div class="popup-hours">${SGMG_LOCATION.hours}</div>`
           );
 
           new mapboxgl.Marker({ element: homeEl })
-            .setLngLat(OAKS.coords)
+            .setLngLat(SGMG_LOCATION.coords)
             .addTo(map);
 
           homeEl.addEventListener("click", (e) => {
             e.stopPropagation();
             if (activePopupRef.current) activePopupRef.current.remove();
-            homePopup.setLngLat(OAKS.coords).addTo(map);
+            homePopup.setLngLat(SGMG_LOCATION.coords).addTo(map);
             activePopupRef.current = homePopup;
           });
 
@@ -483,8 +466,8 @@ export default function LocationPage() {
     if (isWebGLSupported()) {
       initMapbox();
     } else {
-      // If WebGL isn't supported, open Google Maps coordinates for 21Oaks in a new tab
-      window.open("https://www.google.com/maps/search/?api=1&query=34.0008,-81.0373", "_blank");
+      // If WebGL isn't supported, open Google Maps coordinates for Vega Circle Mall / SGMG in a new tab
+      window.open("https://www.google.com/maps/search/?api=1&query=Vega+Circle+Mall+Sevoke+Road+Siliguri", "_blank");
     }
   };
 
@@ -634,7 +617,7 @@ export default function LocationPage() {
                   data-scribble="2"
                   className="scribble-wrap scribble-visible"
                 >
-                  Campus
+                  Vega Mall
                 </span>
                 . Near Everything.
               </h2>
@@ -712,7 +695,7 @@ export default function LocationPage() {
                 <div className="map_static_wrap">
                   <img
                     className="map_static_img"
-                    alt="Map of 21Oaks location in Columbia, SC"
+                    alt="Map of SGMG and Vega Mall location in Siliguri, West Bengal"
                     width={isMobile ? 800 : 1200}
                     height={isMobile ? 1000 : 900}
                     decoding="async"
