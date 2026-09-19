@@ -185,7 +185,7 @@ const LOCATION_FAQS = [
 ];
 
 const MAPBOX_TOKEN =
-  (import.meta.env.VITE_MAPBOX_TOKEN as string) ||
+  ((import.meta as any).env?.VITE_MAPBOX_TOKEN as string) ||
   (typeof atob !== "undefined"
     ? atob("cGsuZXlKMUlqb2ljM1prYm1WemN5SXNJbUVpT2lKamJUUnBiamxrWnpBd05XeGlNbWx6WW1RMmVYcG5ObUpxSW4wLkl3MG9zTkJIZzBaRk9HdDd1b1ZwRnc=")
     : "");
