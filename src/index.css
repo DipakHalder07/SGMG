@@ -3061,6 +3061,7 @@ body.is-hero .menu {
   position: relative;
   background-color: var(--white);
   width: 100%;
+  scroll-margin-top: 6rem;
 }
 
 .faqs .wrapper_general.basic {
@@ -3096,10 +3097,8 @@ body.is-hero .menu {
 }
 
 .short_left {
-  width: 28%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 18.88%;
+  display: block;
   flex-shrink: 0;
 }
 
@@ -3108,7 +3107,7 @@ body.is-hero .menu {
   width: 29ch;
   max-width: 100%;
   line-height: 1.4;
-  font-size: 1.1em;
+  font-size: 1em;
   color: var(--black);
   font-family: Exposure, Georgia, serif;
 }
@@ -3143,7 +3142,7 @@ body.is-hero .menu {
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  padding: 1.1em 0px;
+  padding: 0.8em 0px;
   display: flex;
   user-select: none;
   background: transparent;
@@ -3175,7 +3174,7 @@ body.is-hero .menu {
 
 .item_title {
   letter-spacing: 0px;
-  font-size: clamp(17px, 1.25em, 22px);
+  font-size: 1.2em;
   font-weight: 400;
   font-family: Exposure, Georgia, serif;
   color: var(--black);
@@ -3203,7 +3202,7 @@ body.is-hero .menu {
 
 .item_content-wrapper {
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 100%;
   display: flex;
   overflow: hidden;
@@ -3213,7 +3212,7 @@ body.is-hero .menu {
 }
 
 .accordion-item.is-open .item_content-wrapper {
-  max-height: 400px;
+  max-height: 500px;
   opacity: 1;
 }
 
@@ -3223,16 +3222,23 @@ body.is-hero .menu {
   margin-top: 0.8em;
   margin-bottom: 0.2em;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .item_paragraph {
   width: 100%;
   max-width: 91%;
-  font-size: 0.95em;
-  line-height: 1.45;
+  font-size: 0.9em;
+  line-height: 1.4;
   color: rgba(41, 41, 41, 0.85);
   font-family: Exposure, Georgia, serif;
+  text-align: left;
+  transform: translate3d(0px, 20%, 0px);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s ease;
+}
+
+.accordion-item.is-open .item_paragraph {
+  transform: translate3d(0px, 0px, 0px);
 }
 
 @media (max-width: 991px) {
@@ -3985,73 +3991,84 @@ body.is-hero .menu {
 .overlay_tags {
   position: absolute;
   inset: 0;
-  padding: 10.08px;
+  z-index: 25;
+  width: 100%;
+  height: 100%;
+  padding: 0.7em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
   pointer-events: none;
-  z-index: 10;
+  box-sizing: border-box;
 }
 
 .tag_available {
-  background: rgb(218, 235, 200);
+  column-gap: 1em;
+  background-color: rgb(218, 235, 200);
   border-radius: 3px;
-  padding: 5px 8px;
-  display: inline-flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 10px;
-  font-size: 10.08px;
+  padding: 0.5em 0.4em 0.5em 0.5em;
+  font-size: 0.7em;
   color: rgb(41, 41, 41);
   font-family: var(--font-display, "Exposure", Georgia, serif);
   align-self: flex-start;
+  display: flex;
   pointer-events: auto;
+  line-height: 1;
 }
 
 .dot_available {
-  width: 3.5px;
-  height: 3.5px;
+  background-color: rgb(54, 79, 27);
   border-radius: 100%;
-  background: rgb(54, 79, 27);
+  width: 0.3em;
+  height: 0.3em;
+  flex-shrink: 0;
 }
 
 .txt_available {
-  font-size: 10.08px;
+  width: auto;
+  font-size: inherit;
   color: rgb(41, 41, 41);
   line-height: 1;
 }
 
 .tags_info {
+  column-gap: 0.25rem;
+  margin-top: auto;
   display: flex;
-  gap: 4px;
   align-items: center;
   pointer-events: auto;
 }
 
 .tag_info {
-  background: rgb(255, 255, 255);
+  column-gap: 0.375em;
+  background-color: var(--white, #ffffff);
   border-radius: 3px;
-  padding: 3.78px 4.86px;
-  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 4px;
-  font-size: 10.8px;
+  padding: 0.35em 0.45em;
+  font-size: 0.75em;
+  display: flex;
   color: rgb(41, 41, 41);
   line-height: 1;
   font-family: var(--font-display, "Exposure", Georgia, serif);
 }
 
 .icon_tag {
-  width: 13.5px;
-  height: 13.5px;
+  width: 1.25em;
+  height: 1.25em;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .icon_tag .image,
 .icon_tag img {
-  width: 13.5px;
-  height: 13.5px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -4354,44 +4371,54 @@ body.is-hero .menu {
 
 /* Card Content Below */
 .content_apart {
-  margin-top: 10px;
+  flex-flow: column;
+  display: flex;
+  margin-top: 0;
 }
 
 .apart_title_line {
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.7em;
+  display: flex;
+  width: 100%;
 }
 
 .apartment_title {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .apart_title {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 20.88px;
+  font-size: 1.45em;
   line-height: 1;
-  color: rgb(41, 41, 41);
+  color: var(--black, #292929);
   font-weight: 400;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .price_box {
-  display: flex;
+  column-gap: 0.375rem;
+  justify-content: flex-start;
   align-items: center;
-  gap: 6px;
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .icon_price {
-  width: 21.6px;
-  height: 21.6px;
+  background-color: var(--primary, rgb(232, 206, 255));
   border-radius: 100%;
-  background: rgb(232, 206, 255);
-  padding: 5.4px;
-  display: flex;
   justify-content: center;
   align-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.375em;
+  display: flex;
+  flex-shrink: 0;
   box-sizing: border-box;
 }
 
@@ -4404,24 +4431,37 @@ body.is-hero .menu {
 
 .price_txt {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 18.72px;
+  font-size: 1.3em;
   line-height: 1;
-  color: rgb(41, 41, 41);
+  color: var(--black, #292929);
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .mnth_txt {
+  opacity: 0.55;
+  margin-bottom: auto;
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 11.52px;
+  font-size: 0.8em;
   line-height: 1;
-  color: rgb(41, 41, 41);
-  margin-top: 2px;
+  color: var(--black, #292929);
+  white-space: nowrap;
 }
 
 /* Explore Details Button (21Oaks Exact Match) */
 .explore_button {
   margin-top: 1.25em;
   display: flex;
+}
+
+.text_box.header_btn,
+.text_box.apartments_button {
+  width: auto;
+  height: auto;
+  min-height: auto;
+  padding-left: 3em !important;
+  padding-right: 3em !important;
+  font-size: 0.8em !important;
 }
 
 /* Filter Heading and Buttons (Hidden on desktop) */
@@ -4439,6 +4479,10 @@ body.is-hero .menu {
   .wrapper_general.apartments_gen {
     padding: 15em 1.35rem 8rem;
   }
+  .h1.black,
+  .h1.black.spec_amenities {
+    font-size: 6em;
+  }
   .apartments_sides {
     flex-flow: column;
     margin-top: 6em;
@@ -4454,64 +4498,177 @@ body.is-hero .menu {
     gap: 4em 1.5em;
     grid-template-columns: 1fr 1fr;
   }
+  .apart_image.grid_apartments {
+    width: 100%;
+    height: 38em;
+  }
+  .overlay_tags {
+    padding: 1.15em;
+  }
+  .apart_title_line {
+    margin-top: 0.4em;
+  }
+  .price_txt,
+  .apart_title {
+    font-size: 2.5em;
+  }
+  .mnth_txt {
+    font-size: 1.3em;
+  }
+  .icon_price {
+    width: 3em;
+    height: 3em;
+    padding: 0.65em;
+  }
+  .content_apart {
+    z-index: 2;
+    margin-top: 1.5em;
+    position: relative;
+  }
+  .explore_button {
+    margin-top: 1.5em;
+  }
+  .text_box.apartments_button {
+    width: auto !important;
+    min-height: auto !important;
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+    font-size: 1.2em !important;
+  }
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: 1.4em;
+  }
+  .dot_available {
+    width: 0.35em;
+    height: 0.35em;
+  }
+  .tag_info {
+    padding: 0.25rem 0.37rem;
+    font-size: 1.4em;
+  }
+  .icon_tag {
+    width: 1.8em;
+    height: 1.8em;
+  }
+  .checkbox,
+  .filter_title {
+    font-size: 1.2em;
+  }
+  .clear_btn {
+    font-size: 1.2em;
+  }
+  .filters_box.last_filter {
+    margin-top: 4.5em;
+  }
+  .filters_wrap {
+    row-gap: 0.375rem;
+    flex-flow: wrap;
+  }
+  .filters_flex {
+    padding-right: 0px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .wrapper_general.apartments_gen {
-    padding: 96px 16px 128px;
+    padding-top: 12em;
   }
   .h1.black.spec_amenities {
-    font-size: 33.93px;
+    font-size: 7em;
     line-height: 1;
   }
   .apartments_sides {
-    margin-top: 23.4px;
-    flex-direction: column;
+    flex-flow: column;
+    margin-top: 0;
   }
   .apartments_grid {
     gap: 3.5em 1.5em;
     grid-template-columns: 1fr;
   }
   .apart_image.grid_apartments {
-    height: 320px;
+    height: 62em;
     width: 100%;
     border-radius: 4px;
   }
-
+  .overlay_tags {
+    padding: 2em;
+  }
+  .price_txt,
+  .price_txt.specific_card,
+  .apart_title {
+    font-size: 3em;
+  }
+  .mnth_txt {
+    font-size: 1.85em;
+  }
+  .icon_price {
+    width: 3.5em;
+    height: 3.5em;
+    padding: 0.7em;
+  }
+  .content_apart {
+    margin-top: 1.5em;
+  }
+  .explore_button {
+    margin-top: 1.65em;
+  }
+  .text_box.apartments_button {
+    width: auto !important;
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+    font-size: 1.45em !important;
+  }
+  .tag_available,
+  .tag_info {
+    font-size: 1.6em;
+  }
 
   /* Mobile Filters Drawer */
   .filters {
-    position: fixed;
-    inset: 0;
-    background: #ffffff;
-    z-index: 1000;
-    padding: 24px 16px 40px;
-    overflow-y: auto;
+    z-index: 999;
+    background-color: var(--white, #ffffff);
+    flex-flow: column;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    padding: 6em 1rem 4em;
     display: none;
-    flex-direction: column;
+    position: fixed;
+    inset: 0%;
     box-sizing: border-box;
+    overflow-y: auto;
   }
   .filters.is-open {
     display: flex;
   }
   .filter_heading {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: 2rem;
+    font-size: 5.5em;
     line-height: 1.1;
     color: #292929;
-    margin-bottom: 2rem;
+    display: flex;
   }
   .close_button {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
+    background-color: var(--black, #292929);
+    border-radius: 100%;
     justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.6rem;
+    display: flex;
+    overflow: hidden;
     cursor: pointer;
-    color: #292929;
+    box-sizing: border-box;
+  }
+  .close_button .image,
+  .close_button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .filter_form {
     display: flex;
@@ -4519,55 +4676,73 @@ body.is-hero .menu {
     flex: 1;
   }
   .form_filters {
+    flex-flow: column;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     flex: 1;
   }
   .filters_flex {
-    padding-right: 0;
-    row-gap: 2rem;
+    row-gap: 4em;
+    padding-right: 4em;
+    display: flex;
+    flex-direction: column;
   }
-  .filter_title {
-    font-size: 1.15rem;
+  .filters_box {
+    row-gap: 1.5em;
+    display: flex;
+    flex-direction: column;
   }
-  .clear_btn, .checkbox {
-    font-size: 1rem;
-    padding: 0;
+  .filters_box.last_filter {
+    margin-top: 4.5em;
   }
-  .clear_btn > div, .checkbox_txt, .radio_txt {
-    padding: 0.8rem 1.4rem;
+  .filters_type {
+    column-gap: 0.5rem;
+    display: flex;
+  }
+  .filters_wrap {
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
   }
   .buttons_filters {
-    display: flex;
-    gap: 12px;
+    column-gap: 1%;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: none;
+    display: flex;
   }
   .show_variants {
-    flex: 1;
-    background: #292929;
-    color: #ffffff;
+    background-color: var(--primary, #e8ceff);
+    width: 60%;
+    height: 3.15rem;
+    color: var(--black, #292929);
     border: none;
     border-radius: 4px;
-    height: 48px;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
     font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: 1rem;
+    font-size: 1.85em;
+    display: flex;
     cursor: pointer;
   }
   .clear_button {
-    background: transparent;
-    border: 1px solid rgba(41, 41, 41, 0.25);
+    background-color: rgba(41, 41, 41, 0.15);
+    border: none;
     border-radius: 4px;
-    height: 48px;
-    padding: 0 1.5rem;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    color: #292929;
+    align-items: center;
+    width: 40%;
+    min-width: 40%;
+    max-width: 40%;
+    height: 3.15rem;
+    padding: 12px 16px;
+    color: var(--black, #292929);
     font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: 1rem;
+    font-size: 1.85em;
+    display: flex;
     cursor: pointer;
     text-decoration: none;
   }
@@ -4575,21 +4750,23 @@ body.is-hero .menu {
   /* Mobile Floating Sticky Filter Button */
   .fix_filter {
     position: fixed;
-    bottom: 65px;
-    left: 0;
-    right: 0;
-    z-index: 98;
+    inset: auto 0% 0%;
+    top: auto;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 65px;
+    padding: 0.6rem 1.35rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.6rem 1.35rem;
+    z-index: 99;
     pointer-events: none;
   }
   .filter_button {
     pointer-events: auto;
     background-color: var(--black, #292929);
     width: 22rem;
-    max-width: calc(100vw - 32px);
     height: 3rem;
     color: var(--white, #ffffff);
     border: 1px solid rgba(41, 41, 41, 0.35);
@@ -4598,11 +4775,11 @@ body.is-hero .menu {
     align-items: center;
     padding: 12px 16px;
     font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: 1.15rem;
+    font-size: 1.75em;
+    column-gap: 1rem;
     display: flex;
-    gap: 0.75rem;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
   .icon_filter {
     filter: invert();
@@ -4611,12 +4788,126 @@ body.is-hero .menu {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
   .icon_filter .image,
   .icon_filter img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .wrapper_general.apartments_gen {
+    padding-top: 6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .h1.black.spec_amenities {
+    font-size: 8.7em;
+  }
+  .apartments_grid {
+    row-gap: 1.6rem;
+    grid-template-columns: 1fr;
+  }
+  .apart_image.grid_apartments {
+    border-radius: 4px;
+    height: 82em;
+  }
+  .overlay_tags {
+    padding: 0.8rem;
+  }
+  .apart_title_line {
+    margin-top: 0px;
+  }
+  .price_txt {
+    font-size: 5.5em;
+  }
+  .price_txt.specific_card {
+    font-size: 5em;
+  }
+  .apart_title {
+    font-size: 5.5em;
+  }
+  .mnth_txt {
+    font-size: 3.5em;
+  }
+  .icon_price {
+    justify-content: center;
+    align-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0.4rem;
+  }
+  .content_apart,
+  .explore_button {
+    margin-top: 3em;
+  }
+  .text_box.apartments_button {
+    width: 88% !important;
+    font-size: 3em !important;
+  }
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: 3.15em;
+  }
+  .dot_available {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+  .tag_info {
+    padding: 0.25rem 0.37rem;
+    font-size: 3em;
+  }
+  .icon_tag {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .filters {
+    z-index: 199;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .filters_box {
+    row-gap: 0.8rem;
+  }
+  .filters_box.last_filter {
+    margin-top: 10.5em;
+  }
+  .filters_flex {
+    row-gap: 1.6rem;
+    padding-right: 0;
+  }
+  .filter_heading {
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.5em;
+  }
+  .buttons_filters {
+    column-gap: 2%;
+  }
+  .show_variants,
+  .clear_button {
+    font-size: 3.8em;
+  }
+  .fix_filter {
+    z-index: 98;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 65px;
+    bottom: 0%;
+    inset: auto 0% 0%;
+  }
+  .filter_button {
+    width: 100%;
+    height: 3.25rem;
+    font-size: 3.3em;
+    column-gap: 16px;
+    border-radius: 6.4px;
   }
 }
 

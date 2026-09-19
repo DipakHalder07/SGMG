@@ -382,22 +382,26 @@ export const APARTMENT_FAQS = [
   },
   {
     q: "What does by-the-bed leasing mean?",
-    a: "Each resident signs an individual lease and is only responsible for their own rent. You are not liable for your roommate's financial obligations.",
+    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+  },
+  {
+    q: "What do I need to apply?",
+    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
   },
   {
     q: "Do I need a guarantor?",
-    a: "Most full-time student applicants require a qualifying guarantor. If you do not have one, alternative qualifying options (such as pre-payment or qualified lease insurance) are available.",
+    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
   },
   {
     q: "How long does approval take?",
-    a: "Applications are typically processed within 24–48 business hours once all required documents and guarantor information have been submitted.",
+    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
   },
   {
-    q: "Can I apply if I'm not a student?",
-    a: "Yes! While our community is designed around the student lifestyle near USC, our doors are open to anyone who meets standard leasing qualifications.",
+    q: "Can I apply if I’m not a student?",
+    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
   },
   {
     q: "How is rent paid?",
-    a: "Rent is conveniently paid online via our resident portal through ACH, debit, or credit card, with automated recurring payment options available.",
+    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
   },
 ];

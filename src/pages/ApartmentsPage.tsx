@@ -138,14 +138,16 @@ export default function ApartmentsPage() {
                           <input
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
-                            value={`$${minPrice.toFixed(2)}`}
+                            value={minPrice.toFixed(2)}
+                            placeholder="$0.00"
                             readOnly
                           />
                           <div className="dash_field">-</div>
                           <input
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
-                            value={`$${maxPrice.toFixed(2)}`}
+                            value={maxPrice.toFixed(2)}
+                            placeholder="$865.00"
                             readOnly
                           />
                         </div>
@@ -168,6 +170,19 @@ export default function ApartmentsPage() {
                             className="fs-rangeslider_native_range"
                             aria-label="Filter Price"
                           />
+                          <div
+                            className="fs-rangeslider_handle helper"
+                            style={{
+                              position: "absolute",
+                              top: "50%",
+                              transform: "translate(-50%, -50%)",
+                              left: "0px"
+                            }}
+                          >
+                            <div className="fs-rangeslider_handle-value">
+                              $<span className="fs-rangeslider_handle-span helper">0</span>
+                            </div>
+                          </div>
                           <div
                             className="fs-rangeslider_handle helper"
                             style={{
@@ -334,47 +349,66 @@ export default function ApartmentsPage() {
         {/* Testimonials Section */}
         <TestimonialsSection />
 
-        {/* FAQ Accordion Section */}
-        <section className="apartments-faq-section">
-          <div className="apartments-faq-container">
-            <div className="faq-split-left">
-              <div className="faq-left-sticky">
-                <p className="faq-prompt-text">Didn’t find what you were looking for?</p>
-                <div style={{ marginTop: "1.25em" }}>
-                  <WebflowButton
-                    text="Explore FAQ"
-                    href="https://calendly.com/propertyjs/21-oaks-25"
-                    target="_blank"
-                  />
-                </div>
-              </div>
+        {/* FAQS SECTION */}
+        <section data-section="light" className="faqs" id="faq">
+          <div className="wrapper_general basic">
+            <div className="faq_heading">
+              <h2 className="h2 smaller">
+                Frequently asked<br />questions
+              </h2>
             </div>
 
-            <div className="faq-split-right">
-              <div className="faq-items-list">
-                {APARTMENT_FAQS.map((faq, idx) => {
-                  const isOpen = openFaqIndex === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className={`faq-accordion-item ${isOpen ? "is-open" : ""}`}
-                    >
-                      <div
-                        className="faq-accordion-header"
-                        onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <span className="faq-question-title">{faq.q}</span>
-                        <span className="faq-toggle-icon">{isOpen ? "−" : "+"}</span>
-                      </div>
-                      {isOpen && (
-                        <div className="faq-accordion-content">
-                          <p>{faq.a}</p>
+            <div className="sides_faq">
+              <div className="short_left">
+                <div className="caption_faq">
+                  <div>Everything you might want to know before moving in.</div>
+                </div>
+                <div className="bottom_faq">
+                  <div className="p_gen black caption_cta">
+                    Didn’t find what you were<br />looking for?
+                  </div>
+                  <div>
+                    <WebflowButton
+                      text="Explore FAQ"
+                      href="/faq"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="faq_general">
+                <div className="collection_faq w-dyn-list">
+                  <div role="list" className="w-dyn-items">
+                    {APARTMENT_FAQS.map((faq, index) => {
+                      const isOpen = openFaqIndex === index;
+                      return (
+                        <div
+                          role="listitem"
+                          key={faq.q}
+                          className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
+                          onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                        >
+                          <div className="accordion_head-wrapper">
+                            <div className="item_head">
+                              <div className="title_wrapper">
+                                <div className="item_title">{faq.q}</div>
+                                <div className="icon_wrapper" />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="item_content-wrapper">
+                            <div className="accordion_paragraph">
+                              <div className="item_paragraph w-richtext">
+                                <p>{faq.a}</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
