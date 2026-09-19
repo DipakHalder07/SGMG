@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
 import { APARTMENTS_DATA, ApartmentUnit } from "../data/apartmentsData";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 if (typeof window !== "undefined") {
@@ -254,7 +255,7 @@ export default function HomePage() {
   const activeSlideRef = useRef(0);
   activeSlideRef.current = activeSlide;
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const handleSlideChangeRef = useRef<(index: number) => void>(() => {});
+  const handleSlideChangeRef = useRef<(index: number) => void>(() => { });
   const splideInstancesRef = useRef<Splide[]>([]);
 
   const startAutoTimer = useCallback(() => {
@@ -346,13 +347,13 @@ export default function HomePage() {
         const preloadImg = new Image();
         preloadImg.src = targetImg;
         if (typeof preloadImg.decode === "function") {
-          await preloadImg.decode().catch(() => {});
+          await preloadImg.decode().catch(() => { });
         }
 
         // 2. Set next image source and decode on the element
         bgNext.src = targetImg;
         if (typeof bgNext.decode === "function") {
-          await bgNext.decode().catch(() => {});
+          await bgNext.decode().catch(() => { });
         }
         setNextHeroImg(targetImg);
 
@@ -727,64 +728,64 @@ export default function HomePage() {
           el,
           isAmenities
             ? {
-                perPage: 3,
-                perMove: 1,
-                focus: 0,
-                type: "slide",
-                gap: "1.5rem",
-                arrows: false,
-                pagination: false,
-                speed: 800,
-                breakpoints: {
-                  991: {
-                    perPage: 2,
-                    gap: "1rem",
-                    padding: { right: "2rem" },
-                  },
-                  767: {
-                    perPage: 1,
-                    gap: "1rem",
-                    padding: { right: "2rem" },
-                  },
-                  479: {
-                    perPage: 1,
-                    gap: "0.85rem",
-                    padding: { left: "0rem", right: "2.6rem" },
-                  },
+              perPage: 3,
+              perMove: 1,
+              focus: 0,
+              type: "slide",
+              gap: "1.5rem",
+              arrows: false,
+              pagination: false,
+              speed: 800,
+              breakpoints: {
+                991: {
+                  perPage: 2,
+                  gap: "1rem",
+                  padding: { right: "2rem" },
                 },
-              }
+                767: {
+                  perPage: 1,
+                  gap: "1rem",
+                  padding: { right: "2rem" },
+                },
+                479: {
+                  perPage: 1,
+                  gap: "0.85rem",
+                  padding: { left: "0rem", right: "2.6rem" },
+                },
+              },
+            }
             : {
-                perPage: 1,
-                perMove: 1,
-                focus: 0,
-                type: "slide",
-                rewind: true,
-                rewindSpeed: 500,
-                gap: "1rem",
-                arrows: true,
-                pagination: true,
-                drag: true,
-                flickPower: 600,
-                speed: 600,
-                padding: { left: "0rem", right: "14%" },
-                breakpoints: {
-                  991: {
-                    perPage: 2,
-                    gap: "1rem",
-                    padding: { right: "2.5rem" },
-                  },
-                  767: {
-                    perPage: 1,
-                    gap: "1rem",
-                    padding: { left: "0rem", right: "14%" },
-                  },
-                  479: {
-                    perPage: 1,
-                    gap: "0.85rem",
-                    padding: { left: "0rem", right: "12%" },
-                  },
+              perPage: 1,
+              perMove: 1,
+              focus: 0,
+              type: "slide",
+              rewind: true,
+              rewindSpeed: 500,
+              gap: "1rem",
+              arrows: true,
+              pagination: true,
+              drag: true,
+              flickPower: 600,
+              speed: 600,
+              padding: { left: "0rem", right: "14%" },
+              breakpoints: {
+                991: {
+                  perPage: 2,
+                  gap: "1rem",
+                  padding: { right: "2.5rem" },
                 },
-              }
+                767: {
+                  perPage: 1,
+                  gap: "1rem",
+                  padding: { left: "0rem", right: "14%" },
+                },
+                479: {
+                  perPage: 1,
+                  gap: "0.85rem",
+                  padding: { left: "0rem", right: "12%" },
+                },
+              },
+            }
         );
         inst.mount();
         instances.push(inst);
@@ -1285,709 +1286,709 @@ export default function HomePage() {
       {/* SIDES SECTION (Made for everyday living) */}
       <section data-section="light" className="sides">
         <div className="wrapper_sides">
-            <div className="sides_f">
-              <div className="sides_wrap">
-                <div className="left_side">
-                  <h2 className="h2 smaller">
-                    Made for<br />
-                    <span data-scribble="2" className="scribble-wrap scribble-visible">everyday</span> living
-                  </h2>
-                  <div className="small_box">
-                    <div className="image_small">
-                      <img src="/assets/Sinage_Presentation.avif" alt="Signage Presentation" className="image" />
-                    </div>
-                    <div className="caption_info">
-                      <div className="purple_dot"></div>
-                      <div className="flex_txt">
-                        <div className="title_txt">Private space</div>
-                        <div className="caption_txt">Your space to reset and focus</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="right_side">
-                  <img src="/assets/Front_Elevation_View.webp" alt="Front Elevation View" className="image" />
-                </div>
-              </div>
-            </div>
-
-            <div className="sides_s">
-              <div className="sides_wrap">
-                <div className="right_side">
-                  <img src="/assets/SwimmingPoolView_Night_.avif" alt="Swimming Pool Night View" className="image" />
-                </div>
-                <div className="left_side">
-                  <div className="small_box caption_info right_box second_b">
-                    <div className="image_small">
-                      <img src="/assets/SideElevation_Day_.avif" alt="Side Elevation Day View" className="image" />
-                    </div>
-                    <div className="caption_info">
-                      <div className="purple_dot"></div>
-                      <div className="flex_txt">
-                        <div className="title_txt">Shared spaces</div>
-                        <div className="caption_txt">Room to connect, relax, and live beyond your apartment</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* APARTMENTS SECTION (Where student life feels balanced) */}
-        <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
-          <div className="wrapper_apartments">
-            <div className="apartments_bg_gradient"></div>
-            <div className="heading_apartments">
-              <h2 className="h2 smaller">
-                Where student life<br />
-                feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
-              </h2>
-            </div>
-
-            {/* Desktop Horizontal Track */}
-            <div className="apart_cards_viewport only_desktop">
-              <div className="apart_cards_track">
-                {apartments.slice(0, 4).map((apart) => (
-                  <div className="apart_card" key={apart.id}>
-                    <div className="apart_image">
-                      <div className="overlay_tags">
-                        <div className="tag_available">
-                          <div className="dot_available"></div>
-                          <div>Available</div>
-                        </div>
-                        <div className="tags_info">
-                          <div className="tag_info">
-                            <div className="icon_tag">
-                              <img src="/assets/icons/bed-icon.png" alt="" className="image" />
-                            </div>
-                            <div>{apart.beds}</div>
-                          </div>
-                          <div className="tag_info">
-                            <div className="icon_tag">
-                              <img src="/assets/icons/bath-icon.png" alt="" className="image" />
-                            </div>
-                            <div>{apart.baths}</div>
-                          </div>
-                          <div className="tag_info">
-                            <div className="icon_tag">
-                              <img src="/assets/icons/ft-icon.png" alt="" className="image" />
-                            </div>
-                            <div>{apart.sqft}</div>
-                            <div>ft<sup>2</sup></div>
-                          </div>
-                        </div>
-                      </div>
-                      <img src={apart.image} alt={apart.name} className="image" />
-                    </div>
-
-                    <div className="content_apart">
-                      <div className="apart_title_line">
-                        <div>
-                          <div className="apart_title">{apart.name}</div>
-                        </div>
-                        <div className="price_box">
-                          <div className="icon_price">
-                            <img src="/assets/icons/price-icon.png" alt="$" className="image" />
-                          </div>
-                          <div className="price_txt">{apart.price}</div>
-                        </div>
-                      </div>
-
-                      <div className="desc_home">
-                        <div className="p_gen black specific">{apart.desc}</div>
-                      </div>
-
-                      <div className="explore_button" style={{ marginTop: "18px" }}>
-                        <WebflowButton
-                          text="Explore Details"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
-                            setModalUnit(matched);
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile Touch Splide Slider */}
-            <div className="container only_mobile">
-              <div className="splide slider1">
-                <div className="splide__track">
-                  <div className="splide__list">
-                    {apartments.map((apart) => (
-                      <div className="splide__slide apart_card" key={apart.id}>
-                        <div className="apart_image">
-                          <div className="overlay_tags">
-                            <div className="tag_available">
-                              <div className="dot_available"></div>
-                              <div>Available</div>
-                            </div>
-                            <div className="tags_info">
-                              <div className="tag_info">
-                                <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
-                                <div>{apart.beds}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
-                                <div>{apart.baths}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
-                                <div>{apart.sqft}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <img src={apart.image} alt={apart.name} className="image" />
-                        </div>
-                        <div className="content_apart">
-                          <div className="apart_title_line">
-                            <div className="apart_title">{apart.name}</div>
-                            <div className="price_box"><div className="price_txt">${apart.price}</div></div>
-                          </div>
-                          <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
-                          <div className="explore_button" style={{ marginTop: "16px" }}>
-                            <WebflowButton
-                              text="Explore Details"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
-                                setModalUnit(matched);
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
-                <div className="pagination_arrows">
-                  <ul className="splide__pagination"></ul>
-                  <div className="splide__arrows">
-                    <button
-                      className="splide__arrow splide__arrow--prev"
-                      type="button"
-                      aria-label="Previous apartment"
-                      onClick={() => {
-                        const apartInst = splideInstancesRef.current.find(
-                          (inst) => !inst.root.classList.contains("second_splide")
-                        );
-                        apartInst?.go("<");
-                      }}
-                    >
-                      <img src="/assets/icons/chevron-left.svg" alt="Previous" />
-                    </button>
-                    <button
-                      className="splide__arrow splide__arrow--next"
-                      type="button"
-                      aria-label="Next apartment"
-                      onClick={() => {
-                        const apartInst = splideInstancesRef.current.find(
-                          (inst) => !inst.root.classList.contains("second_splide")
-                        );
-                        apartInst?.go(">");
-                      }}
-                    >
-                      <img src="/assets/icons/chevron-right.svg" alt="Next" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FULLSCREEN SECTION (Closer than you think) */}
-        <section className="fs" id="location">
-          <div className="fs_box">
-            <div className="txt_wrap">
-              <div className="heading_fs">
-                <h2 className="h2 white">
-                  <span data-scribble="3" className="scribble-wrap scribble-visible">Closer</span> than<br />
-                  you think
+          <div className="sides_f">
+            <div className="sides_wrap">
+              <div className="left_side">
+                <h2 className="h2 smaller">
+                  Made for<br />
+                  <span data-scribble="2" className="scribble-wrap scribble-visible">everyday</span> living
                 </h2>
+                <div className="small_box">
+                  <div className="image_small">
+                    <img src="/assets/Sinage_Presentation.avif" alt="Signage Presentation" className="image" />
+                  </div>
+                  <div className="caption_info">
+                    <div className="purple_dot"></div>
+                    <div className="flex_txt">
+                      <div className="title_txt">Private space</div>
+                      <div className="caption_txt">Your space to reset and focus</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="svg_items">
-              <div className="clouds_top">
-                <div className="cloud_f"></div>
-                <div className="cloud_s"></div>
-                <div className="cloud_t"></div>
+              <div className="right_side">
+                <img src="/assets/Front_Elevation_View.webp" alt="Front Elevation View" className="image" />
               </div>
-              <div className="pin_ill"></div>
-            </div>
-            <div className="overlay_fs"></div>
-            <div className="fs_box_m">
-              <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of 21Oaks" className="image" />
             </div>
           </div>
-        </section>
 
-        {/* EVERYTHING YOU NEED SECTION */}
-        <section className="everything_u_need">
-          <div className="wrapper_general">
-            <div className="heading_times">
-              <h2 className="h2 everything_you_need">
-                Everything you<br />
-                <span data-scribble="1" className="scribble-wrap scribble-visible">need</span>, within reach
-              </h2>
-            </div>
-
-            <div className="txt_sides" ref={linesSectionRef}>
-              <div className="left_lines">
-                <div className="lines_caption">
-                  <div className="p_gen black">
-                    From campus to everyday essentials — everything is closer than you think.
-                  </div>
-                </div>
-
-                <div className="lines_list">
-                  <div className="lines_dynamic">
-                    <div className="flex_dyn">
-                      <div className="title_line">Campus</div>
-                      <div className="timing_txt">3 min</div>
-                    </div>
-                    <div className="bar_dynamic">
-                      <div className="active_bar" style={{ width: "0%" }}></div>
-                    </div>
-                  </div>
-
-                  <div className="lines_dynamic">
-                    <div className="flex_dyn">
-                      <div className="title_line">Daily Essentials</div>
-                      <div className="timing_txt">5 min</div>
-                    </div>
-                    <div className="bar_dynamic">
-                      <div className="active_bar" style={{ width: "0%" }}></div>
-                    </div>
-                  </div>
-
-                  <div className="lines_dynamic">
-                    <div className="flex_dyn">
-                      <div className="title_line">Food &amp; Social Spots</div>
-                      <div className="timing_txt">10 min</div>
-                    </div>
-                    <div className="bar_dynamic">
-                      <div className="active_bar" style={{ width: "0%" }}></div>
-                    </div>
-                  </div>
-                </div>
+          <div className="sides_s">
+            <div className="sides_wrap">
+              <div className="right_side">
+                <img src="/assets/SwimmingPoolView_Night_.avif" alt="Swimming Pool Night View" className="image" />
               </div>
-
-              <div className="p_right">
-                <div className="md_p">
-                  Designed around your routine, so everything feels easy and connected. From campus to everyday essentials, you’re always close to what matters — without the hassle of long commutes or planning around distance.
+              <div className="left_side">
+                <div className="small_box caption_info right_box second_b">
+                  <div className="image_small">
+                    <img src="/assets/SideElevation_Day_.avif" alt="Side Elevation Day View" className="image" />
+                  </div>
+                  <div className="caption_info">
+                    <div className="purple_dot"></div>
+                    <div className="flex_txt">
+                      <div className="title_txt">Shared spaces</div>
+                      <div className="caption_txt">Room to connect, relax, and live beyond your apartment</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* AMENITIES SECTION */}
-        <section className="amenities_section" id="amenities">
-          <div className="wrapper_general basic slider_spec">
-            <div className="amenities_heading">
-              <h2 className="h2 middle_spec">
-                Just <span data-scribble="1" className="scribble-wrap scribble-visible">outside</span><br />
-                your door
-              </h2>
-              <div className="button_amenities">
-                <WebflowButton
-                  text="Discover Amenities"
-                  href="https://calendly.com/propertyjs/21-oaks-25"
-                  target="_blank"
-                />
-              </div>
-            </div>
+      {/* APARTMENTS SECTION (Where student life feels balanced) */}
+      <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
+        <div className="wrapper_apartments">
+          <div className="apartments_bg_gradient"></div>
+          <div className="heading_apartments">
+            <h2 className="h2 smaller">
+              Where student life<br />
+              feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
+            </h2>
+          </div>
 
-            {/* Desktop and Mobile Splide Carousel */}
-            <div className="container only_amenities">
-              <div className="splide slider1 second_splide">
-                <div className="splide__track">
-                  <div className="splide__list">
-                    {amenitiesList.map((amenity) => (
-                      <div className="splide__slide" key={amenity.title}>
-                        <div className="image_amenities">
-                          <div className="overlay_amenities">
-                            <div className="heading_text">
-                              <div className="title_amenities">{amenity.title}</div>
-                            </div>
-                            <div className="bottom_amenities">
-                              <div className="desc_amenities">
-                                <div className="p_gen">{amenity.desc}</div>
-                              </div>
-                            </div>
+          {/* Desktop Horizontal Track */}
+          <div className="apart_cards_viewport only_desktop">
+            <div className="apart_cards_track">
+              {apartments.slice(0, 4).map((apart) => (
+                <div className="apart_card" key={apart.id}>
+                  <div className="apart_image">
+                    <div className="overlay_tags">
+                      <div className="tag_available">
+                        <div className="dot_available"></div>
+                        <div>Available</div>
+                      </div>
+                      <div className="tags_info">
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bed-icon.png" alt="" className="image" />
                           </div>
-                          <div className="overlay_color"></div>
-                          <img src={amenity.image} alt={amenity.title} className="image" />
+                          <div>{apart.beds}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.baths}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.sqft}</div>
+                          <div>ft<sup>2</sup></div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* HOW IT WORKS SECTION */}
-        <section className="how_it_works" id="how-it-works">
-          <div className="wrapper_general basic">
-            <div className="flex_how">
-              <div className="left_title">
-                <div className="sticky_how">
-                  <div className="top_how">
-                    <div className="cap_box">
-                      <div className="caption_small">Simple Move-In</div>
                     </div>
-                    <div className="headline_box">
-                      <h2 className="h2 smaller">
-                        How it <span data-scribble="2" className="scribble-wrap scribble-visible">Works</span>
-                      </h2>
-                    </div>
+                    <img src={apart.image} alt={apart.name} className="image" />
                   </div>
 
-                  <div className="bottom_how only_desktop">
-                    <div className="p_gen black">
-                      Sounds like a fit? <br />
-                      Apply now or book a tour.
+                  <div className="content_apart">
+                    <div className="apart_title_line">
+                      <div>
+                        <div className="apart_title">{apart.name}</div>
+                      </div>
+                      <div className="price_box">
+                        <div className="icon_price">
+                          <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                        </div>
+                        <div className="price_txt">{apart.price}</div>
+                      </div>
                     </div>
-                    <div style={{ marginTop: "16px" }}>
+
+                    <div className="desc_home">
+                      <div className="p_gen black specific">{apart.desc}</div>
+                    </div>
+
+                    <div className="explore_button" style={{ marginTop: "18px" }}>
                       <WebflowButton
-                        text="Schedule a Tour"
-                        href="https://calendly.com/propertyjs/21-oaks-25"
-                        target="_blank"
+                        text="Explore Details"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
+                          setModalUnit(matched);
+                        }}
                       />
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="right_cards">
-                <div className="how_cms">
-                  <div style={{ backgroundColor: "#e8ceff" }} className="how_card">
-                    <div className="wrapper_how">
-                      <div className="icon_how">
-                        <img src="/assets/icons/find-1.avif" alt="Find your space" />
-                      </div>
-                      <div className="content_how">
-                        <div className="title_how">Find your space</div>
-                        <div className="p_gen black">
-                          Explore different layouts, compare options, and choose a space that fits your routine, lifestyle, and daily flow.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ backgroundColor: "#feb7b9" }} className="how_card">
-                    <div className="wrapper_how">
-                      <div className="icon_how">
-                        <img src="/assets/icons/apply-2.avif" alt="Apply in minutes" />
-                      </div>
-                      <div className="content_how">
-                        <div className="title_how">Apply in minutes</div>
-                        <div className="p_gen black">
-                          Complete your application online in just a few steps. The process is simple, fast, and designed to get you approved without delays.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ backgroundColor: "#f3ede6" }} className="how_card">
-                    <div className="wrapper_how">
-                      <div className="icon_how">
-                        <img src="/assets/icons/move-3.avif" alt="Move in, settle fast" />
-                      </div>
-                      <div className="content_how">
-                        <div className="title_how">Move in, settle fast</div>
-                        <div className="p_gen black">
-                          Once approved, everything is ready for your arrival. Move in seamlessly and start living comfortably from day one.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </section>
 
-        {/* TESTIMONIALS SECTION */}
-        <section ref={testimonialsSectionRef} data-section="light" className="testimonials" id="testimonials">
-          <div className="wrapper_general basic">
-            <div className="testimonials_heading">
-              <h2 className="h2 bigger">
-                <span data-scribble="2" className="scribble-wrap scribble-visible">Real</span> student<br />
-                experiences
-              </h2>
-            </div>
-
-            <div className="cms_testimonials">
-              <div className="authors">
-                <div className="collection-list-wrapper w-dyn-list">
-                  <div role="list" className="author_coll w-dyn-items">
-                    {testimonialsList.map((item, idx) => (
-                      <div
-                        role="listitem"
-                        key={item.author}
-                        className={`author_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
-                        data-index={idx}
-                      >
-                        <div className="author_circle">
-                          <div className="author_photo">
-                            <img src={item.photo} alt={item.author} className="image" />
+          {/* Mobile Touch Splide Slider */}
+          <div className="container only_mobile">
+            <div className="splide slider1">
+              <div className="splide__track">
+                <div className="splide__list">
+                  {apartments.map((apart) => (
+                    <div className="splide__slide apart_card" key={apart.id}>
+                      <div className="apart_image">
+                        <div className="overlay_tags">
+                          <div className="tag_available">
+                            <div className="dot_available"></div>
+                            <div>Available</div>
+                          </div>
+                          <div className="tags_info">
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
+                              <div>{apart.beds}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
+                              <div>{apart.baths}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
+                              <div>{apart.sqft}</div>
+                            </div>
                           </div>
                         </div>
-                        <div className="author_name">
-                          <div className="author_name_txt">{item.author}</div>
+                        <img src={apart.image} alt={apart.name} className="image" />
+                      </div>
+                      <div className="content_apart">
+                        <div className="apart_title_line">
+                          <div className="apart_title">{apart.name}</div>
+                          <div className="price_box"><div className="price_txt">${apart.price}</div></div>
+                        </div>
+                        <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
+                        <div className="explore_button" style={{ marginTop: "16px" }}>
+                          <WebflowButton
+                            text="Explore Details"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
+                              setModalUnit(matched);
+                            }}
+                          />
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="quotes">
-                <div className="testimonial_coll w-dyn-list">
-                  <div role="list" className="testimonial_list w-dyn-items">
-                    {testimonialsList.map((item, idx) => (
-                      <div
-                        role="listitem"
-                        key={item.author}
-                        className={`testimonial_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
-                        data-index={idx}
-                      >
-                        <div className="testimonial_txt">{item.quote}</div>
-                      </div>
-                    ))}
-                  </div>
+              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
+              <div className="pagination_arrows">
+                <ul className="splide__pagination"></ul>
+                <div className="splide__arrows">
+                  <button
+                    className="splide__arrow splide__arrow--prev"
+                    type="button"
+                    aria-label="Previous apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go("<");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-left.svg" alt="Previous" />
+                  </button>
+                  <button
+                    className="splide__arrow splide__arrow--next"
+                    type="button"
+                    aria-label="Next apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go(">");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-right.svg" alt="Next" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* FAQS SECTION */}
-        <section data-section="light" className="faqs" id="faq">
-          <div className="wrapper_general basic">
-            <div className="faq_heading">
-              <h2 className="h2 smaller">
-                Frequently asked<br />questions
+      {/* FULLSCREEN SECTION (Closer than you think) */}
+      <section className="fs" id="location">
+        <div className="fs_box">
+          <div className="txt_wrap">
+            <div className="heading_fs">
+              <h2 className="h2 white">
+                <span data-scribble="3" className="scribble-wrap scribble-visible">Closer</span> than<br />
+                you think
               </h2>
             </div>
+          </div>
+          <div className="svg_items">
+            <div className="clouds_top">
+              <div className="cloud_f"></div>
+              <div className="cloud_s"></div>
+              <div className="cloud_t"></div>
+            </div>
+            <div className="pin_ill"></div>
+          </div>
+          <div className="overlay_fs"></div>
+          <div className="fs_box_m">
+            <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of 21Oaks" className="image" />
+          </div>
+        </div>
+      </section>
 
-            <div className="sides_faq">
-              <div className="short_left">
-                <div className="caption_faq">
-                  <div>Everything you might want to know before moving in.</div>
+      {/* EVERYTHING YOU NEED SECTION */}
+      <section className="everything_u_need">
+        <div className="wrapper_general">
+          <div className="heading_times">
+            <h2 className="h2 everything_you_need">
+              Everything you<br />
+              <span data-scribble="1" className="scribble-wrap scribble-visible">need</span>, within reach
+            </h2>
+          </div>
+
+          <div className="txt_sides" ref={linesSectionRef}>
+            <div className="left_lines">
+              <div className="lines_caption">
+                <div className="p_gen black">
+                  From campus to everyday essentials — everything is closer than you think.
                 </div>
-                <div className="bottom_faq">
-                  <div className="p_gen black caption_cta">
-                    Didn’t find what you were<br />looking for?
+              </div>
+
+              <div className="lines_list">
+                <div className="lines_dynamic">
+                  <div className="flex_dyn">
+                    <div className="title_line">Campus</div>
+                    <div className="timing_txt">3 min</div>
                   </div>
-                  <div>
+                  <div className="bar_dynamic">
+                    <div className="active_bar" style={{ width: "0%" }}></div>
+                  </div>
+                </div>
+
+                <div className="lines_dynamic">
+                  <div className="flex_dyn">
+                    <div className="title_line">Daily Essentials</div>
+                    <div className="timing_txt">5 min</div>
+                  </div>
+                  <div className="bar_dynamic">
+                    <div className="active_bar" style={{ width: "0%" }}></div>
+                  </div>
+                </div>
+
+                <div className="lines_dynamic">
+                  <div className="flex_dyn">
+                    <div className="title_line">Food &amp; Social Spots</div>
+                    <div className="timing_txt">10 min</div>
+                  </div>
+                  <div className="bar_dynamic">
+                    <div className="active_bar" style={{ width: "0%" }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p_right">
+              <div className="md_p">
+                Designed around your routine, so everything feels easy and connected. From campus to everyday essentials, you’re always close to what matters — without the hassle of long commutes or planning around distance.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AMENITIES SECTION */}
+      <section className="amenities_section" id="amenities">
+        <div className="wrapper_general basic slider_spec">
+          <div className="amenities_heading">
+            <h2 className="h2 middle_spec">
+              Just <span data-scribble="1" className="scribble-wrap scribble-visible">outside</span><br />
+              your door
+            </h2>
+            <div className="button_amenities">
+              <WebflowButton
+                text="Discover Amenities"
+                href="https://calendly.com/propertyjs/21-oaks-25"
+                target="_blank"
+              />
+            </div>
+          </div>
+
+          {/* Desktop and Mobile Splide Carousel */}
+          <div className="container only_amenities">
+            <div className="splide slider1 second_splide">
+              <div className="splide__track">
+                <div className="splide__list">
+                  {amenitiesList.map((amenity) => (
+                    <div className="splide__slide" key={amenity.title}>
+                      <div className="image_amenities">
+                        <div className="overlay_amenities">
+                          <div className="heading_text">
+                            <div className="title_amenities">{amenity.title}</div>
+                          </div>
+                          <div className="bottom_amenities">
+                            <div className="desc_amenities">
+                              <div className="p_gen">{amenity.desc}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="overlay_color"></div>
+                        <img src={amenity.image} alt={amenity.title} className="image" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS SECTION */}
+      <section className="how_it_works" id="how-it-works">
+        <div className="wrapper_general basic">
+          <div className="flex_how">
+            <div className="left_title">
+              <div className="sticky_how">
+                <div className="top_how">
+                  <div className="cap_box">
+                    <div className="caption_small">Simple Move-In</div>
+                  </div>
+                  <div className="headline_box">
+                    <h2 className="h2 smaller">
+                      How it <span data-scribble="2" className="scribble-wrap scribble-visible">Works</span>
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="bottom_how only_desktop">
+                  <div className="p_gen black">
+                    Sounds like a fit? <br />
+                    Apply now or book a tour.
+                  </div>
+                  <div style={{ marginTop: "16px" }}>
                     <WebflowButton
-                      text="Explore FAQ"
-                      href="#faq"
+                      text="Schedule a Tour"
+                      href="https://calendly.com/propertyjs/21-oaks-25"
+                      target="_blank"
                     />
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div className="faq_general">
-                <div className="collection_faq w-dyn-list">
-                  <div role="list" className="w-dyn-items">
-                    {faqsList.map((faq, index) => {
-                      const isOpen = openFaq === index;
-                      return (
-                        <div
-                          role="listitem"
-                          key={faq.q}
-                          className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
-                          onClick={() => setOpenFaq(isOpen ? null : index)}
-                        >
-                          <div className="accordion_head-wrapper">
-                            <div className="item_head">
-                              <div className="title_wrapper">
-                                <div className="item_title">{faq.q}</div>
-                                <div className="icon_wrapper" />
-                              </div>
-                            </div>
-                          </div>
+            <div className="right_cards">
+              <div className="how_cms">
+                <div style={{ backgroundColor: "#e8ceff" }} className="how_card">
+                  <div className="wrapper_how">
+                    <div className="icon_how">
+                      <img src="/assets/icons/find-1.avif" alt="Find your space" />
+                    </div>
+                    <div className="content_how">
+                      <div className="title_how">Find your space</div>
+                      <div className="p_gen black">
+                        Explore different layouts, compare options, and choose a space that fits your routine, lifestyle, and daily flow.
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                          <div className="item_content-wrapper">
-                            <div className="accordion_paragraph">
-                              <div className="item_paragraph w-richtext">
-                                <p>{faq.a}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                <div style={{ backgroundColor: "#feb7b9" }} className="how_card">
+                  <div className="wrapper_how">
+                    <div className="icon_how">
+                      <img src="/assets/icons/apply-2.avif" alt="Apply in minutes" />
+                    </div>
+                    <div className="content_how">
+                      <div className="title_how">Apply in minutes</div>
+                      <div className="p_gen black">
+                        Complete your application online in just a few steps. The process is simple, fast, and designed to get you approved without delays.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ backgroundColor: "#f3ede6" }} className="how_card">
+                  <div className="wrapper_how">
+                    <div className="icon_how">
+                      <img src="/assets/icons/move-3.avif" alt="Move in, settle fast" />
+                    </div>
+                    <div className="content_how">
+                      <div className="title_how">Move in, settle fast</div>
+                      <div className="p_gen black">
+                        Once approved, everything is ready for your arrival. Move in seamlessly and start living comfortably from day one.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS SECTION */}
+      <section ref={testimonialsSectionRef} data-section="light" className="testimonials" id="testimonials">
+        <div className="wrapper_general basic">
+          <div className="testimonials_heading">
+            <h2 className="h2 bigger">
+              <span data-scribble="2" className="scribble-wrap scribble-visible">Real</span> student<br />
+              experiences
+            </h2>
+          </div>
+
+          <div className="cms_testimonials">
+            <div className="authors">
+              <div className="collection-list-wrapper w-dyn-list">
+                <div role="list" className="author_coll w-dyn-items">
+                  {testimonialsList.map((item, idx) => (
+                    <div
+                      role="listitem"
+                      key={item.author}
+                      className={`author_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
+                      data-index={idx}
+                    >
+                      <div className="author_circle">
+                        <div className="author_photo">
+                          <img src={item.photo} alt={item.author} className="image" />
+                        </div>
+                      </div>
+                      <div className="author_name">
+                        <div className="author_name_txt">{item.author}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="quotes">
+              <div className="testimonial_coll w-dyn-list">
+                <div role="list" className="testimonial_list w-dyn-items">
+                  {testimonialsList.map((item, idx) => (
+                    <div
+                      role="listitem"
+                      key={item.author}
+                      className={`testimonial_item w-dyn-item ${idx === 0 ? "is-active" : ""}`}
+                      data-index={idx}
+                    >
+                      <div className="testimonial_txt">{item.quote}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQS SECTION */}
+      <section data-section="light" className="faqs" id="faq">
+        <div className="wrapper_general basic">
+          <div className="faq_heading">
+            <h2 className="h2 smaller">
+              Frequently asked<br />questions
+            </h2>
+          </div>
+
+          <div className="sides_faq">
+            <div className="short_left">
+              <div className="caption_faq">
+                <div>Everything you might want to know before moving in.</div>
+              </div>
+              <div className="bottom_faq">
+                <div className="p_gen black caption_cta">
+                  Didn’t find what you were<br />looking for?
+                </div>
+                <div>
+                  <WebflowButton
+                    text="Explore FAQ"
+                    href="#faq"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="faq_general">
+              <div className="collection_faq w-dyn-list">
+                <div role="list" className="w-dyn-items">
+                  {faqsList.map((faq, index) => {
+                    const isOpen = openFaq === index;
+                    return (
+                      <div
+                        role="listitem"
+                        key={faq.q}
+                        className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
+                        onClick={() => setOpenFaq(isOpen ? null : index)}
+                      >
+                        <div className="accordion_head-wrapper">
+                          <div className="item_head">
+                            <div className="title_wrapper">
+                              <div className="item_title">{faq.q}</div>
+                              <div className="icon_wrapper" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="item_content-wrapper">
+                          <div className="accordion_paragraph">
+                            <div className="item_paragraph w-richtext">
+                              <p>{faq.a}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRE-FOOTER CTA SECTION */}
+      <section data-section="dark" id="contact">
+        <section className="fs_cta">
+          <div className="abs_box">
+            <div className="pink_cta">
+              <div className="wrapper_box_cta">
+                <div className="heading_cta">
+                  <div className="txt_cta">
+                    Find your place.<br />
+                    Make it yours.
+                  </div>
+                </div>
+
+                <div className="flex_cta">
+                  <div className="black_button">
+                    <WebflowButton
+                      text="Schedule a Tour"
+                      href="https://calendly.com/propertyjs/21-oaks-25"
+                      target="_blank"
+                      className="black"
+                    />
+                  </div>
+                  <div className="icon_right">
+                    <img src="/assets/icons/move-3.png" alt="Moon outline" className="image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="fs_bg">
+            <img src="/assets/image_cta.avif" alt="21Oaks luxury lounge" className="image" />
+          </div>
         </section>
 
-        {/* PRE-FOOTER CTA SECTION */}
-        <section data-section="dark" id="contact">
-          <section className="fs_cta">
-            <div className="abs_box">
-              <div className="pink_cta">
-                <div className="wrapper_box_cta">
-                  <div className="heading_cta">
-                    <div className="txt_cta">
-                      Find your place.<br />
-                      Make it yours.
-                    </div>
-                  </div>
+        {/* FOOTER */}
+        <footer className="footer">
+          <div className="wrapper_footer">
+            <div className="flex_f_top">
+              <div className="caption_left">
+                <div className="cap_footer">21Oaks</div>
+                <div className="cap_footer">
+                  Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
+                </div>
+              </div>
 
-                  <div className="flex_cta">
-                    <div className="black_button">
-                      <WebflowButton
-                        text="Schedule a Tour"
-                        href="https://calendly.com/propertyjs/21-oaks-25"
-                        target="_blank"
-                        className="black"
-                      />
+              <div className="menu_footer">
+                <div className="box_menu">
+                  <div className="title_footer">Discover</div>
+                  <div className="links_list">
+                    <Link to="/apartments" className="link_f">Apartments</Link>
+                    <a href="#amenities" className="link_f">Amenities</a>
+                    <Link to="/location" className="link_f">Location</Link>
+                    <a href="#gallery" className="link_f">Gallery</a>
+                    <a href="#how-it-works" className="link_f">How to apply</a>
+                    <a href="#contact" className="link_f">Contact</a>
+                  </div>
+                </div>
+
+                <div className="box_menu">
+                  <div className="title_footer">Contact</div>
+                  <div className="links_list">
+                    <div
+                      className="link_f"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleCopy("21 National Guard Rd, Columbia, SC 29201", "Address Copied!")}
+                    >
+                      21 National Guard Rd<br />Columbia, SC 29201
                     </div>
-                    <div className="icon_right">
-                      <img src="/assets/icons/move-3.png" alt="Moon outline" className="image" />
+                    <div
+                      className="link_f"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleCopy("+1 (803) 937-2431", "Phone Copied!")}
+                    >
+                      +1 (803) 937-2431
                     </div>
+                    <div
+                      className="link_f"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleCopy("21oaks@bhom.com", "Email Copied!")}
+                    >
+                      21oaks@bhom.com
+                    </div>
+                    {copyFeedback && (
+                      <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
+                        ✓ {copyFeedback}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="box_menu">
+                  <div className="title_footer">Office Hours</div>
+                  <div className="links_list">
+                    <div className="link_f">Mon - Fri: 10am - 6pm</div>
+                    <div className="link_f">Sat: 10am - 5pm</div>
+                    <div className="link_f">Sun: 1pm - 5pm</div>
+                  </div>
+                </div>
+
+                <div className="box_menu">
+                  <div className="title_footer">Legals</div>
+                  <div className="links_list">
+                    <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
+                    <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
+                    <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
+                    <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="fs_bg">
-              <img src="/assets/image_cta.avif" alt="21Oaks luxury lounge" className="image" />
-            </div>
-          </section>
-
-          {/* FOOTER */}
-          <footer className="footer">
-            <div className="wrapper_footer">
-              <div className="flex_f_top">
-                <div className="caption_left">
-                  <div className="cap_footer">21Oaks</div>
-                  <div className="cap_footer">
-                    Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
-                  </div>
-                </div>
-
-                <div className="menu_footer">
-                  <div className="box_menu">
-                    <div className="title_footer">Discover</div>
-                    <div className="links_list">
-                      <Link to="/apartments" className="link_f">Apartments</Link>
-                      <a href="#amenities" className="link_f">Amenities</a>
-                      <Link to="/location" className="link_f">Location</Link>
-                      <a href="#gallery" className="link_f">Gallery</a>
-                      <a href="#how-it-works" className="link_f">How to apply</a>
-                      <a href="#contact" className="link_f">Contact</a>
-                    </div>
-                  </div>
-
-                  <div className="box_menu">
-                    <div className="title_footer">Contact</div>
-                    <div className="links_list">
-                      <div
-                        className="link_f"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleCopy("21 National Guard Rd, Columbia, SC 29201", "Address Copied!")}
-                      >
-                        21 National Guard Rd<br />Columbia, SC 29201
-                      </div>
-                      <div
-                        className="link_f"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleCopy("+1 (803) 937-2431", "Phone Copied!")}
-                      >
-                        +1 (803) 937-2431
-                      </div>
-                      <div
-                        className="link_f"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleCopy("21oaks@bhom.com", "Email Copied!")}
-                      >
-                        21oaks@bhom.com
-                      </div>
-                      {copyFeedback && (
-                        <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
-                          ✓ {copyFeedback}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="box_menu">
-                    <div className="title_footer">Office Hours</div>
-                    <div className="links_list">
-                      <div className="link_f">Mon - Fri: 10am - 6pm</div>
-                      <div className="link_f">Sat: 10am - 5pm</div>
-                      <div className="link_f">Sun: 1pm - 5pm</div>
-                    </div>
-                  </div>
-
-                  <div className="box_menu">
-                    <div className="title_footer">Legals</div>
-                    <div className="links_list">
-                      <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
-                      <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
-                      <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
-                      <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="back_socials">
-                <div>
-                  <a id="to-top" href="#top" onClick={handleScrollToTop} className="back_top w-inline-block">
-                    <div>Back to top</div>
-                  </a>
-                </div>
-                <div className="socials_box">
-                  <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon ig" />
-                  </a>
-                  <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon fb" />
-                  </a>
-                  <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                    <div className="social_icon tiktok" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Lamp SVG interactive illustration */}
-            <div className="ill_interactive">
-              <FooterIllustration />
-            </div>
-
-            <div className="last_line ll_fs">
-              <div className="last_txt">© B.HOM Student Living</div>
-              <div className="web_dev_by">
-                <span className="op_spec">Website by </span>
-                <a href="https://www.artemiilebedev.com" target="_blank" rel="noreferrer" className="spec_link">
-                  Artemii Lebedev
+            <div className="back_socials">
+              <div>
+                <a id="to-top" href="#top" onClick={handleScrollToTop} className="back_top w-inline-block">
+                  <div>Back to top</div>
                 </a>
               </div>
-              <div className="last_txt">All Rights Reserved 2026</div>
+              <div className="socials_box">
+                <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                  <div className="social_icon ig" />
+                </a>
+                <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                  <div className="social_icon fb" />
+                </a>
+                <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                  <div className="social_icon tiktok" />
+                </a>
+              </div>
             </div>
-          </footer>
-        </section>
+          </div>
+
+          {/* Lamp SVG interactive illustration */}
+          <div className="ill_interactive">
+            <FooterIllustration />
+          </div>
+
+          <div className="last_line ll_fs">
+            <div className="last_txt">© B.HOM Student Living</div>
+            <div className="web_dev_by">
+              <span className="op_spec">Website by </span>
+              <a href="https://www.artemiilebedev.com" target="_blank" rel="noreferrer" className="spec_link">
+                Artemii Lebedev
+              </a>
+            </div>
+            <div className="last_txt">All Rights Reserved 2026</div>
+          </div>
+        </footer>
+      </section>
 
       {/* Lightbox Modal */}
       {modalUnit && (
