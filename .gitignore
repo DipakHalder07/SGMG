@@ -3,3 +3,7 @@ dist
 dist-ssr
 *.local
 .DS_Store
+scratch/
+.env
+.env.*
+!.env.example
