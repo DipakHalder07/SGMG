@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header, { ArrowIcon } from "../components/Header";
+import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
+import ApartmentCardSlider from "../components/ApartmentCardSlider";
+import TestimonialsSection from "../components/TestimonialsSection";
 import {
   APARTMENTS_DATA,
   ApartmentUnit,
-  TESTIMONIALS_DATA,
   APARTMENT_FAQS,
 } from "../data/apartmentsData";
 
@@ -19,15 +20,10 @@ export default function ApartmentsPage() {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(865);
   const [selectedMoveIn, setSelectedMoveIn] = useState<"Now" | "Later" | "All">("All");
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 
   // Active Lightbox Modal state
   const [activeModalUnit, setActiveModalUnit] = useState<ApartmentUnit | null>(null);
-
-  // Card slide indices for multiple photos in card
-  const [cardPhotoIndices, setCardPhotoIndices] = useState<Record<string, number>>({});
-
-  // Testimonials state
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   // FAQ open index state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -51,158 +47,200 @@ export default function ApartmentsPage() {
     });
   }, [selectedType, selectedBeds, minPrice, maxPrice]);
 
-  const handleCardPrevPhoto = (aptId: string, total: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardPhotoIndices((prev) => {
-      const cur = prev[aptId] || 0;
-      return { ...prev, [aptId]: cur === 0 ? total - 1 : cur - 1 };
-    });
-  };
-
-  const handleCardNextPhoto = (aptId: string, total: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardPhotoIndices((prev) => {
-      const cur = prev[aptId] || 0;
-      return { ...prev, [aptId]: cur === total - 1 ? 0 : cur + 1 };
-    });
-  };
 
   return (
     <div className="page-wrapper apartments-page-view">
       <Header />
 
       <main className="apartments-page-main">
-        {/* Title Section */}
-        <section className="apartments-header-section">
-          <div className="apartments-title-container">
-            <h1 className="apartments-main-heading">
+        {/* Main Section */}
+        <div className="wrapper_general apartments_gen">
+          <div className="heading_aparts">
+            <h1 className="h1 black spec_amenities">
               Apartments<br />
-              near <span className="underline-squiggle">USC</span>
+              near <span data-scribble="2" className="scribble-wrap scribble-visible">USC</span>
             </h1>
           </div>
-        </section>
 
-        {/* Content Section: Sidebar Filters + Cards Grid */}
-        <section className="apartments-content-section">
-          <div className="apartments-layout-grid">
+          <div className="apartments_sides">
             {/* Filter Sidebar */}
-            <aside className="apartments-filter-sidebar">
-              {/* Type Filter */}
-              <div className="filter-group">
-                <label className="filter-label">Type</label>
-                <div className="filter-button-row">
-                  {(["All", "General", "Premium"] as const).map((type) => (
+            <div className={`filters ${mobileFiltersOpen ? "is-open" : ""}`}>
+              <div className="filter_heading">
+                <div>Refine your<br />search</div>
+                <div
+                  className="close_button"
+                  onClick={() => setMobileFiltersOpen(false)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src="/assets/icons/close-icon.svg" loading="lazy" alt="Close" className="image" />
+                </div>
+              </div>
+
+              <div className="filter_form w-form">
+                <form className="form_filters" onSubmit={(e) => e.preventDefault()}>
+                  <div className="filters_flex">
+                    {/* Type */}
+                    <div className="filters_box">
+                      <div className="filter_title"><div>Type</div></div>
+                      <div className="filters_wrap">
+                        <button
+                          type="button"
+                          className="clear_btn w-inline-block"
+                          onClick={() => setSelectedType("All")}
+                        >
+                          <div>All</div>
+                        </button>
+                        <div className="filters_type">
+                          {(["General", "Premium"] as const).map((t) => (
+                            <label
+                              key={t}
+                              className={`checkbox w-radio ${selectedType === t ? "is-active" : ""}`}
+                              onClick={() => setSelectedType(selectedType === t ? "All" : t)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <input
+                                type="radio"
+                                className="radio_circle"
+                                checked={selectedType === t}
+                                onChange={() => {}}
+                              />
+                              <span className="radio_txt w-form-label">{t}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bedrooms */}
+                    <div className="filters_box">
+                      <div className="filter_title"><div>Bedrooms</div></div>
+                      <div className="filters_wrap">
+                        <div className="filters_type">
+                          {([3, 4] as const).map((b) => (
+                            <label
+                              key={b}
+                              className={`checkbox ${selectedBeds === b ? "is-active" : ""}`}
+                              onClick={() => setSelectedBeds(selectedBeds === b ? null : b)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <span className="checkbox_txt w-form-label">{b}BR</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Price */}
+                    <div className="filters_box">
+                      <div className="filter_title"><div>Price</div></div>
+                      <div className="fs-rangeslider_wrapper helper">
+                        <div className="fs-message">
+                          <input
+                            className="fs-rangeslider_input helper w-input is-list-active"
+                            type="text"
+                            value={`$${minPrice.toFixed(2)}`}
+                            readOnly
+                          />
+                          <div className="dash_field">-</div>
+                          <input
+                            className="fs-rangeslider_input helper w-input is-list-active"
+                            type="text"
+                            value={`$${maxPrice.toFixed(2)}`}
+                            readOnly
+                          />
+                        </div>
+                        <div className="fs-rangeslider_track helper" style={{ position: "relative" }}>
+                          <div
+                            className="fs-rangeslider_fill helper"
+                            style={{
+                              position: "absolute",
+                              left: "0px",
+                              width: `${Math.min(100, Math.max(0, (maxPrice / 865) * 100))}%`
+                            }}
+                          />
+                          <input
+                            type="range"
+                            min="0"
+                            max="865"
+                            step="5"
+                            value={maxPrice}
+                            onChange={(e) => setMaxPrice(Number(e.target.value))}
+                            className="fs-rangeslider_native_range"
+                            aria-label="Filter Price"
+                          />
+                          <div
+                            className="fs-rangeslider_handle helper"
+                            style={{
+                              position: "absolute",
+                              top: "50%",
+                              transform: "translate(-50%, -50%)",
+                              left: `${Math.min(100, Math.max(0, (maxPrice / 865) * 100))}%`
+                            }}
+                          >
+                            <div className="fs-rangeslider_handle-value">
+                              $<span className="fs-rangeslider_handle-span helper">{maxPrice}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Move-in */}
+                    <div className="filters_box last_filter">
+                      <div className="filter_title"><div>Move-in</div></div>
+                      <div className="filters_wrap">
+                        <div className="filters_type">
+                          {(["Now", "Later"] as const).map((m) => (
+                            <label
+                              key={m}
+                              className={`checkbox ${selectedMoveIn === m ? "is-active" : ""}`}
+                              onClick={() => setSelectedMoveIn(selectedMoveIn === m ? "All" : m)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <span className="checkbox_txt w-form-label">{m}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="buttons_filters">
                     <button
-                      key={type}
                       type="button"
-                      className={`filter-pill-btn ${selectedType === type ? "is-active" : ""}`}
-                      onClick={() => setSelectedType(type)}
+                      className="show_variants w-button"
+                      onClick={() => setMobileFiltersOpen(false)}
                     >
-                      {type}
+                      Show Variants
                     </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bedrooms Filter */}
-              <div className="filter-group">
-                <label className="filter-label">Bedrooms</label>
-                <div className="filter-button-row">
-                  <button
-                    type="button"
-                    className={`filter-pill-btn ${selectedBeds === null ? "is-active" : ""}`}
-                    onClick={() => setSelectedBeds(null)}
-                  >
-                    All
-                  </button>
-                  <button
-                    type="button"
-                    className={`filter-pill-btn ${selectedBeds === 3 ? "is-active" : ""}`}
-                    onClick={() => setSelectedBeds(3)}
-                  >
-                    3BR
-                  </button>
-                  <button
-                    type="button"
-                    className={`filter-pill-btn ${selectedBeds === 4 ? "is-active" : ""}`}
-                    onClick={() => setSelectedBeds(4)}
-                  >
-                    4BR
-                  </button>
-                </div>
-              </div>
-
-              {/* Price Filter */}
-              <div className="filter-group">
-                <label className="filter-label">Price</label>
-                <div className="filter-price-inputs">
-                  <div className="price-input-box">
-                    <span className="price-currency">$</span>
-                    <input
-                      type="number"
-                      value={minPrice}
-                      min={0}
-                      max={maxPrice}
-                      onChange={(e) => setMinPrice(Number(e.target.value))}
-                      className="price-input"
-                    />
-                  </div>
-                  <span className="price-separator">-</span>
-                  <div className="price-input-box">
-                    <span className="price-currency">$</span>
-                    <input
-                      type="number"
-                      value={maxPrice}
-                      min={minPrice}
-                      max={1200}
-                      onChange={(e) => setMaxPrice(Number(e.target.value))}
-                      className="price-input"
-                    />
-                  </div>
-                </div>
-
-                <div className="filter-range-wrap">
-                  <input
-                    type="range"
-                    min={0}
-                    max={865}
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(Number(e.target.value))}
-                    className="filter-slider"
-                  />
-                  <div className="filter-range-labels">
-                    <span>$0</span>
-                    <span>$865</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Move-in Filter */}
-              <div className="filter-group">
-                <label className="filter-label">Move-in</label>
-                <div className="filter-button-row">
-                  {(["All", "Now", "Later"] as const).map((m) => (
                     <button
-                      key={m}
                       type="button"
-                      className={`filter-pill-btn ${selectedMoveIn === m ? "is-active" : ""}`}
-                      onClick={() => setSelectedMoveIn(m)}
+                      className="clear_button w-inline-block"
+                      onClick={() => {
+                        setSelectedType("All");
+                        setSelectedBeds(null);
+                        setMinPrice(0);
+                        setMaxPrice(865);
+                        setSelectedMoveIn("All");
+                        setMobileFiltersOpen(false);
+                      }}
                     >
-                      {m}
+                      <div>Reset All</div>
                     </button>
-                  ))}
-                </div>
+                  </div>
+                </form>
               </div>
-            </aside>
+            </div>
 
-            {/* Apartments Grid */}
-            <div className="apartments-grid-container">
+            {/* Right Column: Apartments Box & Grid */}
+            <div className="apartments_box">
               {filteredApartments.length === 0 ? (
                 <div className="no-apartments-found">
                   <h3>No apartments found</h3>
                   <p>Try adjusting your price range or bedroom filters.</p>
                   <button
-                    className="filter-pill-btn is-active"
+                    type="button"
+                    className="clear_btn is-active"
                     onClick={() => {
                       setSelectedType("All");
                       setSelectedBeds(null);
@@ -211,120 +249,61 @@ export default function ApartmentsPage() {
                       setSelectedMoveIn("All");
                     }}
                   >
-                    Reset Filters
+                    <div>Reset Filters</div>
                   </button>
                 </div>
               ) : (
-                <div className="apartments-cards-grid">
+                <div className="apartments_grid">
                   {filteredApartments.map((apart) => {
-                    const photos = apart.gallery.slice(0, 5);
-                    const photoIdx = cardPhotoIndices[apart.id] || 0;
-                    const currentImg = photos[photoIdx] || apart.coverImage;
+                    const photos = apart.gallery && apart.gallery.length > 0 ? apart.gallery : [apart.coverImage];
 
                     return (
-                      <div className="apartment-listing-card" key={apart.id}>
-                        {/* Image Carousel */}
-                        <div
-                          className="apartment-card-image-wrap"
-                          onClick={() => navigate(`/apartments-cards/${apart.id}`)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {/* Availability Badge */}
-                          <div className="card-badge-available">
-                            <span className="badge-green-dot" />
-                            <span>{apart.status}</span>
-                          </div>
+                      <div role="listitem" className="apartment_item w-dyn-item" key={apart.id}>
+                        <ApartmentCardSlider
+                          photos={photos}
+                          apartId={apart.id}
+                          apartName={apart.name}
+                          status={apart.status}
+                          beds={apart.beds}
+                          baths={apart.baths}
+                          sqft={apart.sqft}
+                        />
 
-                          {/* Spec Pills Bottom Left */}
-                          <div className="card-specs-overlay">
-                            <div className="spec-pill">
-                              <img src="/assets/icons/bed-icon.png" alt="" className="spec-icon" />
-                              <span>{apart.beds}</span>
+                        {/* Content Below Image */}
+                        <div className="content_apart">
+                          <div className="apart_title_line">
+                            <div className="apartment_title">
+                              <Link to={`/apartments-cards/${apart.id}`} className="apart_title">
+                                {apart.name}
+                              </Link>
                             </div>
-                            <div className="spec-pill">
-                              <img src="/assets/icons/bath-icon.png" alt="" className="spec-icon" />
-                              <span>{apart.baths}</span>
-                            </div>
-                            <div className="spec-pill">
-                              <img src="/assets/icons/ft-icon.png" alt="" className="spec-icon" />
-                              <span>{apart.sqft} ft²</span>
-                            </div>
-                          </div>
-
-                          {/* Photo Carousel Dots */}
-                          {photos.length > 1 && (
-                            <div className="card-dots-overlay">
-                              {photos.map((_, dotIdx) => (
-                                <span
-                                  key={dotIdx}
-                                  className={`card-dot ${dotIdx === photoIdx ? "is-active" : ""}`}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setCardPhotoIndices((prev) => ({ ...prev, [apart.id]: dotIdx }));
-                                  }}
-                                />
-                              ))}
-                            </div>
-                          )}
-
-                          {/* Hover Nav Chevrons */}
-                          {photos.length > 1 && (
-                            <>
-                              <button
-                                className="card-nav-arrow is-prev"
-                                onClick={(e) => handleCardPrevPhoto(apart.id, photos.length, e)}
-                                aria-label="Previous photo"
-                              >
-                                ‹
-                              </button>
-                              <button
-                                className="card-nav-arrow is-next"
-                                onClick={(e) => handleCardNextPhoto(apart.id, photos.length, e)}
-                                aria-label="Next photo"
-                              >
-                                ›
-                              </button>
-                            </>
-                          )}
-
-                          <img
-                            src={currentImg}
-                            alt={apart.name}
-                            className="apartment-card-img"
-                            loading="lazy"
-                          />
-                        </div>
-
-                        {/* Card Info */}
-                        <div className="apartment-card-content">
-                          <div className="apartment-card-header-row">
-                            <Link to={`/apartments-cards/${apart.id}`} className="apartment-card-title">
-                              {apart.name}
-                            </Link>
-                            <div className="apartment-card-price-wrap">
-                              <span className="price-currency-icon">$</span>
-                              <span className="price-amount">{apart.priceFormatted}</span>
-                              <span className="price-period">/month</span>
+                            <div className="price_box">
+                              <div className="icon_price">
+                                <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                              </div>
+                              <div className="price_txt">{apart.priceFormatted}</div>
+                              <div className="mnth_txt">/month</div>
                             </div>
                           </div>
 
-                          {/* Action Buttons */}
-                          <div className="apartment-card-buttons-row">
-                            <button
-                              type="button"
-                              className="explore-details-button"
-                              onClick={() => setActiveModalUnit(apart)}
-                            >
-                              Explore Details
-                            </button>
-
-                            <Link
-                              to={`/apartments-cards/${apart.id}`}
-                              className="apartment-card-arrow-link"
-                              aria-label={`View full details of ${apart.name}`}
-                            >
-                              <div className="arrow_icon">
-                                <ArrowIcon />
+                          <div className="explore_button">
+                            <Link to={`/apartments-cards/${apart.id}`} className="button w-inline-block">
+                              <div className="icon_box is-left">
+                                <div className="arrow_icon">
+                                  <div className="arrow-icon w-embed">
+                                    <ArrowIcon />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="text_box apartments_button">
+                                <div>Explore Details</div>
+                              </div>
+                              <div className="icon_box is-right">
+                                <div className="arrow_icon">
+                                  <div className="arrow-icon w-embed">
+                                    <ArrowIcon />
+                                  </div>
+                                </div>
                               </div>
                             </Link>
                           </div>
@@ -336,41 +315,24 @@ export default function ApartmentsPage() {
               )}
             </div>
           </div>
-        </section>
+
+          {/* Mobile Sticky Floating Filter Button */}
+          <div className="fix_filter">
+            <button
+              type="button"
+              className="filter_button"
+              onClick={() => setMobileFiltersOpen(true)}
+            >
+              <div className="icon_filter">
+                <img src="/assets/icons/filter-icon.png" loading="lazy" alt="Filter icon" className="image" />
+              </div>
+              <div>All Filters</div>
+            </button>
+          </div>
+        </div>
 
         {/* Testimonials Section */}
-        <section className="apartments-testimonials-section">
-          <div className="testimonials-container">
-            <h2 className="testimonials-heading">
-              Real student<br />
-              <span className="underline-squiggle-testimonials">experiences</span>
-            </h2>
-
-            <div className="testimonials-content-wrap">
-              {/* Left Avatars Column */}
-              <div className="testimonials-avatars-col">
-                {TESTIMONIALS_DATA.map((item, idx) => (
-                  <div
-                    key={item.author}
-                    className={`testimonial-avatar-item ${idx === activeTestimonial ? "is-active" : ""}`}
-                    onClick={() => setActiveTestimonial(idx)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img src={item.photo} alt={item.author} className="avatar-img" />
-                    {idx === activeTestimonial && <span className="avatar-name">{item.author}</span>}
-                  </div>
-                ))}
-              </div>
-
-              {/* Right Quote Column */}
-              <div className="testimonials-quote-col">
-                <blockquote className="testimonial-quote-text">
-                  {TESTIMONIALS_DATA[activeTestimonial].quote}
-                </blockquote>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TestimonialsSection />
 
         {/* FAQ Accordion Section */}
         <section className="apartments-faq-section">
@@ -378,25 +340,12 @@ export default function ApartmentsPage() {
             <div className="faq-split-left">
               <div className="faq-left-sticky">
                 <p className="faq-prompt-text">Didn’t find what you were looking for?</p>
-                <div className="faq-explore-btn-row">
-                  <a
+                <div style={{ marginTop: "1.25em" }}>
+                  <WebflowButton
+                    text="Explore FAQ"
                     href="https://calendly.com/propertyjs/21-oaks-25"
                     target="_blank"
-                    rel="noreferrer"
-                    className="faq-explore-btn"
-                  >
-                    Explore FAQ
-                  </a>
-                  <a
-                    href="https://calendly.com/propertyjs/21-oaks-25"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="faq-arrow-link"
-                  >
-                    <div className="arrow_icon">
-                      <ArrowIcon />
-                    </div>
-                  </a>
+                  />
                 </div>
               </div>
             </div>

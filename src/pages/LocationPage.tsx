@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header, { ArrowIcon } from "../components/Header";
+import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import { LOCATION_HERO_SLIDES, LOCATION_PLACES, APARTMENT_FAQS } from "../data/apartmentsData";
 
@@ -270,25 +270,13 @@ export default function LocationPage() {
                   <span className="underline-squiggle">questions</span>
                 </h2>
                 <p className="faq-prompt-text light">Everything you might want to know before moving in.</p>
-                <div className="faq-explore-btn-row">
-                  <a
+                <div style={{ marginTop: "1.25em" }}>
+                  <WebflowButton
+                    text="Explore FAQ"
                     href="https://calendly.com/propertyjs/21-oaks-25"
                     target="_blank"
-                    rel="noreferrer"
-                    className="faq-explore-btn dark-mode-btn"
-                  >
-                    Explore FAQ
-                  </a>
-                  <a
-                    href="https://calendly.com/propertyjs/21-oaks-25"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="faq-arrow-link dark-mode-btn"
-                  >
-                    <div className="arrow_icon">
-                      <ArrowIcon />
-                    </div>
-                  </a>
+                    className="black"
+                  />
                 </div>
               </div>
             </div>

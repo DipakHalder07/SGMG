@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export function ArrowIcon() {
@@ -21,7 +21,7 @@ export function WebflowButton({
 }: {
   text: string;
   href?: string;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   className?: string;
   target?: string;
 }) {
@@ -30,11 +30,14 @@ export function WebflowButton({
       href={href || "#"}
       onClick={onClick}
       target={target}
-      className={`button ${className}`}
+      rel={target === "_blank" ? "noreferrer" : undefined}
+      className={`button ${className} w-inline-block`}
     >
       <div className={`icon_box is-left ${className}`}>
         <div className="arrow_icon">
-          <ArrowIcon />
+          <div className="arrow-icon w-embed">
+            <ArrowIcon />
+          </div>
         </div>
       </div>
       <div className={`text_box ${className}`}>
@@ -42,7 +45,46 @@ export function WebflowButton({
       </div>
       <div className={`icon_box is-right ${className}`}>
         <div className="arrow_icon">
-          <ArrowIcon />
+          <div className="arrow-icon w-embed">
+            <ArrowIcon />
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+export function HeaderApplyButton({
+  href = "/#contact",
+  text = "Apply Now",
+  onClick,
+}: {
+  href?: string;
+  text?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="button header_cta w-inline-block"
+      aria-label={text}
+    >
+      <div className="icon_box is-left">
+        <div className="arrow_icon">
+          <div className="arrow-icon w-embed">
+            <ArrowIcon />
+          </div>
+        </div>
+      </div>
+      <div className="text_box header_btn">
+        <div>{text}</div>
+      </div>
+      <div className="icon_box is-right">
+        <div className="arrow_icon">
+          <div className="arrow-icon w-embed">
+            <ArrowIcon />
+          </div>
         </div>
       </div>
     </a>
@@ -55,8 +97,30 @@ interface HeaderProps {
 
 export default function Header({ darkTheme = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Close drawer on outside click
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!menuOpen) return;
+      const target = e.target as HTMLElement;
+      if (headerRef.current && !headerRef.current.contains(target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [menuOpen]);
+
+  // Non-home routes should be in light mode by default
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      document.body.classList.remove("is-hero");
+      document.body.classList.add("is-light");
+    }
+  }, [location.pathname]);
 
   const handleNavClick = (path: string, hash?: string) => {
     setMenuOpen(false);
@@ -65,78 +129,145 @@ export default function Header({ darkTheme = false }: HeaderProps) {
         const el = document.getElementById(hash);
         if (el) el.scrollIntoView({ behavior: "smooth" });
       } else {
-        navigate(`${path}#${hash}`);
+        navigate(path + "#" + hash);
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
       }
     } else {
       navigate(path);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const navLinks = [
-    { label: "Home", path: "/" },
-    { label: "Apartments", path: "/apartments" },
-    { label: "Amenities", path: "/", hash: "amenities" },
-    { label: "Location", path: "/location" },
-    { label: "How to Apply", path: "/", hash: "how-it-works" },
-    { label: "Gallery", path: "/", hash: "gallery" },
-    { label: "FAQ", path: "/", hash: "faq" },
-  ];
-
   return (
-    <header className={`header ${darkTheme ? "is-dark" : ""}`}>
+    <header ref={headerRef} className={"header" + (darkTheme ? " is-dark" : "")}>
       <div className="wrapper_header">
         <div className="grid_header">
           {/* Logo */}
-          <div className="logo_box">
-            <Link to="/" className="logo w-inline-block" onClick={() => window.scrollTo(0, 0)}>
-              <div>21OAKS</div>
+          <div id="w-node-ad93d22d-cd7e-431b-047e-2560671c8e8e-671c8e8b" className="logo_box">
+            <Link
+              to="/"
+              aria-current="page"
+              className="logo w-inline-block w--current"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <div>21Oaks</div>
             </Link>
           </div>
 
-          {/* Fullscreen Drawer Navigation */}
-          {menuOpen && (
-            <div className="menu_fs" style={{ display: "block" }}>
-              <div className="grid_menu_mobile">
-                {navLinks.map((item) => (
-                  <div
-                    key={item.label}
-                    onClick={() => handleNavClick(item.path, item.hash)}
-                    className="mobile_link w-inline-block"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div>{item.label}</div>
-                  </div>
-                ))}
-              </div>
-              <div
-                onClick={() => handleNavClick("/", "contact")}
-                className="contact_button w-inline-block"
-                style={{ cursor: "pointer" }}
+          {/* Dropdown Menu Drawer (Grid Area Row 2, Col 2 on Desktop / Floating on Mobile) */}
+          <div
+            id="w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b"
+            className={`menu_fs ${menuOpen ? "is-open" : ""}`}
+          >
+            <div className="grid_menu_mobile">
+              <a
+                href="/"
+                aria-current={location.pathname === "/" ? "page" : undefined}
+                className={`mobile_link w-inline-block ${location.pathname === "/" ? "w--current" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/");
+                }}
               >
-                <div>Contact</div>
-              </div>
+                <div>Home</div>
+              </a>
+              <a
+                href="/apartments"
+                className={`mobile_link w-inline-block ${location.pathname === "/apartments" ? "w--current" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/apartments");
+                }}
+              >
+                <div>Apartments</div>
+              </a>
+              <a
+                href="/#amenities"
+                className="mobile_link w-inline-block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/", "amenities");
+                }}
+              >
+                <div>Amenities</div>
+              </a>
+              <a
+                href="/location"
+                className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/location");
+                }}
+              >
+                <div>Location</div>
+              </a>
+              <a
+                href="/#how-it-works"
+                className="mobile_link w-inline-block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/", "how-it-works");
+                }}
+              >
+                <div>How to Apply</div>
+              </a>
+              <a
+                href="/#gallery"
+                className="mobile_link w-inline-block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/", "gallery");
+                }}
+              >
+                <div>Gallery</div>
+              </a>
+              <a
+                id="w-node-_1fc5a60c-db18-5e47-1cc7-6d822ad20c80-671c8e8b"
+                href="/#faq"
+                className="mobile_link w-inline-block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/", "faq");
+                }}
+              >
+                <div>FAQ</div>
+              </a>
             </div>
-          )}
+            <a
+              href="/#contact"
+              className="contact_button w-inline-block"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/", "contact");
+              }}
+            >
+              <div>Contact</div>
+            </a>
+          </div>
 
-          {/* Center Menu & Schedule a Tour Button */}
-          <div className="menu">
+          {/* Center Pill (Desktop) / Bottom Floating Dock (Mobile) */}
+          <div
+            id="w-node-ad93d22d-cd7e-431b-047e-2560671c8e92-671c8e8b"
+            className={`menu ${menuOpen ? "is-open" : ""}`}
+          >
             <div className="flex_menu">
               <div
+                data-w-id="ad93d22d-cd7e-431b-047e-2560671c8e94"
                 className="menu_link"
-                onClick={() => setMenuOpen(!menuOpen)}
-                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setMenuOpen(!menuOpen);
+                }}
               >
                 <div className="hamburger">
-                  <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
-                  <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
+                  <div className="line_one" />
+                  <div className="line_two" />
                 </div>
-                <div className="menu_txt close_txt" style={{ display: menuOpen ? "block" : "none" }}>
-                  Close
-                </div>
-                <div className="menu_txt open_txt" style={{ display: menuOpen ? "none" : "block" }}>
-                  Menu
-                </div>
+                <div className="menu_txt close_txt">Close</div>
+                <div className="menu_txt open_txt">Menu</div>
               </div>
 
               <a
@@ -150,26 +281,13 @@ export default function Header({ darkTheme = false }: HeaderProps) {
             </div>
           </div>
 
-          {/* Apply Now Button & Mobile Header Navigation Button */}
+          {/* Right Apply Button */}
           <div className="apply_button">
-            <div
-              className="mobile_header_toggle only_mobile"
-              onClick={() => setMenuOpen(!menuOpen)}
-              role="button"
-              aria-label="Navigation Menu"
-            >
-              <div className="hamburger">
-                <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
-                <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
-              </div>
-              <span className="mobile_header_toggle_txt">{menuOpen ? "Close" : "Menu"}</span>
-            </div>
-
-            <WebflowButton
-              text="Apply Now"
-              href="https://calendly.com/propertyjs/21-oaks-25"
-              target="_blank"
-              className="webflow-main-apply"
+            <HeaderApplyButton
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/", "contact");
+              }}
             />
           </div>
         </div>

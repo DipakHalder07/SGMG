@@ -121,17 +121,17 @@ export default function ApartmentDetailPage() {
                 href="https://calendly.com/propertyjs/21-oaks-25"
                 target="_blank"
                 rel="noreferrer"
-                className="action-apply-button"
+                className="button_apply action-apply-button w-inline-block"
               >
-                Apply Now
+                <div>Apply Now</div>
               </a>
               <a
                 href="https://calendly.com/propertyjs/21-oaks-25"
                 target="_blank"
                 rel="noreferrer"
-                className="action-tour-button"
+                className="button_schedule action-tour-button w-inline-block"
               >
-                Schedule a Tour
+                <div>Schedule a Tour</div>
               </a>
             </div>
           </aside>
@@ -379,25 +379,12 @@ export default function ApartmentDetailPage() {
             <div className="faq-split-left">
               <div className="faq-left-sticky">
                 <p className="faq-prompt-text">Didn’t find what you were looking for?</p>
-                <div className="faq-explore-btn-row">
-                  <a
+                <div style={{ marginTop: "1.25em" }}>
+                  <WebflowButton
+                    text="Explore FAQ"
                     href="https://calendly.com/propertyjs/21-oaks-25"
                     target="_blank"
-                    rel="noreferrer"
-                    className="faq-explore-btn"
-                  >
-                    Explore FAQ
-                  </a>
-                  <a
-                    href="https://calendly.com/propertyjs/21-oaks-25"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="faq-arrow-link"
-                  >
-                    <div className="arrow_icon">
-                      <ArrowIcon />
-                    </div>
-                  </a>
+                  />
                 </div>
               </div>
             </div>

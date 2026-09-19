@@ -6,6 +6,7 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
+import Header from "../components/Header";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
 import { APARTMENTS_DATA, ApartmentUnit } from "../data/apartmentsData";
 
@@ -1160,116 +1161,7 @@ export default function HomePage() {
   return (
     <div className="page-wrapper">
       {/* HEADER */}
-      <header className="header">
-        <div className="wrapper_header">
-          <div className="grid_header">
-            {/* Logo */}
-            <div className="logo_box">
-              <a href="#top" className="logo w-inline-block">
-                <div>21Oaks</div>
-              </a>
-            </div>
-
-            {/* Mobile / Fullscreen Drawer Navigation */}
-            {menuOpen && (
-              <div className="menu_fs" style={{ display: "block" }}>
-                <div className="grid_menu_mobile">
-                  {[
-                    { label: "Home", href: "#top", isRoute: false },
-                    { label: "Apartments", href: "/apartments", isRoute: true },
-                    { label: "Amenities", href: "#amenities", isRoute: false },
-                    { label: "Location", href: "/location", isRoute: true },
-                    { label: "How to Apply", href: "#how-it-works", isRoute: false },
-                    { label: "Gallery", href: "#gallery", isRoute: false },
-                    { label: "FAQ", href: "#faq", isRoute: false },
-                  ].map((item) => (
-                    item.isRoute ? (
-                      <Link
-                        key={item.label}
-                        to={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="mobile_link w-inline-block"
-                      >
-                        <div>{item.label}</div>
-                      </Link>
-                    ) : (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="mobile_link w-inline-block"
-                      >
-                        <div>{item.label}</div>
-                      </a>
-                    )
-                  ))}
-                </div>
-                <a
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="contact_button w-inline-block"
-                >
-                  <div>Contact</div>
-                </a>
-              </div>
-            )}
-
-            {/* Center Menu & Schedule a Tour Button */}
-            <div className="menu">
-              <div className="flex_menu">
-                <div
-                  className="menu_link"
-                  onClick={() => setMenuOpen(!menuOpen)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div className="hamburger">
-                    <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
-                    <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
-                  </div>
-                  <div className="menu_txt close_txt" style={{ display: menuOpen ? "block" : "none" }}>
-                    Close
-                  </div>
-                  <div className="menu_txt open_txt" style={{ display: menuOpen ? "none" : "block" }}>
-                    Menu
-                  </div>
-                </div>
-
-                <a
-                  href="https://calendly.com/propertyjs/21-oaks-25"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="header_button w-inline-block"
-                >
-                  <div>Schedule a Tour</div>
-                </a>
-              </div>
-            </div>
-
-            {/* Apply Now Button & Mobile Header Navigation Button */}
-            <div className="apply_button">
-              <div
-                className="mobile_header_toggle only_mobile"
-                onClick={() => setMenuOpen(!menuOpen)}
-                role="button"
-                aria-label="Navigation Menu"
-              >
-                <div className="hamburger">
-                  <div className="line_one" style={menuOpen ? { transform: "rotate(45deg) translate(2px, 2px)" } : {}}></div>
-                  <div className="line_two" style={menuOpen ? { transform: "rotate(-45deg) translate(2px, -2px)" } : {}}></div>
-                </div>
-                <span className="mobile_header_toggle_txt">{menuOpen ? "Close" : "Menu"}</span>
-              </div>
-
-              <WebflowButton
-                text="Apply Now"
-                href="https://calendly.com/propertyjs/21-oaks-25"
-                onClick={handleApplyClick}
-                className="header_cta"
-              />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="main" id="top">
         {/* HERO SECTION */}
