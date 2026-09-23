@@ -612,9 +612,11 @@ export default function LocationPage() {
       markersRef.current.set(place.id, marker);
     });
 
-    // Default select Vega Circle Mall
-    const defaultPlace = MAP_PLACES[0];
-    selectPlace(defaultPlace, false);
+    // Default select Vega Circle Mall on desktop viewports
+    if (typeof window !== "undefined" && window.innerWidth > 767) {
+      const defaultPlace = MAP_PLACES[0];
+      selectPlace(defaultPlace, false);
+    }
 
     // Invalidate size after layout completes
     setTimeout(() => {

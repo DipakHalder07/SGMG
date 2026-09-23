@@ -276,7 +276,7 @@
 
 .h2.white.specific_map {
   color: #ffffff;
-  font-family: "Romie", Georgia, "Times New Roman", serif;
+  font-family: "Exposure", "Romie", Georgia, "Times New Roman", serif;
   font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   font-weight: 300;
   line-height: 1.1;
@@ -1078,8 +1078,52 @@
     border: 2px solid #ffffff !important;
   }
 
+  .on_the_map {
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .location_on_map {
+    padding: 38px 20px 18px !important;
+  }
+
+  .locations_headings {
+    max-width: 320px !important;
+    margin-inline: auto !important;
+  }
+
+  .h2.white.specific_map {
+    font-size: 35px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.7px !important;
+  }
+
+  .map_sec {
+    width: calc(100vw - 16px) !important;
+    max-width: 100vw !important;
+    height: 52vh !important;
+    min-height: 410px !important;
+    max-height: 520px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Completely hide location list / cards panel on mobile per user request and 21oaks live design */
+  .map_cards {
+    display: none !important;
+  }
+
   .map_box {
-    height: 380px;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 6px !important;
+    order: unset !important;
   }
 
   .leaflet-popup-content {
