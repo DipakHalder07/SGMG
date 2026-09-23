@@ -37,10 +37,10 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     beds: "4 Bed",
     baths: "2 Baths",
     sqft: "1,108",
-    price: 695.00,
-    priceFormatted: "695.00",
+    price: 795.00,
+    priceFormatted: "795.00",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b92_D1-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bae_D1-Gen.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b92_D1-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b93_D1-2.avif",
@@ -48,8 +48,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b94_D1-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b91_D1-5.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb5_D1-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb4_D1-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bae_D1-Gen.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb4_D1-7.avif"
     ],
     desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
     aboutText: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
@@ -77,7 +76,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 730.00,
     priceFormatted: "730.00",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba2_D1-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb0_D1-Hero.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba2_D1-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba0_D1-2.avif",
@@ -85,8 +84,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba3_D1-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9f_D1-5.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbb_D1-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bba_D1-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb0_D1-Hero.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bba_D1-7.avif"
     ],
     desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
     aboutText: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
@@ -114,7 +112,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 760.00,
     priceFormatted: "760.00",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9e_D2-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193baf_D2-Gen.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9e_D2-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9d_D2-2.avif",
@@ -122,8 +120,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9a_D2-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9c_D2-5.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb9_D2-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb8_D2-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193baf_D2-Gen.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb8_D2-7.avif"
     ],
     desc: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
     aboutText: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
@@ -151,16 +148,15 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 820.00,
     priceFormatted: "820.00",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba9_D2-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb3_D2-Hero.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba9_D2-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bab_D2-2.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bac_D2-3.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bad_D2-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193baa_D2-5.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbf_D2-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbe_D2-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb3_D2-Hero.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193bbf_D2-6.avif",
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbe_D2-7.avif"
     ],
     desc: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
     aboutText: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
@@ -188,7 +184,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 815.00,
     priceFormatted: "815.00",
     status: "Waitlist",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b95_C1-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb2_C1-Gen.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b95_C1-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b98_C1-2.avif",
@@ -196,8 +192,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b97_C1-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b99_C1-5.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb7_C1-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb6_C1-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb2_C1-Gen.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb6_C1-7.avif"
     ],
     desc: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
     aboutText: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
@@ -225,7 +220,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 865.00,
     priceFormatted: "865.00",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba7_C1-1.avif",
+    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb1_C1-Hero.avif",
     gallery: [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba7_C1-1.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba4_C1-2.avif",
@@ -233,8 +228,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba5_C1-4.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba8_C1-5.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbd_C1-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbc_C1-7.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb1_C1-Hero.avif"
+      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbc_C1-7.avif"
     ],
     desc: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
     aboutText: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
