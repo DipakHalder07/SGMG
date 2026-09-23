@@ -98,22 +98,9 @@
   opacity: 0.85;
 }
 
-.button_amenities .button {
-  background-color: #e8ceff;
-  color: #292929;
-  padding: 0.85rem 1.6rem;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: transform 0.25s ease, background-color 0.25s ease;
-}
-
-.button_amenities .button:hover {
-  background-color: #dfbefb;
-  transform: translateY(-2px);
+.button_amenities {
+  width: auto;
+  margin-top: 0.5rem;
 }
 
 /* --- INTERACTIVE STEPS SECTION (GSAP PINNED SCROLLTRIGGER) --- */
@@ -751,7 +738,11 @@
   }
 
   .wrapper_apply {
-    padding: 6.5rem 1.25rem 2.5rem;
+    padding: 6.5rem 1.25rem 7.5rem;
+  }
+
+  .button_amenities {
+    width: 100%;
   }
 
   .ill_abs.desktop_only {
