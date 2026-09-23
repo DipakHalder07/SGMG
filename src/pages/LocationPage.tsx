@@ -184,6 +184,14 @@ const LOCATION_FAQS = [
     q: "How do I schedule a visit to the SGMG site on Sevoke Road?",
     a: "You can click “Schedule a Tour” or contact our Siliguri sales gallery. Our team is available 7 days a week from 9:00 AM to 7:00 PM for private walkthroughs.",
   },
+  {
+    q: "How do I apply for an apartment or reserve a residence?",
+    a: "Click “Apply Now,” select your preferred floor plan and move-in timeline, and complete the digital application form. If applying together with family or partners, our dedicated advisors ensure seamless assistance throughout.",
+  },
+  {
+    q: "What lifestyle amenities are included with residency at SGMG?",
+    a: "Residents enjoy full access to our rooftop infinity swimming pool, fully equipped modern gymnasium, indoor games arena, landscaped party lawn, multi-purpose community hall, 24/7 power backup, and gated security.",
+  },
 ];
 
 const ICON_WALK =
@@ -872,12 +880,9 @@ export default function LocationPage() {
                           className={`accordion-item white_ver w-dyn-item ${
                             isOpen ? "is-open" : ""
                           }`}
+                          onClick={() => setOpenFaq(isOpen ? null : idx)}
                         >
-                          <div
-                            className="accordion_head-wrapper"
-                            onClick={() => setOpenFaq(isOpen ? null : idx)}
-                            style={{ cursor: "pointer" }}
-                          >
+                          <div className="accordion_head-wrapper">
                             <div className="item_head">
                               <div className="title_wrapper">
                                 <div className="item_title">{faq.q}</div>
@@ -885,26 +890,9 @@ export default function LocationPage() {
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="item_content-wrapper"
-                            style={{
-                              maxHeight: isOpen ? "400px" : "0px",
-                              opacity: isOpen ? 1 : 0,
-                              transition:
-                                "max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s ease",
-                            }}
-                          >
+                          <div className="item_content-wrapper">
                             <div className="accordion_paragraph">
-                              <div
-                                className="item_paragraph w-richtext"
-                                style={{
-                                  transform: isOpen
-                                    ? "translate3d(0,0,0)"
-                                    : "translate3d(0,20%,0)",
-                                  transition:
-                                    "transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
-                                }}
-                              >
+                              <div className="item_paragraph w-richtext">
                                 <p>{faq.a}</p>
                               </div>
                             </div>
