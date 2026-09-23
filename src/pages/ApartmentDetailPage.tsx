@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Splide from "@splidejs/splide";
+import "@splidejs/splide/css/core";
 import Header, { ArrowIcon } from "../components/Header";
 import Footer from "../components/Footer";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
@@ -434,7 +435,7 @@ export default function ApartmentDetailPage() {
         perMove: 1,
         focus: 0,
         type: "slide",
-        gap: "0rem",
+        gap: "0.5em",
         arrows: false,
         pagination: false,
         speed: 800,
@@ -446,16 +447,29 @@ export default function ApartmentDetailPage() {
         updateOnMove: false,
         trimSpace: true,
         breakpoints: {
-          991: { perPage: 2, gap: "0rem" },
-          767: { perPage: 1, gap: "0rem" },
-          479: { perPage: 1, gap: "0rem" },
+          991: { perPage: 2, gap: "0.5em" },
+          767: { perPage: 1, gap: "0.5em" },
+          479: { perPage: 1, gap: "0.5em" },
         },
       });
 
       splideInstance.mount();
+
+      const imgs = container.querySelectorAll("img");
+      imgs.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => splideInstance?.refresh(), { once: true });
+        }
+      });
     }
 
+    const onResize = () => {
+      splideInstance?.refresh();
+    };
+    window.addEventListener("resize", onResize);
+
     return () => {
+      window.removeEventListener("resize", onResize);
       if (splideInstance) {
         splideInstance.destroy();
       }
@@ -483,59 +497,108 @@ export default function ApartmentDetailPage() {
     return () => io.disconnect();
   }, []);
 
-  // 6. Drag-and-flick Momentum Scroller for Full Gallery
+  // 6. Authentic Webflow Drag Scroller with Inertia Physics for Full Gallery
   const galleryRef = useRef<HTMLDivElement | null>(null);
-  const isDownRef = useRef<boolean>(false);
-  const prevXRef = useRef<number>(0);
-  const velocityRef = useRef<number>(0);
-  const rafIdRef = useRef<number>(0);
   const [isDraggingGallery, setIsDraggingGallery] = useState<boolean>(false);
+  const hasDraggedRef = useRef<boolean>(false);
 
-  const startInertia = useCallback(() => {
-    cancelAnimationFrame(rafIdRef.current);
+  useEffect(() => {
+    const scroller = galleryRef.current;
+    if (!scroller) return;
+
+    let isDown = false;
+    let prevX = 0;
+    let startX = 0;
+    let velocity = 0;
+    let rafId = 0;
+
+    const DRAG_MULT = 1;
     const FRICTION = 0.94;
     const STOP_EPS = 0.08;
 
-    const tick = () => {
-      if (isDownRef.current) return;
-      velocityRef.current *= FRICTION;
+    function startInertia() {
+      cancelAnimationFrame(rafId);
 
-      if (Math.abs(velocityRef.current) < STOP_EPS) {
-        velocityRef.current = 0;
-        return;
-      }
+      const tick = () => {
+        if (isDown) return;
+        velocity *= FRICTION;
 
-      if (galleryRef.current) {
-        galleryRef.current.scrollLeft -= velocityRef.current;
-      }
-      rafIdRef.current = requestAnimationFrame(tick);
+        if (Math.abs(velocity) < STOP_EPS) {
+          velocity = 0;
+          return;
+        }
+
+        scroller.scrollLeft -= velocity;
+        rafId = requestAnimationFrame(tick);
+      };
+
+      rafId = requestAnimationFrame(tick);
+    }
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      isDown = true;
+      prevX = e.clientX;
+      startX = e.clientX;
+      velocity = 0;
+      hasDraggedRef.current = false;
+      setIsDraggingGallery(true);
+      scroller.classList.add("is-dragging");
+      scroller.setPointerCapture?.(e.pointerId);
+      cancelAnimationFrame(rafId);
     };
 
-    rafIdRef.current = requestAnimationFrame(tick);
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDown) return;
+
+      const totalDelta = Math.abs(e.clientX - startX);
+      if (totalDelta > 6) {
+        hasDraggedRef.current = true;
+      }
+
+      const dx = (e.clientX - prevX) * DRAG_MULT;
+      prevX = e.clientX;
+
+      scroller.scrollLeft -= dx;
+      velocity = velocity * 0.7 + dx * 0.3;
+    };
+
+    const stop = (e: PointerEvent) => {
+      if (!isDown) return;
+      isDown = false;
+      setIsDraggingGallery(false);
+      scroller.classList.remove("is-dragging");
+      try {
+        scroller.releasePointerCapture?.(e.pointerId);
+      } catch (_) {}
+      startInertia();
+
+      setTimeout(() => {
+        hasDraggedRef.current = false;
+      }, 120);
+    };
+
+    const onDragStart = (e: DragEvent) => {
+      e.preventDefault();
+    };
+
+    scroller.addEventListener("pointerdown", onPointerDown);
+    scroller.addEventListener("pointermove", onPointerMove);
+    scroller.addEventListener("pointerup", stop);
+    scroller.addEventListener("pointercancel", stop);
+    scroller.addEventListener("pointerleave", stop);
+    scroller.addEventListener("dragstart", onDragStart);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      scroller.removeEventListener("pointerdown", onPointerDown);
+      scroller.removeEventListener("pointermove", onPointerMove);
+      scroller.removeEventListener("pointerup", stop);
+      scroller.removeEventListener("pointercancel", stop);
+      scroller.removeEventListener("pointerleave", stop);
+      scroller.removeEventListener("dragstart", onDragStart);
+    };
   }, []);
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    isDownRef.current = true;
-    prevXRef.current = e.clientX;
-    velocityRef.current = 0;
-    setIsDraggingGallery(true);
-    cancelAnimationFrame(rafIdRef.current);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDownRef.current || !galleryRef.current) return;
-    const dx = e.clientX - prevXRef.current;
-    prevXRef.current = e.clientX;
-    galleryRef.current.scrollLeft -= dx;
-    velocityRef.current = velocityRef.current * 0.7 + dx * 0.3;
-  };
-
-  const handlePointerUp = () => {
-    if (!isDownRef.current) return;
-    isDownRef.current = false;
-    setIsDraggingGallery(false);
-    startInertia();
-  };
 
   return (
     <div className="page-wrapper apartment-detail-view">
@@ -1197,11 +1260,6 @@ export default function ApartmentDetailPage() {
           <div
             className={`parent_gallery w-dyn-list ${isDraggingGallery ? "is-dragging" : ""}`}
             ref={galleryRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerUp}
-            style={{ touchAction: "pan-y" }}
           >
             <div role="list" className="full_gallery_apartment w-dyn-items">
               {unit.gallery.map((photoUrl, idx) => (
@@ -1209,10 +1267,13 @@ export default function ApartmentDetailPage() {
                   key={idx}
                   role="listitem"
                   className="item_gallery w-dyn-item w-dyn-repeater-item"
-                  onClick={() => {
-                    if (Math.abs(velocityRef.current) < 2) {
-                      setLightboxIndex(idx);
+                  onClick={(e) => {
+                    if (hasDraggedRef.current) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      return;
                     }
+                    setLightboxIndex(idx);
                   }}
                 >
                   <div className="box_image_gallery">
@@ -1221,6 +1282,7 @@ export default function ApartmentDetailPage() {
                       loading="lazy"
                       alt={`${unit.name} slide ${idx + 1}`}
                       className="image"
+                      draggable={false}
                     />
                   </div>
                 </div>
@@ -1239,6 +1301,7 @@ export default function ApartmentDetailPage() {
               <br />
               your door
             </h2>
+            <div className="button_amenities"></div>
           </div>
 
           <div className="container only_amenities">
@@ -1264,6 +1327,7 @@ export default function ApartmentDetailPage() {
                           loading="lazy"
                           src={item.img}
                           className="image"
+                          draggable={false}
                         />
                       </div>
                     </div>

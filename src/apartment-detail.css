@@ -209,7 +209,7 @@
 }
 
 .full_gallery_apartment {
-  grid-column-gap:.3rem;cursor:grabbing;width:auto;padding-left:2rem;padding-right:2rem;display:flex;position:relative;overflow:auto;
+  grid-column-gap:.3rem;cursor:grab;width:auto;padding-left:2rem;padding-right:2rem;display:flex;position:relative;overflow:auto;
 }
 
 .item_gallery {
@@ -420,15 +420,20 @@
   cursor: grab;
   scroll-behavior: auto;
   scrollbar-width: none;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .gallery_slides .parent_gallery.w-dyn-list::-webkit-scrollbar {
   display: none;
 }
 
-.gallery_slides .parent_gallery.w-dyn-list.is-dragging {
-  cursor: grabbing;
-  user-select: none;
+.gallery_slides .parent_gallery.w-dyn-list.is-dragging,
+.gallery_slides .parent_gallery.w-dyn-list.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
 }
 
 .gallery_slides .full_gallery_apartment.w-dyn-items {
@@ -445,9 +450,9 @@
 }
 
 .box_image_gallery {
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
-  cursor: zoom-in;
+  cursor: grab;
 }
 
 .box_image_gallery img {
@@ -455,11 +460,10 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
-}
-
-.box_image_gallery:hover img {
-  transform: scale(1.02);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
 }
 
 /* List Images (Right side gallery) */
@@ -487,83 +491,84 @@
   transform: scale(1.015);
 }
 
-/* Amenities Splide horizontal track */
-.container.only_amenities .splide__track {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
+/* Amenities Splide horizontal track & slides */
+.slider1.second_splide .splide__track {
+  overflow: visible;
   cursor: grab;
 }
 
-.container.only_amenities .splide__track::-webkit-scrollbar {
-  display: none;
-}
-
-.container.only_amenities .splide__track.is-dragging {
+.slider1.second_splide.is-dragging .splide__track {
   cursor: grabbing;
 }
 
-.container.only_amenities .splide__list {
-  display: flex;
-  gap: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  width: max-content;
+.slider1.second_splide > .splide__arrows,
+.slider1.second_splide > .splide__pagination {
+  display: none !important;
 }
 
 .splide__slide.amenities_splide {
-  flex: 0 0 320px;
-  width: 320px;
-  height: 25.5rem;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease;
-}
-
-.splide__slide.amenities_splide:hover {
-  transform: translateY(-4px);
 }
 
 .splide__slide.amenities_splide .image_amenities {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1440 / 1546;
   position: relative;
+  overflow: hidden;
 }
 
 .splide__slide.amenities_splide .image_amenities img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.4s ease;
+}
+
+.splide__slide.amenities_splide:hover .image_amenities img {
+  transform: scale(1.02);
 }
 
 .splide__slide.amenities_splide .overlay_color {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.7) 100%);
+  background-color: #00000045;
   z-index: 2;
+  pointer-events: none;
 }
 
 .splide__slide.amenities_splide .overlay_amenities {
   position: absolute;
   inset: 0;
   z-index: 3;
-  padding: 1.5rem;
+  padding: 1.4em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  pointer-events: none;
 }
 
 .splide__slide.amenities_splide .title_amenities {
   color: #ffffff;
   font-size: 1.5em;
-  font-weight: 500;
+  font-family: Exposure, Georgia, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .splide__slide.amenities_splide .desc_amenities {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.9em;
-  line-height: 1.4;
+  width: auto;
+}
+
+.splide__slide.amenities_splide .desc_amenities .p_gen {
+  color: #ffffff;
+  font-size: 0.85em;
+  line-height: 1.5;
+  font-family: Exposure, Georgia, sans-serif;
 }
 
 /* FAQ Accordion interaction */
@@ -925,7 +930,7 @@
   }
 
   .splide__slide.amenities_splide {
-    border-radius:6px;width:92%;position:relative;overflow:hidden;
+    border-radius:4px;position:relative;overflow:hidden;
   }
 
   .title_included {
@@ -1156,7 +1161,7 @@
   }
 
   .splide__slide.amenities_splide {
-    background-color:#fff0;width:94%;height:25.5rem;padding:0;position:relative;
+    background-color:#fff0;padding:0;position:relative;
   }
 
   .title_included {
