@@ -114,12 +114,13 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
-  // Non-home and non-apartment routes should be in light mode by default
+  // Non-home, non-apartment, and non-location routes should be in light mode by default
   useEffect(() => {
     const isApartmentDetail =
       location.pathname.startsWith("/apartments/") ||
       location.pathname.startsWith("/apartments-cards/");
-    if (location.pathname !== "/" && !isApartmentDetail) {
+    const isLocationPage = location.pathname.startsWith("/location");
+    if (location.pathname !== "/" && !isApartmentDetail && !isLocationPage) {
       document.body.classList.remove("is-hero");
       document.body.classList.add("is-light");
     }

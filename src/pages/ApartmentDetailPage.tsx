@@ -520,7 +520,7 @@ export default function ApartmentDetailPage() {
       cancelAnimationFrame(rafId);
 
       const tick = () => {
-        if (isDown) return;
+        if (isDown || !scroller) return;
         velocity *= FRICTION;
 
         if (Math.abs(velocity) < STOP_EPS) {
