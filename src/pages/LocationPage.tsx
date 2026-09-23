@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { gsap } from "gsap";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../location.css";
@@ -193,10 +194,15 @@ const ICON_DRIVE =
   "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b49_drive.png";
 
 export default function LocationPage() {
-  // Hero Slideshow State
+  // Hero Slideshow Refs & State
   const [activeSlide, setActiveSlide] = useState(0);
-  const [slideProgress, setSlideProgress] = useState(0);
-  const slideIntervalMs = 7000;
+  const activeSlideRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const progressTweenRef = useRef<gsap.core.Tween | null>(null);
+  const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const innerRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
   const touchStartXRef = useRef<number | null>(null);
 
   // Map Filter & Selected Place
@@ -243,29 +249,162 @@ export default function LocationPage() {
   }, []);
 
   // -------------------------------------------------------------
-  // Hero Slideshow Timer & Progress
+  // GSAP Hero Slideshow: 1:1 Parallax Slide Transition (21oaks replica)
   // -------------------------------------------------------------
-  const goToSlide = useCallback((index: number) => {
-    setActiveSlide(index);
-    setSlideProgress(0);
+  const startSlideTimer = useCallback((slideIndex: number) => {
+    if (autoplayTimerRef.current) {
+      clearTimeout(autoplayTimerRef.current);
+      autoplayTimerRef.current = null;
+    }
+    if (progressTweenRef.current) {
+      progressTweenRef.current.kill();
+      progressTweenRef.current = null;
+    }
+
+    // Reset progress heights
+    progressRefs.current.forEach((bar, i) => {
+      if (bar) gsap.set(bar, { height: "0%" });
+    });
+
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 767;
+    const autoplaySec = isMobile ? 7 : 10;
+    const activeBar = progressRefs.current[slideIndex];
+
+    if (activeBar) {
+      progressTweenRef.current = gsap.fromTo(
+        activeBar,
+        { height: "0%" },
+        {
+          height: "100%",
+          duration: autoplaySec,
+          ease: "none",
+        }
+      );
+    }
+
+    autoplayTimerRef.current = setTimeout(() => {
+      const nextIdx = (activeSlideRef.current + 1) % HERO_SLIDES.length;
+      navigateToSlide(nextIdx, 1);
+    }, autoplaySec * 1000);
   }, []);
+
+  const navigateToSlide = useCallback(
+    (nextIndex: number, direction: number = 1) => {
+      if (isAnimatingRef.current) return;
+      const current = activeSlideRef.current;
+      if (nextIndex === current) return;
+
+      isAnimatingRef.current = true;
+
+      if (autoplayTimerRef.current) {
+        clearTimeout(autoplayTimerRef.current);
+        autoplayTimerRef.current = null;
+      }
+      if (progressTweenRef.current) {
+        progressTweenRef.current.kill();
+        progressTweenRef.current = null;
+      }
+      progressRefs.current.forEach((bar) => {
+        if (bar) gsap.set(bar, { height: "0%" });
+      });
+
+      const currentSlide = slideRefs.current[current];
+      const upcomingSlide = slideRefs.current[nextIndex];
+      const currentInner = innerRefs.current[current];
+      const upcomingInner = innerRefs.current[nextIndex];
+
+      if (!currentSlide || !upcomingSlide || !currentInner || !upcomingInner) {
+        isAnimatingRef.current = false;
+        setActiveSlide(nextIndex);
+        activeSlideRef.current = nextIndex;
+        startSlideTimer(nextIndex);
+        return;
+      }
+
+      const isMobile = typeof window !== "undefined" && window.innerWidth <= 767;
+      const animDuration = isMobile ? 0.38 : 0.65;
+
+      gsap.set(upcomingSlide, {
+        zIndex: 10,
+        visibility: "visible",
+        opacity: 1,
+        xPercent: direction * 100,
+      });
+      gsap.set(upcomingInner, {
+        xPercent: -direction * 50,
+      });
+      gsap.set(currentSlide, {
+        zIndex: 9,
+        visibility: "visible",
+        opacity: 1,
+      });
+
+      setActiveSlide(nextIndex);
+      activeSlideRef.current = nextIndex;
+
+      const tl = gsap.timeline({
+        defaults: {
+          duration: animDuration,
+          ease: "power2.inOut",
+        },
+        onComplete: () => {
+          gsap.set(currentSlide, {
+            visibility: "hidden",
+            opacity: 0,
+            zIndex: 1,
+            xPercent: 0,
+          });
+          gsap.set(upcomingSlide, {
+            zIndex: 2,
+            xPercent: 0,
+          });
+          gsap.set([currentInner, upcomingInner], {
+            xPercent: 0,
+          });
+
+          isAnimatingRef.current = false;
+          startSlideTimer(nextIndex);
+        },
+      });
+
+      tl.to(currentSlide, { xPercent: -direction * 100 }, 0)
+        .to(currentInner, { xPercent: direction * 50 }, 0)
+        .to(upcomingSlide, { xPercent: 0 }, 0)
+        .to(upcomingInner, { xPercent: 0 }, 0);
+    },
+    [startSlideTimer]
+  );
 
   useEffect(() => {
-    const stepMs = 50;
-    const progressIncrement = (stepMs / slideIntervalMs) * 100;
+    slideRefs.current.forEach((slide, i) => {
+      if (slide) {
+        gsap.set(slide, {
+          visibility: i === 0 ? "visible" : "hidden",
+          opacity: i === 0 ? 1 : 0,
+          zIndex: i === 0 ? 2 : 1,
+          xPercent: 0,
+        });
+      }
+    });
+    innerRefs.current.forEach((inner) => {
+      if (inner) {
+        gsap.set(inner, { xPercent: 0 });
+      }
+    });
 
-    const timer = setInterval(() => {
-      setSlideProgress((prev) => {
-        if (prev >= 100) {
-          setActiveSlide((curr) => (curr + 1) % HERO_SLIDES.length);
-          return 0;
-        }
-        return prev + progressIncrement;
-      });
-    }, stepMs);
+    startSlideTimer(0);
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => {
+      if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
+      if (progressTweenRef.current) progressTweenRef.current.kill();
+    };
+  }, [startSlideTimer]);
+
+  const handleThumbClick = (idx: number) => {
+    if (isAnimatingRef.current || idx === activeSlideRef.current) return;
+    const dir = idx > activeSlideRef.current ? 1 : -1;
+    navigateToSlide(idx, dir);
+  };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.touches[0].clientX;
@@ -276,9 +415,12 @@ export default function LocationPage() {
     const diff = touchStartXRef.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
       if (diff > 0) {
-        goToSlide((activeSlide + 1) % HERO_SLIDES.length);
+        const nextIdx = (activeSlideRef.current + 1) % HERO_SLIDES.length;
+        navigateToSlide(nextIdx, 1);
       } else {
-        goToSlide((activeSlide - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+        const prevIdx =
+          (activeSlideRef.current - 1 + HERO_SLIDES.length) % HERO_SLIDES.length;
+        navigateToSlide(prevIdx, -1);
       }
     }
     touchStartXRef.current = null;
@@ -517,7 +659,7 @@ export default function LocationPage() {
                     <div
                       key={slide.id}
                       className={`nav_item ${isActive ? "is-active" : ""}`}
-                      onClick={() => goToSlide(idx)}
+                      onClick={() => handleThumbClick(idx)}
                       role="button"
                       tabIndex={0}
                       aria-label={`Jump to slide: ${slide.title}`}
@@ -527,9 +669,7 @@ export default function LocationPage() {
                       </div>
                       <div
                         className="slideshow-thumb-progress"
-                        style={{
-                          height: isActive ? `${slideProgress}%` : "0%",
-                        }}
+                        ref={(el) => (progressRefs.current[idx] = el)}
                       ></div>
                     </div>
                   );
@@ -537,7 +677,7 @@ export default function LocationPage() {
               </div>
             </div>
 
-            {/* Slides List with Cross-fade */}
+            {/* Slides List with GSAP 1:1 Counter-Parallax Wipe */}
             <div className="gallery_slider">
               <div className="gallery_slider_list">
                 {HERO_SLIDES.map((slide, idx) => {
@@ -545,6 +685,9 @@ export default function LocationPage() {
                   return (
                     <div
                       key={slide.id}
+                      data-slideshow="slide"
+                      data-index={idx}
+                      ref={(el) => (slideRefs.current[idx] = el)}
                       className={`gallery_img_slide ${isCurrent ? "is--current" : ""}`}
                     >
                       <div className="gallery_slide_texts_wrap">
@@ -581,6 +724,8 @@ export default function LocationPage() {
 
                       <div className="hero_bg_overlay"></div>
                       <img
+                        ref={(el) => (innerRefs.current[idx] = el)}
+                        data-slideshow="parallax"
                         src={slide.image}
                         loading={idx === 0 ? "eager" : "lazy"}
                         alt={slide.title}
