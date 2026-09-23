@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import ApartmentsPage from "./pages/ApartmentsPage";
 import ApartmentDetailPage from "./pages/ApartmentDetailPage";
 import LocationPage from "./pages/LocationPage";
+import HowToApplyPage from "./pages/HowToApplyPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/apartments/:slug" element={<ApartmentDetailPage />} />
         <Route path="/apartments-cards/:slug" element={<ApartmentDetailPage />} />
         <Route path="/location" element={<LocationPage />} />
+        <Route path="/how-to-apply" element={<HowToApplyPage />} />
         {/* Fallback to Home */}
         <Route path="*" element={<HomePage />} />
       </Routes>

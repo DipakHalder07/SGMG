@@ -209,11 +209,11 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 <div>Location</div>
               </a>
               <a
-                href="/#how-it-works"
-                className="mobile_link w-inline-block"
+                href="/how-to-apply"
+                className={`mobile_link w-inline-block ${location.pathname === "/how-to-apply" ? "w--current" : ""}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick("/", "how-it-works");
+                  handleNavClick("/how-to-apply");
                 }}
               >
                 <div>How to Apply</div>

@@ -1,0 +1,822 @@
+/* How to Apply Page Styles - Authentic 1:1 matching 21oaks.org/how-to-apply */
+
+/* --- HERO SECTION --- */
+.hero_how {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #292929;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper_apply {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 8.5rem 3rem 4rem;
+  max-width: 1560px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.heading_apply {
+  max-width: 900px;
+}
+
+.h1.black {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #292929;
+  margin: 0;
+}
+
+.ill_abs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how_ill {
+  width: 100%;
+  height: 100%;
+  background-image: url(/images/how-to-apply/how-to-apply.svg);
+  background-position: center 54%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ill_abs.mobile_only {
+  display: none;
+}
+
+.ill_abs.desktop_only {
+  display: block;
+}
+
+.bot_side_hero {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 3rem;
+  z-index: 3;
+}
+
+.shift_box {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.title_apply {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #292929;
+  letter-spacing: -0.01em;
+}
+
+.p_apply_box .p_gen.black {
+  color: #292929;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  opacity: 0.85;
+}
+
+.button_amenities .button {
+  background-color: #e8ceff;
+  color: #292929;
+  padding: 0.85rem 1.6rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.button_amenities .button:hover {
+  background-color: #dfbefb;
+  transform: translateY(-2px);
+}
+
+/* --- INTERACTIVE STEPS SECTION (GSAP PINNED SCROLLTRIGGER) --- */
+.how_to_apply {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.wrapper_how_to {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 7.5rem 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.abs_heading {
+  position: absolute;
+  top: 5rem;
+  left: 3rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.h2.smaller.spec_how {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(2.8rem, 5.5vw, 5.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #292929;
+  margin: 0;
+}
+
+/* Step Chips Bar */
+.chips_bot {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 99;
+  width: 38rem;
+  max-width: 95vw;
+  pointer-events: auto;
+}
+
+.chip_how {
+  background-color: #ffffff;
+  color: #292929;
+  border: 1px solid rgba(41, 41, 41, 0.2);
+  border-radius: 4px;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.chip_how:hover {
+  border-color: #292929;
+}
+
+.chip_how.is-active {
+  background-color: #292929;
+  color: #ffffff;
+  border-color: #292929;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Step Cards Stack */
+.card_how_parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+.cards_how_list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4rem;
+}
+
+.card_how_item {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 2.2rem);
+  transform: translate(-50%, -50%);
+  width: 22.5rem;
+  height: 29.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.14);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  will-change: transform;
+  pointer-events: auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.wrapper_card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.number_box {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 4px;
+  background-color: #292929;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.title_step {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #292929;
+  margin-top: 0.5rem;
+}
+
+.illustration_step {
+  width: 100%;
+  height: 12.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.image.ill_steps {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.desc_step_txt {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #292929;
+  opacity: 0.88;
+}
+
+/* Card 4 (Dark Theme) */
+.card_how_item[data-step="4"] .number_box {
+  background-color: #ffffff;
+  color: #292929;
+}
+
+.card_how_item[data-step="4"] .title_step {
+  color: #ffffff;
+}
+
+.card_how_item[data-step="4"] .desc_step_txt {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* --- PET-FRIENDLY SECTION --- */
+.pets {
+  background-color: #e8ceff;
+  padding: 7rem 3rem 6rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.wrapper_pets {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pets_heading {
+  max-width: 900px;
+}
+
+.h2.pets_h {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(3.2rem, 7.5vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #292929;
+  margin: 0;
+}
+
+.pets_ill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6rem;
+  gap: 3.5rem;
+}
+
+.box_pets {
+  background-image: url(/images/how-to-apply/pets.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 36rem;
+  height: 24rem;
+  flex-shrink: 0;
+}
+
+.p_pets {
+  max-width: 460px;
+}
+
+.p_pets .p_gen.black {
+  color: #292929;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+.pet_boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3.5rem;
+  margin-top: 6.5rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid rgba(41, 41, 41, 0.15);
+}
+
+.pet_box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pet_title {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: #292929;
+}
+
+.pet_desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(41, 41, 41, 0.8);
+}
+
+/* --- TESTIMONIALS SECTION --- */
+.testimonials {
+  background-color: #ffffff;
+  padding: 8rem 3rem 7rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.testimonials_heading {
+  max-width: 900px;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.testimonials_heading .h2.bigger {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(3rem, 6.5vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #292929;
+  margin: 0;
+}
+
+.cms_testimonials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 380px;
+  gap: 4.5rem;
+}
+
+.authors {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.author_coll {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.author_item {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  cursor: pointer;
+  opacity: 0.45;
+  transform: scale(0.9);
+  transform-origin: left center;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+}
+
+.author_item:hover {
+  opacity: 0.75;
+}
+
+.author_item.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.author_circle {
+  --ring-size: 3px;
+  --p: 0;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 999px;
+  position: relative;
+  padding: var(--ring-size);
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+.author_circle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: conic-gradient(
+    from -90deg,
+    #d6b2ff calc(var(--p, 0) * 1%),
+    #e6e6e6 0
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.author_item.is-active .author_circle::before {
+  opacity: 1;
+}
+
+.author_photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.author_photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.author_name_txt {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 1.15rem;
+  color: #292929;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.quotes {
+  flex: 1;
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial_coll {
+  width: 100%;
+  position: relative;
+}
+
+.testimonial_item {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.testimonial_item.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial_txt {
+  font-family: "Romie", "Exposure", Georgia, serif;
+  font-size: clamp(1.4rem, 2.2vw, 2.25rem);
+  line-height: 1.35;
+  color: #292929;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* --- LIGHT FAQS SECTION --- */
+.faqs.light {
+  background-color: #ffffff;
+  color: #292929;
+  padding: 8rem 3rem 7rem;
+  border-top: 1px solid rgba(41, 41, 41, 0.08);
+}
+
+.faqs.light .wrapper_general.basic {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.faqs.light .h2.smaller {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(2.8rem, 4.6vw, 4.6rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #292929;
+  max-width: 700px;
+}
+
+.faqs.light .sides_faq {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.5rem;
+  gap: 4rem;
+}
+
+.faqs.light .short_left {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.faqs.light .caption_faq {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(41, 41, 41, 0.7);
+}
+
+.faqs.light .bottom_faq {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faqs.light .bot_txt_faq {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #292929;
+}
+
+.faqs.light .faq_general {
+  flex: 1;
+  max-width: 780px;
+  margin-left: auto;
+}
+
+.faqs.light .faq_row {
+  border-top: 1px solid rgba(41, 41, 41, 0.15);
+  cursor: pointer;
+  padding: 1.15rem 0;
+  transition: background-color 0.2s ease;
+}
+
+.faqs.light .faq_row:last-child {
+  border-bottom: 1px solid rgba(41, 41, 41, 0.15);
+}
+
+.faqs.light .faq_question_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.faqs.light .item_title {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #292929;
+  margin: 0;
+}
+
+.faqs.light .icon_faq {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faqs.light .faq_row.is-open .icon_faq {
+  transform: rotate(45deg);
+}
+
+.faqs.light .icon_faq svg path {
+  fill: #292929;
+}
+
+.faqs.light .faq_answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, margin-top 0.35s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.faqs.light .faq_row.is-open .faq_answer {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 0.85rem;
+}
+
+.faqs.light .p_faq {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(41, 41, 41, 0.8);
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 991px) {
+  .wrapper_apply {
+    padding: 7rem 2rem 3rem;
+  }
+
+  .bot_side_hero {
+    margin-top: 3rem;
+  }
+
+  .pets_ill {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 4rem;
+  }
+
+  .box_pets {
+    width: 100%;
+    max-width: 440px;
+    height: 18rem;
+  }
+
+  .pet_boxes {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .cms_testimonials {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .authors {
+    width: 100%;
+  }
+
+  .author_coll {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .author_item {
+    flex-direction: column;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .testimonial_txt {
+    text-align: center;
+  }
+
+  .faqs.light .sides_faq {
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .faqs.light .faq_general {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .faqs.light .short_left {
+    width: 100%;
+  }
+
+  .faqs.light .bottom_faq {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero_how {
+    min-height: 90svh;
+  }
+
+  .wrapper_apply {
+    padding: 6.5rem 1.25rem 2.5rem;
+  }
+
+  .ill_abs.desktop_only {
+    display: none;
+  }
+
+  .ill_abs.mobile_only {
+    display: block;
+  }
+
+  .how_ill {
+    background-image: url(/images/how-to-apply/how-mobile-ill.svg);
+    background-size: cover;
+    background-position: center 30%;
+  }
+
+  .h1.black {
+    font-size: 3.2rem;
+  }
+
+  .title_apply {
+    font-size: 1.85rem;
+  }
+
+  .abs_heading {
+    top: 3.5rem;
+    left: 1.25rem;
+  }
+
+  .h2.smaller.spec_how {
+    font-size: 2.3rem;
+  }
+
+  .card_how_item {
+    width: calc(100vw - 2.5rem);
+    max-width: 21rem;
+    height: 28rem;
+    padding: 1.4rem;
+  }
+
+  .chips_bot {
+    display: none !important;
+  }
+
+  .pets {
+    padding: 4.5rem 1.25rem 4rem;
+  }
+
+  .h2.pets_h {
+    font-size: 3rem;
+  }
+
+  .testimonials {
+    padding: 5rem 1.25rem 4rem;
+  }
+
+  .testimonials_heading .h2.bigger {
+    font-size: 2.8rem;
+  }
+
+  .faqs.light {
+    padding: 4.5rem 1.25rem 4rem;
+  }
+
+  .faqs.light .h2.smaller {
+    font-size: 2.6rem;
+  }
+}
