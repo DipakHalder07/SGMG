@@ -7,6 +7,7 @@ import ApartmentDetailPage from "./pages/ApartmentDetailPage";
 import LocationPage from "./pages/LocationPage";
 import HowToApplyPage from "./pages/HowToApplyPage";
 import FaqPage from "./pages/FaqPage";
+import GalleryPage from "./pages/GalleryPage";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/how-to-apply" element={<HowToApplyPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/faqs" element={<FaqPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         {/* Fallback to Home */}
         <Route path="*" element={<HomePage />} />
       </Routes>

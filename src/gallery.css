@@ -1,0 +1,437 @@
+/* ==========================================================================
+   21OAKS / SGMG GALLERY PAGE STYLES - 1:1 REPLICA
+   ========================================================================== */
+
+.gallery {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gallery_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 6.5rem 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* --- UPPER SECTION (TOP SIDE) --- */
+.top_side {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 4rem;
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Left Half: Active Number, Sketch Room Illustration & Meta */
+.left_ill {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+}
+
+.number_active {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(3.5rem, 5.5vw, 5.8rem);
+  font-weight: 300;
+  line-height: 1;
+  color: #292929;
+  letter-spacing: -0.025em;
+  user-select: none;
+}
+
+/* Rolling Number Roll Animations */
+.number_active .num_roll {
+  display: inline-flex;
+  gap: 0;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.number_active .digit {
+  position: relative;
+  width: 0.62em;
+  height: 1em;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.number_active .digit_curr,
+.number_active .digit_next {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+  will-change: transform;
+}
+
+.number_active .digit_curr {
+  top: 0;
+}
+
+.number_active .digit_next {
+  top: 100%;
+}
+
+/* Center Hand-Drawn Room Sketch Illustration */
+.ill_middle {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(22rem, 30vw);
+  height: min(22rem, 30vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ill_middle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery .bottom_active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 0.5rem;
+  user-select: none;
+}
+
+.gallery .numbers_small {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  width: auto !important;
+  white-space: nowrap !important;
+  font-family: "Exposure", Georgia, serif !important;
+  font-size: 0.95rem !important;
+  color: #292929 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.gallery .active_small,
+.gallery .all_small {
+  font-family: "Exposure", Georgia, serif !important;
+  font-size: 0.95rem !important;
+  color: #292929 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+}
+
+.gallery .gallery_caption {
+  font-family: "Exposure", Georgia, serif !important;
+  font-size: 0.95rem !important;
+  color: #292929 !important;
+  width: auto !important;
+  margin-left: auto !important;
+  text-align: right !important;
+}
+
+/* Right Half: Big Photo Stage */
+.right_fs {
+  width: 50%;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f7f7f8;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.gallery_parent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gallery_list {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery_item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease-in-out, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(0.98);
+}
+
+.gallery_item.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.gallery_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* --- LOWER SECTION (THUMBNAIL CAROUSEL STRIP) --- */
+.bottom_side {
+  width: 100%;
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.thumbs_gallery {
+  width: 100%;
+}
+
+.list_thumbs {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.75rem 0.25rem 0.25rem;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  scroll-behavior: smooth;
+}
+
+.list_thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.list_thumbs_inner {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.thumb_item {
+  position: relative;
+  flex: 0 0 8.5rem;
+  width: 8.5rem;
+  height: 5.25rem;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f0f0f2;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+}
+
+.thumb_item:hover {
+  transform: translateY(-2px);
+}
+
+.thumb_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
+}
+
+.thumb_item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 3;
+  transition: border-color 0.2s ease;
+}
+
+.thumb_item.is-active::after {
+  border-color: #292929;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (1:1 with 21oaks.org/gallery)
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .gallery {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .gallery_wrapper {
+    padding: 5.5rem 1.5rem 5.5rem;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  .top_side {
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .right_fs {
+    order: -1;
+    width: 100%;
+    flex: 1 1 50%;
+    min-height: 0;
+    max-height: 52%;
+  }
+
+  .left_ill {
+    width: 100%;
+    flex: 1 1 48%;
+    min-height: 0;
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .number_active {
+    font-size: 2.8rem;
+  }
+
+  .ill_middle {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 11rem;
+    height: 11rem;
+  }
+
+  .thumb_item {
+    flex: 0 0 7rem;
+    width: 7rem;
+    height: 4.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .gallery_wrapper {
+    padding: 4.75rem 1.25rem 5.6rem;
+    gap: 0.6rem;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .top_side {
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .right_fs {
+    order: -1;
+    width: 100%;
+    height: 46%;
+    flex: 0 0 46%;
+    min-height: 0;
+    border-radius: 4px;
+  }
+
+  .left_ill {
+    width: 100%;
+    height: auto;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .number_active {
+    font-size: 2.1rem;
+  }
+
+  .ill_middle {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 8.5rem;
+    height: 8.5rem;
+  }
+
+  .gallery .bottom_active {
+    margin-top: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .gallery .numbers_small,
+  .gallery .active_small,
+  .gallery .all_small,
+  .gallery .gallery_caption {
+    font-size: 0.85rem !important;
+  }
+
+  .bottom_side {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .list_thumbs {
+    padding: 0.25rem 0.15rem;
+  }
+
+  .thumb_item {
+    flex: 0 0 5.8rem;
+    width: 5.8rem;
+    height: 3.8rem;
+    border-radius: 3px;
+  }
+}

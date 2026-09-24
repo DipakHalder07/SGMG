@@ -102,7 +102,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                   <span onClick={() => handleNavClick("/location")} className="link_f" style={{ cursor: "pointer" }}>
                     Location
                   </span>
-                  <span onClick={() => handleNavClick("/", "gallery")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span onClick={() => handleNavClick("/gallery")} className="link_f" style={{ cursor: "pointer" }}>
                     Gallery
                   </span>
                   <span onClick={() => handleNavClick("/how-to-apply")} className="link_f" style={{ cursor: "pointer" }}>

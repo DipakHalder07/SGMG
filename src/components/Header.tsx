@@ -219,11 +219,11 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 <div>How to Apply</div>
               </a>
               <a
-                href="/#gallery"
+                href="/gallery"
                 className="mobile_link w-inline-block"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick("/", "gallery");
+                  handleNavClick("/gallery");
                 }}
               >
                 <div>Gallery</div>
