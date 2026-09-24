@@ -8,6 +8,7 @@ import LocationPage from "./pages/LocationPage";
 import HowToApplyPage from "./pages/HowToApplyPage";
 import FaqPage from "./pages/FaqPage";
 import GalleryPage from "./pages/GalleryPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -23,8 +24,9 @@ export default function App() {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/faqs" element={<FaqPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
-        {/* Fallback to Home */}
-        <Route path="*" element={<HomePage />} />
+        <Route path="/404" element={<NotFoundPage />} />
+        {/* Catch-all 404 Route */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
