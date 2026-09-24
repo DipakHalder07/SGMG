@@ -1,0 +1,393 @@
+/* ==========================================================================
+   21OAKS / SGMG FAQ PAGE STYLES - 1:1 REPLICA
+   ========================================================================== */
+
+.faq {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+.faq .wrapper_general.base_ab {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10rem 2.5rem 8rem;
+  box-sizing: border-box;
+}
+
+.faq .h1.black.gen_h {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(3.2rem, 6.5vw, 6.5rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: #292929;
+  margin: 0;
+}
+
+/* Two-column Layout */
+.faq_sides {
+  display: flex;
+  justify-content: space-between;
+  gap: 4.5rem;
+  margin-top: 5.5rem;
+}
+
+/* --- LEFT COLUMN: STICKY ANCHORS & ANIMATED LAMP --- */
+.tabs_ill {
+  width: 32%;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.sticky_side {
+  position: sticky;
+  top: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.list_anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(41, 41, 41, 0.22);
+  border-radius: 4px;
+  padding: 0.75rem 1.15rem;
+  font-size: 0.85rem;
+  font-family: "Exposure", Georgia, serif;
+  font-weight: 400;
+  color: #292929;
+  text-decoration: none;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.chip_btn:hover {
+  border-color: rgba(41, 41, 41, 0.65);
+}
+
+.chip_btn.is-active,
+.chip_btn.w--current {
+  background-color: #292929;
+  color: #ffffff;
+  border-color: #292929;
+}
+
+/* Lamp Box & Illustration */
+.ill_lamp {
+  margin-top: 14rem;
+}
+
+.lamp_box {
+  width: 9.5rem;
+  height: 9.5rem;
+  transform-style: preserve-3d;
+}
+
+.svg_lamp {
+  width: 100%;
+  height: 100%;
+}
+
+.faq_lamp {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.faq_lamp path[fill="#feba01"] {
+  fill-opacity: 0.12;
+  transition: fill-opacity 0.28s ease;
+}
+
+.faq_lamp.is-on path[fill="#feba01"] {
+  fill-opacity: 0.95;
+}
+
+.faq_lamp .lamp-head {
+  transform-box: fill-box;
+  transform-origin: 55% 35%;
+  transition: transform 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.faq_lamp.is-on .lamp-head {
+  transform: rotate(-6deg);
+}
+
+.faq_lamp.is-off .lamp-head {
+  transform: rotate(2deg);
+}
+
+.faq_lamp .lamp-head.is-nod {
+  animation: lampNod 0.28s ease;
+}
+
+@keyframes lampNod {
+  0% { transform: rotate(0deg); }
+  45% { transform: rotate(-9deg); }
+  100% { transform: rotate(-6deg); }
+}
+
+/* --- RIGHT COLUMN: CATEGORIES & ACCORDIONS --- */
+.faq_list {
+  width: 60%;
+  flex-grow: 1;
+}
+
+.faq_l {
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+.item_box {
+  scroll-margin-top: 6.5rem;
+}
+
+.faq_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+
+.title_faq {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #292929;
+  letter-spacing: -0.01em;
+}
+
+.count {
+  background-color: #e8ceff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-family: "Exposure", Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #292929;
+}
+
+.q_list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(41, 41, 41, 0.18);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(41, 41, 41, 0.18);
+  padding: 1.35rem 0;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.accordion_head-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item_head {
+  width: 100%;
+}
+
+.title_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.item_title {
+  font-family: "Exposure", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #292929;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  flex: 1;
+  transition: color 0.2s ease;
+}
+
+.accordion-item:hover .item_title {
+  color: #000000;
+}
+
+.icon_wrapper {
+  width: 1.15rem;
+  height: 1.15rem;
+  background-image: url("/assets/icons/plus-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.accordion-item.is-open .icon_wrapper {
+  transform: rotate(45deg);
+}
+
+.item_content-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease;
+}
+
+.accordion-item.is-open .item_content-wrapper {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.accordion_paragraph {
+  padding-top: 0.85rem;
+  padding-bottom: 0.35rem;
+}
+
+.item_paragraph {
+  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(41, 41, 41, 0.85);
+  max-width: 95%;
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .faq .wrapper_general.base_ab {
+    padding-top: 7.5rem;
+    padding-bottom: 9rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .faq_sides {
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .tabs_ill {
+    width: 100%;
+  }
+
+  .sticky_side {
+    position: static;
+    margin-bottom: 0;
+    gap: 1.5rem;
+  }
+
+  .ill_lamp {
+    order: -1;
+    margin-top: 0;
+    margin-left: auto;
+    margin-bottom: 1rem;
+  }
+
+  .lamp_box {
+    width: 8rem;
+    height: 8rem;
+    transform: rotateY(180deg);
+  }
+
+  .faq_list {
+    width: 100%;
+  }
+
+  .faq_l {
+    gap: 4rem;
+  }
+
+  /* Fixed Bottom Bar on Mobile */
+  .anchors {
+    position: fixed;
+    inset: auto 0 0 0;
+    background-color: #ffffff;
+    border-top: 1px solid rgba(41, 41, 41, 0.15);
+    padding: 0.85rem 1rem 5.5rem;
+    z-index: 100;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+  }
+
+  .anchors::-webkit-scrollbar {
+    display: none;
+  }
+
+  .list_anchors {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .chip_btn {
+    font-size: 0.85rem;
+    padding: 0.65rem 1rem;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .faq .wrapper_general.base_ab {
+    padding-top: 6.5rem;
+    padding-bottom: 10rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .faq .h1.black.gen_h {
+    font-size: 3.2rem;
+  }
+
+  .title_faq {
+    font-size: 1.85rem;
+  }
+
+  .item_title {
+    font-size: 1.1rem;
+  }
+
+  .item_paragraph {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .accordion-item {
+    padding: 1.1rem 0;
+  }
+}
