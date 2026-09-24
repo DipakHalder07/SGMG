@@ -1,9 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header, { ArrowIcon, WebflowButton } from "../components/Header";
+import Header, { ArrowIcon } from "../components/Header";
 import Footer from "../components/Footer";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
-import ApartmentCardSlider from "../components/ApartmentCardSlider";
+import ApartmentCard from "../components/ApartmentCard";
+import PillButton from "../components/PillButton";
+import FaqAccordionItem from "../components/FaqAccordionItem";
 import TestimonialsSection from "../components/TestimonialsSection";
 import {
   APARTMENTS_DATA,
@@ -269,63 +271,9 @@ export default function ApartmentsPage() {
                 </div>
               ) : (
                 <div className="apartments_grid">
-                  {filteredApartments.map((apart) => {
-                    const photos = apart.gallery && apart.gallery.length > 0 ? apart.gallery : [apart.coverImage];
-
-                    return (
-                      <div role="listitem" className="apartment_item w-dyn-item" key={apart.id}>
-                        <ApartmentCardSlider
-                          photos={photos}
-                          apartId={apart.id}
-                          apartName={apart.name}
-                          status={apart.status}
-                          beds={apart.beds}
-                          baths={apart.baths}
-                          sqft={apart.sqft}
-                        />
-
-                        {/* Content Below Image */}
-                        <div className="content_apart">
-                          <div className="apart_title_line">
-                            <div className="apartment_title">
-                              <Link to={`/apartments-cards/${apart.id}`} className="apart_title">
-                                {apart.name}
-                              </Link>
-                            </div>
-                            <div className="price_box">
-                              <div className="icon_price">
-                                <img src="/assets/icons/price-icon.png" alt="$" className="image" />
-                              </div>
-                              <div className="price_txt">{apart.priceFormatted}</div>
-                              <div className="mnth_txt">/month</div>
-                            </div>
-                          </div>
-
-                          <div className="explore_button">
-                            <Link to={`/apartments-cards/${apart.id}`} className="button w-inline-block">
-                              <div className="icon_box is-left">
-                                <div className="arrow_icon">
-                                  <div className="arrow-icon w-embed">
-                                    <ArrowIcon />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="text_box apartments_button">
-                                <div>Explore Details</div>
-                              </div>
-                              <div className="icon_box is-right">
-                                <div className="arrow_icon">
-                                  <div className="arrow-icon w-embed">
-                                    <ArrowIcon />
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {filteredApartments.map((apart) => (
+                    <ApartmentCard key={apart.id} apartment={apart} />
+                  ))}
                 </div>
               )}
             </div>
@@ -368,9 +316,9 @@ export default function ApartmentsPage() {
                     Didn’t find what you were<br />looking for?
                   </div>
                   <div>
-                    <WebflowButton
+                    <PillButton
                       text="Explore FAQ"
-                      href="/faq"
+                      to="/faq"
                     />
                   </div>
                 </div>
@@ -379,34 +327,17 @@ export default function ApartmentsPage() {
               <div className="faq_general">
                 <div className="collection_faq w-dyn-list">
                   <div role="list" className="w-dyn-items">
-                    {APARTMENT_FAQS.map((faq, index) => {
-                      const isOpen = openFaqIndex === index;
-                      return (
-                        <div
-                          role="listitem"
-                          key={faq.q}
-                          className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
-                          onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                        >
-                          <div className="accordion_head-wrapper">
-                            <div className="item_head">
-                              <div className="title_wrapper">
-                                <div className="item_title">{faq.q}</div>
-                                <div className="icon_wrapper" />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="item_content-wrapper">
-                            <div className="accordion_paragraph">
-                              <div className="item_paragraph w-richtext">
-                                <p>{faq.a}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {APARTMENT_FAQS.map((faq, index) => (
+                      <FaqAccordionItem
+                        key={faq.q}
+                        question={faq.q}
+                        answer={faq.a}
+                        isOpen={openFaqIndex === index}
+                        onToggle={() =>
+                          setOpenFaqIndex(openFaqIndex === index ? null : index)
+                        }
+                      />
+                    ))}
                   </div>
                 </div>
               </div>

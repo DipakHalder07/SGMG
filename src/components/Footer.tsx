@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import FooterIllustration from "./FooterIllustration";
 import { WebflowButton } from "./Header";
+import { prefetchRoute } from "../lib/prefetch";
 
 interface FooterProps {
   hidePreFooterCta?: boolean;
@@ -93,22 +94,52 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
               <div className="box_menu">
                 <div className="title_footer">Discover</div>
                 <div className="links_list">
-                  <span onClick={() => handleNavClick("/apartments")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/apartments")}
+                    onMouseEnter={() => prefetchRoute("/apartments")}
+                    onTouchStart={() => prefetchRoute("/apartments")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     Apartments
                   </span>
                   <span onClick={() => handleNavClick("/", "amenities")} className="link_f" style={{ cursor: "pointer" }}>
                     Amenities
                   </span>
-                  <span onClick={() => handleNavClick("/location")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/location")}
+                    onMouseEnter={() => prefetchRoute("/location")}
+                    onTouchStart={() => prefetchRoute("/location")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     Location
                   </span>
-                  <span onClick={() => handleNavClick("/gallery")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/gallery")}
+                    onMouseEnter={() => prefetchRoute("/gallery")}
+                    onTouchStart={() => prefetchRoute("/gallery")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     Gallery
                   </span>
-                  <span onClick={() => handleNavClick("/how-to-apply")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/how-to-apply")}
+                    onMouseEnter={() => prefetchRoute("/how-to-apply")}
+                    onTouchStart={() => prefetchRoute("/how-to-apply")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     How to apply
                   </span>
-                  <span onClick={() => handleNavClick("/faq")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/faq")}
+                    onMouseEnter={() => prefetchRoute("/faq")}
+                    onTouchStart={() => prefetchRoute("/faq")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     FAQ
                   </span>
                   <span onClick={() => handleNavClick("/", "contact")} className="link_f" style={{ cursor: "pointer" }}>

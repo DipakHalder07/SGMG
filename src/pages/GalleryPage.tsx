@@ -186,6 +186,7 @@ export default function GalleryPage() {
                           alt={img.alt}
                           className="image main_visual"
                           loading={idx === 0 ? "eager" : "lazy"}
+                          decoding="async"
                         />
                       </div>
                     );
@@ -212,6 +213,7 @@ export default function GalleryPage() {
                           src={img.src}
                           alt={`Thumbnail ${formatNum(idx + 1)}`}
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     );
