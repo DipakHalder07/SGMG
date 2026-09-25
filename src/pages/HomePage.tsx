@@ -1857,7 +1857,13 @@ export default function HomePage() {
           <div className="wrapper_footer">
             <div className="flex_f_top">
               <div className="caption_left">
-                <div className="cap_footer">21Oaks</div>
+                <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="footer_logo_link" title="SGMG - Sushil Gangadhar Mittal Group">
+                  <img
+                    src="/images/sgmg-logo-white.png"
+                    alt="SGMG - Sushil Gangadhar Mittal Group"
+                    className="footer_logo_img"
+                  />
+                </Link>
                 <div className="cap_footer">
                   Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
                 </div>

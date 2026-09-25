@@ -157,8 +157,18 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               aria-current="page"
               className="logo w-inline-block w--current"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              title="SGMG - Sushil Gangadhar Mittal Group"
             >
-              <div>21Oaks</div>
+              <img
+                src="/images/sgmg-logo.png"
+                alt="SGMG - Sushil Gangadhar Mittal Group"
+                className="logo_img logo_img_dark"
+              />
+              <img
+                src="/images/sgmg-logo-white.png"
+                alt="SGMG - Sushil Gangadhar Mittal Group"
+                className="logo_img logo_img_white"
+              />
             </Link>
           </div>
 
