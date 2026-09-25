@@ -18,7 +18,7 @@
 }
 
 .faq .h1.black.gen_h {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(3.2rem, 6.5vw, 6.5rem);
   font-weight: 300;
   line-height: 0.98;

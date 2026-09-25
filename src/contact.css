@@ -151,7 +151,7 @@ main.contact {
 
 .h1.black {
   color: var(--black, #292929);
-  font-family: "Exposure", Georgia, sans-serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(2.5rem, 5.5vw, 4.5rem);
   font-weight: 400;
   line-height: 1;
@@ -824,7 +824,7 @@ main.contact {
 }
 
 .h2.smaller {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(2.5rem, 4.8vw, 4.2rem);
   font-weight: 300;
   line-height: 1.05;

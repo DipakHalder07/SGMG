@@ -1,4 +1,6 @@
 /* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
 @font-face {
   font-family: "Exposure";
   src: url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure.woff2") format("woff2");
@@ -20,6 +22,8 @@ html {
 }
 
 :root {
+  --font-heading: "Michroma", sans-serif;
+  --font-display: "Michroma", sans-serif;
   --primary: #2391cf;
   --primary-rgb: 35, 145, 207;
   --primary-light: #e4f3fa;
@@ -28,6 +32,36 @@ html {
   --logo-green: #a2cd3a;
   --black: #292929;
   --white: #ffffff;
+}
+
+/* Headings with Michroma font */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.heading,
+[class*="heading"] h1,
+[class*="heading"] h2,
+[class*="heading"] h3,
+[class*="heading"] h4,
+[class*="heading"] h5,
+[class*="heading"] h6,
+[class*="h1"],
+[class*="h2"],
+.hero .heading_box h1,
+.hero_h1,
+.dynamic_section .middle .h2,
+.second_h,
+.middle_spec,
+.everything_you_need,
+.spec_amenities,
+.apartments_heading,
+.gen_h,
+.spec_how,
+.pets_h,
+.locations_specific,
+.specific_map,
+._404_heading,
+.endless-stairs-embed .es-overlay h2 {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
 }
 
 /* Custom Scrollbar matching 21oaks.org */

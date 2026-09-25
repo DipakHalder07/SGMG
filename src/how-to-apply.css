@@ -30,7 +30,7 @@
 }
 
 .h1.black {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(3.5rem, 8vw, 8.5rem);
   font-weight: 300;
   line-height: 1;
@@ -132,7 +132,7 @@
 }
 
 .h2.smaller.spec_how {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(2.8rem, 5.5vw, 5.8rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -305,7 +305,7 @@
 }
 
 .h2.pets_h {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(3.2rem, 7.5vw, 7.5rem);
   font-weight: 300;
   line-height: 1;
@@ -387,7 +387,7 @@
 }
 
 .testimonials_heading .h2.bigger {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(3rem, 6.5vw, 6.5rem);
   font-weight: 300;
   line-height: 1;
@@ -545,7 +545,7 @@
 }
 
 .faqs.light .h2.smaller {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Michroma", sans-serif !important;
   font-size: clamp(2.8rem, 4.6vw, 4.6rem);
   font-weight: 300;
   line-height: 1;
