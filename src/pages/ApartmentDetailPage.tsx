@@ -675,7 +675,7 @@ export default function ApartmentDetailPage() {
                       <div>Apply Now</div>
                     </a>
                     <a
-                      href="https://calendly.com/propertyjs/21-oaks-25"
+                      href="https://calendly.com/dipakh810/30min"
                       target="_blank"
                       rel="noreferrer"
                       className="button_schedule w-inline-block"
@@ -1473,7 +1473,7 @@ export default function ApartmentDetailPage() {
               <div className="flex_cta">
                 <div className="black_button">
                   <a
-                    href="https://calendly.com/propertyjs/21-oaks-25"
+                    href="https://calendly.com/dipakh810/30min"
                     target="_blank"
                     rel="noreferrer"
                     className="button w-inline-block"

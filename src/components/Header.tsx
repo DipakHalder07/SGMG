@@ -250,13 +250,27 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               >
                 <div>FAQ</div>
               </a>
+              <a
+                href="/contact"
+                className="mobile_link w-inline-block"
+                onMouseEnter={() => prefetchRoute("/contact")}
+                onTouchStart={() => prefetchRoute("/contact")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/contact");
+                }}
+              >
+                <div>Contact</div>
+              </a>
             </div>
             <a
-              href="/#contact"
+              href="/contact"
               className="contact_button w-inline-block"
+              onMouseEnter={() => prefetchRoute("/contact")}
+              onTouchStart={() => prefetchRoute("/contact")}
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("/", "contact");
+                handleNavClick("/contact");
               }}
             >
               <div>Contact</div>
@@ -286,7 +300,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               </div>
 
               <a
-                href="https://calendly.com/propertyjs/21-oaks-25"
+                href="https://calendly.com/dipakh810/30min"
                 target="_blank"
                 rel="noreferrer"
                 className="header_button w-inline-block"

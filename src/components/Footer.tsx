@@ -59,7 +59,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     <div className="black_button">
                       <WebflowButton
                         text="Schedule a Tour"
-                        href="https://calendly.com/propertyjs/21-oaks-25"
+                        href="https://calendly.com/dipakh810/30min"
                         target="_blank"
                         className="black"
                       />
@@ -142,7 +142,13 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                   >
                     FAQ
                   </span>
-                  <span onClick={() => handleNavClick("/", "contact")} className="link_f" style={{ cursor: "pointer" }}>
+                  <span
+                    onClick={() => handleNavClick("/contact")}
+                    onMouseEnter={() => prefetchRoute("/contact")}
+                    onTouchStart={() => prefetchRoute("/contact")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
                     Contact
                   </span>
                 </div>

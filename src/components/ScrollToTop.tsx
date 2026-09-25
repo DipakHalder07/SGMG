@@ -10,6 +10,7 @@ const ROUTE_TITLES: Record<string, string> = {
   "/faq": "Frequently Asked Questions • 21Oaks",
   "/faqs": "Frequently Asked Questions • 21Oaks",
   "/gallery": "Photo Gallery • 21Oaks",
+  "/contact": "Contact Us & Schedule a Tour • 21Oaks",
   "/404": "404 Not Found • 21Oaks",
 };
 

@@ -11,6 +11,7 @@ const LocationPage = lazy(() => import("./pages/LocationPage"));
 const HowToApplyPage = lazy(() => import("./pages/HowToApplyPage"));
 const FaqPage = lazy(() => import("./pages/FaqPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/faqs" element={<FaqPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           {/* Catch-all 404 Route */}
           <Route path="*" element={<NotFoundPage />} />
