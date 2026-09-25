@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { prefetchRoute } from "../lib/prefetch";
 
 export function ArrowIcon({ fill = "#292929" }: { fill?: string } = {}) {
   return (
@@ -181,6 +182,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               <a
                 href="/apartments"
                 className={`mobile_link w-inline-block ${location.pathname === "/apartments" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/apartments")}
+                onTouchStart={() => prefetchRoute("/apartments")}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("/apartments");
@@ -201,6 +204,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               <a
                 href="/location"
                 className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/location")}
+                onTouchStart={() => prefetchRoute("/location")}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("/location");
@@ -211,6 +216,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               <a
                 href="/how-to-apply"
                 className={`mobile_link w-inline-block ${location.pathname === "/how-to-apply" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/how-to-apply")}
+                onTouchStart={() => prefetchRoute("/how-to-apply")}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("/how-to-apply");
@@ -221,6 +228,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               <a
                 href="/gallery"
                 className="mobile_link w-inline-block"
+                onMouseEnter={() => prefetchRoute("/gallery")}
+                onTouchStart={() => prefetchRoute("/gallery")}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("/gallery");
@@ -232,6 +241,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 id="w-node-_1fc5a60c-db18-5e47-1cc7-6d822ad20c80-671c8e8b"
                 href="/faq"
                 className="mobile_link w-inline-block"
+                onMouseEnter={() => prefetchRoute("/faq")}
+                onTouchStart={() => prefetchRoute("/faq")}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("/faq");
@@ -239,13 +250,27 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               >
                 <div>FAQ</div>
               </a>
+              <a
+                href="/contact"
+                className="mobile_link w-inline-block"
+                onMouseEnter={() => prefetchRoute("/contact")}
+                onTouchStart={() => prefetchRoute("/contact")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/contact");
+                }}
+              >
+                <div>Contact</div>
+              </a>
             </div>
             <a
-              href="/#contact"
+              href="/contact"
               className="contact_button w-inline-block"
+              onMouseEnter={() => prefetchRoute("/contact")}
+              onTouchStart={() => prefetchRoute("/contact")}
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("/", "contact");
+                handleNavClick("/contact");
               }}
             >
               <div>Contact</div>
@@ -275,7 +300,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               </div>
 
               <a
-                href="https://calendly.com/propertyjs/21-oaks-25"
+                href="https://calendly.com/dipakh810/30min"
                 target="_blank"
                 rel="noreferrer"
                 className="header_button w-inline-block"

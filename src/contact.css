@@ -1,0 +1,937 @@
+/* ==========================================================================
+   21OAKS CONTACT PAGE - 100% PIXEL-PERFECT STYLES
+   Exact 1:1 match with https://21oaks.org/contact
+   ========================================================================== */
+
+:root {
+  --primary: #e8ceff;
+  --black: #292929;
+  --white: #ffffff;
+}
+
+/* Contact Page Root Container */
+.contact_page_wrapper {
+  background-color: var(--primary, #e8ceff);
+  font-family: "Exposure", Georgia, sans-serif;
+  color: var(--black, #292929);
+  font-size: 16px;
+  line-height: 1.2;
+  width: 100%;
+  position: relative;
+  overflow-x: clip;
+}
+
+/* -------------------------------------------------------------
+   HEADER STYLES ON CONTACT PAGE (Light section / Lilac background)
+   ------------------------------------------------------------- */
+body.is-light .header .logo {
+  color: #292929 !important;
+}
+
+body.is-light .header .menu {
+  background-color: #292929 !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.is-light .header .menu .menu_txt {
+  color: #ffffff !important;
+}
+
+body.is-light .header .menu .line_one,
+body.is-light .header .menu .line_two {
+  background-color: #ffffff !important;
+}
+
+/* Apply Now Button - Signature 21Oaks Lilac with Dark Text & Arrow */
+.header .apply_button .button .text_box,
+.header .apply_button .text_box.header_btn {
+  background-color: var(--primary, #e8ceff) !important;
+  color: #292929 !important;
+}
+
+.header .apply_button .button .text_box div,
+.header .apply_button .text_box.header_btn div {
+  color: #292929 !important;
+}
+
+.header .apply_button .button .icon_box,
+.header .apply_button .icon_box.is-right,
+.header .apply_button .icon_box.is-left {
+  background-color: var(--primary, #e8ceff) !important;
+}
+
+.header .apply_button .button .icon_box svg path,
+.header .apply_button .icon_box.is-right svg path {
+  fill: #292929 !important;
+}
+
+/* When scrolled into dark section */
+body.is-dark .header .logo {
+  color: #ffffff !important;
+}
+
+body.is-dark .header .menu {
+  background: rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body.is-dark .header .apply_button .button .text_box {
+  background-color: #e8ceff !important;
+  color: #292929 !important;
+}
+
+body.is-dark .header .apply_button .button .text_box div {
+  color: #292929 !important;
+}
+
+body.is-dark .header .apply_button .button .icon_box {
+  background-color: #e8ceff !important;
+}
+
+body.is-dark .header .apply_button .button .icon_box svg path {
+  fill: #292929 !important;
+}
+
+/* -------------------------------------------------------------
+   MAIN CONTACT SECTION (Exact Live Webflow Layout)
+   ------------------------------------------------------------- */
+main.contact {
+  background-color: var(--primary, #e8ceff);
+  position: relative;
+  width: 100%;
+}
+
+.wrapper_general {
+  padding: 1rem 2rem 6rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.wrapper_general.gen_f {
+  padding-top: 10rem;
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .wrapper_general {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .wrapper_general.gen_f {
+    padding-top: 7rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper_general {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .wrapper_general.gen_f {
+    padding-top: 6rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .wrapper_general {
+    padding: 1rem 1rem 3rem;
+  }
+  .wrapper_general.gen_f {
+    padding-top: 5.5rem;
+  }
+}
+
+.contact_h1 {
+  margin-bottom: 0;
+}
+
+.h1.black {
+  color: var(--black, #292929);
+  font-family: "Exposure", Georgia, sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.flex_contact {
+  margin-top: 3.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+@media screen and (max-width: 991px) {
+  .flex_contact {
+    margin-top: 2.5rem;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .flex_contact {
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 2.5rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   LEFT CONTACT BOXES (Black Cards)
+   ------------------------------------------------------------- */
+.left_contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 24rem;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .left_contact {
+    width: 36%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .left_contact {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .left_contact {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+}
+
+.contact_box {
+  background-color: var(--black, #292929);
+  border-radius: 6px;
+  padding: 1.15rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.title_contact {
+  color: var(--white, #ffffff);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 767px) {
+  .title_contact {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.title_cap {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.icon_contact {
+  cursor: pointer;
+  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9f_clipboard-svg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1.35rem;
+  height: 1.35rem;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.icon_contact:hover {
+  opacity: 0.75;
+  transform: scale(0.92);
+}
+
+.icon_contact.copied {
+  filter: brightness(0) invert(1) drop-shadow(0 0 4px #34c759);
+}
+
+.link_contact {
+  color: var(--white, #ffffff);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.2s ease;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.link_contact:hover {
+  opacity: 0.85;
+}
+
+.list_contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.list_contact.socials_icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social_contact {
+  width: auto;
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.social_contact:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.social_icon.ig_white {
+  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9d_ig-icon.svg");
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.social_icon.fb_white {
+  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9c_fb-icon.svg");
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.social_icon.tiktok_white {
+  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9e_tiktok-icon.svg");
+  width: 2rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* -------------------------------------------------------------
+   RIGHT FORM (Exact Live Webflow Layout)
+   ------------------------------------------------------------- */
+.right_form {
+  width: 48%;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 991px) {
+  .right_form {
+    width: 58%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .right_form {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.form_box {
+  width: 100%;
+}
+
+.form_inner {
+  width: 100%;
+}
+
+.form_title {
+  width: 100%;
+  max-width: 32ch;
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  line-height: 1.35;
+  color: var(--black, #292929);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.form_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1rem;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 540px) {
+  .form_grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+}
+
+.field_box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field_box.full_width {
+  grid-column: span 2;
+}
+
+@media screen and (max-width: 540px) {
+  .field_box.full_width {
+    grid-column: span 1;
+  }
+}
+
+.title {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--black, #292929);
+}
+
+.input_field {
+  height: 48px;
+  min-height: 48px;
+  color: var(--black, #292929);
+  background-color: #fbf7ff;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem; /* 16px to prevent iOS auto-zoom */
+  font-family: inherit;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  transition: background-color 0.25s ease;
+}
+
+.input_field:focus {
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.input_field::placeholder {
+  color: rgba(41, 41, 41, 0.45);
+}
+
+.input_field.areabox_sp {
+  height: auto;
+  min-height: 130px;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+}
+
+.last_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  grid-column: span 2;
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .last_form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .last_form {
+    grid-column: span 1;
+  }
+}
+
+.captcha_caption {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(41, 41, 41, 0.7);
+  max-width: 55ch;
+}
+
+.submit_button {
+  background-color: var(--black, #292929);
+  height: 48px;
+  min-height: 48px;
+  min-width: 140px;
+  color: var(--white, #ffffff);
+  border-radius: 4px;
+  padding: 0 1.75rem;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.submit_button:hover:not(:disabled) {
+  background-color: #000000;
+  transform: translateY(-1px);
+}
+
+.submit_button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 767px) {
+  .submit_button {
+    width: 100%;
+  }
+}
+
+/* Success Message */
+.success_message {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(41, 41, 41, 0.1);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.success_txt {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4a4a4f;
+  max-width: 50ch;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------------
+   CONTACT ILLUSTRATION (Hand-drawn Pathway SVG)
+   ------------------------------------------------------------- */
+.contact_gap {
+  width: 67%;
+  margin-top: 2rem;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 991px) {
+  .contact_gap {
+    margin-top: 3rem;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contact_gap {
+    margin-top: 3.5rem;
+    width: 100%;
+  }
+}
+
+.contact_ill {
+  width: 15rem;
+  height: 13rem;
+  margin-left: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .contact_ill {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .contact_ill {
+    width: clamp(140px, 35vw, 200px);
+    height: auto;
+  }
+}
+
+.contact_ill img.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==========================================================================
+   MAP SECTION (.map_sec matching 21oaks.org 1:1)
+   Full-Width, Full-Section Dark Container with Google Map (0 padding)
+   ========================================================================== */
+.map_sec {
+  background-color: #121214;
+  width: 100%;
+  height: clamp(520px, 75vh, 850px);
+  padding: 0 !important;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .map_sec {
+    height: 520px;
+    padding: 0 !important;
+  }
+}
+
+.map_box {
+  background-color: #222222;
+  border-radius: 0 !important;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.office_leaflet_map.full_width {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Floating Bottom Action Card */
+.map_sec_bottom_card {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  background-color: rgba(18, 18, 20, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 1.1rem 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .map_sec_bottom_card {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    padding: 0.85rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+}
+
+.map_card_title_row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.map_pin_icon {
+  color: #e8ceff;
+  flex-shrink: 0;
+}
+
+.map_card_name {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.map_card_addr {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.map_card_buttons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 540px) {
+  .map_card_buttons {
+    width: 100%;
+  }
+}
+
+.map_card_btn_tour {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e8ceff;
+  color: #121214;
+  padding: 0.7rem 1.45rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.map_card_btn_tour:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(232, 206, 255, 0.35);
+}
+
+.map_card_btn_dir {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.7rem 1.45rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.map_card_btn_dir:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------
+   CUSTOM LILAC MARKER PIN FOR LEAFLET
+   ------------------------------------------------------------- */
+.custom-leaflet-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: #e8ceff;
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.custom-leaflet-marker:hover {
+  transform: scale(1.15);
+}
+
+.custom-leaflet-marker svg {
+  width: 18px;
+  height: 18px;
+  fill: #121214;
+}
+
+/* Leaflet Popup Styles */
+.leaflet-popup-content-wrapper {
+  background-color: #1a1a1d !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  padding: 4px !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #1a1a1d !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.4 !important;
+  font-family: inherit !important;
+}
+
+/* ==========================================================================
+   FAQS SECTION (Exact 1:1 Live Webflow matching)
+   ========================================================================== */
+.faqs.black {
+  background-color: #121214;
+  color: #ffffff;
+  padding: 7rem 2.5rem 8rem;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 991px) {
+  .faqs.black {
+    padding: 6rem 1.75rem 7rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .faqs.black {
+    padding: 4.5rem 1.25rem 5.5rem;
+  }
+}
+
+.wrapper_general.basic {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.faq_heading.white_ver {
+  color: var(--white, #ffffff);
+  text-align: center;
+  max-width: 67ch;
+  margin: 0 auto;
+}
+
+.h2.smaller {
+  font-family: "Exposure", "Romie", Georgia, serif;
+  font-size: clamp(2.5rem, 4.8vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.sides_faq {
+  display: flex;
+  margin-top: 5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+@media screen and (max-width: 991px) {
+  .sides_faq {
+    flex-direction: column;
+    margin-top: 3.5rem;
+    gap: 3rem;
+  }
+}
+
+.short_left {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+
+@media screen and (max-width: 991px) {
+  .short_left {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+.caption_faq.white_ver {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  max-width: 29ch;
+}
+
+.bottom_faq {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@media screen and (max-width: 991px) {
+  .bottom_faq {
+    margin-top: 2rem;
+  }
+}
+
+.p_gen.caption_cta.white_ver {
+  color: var(--white, #ffffff);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.faq_general {
+  width: 55%;
+}
+
+@media screen and (max-width: 991px) {
+  .faq_general {
+    width: 100%;
+  }
+}
+
+.collection_faq.white_ver {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Toast Notification */
+.copy_toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(41, 41, 41, 0.95);
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  animation: toastFadeIn 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

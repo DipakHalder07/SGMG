@@ -77,7 +77,7 @@ export default function ApartmentLightboxModal({
               Full Details
             </Link>
             <a
-              href="https://calendly.com/propertyjs/21-oaks-25"
+              href="https://calendly.com/dipakh810/30min"
               target="_blank"
               rel="noreferrer"
               className="apartment-lightbox-apply-btn"

@@ -241,7 +241,6 @@ export default function HomePage() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
-  const [brightness, setBrightness] = useState(65);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
@@ -1138,7 +1137,7 @@ export default function HomePage() {
   const handleApplyClick = (e: React.MouseEvent) => {
     e.preventDefault();
     confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
-    window.open("https://calendly.com/propertyjs/21-oaks-25", "_blank");
+    window.open("https://calendly.com/dipakh810/30min", "_blank");
   };
 
   const handleScrollToTop = (e: React.MouseEvent) => {
@@ -1200,26 +1199,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Brightness Adjustment Panel */}
-          {activeSlide === 0 && (
-            <div className="hero-brightness-panel">
-              <img
-                className="hero-brightness-icon"
-                src="/assets/svg/sun.svg"
-                alt="Brightness"
-              />
-              <input
-                className="hero-brightness-range"
-                type="range"
-                min="20"
-                max="100"
-                value={brightness}
-                onChange={(e) => setBrightness(Number(e.target.value))}
-                title="Adjust room lighting"
-              />
-            </div>
-          )}
-
           {/* Background Images Layer with GSAP circular reveal */}
           <div className="hero-shade" />
           <div className="background">
@@ -1228,7 +1207,6 @@ export default function HomePage() {
               src={currentHeroImg}
               alt="Current hero"
               className="image bg-layer"
-              style={{ filter: `brightness(${brightness / 65})` }}
             />
             <img
               ref={bgNextRef}
@@ -1236,7 +1214,6 @@ export default function HomePage() {
               alt="Next hero"
               className="image bg-layer"
               style={{
-                filter: `brightness(${brightness / 65})`,
                 opacity: 0,
                 clipPath: "circle(0% at 100% 50%)",
               }}
@@ -1602,7 +1579,7 @@ export default function HomePage() {
             <div className="button_amenities">
               <WebflowButton
                 text="Discover Amenities"
-                href="https://calendly.com/propertyjs/21-oaks-25"
+                href="https://calendly.com/dipakh810/30min"
                 target="_blank"
               />
             </div>
@@ -1663,7 +1640,7 @@ export default function HomePage() {
                   <div style={{ marginTop: "16px" }}>
                     <WebflowButton
                       text="Schedule a Tour"
-                      href="https://calendly.com/propertyjs/21-oaks-25"
+                      href="https://calendly.com/dipakh810/30min"
                       target="_blank"
                     />
                   </div>
@@ -1857,7 +1834,7 @@ export default function HomePage() {
                   <div className="black_button">
                     <WebflowButton
                       text="Schedule a Tour"
-                      href="https://calendly.com/propertyjs/21-oaks-25"
+                      href="https://calendly.com/dipakh810/30min"
                       target="_blank"
                       className="black"
                     />

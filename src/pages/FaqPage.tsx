@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FaqLamp from "../components/FaqLamp";
+import FaqAccordionItem from "../components/FaqAccordionItem";
 import "../faq.css";
 
 interface FaqItem {
@@ -285,31 +286,14 @@ export default function FaqPage() {
                     <div className="q_list">
                       {cat.items.map((item, idx) => {
                         const itemKey = `${cat.id}-${idx}`;
-                        const isOpen = openItems.has(itemKey);
-
                         return (
-                          <div
+                          <FaqAccordionItem
                             key={idx}
-                            className={`accordion-item ${isOpen ? "is-open" : ""}`}
-                            onClick={() => toggleItem(itemKey)}
-                          >
-                            <div className="accordion_head-wrapper">
-                              <div className="item_head">
-                                <div className="title_wrapper">
-                                  <div className="item_title">{item.q}</div>
-                                  <div className="icon_wrapper" />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="item_content-wrapper">
-                              <div className="accordion_paragraph">
-                                <div className="item_paragraph w-richtext">
-                                  <p>{item.a}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                            question={item.q}
+                            answer={item.a}
+                            isOpen={openItems.has(itemKey)}
+                            onToggle={() => toggleItem(itemKey)}
+                          />
                         );
                       })}
                     </div>
