@@ -40,10 +40,8 @@ export default function PillButton({
       : "";
 
   const arrowFill =
-    variant === "black"
+    variant === "black" || variant === "lavender"
       ? "#ffffff"
-      : variant === "lavender"
-      ? "#121214"
       : "#292929";
 
   const content = (

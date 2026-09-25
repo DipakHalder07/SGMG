@@ -1480,7 +1480,7 @@ export default function ApartmentDetailPage() {
                   >
                     <div className="icon_box is-left black">
                       <div className="arrow_icon">
-                        <ArrowIcon fill="#E8CEFF" />
+                        <ArrowIcon fill="#2391cf" />
                       </div>
                     </div>
                     <div className="text_box black">
@@ -1488,7 +1488,7 @@ export default function ApartmentDetailPage() {
                     </div>
                     <div className="icon_box is-right black">
                       <div className="arrow_icon">
-                        <ArrowIcon fill="#E8CEFF" />
+                        <ArrowIcon fill="#2391cf" />
                       </div>
                     </div>
                   </a>

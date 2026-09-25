@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { prefetchRoute } from "../lib/prefetch";
 
-export function ArrowIcon({ fill = "#292929" }: { fill?: string } = {}) {
+export function ArrowIcon({ fill = "#ffffff" }: { fill?: string } = {}) {
   return (
     <svg width="100%" height="100%" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -157,8 +157,18 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               aria-current="page"
               className="logo w-inline-block w--current"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              title="SGMG - Sushil Gangadhar Mittal Group"
             >
-              <div>21Oaks</div>
+              <img
+                src="/images/sgmg-logo.png"
+                alt="SGMG - Sushil Gangadhar Mittal Group"
+                className="logo_img logo_img_dark"
+              />
+              <img
+                src="/images/sgmg-logo-white.png"
+                alt="SGMG - Sushil Gangadhar Mittal Group"
+                className="logo_img logo_img_white"
+              />
             </Link>
           </div>
 

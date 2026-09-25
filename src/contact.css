@@ -4,14 +4,15 @@
    ========================================================================== */
 
 :root {
-  --primary: #e8ceff;
+  --primary: #2391cf;
+  --primary-light: #e4f3fa;
   --black: #292929;
   --white: #ffffff;
 }
 
 /* Contact Page Root Container */
 .contact_page_wrapper {
-  background-color: var(--primary, #e8ceff);
+  background-color: var(--primary-light, #e4f3fa);
   font-family: "Exposure", Georgia, sans-serif;
   color: var(--black, #292929);
   font-size: 16px;
@@ -43,27 +44,27 @@ body.is-light .header .menu .line_two {
   background-color: #ffffff !important;
 }
 
-/* Apply Now Button - Signature 21Oaks Lilac with Dark Text & Arrow */
+/* Apply Now Button - Signature Logo Blue with White Text & Arrow */
 .header .apply_button .button .text_box,
 .header .apply_button .text_box.header_btn {
-  background-color: var(--primary, #e8ceff) !important;
-  color: #292929 !important;
+  background-color: var(--primary, #2391cf) !important;
+  color: #ffffff !important;
 }
 
 .header .apply_button .button .text_box div,
 .header .apply_button .text_box.header_btn div {
-  color: #292929 !important;
+  color: #ffffff !important;
 }
 
 .header .apply_button .button .icon_box,
 .header .apply_button .icon_box.is-right,
 .header .apply_button .icon_box.is-left {
-  background-color: var(--primary, #e8ceff) !important;
+  background-color: var(--primary, #2391cf) !important;
 }
 
 .header .apply_button .button .icon_box svg path,
 .header .apply_button .icon_box.is-right svg path {
-  fill: #292929 !important;
+  fill: #ffffff !important;
 }
 
 /* When scrolled into dark section */
@@ -78,27 +79,27 @@ body.is-dark .header .menu {
 }
 
 body.is-dark .header .apply_button .button .text_box {
-  background-color: #e8ceff !important;
-  color: #292929 !important;
+  background-color: var(--primary, #2391cf) !important;
+  color: #ffffff !important;
 }
 
 body.is-dark .header .apply_button .button .text_box div {
-  color: #292929 !important;
+  color: #ffffff !important;
 }
 
 body.is-dark .header .apply_button .button .icon_box {
-  background-color: #e8ceff !important;
+  background-color: var(--primary, #2391cf) !important;
 }
 
 body.is-dark .header .apply_button .button .icon_box svg path {
-  fill: #292929 !important;
+  fill: #ffffff !important;
 }
 
 /* -------------------------------------------------------------
    MAIN CONTACT SECTION (Exact Live Webflow Layout)
    ------------------------------------------------------------- */
 main.contact {
-  background-color: var(--primary, #e8ceff);
+  background-color: var(--primary-light, #e4f3fa);
   position: relative;
   width: 100%;
 }
@@ -665,7 +666,7 @@ main.contact {
 }
 
 .map_pin_icon {
-  color: #e8ceff;
+  color: #2391cf;
   flex-shrink: 0;
 }
 
@@ -698,8 +699,8 @@ main.contact {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #e8ceff;
-  color: #121214;
+  background-color: #2391cf;
+  color: #ffffff;
   padding: 0.7rem 1.45rem;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -711,8 +712,9 @@ main.contact {
 
 .map_card_btn_tour:hover {
   background-color: #ffffff;
+  color: #121214;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(232, 206, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(35, 145, 207, 0.35);
 }
 
 .map_card_btn_dir {
@@ -746,7 +748,7 @@ main.contact {
   justify-content: center;
   width: 38px;
   height: 38px;
-  background-color: #e8ceff;
+  background-color: #2391cf;
   border: 2.5px solid #ffffff;
   border-radius: 50%;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);

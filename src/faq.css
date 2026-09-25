@@ -178,7 +178,7 @@
 }
 
 .count {
-  background-color: #e8ceff;
+  background-color: var(--primary, #2391cf);
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
@@ -188,7 +188,7 @@
   font-family: "Exposure", Georgia, serif;
   font-size: 0.95rem;
   font-weight: 400;
-  color: #292929;
+  color: #ffffff;
 }
 
 .q_list {

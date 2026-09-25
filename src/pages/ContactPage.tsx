@@ -134,7 +134,7 @@ export default function ContactPage() {
           <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">21Oaks Siliguri Office</div>
           <div style="font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 12px; line-height: 1.4;">Hill Cart Road, Siliguri, West Bengal 734001</div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <a href="https://calendly.com/dipakh810/30min" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; background: #e8ceff; color: #121214; padding: 6px 12px; border-radius: 999px; font-weight: 600; text-decoration: none;">Schedule a Tour &rarr;</a>
+            <a href="https://calendly.com/dipakh810/30min" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; background: #2391cf; color: #ffffff; padding: 6px 12px; border-radius: 999px; font-weight: 600; text-decoration: none;">Schedule a Tour &rarr;</a>
             <a href="${OFFICE_COORDS.googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 999px; font-weight: 500; text-decoration: none;">Directions &rarr;</a>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function ContactPage() {
           particleCount: 50,
           spread: 60,
           origin: { y: 0.6 },
-          colors: ["#e8ceff", "#292929", "#ffffff"],
+          colors: ["#2391cf", "#292929", "#ffffff"],
         });
       } catch (_) {
         // ignore
