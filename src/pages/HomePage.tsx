@@ -18,12 +18,12 @@ if (typeof window !== "undefined") {
   (window as any).ScrollTrigger = ScrollTrigger;
 }
 
-function ArrowIcon() {
+function ArrowIcon({ fill = "#ffffff" }: { fill?: string } = {}) {
   return (
     <svg width="100%" height="100%" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M14.1255 19.7628C11.0656 19.8708 8.22317 18.9049 5.93495 16.846C4.47939 15.5356 3.386 13.8723 2.76021 12.0164C2.62187 11.6157 2.48585 11.2023 2.44064 10.7747C2.34121 10.0684 3.35659 9.76884 3.65706 10.365C3.84475 10.7374 3.92284 11.2876 4.07246 11.7023C4.58843 13.1699 5.43808 14.4978 6.55443 15.5813C8.45906 17.44 11.0264 18.4623 13.6874 18.4216C16.4386 18.3889 18.929 17.2713 20.8443 15.313C21.9258 14.1223 22.7385 12.8566 23.1727 11.2896C22.6501 11.6705 22.1253 12.0483 21.5983 12.4232C21.2917 12.6426 21.0064 12.8674 20.6642 13.0538C20.3212 13.2407 19.9159 13.0637 19.7399 12.7308C19.6321 12.5269 19.7386 12.1287 19.9234 11.9784C20.2204 11.7367 20.5451 11.5134 20.8618 11.288L22.372 10.2147C23.0189 9.75549 23.6958 9.2389 24.3816 8.84082C24.4655 8.79211 24.7301 8.83579 24.8205 8.87576C25.244 9.06291 25.2366 9.59525 25.3249 9.98057C25.391 10.3075 25.4501 10.6403 25.5132 10.9681L25.9183 13.074C26 13.4993 26.2317 14.3897 26.1173 14.8172C26.031 15.1398 25.4683 15.2925 25.2013 15.1156C25.1247 15.0648 25.0017 15.0014 24.9563 14.9001C24.7186 14.3244 24.6779 13.6405 24.5413 13.0347C24.4666 12.7031 24.4368 12.4232 24.328 12.1029C24.2205 12.3637 24.141 12.6276 24.0213 12.9031C23.5454 14.0084 22.8965 15.0308 22.0988 15.9319C20.0272 18.2869 17.2347 19.5627 14.1255 19.7628Z"
-        fill="#292929"
+        fill={fill}
       />
     </svg>
   );
@@ -604,7 +604,7 @@ export default function HomePage() {
       gsap.set(trackEl, { x: xStart, force3D: true });
       gsap.set(title, { y: 0, opacity: 1, scale: 1 });
       gsap.set(bg, { opacity: 0 });
-      gsap.set(scribbles, { "--scribble-line-color": "#E8CEFF" });
+      gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
 
       const presets = [
         { dir: 1, baseRot: -3.2, xAmp: 8, yAmp: 3.5, rotAmp: 3.2 },
@@ -703,7 +703,7 @@ export default function HomePage() {
         gsap.set(trackEl, { clearProps: "x,transform" });
         gsap.set(title, { clearProps: "y,opacity,scale,transform" });
         gsap.set(bg, { clearProps: "opacity" });
-        gsap.set(scribbles, { "--scribble-line-color": "#E8CEFF" });
+        gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
         cards.forEach((card: any) =>
           gsap.set(card, { clearProps: "xPercent,yPercent,rotation,transform" })
         );
@@ -1650,7 +1650,7 @@ export default function HomePage() {
 
             <div className="right_cards">
               <div className="how_cms">
-                <div style={{ backgroundColor: "#e8ceff" }} className="how_card">
+                <div style={{ backgroundColor: "#e4f3fa" }} className="how_card">
                   <div className="wrapper_how">
                     <div className="icon_how">
                       <img src="/assets/icons/find-1.avif" alt="Find your space" />

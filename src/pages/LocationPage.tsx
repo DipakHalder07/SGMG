@@ -561,7 +561,7 @@ export default function LocationPage() {
                 </radialGradient>
               </defs>
               <ellipse cx="13.5" cy="34.8" rx="10.5" ry="5.25" fill="url(#pinShadow-${place.id})"></ellipse>
-              <path fill="#E8CEFF" stroke="#121214" stroke-width="1.2" fill-rule="evenodd" clip-rule="evenodd"
+              <path fill="#2391cf" stroke="#121214" stroke-width="1.2" fill-rule="evenodd" clip-rule="evenodd"
                 d="M27,13.5C27,19.07 20.25,27 14.75,34.5C14.02,35.5 12.98,35.5 12.25,34.5C6.75,27 0,19.22 0,13.5C0,6.04 6.04,0 13.5,0C20.96,0 27,6.04 27,13.5Z M13.5,8A5.5,5.5 0 1,0 13.5,19A5.5,5.5 0 1,0 13.5,8Z">
               </path>
             </svg>

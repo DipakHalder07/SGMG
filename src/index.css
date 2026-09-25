@@ -19,6 +19,17 @@ html {
   scroll-behavior: auto;
 }
 
+:root {
+  --primary: #2391cf;
+  --primary-rgb: 35, 145, 207;
+  --primary-light: #e4f3fa;
+  --primary-hover: #1c7bb3;
+  --logo-blue: #2391cf;
+  --logo-green: #a2cd3a;
+  --black: #292929;
+  --white: #ffffff;
+}
+
 /* Custom Scrollbar matching 21oaks.org */
 ::-webkit-scrollbar {
   width: 5px;
@@ -152,9 +163,9 @@ main {
     white-space: nowrap;
     transform: translateX(calc(-1 * (var(--icon) + var(--shift-gap))));
     transition: transform var(--dur) var(--ease);
-    background-color: rgb(232, 206, 255);
+    background-color: var(--primary, #2391cf);
     border-radius: 0.375em;
-    color: rgb(41, 41, 41);
+    color: #ffffff;
     font-family: var(--font-display, "Exposure", Georgia, serif);
     font-size: 0.8em;
     font-weight: 400;
@@ -168,7 +179,7 @@ main {
     justify-content: center;
     transition: transform var(--dur) var(--ease);
     will-change: transform;
-    background-color: rgb(232, 206, 255);
+    background-color: var(--primary, #2391cf);
     border-radius: 0.375em;
     overflow: hidden;
   }
@@ -208,6 +219,14 @@ main {
     width: 100%;
     height: 100%;
     display: block;
+  }
+
+  .button .arrow_icon svg path,
+  .button .arrow-icon svg path,
+  .button .icon_box svg path,
+  .button .icon_box.is-right svg path,
+  .button .icon_box.is-left svg path {
+    fill: #ffffff !important;
   }
 
   .button:hover .text_box {
@@ -253,8 +272,8 @@ main {
     padding: 0 4em !important;
     font-size: 11.7px !important;
     font-weight: 400 !important;
-    color: rgb(41, 41, 41) !important;
-    background-color: rgb(232, 206, 255) !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
     border-radius: 0.375em !important;
     white-space: nowrap !important;
     font-family: var(--font-display, "Exposure", Georgia, serif) !important;
@@ -269,7 +288,7 @@ main {
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
-    background-color: rgb(232, 206, 255) !important;
+    background-color: var(--primary, #2391cf) !important;
     border-radius: 0.375em !important;
   }
 
@@ -289,6 +308,14 @@ main {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+  }
+
+  .button .arrow_icon svg path,
+  .button .arrow-icon svg path,
+  .button .icon_box svg path,
+  .button .icon_box.is-right svg path,
+  .button .icon_box.is-left svg path {
+    fill: #ffffff !important;
   }
 }
 
@@ -499,8 +526,8 @@ body.is-hero .menu {
 }
 
 .header_button {
-  background-color: var(--primary, #e8ceff);
-  color: #292929;
+  background-color: var(--primary, #2391cf);
+  color: #ffffff;
   border-radius: 0.3em;
   padding: 1.05em 2em;
   height: 34.25px;
@@ -517,7 +544,7 @@ body.is-hero .menu {
 }
 
 .header_button:hover {
-  background-color: #d5beeb;
+  background-color: var(--primary-hover, #1c7bb3);
 }
 
 /* Apply Now Button Container (Right) */
@@ -541,11 +568,26 @@ body.is-hero .menu {
   font-size: 9.22px !important;
   padding: 0 32px !important;
   border-radius: 3.68px !important;
+  background-color: var(--primary, #2391cf);
+  color: #ffffff !important;
+}
+
+.text_box.header_btn div {
+  color: #ffffff !important;
 }
 
 .button.header_cta .icon_box.is-right,
 .button.header_cta .icon_box.is-left {
   border-radius: 4.32px;
+  background-color: var(--primary, #2391cf);
+}
+
+.button.header_cta .icon_box svg path,
+.button.header_cta .icon_box.is-right svg path,
+.button.header_cta .icon_box.is-left svg path,
+.button.header_cta .arrow_icon svg path,
+.icon_box.header_btn svg path {
+  fill: #ffffff !important;
 }
 
 
@@ -556,7 +598,7 @@ body.is-hero .menu {
   margin-top: 0.6em;
   margin-left: auto;
   margin-right: auto;
-  background-color: var(--primary, #e8ceff);
+  background-color: var(--primary, #2391cf);
   border: 1px solid rgba(41, 41, 41, 0.35);
   border-radius: 0.4rem;
   padding: 1em;
@@ -628,7 +670,7 @@ body.is-hero .menu {
 
 .contact_button:hover {
   background-color: #292929;
-  color: var(--primary, #e8ceff);
+  color: var(--primary, #2391cf);
 }
 
 /* =========================================================
@@ -720,13 +762,13 @@ body.is-hero .menu {
     padding: 0 21.75px !important;
     border-radius: 4px !important;
     font-size: 10.88px !important;
-    background-color: var(--primary, #e8ceff) !important;
-    color: #292929 !important;
+    background-color: var(--primary, #2391cf) !important;
+    color: #ffffff !important;
   }
 
   .button.header_cta .text_box div,
   .text_box.header_btn div {
-    color: #292929 !important;
+    color: #ffffff !important;
     background: transparent !important;
   }
 
@@ -736,12 +778,12 @@ body.is-hero .menu {
     height: 35.6px !important;
     border-radius: 4px !important;
     display: flex !important;
-    background-color: var(--primary, #e8ceff) !important;
+    background-color: var(--primary, #2391cf) !important;
   }
 
   .button.header_cta .icon_box svg path,
   .icon_box.header_btn svg path {
-    fill: #292929 !important;
+    fill: #ffffff !important;
   }
 
   .button.header_cta .icon_box.is-left,
@@ -817,7 +859,7 @@ body.is-hero .menu {
     z-index: 999 !important;
     padding: 15px !important;
     border-radius: 0.4rem !important;
-    background-color: var(--primary, #e8ceff) !important;
+    background-color: var(--primary, #2391cf) !important;
     border: 1px solid rgba(41, 41, 41, 0.35) !important;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25) !important;
     display: none !important;
@@ -1521,7 +1563,7 @@ body.is-hero .menu {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--primary, #e8ceff);
+  background: var(--primary, #2391cf);
   flex-shrink: 0;
   margin-top: 6px;
 }
@@ -1710,7 +1752,7 @@ body.is-hero .menu {
     pointer-events: none;
     z-index: 1;
     opacity: 0;
-    background: linear-gradient(180deg, #fff 0%, #e8ceff 43%, #e8ceff 100%);
+    background: linear-gradient(180deg, #fff 0%, #e4f3fa 43%, #d2ecf9 100%);
     will-change: opacity;
   }
 }
@@ -4422,7 +4464,7 @@ body.is-hero .menu {
 }
 
 .icon_price {
-  background-color: var(--primary, rgb(232, 206, 255));
+  background-color: var(--primary, #2391cf);
   border-radius: 100%;
   justify-content: center;
   align-items: center;
@@ -4726,10 +4768,10 @@ body.is-hero .menu {
     display: flex;
   }
   .show_variants {
-    background-color: var(--primary, #e8ceff);
+    background-color: var(--primary, #2391cf);
     width: 60%;
     height: 3.15rem;
-    color: var(--black, #292929);
+    color: #ffffff;
     border: none;
     border-radius: 4px;
     justify-content: center;

@@ -48,7 +48,7 @@
 
 ._404_heading {
   font-family: "Exposure", "Romie", Georgia, serif;
-  color: #e8ceff;
+  color: #2391cf;
   text-align: center;
   margin: 0;
   font-size: clamp(2.6rem, 4.5vw, 4.2rem);
@@ -64,7 +64,7 @@
   align-items: center;
 }
 
-/* Back to Home Button (Lavender Theme) */
+/* Back to Home Button (Logo Blue Theme) */
 ._404_btn .button {
   --icon: 44px;
   --shift-gap: 0.25em;
@@ -89,8 +89,8 @@
   align-items: center;
   justify-content: center;
   padding: 0 1.6rem;
-  background-color: #e8ceff;
-  color: #121214;
+  background-color: #2391cf;
+  color: #ffffff;
   border-radius: 9999px;
   font-family: "Exposure", Georgia, serif;
   font-size: 1rem;
@@ -103,7 +103,7 @@
 ._404_btn .icon_box {
   width: 44px;
   height: 44px;
-  background-color: #e8ceff;
+  background-color: #2391cf;
   border-radius: 9999px;
   display: flex;
   align-items: center;
@@ -129,7 +129,7 @@
 }
 
 ._404_btn .arrow_icon svg path {
-  fill: #121214;
+  fill: #ffffff;
   transition: fill 0.25s ease;
 }
 
@@ -137,12 +137,12 @@
 @media (min-width: 992px) {
   ._404_btn .button:hover .text_box {
     transform: translateX(calc(-1 * var(--shift-gap) * 1.5));
-    background-color: #f1ddff;
+    background-color: var(--primary-hover, #1c7bb3);
   }
 
   ._404_btn .button:hover .icon_box.is-right {
     transform: translateX(calc(var(--shift-gap) * 1.5));
-    background-color: #f1ddff;
+    background-color: var(--primary-hover, #1c7bb3);
   }
 }
 

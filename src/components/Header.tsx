@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { prefetchRoute } from "../lib/prefetch";
 
-export function ArrowIcon({ fill = "#292929" }: { fill?: string } = {}) {
+export function ArrowIcon({ fill = "#ffffff" }: { fill?: string } = {}) {
   return (
     <svg width="100%" height="100%" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

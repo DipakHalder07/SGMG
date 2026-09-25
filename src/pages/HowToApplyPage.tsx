@@ -27,7 +27,7 @@ const STEPS: StepItem[] = [
   {
     step: 1,
     title: "Choose your space",
-    bg: "#e8ceff",
+    bg: "#e4f3fa",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",

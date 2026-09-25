@@ -287,7 +287,7 @@
 
 /* --- PET-FRIENDLY SECTION --- */
 .pets {
-  background-color: #e8ceff;
+  background-color: var(--primary-light, #e4f3fa);
   padding: 7rem 3rem 6rem;
   position: relative;
   width: 100%;
