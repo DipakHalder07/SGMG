@@ -359,10 +359,10 @@ body.is-hero .header {
 }
 
 .logo_img {
-  height: 38px;
+  height: 48px;
   width: auto;
-  max-height: 42px;
-  max-width: 140px;
+  max-height: 54px;
+  max-width: 185px;
   object-fit: contain;
   display: block;
 }
@@ -670,7 +670,8 @@ body.is-hero .menu {
     justify-content: space-between !important;
     align-items: center !important;
     width: 100% !important;
-    height: 35.6px !important;
+    height: auto !important;
+    min-height: 40px !important;
     position: relative !important;
   }
 
@@ -687,9 +688,9 @@ body.is-hero .menu {
   }
 
   .logo_img {
-    height: 30px !important;
-    max-height: 32px !important;
-    max-width: 110px !important;
+    height: 36px !important;
+    max-height: 38px !important;
+    max-width: 135px !important;
   }
 
   /* Right-side Apply Button on Mobile */
@@ -3446,9 +3447,9 @@ body.is-hero .menu {
 }
 
 .footer_logo_img {
-  height: 46px;
+  height: 56px;
   width: auto;
-  max-width: 165px;
+  max-width: 210px;
   object-fit: contain;
   display: block;
 }
@@ -3697,8 +3698,8 @@ body.is-hero .menu {
     font-family: var(--font-display, "Exposure", Georgia, serif) !important;
   }
   .footer_logo_img {
-    height: 36px !important;
-    max-width: 135px !important;
+    height: 44px !important;
+    max-width: 165px !important;
   }
   .cap_footer {
     font-size: clamp(23px, 6.5vw, 26px) !important;
