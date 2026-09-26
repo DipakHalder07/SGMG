@@ -242,10 +242,55 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
+  // Property Listing Card Slider State
+  const [propertySlideIndex, setPropertySlideIndex] = useState(0);
+  const [visibleSlides, setVisibleSlides] = useState(3);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchDeltaX, setTouchDeltaX] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleSlides(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleSlides(2);
+      } else {
+        setVisibleSlides(3);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxPropertySlideIndex = Math.max(0, apartments.length - visibleSlides);
+
+  useEffect(() => {
+    if (propertySlideIndex > maxPropertySlideIndex) {
+      setPropertySlideIndex(maxPropertySlideIndex);
+    }
+  }, [maxPropertySlideIndex, propertySlideIndex]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setTouchDeltaX(0);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    setTouchDeltaX(e.touches[0].clientX - touchStartX);
+  };
+  const handleTouchEnd = () => {
+    if (touchDeltaX < -45) {
+      setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
+    } else if (touchDeltaX > 45) {
+      setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+    }
+    setTouchStartX(null);
+    setTouchDeltaX(0);
+  };
+
   const bgCurrentRef = useRef<HTMLImageElement>(null);
   const bgNextRef = useRef<HTMLImageElement>(null);
-  const dynamicSectionRef = useRef<HTMLElement>(null);
-  const apartmentsSectionRef = useRef<HTMLElement>(null);
   const testimonialsSectionRef = useRef<HTMLElement>(null);
   const linesSectionRef = useRef<HTMLDivElement>(null);
   const heroBusyRef = useRef(false);
@@ -413,124 +458,7 @@ export default function HomePage() {
     };
   }, [startAutoTimer]);
 
-  // 3. Dynamic Section Photos GSAP ScrollTrigger (Pinning + Outward Flyout Physics)
-  useEffect(() => {
-    const section = dynamicSectionRef.current;
-    if (!section) return;
 
-    const ctx = gsap.context(() => {
-      const title = section.querySelector(".middle");
-      const gallery = section.querySelector(".interaction_gallery");
-      const center = section.querySelector(".photo--center");
-
-      const lt = section.querySelector(".photo--lt");
-      const lm = section.querySelector(".photo--lm");
-      const lb = section.querySelector(".photo--lb");
-      const rt = section.querySelector(".photo--rt");
-      const rm = section.querySelector(".photo--rm");
-      const rb = section.querySelector(".photo--rb");
-
-      if (!title || !gallery || !center) return;
-
-      const left = [lt, lm, lb].filter(Boolean) as HTMLElement[];
-      const right = [rt, rm, rb].filter(Boolean) as HTMLElement[];
-
-      const offLeft = (el: HTMLElement) =>
-        -(window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160);
-      const offRight = (el: HTMLElement) =>
-        window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160;
-
-      gsap.set(center, { scale: 0, transformOrigin: "50% 50%" });
-      gsap.set([lt, lm, lb, rt, rm, rb].filter(Boolean), {
-        autoAlpha: 0,
-        y: 180,
-        scale: 0.9,
-        x: 0,
-      });
-
-      // Title zoom scrub matching live 21oaks.org
-      gsap.to(center, {
-        scale: 1.12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: title,
-          start: "top top",
-          end: "bottom -120%",
-          scrub: true,
-        },
-      });
-
-      // Gallery stage pin & scatter timeline
-      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: gallery,
-          start: "top top",
-          end: "+=300%",
-          pin: true,
-          pinSpacing: true,
-          scrub: isDesktop ? 1.2 : true,
-          anticipatePin: isDesktop ? 1 : 0,
-          fastScrollEnd: true,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.to(
-        [lt, lm, lb, rt, rm, rb].filter(Boolean),
-        {
-          autoAlpha: 1,
-          scale: 1,
-          ease: "none",
-          duration: 0.2,
-          stagger: 0.02,
-        },
-        0.02
-      );
-
-      if (lt) tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
-      if (lm) tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
-      if (lb) tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
-      if (rt) tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
-      if (rm) tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
-      if (rb) tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
-
-      tl.to(
-        left,
-        {
-          x: (_: any, el: any) => offLeft(el),
-          y: "-=52",
-          ease: "none",
-          duration: 1.1,
-          stagger: 0.05,
-        },
-        1.25
-      );
-
-      tl.to(
-        right,
-        {
-          x: (_: any, el: any) => offRight(el),
-          y: "-=52",
-          ease: "none",
-          duration: 1.1,
-          stagger: 0.05,
-        },
-        1.25
-      );
-
-      const onResize = () => ScrollTrigger.refresh();
-      window.addEventListener("resize", onResize);
-      window.addEventListener("load", onResize);
-
-      return () => {
-        window.removeEventListener("resize", onResize);
-        window.removeEventListener("load", onResize);
-      };
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
 
   // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
   useEffect(() => {
@@ -568,150 +496,7 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
-  // 4. Apartments Cards Horizontal Scroll GSAP ScrollTrigger (Desktop)
-  useEffect(() => {
-    const section = apartmentsSectionRef.current;
-    if (!section) return;
 
-    const sticky = section.querySelector<HTMLElement>(".wrapper_apartments");
-    const title = section.querySelector<HTMLElement>(".heading_apartments");
-    const desktopViewport = section.querySelector<HTMLElement>(".apart_cards_viewport.only_desktop");
-    const track = desktopViewport?.querySelector<HTMLElement>(".apart_cards_track");
-    const cards = gsap.utils.toArray<HTMLElement>(track?.querySelectorAll(".apart_card") || []);
-    const scribbles = gsap.utils.toArray<HTMLElement>(
-      title?.querySelectorAll('[data-scribble="4"].scribble-wrap') || []
-    );
-
-    if (!sticky || !title || !desktopViewport || !track || cards.length < 2) return;
-    const trackEl = track;
-
-    let bg = sticky.querySelector<HTMLElement>(".apartments_bg_gradient");
-    if (!bg) {
-      bg = document.createElement("div");
-      bg.className = "apartments_bg_gradient";
-      sticky.prepend(bg);
-    }
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 992px)", () => {
-      const vw = window.innerWidth;
-      const getTrackWidth = () => trackEl.scrollWidth || (cards.length * 360 + (cards.length - 1) * 40);
-      const xStart = vw + 220;
-
-      gsap.set(trackEl, { x: xStart, force3D: true });
-      gsap.set(title, { y: 0, opacity: 1, scale: 1 });
-      gsap.set(bg, { opacity: 0 });
-      gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
-
-      const presets = [
-        { dir: 1, baseRot: -3.2, xAmp: 8, yAmp: 3.5, rotAmp: 3.2 },
-        { dir: -1, baseRot: 3.0, xAmp: 9, yAmp: 4.5, rotAmp: 3.4 },
-        { dir: 1, baseRot: -2.8, xAmp: 7, yAmp: 3.0, rotAmp: 2.9 },
-        { dir: -1, baseRot: 3.4, xAmp: 8, yAmp: 4.0, rotAmp: 3.6 },
-      ];
-
-      cards.forEach((card: any, i) => {
-        const p = presets[i % presets.length];
-        gsap.set(card, {
-          xPercent: 0,
-          yPercent: 0,
-          rotation: p.baseRot,
-          force3D: true,
-        });
-      });
-
-      const tl = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=430%",
-          pin: sticky,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.to(title, { y: -240, duration: 0.3 }, 0.0)
-        .to(bg, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.06)
-        .to(
-          scribbles,
-          { "--scribble-line-color": "#292929", duration: 0.45, ease: "power2.out" },
-          0.1
-        )
-        .to(trackEl, { x: () => -(getTrackWidth() + 220), duration: 1.0 }, 0.08)
-        .to(title, { y: 0, duration: 0.24 }, 0.82);
-
-      cards.forEach((card: any, i) => {
-        const p = presets[i % presets.length];
-
-        tl.to(
-          card,
-          {
-            xPercent: p.dir * p.xAmp,
-            yPercent: -p.yAmp,
-            rotation: p.baseRot + p.rotAmp,
-            duration: 0.24,
-          },
-          0.1
-        )
-          .to(
-            card,
-            {
-              xPercent: -p.dir * (p.xAmp * 0.7),
-              yPercent: p.yAmp * 0.55,
-              rotation: p.baseRot - p.rotAmp * 0.7,
-              duration: 0.26,
-            },
-            0.36
-          )
-          .to(
-            card,
-            {
-              xPercent: p.dir * (p.xAmp * 0.35),
-              yPercent: -p.yAmp * 0.3,
-              rotation: p.baseRot + 0.8,
-              duration: 0.24,
-            },
-            0.64
-          );
-      });
-
-      // Refresh on image / font load
-      const imgs = Array.from(desktopViewport.querySelectorAll("img"));
-      imgs.forEach((img) => {
-        if (!img.complete) {
-          img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
-          img.addEventListener("error", () => ScrollTrigger.refresh(), { once: true });
-        }
-      });
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => ScrollTrigger.refresh());
-      }
-
-      ScrollTrigger.refresh();
-      const tId = setTimeout(() => ScrollTrigger.refresh(), 250);
-
-      return () => {
-        clearTimeout(tId);
-        gsap.set(trackEl, { clearProps: "x,transform" });
-        gsap.set(title, { clearProps: "y,opacity,scale,transform" });
-        gsap.set(bg, { clearProps: "opacity" });
-        gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
-        cards.forEach((card: any) =>
-          gsap.set(card, { clearProps: "xPercent,yPercent,rotation,transform" })
-        );
-      };
-    });
-
-    return () => {
-      mm.revert();
-    };
-  }, []);
 
   // 5. Splide Carousel for Amenities and Mobile Apartments
   useEffect(() => {
@@ -1219,38 +1004,149 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* DYNAMIC SECTION (Everything student living should be) */}
-        <section ref={dynamicSectionRef} className="dynamic_section" id="gallery">
+        {/* PROPERTY LISTINGS SECTION (Everything student living should be) */}
+        <section className="dynamic_section property_listing_section" id="apartments" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything student<br />
-              living <span data-scribble="1" className="scribble-wrap">should be</span>
+              living <span data-scribble="1" className="scribble-wrap scribble-visible">should be</span>
             </h2>
           </div>
 
-          <div className="interaction_gallery">
-            <div className="wrapper_dynamic">
-              <div className="interaction__stage">
-                <div className="photo--rt">
-                  <img src="/assets/gallery/Elevation_Evening_1.webp" alt="Elevation Evening" className="image" />
+          <div className="property_slider_container">
+            <div className="property_slider_wrapper">
+              <div
+                className="property_slider_viewport"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <div
+                  className="property_slider_track"
+                  style={{
+                    transform: `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
+                    transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                  }}
+                >
+                  {apartments.map((apart) => (
+                    <div
+                      className="property_slider_slide"
+                      key={apart.id}
+                      style={{ flex: `0 0 ${100 / visibleSlides}%` }}
+                    >
+                      <div className="apart_card">
+                        <Link
+                          to={`/apartments/${apart.id}`}
+                          className="apart_image"
+                          style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                        >
+                          <div className="overlay_tags">
+                            <div className="tag_available">
+                              <div className="dot_available"></div>
+                              <div>Available</div>
+                            </div>
+                            <div className="tags_info">
+                              <div className="tag_info">
+                                <div className="icon_tag">
+                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                                </div>
+                                <div>{apart.beds}</div>
+                              </div>
+                              <div className="tag_info">
+                                <div className="icon_tag">
+                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                                </div>
+                                <div>{apart.baths}</div>
+                              </div>
+                              <div className="tag_info">
+                                <div className="icon_tag">
+                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                                </div>
+                                <div>{apart.sqft}</div>
+                                <div>ft<sup>2</sup></div>
+                              </div>
+                            </div>
+                          </div>
+                          <img src={apart.image} alt={apart.name} className="image" />
+                        </Link>
+
+                        <div className="content_apart">
+                          <div className="apart_title_line">
+                            <div>
+                              <Link
+                                to={`/apartments/${apart.id}`}
+                                className="apart_title"
+                                style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                              >
+                                {apart.name}
+                              </Link>
+                            </div>
+                            <div className="price_box">
+                              <div className="icon_price">
+                                <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
+                              </div>
+                              <div className="price_txt">{apart.price}</div>
+                            </div>
+                          </div>
+
+                          <div className="desc_home">
+                            <div className="p_gen black specific">{apart.desc}</div>
+                          </div>
+
+                          <div className="explore_button" style={{ marginTop: "18px" }}>
+                            <WebflowButton
+                              text="Explore Details"
+                              href={`/apartments/${apart.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                navigate(`/apartments/${apart.id}`);
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="photo--lt">
-                  <img src="/assets/gallery/Gym_1.webp" alt="Gym" className="image" />
+              </div>
+
+              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
+              <div className="property_slider_controls">
+                <div className="property_slider_pagination">
+                  {Array.from({ length: maxPropertySlideIndex + 1 }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      className={`property_slider_dot ${propertySlideIndex === idx ? "is-active" : ""}`}
+                      onClick={() => setPropertySlideIndex(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
                 </div>
-                <div className="photo--center">
-                  <img src="/assets/gallery/center.webp" alt="Aerial view" className="image" style={{ borderRadius: "8px", width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <div className="photo--lm">
-                  <img src="/assets/gallery/CommunityHall_1.webp" alt="Community Hall" className="image" />
-                </div>
-                <div className="photo--rm">
-                  <img src="/assets/gallery/Swimming_Pool_1.webp" alt="Swimming Pool" className="image" />
-                </div>
-                <div className="photo--lb">
-                  <img src="/assets/gallery/Landscape_Lawn_1.webp" alt="Landscape Lawn" className="image" />
-                </div>
-                <div className="photo--rb">
-                  <img src="/assets/gallery/Indoor_Games_Arena_1.webp" alt="Indoor Games Arena" className="image" />
+
+                <div className="property_slider_arrows">
+                  <button
+                    type="button"
+                    className="property_slider_arrow is-prev"
+                    onClick={() => setPropertySlideIndex((prev) => Math.max(0, prev - 1))}
+                    disabled={propertySlideIndex === 0}
+                    aria-label="Previous property"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    className="property_slider_arrow is-next"
+                    onClick={() => setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1))}
+                    disabled={propertySlideIndex >= maxPropertySlideIndex}
+                    aria-label="Next property"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1311,199 +1207,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* APARTMENTS SECTION (Where student life feels balanced) */}
-      <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
-        <div className="wrapper_apartments">
-          <div className="apartments_bg_gradient"></div>
-          <div className="heading_apartments">
-            <h2 className="h2 smaller">
-              Where student life<br />
-              feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
-            </h2>
-          </div>
-
-          {/* Desktop Horizontal Track */}
-          <div className="apart_cards_viewport only_desktop">
-            <div className="apart_cards_track">
-              {apartments.slice(0, 4).map((apart) => (
-                <div className="apart_card" key={apart.id}>
-                  <Link
-                    to={`/apartments/${apart.id}`}
-                    className="apart_image"
-                    style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
-                  >
-                    <div className="overlay_tags">
-                      <div className="tag_available">
-                        <div className="dot_available"></div>
-                        <div>Available</div>
-                      </div>
-                      <div className="tags_info">
-                        <div className="tag_info">
-                          <div className="icon_tag">
-                            <img src="/assets/icons/bed-icon.png" alt="" className="image" />
-                          </div>
-                          <div>{apart.beds}</div>
-                        </div>
-                        <div className="tag_info">
-                          <div className="icon_tag">
-                            <img src="/assets/icons/bath-icon.png" alt="" className="image" />
-                          </div>
-                          <div>{apart.baths}</div>
-                        </div>
-                        <div className="tag_info">
-                          <div className="icon_tag">
-                            <img src="/assets/icons/ft-icon.png" alt="" className="image" />
-                          </div>
-                          <div>{apart.sqft}</div>
-                          <div>ft<sup>2</sup></div>
-                        </div>
-                      </div>
-                    </div>
-                    <img src={apart.image} alt={apart.name} className="image" />
-                  </Link>
-
-                  <div className="content_apart">
-                    <div className="apart_title_line">
-                      <div>
-                        <Link
-                          to={`/apartments/${apart.id}`}
-                          className="apart_title"
-                          style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
-                        >
-                          {apart.name}
-                        </Link>
-                      </div>
-                      <div className="price_box">
-                        <div className="icon_price">
-                          <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
-                        </div>
-                        <div className="price_txt">{apart.price}</div>
-                      </div>
-                    </div>
-
-                    <div className="desc_home">
-                      <div className="p_gen black specific">{apart.desc}</div>
-                    </div>
-
-                    <div className="explore_button" style={{ marginTop: "18px" }}>
-                      <WebflowButton
-                        text="Explore Details"
-                        href={`/apartments/${apart.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          navigate(`/apartments/${apart.id}`);
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Touch Splide Slider */}
-          <div className="container only_mobile">
-            <div className="splide slider1">
-              <div className="splide__track">
-                <div className="splide__list">
-                  {apartments.map((apart) => (
-                    <div className="splide__slide apart_card" key={apart.id}>
-                      <Link
-                        to={`/apartments/${apart.id}`}
-                        className="apart_image"
-                        style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
-                      >
-                        <div className="overlay_tags">
-                          <div className="tag_available">
-                            <div className="dot_available"></div>
-                            <div>Available</div>
-                          </div>
-                          <div className="tags_info">
-                            <div className="tag_info">
-                              <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
-                              <div>{apart.beds}</div>
-                            </div>
-                            <div className="tag_info">
-                              <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
-                              <div>{apart.baths}</div>
-                            </div>
-                            <div className="tag_info">
-                              <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
-                              <div>{apart.sqft}</div>
-                            </div>
-                          </div>
-                        </div>
-                        <img src={apart.image} alt={apart.name} className="image" />
-                      </Link>
-                      <div className="content_apart">
-                        <div className="apart_title_line">
-                          <Link
-                            to={`/apartments/${apart.id}`}
-                            className="apart_title"
-                            style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
-                          >
-                            {apart.name}
-                          </Link>
-                          <div className="price_box">
-                            <div className="icon_price">
-                              <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
-                            </div>
-                            <div className="price_txt">{apart.price}</div>
-                          </div>
-                        </div>
-                        <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
-                        <div className="explore_button" style={{ marginTop: "16px" }}>
-                          <WebflowButton
-                            text="Explore Details"
-                            href={`/apartments/${apart.id}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              navigate(`/apartments/${apart.id}`);
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
-              <div className="pagination_arrows">
-                <ul className="splide__pagination"></ul>
-                <div className="splide__arrows">
-                  <button
-                    className="splide__arrow splide__arrow--prev"
-                    type="button"
-                    aria-label="Previous apartment"
-                    onClick={() => {
-                      const apartInst = splideInstancesRef.current.find(
-                        (inst) => !inst.root.classList.contains("second_splide")
-                      );
-                      apartInst?.go("<");
-                    }}
-                  >
-                    <img src="/assets/icons/chevron-left.svg" alt="Previous" />
-                  </button>
-                  <button
-                    className="splide__arrow splide__arrow--next"
-                    type="button"
-                    aria-label="Next apartment"
-                    onClick={() => {
-                      const apartInst = splideInstancesRef.current.find(
-                        (inst) => !inst.root.classList.contains("second_splide")
-                      );
-                      apartInst?.go(">");
-                    }}
-                  >
-                    <img src="/assets/icons/chevron-right.svg" alt="Next" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FULLSCREEN SECTION (Closer than you think) */}
       <section className="fs" id="location">
