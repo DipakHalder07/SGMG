@@ -665,6 +665,7 @@ main.contact {
   overflow: hidden !important;
 }
 
+.map_box iframe,
 .office_leaflet_map,
 .office_leaflet_map.full_width,
 .office_leaflet_map .leaflet-container,

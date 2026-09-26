@@ -152,7 +152,7 @@ export default function HowToApplyPage() {
   // FAQ state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  // --- GSAP CARD STACKING & PEELING ANIMATION (1:1 21OAKS) ---
+  // --- GSAP CARD STACKING & PEELING ANIMATION ---
   useEffect(() => {
     const section = stepsSectionRef.current;
     if (!section) return;
@@ -161,88 +161,78 @@ export default function HowToApplyPage() {
       const cards = gsap.utils.toArray<HTMLElement>(".card_how_item");
       if (!cards.length) return;
 
-      const stepTopTime = new Map<number, number>();
+      // Curated natural stack positions (card 1 on top, cards 2-5 peeking out organically)
+      const stackTransforms = [
+        { y: 0, rot: -2.4 },     // Step 1: light blue (front)
+        { y: -6, rot: 3.5 },     // Step 2: pink (peeking right)
+        { y: -12, rot: -4.2 },   // Step 3: cream (peeking left)
+        { y: -18, rot: 4.8 },    // Step 4: dark (peeking right)
+        { y: -24, rot: -1.8 },   // Step 5: yellow (peeking bottom/left)
+      ];
 
-      // 1. Initial State: cards placed below screen with authentic reverse z-index (card 1 on top)
+      // 1. Initial State: cards are ALREADY stacked in the center deck (no flying in from bottom)
       cards.forEach((card, i) => {
+        const tr = stackTransforms[i] || { y: -i * 6, rot: 0 };
         gsap.set(card, {
           xPercent: -50,
           yPercent: -50,
-          y: window.innerHeight * 1.1 + i * 60,
-          rotation: (i - 2) * 2.5 + (i % 2 === 0 ? -1.5 : 1.5),
+          x: 0,
+          y: tr.y,
+          rotation: tr.rot,
           zIndex: cards.length - i,
+          opacity: 1,
         });
       });
 
-      // 2. Timeline with ScrollTrigger pin
+      // 2. Timeline with ScrollTrigger pin - only peel cards UPWARD off-screen
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=3800",
+          end: "+=1700",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           fastScrollEnd: true,
-          onUpdate: () => {
+          onUpdate: (self) => {
             if (isAutoScrollingRef.current) return;
-            const t = tl.time();
-            let best = -Infinity;
-            let active: number | null = null;
-            stepTopTime.forEach((time, step) => {
-              if (t >= time && time > best) {
-                best = time;
-                active = step;
-              }
-            });
-            if (active != null) setActiveStep(active);
+            const p = self.progress;
+            let active = 1;
+            if (p >= 0.82) active = 5;
+            else if (p >= 0.58) active = 4;
+            else if (p >= 0.34) active = 3;
+            else if (p >= 0.10) active = 2;
+            else active = 1;
+            setActiveStep(active);
           },
         },
       });
 
-      // Step A: All cards fly in from below to center
-      tl.to(cards, {
-        y: 0,
-        stagger: 0.2,
-        duration: 1.2,
-        ease: "power2.out",
-      });
+      // Initial anchor label for Step 1
+      tl.addLabel("step-1", 0);
 
-      // Step B: Cards settle into stacked deck
-      tl.to(
-        cards,
-        {
-          y: (i) => -i * 8,
-          rotation: (i) => (i - (cards.length - 1) / 2) * 2.2,
-          stagger: 0.06,
-          duration: 0.8,
-          ease: "power1.out",
-        },
-        ">-0.15"
-      );
-
-      // Record time when Step 1 is settled
-      stepTopTime.set(1, tl.duration());
-
-      // Step C: Each card (1 to 4) peels away upward to reveal the next card
+      // Peel cards 0, 1, 2, 3 (steps 1 to 4) UPWARD to the top to reveal each subsequent card
       cards.forEach((card, i) => {
-        if (i === cards.length - 1) return; // Last card stays visible
-        const pos = i === 0 ? tl.duration() + 0.15 : tl.duration();
-        const nextStep = i + 2;
-        stepTopTime.set(nextStep, pos);
+        if (i === cards.length - 1) return; // Last card (step 5) stays visible
+        const nextStepNumber = i + 2;
 
         tl.to(
           card,
           {
-            y: -window.innerHeight * 1.35,
+            y: () => -window.innerHeight * 1.35,
             rotation: i % 2 ? 8 : -8,
-            duration: 0.65,
-            ease: "power2.in",
+            duration: 1.0,
+            ease: "power2.inOut",
           },
-          pos
+          `+=0.2`
         );
+
+        tl.addLabel(`step-${nextStepNumber}`);
       });
+
+      // Brief dwell on final card before unpinning
+      tl.to({}, { duration: 0.3 });
     }, stepsSectionRef);
 
     // Refresh after DOM and images are completely ready
@@ -265,8 +255,15 @@ export default function HowToApplyPage() {
     const st = ScrollTrigger.getAll().find((s) => s.trigger === section);
     if (st) {
       isAutoScrollingRef.current = true;
-      const ratio = (step - 1) / 4;
-      const targetScroll = st.start + (st.end - st.start) * (ratio * 0.92 + 0.04);
+      const stepRatios: Record<number, number> = {
+        1: 0.01,
+        2: 0.23,
+        3: 0.47,
+        4: 0.71,
+        5: 0.96,
+      };
+      const ratio = stepRatios[step] ?? (step - 1) / 4;
+      const targetScroll = st.start + (st.end - st.start) * ratio;
 
       window.scrollTo({
         top: targetScroll,
@@ -442,57 +439,87 @@ export default function HowToApplyPage() {
         </div>
       </section>
 
-      {/* --- PET-FRIENDLY SECTION --- */}
-      <section data-section="light" className="pets">
-        <div className="wrapper_pets">
-          <div className="pets_heading">
-            <h2 className="h2 pets_h">
-              For You.
+      {/* --- ABOUT SGMG HERITAGE & LIVING SECTION --- */}
+      <section data-section="light" className="about_story_sec">
+        <div className="wrapper_about_story">
+          <div className="about_story_heading">
+            <h2 className="h2 about_story_h">
+              Building Values.
               <br />
-              For{" "}
+              Shaping{" "}
               <span
                 data-scribble="5"
                 className="scribble-wrap scribble-visible"
               >
-                Them.
+                Tomorrow.
               </span>
             </h2>
           </div>
 
-          <div className="pets_ill">
-            <div className="box_pets" />
-            <div className="p_pets">
-              <div className="p_gen black">
-                A pet-friendly living environment designed to support everyday
-                life together, where comfort, routine, and space extend
-                naturally to your pet. From quiet moments of rest to daily
-                movement and shared routines, the space remains open, calm, and
-                easy to adapt — allowing both of you to settle in and feel at
-                home without compromise.
+          <div className="about_story_showcase">
+            <div className="about_story_visual">
+              <div className="about_img_frame">
+                <img
+                  src="/assets/Front_Elevation_View.webp"
+                  alt="SGMG Cosmos Crest Landmark in Siliguri"
+                  loading="lazy"
+                  className="about_feature_img"
+                />
+                <div className="about_img_badge">
+                  <div className="badge_dot" />
+                  <span>Sushil Gangadhar Mittal Group</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="about_story_content">
+              <div className="about_story_lead">
+                “True luxury is not merely crafted from steel and stone — it is the quiet harmony of enduring design, open air, and timeless trust.”
+              </div>
+              <div className="p_gen black about_story_body">
+                Founded with a visionary commitment to elevate living standards across North Bengal, Sushil Gangadhar Mittal Group (SGMG) brings together architectural ingenuity, uncompromising engineering, and transparent governance. From iconic commercial landmarks like Cosmos Mall to peaceful residential communities, SGMG builds spaces where families flourish and investments appreciate for generations.
+              </div>
+
+              <div className="about_story_stats">
+                <div className="about_stat_box">
+                  <div className="about_stat_num">25+</div>
+                  <div className="about_stat_lbl">Years of Group Heritage</div>
+                </div>
+                <div className="about_stat_box">
+                  <div className="about_stat_num">100%</div>
+                  <div className="about_stat_lbl">RERA & Title Transparency</div>
+                </div>
+                <div className="about_stat_box">
+                  <div className="about_stat_num">Sevoke Rd</div>
+                  <div className="about_stat_lbl">Siliguri Premier Hub</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="pet_boxes">
-            <div className="pet_box">
-              <div className="pet_title">A place to settle</div>
-              <div className="pet_desc">
-                Soft, quiet areas where your pet can rest, relax, and find a
-                consistent sense of comfort throughout the day.
+          {/* 3 Core Value Pillars */}
+          <div className="about_pillars">
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">01</div>
+              <div className="about_pillar_title">Architectural Mastery</div>
+              <div className="about_pillar_desc">
+                Conceived by visionary architects with expansive floor layouts, abundant natural sunlight, private panoramic balconies, and seismic-engineered RCC construction.
               </div>
             </div>
-            <div className="pet_box">
-              <div className="pet_title">Room to move</div>
-              <div className="pet_desc">
-                Open, flexible layouts that support movement, play, and daily
-                routines without restriction or disruption.
+
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">02</div>
+              <div className="about_pillar_title">Transparent Trust</div>
+              <div className="about_pillar_desc">
+                Every SGMG residence is strictly RERA-compliant with crystal-clear land titles, transparent milestone pricing, and construction-linked schedules you can rely on.
               </div>
             </div>
-            <div className="pet_box">
-              <div className="pet_title">Part of everyday life</div>
-              <div className="pet_desc">
-                A setting where living with your pet feels natural, integrated,
-                and fully considered in how the space functions.
+
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">03</div>
+              <div className="about_pillar_title">Holistic Living</div>
+              <div className="about_pillar_desc">
+                Immersed in lush landscaped courtyards, resident wellness amenities, 24/7 multi-tier security, and attentive concierge management tailored for modern families.
               </div>
             </div>
           </div>

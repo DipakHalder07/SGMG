@@ -4,8 +4,6 @@ import Footer from "../components/Footer";
 import PillButton from "../components/PillButton";
 import FaqAccordionItem from "../components/FaqAccordionItem";
 import confetti from "canvas-confetti";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import {
   MapPin,
   ExternalLink,
@@ -14,13 +12,14 @@ import {
 } from "lucide-react";
 import "../contact.css";
 
-// Office Location Coordinates: Siliguri, West Bengal, India
+// Office Location: Jeevan Deep Complex, Siliguri, West Bengal
 const OFFICE_COORDS = {
-  lat: 26.7271,
-  lng: 88.4353,
-  name: "SGMG Head Office",
-  address: "2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001, India",
-  googleMapsUrl: "https://maps.google.com/?q=Siliguri,+West+Bengal",
+  lat: 26.764918,
+  lng: 88.44281,
+  name: "SGMG Corporate Office",
+  address: "2nd Floor, Jeevandeep Tower, Jeevan Deep Complex, Siliguri, West Bengal 734001, India",
+  googleMapsUrl:
+    "https://www.google.com/maps/place/Jeevan+Deep+Complex/@26.764918,88.44281,17z",
 };
 
 // Official SGMG FAQs
@@ -56,10 +55,6 @@ const CONTACT_PAGE_FAQS = [
 ];
 
 export default function ContactPage() {
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapInstanceRef = useRef<L.Map | null>(null);
-  const tileLayerRef = useRef<L.TileLayer | null>(null);
-
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -84,83 +79,6 @@ export default function ContactPage() {
     return () => {
       document.body.classList.remove("is-light");
     };
-  }, []);
-
-  // Initialize Official Google Maps in Leaflet for Siliguri
-  useEffect(() => {
-    if (!mapContainerRef.current) return;
-    if (mapInstanceRef.current) return;
-
-    try {
-      const map = L.map(mapContainerRef.current, {
-        center: [OFFICE_COORDS.lat, OFFICE_COORDS.lng],
-        zoom: 14,
-        scrollWheelZoom: false,
-        zoomControl: false,
-        attributionControl: false,
-      });
-
-      mapInstanceRef.current = map;
-
-      // Add Zoom controls in top-right
-      L.control.zoom({ position: "topright" }).addTo(map);
-
-      // Official Google Maps Roadmap Tile Layer
-      const googleTileLayer = L.tileLayer(
-        "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
-        {
-          maxZoom: 20,
-          attribution: "© Google Maps",
-        }
-      ).addTo(map);
-
-      tileLayerRef.current = googleTileLayer;
-
-      // Custom 21Oaks Lilac Marker Pin
-      const customPin = L.divIcon({
-        className: "custom-pin",
-        html: `<div class="custom-leaflet-marker"><svg viewBox="0 0 24 24"><path d="M12 3.2 3.5 10v10.2h6.2v-5.6h4.6v5.6h6.2V10L12 3.2zm7 15.5h-3.2v-5.6H8.2v5.6H5V10.7l7-5.6 7 5.6v8z"/></svg></div>`,
-        iconSize: [38, 38],
-        iconAnchor: [19, 19],
-        popupAnchor: [0, -20],
-      });
-
-      const marker = L.marker([OFFICE_COORDS.lat, OFFICE_COORDS.lng], {
-        icon: customPin,
-      }).addTo(map);
-
-      marker.bindPopup(`
-        <div style="min-width: 230px; font-family: inherit; padding: 2px 0;">
-          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">SGMG Head Office</div>
-          <div style="font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 12px; line-height: 1.4;">2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001</div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <a href="https://calendly.com/dipakh810/30min" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; background: #2391cf; color: #ffffff; padding: 6px 12px; border-radius: 999px; font-weight: 600; text-decoration: none;">Schedule a Tour &rarr;</a>
-            <a href="${OFFICE_COORDS.googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 999px; font-weight: 500; text-decoration: none;">Directions &rarr;</a>
-          </div>
-        </div>
-      `);
-
-      setTimeout(() => {
-        map.invalidateSize();
-      }, 250);
-
-      const handleResize = () => {
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.invalidateSize();
-        }
-      };
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.remove();
-          mapInstanceRef.current = null;
-        }
-      };
-    } catch (e) {
-      console.error("Google Maps initialization error:", e);
-    }
   }, []);
 
   // Copy to clipboard handler
@@ -454,7 +372,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      {/* Map Section matching 21oaks.org 1:1 with Full-Width Full-Section Google Map */}
+      {/* Map Section with Official Google Maps Embed for SGMG Office */}
       <section data-section="dark" className="map_sec">
         <div id="map" className="map_box">
           {/* Floating Bottom Info & Tour Booking Card */}
@@ -464,7 +382,7 @@ export default function ContactPage() {
                 <MapPin size={20} className="map_pin_icon" />
                 <div>
                   <div className="map_card_name">SGMG Corporate Office</div>
-                  <div className="map_card_addr">2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001, India</div>
+                  <div className="map_card_addr">2nd Floor, Jeevandeep Tower, Jeevan Deep Complex, Siliguri, West Bengal 734001</div>
                 </div>
               </div>
             </div>
@@ -490,8 +408,17 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Google Map of Siliguri */}
-          <div ref={mapContainerRef} className="office_leaflet_map full_width" />
+          {/* Official Google Maps Embed for Jeevan Deep Complex */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.3560523453234!2d88.44281034500854!3d26.76491809204512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e441398913b655%3A0x700a582fbb4ee411!2sJeevan%20Deep%20Complex!5e0!3m2!1sen!2sin!4v1790425056054!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0, width: "100%", height: "100%", minHeight: "100%", display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            title="SGMG Corporate Office - Jeevan Deep Complex Siliguri"
+          />
         </div>
       </section>
 
