@@ -103,7 +103,7 @@
 ._404_btn .icon_box {
   width: 44px;
   height: 44px;
-  background-color: #2391cf;
+  background-color: var(--logo-green, #a2cd3a);
   border-radius: 9999px;
   display: flex;
   align-items: center;

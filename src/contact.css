@@ -59,7 +59,7 @@ body.is-light .header .menu .line_two {
 .header .apply_button .button .icon_box,
 .header .apply_button .icon_box.is-right,
 .header .apply_button .icon_box.is-left {
-  background-color: var(--primary, #2391cf) !important;
+  background-color: var(--logo-green, #a2cd3a) !important;
 }
 
 .header .apply_button .button .icon_box svg path,
@@ -88,7 +88,7 @@ body.is-dark .header .apply_button .button .text_box div {
 }
 
 body.is-dark .header .apply_button .button .icon_box {
-  background-color: var(--primary, #2391cf) !important;
+  background-color: var(--logo-green, #a2cd3a) !important;
 }
 
 body.is-dark .header .apply_button .button .icon_box svg path {

@@ -602,25 +602,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* --- SPONTANEOUS TALENT POOL BANNER --- */}
-      <section className="careers_talent_section">
-        <div className="careers_talent_banner">
-          <div>
-            <h2 className="careers_talent_title">
-              Don’t see your exact role? Join our Talent Network
-            </h2>
-            <p className="careers_talent_desc">
-              We are constantly growing and hiring exceptional people who share our passion. Send us your CV
-              and a short note about your superpowers, and our talent team will reach out when the right match arises.
-            </p>
-          </div>
 
-          <WebflowButton
-            text="Send General Application"
-            href="mailto:careers@sgmg.in?subject=Spontaneous%20Application%20-%20SGMG%20Residences"
-          />
-        </div>
-      </section>
 
       {/* --- INTERACTIVE JOB DETAIL & APPLICATION MODAL --- */}
       {activeJobModal && (

@@ -492,32 +492,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* --- JOIN OUR TEAM CTA BANNER --- */}
-      <section className="team_cta_section">
-        <div className="team_cta_banner">
-          <div>
-            <h2 className="team_cta_title">
-              Want to shape the future of living with us?
-            </h2>
-            <p className="team_cta_desc">
-              We are constantly seeking visionary architects, client relations specialists, community coordinators,
-              and engineers who are passionate about redefining luxury residential living in Siliguri.
-            </p>
-          </div>
-
-          <div className="team_cta_buttons">
-            <WebflowButton
-              text="Schedule a Tour"
-              href="https://calendly.com/dipakh810/30min"
-              target="_blank"
-            />
-            <WebflowButton
-              text="Get in Touch"
-              href="/contact"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* --- INTERACTIVE MEMBER DETAIL MODAL --- */}
       {selectedMember && (

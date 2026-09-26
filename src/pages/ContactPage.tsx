@@ -273,7 +273,7 @@ export default function ContactPage() {
                 <div className="list_contact socials_icons">
                   <a
                     aria-label="Our Instagram"
-                    href="https://www.instagram.com/21_oaks/"
+                    href="https://www.instagram.com/sgmgrealestate/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social_contact w-inline-block"
@@ -282,21 +282,12 @@ export default function ContactPage() {
                   </a>
                   <a
                     aria-label="Our Facebook"
-                    href="https://www.facebook.com"
+                    href="https://www.facebook.com/SGMGRealEstate"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social_contact w-inline-block"
                   >
                     <div className="social_icon fb_white" />
-                  </a>
-                  <a
-                    aria-label="Our LinkedIn"
-                    href="https://www.linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social_contact w-inline-block"
-                  >
-                    <div className="social_icon tiktok_white" />
                   </a>
                 </div>
               </div>

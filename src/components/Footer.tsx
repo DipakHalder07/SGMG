@@ -238,14 +238,11 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
               </a>
             </div>
             <div className="socials_box">
-              <a aria-label="Our Instagram" href="https://www.instagram.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+              <a aria-label="Our Instagram" href="https://www.instagram.com/sgmgrealestate/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                 <div className="social_icon ig" />
               </a>
-              <a aria-label="Our Facebook" href="https://www.facebook.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+              <a aria-label="Our Facebook" href="https://www.facebook.com/SGMGRealEstate" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                 <div className="social_icon fb" />
-              </a>
-              <a aria-label="Our LinkedIn" href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                <div className="social_icon tiktok" />
               </a>
             </div>
           </div>

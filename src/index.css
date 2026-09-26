@@ -236,7 +236,7 @@ main {
     justify-content: center;
     transition: transform var(--dur) var(--ease);
     will-change: transform;
-    background-color: var(--primary, #2391cf);
+    background-color: var(--logo-green, #a2cd3a) !important;
     border-radius: 0.375em;
     overflow: hidden;
   }
@@ -284,6 +284,7 @@ main {
   .button .icon_box.is-right svg path,
   .button .icon_box.is-left svg path {
     fill: #ffffff !important;
+    stroke: #ffffff !important;
   }
 
   .button:hover .text_box {
@@ -345,7 +346,7 @@ main {
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
-    background-color: var(--primary, #2391cf) !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
     border-radius: 0.375em !important;
   }
 
@@ -373,6 +374,7 @@ main {
   .button .icon_box.is-right svg path,
   .button .icon_box.is-left svg path {
     fill: #ffffff !important;
+    stroke: #ffffff !important;
   }
 }
 
@@ -636,7 +638,7 @@ body.is-hero .menu {
 .button.header_cta .icon_box.is-right,
 .button.header_cta .icon_box.is-left {
   border-radius: 4.32px;
-  background-color: var(--primary, #2391cf);
+  background-color: var(--logo-green, #a2cd3a) !important;
 }
 
 .button.header_cta .icon_box svg path,
@@ -845,7 +847,7 @@ body.is-hero .menu {
     height: 35.6px !important;
     border-radius: 4px !important;
     display: flex !important;
-    background-color: var(--primary, #2391cf) !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
   }
 
   .button.header_cta .icon_box svg path,
