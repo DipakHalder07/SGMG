@@ -1376,42 +1376,45 @@ export default function HomePage() {
 
             <div className="right_cards">
               <div className="how_cms">
-                <div style={{ backgroundColor: "#e4f3fa" }} className="how_card">
+                {/* Card 1: SGMG Blue */}
+                <div className="how_card card_blue">
                   <div className="wrapper_how">
                     <div className="icon_how">
                       <img src="/assets/icons/find-1.avif" alt="Choose your residence" />
                     </div>
                     <div className="content_how">
                       <div className="title_how">Choose your residence</div>
-                      <div className="p_gen black">
+                      <div className="p_gen">
                         Explore master floor plans, compare unit layouts, and select a home tailored to your family's lifestyle and aspirations.
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ backgroundColor: "#feb7b9" }} className="how_card">
+                {/* Card 2: SGMG Green */}
+                <div className="how_card card_green">
                   <div className="wrapper_how">
                     <div className="icon_how">
                       <img src="/assets/icons/apply-2.avif" alt="Personalized site tour" />
                     </div>
                     <div className="content_how">
                       <div className="title_how">Personalized site tour</div>
-                      <div className="p_gen black">
+                      <div className="p_gen">
                         Experience the development firsthand. Walk through model residences, landscaped amenities, and consult our property advisors.
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ backgroundColor: "#f3ede6" }} className="how_card">
+                {/* Card 3: SGMG Black */}
+                <div className="how_card card_black">
                   <div className="wrapper_how">
                     <div className="icon_how">
                       <img src="/assets/icons/move-3.avif" alt="Seamless booking & possession" />
                     </div>
                     <div className="content_how">
                       <div className="title_how">Seamless booking &amp; possession</div>
-                      <div className="p_gen black">
+                      <div className="p_gen">
                         Transparent documentation, flexible milestone payment schedules, and timely handover with complete peace of mind.
                       </div>
                     </div>

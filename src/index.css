@@ -2706,29 +2706,44 @@ body.is-hero .menu {
 /* =========================================================
    SECTION 8: HOW IT WORKS (How it works & 3 cards)
    ========================================================= */
+.how_it_works,
 .how_to_apply {
   width: 100%;
   background: #fff;
+  position: relative;
+  overflow: visible !important;
 }
 
+.how_it_works .wrapper_general.basic,
 .wrapper_how_to {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding: 5.5rem 2.5rem;
   box-sizing: border-box;
+  overflow: visible !important;
 }
 
 .flex_how {
   display: flex;
-  gap: 4rem;
+  gap: 4.5rem;
   align-items: flex-start;
+  position: relative;
+}
+
+.left_title {
+  width: 38%;
+  flex: 0 0 38%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 110px;
+  align-self: flex-start;
+  z-index: 5;
 }
 
 .sticky_how {
-  width: 40%;
-  position: sticky;
-  top: 100px;
+  width: 100%;
+  position: relative;
 }
 
 .sticky_how .h2,
@@ -2738,7 +2753,7 @@ body.is-hero .menu {
 .headline_box .h2.smaller,
 .headline_box h2 {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(22px, 2.7vw, 36px) !important;
+  font-size: clamp(24px, 3vw, 40px) !important;
   line-height: 1.1 !important;
   letter-spacing: -0.02em;
   color: #292929 !important;
@@ -2746,31 +2761,44 @@ body.is-hero .menu {
 }
 
 .right_cards {
-  width: 55%;
+  width: 58%;
+  flex: 1;
 }
 
 .how_cms {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .how_card {
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.how_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 
 .wrapper_how {
-  padding: 2rem;
+  padding: 2.5rem 2.75rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  justify-content: space-between;
+  min-height: 240px;
+  box-sizing: border-box;
 }
 
 .icon_how {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon_how img {
@@ -2779,22 +2807,96 @@ body.is-hero .menu {
   object-fit: contain;
 }
 
+.content_how {
+  margin-top: 2rem;
+}
+
 .title_how {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 15px;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
   font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+/* Card Themes matching SGMG Brand Colors */
+.how_card.card_blue {
+  background-color: var(--logo-blue, #2391cf) !important;
+  color: #ffffff;
+}
+
+.how_card.card_blue .title_how {
+  color: #ffffff !important;
+}
+
+.how_card.card_blue .p_gen,
+.how_card.card_blue p {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.how_card.card_blue .icon_how img {
+  filter: brightness(0) invert(1);
+}
+
+.how_card.card_green {
+  background-color: var(--logo-green, #a2cd3a) !important;
   color: #292929;
-  margin-bottom: 8px;
+}
+
+.how_card.card_green .title_how {
+  color: #292929 !important;
+}
+
+.how_card.card_green .p_gen,
+.how_card.card_green p {
+  color: rgba(41, 41, 41, 0.88) !important;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.how_card.card_green .icon_how img {
+  filter: none;
+  opacity: 0.95;
+}
+
+.how_card.card_black {
+  background-color: var(--black, #292929) !important;
+  color: #ffffff;
+}
+
+.how_card.card_black .title_how {
+  color: #ffffff !important;
+}
+
+.how_card.card_black .p_gen,
+.how_card.card_black p {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.how_card.card_black .icon_how img {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 991px) {
+  .how_it_works .wrapper_general.basic,
   .wrapper_how_to {
-    padding: 4rem 1rem !important;
+    padding: 3.5rem 1.25rem !important;
   }
 
   .flex_how {
     flex-direction: column !important;
-    gap: 2.5rem !important;
+    gap: 2.25rem !important;
+  }
+
+  .left_title {
+    width: 100% !important;
+    position: static !important;
+    top: auto !important;
   }
 
   .sticky_how {
@@ -2816,7 +2918,12 @@ body.is-hero .menu {
   }
 
   .wrapper_how {
-    padding: 1.5rem 1.25rem !important;
+    padding: 1.75rem 1.5rem !important;
+    min-height: 190px;
+  }
+
+  .content_how {
+    margin-top: 1.5rem;
   }
 }
 
