@@ -203,7 +203,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     sales@sgmg.in
                   </div>
                   {copyFeedback && (
-                    <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
+                    <div style={{ color: "var(--logo-green, #a2cd3a)", fontSize: "11px", fontWeight: 600 }}>
                       ✓ {copyFeedback}
                     </div>
                   )}

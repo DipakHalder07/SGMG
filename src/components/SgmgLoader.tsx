@@ -29,7 +29,7 @@ export default function SgmgLoader({ className = "", isDone = false }: SgmgLoade
         </svg>
         {/* G */}
         <svg className="sgmg-tile t-g1" viewBox="4 4 886 884">
-          <g style={{ "--d": ".12s" } as React.CSSProperties}>
+          <g style={{ "--d": "0s" } as React.CSSProperties}>
             <rect className="sq" x="452" y="4" width="438" height="436" fill="#2590D0" />
             <line className="ln" x1="670.5" y1="4" x2="670.5" y2="440" strokeWidth="2" />
             <line className="ln" x1="452" y1="222" x2="890" y2="222" strokeWidth="3" />
@@ -41,7 +41,7 @@ export default function SgmgLoader({ className = "", isDone = false }: SgmgLoade
         </svg>
         {/* M */}
         <svg className="sgmg-tile t-m" viewBox="4 4 886 884">
-          <g style={{ "--d": ".24s" } as React.CSSProperties}>
+          <g style={{ "--d": "0s" } as React.CSSProperties}>
             <rect className="sq" x="4" y="452" width="440" height="436" fill="#A3CC3A" />
             <line className="ln" x1="223" y1="452" x2="223" y2="888" strokeWidth="3" />
             <line className="ln" x1="4" y1="669" x2="444" y2="669" strokeWidth="3" />
@@ -53,7 +53,7 @@ export default function SgmgLoader({ className = "", isDone = false }: SgmgLoade
         </svg>
         {/* G */}
         <svg className="sgmg-tile t-g2" viewBox="4 4 886 884">
-          <g style={{ "--d": ".36s" } as React.CSSProperties}>
+          <g style={{ "--d": "0s" } as React.CSSProperties}>
             <rect className="sq" x="452" y="452" width="438" height="436" fill="#A3CC3A" />
             <line className="ln" x1="670.5" y1="452" x2="670.5" y2="888" strokeWidth="2" />
             <line className="ln" x1="452" y1="669" x2="890" y2="669" strokeWidth="3" />
