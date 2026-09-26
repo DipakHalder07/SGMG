@@ -189,7 +189,7 @@ export default function HowToApplyPage() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=2800",
+          end: "+=1700",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -439,57 +439,87 @@ export default function HowToApplyPage() {
         </div>
       </section>
 
-      {/* --- PET-FRIENDLY SECTION --- */}
-      <section data-section="light" className="pets">
-        <div className="wrapper_pets">
-          <div className="pets_heading">
-            <h2 className="h2 pets_h">
-              For You.
+      {/* --- ABOUT SGMG HERITAGE & LIVING SECTION --- */}
+      <section data-section="light" className="about_story_sec">
+        <div className="wrapper_about_story">
+          <div className="about_story_heading">
+            <h2 className="h2 about_story_h">
+              Building Values.
               <br />
-              For{" "}
+              Shaping{" "}
               <span
                 data-scribble="5"
                 className="scribble-wrap scribble-visible"
               >
-                Them.
+                Tomorrow.
               </span>
             </h2>
           </div>
 
-          <div className="pets_ill">
-            <div className="box_pets" />
-            <div className="p_pets">
-              <div className="p_gen black">
-                A pet-friendly living environment designed to support everyday
-                life together, where comfort, routine, and space extend
-                naturally to your pet. From quiet moments of rest to daily
-                movement and shared routines, the space remains open, calm, and
-                easy to adapt — allowing both of you to settle in and feel at
-                home without compromise.
+          <div className="about_story_showcase">
+            <div className="about_story_visual">
+              <div className="about_img_frame">
+                <img
+                  src="/assets/Front_Elevation_View.webp"
+                  alt="SGMG Cosmos Crest Landmark in Siliguri"
+                  loading="lazy"
+                  className="about_feature_img"
+                />
+                <div className="about_img_badge">
+                  <div className="badge_dot" />
+                  <span>Sushil Gangadhar Mittal Group</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="about_story_content">
+              <div className="about_story_lead">
+                “True luxury is not merely crafted from steel and stone — it is the quiet harmony of enduring design, open air, and timeless trust.”
+              </div>
+              <div className="p_gen black about_story_body">
+                Founded with a visionary commitment to elevate living standards across North Bengal, Sushil Gangadhar Mittal Group (SGMG) brings together architectural ingenuity, uncompromising engineering, and transparent governance. From iconic commercial landmarks like Cosmos Mall to peaceful residential communities, SGMG builds spaces where families flourish and investments appreciate for generations.
+              </div>
+
+              <div className="about_story_stats">
+                <div className="about_stat_box">
+                  <div className="about_stat_num">25+</div>
+                  <div className="about_stat_lbl">Years of Group Heritage</div>
+                </div>
+                <div className="about_stat_box">
+                  <div className="about_stat_num">100%</div>
+                  <div className="about_stat_lbl">RERA & Title Transparency</div>
+                </div>
+                <div className="about_stat_box">
+                  <div className="about_stat_num">Sevoke Rd</div>
+                  <div className="about_stat_lbl">Siliguri Premier Hub</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="pet_boxes">
-            <div className="pet_box">
-              <div className="pet_title">A place to settle</div>
-              <div className="pet_desc">
-                Soft, quiet areas where your pet can rest, relax, and find a
-                consistent sense of comfort throughout the day.
+          {/* 3 Core Value Pillars */}
+          <div className="about_pillars">
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">01</div>
+              <div className="about_pillar_title">Architectural Mastery</div>
+              <div className="about_pillar_desc">
+                Conceived by visionary architects with expansive floor layouts, abundant natural sunlight, private panoramic balconies, and seismic-engineered RCC construction.
               </div>
             </div>
-            <div className="pet_box">
-              <div className="pet_title">Room to move</div>
-              <div className="pet_desc">
-                Open, flexible layouts that support movement, play, and daily
-                routines without restriction or disruption.
+
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">02</div>
+              <div className="about_pillar_title">Transparent Trust</div>
+              <div className="about_pillar_desc">
+                Every SGMG residence is strictly RERA-compliant with crystal-clear land titles, transparent milestone pricing, and construction-linked schedules you can rely on.
               </div>
             </div>
-            <div className="pet_box">
-              <div className="pet_title">Part of everyday life</div>
-              <div className="pet_desc">
-                A setting where living with your pet feels natural, integrated,
-                and fully considered in how the space functions.
+
+            <div className="about_pillar_item">
+              <div className="about_pillar_num">03</div>
+              <div className="about_pillar_title">Holistic Living</div>
+              <div className="about_pillar_desc">
+                Immersed in lush landscaped courtyards, resident wellness amenities, 24/7 multi-tier security, and attentive concierge management tailored for modern families.
               </div>
             </div>
           </div>
