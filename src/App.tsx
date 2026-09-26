@@ -13,6 +13,7 @@ const FaqPage = lazy(() => import("./pages/FaqPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
+const CareersPage = lazy(() => import("./pages/CareersPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/our-team" element={<TeamPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           {/* Catch-all 404 Route */}

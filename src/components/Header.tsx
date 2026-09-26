@@ -260,6 +260,18 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 <div>Our Team</div>
               </a>
               <a
+                href="/careers"
+                className={`mobile_link w-inline-block ${location.pathname === "/careers" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/careers")}
+                onTouchStart={() => prefetchRoute("/careers")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/careers");
+                }}
+              >
+                <div>Careers</div>
+              </a>
+              <a
                 id="w-node-_1fc5a60c-db18-5e47-1cc7-6d822ad20c80-671c8e8b"
                 href="/faq"
                 className="mobile_link w-inline-block"
