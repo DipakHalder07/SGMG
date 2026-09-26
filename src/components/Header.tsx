@@ -199,7 +199,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                   handleNavClick("/apartments");
                 }}
               >
-                <div>Apartments</div>
+                <div>Residences</div>
               </a>
               <a
                 href="/#amenities"

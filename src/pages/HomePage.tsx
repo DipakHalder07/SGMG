@@ -1599,7 +1599,7 @@ export default function HomePage() {
                 <div className="box_menu">
                   <div className="title_footer">Discover</div>
                   <div className="links_list">
-                    <Link to="/apartments" className="link_f">Apartments</Link>
+                    <Link to="/apartments" className="link_f">Residences</Link>
                     <a href="#amenities" className="link_f">Amenities</a>
                     <Link to="/location" className="link_f">Location</Link>
                     <a href="#gallery" className="link_f">Gallery</a>

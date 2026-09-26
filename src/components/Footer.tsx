@@ -107,7 +107,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     className="link_f"
                     style={{ cursor: "pointer" }}
                   >
-                    Apartments
+                    Residences
                   </span>
                   <span onClick={() => handleNavClick("/", "amenities")} className="link_f" style={{ cursor: "pointer" }}>
                     Amenities

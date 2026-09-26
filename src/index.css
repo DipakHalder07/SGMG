@@ -64,6 +64,29 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
 }
 
+/* Universal Headings Scale - 30% reduction with !important to guarantee overriding Webflow defaults */
+h1, .h1, .h1.black, .h1.black.gen_h, .h1.black.spec_amenities {
+  font-size: clamp(24px, 3.2vw, 38px) !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+}
+h2, .h2, .h2.smaller, .h2.smaller.spec_how, .h2.bigger, .h2.second_h, .h2.middle_spec, .h2.white, .h2.pets_h, .h2.apartments_heading, .h2.locations_specific, .h2.everything_you_need, .h2.legals, .h2.legal_heading, .h2.licenses_title {
+  font-size: clamp(20px, 2.7vw, 34px) !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+}
+h3, .h3 {
+  font-size: clamp(16px, 2vw, 24px) !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+}
+h4, .h4 {
+  font-size: clamp(13px, 1.5vw, 17px) !important;
+}
+h5, .h5 {
+  font-size: clamp(11px, 1.2vw, 14px) !important;
+}
+h6, .h6 {
+  font-size: clamp(10px, 1vw, 12px) !important;
+}
+
 /* Custom Scrollbar matching 21oaks.org */
 ::-webkit-scrollbar {
   width: 5px;
@@ -664,10 +687,18 @@ body.is-hero .menu {
   width: 100%;
 }
 
+.mobile_link,
+.mobile_link div,
+.mobile_link span,
+.mobile_link.w--current,
+.mobile_link.w--current div {
+  color: #ffffff !important;
+}
+
 .mobile_link {
-  color: #292929;
+  color: #ffffff !important;
   font-size: 0.85em;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif);
   text-decoration: none;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -675,9 +706,11 @@ body.is-hero .menu {
   display: block;
 }
 
-.mobile_link:hover {
-  opacity: 0.65;
+.mobile_link:hover,
+.mobile_link:hover div {
+  opacity: 0.85;
   transform: translateX(5%);
+  color: #ffffff !important;
 }
 
 .contact_button {
@@ -909,7 +942,9 @@ body.is-hero .menu {
     opacity: 1 !important;
   }
 
-  .mobile_link {
+  .mobile_link,
+  .mobile_link div {
+    color: #ffffff !important;
     font-size: 14.6px !important;
     padding: 3.2px 0 !important;
   }
@@ -985,7 +1020,7 @@ body.is-hero .menu {
 .hero .heading_box h1 {
   color: #fff;
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(34px, 3.8vw, 56px);
+  font-size: clamp(24px, 2.7vw, 39px);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.015em;
@@ -1114,7 +1149,7 @@ body.is-hero .menu {
   }
 
   .hero .heading_box h1 {
-    font-size: clamp(28px, 6.5vw, 38px);
+    font-size: clamp(20px, 4.5vw, 27px);
     line-height: 1.08;
     letter-spacing: -0.015em;
   }
@@ -1303,7 +1338,7 @@ body.is-hero .menu {
 
 .dynamic_section .middle .h2.second_h {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 5.5vw, 76px);
+  font-size: clamp(27px, 3.8vw, 53px);
   line-height: 1.02;
   font-weight: 400;
   color: #292929;
@@ -1564,7 +1599,7 @@ body.is-hero .menu {
   }
 
   .dynamic_section .middle .h2.second_h {
-    font-size: clamp(32px, 8.5vw, 48px);
+    font-size: clamp(22px, 6vw, 34px);
     line-height: 1.08;
   }
 
@@ -1687,7 +1722,7 @@ body.is-hero .menu {
 
 .left_side .h2.smaller {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 4.5vw, 64px);
+  font-size: clamp(27px, 3.2vw, 45px);
   line-height: 1.05;
   font-weight: 400;
   color: #292929;
@@ -1807,7 +1842,7 @@ body.is-hero .menu {
   }
 
   .left_side .h2.smaller {
-    font-size: clamp(32px, 8.5vw, 44px) !important;
+    font-size: clamp(22px, 6vw, 31px) !important;
     line-height: 1.05 !important;
   }
 
@@ -1889,7 +1924,7 @@ body.is-hero .menu {
 
   .heading_apartments .h2.smaller {
     font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: clamp(38px, 4.5vw, 64px);
+    font-size: clamp(27px, 3.2vw, 45px);
     line-height: 1.05;
     color: #292929;
   }
@@ -1955,7 +1990,7 @@ body.is-hero .menu {
   }
 
   .heading_apartments .h2.smaller {
-    font-size: clamp(34px, 8.5vw, 48px) !important;
+    font-size: clamp(24px, 6vw, 34px) !important;
     line-height: 1.05 !important;
   }
 
@@ -2027,12 +2062,15 @@ body.is-hero .menu {
     width: 100% !important;
   }
 
-  .apartments .apart_title {
-    font-size: 22px !important;
+  .apartments .apart_title,
+  .apart_card .apart_title,
+  .apart_title_line .apart_title {
+    font-size: 15px !important;
     font-weight: 400 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
     color: #292929 !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.01em;
   }
 
   .apartments .price_box {
@@ -2041,12 +2079,14 @@ body.is-hero .menu {
     gap: 0.35rem !important;
   }
 
-  .apartments .price_box .price_txt {
-    font-size: 22px !important;
+  .apartments .price_box .price_txt,
+  .apart_card .price_txt,
+  .price_box .price_txt {
+    font-size: 15px !important;
     font-weight: 400 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
     color: #292929 !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
   }
 
   .apartments .desc_home {
@@ -2225,7 +2265,7 @@ body.is-hero .menu {
 .heading_fs .h2.white {
   color: #fff;
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 5vw, 68px);
+  font-size: clamp(27px, 3.5vw, 48px);
   line-height: 1.05;
 }
 
@@ -2291,7 +2331,7 @@ body.is-hero .menu {
   }
 
   .heading_fs .h2.white {
-    font-size: clamp(30px, 7.5vw, 42px) !important;
+    font-size: clamp(21px, 5.3vw, 29px) !important;
   }
 
   .clouds_top {
@@ -2332,7 +2372,7 @@ body.is-hero .menu {
 
 .everything_u_need .h2.everything_you_need {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 5vw, 68px);
+  font-size: clamp(27px, 3.5vw, 48px);
   line-height: 1.05;
   color: #292929;
 }
@@ -2407,7 +2447,7 @@ body.is-hero .menu {
   }
 
   .everything_u_need .h2.everything_you_need {
-    font-size: clamp(28px, 7.5vw, 36px) !important;
+    font-size: clamp(20px, 5.3vw, 25px) !important;
     line-height: 1.1 !important;
     margin-bottom: 0 !important;
   }
@@ -2507,7 +2547,7 @@ body.is-hero .menu {
 
 .amenities_heading .h2.middle_spec {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 5.5vw, 76px);
+  font-size: clamp(27px, 3.8vw, 53px);
   line-height: 1.02;
   color: #292929;
 }
@@ -2538,7 +2578,7 @@ body.is-hero .menu {
 
 .amenities_heading .h2.middle_spec {
   font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-  font-size: clamp(32px, 3.5vw, 48px);
+  font-size: clamp(22px, 2.5vw, 34px);
   line-height: 1.1 !important;
   text-align: center !important;
   margin-bottom: 1.25rem !important;
@@ -2643,7 +2683,7 @@ body.is-hero .menu {
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(30px, 8.8vw, 36px) !important;
+    font-size: clamp(21px, 6.2vw, 25px) !important;
     line-height: 1.1 !important;
     margin-bottom: 1.25rem !important;
   }
@@ -2689,11 +2729,18 @@ body.is-hero .menu {
   top: 100px;
 }
 
-.sticky_how .h2.black {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(38px, 4.5vw, 64px);
-  line-height: 1.05;
-  color: #292929;
+.sticky_how .h2,
+.sticky_how .h2.smaller,
+.sticky_how .h2.black,
+.headline_box .h2,
+.headline_box .h2.smaller,
+.headline_box h2 {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(22px, 2.7vw, 36px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em;
+  color: #292929 !important;
+  margin: 0;
 }
 
 .right_cards {
@@ -2732,7 +2779,7 @@ body.is-hero .menu {
 
 .title_how {
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 400;
   color: #292929;
   margin-bottom: 8px;
@@ -2753,8 +2800,13 @@ body.is-hero .menu {
     width: 100% !important;
   }
 
-  .sticky_how .h2.black {
-    font-size: clamp(34px, 8.5vw, 48px) !important;
+  .sticky_how .h2,
+  .sticky_how .h2.smaller,
+  .sticky_how .h2.black,
+  .headline_box .h2,
+  .headline_box .h2.smaller,
+  .headline_box h2 {
+    font-size: clamp(20px, 5.5vw, 28px) !important;
   }
 
   .right_cards {
@@ -2883,12 +2935,14 @@ body.is-hero .menu {
   padding-bottom: 10rem;
 }
 
-.testimonials_heading .h2.bigger {
+.testimonials_heading .h2.bigger,
+.testimonials_heading .h2,
+.testimonials_heading h2 {
   letter-spacing: -0.02em;
-  font-size: 6em;
+  font-size: clamp(22px, 3.2vw, 38px) !important;
   font-weight: 400;
-  line-height: 0.7;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  line-height: 1.1 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   color: var(--black, #292929);
   margin: 0;
 }
@@ -3079,9 +3133,11 @@ body.is-hero .menu {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
-  .testimonials_heading .h2.bigger {
-    font-size: 4.5em;
-    line-height: 0.85;
+  .testimonials_heading .h2.bigger,
+  .testimonials_heading .h2,
+  .testimonials_heading h2 {
+    font-size: clamp(21px, 4.5vw, 32px) !important;
+    line-height: 1.1 !important;
   }
   .cms_testimonials {
     flex-flow: column;
@@ -3155,9 +3211,11 @@ body.is-hero .menu {
 }
 
 @media (max-width: 767px) {
-  .testimonials_heading .h2.bigger {
-    font-size: 3.5em;
-    line-height: 0.9;
+  .testimonials_heading .h2.bigger,
+  .testimonials_heading .h2,
+  .testimonials_heading h2 {
+    font-size: clamp(20px, 5.5vw, 26px) !important;
+    line-height: 1.1 !important;
   }
   .cms_testimonials {
     flex-flow: column;
@@ -3207,9 +3265,11 @@ body.is-hero .menu {
 }
 
 @media (max-width: 479px) {
-  .testimonials_heading .h2.bigger {
-    font-size: 8.5em;
-    line-height: 1;
+  .testimonials_heading .h2.bigger,
+  .testimonials_heading .h2,
+  .testimonials_heading h2 {
+    font-size: clamp(18px, 6.5vw, 24px) !important;
+    line-height: 1.15 !important;
   }
   .cms_testimonials {
     flex-flow: column;
@@ -3288,7 +3348,7 @@ body.is-hero .menu {
 
 .faq_heading .h2.smaller {
   font-family: Exposure, Georgia, serif;
-  font-size: clamp(38px, 4.6vw, 68px);
+  font-size: clamp(27px, 3.2vw, 48px);
   line-height: 1;
   font-weight: 400;
   color: var(--black);
@@ -3500,7 +3560,7 @@ body.is-hero .menu {
     padding-bottom: 4.5rem;
   }
   .faq_heading .h2.smaller {
-    font-size: clamp(32px, 8vw, 44px);
+    font-size: clamp(22px, 5.6vw, 31px);
     text-align: center;
   }
   .sides_faq {
@@ -3602,7 +3662,7 @@ body.is-hero .menu {
 
 .txt_cta,
 .pink_cta .heading_cta .txt_cta {
-  font-size: clamp(28px, 3.1vw, 48px);
+  font-size: clamp(20px, 2.2vw, 34px);
   line-height: 1.05;
   font-family: Exposure, Georgia, serif;
   color: #ffffff !important;
@@ -3701,7 +3761,7 @@ body.is-hero .menu {
 .cap_footer {
   color: var(--primary);
   letter-spacing: -0.01em;
-  font-size: clamp(34px, 3.2vw, 54px);
+  font-size: clamp(24px, 2.2vw, 38px);
   line-height: 1.08;
   font-family: Exposure, Georgia, serif;
 }
@@ -3937,7 +3997,7 @@ body.is-hero .menu {
     margin-bottom: 3rem;
   }
   .txt_cta {
-    font-size: clamp(23px, 6.5vw, 26px) !important;
+    font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.15 !important;
     font-family: var(--font-display, "Exposure", Georgia, serif) !important;
   }
@@ -3946,7 +4006,7 @@ body.is-hero .menu {
     max-width: 165px !important;
   }
   .cap_footer {
-    font-size: clamp(23px, 6.5vw, 26px) !important;
+    font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.1 !important;
     font-family: var(--font-display, "Exposure", Georgia, serif) !important;
   }
@@ -4022,12 +4082,15 @@ body.is-hero .menu {
   box-sizing: border-box;
 }
 
+.heading_aparts .h1,
+.heading_aparts .h1.black,
+.heading_aparts .h1.black.spec_amenities,
 .h1.black.spec_amenities {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 4.5em; /* 64.8px */
-  line-height: 1;
-  letter-spacing: normal;
-  color: #292929;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(24px, 3.2vw, 38px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em;
+  color: #292929 !important;
   margin: 0;
   padding: 0;
   font-weight: 400;
@@ -4647,10 +4710,10 @@ body.is-hero .menu {
 }
 
 .apart_title {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 1.45em;
-  line-height: 1;
-  color: var(--black, #292929);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: 15px !important;
+  line-height: 1.15 !important;
+  color: var(--black, #292929) !important;
   font-weight: 400;
   text-decoration: none;
   white-space: nowrap;
@@ -4686,10 +4749,10 @@ body.is-hero .menu {
 }
 
 .price_txt {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 1.3em;
-  line-height: 1;
-  color: var(--black, #292929);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: 15px !important;
+  line-height: 1.15 !important;
+  color: var(--black, #292929) !important;
   font-weight: 400;
   white-space: nowrap;
 }
@@ -4735,9 +4798,10 @@ body.is-hero .menu {
   .wrapper_general.apartments_gen {
     padding: 15em 1.35rem 8rem;
   }
+  .heading_aparts .h1,
   .h1.black,
   .h1.black.spec_amenities {
-    font-size: 6em;
+    font-size: clamp(22px, 4.2vw, 34px) !important;
   }
   .apartments_sides {
     flex-flow: column;
@@ -4766,7 +4830,7 @@ body.is-hero .menu {
   }
   .price_txt,
   .apart_title {
-    font-size: 2.5em;
+    font-size: 16px !important;
   }
   .mnth_txt {
     font-size: 1.3em;
@@ -4830,9 +4894,11 @@ body.is-hero .menu {
   .wrapper_general.apartments_gen {
     padding-top: 12em;
   }
+  .heading_aparts .h1,
+  .h1.black,
   .h1.black.spec_amenities {
-    font-size: 7em;
-    line-height: 1;
+    font-size: clamp(20px, 5.2vw, 28px) !important;
+    line-height: 1.05 !important;
   }
   .apartments_sides {
     flex-flow: column;
@@ -4853,10 +4919,10 @@ body.is-hero .menu {
   .price_txt,
   .price_txt.specific_card,
   .apart_title {
-    font-size: 3em;
+    font-size: 16px !important;
   }
   .mnth_txt {
-    font-size: 1.85em;
+    font-size: 12px !important;
   }
   .icon_price {
     width: 3.5em;
@@ -5077,8 +5143,10 @@ body.is-hero .menu {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .heading_aparts .h1,
+  .h1.black,
   .h1.black.spec_amenities {
-    font-size: 8.7em;
+    font-size: clamp(18px, 6vw, 24px) !important;
   }
   .apartments_grid {
     row-gap: 1.6rem;
@@ -5095,16 +5163,16 @@ body.is-hero .menu {
     margin-top: 0px;
   }
   .price_txt {
-    font-size: 5.5em;
+    font-size: 15px !important;
   }
   .price_txt.specific_card {
-    font-size: 5em;
+    font-size: 15px !important;
   }
   .apart_title {
-    font-size: 5.5em;
+    font-size: 15px !important;
   }
   .mnth_txt {
-    font-size: 3.5em;
+    font-size: 11px !important;
   }
   .icon_price {
     justify-content: center;
@@ -5324,7 +5392,7 @@ body.is-hero .menu {
 .faq-main-heading.white {
   color: #ffffff;
   font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
   line-height: 1.15;
   margin-bottom: 1.5rem;
 }

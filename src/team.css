@@ -53,7 +53,7 @@
 
 .team_hero_title {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(1.75rem, 3.5vw, 3.15rem);
   font-weight: 300;
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -93,7 +93,7 @@
 
 .team_stat_num {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-size: clamp(1.25rem, 1.75vw, 1.7rem);
   font-weight: 400;
   color: #2391cf;
   line-height: 1.1;
@@ -268,7 +268,7 @@
 
 .team_spotlight_name {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-size: clamp(1.4rem, 2.1vw, 1.9rem);
   font-weight: 400;
   color: #292929;
   line-height: 1.2;
@@ -331,7 +331,7 @@
 
 .team_section_title {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-size: clamp(1.25rem, 1.75vw, 1.7rem);
   font-weight: 400;
   color: #292929;
   margin: 0 0 0.5rem 0;
@@ -522,7 +522,7 @@
 
 .team_values_title {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
   font-weight: 400;
   color: #292929;
   line-height: 1.2;
@@ -570,7 +570,7 @@
 
 .team_value_heading {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #292929;
   margin: 0 0 0.75rem 0;
@@ -618,7 +618,7 @@
 
 .team_cta_title {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
   font-weight: 400;
   line-height: 1.25;
   margin: 0 0 1rem 0;

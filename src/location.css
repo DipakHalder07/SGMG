@@ -111,7 +111,7 @@
 .h2.locations_specific {
   color: #ffffff;
   font-family: "Michroma", sans-serif !important;
-  font-size: 57.6px;
+  font-size: 40.32px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -1.152px;
@@ -277,7 +277,7 @@
 .h2.white.specific_map {
   color: #ffffff;
   font-family: "Michroma", sans-serif !important;
-  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-size: clamp(1.75rem, 3.85vw, 3.85rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -691,7 +691,7 @@
 .faqs.black .h2.smaller {
   color: #ffffff !important;
   font-family: "Michroma", sans-serif !important;
-  font-size: 66.24px;
+  font-size: 46.37px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -1.3248px;
@@ -889,7 +889,7 @@
   }
 
   .h2.locations_specific {
-    font-size: 46px;
+    font-size: 32px;
     line-height: 1;
     letter-spacing: -0.9px;
   }
@@ -978,7 +978,7 @@
   }
 
   .faqs.black .h2.smaller {
-    font-size: 52px;
+    font-size: 36px;
     line-height: 1.05;
   }
 
@@ -1012,7 +1012,7 @@
   }
 
   .h2.locations_specific {
-    font-size: 32px !important;
+    font-size: 22px !important;
     line-height: 1.08 !important;
     letter-spacing: -0.65px !important;
   }
@@ -1101,7 +1101,7 @@
   }
 
   .h2.white.specific_map {
-    font-size: 35px !important;
+    font-size: 24.5px !important;
     line-height: 1 !important;
     letter-spacing: -0.7px !important;
   }
@@ -1158,7 +1158,7 @@
   }
 
   .faqs.black .h2.smaller {
-    font-size: 38px;
+    font-size: 26.6px;
     line-height: 1.08;
     letter-spacing: -0.8px;
   }

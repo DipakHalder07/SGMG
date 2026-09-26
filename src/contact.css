@@ -152,7 +152,7 @@ main.contact {
 .h1.black {
   color: var(--black, #292929);
   font-family: "Michroma", sans-serif !important;
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-size: clamp(1.75rem, 3.85vw, 3.15rem);
   font-weight: 400;
   line-height: 1;
   margin: 0;
@@ -364,7 +364,7 @@ main.contact {
 .form_title {
   width: 100%;
   max-width: 32ch;
-  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  font-size: clamp(0.88rem, 1.54vw, 1.26rem);
   line-height: 1.35;
   color: var(--black, #292929);
   font-weight: 400;
@@ -883,7 +883,7 @@ main.contact {
 
 .h2.smaller {
   font-family: "Michroma", sans-serif !important;
-  font-size: clamp(2.5rem, 4.8vw, 4.2rem);
+  font-size: clamp(1.75rem, 3.36vw, 2.94rem);
   font-weight: 300;
   line-height: 1.05;
   margin: 0;
