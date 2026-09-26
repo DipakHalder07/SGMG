@@ -152,7 +152,7 @@ export default function HowToApplyPage() {
   // FAQ state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  // --- GSAP CARD STACKING & PEELING ANIMATION (1:1 21OAKS) ---
+  // --- GSAP CARD STACKING & PEELING ANIMATION ---
   useEffect(() => {
     const section = stepsSectionRef.current;
     if (!section) return;
@@ -161,88 +161,78 @@ export default function HowToApplyPage() {
       const cards = gsap.utils.toArray<HTMLElement>(".card_how_item");
       if (!cards.length) return;
 
-      const stepTopTime = new Map<number, number>();
+      // Curated natural stack positions (card 1 on top, cards 2-5 peeking out organically)
+      const stackTransforms = [
+        { y: 0, rot: -2.4 },     // Step 1: light blue (front)
+        { y: -6, rot: 3.5 },     // Step 2: pink (peeking right)
+        { y: -12, rot: -4.2 },   // Step 3: cream (peeking left)
+        { y: -18, rot: 4.8 },    // Step 4: dark (peeking right)
+        { y: -24, rot: -1.8 },   // Step 5: yellow (peeking bottom/left)
+      ];
 
-      // 1. Initial State: cards placed below screen with authentic reverse z-index (card 1 on top)
+      // 1. Initial State: cards are ALREADY stacked in the center deck (no flying in from bottom)
       cards.forEach((card, i) => {
+        const tr = stackTransforms[i] || { y: -i * 6, rot: 0 };
         gsap.set(card, {
           xPercent: -50,
           yPercent: -50,
-          y: window.innerHeight * 1.1 + i * 60,
-          rotation: (i - 2) * 2.5 + (i % 2 === 0 ? -1.5 : 1.5),
+          x: 0,
+          y: tr.y,
+          rotation: tr.rot,
           zIndex: cards.length - i,
+          opacity: 1,
         });
       });
 
-      // 2. Timeline with ScrollTrigger pin
+      // 2. Timeline with ScrollTrigger pin - only peel cards UPWARD off-screen
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=3800",
+          end: "+=2800",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           fastScrollEnd: true,
-          onUpdate: () => {
+          onUpdate: (self) => {
             if (isAutoScrollingRef.current) return;
-            const t = tl.time();
-            let best = -Infinity;
-            let active: number | null = null;
-            stepTopTime.forEach((time, step) => {
-              if (t >= time && time > best) {
-                best = time;
-                active = step;
-              }
-            });
-            if (active != null) setActiveStep(active);
+            const p = self.progress;
+            let active = 1;
+            if (p >= 0.82) active = 5;
+            else if (p >= 0.58) active = 4;
+            else if (p >= 0.34) active = 3;
+            else if (p >= 0.10) active = 2;
+            else active = 1;
+            setActiveStep(active);
           },
         },
       });
 
-      // Step A: All cards fly in from below to center
-      tl.to(cards, {
-        y: 0,
-        stagger: 0.2,
-        duration: 1.2,
-        ease: "power2.out",
-      });
+      // Initial anchor label for Step 1
+      tl.addLabel("step-1", 0);
 
-      // Step B: Cards settle into stacked deck
-      tl.to(
-        cards,
-        {
-          y: (i) => -i * 8,
-          rotation: (i) => (i - (cards.length - 1) / 2) * 2.2,
-          stagger: 0.06,
-          duration: 0.8,
-          ease: "power1.out",
-        },
-        ">-0.15"
-      );
-
-      // Record time when Step 1 is settled
-      stepTopTime.set(1, tl.duration());
-
-      // Step C: Each card (1 to 4) peels away upward to reveal the next card
+      // Peel cards 0, 1, 2, 3 (steps 1 to 4) UPWARD to the top to reveal each subsequent card
       cards.forEach((card, i) => {
-        if (i === cards.length - 1) return; // Last card stays visible
-        const pos = i === 0 ? tl.duration() + 0.15 : tl.duration();
-        const nextStep = i + 2;
-        stepTopTime.set(nextStep, pos);
+        if (i === cards.length - 1) return; // Last card (step 5) stays visible
+        const nextStepNumber = i + 2;
 
         tl.to(
           card,
           {
-            y: -window.innerHeight * 1.35,
+            y: () => -window.innerHeight * 1.35,
             rotation: i % 2 ? 8 : -8,
-            duration: 0.65,
-            ease: "power2.in",
+            duration: 1.0,
+            ease: "power2.inOut",
           },
-          pos
+          `+=0.2`
         );
+
+        tl.addLabel(`step-${nextStepNumber}`);
       });
+
+      // Brief dwell on final card before unpinning
+      tl.to({}, { duration: 0.3 });
     }, stepsSectionRef);
 
     // Refresh after DOM and images are completely ready
@@ -265,8 +255,15 @@ export default function HowToApplyPage() {
     const st = ScrollTrigger.getAll().find((s) => s.trigger === section);
     if (st) {
       isAutoScrollingRef.current = true;
-      const ratio = (step - 1) / 4;
-      const targetScroll = st.start + (st.end - st.start) * (ratio * 0.92 + 0.04);
+      const stepRatios: Record<number, number> = {
+        1: 0.01,
+        2: 0.23,
+        3: 0.47,
+        4: 0.71,
+        5: 0.96,
+      };
+      const ratio = stepRatios[step] ?? (step - 1) / 4;
+      const targetScroll = st.start + (st.end - st.start) * ratio;
 
       window.scrollTo({
         top: targetScroll,
