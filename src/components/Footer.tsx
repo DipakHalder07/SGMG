@@ -94,6 +94,41 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
               <div className="cap_footer">
                 Tranquility and <span data-scribble="4" className="scribble-wrap scribble-visible">Living.</span>
               </div>
+
+              {/* Other Ventures */}
+              <div className="footer_ventures">
+                <div className="title_footer">Other Ventures</div>
+                <div className="ventures_logos_wrap">
+                  <a
+                    href="https://cosmospreschool.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="venture_link venture_cosmos"
+                    title="Cosmos Global Pre-School"
+                  >
+                    <img
+                      src="/assets/ventures/cosmos-global.png"
+                      alt="Cosmos Global Pre-School"
+                      className="venture_logo_img venture_logo_cosmos"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a
+                    href="https://sgmg.in/inox/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="venture_link venture_inox"
+                    title="INOX Live the Movie"
+                  >
+                    <img
+                      src="/assets/ventures/inox.png"
+                      alt="INOX Live the Movie"
+                      className="venture_logo_img venture_logo_inox"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="menu_footer">
@@ -108,9 +143,6 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     style={{ cursor: "pointer" }}
                   >
                     Residences
-                  </span>
-                  <span onClick={() => handleNavClick("/", "amenities")} className="link_f" style={{ cursor: "pointer" }}>
-                    Amenities
                   </span>
                   <span
                     onClick={() => handleNavClick("/location")}

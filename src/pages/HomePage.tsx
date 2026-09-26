@@ -1593,6 +1593,41 @@ export default function HomePage() {
                 <div className="cap_footer">
                   Tranquility and <span data-scribble="4" className="scribble-wrap scribble-visible">Living.</span>
                 </div>
+
+                {/* Other Ventures */}
+                <div className="footer_ventures">
+                  <div className="title_footer">Other Ventures</div>
+                  <div className="ventures_logos_wrap">
+                    <a
+                      href="https://cosmospreschool.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="venture_link venture_cosmos"
+                      title="Cosmos Global Pre-School"
+                    >
+                      <img
+                        src="/assets/ventures/cosmos-global.png"
+                        alt="Cosmos Global Pre-School"
+                        className="venture_logo_img venture_logo_cosmos"
+                        loading="lazy"
+                      />
+                    </a>
+                    <a
+                      href="https://sgmg.in/inox/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="venture_link venture_inox"
+                      title="INOX Live the Movie"
+                    >
+                      <img
+                        src="/assets/ventures/inox.png"
+                        alt="INOX Live the Movie"
+                        className="venture_logo_img venture_logo_inox"
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className="menu_footer">
@@ -1600,7 +1635,6 @@ export default function HomePage() {
                   <div className="title_footer">Discover</div>
                   <div className="links_list">
                     <Link to="/apartments" className="link_f">Residences</Link>
-                    <a href="#amenities" className="link_f">Amenities</a>
                     <Link to="/location" className="link_f">Location</Link>
                     <a href="#gallery" className="link_f">Gallery</a>
                     <a href="#how-it-works" className="link_f">How to apply</a>

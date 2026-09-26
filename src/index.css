@@ -3768,6 +3768,76 @@ body.is-hero .menu {
   font-family: Exposure, Georgia, serif;
 }
 
+/* Other Ventures in Footer */
+.footer_ventures {
+  margin-top: 2.25rem;
+}
+
+.footer_ventures .title_footer {
+  margin-bottom: 0.95rem;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.ventures_logos_wrap {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.venture_link,
+.venture_card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+}
+
+.venture_link:hover,
+.venture_card:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.venture_logo_img {
+  height: 70px;
+  width: auto;
+  max-width: 210px;
+  object-fit: contain;
+  display: block;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: filter 0.28s ease, transform 0.28s ease;
+}
+
+/* Subtle light drop-shadow on cosmos-global so dark text is readable on the dark background without any background box or border */
+.venture_logo_cosmos {
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
+}
+
+.venture_link:hover .venture_logo_cosmos {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 6px rgba(162, 205, 58, 0.65));
+}
+
+.venture_logo_inox {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.venture_link:hover .venture_logo_inox {
+  filter: drop-shadow(0 0 8px rgba(35, 145, 207, 0.65));
+}
+
 .menu_footer {
   gap: 4.5rem 4em;
   grid-template-columns: 1fr 1fr;
@@ -3958,6 +4028,13 @@ body.is-hero .menu {
   .caption_left {
     width: 100%;
     margin-bottom: 2.5rem;
+  }
+  .ventures_logos_wrap {
+    gap: 1.75rem;
+  }
+  .venture_logo_img {
+    height: 58px;
+    max-width: 170px;
   }
   .flex_f_top {
     flex-direction: column;
