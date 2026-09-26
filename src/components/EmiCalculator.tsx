@@ -1,5 +1,4 @@
 import React, { useState, useId } from "react";
-import { WebflowButton } from "./Header";
 import "../emi-calculator.css";
 
 // Utility for Indian currency formatting (e.g. ₹60,829, ₹80,00,000)
@@ -202,19 +201,19 @@ export default function EmiCalculator() {
                 className="emi_gauge_svg"
                 aria-hidden="true"
               >
-                {/* Interest Arc (Magenta/Crimson) */}
+                {/* Interest Arc (SGMG Logo Green) */}
                 <path
                   d={interestArcPath}
                   fill="none"
-                  stroke="#b83465"
-                  strokeWidth="7"
+                  stroke="#8eb826"
+                  strokeWidth="8"
                   strokeLinecap="round"
                 />
-                {/* Principal Arc (Thicker Blue) */}
+                {/* Principal Arc (SGMG Primary Blue) */}
                 <path
                   d={principalArcPath}
                   fill="none"
-                  stroke="#1872df"
+                  stroke="#2391cf"
                   strokeWidth="11"
                   strokeLinecap="round"
                 />
@@ -249,36 +248,36 @@ export default function EmiCalculator() {
             {/* Bottom 3 Summary Values */}
             <div className="emi_bottom_values_row">
               <div className="emi_val_item text-left">
-                <span className="emi_val_label">Interest Amount</span>
+                <span className="emi_val_label">
+                  <span className="emi_legend_dot dot-interest" aria-hidden="true" />
+                  Interest Amount
+                </span>
                 <span className="emi_val_number color-interest">
                   {formatIndianCurrency(interestAmount)}
                 </span>
               </div>
 
               <div className="emi_val_item text-center">
-                <span className="emi_val_label">Principal Amount</span>
+                <span className="emi_val_label">
+                  <span className="emi_legend_dot dot-principal" aria-hidden="true" />
+                  Principal Amount
+                </span>
                 <span className="emi_val_number color-principal">
                   {formatIndianCurrency(loanAmount)}
                 </span>
               </div>
 
               <div className="emi_val_item text-right">
-                <span className="emi_val_label">Total Payable Amount</span>
+                <span className="emi_val_label">
+                  <span className="emi_legend_dot dot-total" aria-hidden="true" />
+                  Total Payable Amount
+                </span>
                 <span className="emi_val_number color-total">
                   {formatIndianCurrency(totalPayable)}
                 </span>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Button matching previous site style */}
-        <div className="emi_bottom_btn_row">
-          <WebflowButton
-            text="Schedule a Tour"
-            href="https://calendly.com/dipakh810/30min"
-            target="_blank"
-          />
         </div>
       </div>
     </section>
