@@ -50,18 +50,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb5_D1-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb4_D1-7.avif"
     ],
-    desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
-    aboutText: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
-    storyTitle: "A balanced living layout",
-    storyDesc: "D1 is designed for balanced student living, combining private bedrooms with open shared spaces that make everyday routines feel comfortable and connected. Fully furnished interiors, practical layouts, and modern essentials create a simple move-in experience from day one.",
+    desc: "A thoughtfully planned 4-bedroom residence offering generous natural light, expansive living spaces, and refined architecture tailored for modern families.",
+    aboutText: "A thoughtfully planned 4-bedroom residence offering generous natural light, expansive living spaces, and refined architecture tailored for modern families.",
+    storyTitle: "A harmonious layout for modern living",
+    storyDesc: "D1 is designed for elevated family living, combining expansive private bedrooms with open shared spaces that make everyday routines feel comfortable and connected. High-specification interiors, cross-ventilation, and modern fittings create a seamless living experience in Siliguri.",
     amenities: {
-      kitchen: ["Dishwasher", "Oven", "Microwave", "Refrigerator", "Range", "Freezer"],
-      livingRoom: ["Wall-mounted TV", "Sectional sofa", "Coffee table", "Bar stools"],
-      bedroom: ["Full XL-size bed", "Mattress", "Dresser", "Study desk", "Desk chair", "Keyed lock", "Window blinds"]
+      kitchen: ["Modular cabinets", "Granite counter", "Stainless sink", "Chimney & Hob space", "Exhaust point", "Utility balcony"],
+      livingRoom: ["Expansive lounge", "Dining hall space", "Designer tile floor", "Wide balcony access"],
+      bedroom: ["Spacious king suite", "Cross ventilation", "Attached toilet space", "Wardrobe niche", "High-speed optical point"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -86,18 +86,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbb_D1-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bba_D1-7.avif"
     ],
-    desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
-    aboutText: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
-    storyTitle: "Refined details and shared comfort",
-    storyDesc: "D1 Premium elevates student living with upgraded finishes, custom color palettes, and designer fixtures throughout. Enjoy oversized windows, enhanced kitchen countertops, and quiet private study spaces within your personal suite.",
+    desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
+    aboutText: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
+    storyTitle: "Bespoke finishes and panoramic views",
+    storyDesc: "D1 Premium elevates residential living with imported vitrified tile flooring, designer sanitary fixtures, and generous double-glazed windows. Enjoy expansive living areas, an Italian-inspired modular kitchen, and serene private balconies overlooking Siliguri's greenery.",
     amenities: {
-      kitchen: ["Stainless steel appliances", "Dishwasher", "Modern oven", "Microwave", "Refrigerator", "Range"],
-      livingRoom: ["Smart 55\" 4K TV", "Designer sectional sofa", "Solid oak coffee table", "Bar seating"],
-      bedroom: ["Premium mattress", "Full XL bed frame", "Custom dresser", "Workstation desk", "Ergonomic chair", "Keyed lock"]
+      kitchen: ["Italian-finish modular units", "Quartz worktops", "Double stainless sink", "Piped gas provision", "Separate utility"],
+      livingRoom: ["Double-aspect grand hall", "Recessed LED lighting", "Polished vitrified floors", "Panoramic deck"],
+      bedroom: ["Master suite balcony", "En-suite bathroom", "Hardwood-style tiling", "Walk-in closet space"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -122,18 +122,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb9_D2-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb8_D2-7.avif"
     ],
-    desc: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
-    aboutText: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
-    storyTitle: "Private ensuite bathrooms for all",
-    storyDesc: "With 4 full bathrooms, D2 guarantees complete autonomy and privacy for each roommate. The expansive central kitchen and open living room allow easy dinners and movie nights without compromising personal retreat space.",
+    desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
+    aboutText: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
+    storyTitle: "Four private en-suite master retreats",
+    storyDesc: "With 4 dedicated en-suite bathrooms, D2 guarantees absolute privacy and comfort for every family member. The expansive central living hall and formal dining room provide the ideal setting for entertaining guests and celebrating life’s milestones.",
     amenities: {
-      kitchen: ["Double sink", "Dishwasher", "Microwave", "Oven & Range", "Full freezer/fridge"],
-      livingRoom: ["Living room entertainment setup", "Lounge sectional", "Accent lighting", "Breakfast counter"],
-      bedroom: ["Private attached bathroom", "Walk-in closet", "Full XL bed", "Desk & chair", "Electronic lock"]
+      kitchen: ["Double sink", "Polished granite counter", "Modular storage", "Separate service entry", "Utility balcony"],
+      livingRoom: ["Grand drawing room", "Formal dining alcove", "Decorative false ceiling points", "Expansive picture windows"],
+      bedroom: ["4 Private en-suite baths", "Dressing areas", "Anti-skid premium tiles", "Branded CP sanitary ware"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -158,18 +158,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193bbf_D2-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbe_D2-7.avif"
     ],
-    desc: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
-    aboutText: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
-    storyTitle: "The ultimate 4BR college experience",
-    storyDesc: "D2 Premium offers unmatched square footage and modern elegance. Four ensuite private baths, quartz countertops, designer pendant lighting, and hardwood-style flooring deliver high-end comfort right near campus.",
+    desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
+    aboutText: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
+    storyTitle: "The ultimate signature luxury residence",
+    storyDesc: "D2 Premium stands as our flagship 4-bedroom residence in Siliguri. Featuring four private master suites, Italian marble countertops, premium acoustic insulation, and expansive landscaped deck views, it exemplifies architectural distinction.",
     amenities: {
-      kitchen: ["Quartz countertops", "Stainless appliances", "Dishwasher", "Disposal", "French-door fridge"],
-      livingRoom: ["Curated art & furniture package", "Ultra HD TV", "Plush seating", "Dining island"],
-      bedroom: ["Ensuite luxury bath", "Custom lighting", "Plush mattress", "Study desk", "Room darkening blinds"]
+      kitchen: ["Quartz countertops", "Imported soft-close cabinetry", "Breakfast counter", "Dishwasher provision", "Heavy-duty exhaust"],
+      livingRoom: ["Custom accent wall detailing", "Designer lighting channels", "Grand terrace deck", "Pendant chandelier fixture"],
+      bedroom: ["En-suite luxury bath with glass partition", "Rain showerhead", "Walk-in wardrobe", "Sound-insulated glazing"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -194,18 +194,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb7_C1-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb6_C1-7.avif"
     ],
-    desc: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
-    aboutText: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
-    storyTitle: "Cozy community with 3 full baths",
-    storyDesc: "The C1 floor plan delivers a harmonious 3-bed / 3-bath distribution. Each resident has their personal sanctuary while enjoying an open living room and gourmet kitchen setup for collaborative college living.",
+    desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
+    aboutText: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
+    storyTitle: "Balanced elegance with three en-suite bedrooms",
+    storyDesc: "The C1 layout delivers an optimal 3-bedroom, 3-bathroom distribution with zero wasted space. Each bedroom serves as a personal sanctuary, while the central living and dining foyer creates a warm, sunlit gathering heart for the family.",
     amenities: {
-      kitchen: ["Dishwasher", "Microwave", "Oven", "Refrigerator", "Spacious cabinetry"],
-      livingRoom: ["Wall TV mount", "Sectional couch", "Coffee table", "Pendant accents"],
-      bedroom: ["Private bath", "Full XL bed", "Mattress", "Desk & ergonomic chair", "Keyed lock"]
+      kitchen: ["Granite counter", "Stainless sink", "Modular overhead cabinets", "Exhaust chimney conduit"],
+      livingRoom: ["Sunlit drawing room", "Dining space", "Ceramic tile flooring", "Balcony sit-out"],
+      bedroom: ["3 Private baths", "Spacious room layout", "Ventilated windows", "Concealed copper wiring"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -230,18 +230,18 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbd_C1-6.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbc_C1-7.avif"
     ],
-    desc: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
-    aboutText: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
-    storyTitle: "Elevated student luxury in 3BR format",
-    storyDesc: "C1 Premium is the pinnacle of boutique student housing. Upgraded fixtures, contemporary lighting, plush designer furnishings, and private full bathrooms for every bedroom create the most tranquil living experience at 21Oaks.",
+    desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
+    aboutText: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
+    storyTitle: "Curated aesthetics and elevated comfort",
+    storyDesc: "C1 Premium is the pinnacle of boutique 3-bedroom living. Premium fittings, contemporary recessed lighting, granite modular kitchen surfaces, and three private en-suite bathrooms create an ambiance of tranquility and understated prestige.",
     amenities: {
-      kitchen: ["Premium stainless appliances", "Subway tile backsplash", "Granite/Quartz counters", "Dishwasher"],
-      livingRoom: ["Custom sofa & lounge chairs", "Smart 4K screen", "Modern coffee table", "Bar counter"],
-      bedroom: ["Private attached bath", "Premium mattress", "Study nook with lamp", "Closet built-ins", "Keyed lock"]
+      kitchen: ["Premium modular cabinetry", "Designer subway tiles", "Granite/Quartz counters", "Utility area"],
+      livingRoom: ["Designer lounge space", "Recessed cove lighting", "Terrace view balcony", "Breakfast counter"],
+      bedroom: ["3 Private en-suite baths", "Imported sanitary fittings", "Large UPVC acoustic windows", "Wardrobe niches"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   }
 ];
@@ -250,7 +250,7 @@ export const LOCATION_HERO_SLIDES = [
   {
     id: "usc",
     name: "University of South Carolina",
-    description: "A major public research university known for its vibrant student life, SEC athletics, and nationally recognized academic programs in the heart of Columbia.",
+    description: "A major research institution recognized for its expansive academic campus, cultural landmarks, and architectural legacy in the heart of Columbia.",
     image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7daba7_Slide%201.avif",
     thumb: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7daba7_Slide%201.avif",
     commute: {
@@ -350,52 +350,52 @@ export const LOCATION_PLACES = [
 
 export const TESTIMONIALS_DATA = [
   {
-    author: "Emily Carter",
+    author: "Mrs. P. Sherpa",
     photo: "/assets/authors/author-1.avif",
     quote:
-      "“I can't say enough about how great all of the improvements are going. The entire leasing team went above and beyond to ensure a smooth move in and thoroughly explained the entire process. The property is very well kept. Convenient to the stadium perfect for games! A great place to call home at a great value. You won't be disappointed!”",
+      "“The quality of construction and prompt possession handed over by SGMG gave our family absolute confidence. From transparent documentation to the beautifully landscaped amenities, SGMG delivers truly world-class residential standards in North Bengal.”",
   },
   {
-    author: "Ryan Mitchell",
+    author: "Rajesh Agarwal",
     photo: "/assets/authors/author-2.avif",
     quote:
-      "“I wasn’t sure what to expect at first, but everything turned out way better than I thought. The apartment is clean, well-designed, and actually feels comfortable to live in. The whole move-in process was simple, and the team was always responsive. It’s been a really solid experience so far.”",
+      "“Investing in an SGMG residence has been our best decision. The architectural planning, ventilation, and premium fittings exceed expectations. The management’s professionalism and commitment to on-time delivery reflect four decades of trust.”",
   },
   {
-    author: "Daniel Brooks",
+    author: "Dr. Anirban Mukherjee",
     photo: "/assets/authors/author-3.avif",
     quote:
-      "“Living here has been easy from day one. Everything you need is already set up, and the layout just works. It’s quiet when you need it to be, but still close to everything around campus. Honestly, it just makes daily life simpler, which is exactly what I was looking for.”",
+      "“Living here provides the tranquility and security my family always sought. The peaceful surroundings, modern clubhouse, and rapid connectivity to arterial Siliguri hubs make daily life completely effortless. A true benchmark in luxury living.”",
   },
 ];
 
 export const APARTMENT_FAQS = [
   {
-    q: "How do I apply for an apartment?",
-    a: "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan.",
+    q: "How do I schedule a site visit or book a residence?",
+    a: "You can schedule a private site visit through our online tour scheduler or connect directly with our sales advisors. Our team will guide you through master plans, model residences, and complete booking formalities.",
   },
   {
-    q: "What does by-the-bed leasing mean?",
-    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+    q: "Are SGMG residential projects RERA approved and compliant?",
+    a: "Yes, all SGMG developments are fully compliant with West Bengal HIRA / RERA guidelines, with transparent approvals, clear land titles, and verified legal clearances.",
   },
   {
-    q: "What do I need to apply?",
-    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
+    q: "What financing and home loan assistance is available?",
+    a: "SGMG is partnered with leading public and private banks (including SBI, HDFC, ICICI, and Axis Bank) to facilitate competitive interest rates, pre-approved loans, and seamless loan documentation.",
   },
   {
-    q: "Do I need a guarantor?",
-    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
+    q: "What is the construction quality and warranty provided by SGMG?",
+    a: "With a 40-year legacy of engineering excellence in Siliguri, SGMG utilizes Grade-A structural materials, earthquake-resistant RCC framing, premium waterproofing, and dedicated post-possession maintenance.",
   },
   {
-    q: "How long does approval take?",
-    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
+    q: "What are the possession timelines and payment structures?",
+    a: "We offer flexible, milestone-linked construction payment plans with strict adherence to scheduled delivery dates. Possession dates are explicitly guaranteed in your agreement.",
   },
   {
-    q: "Can I apply if I’m not a student?",
-    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
+    q: "Can Non-Resident Indians (NRIs) purchase properties with SGMG?",
+    a: "Yes. We offer end-to-end dedicated NRI concierge assistance, including virtual 3D walkthroughs, digital documentation, NRE/NRO banking facilitation, and property management.",
   },
   {
-    q: "How is rent paid?",
-    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
+    q: "What amenities and community features are included?",
+    a: "Every project features world-class residential amenities: multi-tier 24/7 security, landscaped central courtyards, swimming pools, high-speed elevators, wellness gymnasiums, and uninterrupted power backup.",
   },
 ];

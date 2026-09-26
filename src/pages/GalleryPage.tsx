@@ -32,6 +32,10 @@ export default function GalleryPage() {
 
   const totalCount = GALLERY_IMAGES.length;
 
+  useEffect(() => {
+    document.title = "Gallery • SGMG Luxury Residences Siliguri";
+  }, []);
+
   const goToSlide = (newIndex: number) => {
     if (newIndex === currentIndex) return;
     const dir = newIndex > currentIndex ? 1 : -1;

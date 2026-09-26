@@ -199,18 +199,9 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                   handleNavClick("/apartments");
                 }}
               >
-                <div>Apartments</div>
+                <div>Residences</div>
               </a>
-              <a
-                href="/#amenities"
-                className="mobile_link w-inline-block"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/", "amenities");
-                }}
-              >
-                <div>Amenities</div>
-              </a>
+
               <a
                 href="/location"
                 className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
@@ -224,16 +215,16 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 <div>Location</div>
               </a>
               <a
-                href="/how-to-apply"
-                className={`mobile_link w-inline-block ${location.pathname === "/how-to-apply" ? "w--current" : ""}`}
-                onMouseEnter={() => prefetchRoute("/how-to-apply")}
-                onTouchStart={() => prefetchRoute("/how-to-apply")}
+                href="/about"
+                className={`mobile_link w-inline-block ${location.pathname === "/about" || location.pathname === "/how-to-apply" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/about")}
+                onTouchStart={() => prefetchRoute("/about")}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick("/how-to-apply");
+                  handleNavClick("/about");
                 }}
               >
-                <div>How to Apply</div>
+                <div>About</div>
               </a>
               <a
                 href="/gallery"
@@ -246,6 +237,30 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 }}
               >
                 <div>Gallery</div>
+              </a>
+              <a
+                href="/team"
+                className={`mobile_link w-inline-block ${location.pathname === "/team" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/team")}
+                onTouchStart={() => prefetchRoute("/team")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/team");
+                }}
+              >
+                <div>Our Team</div>
+              </a>
+              <a
+                href="/careers"
+                className={`mobile_link w-inline-block ${location.pathname === "/careers" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/careers")}
+                onTouchStart={() => prefetchRoute("/careers")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/careers");
+                }}
+              >
+                <div>Careers</div>
               </a>
               <a
                 id="w-node-_1fc5a60c-db18-5e47-1cc7-6d822ad20c80-671c8e8b"

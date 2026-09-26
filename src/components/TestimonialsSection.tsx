@@ -250,7 +250,7 @@ export default function TestimonialsSection() {
             <span data-scribble="2" className="scribble-wrap scribble-visible">
               Real
             </span>{" "}
-            student
+            resident
             <br />
             experiences
           </h2>

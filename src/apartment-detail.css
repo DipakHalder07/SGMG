@@ -5,11 +5,11 @@
 
 /* --- BASE RULES --- */
 .h2.pets_h {
-  font-size:6.2em;
+  font-size:4.34em;
 }
 
 .h2.apartments_heading {
-  margin-top:0;margin-bottom:0;font-size:3.5em;line-height:1.1;
+  margin-top:0;margin-bottom:0;font-size:2.45em;line-height:1.1;
 }
 
 .amenities_heading {
@@ -29,7 +29,7 @@
 }
 
 .title_amenities {
-  color:var(--white);font-size:1.5em;
+  color:var(--white);font-size:1.05em;
 }
 
 .desc_amenities {
@@ -69,7 +69,7 @@
 }
 
 .pet_title {
-  font-size:1.7em;
+  font-size:1.19em;
 }
 
 .pet_desc {
@@ -130,6 +130,13 @@
 
 .icon_apart_box {
   background-color:var(--primary);border-radius:4px;justify-content:center;align-items:center;width:2.5em;height:2.5em;padding:.5em;display:flex;
+}
+
+.icon_apart_box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) !important;
 }
 
 .box_featured {
@@ -257,7 +264,7 @@
 }
 
 .heading_card {
-  font-size:1.5em;
+  font-size:1.05em;
 }
 
 .list_prices {
@@ -554,7 +561,7 @@
 
 .splide__slide.amenities_splide .title_amenities {
   color: #ffffff;
-  font-size: 1.5em;
+  font-size: 1.05em;
   font-family: Exposure, Georgia, sans-serif;
   font-weight: 400;
   line-height: 1.2;
@@ -573,12 +580,13 @@
 
 /* FAQ Accordion interaction */
 .accordion-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 1.6rem 0 !important;
 }
 
 .accordion_head-wrapper {
   cursor: pointer;
-  padding: 1.25rem 0;
+  padding: 0;
   user-select: none;
 }
 
@@ -635,7 +643,7 @@
 /* --- @media screen and (max-width:991px) --- */
 @media screen and (max-width:991px) {
   .h2.apartments_heading {
-    font-size:5em;
+    font-size:3.5em;
   }
 
   .amenities_heading {
@@ -651,7 +659,7 @@
   }
 
   .title_amenities {
-    font-size:2.65em;
+    font-size:1.85em;
   }
 
   .desc_amenities {
@@ -679,7 +687,7 @@
   }
 
   .pet_title {
-    font-size:2.15em;
+    font-size:1.5em;
   }
 
   .pet_desc {
@@ -715,7 +723,7 @@
   }
 
   .title_featured {
-    font-size:1.45em;
+    font-size:1.01em;
   }
 
   .desc_featured {
@@ -727,7 +735,7 @@
   }
 
   .title_list {
-    font-size:1.5em;
+    font-size:1.05em;
   }
 
   .grid_apart_list {
@@ -755,7 +763,7 @@
   }
 
   .title_included {
-    font-size:1.35em;
+    font-size:0.945em;
   }
 
   .full_gallery {
@@ -787,7 +795,7 @@
   }
 
   .heading_card {
-    font-size:2.7em;
+    font-size:1.89em;
   }
 
   .list_prices {
@@ -810,7 +818,7 @@
 /* --- @media screen and (max-width:767px) --- */
 @media screen and (max-width:767px) {
   .h2.apartments_heading {
-    font-size:7em;
+    font-size:4.9em;
   }
 
   .price_txt,.price_txt.specific_card,.apart_title {
@@ -822,7 +830,7 @@
   }
 
   .title_amenities {
-    font-size:4.5em;
+    font-size:3.15em;
   }
 
   .desc_amenities {
@@ -886,7 +894,7 @@
   }
 
   .title_featured {
-    font-size:1.8em;
+    font-size:1.26em;
   }
 
   .desc_featured {
@@ -910,7 +918,7 @@
   }
 
   .title_list {
-    font-size:2.05em;
+    font-size:1.435em;
   }
 
   .grid_apart_list {
@@ -982,7 +990,7 @@
   }
 
   .heading_card {
-    font-size:3em;
+    font-size:2.1em;
   }
 
   .list_prices {
@@ -1005,11 +1013,11 @@
 /* --- @media screen and (max-width:479px) --- */
 @media screen and (max-width:479px) {
   .h2.pets_h {
-    font-size:13em;
+    font-size:9.1em;
   }
 
   .h2.apartments_heading {
-    font-size:9em;
+    font-size:6.3em;
   }
 
   .price_txt.specific_card {
@@ -1033,7 +1041,7 @@
   }
 
   .title_amenities {
-    font-size:6em;
+    font-size:4.2em;
   }
 
   .desc_amenities {
@@ -1065,7 +1073,7 @@
   }
 
   .pet_title {
-    font-size:4.5em;
+    font-size:3.15em;
   }
 
   .pet_desc {
@@ -1101,7 +1109,7 @@
   }
 
   .title_featured {
-    font-size:4em;
+    font-size:2.8em;
   }
 
   .desc_featured {
@@ -1133,7 +1141,7 @@
   }
 
   .title_list {
-    font-size:3.5em;
+    font-size:2.45em;
   }
 
   .grid_apart_list {
@@ -1165,7 +1173,7 @@
   }
 
   .title_included {
-    font-size:3.5em;
+    font-size:2.45em;
   }
 
   .full_gallery {
@@ -1205,7 +1213,7 @@
   }
 
   .heading_card {
-    font-size:5em;
+    font-size:3.5em;
   }
 
   .list_prices {
@@ -1272,10 +1280,10 @@
   color: var(--white, #ffffff);
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 5em;
+  font-size: 3.5em;
   font-weight: 400;
   line-height: 0.9;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: "Michroma", sans-serif !important;
 }
 
 .tags_info {

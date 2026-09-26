@@ -57,7 +57,6 @@ interface MapPlace {
   id: string;
   name: string;
   category: string;
-  filterType: "malls" | "dining" | "transit";
   lat: number;
   lng: number;
   address: string;
@@ -73,7 +72,6 @@ const MAP_PLACES: MapPlace[] = [
     id: "vega-circle-mall",
     name: "Vega Circle Mall",
     category: "Shopping & Movies",
-    filterType: "malls",
     lat: 26.7465,
     lng: 88.4385,
     address: "3rd Mile, Sevoke Road, Siliguri, West Bengal 734008",
@@ -87,7 +85,6 @@ const MAP_PLACES: MapPlace[] = [
     id: "cosmos-mall",
     name: "Cosmos Mall",
     category: "Retail & Dining",
-    filterType: "malls",
     lat: 26.7386,
     lng: 88.4339,
     address: "Sevoke Road, 2nd Mile, Siliguri, West Bengal 734001",
@@ -101,7 +98,6 @@ const MAP_PLACES: MapPlace[] = [
     id: "city-centre-mall",
     name: "City Centre Siliguri",
     category: "Flagship Mall",
-    filterType: "malls",
     lat: 26.7152,
     lng: 88.3887,
     address: "Uttorayon Township, Matigara, Siliguri, West Bengal 734010",
@@ -115,7 +111,6 @@ const MAP_PLACES: MapPlace[] = [
     id: "hong-kong-market",
     name: "Hong Kong Market",
     category: "Bazaar & Street Food",
-    filterType: "dining",
     lat: 26.7176,
     lng: 88.4285,
     address: "Hill Cart Road / 10th Ward, Siliguri, West Bengal 734001",
@@ -124,34 +119,6 @@ const MAP_PLACES: MapPlace[] = [
     walk: "20 min walk",
     bike: "8 min bike",
     drive: "6 min drive",
-  },
-  {
-    id: "savin-kingdom",
-    name: "Savin Kingdom Amusement Park",
-    category: "Entertainment & Rides",
-    filterType: "dining",
-    lat: 26.7335,
-    lng: 88.4045,
-    address: "Dagapur, Siliguri, West Bengal 734003",
-    hours: "10:30 AM – 7:30 PM Daily",
-    image: "/assets/locations/thumbs/savin-kingdom.jpg",
-    walk: "30 min walk",
-    bike: "12 min bike",
-    drive: "10 min drive",
-  },
-  {
-    id: "nbu-campus",
-    name: "North Bengal University",
-    category: "University Campus",
-    filterType: "transit",
-    lat: 26.7093,
-    lng: 88.3533,
-    address: "Raja Rammohunpur, Siliguri, West Bengal 734013",
-    hours: "Campus Grounds Open",
-    image: "/assets/locations/thumbs/nbu-campus.jpg",
-    walk: "45 min walk",
-    bike: "18 min bike",
-    drive: "15 min drive",
   },
 ];
 
@@ -213,8 +180,7 @@ export default function LocationPage() {
   const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
   const touchStartXRef = useRef<number | null>(null);
 
-  // Map Filter & Selected Place
-  const [filterType, setFilterType] = useState<"all" | "malls" | "dining" | "transit">("all");
+  // Map Selected Place
   const [activePlaceId, setActivePlaceId] = useState<string>("vega-circle-mall");
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -472,7 +438,7 @@ export default function LocationPage() {
           [place.lat, place.lng],
         ],
         {
-          color: "#9333ea",
+          color: "#2391cf",
           weight: 3.5,
           opacity: 0.85,
           dashArray: "6, 8",
@@ -576,20 +542,6 @@ export default function LocationPage() {
         <div class="popup-title">${place.name}</div>
         <div class="popup-address">${place.address}</div>
         <div class="popup-hours">${place.hours}</div>
-        <div class="popup-meta">
-          <div class="popup-meta-row">
-            <img src="${ICON_WALK}" alt="Walk" />
-            <span>${place.walk}</span>
-          </div>
-          <div class="popup-meta-row">
-            <img src="${ICON_BIKE}" alt="Bike" />
-            <span>${place.bike}</span>
-          </div>
-          <div class="popup-meta-row">
-            <img src="${ICON_DRIVE}" alt="Drive" />
-            <span>${place.drive}</span>
-          </div>
-        </div>
         <a href="https://www.google.com/maps/dir/?api=1&origin=${SGMG_LOCATION.lat},${SGMG_LOCATION.lng}&destination=${place.lat},${place.lng}"
            target="_blank" rel="noopener noreferrer" class="popup-directions-link">
           Get Directions ↗
@@ -637,11 +589,7 @@ export default function LocationPage() {
     };
   }, [selectPlace]);
 
-  // Filtered places list
-  const filteredPlaces = MAP_PLACES.filter((p) => {
-    if (filterType === "all") return true;
-    return p.filterType === filterType;
-  });
+
 
   return (
     <div className="page-wrapper" style={{ backgroundColor: "#121214" }}>
@@ -771,41 +719,9 @@ export default function LocationPage() {
           <div className="map_sec">
             {/* Left POI Cards Panel */}
             <div className="map_cards">
-              {/* Category Filter Tabs */}
-              <div className="map_tabs_bar">
-                <button
-                  type="button"
-                  className={`map_tab_btn ${filterType === "all" ? "is-active" : ""}`}
-                  onClick={() => setFilterType("all")}
-                >
-                  All Places
-                </button>
-                <button
-                  type="button"
-                  className={`map_tab_btn ${filterType === "malls" ? "is-active" : ""}`}
-                  onClick={() => setFilterType("malls")}
-                >
-                  Malls & Retail
-                </button>
-                <button
-                  type="button"
-                  className={`map_tab_btn ${filterType === "dining" ? "is-active" : ""}`}
-                  onClick={() => setFilterType("dining")}
-                >
-                  Dining & Leisure
-                </button>
-                <button
-                  type="button"
-                  className={`map_tab_btn ${filterType === "transit" ? "is-active" : ""}`}
-                  onClick={() => setFilterType("transit")}
-                >
-                  Transit & Campus
-                </button>
-              </div>
-
-              {/* Scrollable Cards List */}
+              {/* 4 Places List */}
               <div className="cards_list_scroll">
-                {filteredPlaces.map((place) => {
+                {MAP_PLACES.map((place) => {
                   const isActive = place.id === activePlaceId;
                   return (
                     <div
@@ -824,7 +740,18 @@ export default function LocationPage() {
                         <div className="content_info">
                           <div className="sub_box">
                             <span className="subtitle_text">{place.category}</span>
-                            <span className="transit_pill_card">{place.walk}</span>
+                            <span className="transit_pill_card">
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                style={{ display: "inline-block", verticalAlign: "middle", marginRight: "3px", opacity: 0.75 }}
+                              >
+                                <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7" />
+                              </svg>
+                              {place.walk}
+                            </span>
                           </div>
                           <h3 className="title_map_card">{place.name}</h3>
                         </div>

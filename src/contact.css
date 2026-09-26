@@ -59,7 +59,7 @@ body.is-light .header .menu .line_two {
 .header .apply_button .button .icon_box,
 .header .apply_button .icon_box.is-right,
 .header .apply_button .icon_box.is-left {
-  background-color: var(--primary, #2391cf) !important;
+  background-color: var(--logo-green, #a2cd3a) !important;
 }
 
 .header .apply_button .button .icon_box svg path,
@@ -88,7 +88,7 @@ body.is-dark .header .apply_button .button .text_box div {
 }
 
 body.is-dark .header .apply_button .button .icon_box {
-  background-color: var(--primary, #2391cf) !important;
+  background-color: var(--logo-green, #a2cd3a) !important;
 }
 
 body.is-dark .header .apply_button .button .icon_box svg path {
@@ -151,8 +151,8 @@ main.contact {
 
 .h1.black {
   color: var(--black, #292929);
-  font-family: "Exposure", Georgia, sans-serif;
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-family: "Michroma", sans-serif !important;
+  font-size: clamp(1.75rem, 3.85vw, 3.15rem);
   font-weight: 400;
   line-height: 1;
   margin: 0;
@@ -364,7 +364,7 @@ main.contact {
 .form_title {
   width: 100%;
   max-width: 32ch;
-  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  font-size: clamp(0.88rem, 1.54vw, 1.26rem);
   line-height: 1.35;
   color: var(--black, #292929);
   font-weight: 400;
@@ -589,39 +589,97 @@ main.contact {
 
 /* ==========================================================================
    MAP SECTION (.map_sec matching 21oaks.org 1:1)
-   Full-Width, Full-Section Dark Container with Google Map (0 padding)
+   Full-Screen 100vw x 100vh, Edge-to-Edge, 0 Border, 0 Border-Radius
    ========================================================================== */
+.contact_page_wrapper .map_sec,
 .map_sec {
-  background-color: #121214;
-  width: 100%;
-  height: clamp(520px, 75vh, 850px);
+  background-color: #121214 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: none !important;
   padding: 0 !important;
-  margin: 0;
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
+  margin: 0 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
+  .contact_page_wrapper .map_sec,
   .map_sec {
-    height: 520px;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: none !important;
     padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 }
 
-.map_box {
-  background-color: #222222;
-  border-radius: 0 !important;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+@media screen and (max-width: 767px) {
+  .contact_page_wrapper .map_sec,
+  .map_sec {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
 }
 
-.office_leaflet_map.full_width {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.contact_page_wrapper .map_box,
+.map_box {
+  background-color: #222222 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.office_leaflet_map,
+.office_leaflet_map.full_width,
+.office_leaflet_map .leaflet-container,
+.contact_page_wrapper .leaflet-container,
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 1 !important;
 }
 
 /* Floating Bottom Action Card */
@@ -767,8 +825,8 @@ main.contact {
 }
 
 /* Leaflet Popup Styles */
-.leaflet-popup-content-wrapper {
-  background-color: #1a1a1d !important;
+.office_leaflet_map .leaflet-popup-content-wrapper {
+  background-color: #18181b !important;
   color: #ffffff !important;
   border-radius: 12px !important;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -776,12 +834,12 @@ main.contact {
   padding: 4px !important;
 }
 
-.leaflet-popup-tip {
-  background-color: #1a1a1d !important;
+.office_leaflet_map .leaflet-popup-tip {
+  background-color: #18181b !important;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.leaflet-popup-content {
+.office_leaflet_map .leaflet-popup-content {
   margin: 12px 14px !important;
   line-height: 1.4 !important;
   font-family: inherit !important;
@@ -824,8 +882,8 @@ main.contact {
 }
 
 .h2.smaller {
-  font-family: "Exposure", "Romie", Georgia, serif;
-  font-size: clamp(2.5rem, 4.8vw, 4.2rem);
+  font-family: "Michroma", sans-serif !important;
+  font-size: clamp(1.75rem, 3.36vw, 2.94rem);
   font-weight: 300;
   line-height: 1.05;
   margin: 0;
@@ -849,17 +907,23 @@ main.contact {
 }
 
 .short_left {
-  width: 38%;
+  width: 32%;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 360px;
+  flex-shrink: 0;
+  position: sticky !important;
+  top: 110px !important;
+  align-self: flex-start !important;
+  z-index: 10;
 }
 
 @media screen and (max-width: 991px) {
   .short_left {
-    width: 100%;
-    min-height: auto;
+    position: static !important;
+    width: 100% !important;
+    top: auto !important;
   }
 }
 

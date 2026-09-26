@@ -7,10 +7,15 @@
 const PREFETCH_MAP: Record<string, () => Promise<unknown>> = {
   "/apartments": () => import("../pages/ApartmentsPage"),
   "/location": () => import("../pages/LocationPage"),
+  "/about": () => import("../pages/HowToApplyPage"),
+  "/about-us": () => import("../pages/HowToApplyPage"),
   "/how-to-apply": () => import("../pages/HowToApplyPage"),
   "/faq": () => import("../pages/FaqPage"),
   "/faqs": () => import("../pages/FaqPage"),
   "/gallery": () => import("../pages/GalleryPage"),
+  "/team": () => import("../pages/TeamPage"),
+  "/our-team": () => import("../pages/TeamPage"),
+  "/careers": () => import("../pages/CareersPage"),
   "/contact": () => import("../pages/ContactPage"),
   "/404": () => import("../pages/NotFoundPage"),
 };

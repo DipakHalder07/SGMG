@@ -3,15 +3,20 @@ import { useLocation } from "react-router-dom";
 import { prefetchCommonRoutes } from "../lib/prefetch";
 
 const ROUTE_TITLES: Record<string, string> = {
-  "/": "21Oaks Student Apartments • USC & Williams-Brice",
-  "/apartments": "Floor Plans & Apartments • 21Oaks",
-  "/location": "Neighborhood & Location Showcase • Siliguri Mall",
-  "/how-to-apply": "How to Apply • 21Oaks",
-  "/faq": "Frequently Asked Questions • 21Oaks",
-  "/faqs": "Frequently Asked Questions • 21Oaks",
-  "/gallery": "Photo Gallery • 21Oaks",
-  "/contact": "Contact Us & Schedule a Tour • 21Oaks",
-  "/404": "404 Not Found • 21Oaks",
+  "/": "SGMG Luxury Residences • Sushil Gangadhar Mittal Group",
+  "/apartments": "Floor Plans & Residences • SGMG",
+  "/location": "Neighborhood & Location Showcase • SGMG",
+  "/about": "About Us • SGMG Residences",
+  "/about-us": "About Us • SGMG Residences",
+  "/how-to-apply": "About Us & Application Guide • SGMG",
+  "/team": "Our Leadership Team • SGMG",
+  "/our-team": "Our Leadership Team • SGMG",
+  "/careers": "Careers & Open Positions • SGMG",
+  "/faq": "Frequently Asked Questions • SGMG",
+  "/faqs": "Frequently Asked Questions • SGMG",
+  "/gallery": "Photo Gallery • SGMG Residences",
+  "/contact": "Contact Us & Schedule a Tour • SGMG",
+  "/404": "404 Not Found • SGMG",
 };
 
 export default function ScrollToTop() {
@@ -29,9 +34,9 @@ export default function ScrollToTop() {
     } else if (pathname.startsWith("/apartments/") || pathname.startsWith("/apartments-cards/")) {
       const slug = pathname.split("/").pop()?.replace(/-/g, " ") || "Floor Plan";
       const titleCase = slug.replace(/\b\w/g, (c) => c.toUpperCase());
-      document.title = `${titleCase} • Floor Plan • 21Oaks`;
+      document.title = `${titleCase} • Residence • SGMG`;
     } else {
-      document.title = "404 Not Found • 21Oaks";
+      document.title = "404 Not Found • SGMG";
     }
 
     if (!hash) {

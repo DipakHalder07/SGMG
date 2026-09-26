@@ -50,8 +50,8 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                 <div className="wrapper_box_cta">
                   <div className="heading_cta">
                     <div className="txt_cta">
-                      Find your place.<br />
-                      Make it yours.
+                      Your Gateway To An<br />
+                      Elevated Lifestyle.
                     </div>
                   </div>
 
@@ -65,7 +65,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                       />
                     </div>
                     <div className="icon_right">
-                      <img src="/assets/icons/move-3.png" alt="Moon outline" className="image" />
+                      <img src="/images/sgmg-icon.svg" alt="SGMG Logo Icon" className="image" />
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
             </div>
 
             <div className="fs_bg">
-              <img src="/assets/image_cta.avif" alt="21Oaks luxury lounge" className="image" />
+              <img src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
             </div>
           </section>
         </section>
@@ -92,7 +92,42 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                 />
               </Link>
               <div className="cap_footer">
-                Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
+                Tranquility and <span data-scribble="4" className="scribble-wrap scribble-visible">Living.</span>
+              </div>
+
+              {/* Other Ventures */}
+              <div className="footer_ventures">
+                <div className="title_footer">Other Ventures</div>
+                <div className="ventures_logos_wrap">
+                  <a
+                    href="https://cosmospreschool.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="venture_link venture_cosmos"
+                    title="Cosmos Global Pre-School"
+                  >
+                    <img
+                      src="/assets/ventures/cosmos-global.png"
+                      alt="Cosmos Global Pre-School"
+                      className="venture_logo_img venture_logo_cosmos"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a
+                    href="https://sgmg.in/inox/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="venture_link venture_inox"
+                    title="INOX Live the Movie"
+                  >
+                    <img
+                      src="/assets/ventures/inox.png"
+                      alt="INOX Live the Movie"
+                      className="venture_logo_img venture_logo_inox"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -107,10 +142,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     className="link_f"
                     style={{ cursor: "pointer" }}
                   >
-                    Apartments
-                  </span>
-                  <span onClick={() => handleNavClick("/", "amenities")} className="link_f" style={{ cursor: "pointer" }}>
-                    Amenities
+                    Residences
                   </span>
                   <span
                     onClick={() => handleNavClick("/location")}
@@ -131,13 +163,31 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     Gallery
                   </span>
                   <span
-                    onClick={() => handleNavClick("/how-to-apply")}
-                    onMouseEnter={() => prefetchRoute("/how-to-apply")}
-                    onTouchStart={() => prefetchRoute("/how-to-apply")}
+                    onClick={() => handleNavClick("/team")}
+                    onMouseEnter={() => prefetchRoute("/team")}
+                    onTouchStart={() => prefetchRoute("/team")}
                     className="link_f"
                     style={{ cursor: "pointer" }}
                   >
-                    How to apply
+                    Our Team
+                  </span>
+                  <span
+                    onClick={() => handleNavClick("/careers")}
+                    onMouseEnter={() => prefetchRoute("/careers")}
+                    onTouchStart={() => prefetchRoute("/careers")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Careers
+                  </span>
+                  <span
+                    onClick={() => handleNavClick("/about")}
+                    onMouseEnter={() => prefetchRoute("/about")}
+                    onTouchStart={() => prefetchRoute("/about")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
+                    About
                   </span>
                   <span
                     onClick={() => handleNavClick("/faq")}
@@ -166,26 +216,26 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                   <div
                     className="link_f"
                     style={{ cursor: "pointer" }}
-                    onClick={() => handleCopy("21 National Guard Rd, Columbia, SC 29201", "Address Copied!")}
+                    onClick={() => handleCopy("2nd Floor, Jeevandeep Tower, Siliguri, West Bengal", "Address Copied!")}
                   >
-                    21 National Guard Rd<br />Columbia, SC 29201
+                    2nd Floor, Jeevandeep Tower<br />Siliguri, West Bengal
                   </div>
                   <div
                     className="link_f"
                     style={{ cursor: "pointer" }}
-                    onClick={() => handleCopy("+1 (803) 937-2431", "Phone Copied!")}
+                    onClick={() => handleCopy("+91 97330 02244", "Phone Copied!")}
                   >
-                    +1 (803) 937-2431
+                    +91 97330 02244
                   </div>
                   <div
                     className="link_f"
                     style={{ cursor: "pointer" }}
-                    onClick={() => handleCopy("21oaks@bhom.com", "Email Copied!")}
+                    onClick={() => handleCopy("sales@sgmg.in", "Email Copied!")}
                   >
-                    21oaks@bhom.com
+                    sales@sgmg.in
                   </div>
                   {copyFeedback && (
-                    <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
+                    <div style={{ color: "var(--logo-green, #a2cd3a)", fontSize: "11px", fontWeight: 600 }}>
                       ✓ {copyFeedback}
                     </div>
                   )}
@@ -195,9 +245,9 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
               <div className="box_menu">
                 <div className="title_footer">Office Hours</div>
                 <div className="links_list">
-                  <div className="link_f">Mon - Fri: 10am - 6pm</div>
-                  <div className="link_f">Sat: 10am - 5pm</div>
-                  <div className="link_f">Sun: 1pm - 5pm</div>
+                  <div className="link_f">Mon - Sat: 10:00 AM - 7:00 PM</div>
+                  <div className="link_f">Sunday: 10:00 AM - 5:00 PM</div>
+                  <div className="link_f">Site Visits: Available 7 Days</div>
                 </div>
               </div>
 
@@ -220,14 +270,11 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
               </a>
             </div>
             <div className="socials_box">
-              <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+              <a aria-label="Our Instagram" href="https://www.instagram.com/sgmgrealestate/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                 <div className="social_icon ig" />
               </a>
-              <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+              <a aria-label="Our Facebook" href="https://www.facebook.com/SGMGRealEstate" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                 <div className="social_icon fb" />
-              </a>
-              <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
-                <div className="social_icon tiktok" />
               </a>
             </div>
           </div>
@@ -239,14 +286,14 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
         </div>
 
         <div className="last_line ll_fs">
-          <div className="last_txt">© B.HOM Student Living</div>
+          <div className="last_txt">© Copyright 2026 by Sushil Gangadhar Mittal Group</div>
           <div className="web_dev_by">
             <span className="op_spec">Website by </span>
-            <a href="https://www.artemiilebedev.com" target="_blank" rel="noreferrer" className="spec_link">
-              Artemii Lebedev
+            <a href="https://digitalgrove.in" target="_blank" rel="noreferrer" className="spec_link">
+              Dipak
             </a>
           </div>
-          <div className="last_txt">All Rights Reserved 2026</div>
+
         </div>
       </footer>
     </>

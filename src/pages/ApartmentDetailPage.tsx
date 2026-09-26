@@ -8,6 +8,7 @@ import "@splidejs/splide/css/core";
 import Header, { ArrowIcon } from "../components/Header";
 import Footer from "../components/Footer";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
+import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -89,7 +90,7 @@ export default function ApartmentDetailPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (unit) {
-      document.title = `${unit.name} ${unit.bedrooms} Bedroom Student Apartment Near USC • 21 Oaks`;
+      document.title = `${unit.name} • ${unit.bedrooms} Bedroom Luxury Residence in Siliguri | SGMG`;
     }
   }, [slug, unit]);
 
@@ -622,7 +623,7 @@ export default function ApartmentDetailPage() {
                             <img
                               src="/assets/icons/price-icon.png"
                               loading="lazy"
-                              alt="US dollar, icon, png, black"
+                              alt="₹"
                               className="image"
                             />
                           </div>
@@ -814,14 +815,14 @@ export default function ApartmentDetailPage() {
                           <img
                             src="/assets/icons/6a31483f3822b51654193b2f_university.png"
                             loading="lazy"
-                            alt="Student-Focused Layouts"
+                            alt="Architectural Balance"
                             className="image"
                           />
                         </div>
                         <div className="content_featured">
-                          <div className="title_featured">Student-Focused Layouts</div>
+                          <div className="title_featured">Architectural Balance</div>
                           <div className="desc_featured">
-                            Designed to balance privacy, comfort, and shared living.
+                            Designed to balance privacy, comfort, and shared family living.
                           </div>
                         </div>
                       </div>
@@ -831,14 +832,14 @@ export default function ApartmentDetailPage() {
                           <img
                             src="/assets/icons/6a31483f3822b51654193b08_f-icon-4.png"
                             loading="lazy"
-                            alt="Roommate Friendly"
+                            alt="Generous Shared Living"
                             className="image"
                           />
                         </div>
                         <div className="content_featured">
-                          <div className="title_featured">Roommate Friendly</div>
+                          <div className="title_featured">Generous Shared Living</div>
                           <div className="desc_featured">
-                            Designed to make shared living feel easy and comfortable.
+                            Spacious open-plan living and dining areas designed to bring families together.
                           </div>
                         </div>
                       </div>
@@ -939,7 +940,7 @@ export default function ApartmentDetailPage() {
                       <h1 className="h2 apartments_heading">Amenities</h1>
                       <div className="p_md">
                         <div className="p_gen black">
-                          {unit.name} features furnished interiors, premium Wi-Fi, modern appliances, in-unit laundry, and comfortable shared living spaces designed to support balanced student living. The layout makes it easy to stay connected while still giving residents space to focus, relax, and maintain everyday routines. Residents also benefit from access to fitness amenities, study lounges, outdoor gathering areas, and community-focused social spaces throughout 21 Oaks.
+                          {unit.name} features expansive sunlit interiors, premium finishes, modern fittings, and thoughtfully designed living zones crafted to support an elevated lifestyle. The layout optimizes natural ventilation and privacy while offering generous common spaces to relax, entertain, and recharge. Homeowners also enjoy exclusive access to state-of-the-art wellness amenities, swimming facilities, landscaped gardens, and dedicated community spaces across SGMG Residences.
                         </div>
                       </div>
                     </div>
@@ -1339,48 +1340,8 @@ export default function ApartmentDetailPage() {
         </div>
       </section>
 
-      {/* Pet Friendly Section */}
-      <section data-section="light" className="pets">
-        <div className="wrapper_pets">
-          <div className="pets_heading">
-            <h2 className="h2 pets_h">
-              For You.
-              <br />
-              For <span data-scribble="5" className="scribble-wrap">Them.</span>
-            </h2>
-          </div>
-
-          <div className="pets_ill">
-            <div className="box_pets"></div>
-            <div className="p_pets">
-              <div className="p_gen black">
-                A pet-friendly living environment designed to support everyday life together, where comfort, routine, and space extend naturally to your pet. From quiet moments of rest to daily movement and shared routines, the space remains open, calm, and easy to adapt — allowing both of you to settle in and feel at home without compromise.
-              </div>
-            </div>
-          </div>
-
-          <div className="pet_boxes">
-            <div className="pet_box">
-              <div className="pet_title">A place to settle</div>
-              <div className="pet_desc">
-                Soft, quiet areas where your pet can rest, relax, and find a consistent sense of comfort throughout the day.
-              </div>
-            </div>
-            <div className="pet_box">
-              <div className="pet_title">Room to move</div>
-              <div className="pet_desc">
-                Open, flexible layouts that support movement, play, and daily routines without restriction or disruption.
-              </div>
-            </div>
-            <div className="pet_box">
-              <div className="pet_title">Part of everyday life</div>
-              <div className="pet_desc">
-                A setting where living with your pet feels natural, integrated, and fully considered in how the space functions.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* EMI Calculator Section */}
+      <EmiCalculator />
 
       {/* Frequently Asked Questions Accordion Section */}
       <section className="faqs">
@@ -1457,62 +1418,6 @@ export default function ApartmentDetailPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Full Screen CTA Banner Section */}
-      <section data-section="dark" className="fs_cta">
-        <div className="abs_box">
-          <div className="pink_cta">
-            <div className="wrapper_box_cta">
-              <div className="heading_cta">
-                <div className="txt_cta">
-                  Find your place.<br />Make it yours.
-                </div>
-              </div>
-              <div className="flex_cta">
-                <div className="black_button">
-                  <a
-                    href="https://calendly.com/dipakh810/30min"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="button w-inline-block"
-                  >
-                    <div className="icon_box is-left black">
-                      <div className="arrow_icon">
-                        <ArrowIcon fill="#2391cf" />
-                      </div>
-                    </div>
-                    <div className="text_box black">
-                      <div>Schedule a Tour</div>
-                    </div>
-                    <div className="icon_box is-right black">
-                      <div className="arrow_icon">
-                        <ArrowIcon fill="#2391cf" />
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="icon_right">
-                  <img
-                    loading="lazy"
-                    src="/assets/icons/move-3.png"
-                    alt="Moon decoration"
-                    className="image"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="fs_bg">
-          <img
-            loading="lazy"
-            src="/assets/image_cta.avif"
-            alt="Modern student residence lounge"
-            className="image"
-          />
         </div>
       </section>
 

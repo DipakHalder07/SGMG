@@ -24,136 +24,136 @@ const FAQ_DATA: FaqCategory[] = [
     "title": "General",
     "items": [
       {
-        "q": "Can I visit the property before applying?",
-        "a": "Yes. We encourage visits whenever possible. You can schedule a tour to explore the space, amenities, and overall atmosphere before making a decision."
+        "q": "Can I schedule a site visit to SGMG properties in Siliguri?",
+        "a": "Yes. We welcome prospective homebuyers and investors for private site walkthroughs. You can schedule a visit through our website or contact our Siliguri sales desk to tour model residences, assess construction progress, and explore the neighborhood."
       },
       {
-        "q": "How can I contact you?",
-        "a": "Call our office at (803) 937-2431 or submit a guest card online. A team member will reach out within 24 hours."
+        "q": "How can I contact the SGMG sales and advisory team?",
+        "a": "You can reach our corporate desk at +91 97330 02244 or email sales@sgmg.in. Our office at 2nd Floor, Jeevandeep Tower, Siliguri is open Monday through Saturday from 10:00 AM to 7:00 PM."
       },
       {
-        "q": "Can I choose my exact unit?",
-        "a": "Yes, depending on availability. During the application process, you’ll be able to select from currently available units or be guided toward the closest match."
+        "q": "Can I choose my preferred floor, tower, or orientation?",
+        "a": "Yes, subject to availability at the time of booking. Our sales advisors will guide you through available inventory, including floor heights, corner configurations, and directional orientations."
       },
       {
-        "q": "Is it quiet enough to study and focus?",
-        "a": "The space is designed to support both social life and focused work. Dedicated study areas and thoughtful layout help maintain a calm environment when needed."
+        "q": "Are SGMG projects located in prime Siliguri neighborhoods?",
+        "a": "All SGMG developments are strategically situated along Siliguri's high-growth corridors—such as Sevoke Road, Matigara, and Salugara—offering swift transit to premier schools, multi-specialty hospitals, retail destinations, and Bagdogra International Airport."
       }
     ]
   },
   {
     "id": "apply-leasing",
     "anchorId": "apply-leasing",
-    "title": "Apply & Leasing",
+    "title": "Booking & Allotment",
     "items": [
       {
-        "q": "What does by-the-bed leasing mean?",
-        "a": "Each resident signs an individual lease and is only responsible for their portion of the rent."
+        "q": "What is the procedure for booking a residential unit?",
+        "a": "To book an apartment, complete an Expression of Interest (EOI) or application form, submit the required KYC documentation (PAN card, Aadhaar, address proof), and provide the initial booking advance."
       },
       {
-        "q": "How do I apply for an apartment?",
-        "a": "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan."
+        "q": "Are SGMG residential developments RERA registered?",
+        "a": "Yes. All SGMG residential and commercial projects strictly adhere to Real Estate Regulatory Authority (RERA) statutory guidelines, with approved municipal sanctions, environmental clearances, and legal compliances."
       },
       {
-        "q": "What do I need to apply?",
-        "a": "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved."
+        "q": "Can Non-Resident Indians (NRIs) purchase residential property in Siliguri?",
+        "a": "Yes. NRIs and Persons of Indian Origin (PIOs) can invest in residential real estate across Siliguri in full compliance with FEMA and RBI regulations. Our dedicated desk assists overseas clients with end-to-end documentation."
       },
       {
-        "q": "Do I need a guarantor?",
-        "a": "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information."
+        "q": "What documents are required to initiate property purchase?",
+        "a": "Primary documents include self-attested copies of PAN card, Aadhaar/Passport, recent passport-sized photographs, and bank account details for transaction verification."
       },
       {
-        "q": "How long does approval take?",
-        "a": "Typically 24–48 hours, depending on how quickly your guarantor submits their application."
+        "q": "What is the timeline for allotment letter issuance?",
+        "a": "Upon verification of documentation and receipt of the booking amount, formal allotment letters and the Agreement for Sale (AFS) are executed within 7 to 14 business days."
       },
       {
-        "q": "Can I apply if I’m not a student?",
-        "a": "Yes. All applicants who meet the qualifying criteria are welcome."
+        "q": "Can a unit booking be transferred to a family member?",
+        "a": "Yes, nominations and transfers to immediate family members (parents, spouse, children) are permitted subject to management approval, requisite documentation, and statutory administrative guidelines."
       },
       {
-        "q": "Are short-term or summer leases available?",
-        "a": "Availability varies. Contact the office for details on short-term leases or summer housing options."
+        "q": "Is joint ownership permitted for residential units?",
+        "a": "Yes, co-ownership with a spouse, parent, sibling, or business partner is permitted. All co-owners must submit their respective KYC documents at the time of booking."
       },
       {
-        "q": "Can I sublet my apartment?",
-        "a": "No. However, you may relet your apartment by finding a new resident who passes screening and signs a new lease."
+        "q": "What is the cancellation and refund policy?",
+        "a": "Cancellation policies conform to RERA norms and the terms detailed in the Booking Application. In case of cancellation prior to agreement execution, the booking amount is refunded after standard administrative deductions."
       }
     ]
   },
   {
     "id": "rent-payments-fees",
     "anchorId": "pricing-payments",
-    "title": "Rent, Payments & Fees",
+    "title": "Pricing, Loans & Payments",
     "items": [
       {
-        "q": "How is rent paid?",
-        "a": "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately."
+        "q": "What payment schedules are available for homebuyers?",
+        "a": "We offer flexible payment structures including Construction-Linked Payment Plans (CLP), down payment plans, and customized milestone-linked schedules designed to align with construction progress."
       },
       {
-        "q": "What payment methods do you accept?",
-        "a": "Bank transfer (eCheck) Debit and credit cards (fees apply; Visa, Mastercard, Discover, and American Express accepted) Recurring payments through the Resident Portal PayPal is not accepted."
+        "q": "Are home loans available from leading financial institutions?",
+        "a": "Yes. SGMG projects are pre-approved by major nationalized and private banks including SBI, HDFC Bank, ICICI Bank, Axis Bank, and Bank of Baroda, providing competitive interest rates and expedited processing."
       },
       {
-        "q": "Can I use student loans to pay rent?",
-        "a": "Student loans cannot be used for income verification but may be used to make rent payments."
+        "q": "Are there additional charges beyond the base apartment price?",
+        "a": "In addition to base unit value, statutory charges include applicable GST, stamp duty and registration fees, advance maintenance corpus, car parking allocation, and utility connection charges."
       },
       {
-        "q": "What happens if I don’t pay on time?",
-        "a": "Late fees begin on the 4th of the month. Continued non-payment may result in eviction."
+        "q": "What payment modes are accepted for installments?",
+        "a": "Payments can be remitted securely via RTGS, NEFT, IMPS, authorized wire transfers (for NRI buyers), or crossed account payee cheques drawn in favor of the designated project RERA escrow account."
       },
       {
-        "q": "Can I cancel my lease or change my rent plan?",
-        "a": "Leases cannot be canceled. However, you may relet your unit. Rent plans are fixed based on your floor plan and bedroom type."
+        "q": "How are construction milestones verified before payment requests?",
+        "a": "Each milestone demand is accompanied by an official architect certification and structural engineer progress report verifying that the specific construction stage has been completed."
       }
     ]
   },
   {
     "id": "how-to-apply",
     "anchorId": "move-in-move-out",
-    "title": "How to Apply",
+    "title": "Purchasing & Possession",
     "items": [
       {
-        "q": "Create Your Account",
-        "a": "Select your lease term and floor plan. If you already know your roommates, everyone should choose the same floor plan. Create an account to complete your application, sign your lease online, and access the Resident Portal in the future."
+        "q": "Step 1: Choose Your Residence & Floor Plan",
+        "a": "Explore our range of curated residential floor plans. Select your preferred layout, tower, and unit specifications based on your family's lifestyle preferences and spatial requirements."
       },
       {
-        "q": "Choose Add-Ons",
-        "a": "You can add parking, pets, or renter’s insurance to your application. Parking may be limited, so reserving early is recommended. Renter’s insurance is required, and a low-cost option is available through the community."
+        "q": "Step 2: Submit Booking Application & KYC",
+        "a": "Fill out the formal application form, choose your preferred parking space and unit orientation, and submit verified KYC credentials along with the booking token."
       },
       {
-        "q": "Enter Your Personal Information",
-        "a": "Provide your contact details, address, and any vehicle or pet information if applicable. Upload a copy of your ID for verification purposes."
+        "q": "Step 3: Verification & Allotment",
+        "a": "Our customer management desk reviews your application, executes the formal Allotment Letter, and issues your project documentation detailing installment milestones."
       },
       {
-        "q": "Complete the Questionnaire",
-        "a": "Answer questions about your academic focus, study habits, and lifestyle preferences. This information helps with roommate matching and community event planning."
+        "q": "Step 4: Agreement for Sale & Home Loan Sanction",
+        "a": "Execute the RERA-compliant Agreement for Sale. Our dedicated finance desk coordinates with partner banks to secure home loan approvals and timely disbursements."
       },
       {
-        "q": "Financial Information & Guarantor",
-        "a": "Most residents will need a guarantor to meet income qualifications. You’ll provide their information, and they’ll complete their portion separately. If qualifying with your own income, you’ll need to upload proof of income. Student loans cannot be used for income verification."
+        "q": "Step 5: Construction Updates & Milestone Visits",
+        "a": "Receive periodic photographic and technical progress reports from our engineering team. You are invited to milestone site inspections as structural stages are completed."
       },
       {
-        "q": "Add Emergency Contacts",
-        "a": "Provide the name and contact information of an emergency contact and indicate whether they are authorized to access your apartment in an emergency. Once completed, the team will review your application and contact you with next steps."
+        "q": "Step 6: Handover, Registration & Key Handover",
+        "a": "Upon receipt of the Completion Certificate (CC) and final clearance, property registration and stamp duty execution are concluded, followed by key handover and possession orientation."
       }
     ]
   },
   {
     "id": "living-support",
     "anchorId": "living-support",
-    "title": "Living & Support",
+    "title": "Amenities & Community",
     "items": [
       {
-        "q": "What amenities are available?",
-        "a": "Residents have access to a range of amenities designed for daily living, studying, and socializing. These include shared spaces, study areas, and lifestyle-focused features."
+        "q": "What residential amenities are included within SGMG developments?",
+        "a": "Residences feature landscaped podium courtyards, modern fitness centers, multipurpose resident lounges, children's play areas, dedicated walking tracks, and 24/7 multi-tier security with CCTV coverage."
       },
       {
-        "q": "How do I request maintenance?",
-        "a": "Maintenance requests can be submitted through a dedicated system or support channel, with quick response times to resolve issues."
+        "q": "How is post-possession maintenance and facility management handled?",
+        "a": "SGMG facilitates professional facility management for common areas, security, water treatment, backup power generators, and landscaping until the handover to the elected Resident Welfare Association (RWA)."
       },
       {
-        "q": "Is there on-site support?",
-        "a": "Yes. Our team is available to assist with day-to-day needs, ensuring a smooth and comfortable living experience."
+        "q": "Is 24/7 power backup and water supply provided?",
+        "a": "Yes. All projects are equipped with 100% DG backup for essential common services and designated home points, alongside dual-source purified water supply systems and rainwater harvesting infrastructure."
       }
     ]
   }
@@ -177,6 +177,11 @@ export default function FaqPage() {
       return next;
     });
   };
+
+  // Set document title
+  useEffect(() => {
+    document.title = "Frequently Asked Questions • SGMG Luxury Real Estate Siliguri";
+  }, []);
 
   // Scrollspy to track active section
   useEffect(() => {
