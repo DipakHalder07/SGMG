@@ -60,8 +60,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Full XL-size bed", "Mattress", "Dresser", "Study desk", "Desk chair", "Keyed lock", "Window blinds"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -96,8 +96,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Premium mattress", "Full XL bed frame", "Custom dresser", "Workstation desk", "Ergonomic chair", "Keyed lock"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -132,8 +132,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Private attached bathroom", "Walk-in closet", "Full XL bed", "Desk & chair", "Electronic lock"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -168,8 +168,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Ensuite luxury bath", "Custom lighting", "Plush mattress", "Study desk", "Room darkening blinds"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -204,8 +204,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Private bath", "Full XL bed", "Mattress", "Desk & ergonomic chair", "Keyed lock"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   },
   {
@@ -240,8 +240,8 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       bedroom: ["Private attached bath", "Premium mattress", "Study nook with lamp", "Closet built-ins", "Keyed lock"]
     },
     fees: {
-      application: "$50.00",
-      admin: "$150.00"
+      application: "₹50.00",
+      admin: "₹150.00"
     }
   }
 ];

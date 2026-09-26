@@ -42,7 +42,7 @@ export default function ApartmentCard({
           </div>
           <div className="price_box">
             <div className="icon_price">
-              <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+              <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
             </div>
             <div className="price_txt">{apartment.priceFormatted}</div>
             <div className="mnth_txt">/month</div>

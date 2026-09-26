@@ -623,7 +623,7 @@ export default function ApartmentDetailPage() {
                             <img
                               src="/assets/icons/price-icon.png"
                               loading="lazy"
-                              alt="US dollar, icon, png, black"
+                              alt="₹"
                               className="image"
                             />
                           </div>

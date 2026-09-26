@@ -1375,7 +1375,7 @@ export default function HomePage() {
                       </div>
                       <div className="price_box">
                         <div className="icon_price">
-                          <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                          <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
                         </div>
                         <div className="price_txt">{apart.price}</div>
                       </div>
@@ -1444,7 +1444,12 @@ export default function HomePage() {
                           >
                             {apart.name}
                           </Link>
-                          <div className="price_box"><div className="price_txt">${apart.price}</div></div>
+                          <div className="price_box">
+                            <div className="icon_price">
+                              <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
+                            </div>
+                            <div className="price_txt">{apart.price}</div>
+                          </div>
                         </div>
                         <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
                         <div className="explore_button" style={{ marginTop: "16px" }}>

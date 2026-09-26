@@ -141,7 +141,7 @@ export default function ApartmentsPage() {
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
                             value={minPrice.toFixed(2)}
-                            placeholder="$0.00"
+                            placeholder="₹0.00"
                             readOnly
                           />
                           <div className="dash_field">-</div>
@@ -149,7 +149,7 @@ export default function ApartmentsPage() {
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
                             value={maxPrice.toFixed(2)}
-                            placeholder="$865.00"
+                            placeholder="₹865.00"
                             readOnly
                           />
                         </div>
@@ -182,7 +182,7 @@ export default function ApartmentsPage() {
                             }}
                           >
                             <div className="fs-rangeslider_handle-value">
-                              $<span className="fs-rangeslider_handle-span helper">0</span>
+                              ₹<span className="fs-rangeslider_handle-span helper">0</span>
                             </div>
                           </div>
                           <div
@@ -195,7 +195,7 @@ export default function ApartmentsPage() {
                             }}
                           >
                             <div className="fs-rangeslider_handle-value">
-                              $<span className="fs-rangeslider_handle-span helper">{maxPrice}</span>
+                              ₹<span className="fs-rangeslider_handle-span helper">{maxPrice}</span>
                             </div>
                           </div>
                         </div>

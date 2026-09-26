@@ -64,7 +64,7 @@ export default function ApartmentLightboxModal({
           <div className="apartment-lightbox-title-wrap">
             <h3 className="apartment-lightbox-unit-title">{unit.name}</h3>
             <span className="apartment-lightbox-unit-specs">
-              {unit.beds} • {unit.baths} • {unit.sqft} ft² • ${unit.priceFormatted}/mo
+              {unit.beds} • {unit.baths} • {unit.sqft} ft² • ₹{unit.priceFormatted}/mo
             </span>
           </div>
 
