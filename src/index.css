@@ -5647,3 +5647,119 @@ body.is-hero .menu {
   box-shadow: none !important;
 }
 
+/* =========================================================
+   SGMG WEBSITE LOADER — "Tile build" Animation
+   ========================================================= */
+#sgmg-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#sgmg-loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#sgmg-loader svg {
+  width: 140px;
+  height: 140px;
+  overflow: visible;
+}
+
+@media (max-width: 600px) {
+  #sgmg-loader svg {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+#sgmg-loader .sq {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sgmg-pop 2.8s var(--d) infinite cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+#sgmg-loader .ln {
+  stroke: #ffffff;
+  stroke-dasharray: 440;
+  animation: sgmg-line 2.8s var(--d) infinite ease-out both;
+}
+
+#sgmg-loader .lt {
+  fill: #ffffff;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sgmg-letter 2.8s var(--d) infinite cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes sgmg-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  12% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+  18%,
+  80% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  92%,
+  100% {
+    transform: scale(0.88);
+    opacity: 0;
+  }
+}
+
+@keyframes sgmg-line {
+  0%,
+  16% {
+    stroke-dashoffset: 440;
+    opacity: 1;
+  }
+  32%,
+  80% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  92%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes sgmg-letter {
+  0%,
+  24% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  38%,
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #sgmg-loader * {
+    animation: none !important;
+  }
+}
+
+

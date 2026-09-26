@@ -131,6 +131,15 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     Gallery
                   </span>
                   <span
+                    onClick={() => handleNavClick("/team")}
+                    onMouseEnter={() => prefetchRoute("/team")}
+                    onTouchStart={() => prefetchRoute("/team")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Our Team
+                  </span>
+                  <span
                     onClick={() => handleNavClick("/how-to-apply")}
                     onMouseEnter={() => prefetchRoute("/how-to-apply")}
                     onTouchStart={() => prefetchRoute("/how-to-apply")}
