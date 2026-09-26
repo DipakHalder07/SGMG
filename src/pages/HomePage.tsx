@@ -7,8 +7,6 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
-import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
-import { APARTMENTS_DATA, ApartmentUnit } from "../data/apartmentsData";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -236,8 +234,8 @@ const faqsList = [
 ];
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalUnit, setModalUnit] = useState<ApartmentUnit | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
@@ -1329,7 +1327,11 @@ export default function HomePage() {
             <div className="apart_cards_track">
               {apartments.slice(0, 4).map((apart) => (
                 <div className="apart_card" key={apart.id}>
-                  <div className="apart_image">
+                  <Link
+                    to={`/apartments/${apart.id}`}
+                    className="apart_image"
+                    style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                  >
                     <div className="overlay_tags">
                       <div className="tag_available">
                         <div className="dot_available"></div>
@@ -1358,12 +1360,18 @@ export default function HomePage() {
                       </div>
                     </div>
                     <img src={apart.image} alt={apart.name} className="image" />
-                  </div>
+                  </Link>
 
                   <div className="content_apart">
                     <div className="apart_title_line">
                       <div>
-                        <div className="apart_title">{apart.name}</div>
+                        <Link
+                          to={`/apartments/${apart.id}`}
+                          className="apart_title"
+                          style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                        >
+                          {apart.name}
+                        </Link>
                       </div>
                       <div className="price_box">
                         <div className="icon_price">
@@ -1380,10 +1388,10 @@ export default function HomePage() {
                     <div className="explore_button" style={{ marginTop: "18px" }}>
                       <WebflowButton
                         text="Explore Details"
+                        href={`/apartments/${apart.id}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
-                          setModalUnit(matched);
+                          navigate(`/apartments/${apart.id}`);
                         }}
                       />
                     </div>
@@ -1400,7 +1408,11 @@ export default function HomePage() {
                 <div className="splide__list">
                   {apartments.map((apart) => (
                     <div className="splide__slide apart_card" key={apart.id}>
-                      <div className="apart_image">
+                      <Link
+                        to={`/apartments/${apart.id}`}
+                        className="apart_image"
+                        style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                      >
                         <div className="overlay_tags">
                           <div className="tag_available">
                             <div className="dot_available"></div>
@@ -1422,20 +1434,26 @@ export default function HomePage() {
                           </div>
                         </div>
                         <img src={apart.image} alt={apart.name} className="image" />
-                      </div>
+                      </Link>
                       <div className="content_apart">
                         <div className="apart_title_line">
-                          <div className="apart_title">{apart.name}</div>
+                          <Link
+                            to={`/apartments/${apart.id}`}
+                            className="apart_title"
+                            style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                          >
+                            {apart.name}
+                          </Link>
                           <div className="price_box"><div className="price_txt">${apart.price}</div></div>
                         </div>
                         <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
                         <div className="explore_button" style={{ marginTop: "16px" }}>
                           <WebflowButton
                             text="Explore Details"
+                            href={`/apartments/${apart.id}`}
                             onClick={(e) => {
                               e.preventDefault();
-                              const matched = APARTMENTS_DATA.find((x) => x.id === apart.id) || null;
-                              setModalUnit(matched);
+                              navigate(`/apartments/${apart.id}`);
                             }}
                           />
                         </div>
@@ -1972,14 +1990,6 @@ export default function HomePage() {
           </div>
         </footer>
       </section>
-
-      {/* Lightbox Modal */}
-      {modalUnit && (
-        <ApartmentLightboxModal
-          unit={modalUnit}
-          onClose={() => setModalUnit(null)}
-        />
-      )}
     </div>
   );
 }
