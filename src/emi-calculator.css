@@ -1,458 +1,255 @@
 /* ==========================================================================
-   EMI CALCULATOR SECTION STYLES (SGMG Brand Aesthetics)
+   EMI CALCULATOR SECTION (Matching Original Container & Background)
    ========================================================================== */
 
-.emi_calculator_section {
+.emi_section {
   width: 100%;
-  background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
-  padding: 5.5rem 2rem 5rem;
+  background-color: #e3f2f9 !important;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.emi_calc_container {
-  max-width: 1240px;
+.emi_container {
+  padding: 5.1rem 2rem 4rem;
+  max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  position: relative;
+  box-sizing: border-box;
 }
 
-.emi_calc_header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 3.5rem;
-}
-
-.emi_calc_badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background-color: rgba(35, 145, 207, 0.1);
-  color: var(--primary, #2391cf);
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.emi_calc_heading {
+.emi_calc_main_title {
   font-family: Michroma, var(--font-display, sans-serif);
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
   font-weight: 700;
-  line-height: 1.15;
-  color: #121214;
-  margin-bottom: 1rem;
+  color: #1a1a1a;
+  margin: 0 0 3rem 0;
   letter-spacing: -0.02em;
 }
 
-.emi_calc_subheading {
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  color: #555860;
-  line-height: 1.6;
-}
-
-/* Two Column Layout */
-.emi_calc_grid {
+.emi_calc_row {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 2.5rem;
-  align-items: stretch;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
 }
 
-/* Left Card: Sliders & Controls */
-.emi_calc_controls_card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 1.25rem;
-  padding: 2.5rem 2.25rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+/* ---------------- Left Column: Sliders ---------------- */
+.emi_calc_sliders_col {
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
 }
 
-.emi_calc_group {
+.emi_slider_group {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
-.emi_calc_group_header {
+.emi_slider_top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
-.emi_calc_label {
+.emi_slider_label {
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  font-weight: 500;
+}
+
+.emi_slider_value {
   font-size: 1.05rem;
-  font-weight: 600;
-  color: #1c1d21;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Slider Track & Thumb */
+.emi_slider_track_wrap {
+  width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
 }
 
-.emi_calc_value_badge {
-  font-family: Michroma, monospace, sans-serif;
+.emi_range_input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #dcdcdc;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.emi_range_input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #000000;
+  border: 2px solid #000000;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease;
+}
+
+.emi_range_input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Firefox */
+.emi_range_input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #000000;
+  border: 2px solid #000000;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease;
+}
+
+.emi_range_input::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+.emi_slider_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  color: #888888;
+  font-weight: 400;
+}
+
+/* ---------------- Right Column: Arc & Results ---------------- */
+.emi_calc_results_col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.emi_gauge_wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emi_gauge_svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Three bottom values */
+.emi_bottom_values_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 460px;
+  margin-top: 1.5rem;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.emi_val_item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.emi_val_item.text-left {
+  text-align: left;
+}
+
+.emi_val_item.text-center {
+  text-align: center;
+}
+
+.emi_val_item.text-right {
+  text-align: right;
+}
+
+.emi_val_label {
+  font-size: 0.85rem;
+  color: #555555;
+  font-weight: 500;
+}
+
+.emi_val_number {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--primary, #2391cf);
-  background: rgba(35, 145, 207, 0.08);
-  border: 1px solid rgba(35, 145, 207, 0.2);
-  padding: 0.35rem 0.9rem;
-  border-radius: 0.6rem;
-  min-width: 7rem;
-  text-align: right;
   letter-spacing: -0.01em;
 }
 
-/* Range Slider Styling */
-.emi_calc_slider_wrap {
-  position: relative;
-  width: 100%;
+.emi_val_number.color-interest {
+  color: #b83465;
 }
 
-.emi_calc_slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 8px;
-  border-radius: 4px;
-  background: #e2e8f0;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.emi_val_number.color-principal {
+  color: #1872df;
 }
 
-.emi_calc_slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--primary, #2391cf);
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(35, 145, 207, 0.45);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.emi_val_number.color-total {
+  color: #1a1a1a;
 }
 
-.emi_calc_slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 4px 12px rgba(35, 145, 207, 0.6);
-}
-
-.emi_calc_slider::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--primary, #2391cf);
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(35, 145, 207, 0.45);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.emi_calc_slider::-moz-range-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 4px 12px rgba(35, 145, 207, 0.6);
-}
-
-.emi_calc_scale {
+/* ---------------- Bottom Button ---------------- */
+.emi_bottom_btn_row {
+  margin-top: 3.5rem;
   display: flex;
-  justify-content: space-between;
-  font-size: 0.82rem;
-  color: #718096;
-  font-weight: 500;
-  margin-top: 0.1rem;
-}
-
-/* Quick Selection Chips */
-.emi_calc_chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.25rem;
-}
-
-.emi_calc_chip {
-  background: #f1f5f9;
-  border: 1px solid transparent;
-  color: #475569;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.25rem 0.65rem;
-  border-radius: 0.4rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.emi_calc_chip:hover {
-  background: rgba(35, 145, 207, 0.12);
-  color: var(--primary, #2391cf);
-  border-color: rgba(35, 145, 207, 0.25);
-}
-
-.emi_calc_chip.is-active {
-  background: var(--primary, #2391cf);
-  color: #ffffff;
-  border-color: var(--primary, #2391cf);
-}
-
-/* Right Card: Summary & Breakdown */
-.emi_calc_summary_card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 1.25rem;
-  padding: 2.25rem 2rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.75rem;
-}
-
-/* Monthly EMI Featured Box */
-.emi_calc_featured_box {
-  background: linear-gradient(135deg, rgba(35, 145, 207, 0.08) 0%, rgba(162, 205, 58, 0.08) 100%);
-  border: 1px solid rgba(35, 145, 207, 0.25);
-  border-radius: 1rem;
-  padding: 1.6rem 1.4rem;
-  text-align: center;
-}
-
-.emi_calc_featured_title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #4a5568;
-  margin-bottom: 0.4rem;
-}
-
-.emi_calc_featured_value {
-  font-family: Michroma, var(--font-display, sans-serif);
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  font-weight: 700;
-  color: var(--primary, #2391cf);
-  line-height: 1.1;
-  margin-bottom: 0.35rem;
-  letter-spacing: -0.02em;
-}
-
-.emi_calc_featured_subtitle {
-  font-size: 0.85rem;
-  color: #718096;
-}
-
-/* Donut Chart and Legend */
-.emi_calc_chart_container {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 0.5rem 0;
-}
-
-.emi_calc_donut_wrap {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  flex-shrink: 0;
-}
-
-.emi_calc_donut_svg {
-  transform: rotate(-90deg);
+  align-items: center;
   width: 100%;
-  height: 100%;
 }
 
-.emi_calc_donut_center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  pointer-events: none;
-}
-
-.emi_calc_donut_center_label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #a0aec0;
-  text-transform: uppercase;
-}
-
-.emi_calc_donut_center_val {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #2d3748;
-}
-
-.emi_calc_chart_legend {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex: 1;
-}
-
-.emi_calc_legend_item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.88rem;
-  color: #4a5568;
-}
-
-.emi_calc_legend_dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-
-.emi_calc_legend_dot.is-principal {
-  background-color: var(--primary, #2391cf);
-}
-
-.emi_calc_legend_dot.is-interest {
-  background-color: #a2cd3a;
-}
-
-.emi_calc_legend_pct {
-  margin-left: auto;
-  font-weight: 700;
-  color: #1a202c;
-  font-size: 0.85rem;
-}
-
-/* Summary Rows */
-.emi_calc_details_list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  border-top: 1px solid #edf2f7;
-  padding-top: 1.25rem;
-}
-
-.emi_calc_detail_row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.95rem;
-  color: #4a5568;
-}
-
-.emi_calc_detail_label {
-  font-weight: 500;
-}
-
-.emi_calc_detail_val {
-  font-family: Michroma, monospace, sans-serif;
-  font-weight: 700;
-  color: #1a202c;
-  font-size: 1.05rem;
-}
-
-.emi_calc_detail_row.is-total {
-  border-top: 1px dashed #cbd5e0;
-  padding-top: 0.85rem;
-  margin-top: 0.25rem;
-}
-
-.emi_calc_detail_row.is-total .emi_calc_detail_label {
-  font-weight: 700;
-  color: #1a202c;
-  font-size: 1rem;
-}
-
-.emi_calc_detail_row.is-total .emi_calc_detail_val {
-  font-size: 1.25rem;
-  color: var(--primary, #2391cf);
-}
-
-/* Bottom CTA inside card */
-.emi_calc_cta_btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  padding: 0.95rem 1.5rem;
-  background-color: #121214;
-  color: #ffffff;
-  border-radius: 0.6rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  margin-top: 0.5rem;
-}
-
-.emi_calc_cta_btn:hover {
-  background-color: var(--primary, #2391cf);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(35, 145, 207, 0.35);
-}
-
-.emi_calc_cta_btn svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.emi_calc_cta_btn:hover svg {
-  transform: translateX(4px);
-}
-
-/* Responsive */
-@media screen and (max-width: 991px) {
-  .emi_calc_grid {
+/* ---------------- Responsive ---------------- */
+@media screen and (max-width: 900px) {
+  .emi_calc_row {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
   }
 
-  .emi_calculator_section {
-    padding: 4rem 1.5rem;
+  .emi_calc_results_col {
+    margin-top: 1rem;
   }
 
-  .emi_calc_controls_card,
-  .emi_calc_summary_card {
-    padding: 2rem 1.5rem;
+  .emi_bottom_btn_row {
+    margin-top: 2.5rem;
   }
 }
 
-@media screen and (max-width: 640px) {
-  .emi_calc_chart_container {
+@media screen and (max-width: 540px) {
+  .emi_container {
+    padding: 3rem 1.25rem;
+  }
+
+  .emi_calc_main_title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .emi_bottom_values_row {
     flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
   }
 
-  .emi_calc_chart_legend {
-    width: 100%;
-  }
-
-  .emi_calc_value_badge {
-    font-size: 1rem;
-    padding: 0.3rem 0.7rem;
-    min-width: 6rem;
-  }
-
-  .emi_calc_detail_row {
-    font-size: 0.88rem;
-  }
-
-  .emi_calc_detail_val {
-    font-size: 0.95rem;
-  }
-
-  .emi_calc_detail_row.is-total .emi_calc_detail_val {
-    font-size: 1.15rem;
+  .emi_val_item.text-left,
+  .emi_val_item.text-center,
+  .emi_val_item.text-right {
+    text-align: center;
   }
 }

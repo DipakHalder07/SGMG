@@ -1840,7 +1840,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="icon_right">
-                    <img src="/images/sgmg-icon-white.svg" alt="SGMG Logo Icon" className="image" />
+                    <img src="/images/sgmg-icon.svg" alt="SGMG Logo Icon" className="image" />
                   </div>
                 </div>
               </div>
