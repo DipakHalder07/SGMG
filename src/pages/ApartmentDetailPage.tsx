@@ -1460,62 +1460,6 @@ export default function ApartmentDetailPage() {
         </div>
       </section>
 
-      {/* Full Screen CTA Banner Section */}
-      <section data-section="dark" className="fs_cta">
-        <div className="abs_box">
-          <div className="pink_cta">
-            <div className="wrapper_box_cta">
-              <div className="heading_cta">
-                <div className="txt_cta">
-                  Find your place.<br />Make it yours.
-                </div>
-              </div>
-              <div className="flex_cta">
-                <div className="black_button">
-                  <a
-                    href="https://calendly.com/dipakh810/30min"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="button w-inline-block"
-                  >
-                    <div className="icon_box is-left black">
-                      <div className="arrow_icon">
-                        <ArrowIcon fill="#2391cf" />
-                      </div>
-                    </div>
-                    <div className="text_box black">
-                      <div>Schedule a Tour</div>
-                    </div>
-                    <div className="icon_box is-right black">
-                      <div className="arrow_icon">
-                        <ArrowIcon fill="#2391cf" />
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="icon_right">
-                  <img
-                    loading="lazy"
-                    src="/assets/icons/move-3.png"
-                    alt="Moon decoration"
-                    className="image"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="fs_bg">
-          <img
-            loading="lazy"
-            src="/assets/image_cta.avif"
-            alt="Modern student residence lounge"
-            className="image"
-          />
-        </div>
-      </section>
-
       <Footer />
 
       {/* Fullscreen Lightbox Modal */}
