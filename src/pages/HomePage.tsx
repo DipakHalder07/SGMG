@@ -1964,8 +1964,8 @@ export default function HomePage() {
             <div className="last_txt">© B.HOM Student Living</div>
             <div className="web_dev_by">
               <span className="op_spec">Website by </span>
-              <a href="https://www.artemiilebedev.com" target="_blank" rel="noreferrer" className="spec_link">
-                Artemii Lebedev
+              <a href="https://digitalgrove.in" target="_blank" rel="noreferrer" className="spec_link">
+                Dipak
               </a>
             </div>
             <div className="last_txt">All Rights Reserved 2026</div>
