@@ -4,6 +4,9 @@ import EndlessStairsGame from "../components/EndlessStairsGame";
 import "../not-found.css";
 
 export default function NotFoundPage() {
+  React.useEffect(() => {
+    document.title = "Page Not Found • SGMG";
+  }, []);
   return (
     <section className="_404_page">
       <div className="wrapper_404">

@@ -730,7 +730,7 @@ export default function EndlessStairsGame() {
         "</div>" +
         '<span class="es-brand" style="opacity:' +
         (0.5 + cl * 0.45) +
-        '">21 Oaks</span>';
+        '">SGMG</span>';
       const gray = Math.round(80 - cl * 55);
       const col = "rgb(" + gray + "," + gray + "," + gray + ")";
       scoreEl.style.color = col;

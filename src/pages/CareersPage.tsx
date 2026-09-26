@@ -6,8 +6,8 @@ import "../careers.css";
 export interface JobOpening {
   id: string;
   title: string;
-  department: "Architecture & Design" | "Engineering & Green Tech" | "Resident Experience" | "Sales & Leasing" | "Operations & Tech";
-  location: "Mumbai HQ" | "Bengaluru" | "Pune" | "Delhi NCR";
+  department: "Architecture & Design" | "Engineering & Green Tech" | "Resident Experience" | "Sales & Advisory" | "Operations & Tech";
+  location: "Siliguri HQ" | "North Bengal" | "Kolkata" | "Remote";
   type: "Full-time" | "Hybrid" | "Onsite";
   experience: string;
   salaryRange: string;
@@ -20,170 +20,170 @@ export interface JobOpening {
 const JOB_OPENINGS: JobOpening[] = [
   {
     id: "lead-project-architect",
-    title: "Senior Project Architect (Student Living)",
+    title: "Senior Project Architect (Residential Developments)",
     department: "Architecture & Design",
-    location: "Mumbai HQ",
+    location: "Siliguri HQ",
     type: "Onsite",
     experience: "5 - 8 Years",
     salaryRange: "₹18 - ₹25 LPA",
-    description: "Lead architectural conceptualization, schematic design, and execution of multi-storey luxury student residences with biophilic and acoustic excellence.",
+    description: "Lead architectural conceptualization, schematic design, and execution of multi-storey luxury residential towers with biophilic and acoustic excellence in Siliguri.",
     responsibilities: [
-      "Drive architectural master planning and high-density interior spatial layouts for student co-living.",
-      "Coordinate with structural, MEP, and green-building consultants to achieve IGBC Platinum ratings.",
-      "Supervise on-site design fidelity, architectural detailing, and premium material finishes.",
+      "Drive architectural master planning and spacious floor plan layouts for luxury residential developments.",
+      "Coordinate with structural, MEP, and green-building consultants to achieve IGBC Gold/Platinum ratings.",
+      "Supervise on-site design fidelity, structural detailing, and premium material finishes across Siliguri sites.",
       "Mentor junior architects and represent SGMG at architectural forums and municipal presentations.",
     ],
     requirements: [
       "B.Arch or M.Arch from a recognized institute (CEPT, SPA, or equivalent preferred).",
       "Proficiency in Revit, AutoCAD, Rhino, Lumion, and BIM workflows.",
-      "Proven track record delivering large-scale residential, hospitality, or institutional projects.",
-      "Deep understanding of local building bylaws, fire codes, and sustainability compliance.",
+      "Proven track record delivering large-scale residential or luxury hospitality projects.",
+      "Deep understanding of local building bylaws, fire safety codes, and sustainability compliances.",
     ],
     benefits: [
       "Competitive executive salary with performance bonuses.",
-      "Executive health insurance for employee and immediate family.",
-      "Annual architecture research and international design travel stipend.",
-      "Collaborative, sunlit Mumbai studio overlooking the Bandra-Worli Sea Link.",
+      "Comprehensive health insurance for employee and immediate family.",
+      "Annual architecture research and design symposium travel stipend.",
+      "Collaborative, modern design studio at Jeevandeep Tower, Siliguri.",
     ],
   },
   {
     id: "biophilic-interior-designer",
-    title: "Biophilic Interior Spatial Designer",
+    title: "Biophilic Residential Interior Designer",
     department: "Architecture & Design",
-    location: "Bengaluru",
+    location: "Siliguri HQ",
     type: "Hybrid",
     experience: "3 - 6 Years",
     salaryRange: "₹12 - ₹18 LPA",
-    description: "Shape the tactile, aesthetic, and ergonomic environment of private student suites, community study pods, and wellness lounges.",
+    description: "Shape the tactile, aesthetic, and ergonomic environment of luxury apartment suites, clubhouse lounges, and residential wellness spaces.",
     responsibilities: [
       "Design restorative interior spaces integrating natural daylight, indoor greenery, and acoustic isolation.",
-      "Select sustainable, low-VOC materials, bespoke modular furniture, and energy-efficient lighting.",
+      "Select sustainable, low-VOC materials, bespoke woodwork, and energy-efficient ambient lighting.",
       "Develop photorealistic 3D renders, material mood boards, and detailed FF&E schedules.",
-      "Collaborate with procurement teams to source bespoke craftsmanship from artisanal Indian suppliers.",
+      "Collaborate with procurement teams to source premium materials and artisanal Indian craftsmanship.",
     ],
     requirements: [
       "Degree in Interior Design, Environmental Design, or Architecture.",
-      "Portfolio demonstrating contemporary residential or boutique hospitality work.",
+      "Portfolio demonstrating contemporary residential or luxury boutique hospitality work.",
       "Fluency in 3ds Max, SketchUp, Enscape/V-Ray, and Adobe Creative Suite.",
-      "Passionate interest in biophilia, ergonomic furniture, and sensory student living environments.",
+      "Passionate interest in biophilic residential architecture and ergonomic living environments.",
     ],
     benefits: [
       "Generous health & dental insurance coverage.",
-      "Flexible hybrid working schedule (3 days studio / 2 days remote).",
-      "Ergonomic home office setup allowance.",
-      "Continuous design mentorship under Design Director Priya Sharma.",
+      "Flexible hybrid working schedule.",
+      "Ergonomic workstation setup allowance.",
+      "Continuous design mentorship under Chief Architect Priya Sharma.",
     ],
   },
   {
     id: "green-building-mep-lead",
     title: "Green Building & Sustainable MEP Lead",
     department: "Engineering & Green Tech",
-    location: "Pune",
+    location: "Siliguri HQ",
     type: "Onsite",
     experience: "6 - 10 Years",
     salaryRange: "₹16 - ₹22 LPA",
-    description: "Direct sustainable engineering systems including rooftop solar microgrids, zero-waste greywater recycling, and intelligent IoT energy management.",
+    description: "Direct sustainable engineering systems including rooftop solar arrays, zero-waste rainwater harvesting, and intelligent energy management across Siliguri projects.",
     responsibilities: [
-      "Design and monitor energy-efficient HVAC, plumbing, electrical, and fire protection systems.",
-      "Spearhead IGBC / LEED Platinum certification audits and continuous building telemetry.",
-      "Implement smart metering and IoT sensors to minimize carbon footprint across residential assets.",
-      "Manage contractor performance and ensure stringent safety protocols across mechanical systems.",
+      "Design and monitor energy-efficient HVAC, plumbing, electrical, and fire safety systems.",
+      "Spearhead IGBC Green Building certification audits and structural safety inspections.",
+      "Implement smart energy metering and water recycling infrastructure across residential developments.",
+      "Manage contractor performance and ensure stringent safety protocols across all engineering works.",
     ],
     requirements: [
       "B.Tech/M.Tech in Mechanical, Electrical, or Environmental Engineering.",
       "Certified IGBC AP or LEED AP credentials required.",
       "Hands-on experience with solar microgrids, STP plants, and Building Management Systems (BMS).",
-      "Strong analytical mind with fluency in energy modeling tools (eQuest, EnergyPlus).",
+      "Strong analytical mind with fluency in energy modeling and structural analysis tools.",
     ],
     benefits: [
       "Comprehensive medical cover for family including parents.",
-      "Annual engineering innovation bonus tied to group energy savings.",
-      "Company transport assistance and onsite wellness facilities.",
+      "Annual engineering innovation bonus tied to group sustainability metrics.",
+      "Company transit assistance and executive wellness facilities.",
       "Direct collaboration with VP of Sustainable Infrastructure Dr. Rajesh Verma.",
     ],
   },
   {
     id: "community-experience-manager",
-    title: "Community Experience & Student Life Manager",
+    title: "Clubhouse & Resident Experience Manager",
     department: "Resident Experience",
-    location: "Mumbai HQ",
+    location: "Siliguri HQ",
     type: "Onsite",
     experience: "3 - 5 Years",
     salaryRange: "₹9 - ₹14 LPA",
-    description: "Foster an inclusive, engaging, and inspiring campus atmosphere for 300+ collegiate residents through curated social, wellness, and career initiatives.",
+    description: "Foster an active, welcoming community atmosphere across SGMG gated residences through curated lifestyle events, sports tournaments, and clubhouse amenities.",
     responsibilities: [
-      "Plan and execute 50+ annual events: career panels, cultural festivals, wellness retreats, and hackathons.",
-      "Act as the primary point of contact for student well-being, roommate mediation, and university liaisons.",
-      "Oversee resident council committees, volunteer groups, and peer tutoring networks.",
-      "Analyze monthly resident feedback surveys to continually elevate hospitality standards.",
+      "Plan and execute annual community celebrations: cultural festivals, sports tournaments, and wellness retreats.",
+      "Act as the primary relationship contact for homeowners, resident committees, and lifestyle club members.",
+      "Oversee clubhouse fitness facilities, banquet lounges, and children's recreational zones.",
+      "Analyze monthly homeowner feedback to continuously elevate facility management standards.",
     ],
     requirements: [
-      "Bachelor's or Master's degree in Psychology, Communications, Hospitality, or Event Management.",
-      "Charismatic, empathetic personality with high emotional intelligence and problem-solving flair.",
-      "Experience working with youth, college students, or co-living communities.",
-      "Comfortable coordinating social media highlights and community newsletters.",
+      "Bachelor's or Master's degree in Hospitality, Communications, or Event Management.",
+      "Charismatic, empathetic personality with high emotional intelligence and customer service flair.",
+      "Experience in luxury residential communities, club management, or hospitality.",
+      "Comfortable coordinating resident communications and digital community newsletters.",
     ],
     benefits: [
-      "Subsidized executive residence accommodation option.",
-      "Wellness & fitness club membership fully sponsored.",
-      "Mental health first-aid and community leadership training.",
-      "Vibrant daily environment working alongside motivated university students.",
+      "Subsidized executive residential accommodation option.",
+      "Clubhouse wellness & fitness membership fully sponsored.",
+      "Customer relationship excellence and hospitality leadership training.",
+      "Vibrant daily environment working with distinguished homeowner families.",
     ],
   },
   {
     id: "luxury-leasing-specialist",
-    title: "Luxury Leasing & Resident Relations Specialist",
-    department: "Sales & Leasing",
-    location: "Bengaluru",
+    title: "Luxury Residential Sales & Advisory Specialist",
+    department: "Sales & Advisory",
+    location: "Siliguri HQ",
     type: "Onsite",
     experience: "2 - 5 Years",
-    salaryRange: "₹8 - ₹12 LPA + Attractive Incentives",
-    description: "Engage prospective students and families through immersive property tours, guidance on floor plans, and white-glove digital onboarding.",
+    salaryRange: "₹8 - ₹14 LPA + Attractive Incentives",
+    description: "Engage prospective homebuyers and investors through personalized property tours, floor plan consultations, and transparent sales assistance.",
     responsibilities: [
-      "Conduct in-person and virtual video walkthroughs of luxury student suites and amenities.",
-      "Guide parents and students through flexible lease terms, guarantor verification, and move-in schedules.",
-      "Collaborate with marketing teams to follow up on inquiries from premier university open days.",
-      "Maintain 95%+ leasing occupancy rates while upholding empathetic resident relationship standards.",
+      "Conduct in-person site walkthroughs of luxury sample apartments and project amenities in Siliguri.",
+      "Guide homebuyers through unit configurations, pricing structures, bank loan tie-ups, and allotment paperwork.",
+      "Coordinate with digital marketing teams to manage high-intent buyer inquiries and private viewings.",
+      "Maintain strong client relationships while upholding SGMG's 40-year legacy of trust and transparency.",
     ],
     requirements: [
-      "Proven sales or leasing background in high-end real estate, luxury hospitality, or student housing.",
-      "Exceptional verbal and written communication skills in English and regional languages.",
-      "Customer-centric mindset with natural rapport-building and negotiation skills.",
-      "Familiarity with CRM systems (Salesforce, HubSpot) and digital lease platforms.",
+      "Proven sales or advisory background in luxury residential real estate or high-end hospitality.",
+      "Exceptional verbal and written communication skills in English, Hindi, and Bengali.",
+      "Customer-centric mindset with strong consultative sales and negotiation capabilities.",
+      "Familiarity with CRM platforms (Salesforce, LeadSquared) and real estate documentation.",
     ],
     benefits: [
-      "Generous quarterly leasing commissions and incentives.",
-      "Fast-track career advancement to Assistant General Manager.",
-      "Comprehensive medical and term life insurance.",
-      "Professional sales coaching and hospitality masterclasses.",
+      "Industry-leading quarterly sales commissions and performance incentives.",
+      "Fast-track career advancement to Sales Director / Regional Head.",
+      "Comprehensive medical and term life insurance coverage.",
+      "Professional luxury real estate advisory masterclasses.",
     ],
   },
   {
     id: "resident-portal-engineer",
-    title: "Full-Stack Resident Platform Engineer",
+    title: "Full-Stack Homeowner Platform Engineer",
     department: "Operations & Tech",
-    location: "Delhi NCR",
+    location: "Remote",
     type: "Hybrid",
     experience: "3 - 6 Years",
     salaryRange: "₹15 - ₹24 LPA + ESOPs",
-    description: "Build and scale our next-generation mobile and web applications powering smart room access, automated rent payments, maintenance tracking, and community social feeds.",
+    description: "Build and scale our modern homeowner mobile and web applications powering smart access, maintenance requests, payment tracking, and community updates.",
     responsibilities: [
       "Develop responsive React/React Native frontend interfaces and resilient Node.js microservices.",
-      "Integrate IoT smart locks, automated billing gateways (UPI, cards, NetBanking), and concierge ticketing.",
-      "Ensure robust bank-grade data encryption, low-latency API performance, and seamless user experiences.",
-      "Partner directly with CEO Aryan Mittal and operations leaders to deploy features that residents love.",
+      "Integrate smart access systems, automated payment gateways (UPI, NetBanking), and concierge ticketing.",
+      "Ensure bank-grade data security, low-latency API performance, and clean UI/UX flows.",
+      "Partner directly with CEO Aryan Mittal and operations leaders to deploy features homeowners love.",
     ],
     requirements: [
-      "Strong proficiency in TypeScript, React, Node.js, PostgreSQL/MongoDB, and AWS cloud architecture.",
-      "Experience building production-grade mobile apps or SaaS web platforms.",
-      "Familiarity with IoT protocols (MQTT, WebSockets) and payment integrations is a major plus.",
-      "Passionate about clean code, unit testing, and intuitive UI/UX interactions.",
+      "Strong proficiency in TypeScript, React, Node.js, PostgreSQL/MongoDB, and cloud infrastructure.",
+      "Experience building production-grade mobile applications or customer portal web platforms.",
+      "Familiarity with payment gateways and modern responsive design best practices.",
+      "Passionate about clean code, unit testing, and intuitive user experiences.",
     ],
     benefits: [
       "Generous group ESOP equity plan.",
       "Top-tier MacBook Pro and home work setup allowance.",
-      "Flexible hybrid work environment (2 days studio / 3 days remote).",
-      "Full family health cover including OPD and mental wellness benefits.",
+      "Flexible hybrid work environment.",
+      "Comprehensive family health insurance including mental wellness benefits.",
     ],
   },
 ];
@@ -193,16 +193,16 @@ const DEPARTMENTS = [
   "Architecture & Design",
   "Engineering & Green Tech",
   "Resident Experience",
-  "Sales & Leasing",
+  "Sales & Advisory",
   "Operations & Tech",
 ] as const;
 
 const LOCATIONS = [
   "All Locations",
-  "Mumbai HQ",
-  "Bengaluru",
-  "Pune",
-  "Delhi NCR",
+  "Siliguri HQ",
+  "North Bengal",
+  "Kolkata",
+  "Remote",
 ] as const;
 
 export default function CareersPage() {
@@ -278,7 +278,7 @@ export default function CareersPage() {
         <div className="careers_hero_container">
           <div className="careers_hero_badge">
             <span className="badge_dot" />
-            <span>We're Hiring • Join SGMG Residences</span>
+            <span>We're Hiring • Join SGMG</span>
           </div>
 
           <h1 className="careers_hero_title">
@@ -286,8 +286,8 @@ export default function CareersPage() {
           </h1>
 
           <p className="careers_hero_desc">
-            We are architects, hospitality leaders, green engineers, and technologists united by a shared mission:
-            reimagining collegiate and urban living across India’s leading education hubs. Join our family.
+            We are architects, client advisors, green engineers, and technologists united by a shared mission:
+            crafting elevated, tranquil residential living in Siliguri and North Bengal. Join our family.
           </p>
 
           <div className="careers_hero_actions">
@@ -308,15 +308,15 @@ export default function CareersPage() {
           <div className="careers_stats_grid">
             <div className="careers_stat_item">
               <span className="careers_stat_num">4.8 ★</span>
-              <span className="careers_stat_label">Glassdoor Team Satisfaction Rating</span>
+              <span className="careers_stat_label">Team Satisfaction & Culture Rating</span>
             </div>
             <div className="careers_stat_item">
               <span className="careers_stat_num">6+</span>
               <span className="careers_stat_label">Current Open Strategic Roles</span>
             </div>
             <div className="careers_stat_item">
-              <span className="careers_stat_num">4</span>
-              <span className="careers_stat_label">Innovation Hubs (Mumbai, BLR, Pune, NCR)</span>
+              <span className="careers_stat_num">HQ</span>
+              <span className="careers_stat_label">Corporate Studio • Jeevandeep Tower, Siliguri</span>
             </div>
             <div className="careers_stat_item">
               <span className="careers_stat_num">98%</span>
@@ -332,32 +332,32 @@ export default function CareersPage() {
           <div className="careers_culture_media">
             <img
               src="/images/careers-studio.jpg"
-              alt="SGMG Architectural Studio in Mumbai"
+              alt="SGMG Corporate Studio in Siliguri"
               className="careers_culture_img"
             />
-            <div className="careers_culture_badge">SGMG Studio • Worli, Mumbai</div>
+            <div className="careers_culture_badge">SGMG Studio • Siliguri HQ</div>
           </div>
 
           <div className="careers_culture_content">
             <span className="careers_culture_tag">Life at SGMG</span>
-            <h2 className="careers_culture_title">Where craftsmanship meets boundless curiosity</h2>
+            <h2 className="careers_culture_title">Where craftsmanship meets architectural distinction</h2>
             <p className="careers_culture_desc">
-              At SGMG, you will never be just a cog in a machine. You will have a direct hand in shaping
-              physical living sanctuaries that empower thousands of ambitious university students every single year.
+              At SGMG, you will never be just a number. You will have a direct hand in shaping
+              physical living sanctuaries that house generations of families across Siliguri and North Bengal.
             </p>
 
             <div className="careers_culture_bullets">
               <div className="careers_bullet_item">
                 <span className="careers_bullet_icon">✓</span>
-                <span><strong>Radical Ownership:</strong> Lead projects from blueprint concept to resident move-in day with autonomy.</span>
+                <span><strong>Radical Ownership:</strong> Lead projects from blueprint concept to homeowner key handover with autonomy.</span>
               </div>
               <div className="careers_bullet_item">
                 <span className="careers_bullet_icon">✓</span>
-                <span><strong>Purpose-Driven Impact:</strong> Create green, biophilic environments that foster academic excellence.</span>
+                <span><strong>Purpose-Driven Impact:</strong> Create green, biophilic environments that foster tranquil family living and enduring value.</span>
               </div>
               <div className="careers_bullet_item">
                 <span className="careers_bullet_icon">✓</span>
-                <span><strong>Cross-Disciplinary Magic:</strong> Architects, psychologists, and software engineers solving urban housing together.</span>
+                <span><strong>Cross-Disciplinary Excellence:</strong> Architects, structural engineers, and relationship advisors shaping communities together.</span>
               </div>
             </div>
           </div>
@@ -438,7 +438,7 @@ export default function CareersPage() {
               </div>
               <h3 className="careers_perk_title">Sunlit Modern Studios</h3>
               <p className="careers_perk_desc">
-                State-of-the-art biophilic workspaces with ergonomic standing desks, artisanal coffee bars, and quiet library study zones.
+                State-of-the-art biophilic workspaces with ergonomic workstations, modern meeting suites, and creative design spaces in Siliguri.
               </p>
             </div>
 

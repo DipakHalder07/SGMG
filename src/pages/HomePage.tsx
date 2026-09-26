@@ -69,23 +69,23 @@ const heroSlides = [
     image: "/assets/hero-banner-1.avif",
     alt: "Vega Circle commercial and retail center with modern architecture and landscaped surroundings.",
     tips: [
-      { id: "bed", label: "Designed to recharge", x: "55%", y: "43%", deg: 130 },
+      { id: "bed", label: "Master Suites Designed to Unwind", x: "55%", y: "43%", deg: 130 },
     ],
   },
   {
     image: "/assets/hero-banner-2.avif",
     alt: "Vega Circle modern interior space and amenities.",
     tips: [
-      { id: "living", label: "Comfort in every corner", x: "32%", y: "58%", deg: 120 },
+      { id: "living", label: "Crafted for Elevated Living", x: "32%", y: "58%", deg: 120 },
     ],
   },
   {
     image: "/assets/hero-banner-3.avif",
     alt: "Vega Circle wide architectural view and surrounding area.",
     tips: [
-      { id: "builtins", label: "Movie nights ready", x: "78%", y: "48%", deg: 160 },
-      { id: "overhead", label: "Sink into comfort", x: "82%", y: "28%", deg: 180 },
-      { id: "lounge", label: "Spaces meant to connect", x: "48%", y: "72%", deg: 90 },
+      { id: "builtins", label: "Entertainment & Media Ready", x: "78%", y: "48%", deg: 160 },
+      { id: "overhead", label: "Bespoke Living Spaces", x: "82%", y: "28%", deg: 180 },
+      { id: "lounge", label: "Grand Architectural Lounges", x: "48%", y: "72%", deg: 90 },
     ],
   },
 ];
@@ -99,7 +99,7 @@ const apartments = [
     baths: "2 Baths",
     sqft: "1,108",
     image: "/__l5e/assets-v1/99fd06dd-6afa-4b67-abf8-39ede97c7f0c/13-D1-Gen.avif",
-    desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
+    desc: "A thoughtfully planned 4-bedroom residence offering generous natural light, expansive living spaces, and refined architecture tailored for modern families.",
   },
   {
     id: "d1-premium",
@@ -109,7 +109,7 @@ const apartments = [
     baths: "2 Baths",
     sqft: "1,108",
     image: "/__l5e/assets-v1/acd690d1-5688-4922-bb11-74d7b9907009/14-D1-Hero.avif",
-    desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
+    desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
   },
   {
     id: "d2",
@@ -119,7 +119,7 @@ const apartments = [
     baths: "4 Baths",
     sqft: "1,372",
     image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
-    desc: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
+    desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
   },
   {
     id: "d2-premium",
@@ -129,7 +129,7 @@ const apartments = [
     baths: "4 Baths",
     sqft: "1,372",
     image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
-    desc: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
+    desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
   },
   {
     id: "c1",
@@ -139,7 +139,7 @@ const apartments = [
     baths: "3 Baths",
     sqft: "1,107",
     image: "/assets/plans/C1-Gen.avif",
-    desc: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
+    desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
   },
   {
     id: "c1-premium",
@@ -149,87 +149,87 @@ const apartments = [
     baths: "3 Baths",
     sqft: "1,107",
     image: "/assets/plans/C1-Hero.avif",
-    desc: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
+    desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
   },
 ];
 
 const amenitiesList = [
   {
-    title: "Grilling Courtyard",
-    desc: "Host easy evenings with friends in the outdoor social zone.",
+    title: "Landscaped Courtyard",
+    desc: "Lush green open spaces and shaded pergolas designed for peaceful evening strolls and gatherings.",
     image: "/assets/amenities/amenity-1.avif",
   },
   {
-    title: "Resort-Style Pool",
-    desc: "Unwind, cool off, and recharge between classes.",
+    title: "Resort-Style Infinity Pool",
+    desc: "Unwind by crystal waters with poolside cabanas, sun decks, and serene leisure zones.",
     image: "/assets/amenities/amenity-2.avif",
   },
   {
-    title: "Study Spaces",
-    desc: "Quiet corners built for deep focus and productive days.",
+    title: "Executive Business Lounge",
+    desc: "Quiet co-working pods and conference suites crafted for uninterrupted focus and collaboration.",
     image: "/assets/amenities/amenity-3.avif",
   },
   {
-    title: "Fitness Center",
-    desc: "Train on your schedule with modern cardio and strength equipment.",
+    title: "State-of-the-Art Fitness Center",
+    desc: "High-performance cardiovascular machines, strength training equipment, and dedicated yoga space.",
     image: "/assets/amenities/amenity-4.avif",
   },
   {
-    title: "Campus Shuttle",
-    desc: "Fast, reliable rides that keep your day moving.",
+    title: "Concierge Transit Access",
+    desc: "Seamless connectivity and dedicated transport services connecting you across Siliguri with ease.",
     image: "/assets/amenities/amenity-5.avif",
   },
 ];
 
 const testimonialsList = [
   {
-    author: "Emily Carter",
+    author: "Mrs. P. Sherpa",
     photo: "/assets/authors/author-1.avif",
     quote:
-      "“I can't say enough about how great all of the improvements are going. The entire leasing team went above and beyond to ensure a smooth move in and thoroughly explained the entire process. The property is very well kept. Convenient to the stadium perfect for games! A great place to call home at a great value. You won't be disappointed!”",
+      "“The quality of construction and prompt possession handed over by SGMG gave our family absolute confidence. From transparent documentation to the beautifully landscaped amenities, SGMG delivers truly world-class residential standards in North Bengal.”",
   },
   {
-    author: "Ryan Mitchell",
+    author: "Rajesh Agarwal",
     photo: "/assets/authors/author-2.avif",
     quote:
-      "“I wasn’t sure what to expect at first, but everything turned out way better than I thought. The apartment is clean, well-designed, and actually feels comfortable to live in. The whole move-in process was simple, and the team was always responsive. It’s been a really solid experience so far.”",
+      "“Investing in an SGMG residence has been our best decision. The architectural planning, ventilation, and premium fittings exceed expectations. The management’s professionalism and commitment to on-time delivery reflect four decades of trust.”",
   },
   {
-    author: "Daniel Brooks",
+    author: "Dr. Anirban Mukherjee",
     photo: "/assets/authors/author-3.avif",
     quote:
-      "“Living here has been easy from day one. Everything you need is already set up, and the layout just works. It’s quiet when you need it to be, but still close to everything around campus. Honestly, it just makes daily life simpler, which is exactly what I was looking for.”",
+      "“Living here provides the tranquility and security my family always sought. The peaceful surroundings, modern clubhouse, and rapid connectivity to arterial Siliguri hubs make daily life completely effortless. A true benchmark in luxury living.”",
   },
 ];
 
 const faqsList = [
   {
-    q: "How do I apply for an apartment?",
-    a: "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan.",
+    q: "How do I schedule a site visit or book a residence?",
+    a: "You can schedule a private site visit through our online tour scheduler or connect directly with our sales advisors. Our team will guide you through master plans, model residences, and complete booking formalities.",
   },
   {
-    q: "What does by-the-bed leasing mean?",
-    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+    q: "Are SGMG residential projects RERA approved and compliant?",
+    a: "Yes, all SGMG developments are fully compliant with West Bengal HIRA / RERA guidelines, with transparent approvals, clear land titles, and verified legal clearances.",
   },
   {
-    q: "What do I need to apply?",
-    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
+    q: "What financing and home loan assistance is available?",
+    a: "SGMG is partnered with leading public and private banks (including SBI, HDFC, ICICI, and Axis Bank) to facilitate competitive interest rates, pre-approved loans, and seamless loan documentation.",
   },
   {
-    q: "Do I need a guarantor?",
-    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
+    q: "What is the construction quality and warranty provided by SGMG?",
+    a: "With a 40-year legacy of engineering excellence in Siliguri, SGMG utilizes Grade-A structural materials, earthquake-resistant RCC framing, premium waterproofing, and dedicated post-possession maintenance.",
   },
   {
-    q: "How long does approval take?",
-    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
+    q: "What are the possession timelines and payment structures?",
+    a: "We offer flexible, milestone-linked construction payment plans with strict adherence to scheduled delivery dates. Possession dates are explicitly guaranteed in your agreement.",
   },
   {
-    q: "Can I apply if I’m not a student?",
-    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
+    q: "Can Non-Resident Indians (NRIs) purchase properties with SGMG?",
+    a: "Yes. We offer end-to-end dedicated NRI concierge assistance, including virtual 3D walkthroughs, digital documentation, NRE/NRO banking facilitation, and property management.",
   },
   {
-    q: "How is rent paid?",
-    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
+    q: "What amenities and community features are included?",
+    a: "Every project features world-class residential amenities: multi-tier 24/7 security, landscaped central courtyards, swimming pools, high-speed elevators, wellness gymnasiums, and uninterrupted power backup.",
   },
 ];
 
@@ -953,14 +953,14 @@ export default function HomePage() {
             <div className="heading_box">
               <div className="heading_h1">
                 <h1 className="h1">
-                  Live <span data-scribble="hero" className="scribble-wrap scribble-visible">better,</span>
+                  Live <span data-scribble="hero" className="scribble-wrap scribble-visible">elevated,</span>
                   <br />
-                  closer to USC
+                  crafted by SGMG
                 </h1>
               </div>
               <div className="p_box">
                 <div className="p_gen">
-                  Freshly renovated and upgraded. Minutes from Williams-Brice. Designed for focused mornings, long nights, and balanced student living.
+                  Architectural excellence in the heart of Siliguri. Built on four decades of trust, featuring bespoke residences, serene landscapes, and connected urban living.
                 </div>
               </div>
             </div>
@@ -1004,11 +1004,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PROPERTY LISTINGS SECTION (Everything student living should be) */}
+        {/* PROPERTY LISTINGS SECTION */}
         <section className="dynamic_section property_listing_section" id="apartments" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
-              Everything student<br />
+              Everything modern<br />
               living <span data-scribble="1" className="scribble-wrap scribble-visible">should be</span>
             </h2>
           </div>
@@ -1171,8 +1171,8 @@ export default function HomePage() {
                   <div className="caption_info">
                     <div className="purple_dot"></div>
                     <div className="flex_txt">
-                      <div className="title_txt">Private space</div>
-                      <div className="caption_txt">Your space to reset and focus</div>
+                      <div className="title_txt">Private Residences</div>
+                      <div className="caption_txt">Serene sanctuaries engineered for comfort and privacy</div>
                     </div>
                   </div>
                 </div>
@@ -1196,8 +1196,8 @@ export default function HomePage() {
                   <div className="caption_info">
                     <div className="purple_dot"></div>
                     <div className="flex_txt">
-                      <div className="title_txt">Shared spaces</div>
-                      <div className="caption_txt">Room to connect, relax, and live beyond your apartment</div>
+                      <div className="title_txt">Curated Lifestyle</div>
+                      <div className="caption_txt">Vibrant clubhouses, lush gardens, and spaces designed to connect</div>
                     </div>
                   </div>
                 </div>
@@ -1229,7 +1229,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of 21Oaks" className="image" />
+            <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of SGMG Residences in Siliguri" className="image" />
           </div>
         </div>
       </section>
@@ -1248,24 +1248,14 @@ export default function HomePage() {
             <div className="left_lines">
               <div className="lines_caption">
                 <div className="p_gen black">
-                  From campus to everyday essentials — everything is closer than you think.
+                  From premier retail hubs to everyday transit — everything in Siliguri is seamlessly connected.
                 </div>
               </div>
 
               <div className="lines_list">
                 <div className="lines_dynamic">
                   <div className="flex_dyn">
-                    <div className="title_line">Campus</div>
-                    <div className="timing_txt">3 min</div>
-                  </div>
-                  <div className="bar_dynamic">
-                    <div className="active_bar" style={{ width: "0%" }}></div>
-                  </div>
-                </div>
-
-                <div className="lines_dynamic">
-                  <div className="flex_dyn">
-                    <div className="title_line">Daily Essentials</div>
+                    <div className="title_line">City Center &amp; Malls</div>
                     <div className="timing_txt">5 min</div>
                   </div>
                   <div className="bar_dynamic">
@@ -1275,8 +1265,18 @@ export default function HomePage() {
 
                 <div className="lines_dynamic">
                   <div className="flex_dyn">
-                    <div className="title_line">Food &amp; Social Spots</div>
-                    <div className="timing_txt">10 min</div>
+                    <div className="title_line">Healthcare &amp; Schools</div>
+                    <div className="timing_txt">8 min</div>
+                  </div>
+                  <div className="bar_dynamic">
+                    <div className="active_bar" style={{ width: "0%" }}></div>
+                  </div>
+                </div>
+
+                <div className="lines_dynamic">
+                  <div className="flex_dyn">
+                    <div className="title_line">Airport &amp; Railway Hubs</div>
+                    <div className="timing_txt">15 min</div>
                   </div>
                   <div className="bar_dynamic">
                     <div className="active_bar" style={{ width: "0%" }}></div>
@@ -1287,7 +1287,7 @@ export default function HomePage() {
 
             <div className="p_right">
               <div className="md_p">
-                Designed around your routine, so everything feels easy and connected. From campus to everyday essentials, you’re always close to what matters — without the hassle of long commutes or planning around distance.
+                Strategically located in Siliguri to give you seamless access to major commercial corridors, reputed schools, and healthcare hubs. Enjoy effortless connectivity without compromising on peaceful, green residential tranquility.
               </div>
             </div>
           </div>
@@ -1349,7 +1349,7 @@ export default function HomePage() {
               <div className="sticky_how">
                 <div className="top_how">
                   <div className="cap_box">
-                    <div className="caption_small">Simple Move-In</div>
+                    <div className="caption_small">Seamless Process</div>
                   </div>
                   <div className="headline_box">
                     <h2 className="h2 smaller">
@@ -1360,8 +1360,8 @@ export default function HomePage() {
 
                 <div className="bottom_how only_desktop">
                   <div className="p_gen black">
-                    Sounds like a fit? <br />
-                    Apply now or book a tour.
+                    Ready to find your dream residence? <br />
+                    Connect with us or book a site tour.
                   </div>
                   <div style={{ marginTop: "16px" }}>
                     <WebflowButton
@@ -1379,12 +1379,12 @@ export default function HomePage() {
                 <div style={{ backgroundColor: "#e4f3fa" }} className="how_card">
                   <div className="wrapper_how">
                     <div className="icon_how">
-                      <img src="/assets/icons/find-1.avif" alt="Find your space" />
+                      <img src="/assets/icons/find-1.avif" alt="Choose your residence" />
                     </div>
                     <div className="content_how">
-                      <div className="title_how">Find your space</div>
+                      <div className="title_how">Choose your residence</div>
                       <div className="p_gen black">
-                        Explore different layouts, compare options, and choose a space that fits your routine, lifestyle, and daily flow.
+                        Explore master floor plans, compare unit layouts, and select a home tailored to your family's lifestyle and aspirations.
                       </div>
                     </div>
                   </div>
@@ -1393,12 +1393,12 @@ export default function HomePage() {
                 <div style={{ backgroundColor: "#feb7b9" }} className="how_card">
                   <div className="wrapper_how">
                     <div className="icon_how">
-                      <img src="/assets/icons/apply-2.avif" alt="Apply in minutes" />
+                      <img src="/assets/icons/apply-2.avif" alt="Personalized site tour" />
                     </div>
                     <div className="content_how">
-                      <div className="title_how">Apply in minutes</div>
+                      <div className="title_how">Personalized site tour</div>
                       <div className="p_gen black">
-                        Complete your application online in just a few steps. The process is simple, fast, and designed to get you approved without delays.
+                        Experience the development firsthand. Walk through model residences, landscaped amenities, and consult our property advisors.
                       </div>
                     </div>
                   </div>
@@ -1407,12 +1407,12 @@ export default function HomePage() {
                 <div style={{ backgroundColor: "#f3ede6" }} className="how_card">
                   <div className="wrapper_how">
                     <div className="icon_how">
-                      <img src="/assets/icons/move-3.avif" alt="Move in, settle fast" />
+                      <img src="/assets/icons/move-3.avif" alt="Seamless booking & possession" />
                     </div>
                     <div className="content_how">
-                      <div className="title_how">Move in, settle fast</div>
+                      <div className="title_how">Seamless booking &amp; possession</div>
                       <div className="p_gen black">
-                        Once approved, everything is ready for your arrival. Move in seamlessly and start living comfortably from day one.
+                        Transparent documentation, flexible milestone payment schedules, and timely handover with complete peace of mind.
                       </div>
                     </div>
                   </div>
@@ -1428,7 +1428,7 @@ export default function HomePage() {
         <div className="wrapper_general basic">
           <div className="testimonials_heading">
             <h2 className="h2 bigger">
-              <span data-scribble="2" className="scribble-wrap scribble-visible">Real</span> student<br />
+              <span data-scribble="2" className="scribble-wrap scribble-visible">Real</span> resident<br />
               experiences
             </h2>
           </div>
@@ -1490,7 +1490,7 @@ export default function HomePage() {
           <div className="sides_faq">
             <div className="short_left">
               <div className="caption_faq">
-                <div>Everything you might want to know before moving in.</div>
+                <div>Everything you need to know about purchasing your SGMG home.</div>
               </div>
               <div className="bottom_faq">
                 <div className="p_gen black caption_cta">
@@ -1551,8 +1551,8 @@ export default function HomePage() {
               <div className="wrapper_box_cta">
                 <div className="heading_cta">
                   <div className="txt_cta">
-                    Find your place.<br />
-                    Make it yours.
+                    Your Gateway To An<br />
+                    Elevated Lifestyle.
                   </div>
                 </div>
 
@@ -1574,7 +1574,7 @@ export default function HomePage() {
           </div>
 
           <div className="fs_bg">
-            <img src="/assets/image_cta.avif" alt="21Oaks luxury lounge" className="image" />
+            <img src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
           </div>
         </section>
 
@@ -1591,7 +1591,7 @@ export default function HomePage() {
                   />
                 </Link>
                 <div className="cap_footer">
-                  Your space. <span data-scribble="4" className="scribble-wrap scribble-visible">Still on.</span>
+                  Tranquility and <span data-scribble="4" className="scribble-wrap scribble-visible">Living.</span>
                 </div>
               </div>
 
@@ -1614,23 +1614,23 @@ export default function HomePage() {
                     <div
                       className="link_f"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleCopy("21 National Guard Rd, Columbia, SC 29201", "Address Copied!")}
+                      onClick={() => handleCopy("2nd Floor, Jeevandeep Tower, Siliguri, West Bengal", "Address Copied!")}
                     >
-                      21 National Guard Rd<br />Columbia, SC 29201
+                      2nd Floor, Jeevandeep Tower<br />Siliguri, West Bengal
                     </div>
                     <div
                       className="link_f"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleCopy("+1 (803) 937-2431", "Phone Copied!")}
+                      onClick={() => handleCopy("+91 97330 02244", "Phone Copied!")}
                     >
-                      +1 (803) 937-2431
+                      +91 97330 02244
                     </div>
                     <div
                       className="link_f"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleCopy("21oaks@bhom.com", "Email Copied!")}
+                      onClick={() => handleCopy("sales@sgmg.in", "Email Copied!")}
                     >
-                      21oaks@bhom.com
+                      sales@sgmg.in
                     </div>
                     {copyFeedback && (
                       <div style={{ color: "#d6b2ff", fontSize: "11px", fontWeight: 600 }}>
@@ -1643,9 +1643,9 @@ export default function HomePage() {
                 <div className="box_menu">
                   <div className="title_footer">Office Hours</div>
                   <div className="links_list">
-                    <div className="link_f">Mon - Fri: 10am - 6pm</div>
-                    <div className="link_f">Sat: 10am - 5pm</div>
-                    <div className="link_f">Sun: 1pm - 5pm</div>
+                    <div className="link_f">Mon - Sat: 10:00 AM - 7:00 PM</div>
+                    <div className="link_f">Sunday: 10:00 AM - 5:00 PM</div>
+                    <div className="link_f">Site Visits: Available 7 Days</div>
                   </div>
                 </div>
 
@@ -1668,13 +1668,13 @@ export default function HomePage() {
                 </a>
               </div>
               <div className="socials_box">
-                <a aria-label="Our Instagram" href="https://www.instagram.com/21_oaks/" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                <a aria-label="Our Instagram" href="https://www.instagram.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                   <div className="social_icon ig" />
                 </a>
-                <a aria-label="Our Facebook" href="https://www.facebook.com/live21oaks" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                <a aria-label="Our Facebook" href="https://www.facebook.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                   <div className="social_icon fb" />
                 </a>
-                <a aria-label="Our TikTok" href="https://www.tiktok.com/@21oaks5" target="_blank" rel="noreferrer" className="social_link w-inline-block">
+                <a aria-label="Our LinkedIn" href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="social_link w-inline-block">
                   <div className="social_icon tiktok" />
                 </a>
               </div>

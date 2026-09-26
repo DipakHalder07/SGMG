@@ -7,7 +7,7 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  department: "Executive Leadership" | "Architecture & Design" | "Student Life & Wellness" | "Operations & Relations";
+  department: "Executive Leadership" | "Architecture & Design" | "Community & Resident Wellness" | "Operations & Relations";
   image: string;
   tagline: string;
   bio: string;
@@ -26,14 +26,14 @@ const TEAM_MEMBERS: TeamMember[] = [
     department: "Executive Leadership",
     image: "/images/team/sushil-mittal.jpg",
     tagline: "Building tomorrow's living environments on timeless values of trust, precision, and architectural innovation.",
-    bio: "With over 35 years of pioneering leadership in infrastructure, industrial development, and luxury residential real estate across India, Sushil Gangadhar Mittal founded SGMG with a singular vision: to revolutionize student housing and urban living. Under his stewardship, SGMG has delivered award-winning properties, creating communities where academic excellence, holistic wellness, and community warmth converge.",
+    bio: "With over 35 years of pioneering leadership in infrastructure, commercial developments, and luxury residential real estate across Siliguri and North Bengal, Sushil Gangadhar Mittal founded SGMG with a singular vision: to create tranquil, world-class living spaces. Under his stewardship, SGMG has delivered prestigious landmarks, creating communities where modern craftsmanship, structural integrity, and family warmth converge.",
     highlights: [
       "35+ Years of Real Estate & Infrastructure Leadership",
       "Visionary Founder of SGMG Group",
-      "Pioneered Institutional Student Residences in India",
-      "National Real Estate Council Advisory Member",
+      "Pioneered Master-Planned Residences in Siliguri",
+      "Member of CREDAI & Regional Development Councils",
     ],
-    quote: "“A great residence does not simply provide four walls; it elevates aspirations and shapes the character of future leaders.”",
+    quote: "“A great residence does not simply provide four walls; it elevates family life and builds enduring generational value.”",
     email: "sushil.mittal@sgmg.in",
     linkedin: "https://linkedin.com",
     isSpotlight: true,
@@ -44,15 +44,15 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Managing Director & CEO",
     department: "Executive Leadership",
     image: "/images/team/aryan-mittal.jpg",
-    tagline: "Reimagining student housing as a catalyst for personal growth, community, and global aspirations.",
-    bio: "A graduate of premier international management programs, Aryan brings visionary modern energy to SGMG. He spearheads the group's strategic growth, digital transformation, resident-first technologies, and brand expansion. Aryan is passionate about setting hospitality-grade benchmarks in student living across tier-1 university hubs.",
+    tagline: "Reimagining contemporary real estate as a catalyst for elevated lifestyles, community, and sustainable growth.",
+    bio: "A graduate of premier international management programs, Aryan brings visionary modern energy to SGMG. He spearheads the group's strategic growth across Siliguri, smart construction technologies, customer-centric digital platforms, and premium residential design. Aryan is passionate about setting hospitality-grade benchmarks in modern home living.",
     highlights: [
       "Oversees Strategy, Technology & Group Expansion",
-      "Pioneered Hospitality-Grade Student Living Standards",
-      "Spearheaded Digital Resident Experience Portal",
+      "Pioneered Hospitality-Grade Residential Standards",
+      "Spearheaded Digital Homeowner Experience Portal",
       "Passionate Advocate for Sustainable Urbanism",
     ],
-    quote: "“We are designing sanctuaries where college students can thrive intellectually, build lifelong bonds, and feel truly at home.”",
+    quote: "“We are designing sanctuaries where families can thrive peacefully, enjoy world-class amenities, and feel truly at home.”",
     email: "aryan.mittal@sgmg.in",
     linkedin: "https://linkedin.com",
     isSpotlight: true,
@@ -64,32 +64,32 @@ const TEAM_MEMBERS: TeamMember[] = [
     department: "Architecture & Design",
     image: "/images/team/priya-sharma.jpg",
     tagline: "Crafting biophilic, sunlit spaces that harmoniously balance quiet contemplation and dynamic social connection.",
-    bio: "Priya is an internationally acclaimed architect with a master’s in Sustainable Urbanism from CEPT. She directs SGMG's architectural philosophy, from sculptural exterior facades to human-centric interior spatial acoustics. Her designs prioritize natural daylight, thermal comfort, indoor air quality, and ergonomic study zones.",
+    bio: "Priya is an acclaimed architect with a master’s in Sustainable Urbanism from CEPT. She directs SGMG's architectural philosophy, from sculptural exterior facades to human-centric interior spatial layouts. Her designs prioritize natural daylight, thermal comfort, cross-ventilation, and expansive balconies overlooking scenic Siliguri landscapes.",
     highlights: [
       "Master of Sustainable Urbanism (CEPT)",
       "IGBC Accredited Green Building Professional",
-      "12+ Years Designing High-Performance Residential Hubs",
+      "12+ Years Designing High-Performance Residences",
       "Winner of National Award for Spatial Design",
     ],
-    quote: "“Architecture must speak to the human spirit. In student residences, natural light and quiet acoustic pockets are foundational to mental clarity.”",
+    quote: "“Architecture must speak to the human spirit. In residential developments, natural light and quiet acoustic pockets are foundational to mental clarity.”",
     email: "priya.sharma@sgmg.in",
     linkedin: "https://linkedin.com",
   },
   {
     id: "rohan-mehra",
     name: "Rohan Mehra",
-    role: "Director of Student Life & Experience",
-    department: "Student Life & Wellness",
+    role: "Director of Resident Experience & Community",
+    department: "Community & Resident Wellness",
     image: "/images/team/rohan-mehra.jpg",
-    tagline: "Creating an energetic, inclusive home where every resident feels supported, connected, and inspired.",
-    bio: "Rohan leads resident life, cultural programming, academic partnerships, and student well-being initiatives at SGMG. With a background in youth development and community psychology, he curates mentorship sessions, fitness workshops, creative socials, and 24/7 peer support systems that make living at SGMG a memorable collegiate chapter.",
+    tagline: "Creating an energetic, inclusive community where every resident feels supported, connected, and inspired.",
+    bio: "Rohan leads homeowner community programming, clubhouse lifestyle amenities, cultural celebrations, and resident well-being at SGMG. With a background in hospitality management and community engagement, he curates festive gatherings, fitness workshops, and social events that make living at SGMG a rewarding lifestyle experience.",
     highlights: [
-      "Master's in Applied Community Psychology",
-      "Curator of 60+ Annual Resident Networking & Cultural Events",
-      "Architect of the SGMG Peer Mentorship Network",
+      "Master's in Applied Community Management",
+      "Curator of 50+ Annual Resident Networking & Cultural Events",
+      "Architect of the SGMG Homeowner Club Network",
       "Champion for Diverse & Inclusive Living Environments",
     ],
-    quote: "“University years define who we become. We ensure our community spaces spark friendships that last a lifetime.”",
+    quote: "“A true community is born when neighbors become lifelong friends. We ensure our shared spaces spark lasting bonds.”",
     email: "rohan.mehra@sgmg.in",
     linkedin: "https://linkedin.com",
   },
@@ -100,43 +100,43 @@ const TEAM_MEMBERS: TeamMember[] = [
     department: "Executive Leadership",
     image: "/images/team/anjali-sharma.jpg",
     tagline: "Sustaining high-impact real estate growth through sound fiscal stewardship and institutional integrity.",
-    bio: "A fellow chartered accountant and seasoned investment strategist with over 16 years leading private equity and asset management portfolios, Anjali oversees financial operations, capital allocation, and investor relations. She ensures SGMG maintains impeccable operational transparency and sustainable financial foundations.",
+    bio: "A fellow chartered accountant and seasoned investment strategist with over 16 years leading private equity and asset management portfolios, Anjali oversees financial operations, bank home loan alliances, capital allocation, and investor relations. She ensures SGMG maintains impeccable operational transparency and sustainable financial foundations.",
     highlights: [
       "Fellow Chartered Accountant (FCA) & MBA Finance",
       "16+ Years Managing Large-Scale Real Estate Assets",
       "Specialist in Long-Term Value Creation & ESG Investment",
       "Member of Association of Women Financial Leaders",
     ],
-    quote: "“Financial resilience and uncompromising integrity enable us to deliver enduring value to every resident and stakeholder.”",
+    quote: "“Financial resilience and uncompromising integrity enable us to deliver enduring value to every homeowner and stakeholder.”",
     email: "anjali.sharma@sgmg.in",
     linkedin: "https://linkedin.com",
   },
   {
     id: "rahul-sharma",
     name: "Rahul Sharma",
-    role: "VP of Leasing & Resident Relations",
+    role: "VP of Sales & Client Relations",
     department: "Operations & Relations",
     image: "/images/team/rahul-sharma.jpg",
-    tagline: "Delivering white-glove hospitality from the first tour to your graduation move-out day.",
-    bio: "Rahul brings over a decade of luxury hospitality and residential leasing experience from premier hotel chains and premium co-living brands. He leads our front-desk concierge, student onboarding, flexible leasing structures, and parent relations with warm, empathetic dedication.",
+    tagline: "Delivering white-glove advisory from your initial inquiry to possession handover.",
+    bio: "Rahul brings over a decade of luxury residential advisory and client relations experience from premier real estate and hospitality brands. He leads our Siliguri sales desk, private site walkthroughs, documentation assistance, and homebuyer onboarding with warm, transparent dedication.",
     highlights: [
-      "10+ Years in Luxury Hospitality & Property Management",
-      "Designed Seamless Zero-Paperwork Digital Onboarding",
-      "Dedicated Parent-Resident Concierge Program Lead",
-      "Excellence in Resident Support & Rapid Resolution",
+      "10+ Years in Luxury Real Estate & Property Advisory",
+      "Designed Seamless Zero-Paperwork Homeowner Onboarding",
+      "Dedicated Client & NRI Relationship Desk Lead",
+      "Excellence in Homeowner Support & Rapid Resolution",
     ],
-    quote: "“Our team’s promise is simple: we handle every detail with warmth, responsiveness, and genuine care so our students can focus on what matters most.”",
+    quote: "“Our team’s promise is simple: we handle every detail with warmth, responsiveness, and genuine care so our homeowners can enjoy complete peace of mind.”",
     email: "rahul.sharma@sgmg.in",
     linkedin: "https://linkedin.com",
   },
   {
     id: "rajesh-verma",
     name: "Dr. Rajesh Verma",
-    role: "VP of Sustainable Infrastructure",
+    role: "VP of Sustainable Infrastructure & Engineering",
     department: "Architecture & Design",
     image: "/images/team/rajesh-verma.jpg",
     tagline: "Engineering carbon-conscious infrastructure that protects our planet and nurtures resident well-being.",
-    bio: "Holding a Ph.D. in Environmental Engineering from IIT Delhi, Dr. Verma oversees structural integrity, high-efficiency solar integration, rainwater harvesting, smart HVAC systems, and zero-waste initiatives. He ensures every SGMG residence meets IGBC Platinum standards.",
+    bio: "Holding a Ph.D. in Environmental and Structural Engineering from IIT Delhi, Dr. Verma oversees structural integrity, high-efficiency solar integration, rainwater harvesting, smart energy systems, and earthquake-resistant construction. He ensures every SGMG residence meets IGBC Gold and Platinum standards.",
     highlights: [
       "Ph.D. in Environmental Engineering (IIT Delhi)",
       "IGBC Platinum Green Building Lead Assessor",
@@ -150,18 +150,18 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "kavita-patel",
     name: "Kavita Patel",
-    role: "Head of Resident Wellness & Engagement",
-    department: "Student Life & Wellness",
+    role: "Head of Resident Wellness & Amenities",
+    department: "Community & Resident Wellness",
     image: "/images/team/kavita-patel.jpg",
-    tagline: "Nurturing mental peace, mindful living, and wholesome lifestyle habits for thriving student minds.",
-    bio: "Certified in mindfulness coaching and holistic nutrition, Kavita oversees health programs, yoga sessions, acoustic quiet study sanctuaries, and wellness retreats within the residence. Her empathetic leadership ensures every student finds balance amid academic rigor.",
+    tagline: "Nurturing mental peace, mindful living, and wholesome lifestyle amenities for modern families.",
+    bio: "Certified in mindfulness coaching and holistic health, Kavita oversees clubhouse amenities, yoga pavilions, acoustic meditation gardens, and recreation spaces across SGMG developments. Her thoughtful approach ensures every resident finds balance, fitness, and relaxation.",
     highlights: [
       "Certified Mindfulness & Holistic Health Practitioner",
-      "Lead Coordinator for Onsite Mental Well-being Programs",
-      "Architect of Quiet Meditation & Acoustic Sanctuaries",
-      "Organizes Weekly Yoga, Nutrition & Mindset Workshops",
+      "Lead Coordinator for Clubhouse Wellness & Fitness Amenities",
+      "Designer of Landscaped Meditation & Acoustic Garden Sanctuaries",
+      "Organizes Regular Yoga, Fitness & Lifestyle Workshops",
     ],
-    quote: "“When students feel balanced, rested, and mentally supported, their potential is limitless. Wellness is woven into daily life at SGMG.”",
+    quote: "“When families feel balanced, active, and mentally supported, everyday living flourishes. Wellness is woven into daily life at SGMG.”",
     email: "kavita.patel@sgmg.in",
     linkedin: "https://linkedin.com",
   },
@@ -171,7 +171,7 @@ const DEPARTMENTS = [
   "All Leaders",
   "Executive Leadership",
   "Architecture & Design",
-  "Student Life & Wellness",
+  "Community & Resident Wellness",
   "Operations & Relations",
 ] as const;
 
@@ -223,9 +223,9 @@ export default function TeamPage() {
           </h1>
 
           <p className="team_hero_desc">
-            From architectural visionaries and green engineers to dedicated resident experience directors,
-            our multidisciplinary leadership is committed to setting new benchmarks for luxury student
-            living in India.
+            From architectural visionaries and green engineers to dedicated client experience directors,
+            our multidisciplinary leadership is committed to setting new benchmarks for luxury residential
+            living in Siliguri.
           </p>
 
           {/* Key Metrics / Highlights */}
@@ -236,7 +236,7 @@ export default function TeamPage() {
             </div>
             <div className="team_stat_item">
               <span className="team_stat_num">600+</span>
-              <span className="team_stat_label">Luxury Student Residences Delivered</span>
+              <span className="team_stat_label">Luxury Residences Delivered</span>
             </div>
             <div className="team_stat_item">
               <span className="team_stat_num">99.2%</span>
@@ -244,7 +244,7 @@ export default function TeamPage() {
             </div>
             <div className="team_stat_item">
               <span className="team_stat_num">24 / 7</span>
-              <span className="team_stat_label">Onsite Concierge, Security & Wellness</span>
+              <span className="team_stat_label">Onsite Concierge, Security & Facility Support</span>
             </div>
           </div>
         </div>
@@ -347,7 +347,7 @@ export default function TeamPage() {
             {selectedDept === "All Leaders" ? "Executive & Department Leadership" : selectedDept}
           </h2>
           <p className="team_section_subtitle">
-            Dedicated professionals committed to delivering unmatched living, academic support, and community well-being.
+            Dedicated professionals committed to delivering unmatched living, architectural precision, and community well-being.
           </p>
         </div>
 
@@ -429,8 +429,8 @@ export default function TeamPage() {
             <span className="team_values_badge">Our Core Principles</span>
             <h2 className="team_values_title">What drives our leadership every single day</h2>
             <p className="team_values_subtitle">
-              We believe a student residence is much more than a room. It is the fertile soil where
-              aspirations take flight, confidence is built, and memories are forged.
+              We believe a home is much more than a structure. It is the fertile soil where
+              aspirations take flight, families thrive, and lifelong memories are forged.
             </p>
           </div>
 
@@ -446,8 +446,8 @@ export default function TeamPage() {
               </div>
               <h3 className="team_value_heading">Resident-First Empathy</h3>
               <p className="team_value_text">
-                Every architectural angle, study desk ergonomic, and community event is designed around
-                what students need to thrive academically and emotionally.
+                Every architectural layout, expansive balcony, and community amenity is designed around
+                what families need to thrive comfortably and peacefully.
               </p>
             </div>
 
@@ -461,8 +461,8 @@ export default function TeamPage() {
               </div>
               <h3 className="team_value_heading">Architectural Distinction</h3>
               <p className="team_value_text">
-                We craft spaces with natural daylight, superior acoustic soundproofing, and biophilic indoor greenery
-                that encourage deep focus and peaceful rest.
+                We craft spaces with natural daylight, superior acoustic soundproofing, and biophilic landscaped courtyards
+                that encourage deep relaxation and tranquil family living.
               </p>
             </div>
 
@@ -489,8 +489,8 @@ export default function TeamPage() {
               </div>
               <h3 className="team_value_heading">Safety & Peace of Mind</h3>
               <p className="team_value_text">
-                Multi-tier biometric access, 24/7 onsite security professionals, and dedicated resident concierge
-                give students and parents total peace of mind.
+                Multi-tier security access, 24/7 onsite surveillance professionals, and dedicated resident concierge
+                give homeowners and families total peace of mind.
               </p>
             </div>
           </div>
@@ -505,8 +505,8 @@ export default function TeamPage() {
               Want to shape the future of living with us?
             </h2>
             <p className="team_cta_desc">
-              We are constantly seeking visionary architects, hospitality specialists, community coordinators,
-              and engineers who are passionate about redefining collegiate lifestyle in India.
+              We are constantly seeking visionary architects, client relations specialists, community coordinators,
+              and engineers who are passionate about redefining luxury residential living in Siliguri.
             </p>
           </div>
 

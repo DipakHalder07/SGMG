@@ -34,9 +34,9 @@ export default function ScrollToTop() {
     } else if (pathname.startsWith("/apartments/") || pathname.startsWith("/apartments-cards/")) {
       const slug = pathname.split("/").pop()?.replace(/-/g, " ") || "Floor Plan";
       const titleCase = slug.replace(/\b\w/g, (c) => c.toUpperCase());
-      document.title = `${titleCase} • Floor Plan • 21Oaks`;
+      document.title = `${titleCase} • Residence • SGMG`;
     } else {
-      document.title = "404 Not Found • 21Oaks";
+      document.title = "404 Not Found • SGMG";
     }
 
     if (!hash) {

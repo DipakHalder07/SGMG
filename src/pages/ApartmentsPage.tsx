@@ -59,8 +59,8 @@ export default function ApartmentsPage() {
         <div className="wrapper_general apartments_gen">
           <div className="heading_aparts">
             <h1 className="h1 black spec_amenities">
-              Apartments<br />
-              near <span data-scribble="2" className="scribble-wrap scribble-visible">USC</span>
+              Residences<br />
+              in <span data-scribble="2" className="scribble-wrap scribble-visible">Siliguri</span>
             </h1>
           </div>
 

@@ -18,40 +18,40 @@ import "../contact.css";
 const OFFICE_COORDS = {
   lat: 26.7271,
   lng: 88.4353,
-  name: "21Oaks Siliguri Office",
-  address: "Hill Cart Road, Siliguri, West Bengal 734001, India",
+  name: "SGMG Head Office",
+  address: "2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001, India",
   googleMapsUrl: "https://maps.google.com/?q=Siliguri,+West+Bengal",
 };
 
-// 7 exact FAQs directly from https://21oaks.org/contact
+// Official SGMG FAQs
 const CONTACT_PAGE_FAQS = [
   {
-    q: "How do I apply for an apartment?",
-    a: "Click “Apply Now,” choose your lease term and floor plan, and complete the online application. If applying with roommates, make sure everyone selects the same floor plan.",
+    q: "How do I schedule a site visit or book a residence?",
+    a: "You can schedule a private site visit through our online tour scheduler or connect directly with our sales advisors. Our team will guide you through master plans, model residences, and complete booking formalities.",
   },
   {
-    q: "What does by-the-bed leasing mean?",
-    a: "Each resident signs an individual lease and is only responsible for their portion of the rent.",
+    q: "Are SGMG residential projects RERA approved and compliant?",
+    a: "Yes, all SGMG developments are fully compliant with West Bengal HIRA / RERA guidelines, with transparent approvals, clear land titles, and verified legal clearances.",
   },
   {
-    q: "What do I need to apply?",
-    a: "To guarantee your bed space, you’ll need a signed lease agreement. Leases are generated once your application is complete and your screening has been approved.",
+    q: "What financing and home loan assistance is available?",
+    a: "SGMG is partnered with leading public and private banks (including SBI, HDFC, ICICI, and Axis Bank) to facilitate competitive interest rates, pre-approved loans, and seamless loan documentation.",
   },
   {
-    q: "Do I need a guarantor?",
-    a: "Most applicants require a guarantor to meet the income requirement and ensure monthly installment payments can be made. If you do not have a guarantor, you may self-qualify using your own income or apply through a third-party guarantor service. Contact the onsite team for more information.",
+    q: "What is the construction quality and warranty provided by SGMG?",
+    a: "With a 40-year legacy of engineering excellence in Siliguri, SGMG utilizes Grade-A structural materials, earthquake-resistant RCC framing, premium waterproofing, and dedicated post-possession maintenance.",
   },
   {
-    q: "How long does approval take?",
-    a: "Typically 24–48 hours, depending on how quickly your guarantor submits their application.",
+    q: "What are the possession timelines and payment structures?",
+    a: "We offer flexible, milestone-linked construction payment plans with strict adherence to scheduled delivery dates. Possession dates are explicitly guaranteed in your agreement.",
   },
   {
-    q: "Can I apply if I’m not a student?",
-    a: "Yes. All applicants who meet the qualifying criteria are welcome.",
+    q: "Can Non-Resident Indians (NRIs) purchase properties with SGMG?",
+    a: "Yes. We offer end-to-end dedicated NRI concierge assistance, including virtual 3D walkthroughs, digital documentation, NRE/NRO banking facilitation, and property management.",
   },
   {
-    q: "How is rent paid?",
-    a: "Rent is divided into 12 equal installments and is due on the 1st of each month. Additional fees, such as pet rent or parking, are billed separately.",
+    q: "What amenities and community features are included?",
+    a: "Every project features world-class residential amenities: multi-tier 24/7 security, landscaped central courtyards, swimming pools, high-speed elevators, wellness gymnasiums, and uninterrupted power backup.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function ContactPage() {
 
   // Setup theme mode & page title
   useEffect(() => {
-    document.title = "Contact • 21 Oaks";
+    document.title = "Contact Us • SGMG | Sushil Gangadhar Mittal Group Siliguri";
     document.body.classList.remove("is-hero");
     document.body.classList.add("is-light");
     window.scrollTo(0, 0);
@@ -131,8 +131,8 @@ export default function ContactPage() {
 
       marker.bindPopup(`
         <div style="min-width: 230px; font-family: inherit; padding: 2px 0;">
-          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">21Oaks Siliguri Office</div>
-          <div style="font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 12px; line-height: 1.4;">Hill Cart Road, Siliguri, West Bengal 734001</div>
+          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">SGMG Head Office</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 12px; line-height: 1.4;">2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001</div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <a href="https://calendly.com/dipakh810/30min" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; background: #2391cf; color: #ffffff; padding: 6px 12px; border-radius: 999px; font-weight: 600; text-decoration: none;">Schedule a Tour &rarr;</a>
             <a href="${OFFICE_COORDS.googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-size: 12px; color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 999px; font-weight: 500; text-decoration: none;">Directions &rarr;</a>
@@ -219,7 +219,7 @@ export default function ContactPage() {
                   <div className="title_cap">Call us</div>
                   <div
                     className={`icon_contact ${copiedKey === "phone" ? "copied" : ""}`}
-                    onClick={() => handleCopy("+1 (803) 937-2431", "phone", "Phone number copied!")}
+                    onClick={() => handleCopy("+91 97330 02244", "phone", "Phone number copied!")}
                     title="Copy phone number"
                     role="button"
                     tabIndex={0}
@@ -227,8 +227,8 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <a href="tel:+18039372431" className="link_contact">
-                    +1 (803) 937-2431
+                  <a href="tel:+919733002244" className="link_contact">
+                    +91 97330 02244
                   </a>
                 </div>
               </div>
@@ -239,7 +239,7 @@ export default function ContactPage() {
                   <div className="title_cap">Write to us</div>
                   <div
                     className={`icon_contact ${copiedKey === "email" ? "copied" : ""}`}
-                    onClick={() => handleCopy("21oaks@bhom.com", "email", "E-mail copied!")}
+                    onClick={() => handleCopy("sales@sgmg.in", "email", "E-mail copied!")}
                     title="Copy email address"
                     role="button"
                     tabIndex={0}
@@ -247,8 +247,8 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <a href="mailto:21oaks@bhom.com" className="link_contact">
-                    21oaks@bhom.com
+                  <a href="mailto:sales@sgmg.in" className="link_contact">
+                    sales@sgmg.in
                   </a>
                 </div>
               </div>
@@ -259,9 +259,9 @@ export default function ContactPage() {
                   <div className="title_cap">Office hours</div>
                 </div>
                 <div className="list_contact">
-                  <div className="link_contact">Mon - Fri: 10am - 6pm</div>
-                  <div className="link_contact">Sat: 10am - 5pm</div>
-                  <div className="link_contact">Sun: 1pm - 5pm</div>
+                  <div className="link_contact">Mon - Sat: 10:00 AM - 7:00 PM</div>
+                  <div className="link_contact">Sunday: 10:00 AM - 5:00 PM</div>
+                  <div className="link_contact">Site Visits: Available 7 Days</div>
                 </div>
               </div>
 
@@ -282,7 +282,7 @@ export default function ContactPage() {
                   </a>
                   <a
                     aria-label="Our Facebook"
-                    href="https://www.facebook.com/live21oaks"
+                    href="https://www.facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social_contact w-inline-block"
@@ -290,8 +290,8 @@ export default function ContactPage() {
                     <div className="social_icon fb_white" />
                   </a>
                   <a
-                    aria-label="Our TikTok"
-                    href="https://www.tiktok.com/@21oaks5"
+                    aria-label="Our LinkedIn"
+                    href="https://www.linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social_contact w-inline-block"
@@ -472,8 +472,8 @@ export default function ContactPage() {
               <div className="map_card_title_row">
                 <MapPin size={20} className="map_pin_icon" />
                 <div>
-                  <div className="map_card_name">21Oaks Siliguri Office</div>
-                  <div className="map_card_addr">Hill Cart Road, Siliguri, West Bengal 734001, India</div>
+                  <div className="map_card_name">SGMG Corporate Office</div>
+                  <div className="map_card_addr">2nd Floor, Jeevandeep Tower, Siliguri, West Bengal 734001, India</div>
                 </div>
               </div>
             </div>
@@ -515,7 +515,7 @@ export default function ContactPage() {
             <div className="sides_faq">
               <div className="short_left">
                 <div className="caption_faq white_ver">
-                  <div>Everything you might want to know before moving in.</div>
+                  <div>Everything you might want to know before purchasing your home.</div>
                 </div>
                 <div className="bottom_faq">
                   <div className="p_gen caption_cta white_ver">

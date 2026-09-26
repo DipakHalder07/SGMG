@@ -32,47 +32,47 @@ const STEPS: StepItem[] = [
     numberBg: "#292929",
     numberColor: "#ffffff",
     imgSrc: "/images/how-to-apply/step-1.avif",
-    desc: "Select your lease term and luxury floor plan that fits your lifestyle at SGMG Residences. If applying with family or co-residents, ensure everyone specifies the same residence preferences.",
+    desc: "Select your preferred floor plan and luxury layout that fits your family's lifestyle at SGMG Residences in Siliguri. Review configurations, orientations, and private balcony vistas.",
   },
   {
     step: 2,
-    title: "Create your account",
+    title: "Schedule a visit",
     bg: "#feb7b9",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
     imgSrc: "/images/how-to-apply/step-2.avif",
-    desc: "Sign up using your email to initiate your application. You’ll use this verified account throughout the onboarding process, digital lease signing, and resident portal access.",
+    desc: "Book a personalized walkthrough of our model suites and community spaces. Our Siliguri sales advisors will guide you through construction milestones, specifications, and project amenities.",
   },
   {
     step: 3,
-    title: "Complete your application",
+    title: "Complete your booking",
     bg: "#f3ede6",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
     imgSrc: "/images/how-to-apply/step-3.avif",
-    desc: "Fill in your background details, documentation, and specific living preferences. Include pet details and verification documentation to help our onsite concierge team prepare everything.",
+    desc: "Submit your formal booking application with basic KYC documentation. Choose your preferred floor, parking allotment, and payment plan with total pricing transparency.",
   },
   {
     step: 4,
-    title: "Review & Confirm",
+    title: "Review & Agreement",
     bg: "#292929",
     textColor: "#ffffff",
     numberBg: "#ffffff",
     numberColor: "#292929",
     imgSrc: "/images/how-to-apply/step-4.avif",
-    desc: "Review your submitted information, community policies, and terms. If you have questions about amenities or custom requests, our dedicated onsite leasing desk is readily available.",
+    desc: "Review your RERA-compliant Agreement for Sale and payment schedule. Our finance desk facilitates expedited home loan approvals with leading national banks.",
   },
   {
     step: 5,
-    title: "Sign & Move in",
+    title: "Possession & Handover",
     bg: "#fee5b7",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
     imgSrc: "/images/how-to-apply/step-5.avif",
-    desc: "Once your application is approved, execute your lease digitally and coordinate move-in day with our welcome team. We'll guide you through your keys, parking access, and orientation.",
+    desc: "Upon project completion and registration, receive your keys and comprehensive homeowner orientation. Our concierge team ensures a seamless moving day experience.",
   },
 ];
 
@@ -87,52 +87,52 @@ interface TestimonialItem {
 const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 1,
-    name: "Emily Carter",
+    name: "Rajesh Agarwal",
     avatar: "/images/how-to-apply/author-1.avif",
     quote:
-      "“I can't say enough about how seamless the entire onboarding process was. The management team went above and beyond to ensure a smooth move-in, walked through every single detail, and made moving in feel effortless. SGMG Residences is a truly extraordinary place to call home!”",
+      "“I can't say enough about how seamless the entire booking and possession process was. The SGMG team went above and beyond to ensure smooth execution, walked through every single detail, and made moving in feel effortless. SGMG is a truly extraordinary place to call home in Siliguri!”",
   },
   {
     id: 2,
-    name: "Ryan Mitchell",
+    name: "Mrs. P. Sherpa",
     avatar: "/images/how-to-apply/author-2.avif",
     quote:
-      "“I wasn’t sure what to expect with luxury apartment leasing, but everything exceeded my expectations. The architectural finish, clean modern layouts, and immediate support from the onsite team made the transition smooth. It’s been an outstanding living experience.”",
+      "“We wanted a peaceful family residence with modern architecture and green open spaces. SGMG exceeded all our expectations. The construction finish, expansive balconies, and prompt support from the management team made the transition wonderfully smooth.”",
   },
   {
     id: 3,
-    name: "Daniel Brooks",
+    name: "Dr. Anirban Mukherjee",
     avatar: "/images/how-to-apply/author-3.avif",
     quote:
-      "“Living here has been tranquil and effortless from day one. Everything you need is already taken care of, high-speed connectivity is built-in, and the location near the premier malls is unbeatable. It simply makes daily life better.”",
+      "“Living here has been tranquil and effortless from day one. Everything our family needs is nearby, high-speed connectivity is seamless, and the location near premier healthcare and retail hubs in Siliguri is unbeatable. SGMG delivers genuine peace of mind.”",
   },
 ];
 
 // FAQs data
 const FAQS = [
   {
-    q: "How do I apply for an apartment?",
-    a: "You can apply directly online through our digital portal in just a few minutes. Choose your preferred floor plan, submit your personal and identification details, and our leasing desk will review your submission promptly.",
+    q: "How do I book a residence at SGMG?",
+    a: "You can book directly by visiting our Siliguri corporate office at Jeevandeep Tower or submitting an inquiry online. Choose your preferred floor plan, submit KYC documentation, and complete the booking token.",
   },
   {
-    q: "What documents do I need to apply?",
-    a: "You will need a government-issued photo ID (passport, driver's license, or Aadhaar), proof of income or employment (recent pay stubs or bank statements), and contact details for rental verification.",
+    q: "What documents are required for home booking?",
+    a: "You will need a government-issued photo ID (PAN Card and Aadhaar/Passport), recent photographs, and bank details for transaction verification.",
   },
   {
-    q: "Do I need a guarantor or co-signer?",
-    a: "A guarantor may be required if an applicant does not meet standard credit or income criteria (typically 3x monthly rent). Guarantors can complete their portion of the digital application online with ease.",
+    q: "Are home loans available from major banks?",
+    a: "Yes. SGMG residences are pre-approved by leading financial institutions including SBI, HDFC Bank, ICICI Bank, and Axis Bank, offering competitive home loan interest rates.",
   },
   {
-    q: "How long does the approval process take?",
-    a: "Most applications are thoroughly reviewed and processed within 24 to 48 business hours once all required documentation has been submitted.",
+    q: "Are SGMG residential projects RERA approved?",
+    a: "Yes. All SGMG residential developments strictly comply with RERA regulations, with complete municipal approvals, legal sanctions, and clear land titles.",
   },
   {
-    q: "Are pets allowed at SGMG Residences?",
-    a: "Yes! SGMG Residences is a dedicated pet-friendly community. Both cats and dogs are welcomed with open arms, and we feature comfortable pet-friendly layouts and dedicated green grounds.",
+    q: "Is the community pet-friendly?",
+    a: "Yes! SGMG Residences features pet-friendly living spaces, open landscaped courtyards, and dedicated walking pathways where pets and families can thrive together.",
   },
   {
-    q: "How is monthly rent paid?",
-    a: "Rent is conveniently paid through our secure online resident portal via credit/debit card, ACH bank transfer, or scheduled auto-pay for total peace of mind.",
+    q: "What payment schedules are available?",
+    a: "We provide convenient Construction-Linked Payment Plans (CLP), flexible down-payment plans, and customized milestone schedules designed for complete buyer peace of mind.",
   },
 ];
 
@@ -140,6 +140,10 @@ export default function HowToApplyPage() {
   const stepsSectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState<number>(1);
   const isAutoScrollingRef = useRef(false);
+
+  useEffect(() => {
+    document.title = "How To Book Your Home • SGMG Luxury Residences Siliguri";
+  }, []);
 
   // Testimonials state
   const [activeTestimonial, setActiveTestimonial] = useState<number>(0);
@@ -574,7 +578,7 @@ export default function HowToApplyPage() {
             {/* Left Column: Context & Explore FAQ Button */}
             <div className="short_left">
               <div className="caption_faq">
-                Everything you might want to know before moving in.
+                Everything you might want to know before purchasing your home.
               </div>
               <div className="bottom_faq">
                 <div className="bot_txt_faq">
@@ -582,7 +586,7 @@ export default function HowToApplyPage() {
                 </div>
                 <WebflowButton
                   text="Explore FAQ"
-                  href="/#faq"
+                  href="/faq"
                   className=""
                 />
               </div>

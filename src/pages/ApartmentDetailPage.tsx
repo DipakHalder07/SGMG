@@ -90,7 +90,7 @@ export default function ApartmentDetailPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (unit) {
-      document.title = `${unit.name} ${unit.bedrooms} Bedroom Student Apartment Near USC • 21 Oaks`;
+      document.title = `${unit.name} • ${unit.bedrooms} Bedroom Luxury Residence in Siliguri | SGMG`;
     }
   }, [slug, unit]);
 
@@ -815,14 +815,14 @@ export default function ApartmentDetailPage() {
                           <img
                             src="/assets/icons/6a31483f3822b51654193b2f_university.png"
                             loading="lazy"
-                            alt="Student-Focused Layouts"
+                            alt="Architectural Balance"
                             className="image"
                           />
                         </div>
                         <div className="content_featured">
-                          <div className="title_featured">Student-Focused Layouts</div>
+                          <div className="title_featured">Architectural Balance</div>
                           <div className="desc_featured">
-                            Designed to balance privacy, comfort, and shared living.
+                            Designed to balance privacy, comfort, and shared family living.
                           </div>
                         </div>
                       </div>
@@ -832,14 +832,14 @@ export default function ApartmentDetailPage() {
                           <img
                             src="/assets/icons/6a31483f3822b51654193b08_f-icon-4.png"
                             loading="lazy"
-                            alt="Roommate Friendly"
+                            alt="Generous Shared Living"
                             className="image"
                           />
                         </div>
                         <div className="content_featured">
-                          <div className="title_featured">Roommate Friendly</div>
+                          <div className="title_featured">Generous Shared Living</div>
                           <div className="desc_featured">
-                            Designed to make shared living feel easy and comfortable.
+                            Spacious open-plan living and dining areas designed to bring families together.
                           </div>
                         </div>
                       </div>
@@ -940,7 +940,7 @@ export default function ApartmentDetailPage() {
                       <h1 className="h2 apartments_heading">Amenities</h1>
                       <div className="p_md">
                         <div className="p_gen black">
-                          {unit.name} features furnished interiors, premium Wi-Fi, modern appliances, in-unit laundry, and comfortable shared living spaces designed to support balanced student living. The layout makes it easy to stay connected while still giving residents space to focus, relax, and maintain everyday routines. Residents also benefit from access to fitness amenities, study lounges, outdoor gathering areas, and community-focused social spaces throughout 21 Oaks.
+                          {unit.name} features expansive sunlit interiors, premium finishes, modern fittings, and thoughtfully designed living zones crafted to support an elevated lifestyle. The layout optimizes natural ventilation and privacy while offering generous common spaces to relax, entertain, and recharge. Homeowners also enjoy exclusive access to state-of-the-art wellness amenities, swimming facilities, landscaped gardens, and dedicated community spaces across SGMG Residences.
                         </div>
                       </div>
                     </div>
