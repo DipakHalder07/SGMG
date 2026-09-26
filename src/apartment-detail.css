@@ -573,12 +573,13 @@
 
 /* FAQ Accordion interaction */
 .accordion-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 1.6rem 0 !important;
 }
 
 .accordion_head-wrapper {
   cursor: pointer;
-  padding: 1.25rem 0;
+  padding: 0;
   user-select: none;
 }
 

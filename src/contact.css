@@ -907,17 +907,23 @@ main.contact {
 }
 
 .short_left {
-  width: 38%;
+  width: 32%;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 360px;
+  flex-shrink: 0;
+  position: sticky !important;
+  top: 110px !important;
+  align-self: flex-start !important;
+  z-index: 10;
 }
 
 @media screen and (max-width: 991px) {
   .short_left {
-    width: 100%;
-    min-height: auto;
+    position: static !important;
+    width: 100% !important;
+    top: auto !important;
   }
 }
 

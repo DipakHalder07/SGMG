@@ -715,6 +715,10 @@
   width: 258.95px;
   max-width: 280px;
   flex-shrink: 0;
+  position: sticky !important;
+  top: 110px !important;
+  align-self: flex-start !important;
+  z-index: 10;
 }
 
 .faqs.black .caption_faq.white_ver {
@@ -761,7 +765,7 @@
 .faqs.black .accordion-item.white_ver {
   border-top: none !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 11.52px 0 !important;
+  padding: 1.6rem 0 !important;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

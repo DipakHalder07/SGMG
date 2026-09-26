@@ -567,6 +567,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: sticky !important;
+  top: 110px !important;
+  align-self: flex-start !important;
+  z-index: 10;
 }
 
 .faqs.light .caption_faq {
@@ -599,7 +603,7 @@
 .faqs.light .faq_row {
   border-top: 1px solid rgba(41, 41, 41, 0.15);
   cursor: pointer;
-  padding: 1.15rem 0;
+  padding: 1.6rem 0 !important;
   transition: background-color 0.2s ease;
 }
 

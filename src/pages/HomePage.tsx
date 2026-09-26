@@ -1773,7 +1773,7 @@ export default function HomePage() {
                 <div>
                   <WebflowButton
                     text="Explore FAQ"
-                    href="#faq"
+                    href="/faq"
                   />
                 </div>
               </div>
@@ -1840,7 +1840,7 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="icon_right">
-                    <img src="/assets/icons/move-3.png" alt="Moon outline" className="image" />
+                    <img src="/images/sgmg-icon-white.svg" alt="SGMG Logo Icon" className="image" />
                   </div>
                 </div>
               </div>
@@ -1961,14 +1961,14 @@ export default function HomePage() {
           </div>
 
           <div className="last_line ll_fs">
-            <div className="last_txt">© B.HOM Student Living</div>
+            <div className="last_txt">© Copyright 2026 by Sushil Gangadhar Mittal Group</div>
             <div className="web_dev_by">
               <span className="op_spec">Website by </span>
               <a href="https://digitalgrove.in" target="_blank" rel="noreferrer" className="spec_link">
                 Dipak
               </a>
             </div>
-            <div className="last_txt">All Rights Reserved 2026</div>
+
           </div>
         </footer>
       </section>
