@@ -472,23 +472,31 @@
 /* --- TESTIMONIALS SECTION --- */
 .testimonials {
   background-color: #ffffff;
-  padding: 4.5rem 3rem 4rem;
+  padding: 3rem 2.5rem 2.5rem !important;
   position: relative;
   width: 100%;
   overflow: hidden;
 }
 
+.testimonials .wrapper_general.basic {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .testimonials_heading {
-  max-width: 900px;
-  margin: 0 auto 2.5rem;
+  max-width: 800px;
+  margin: 0 auto 1.75rem !important;
   text-align: center;
 }
 
 .testimonials_heading .h2.bigger {
   font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 300;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: #292929;
   margin: 0;
@@ -498,21 +506,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1280px;
-  margin: 0 auto;
-  min-height: 280px;
-  gap: 3.5rem;
+  max-width: 1180px;
+  margin: 0 auto !important;
+  margin-top: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  gap: 3rem;
+  padding: 0.5rem 0;
 }
 
 .authors {
-  width: 260px;
+  width: 250px;
   flex-shrink: 0;
 }
 
 .author_coll {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.85rem;
 }
 
 .author_item {
@@ -596,10 +607,12 @@
 .quotes {
   flex: 1;
   position: relative;
-  min-height: 220px;
+  min-height: auto !important;
+  height: auto !important;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0;
 }
 
 .testimonial_coll {
@@ -610,8 +623,8 @@
 .testimonial_item {
   display: none;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .testimonial_item.is-active {
@@ -622,8 +635,8 @@
 
 .testimonial_txt {
   font-family: "Romie", "Exposure", Georgia, serif;
-  font-size: clamp(1.4rem, 2.2vw, 2.25rem);
-  line-height: 1.35;
+  font-size: clamp(1.2rem, 1.85vw, 1.75rem);
+  line-height: 1.45;
   color: #292929;
   font-weight: 400;
   text-align: left;
@@ -633,11 +646,13 @@
 .faqs.light {
   background-color: #ffffff;
   color: #292929;
-  padding: 4.5rem 3rem 4rem;
+  padding: 3.5rem 3rem 4rem;
   border-top: 1px solid rgba(41, 41, 41, 0.08);
 }
 
 .faqs.light .wrapper_general.basic {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -791,28 +806,54 @@
     margin-top: 4rem;
   }
 
+  .testimonials {
+    padding: 2.5rem 1.5rem 2rem !important;
+  }
+
+  .testimonials .wrapper_general.basic {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .testimonials_heading {
+    margin-bottom: 1.25rem !important;
+  }
+
   .cms_testimonials {
-    flex-direction: column;
-    gap: 3rem;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-top: 0 !important;
+    gap: 1.5rem !important;
   }
 
   .authors {
-    width: 100%;
+    width: 100% !important;
   }
 
   .author_coll {
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1.25rem !important;
   }
 
   .author_item {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column !important;
+    text-align: center !important;
     transform: none !important;
+    gap: 0.35rem !important;
+    padding: 0.25rem !important;
   }
 
   .testimonial_txt {
-    text-align: center;
+    text-align: center !important;
+    font-size: 1.2rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .faqs.light .wrapper_general.basic {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .faqs.light .sides_faq {
@@ -913,18 +954,31 @@
   }
 
   .testimonials {
-    padding: 3.5rem 1.25rem 3rem;
+    padding: 2rem 1rem 1.5rem !important;
   }
 
   .testimonials_heading .h2.bigger {
-    font-size: 1.6rem;
+    font-size: 1.45rem !important;
+  }
+
+  .author_circle {
+    width: 3.1rem !important;
+    height: 3.1rem !important;
+  }
+
+  .author_name_txt {
+    font-size: 0.85rem !important;
+  }
+
+  .testimonial_txt {
+    font-size: 1.05rem !important;
   }
 
   .faqs.light {
-    padding: 3.5rem 1.25rem 3rem;
+    padding: 2.25rem 1rem 2.5rem !important;
   }
 
   .faqs.light .h2.smaller {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
