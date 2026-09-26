@@ -27,6 +27,8 @@ export default function App() {
           <Route path="/apartments/:slug" element={<ApartmentDetailPage />} />
           <Route path="/apartments-cards/:slug" element={<ApartmentDetailPage />} />
           <Route path="/location" element={<LocationPage />} />
+          <Route path="/about" element={<HowToApplyPage />} />
+          <Route path="/about-us" element={<HowToApplyPage />} />
           <Route path="/how-to-apply" element={<HowToApplyPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/faqs" element={<FaqPage />} />

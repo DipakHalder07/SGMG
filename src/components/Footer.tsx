@@ -149,13 +149,13 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     Careers
                   </span>
                   <span
-                    onClick={() => handleNavClick("/how-to-apply")}
-                    onMouseEnter={() => prefetchRoute("/how-to-apply")}
-                    onTouchStart={() => prefetchRoute("/how-to-apply")}
+                    onClick={() => handleNavClick("/about")}
+                    onMouseEnter={() => prefetchRoute("/about")}
+                    onTouchStart={() => prefetchRoute("/about")}
                     className="link_f"
                     style={{ cursor: "pointer" }}
                   >
-                    How to apply
+                    About
                   </span>
                   <span
                     onClick={() => handleNavClick("/faq")}

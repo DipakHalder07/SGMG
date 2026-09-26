@@ -7,6 +7,8 @@
 const PREFETCH_MAP: Record<string, () => Promise<unknown>> = {
   "/apartments": () => import("../pages/ApartmentsPage"),
   "/location": () => import("../pages/LocationPage"),
+  "/about": () => import("../pages/HowToApplyPage"),
+  "/about-us": () => import("../pages/HowToApplyPage"),
   "/how-to-apply": () => import("../pages/HowToApplyPage"),
   "/faq": () => import("../pages/FaqPage"),
   "/faqs": () => import("../pages/FaqPage"),

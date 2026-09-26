@@ -305,12 +305,12 @@ export default function HowToApplyPage() {
         <div className="wrapper_apply">
           <div className="heading_apply">
             <h1 className="h1 black">
-              How{" "}
+              About{" "}
               <span
                 data-scribble="2"
                 className="scribble-wrap scribble-visible"
               >
-                to apply
+                us
               </span>
             </h1>
           </div>
