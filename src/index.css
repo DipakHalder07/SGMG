@@ -5435,6 +5435,12 @@ body.is-hero .menu {
    APARTMENT DETAILS PAGE STYLES (AUTHENTIC WEBFLOW)
    Imported in main.tsx
    ========================================================================== */
+.icon_apart_box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) !important;
+}
 
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS FOR APARTMENTS & LOCATION
