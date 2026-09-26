@@ -5445,3 +5445,29 @@ body.is-hero .menu {
     grid-template-columns: 1fr;
   }
 }
+
+/* Full-Screen Map (Zero border, Zero border-radius, Edge-to-Edge) */
+.map_sec {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.map_box,
+.office_leaflet_map,
+.leaflet-container {
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+

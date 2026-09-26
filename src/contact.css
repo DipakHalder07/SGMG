@@ -589,39 +589,97 @@ main.contact {
 
 /* ==========================================================================
    MAP SECTION (.map_sec matching 21oaks.org 1:1)
-   Full-Width, Full-Section Dark Container with Google Map (0 padding)
+   Full-Screen 100vw x 100vh, Edge-to-Edge, 0 Border, 0 Border-Radius
    ========================================================================== */
+.contact_page_wrapper .map_sec,
 .map_sec {
-  background-color: #121214;
-  width: 100%;
-  height: clamp(520px, 75vh, 850px);
+  background-color: #121214 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: none !important;
   padding: 0 !important;
-  margin: 0;
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
+  margin: 0 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
+  .contact_page_wrapper .map_sec,
   .map_sec {
-    height: 520px;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: none !important;
     padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 }
 
-.map_box {
-  background-color: #222222;
-  border-radius: 0 !important;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+@media screen and (max-width: 767px) {
+  .contact_page_wrapper .map_sec,
+  .map_sec {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
 }
 
-.office_leaflet_map.full_width {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.contact_page_wrapper .map_box,
+.map_box {
+  background-color: #222222 !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.office_leaflet_map,
+.office_leaflet_map.full_width,
+.office_leaflet_map .leaflet-container,
+.contact_page_wrapper .leaflet-container,
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 1 !important;
 }
 
 /* Floating Bottom Action Card */
