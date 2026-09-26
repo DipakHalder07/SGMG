@@ -953,9 +953,9 @@ export default function HomePage() {
             <div className="heading_box">
               <div className="heading_h1">
                 <h1 className="h1">
-                  Own your dream home
+                  Own your dream,
                   <br />
-                  in <span data-scribble="hero" className="scribble-wrap scribble-visible">Siliguri</span>
+                  home in <span data-scribble="hero" className="scribble-wrap scribble-visible">Siliguri</span>.
                 </h1>
               </div>
               <div className="p_box">
@@ -1166,7 +1166,7 @@ export default function HomePage() {
                 </h2>
                 <div className="small_box">
                   <div className="image_small">
-                    <img src="/assets/Sinage_Presentation.avif" alt="Signage Presentation" className="image" />
+                    <img src="/assets/everyday-living/living-room.png" alt="Luxurious Modern Living Room" className="image" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1178,7 +1178,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="right_side">
-                <img src="/assets/Front_Elevation_View.webp" alt="Front Elevation View" className="image" />
+                <img src="/assets/everyday-living/high-rise-elevation.png" alt="Modern Luxury High-Rise Elevation" className="image" />
               </div>
             </div>
           </div>
@@ -1186,12 +1186,12 @@ export default function HomePage() {
           <div className="sides_s">
             <div className="sides_wrap">
               <div className="right_side">
-                <img src="/assets/SwimmingPoolView_Night_.avif" alt="Swimming Pool Night View" className="image" />
+                <img src="/assets/everyday-living/modern-residential.png" alt="State of the Art Modern Architecture" className="image" />
               </div>
               <div className="left_side">
                 <div className="small_box caption_info right_box second_b">
                   <div className="image_small">
-                    <img src="/assets/SideElevation_Day_.avif" alt="Side Elevation Day View" className="image" />
+                    <img src="/assets/everyday-living/clubhouse-landscape.png" alt="Community Clubhouse and Landscape" className="image" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>

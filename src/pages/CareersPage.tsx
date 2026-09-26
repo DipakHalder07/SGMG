@@ -276,11 +276,6 @@ export default function CareersPage() {
       {/* --- HERO SECTION --- */}
       <section className="careers_hero">
         <div className="careers_hero_container">
-          <div className="careers_hero_badge">
-            <span className="badge_dot" />
-            <span>We're Hiring • Join SGMG</span>
-          </div>
-
           <h1 className="careers_hero_title">
             Build the <span className="accent_scribble">future of living</span> with us
           </h1>

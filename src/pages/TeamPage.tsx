@@ -212,11 +212,6 @@ export default function TeamPage() {
       {/* --- HERO SECTION --- */}
       <section className="team_hero">
         <div className="team_hero_container">
-          <div className="team_hero_badge">
-            <span className="badge_dot" />
-            <span>The Minds Behind SGMG</span>
-          </div>
-
           <h1 className="team_hero_title">
             Crafting spaces that{" "}
             <span className="accent_scribble">inspire & elevate</span>
