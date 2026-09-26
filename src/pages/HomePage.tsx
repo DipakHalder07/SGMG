@@ -953,14 +953,14 @@ export default function HomePage() {
             <div className="heading_box">
               <div className="heading_h1">
                 <h1 className="h1">
-                  Live <span data-scribble="hero" className="scribble-wrap scribble-visible">elevated,</span>
+                  Own your dream home
                   <br />
-                  crafted by SGMG
+                  in <span data-scribble="hero" className="scribble-wrap scribble-visible">Siliguri</span>
                 </h1>
               </div>
               <div className="p_box">
                 <div className="p_gen">
-                  Architectural excellence in the heart of Siliguri. Built on four decades of trust, featuring bespoke residences, serene landscapes, and connected urban living.
+                  Luxury residences crafted on 40 years of trust. World-class amenities, RERA approved, and bank loan ready.
                 </div>
               </div>
             </div>
