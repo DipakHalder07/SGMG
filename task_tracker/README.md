@@ -250,8 +250,41 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
 
 ---
 
+### Item 16: Card Title Font Size & Weight Standardization
+- **Goal:** Fix card title font sizes (`cards title font size fix`) across the website (property listing slider, horizontal scroll apartments section, apartments catalog grid, and apartment detail pages) ensuring readable, fluid, and balanced typography matching the brand design and section headings.
+- **Root Cause:**
+  - Multiple stylesheet rules in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css) and [apartment-detail.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/apartment-detail.css) had hardcoded fixed `font-size: 15px !important;` and `font-size: 16px !important;` with `font-weight: 400;` on `.apart_title` and `.price_txt`.
+  - In wide screens, card titles were visually unnoticeable and disproportionate relative to the imagery and surrounding heading elements.
+  - In [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css) line 78, a selector typo `.title_apart` existed instead of `.apart_title`, preventing card titles from inheriting the global `font-weight: 600` Michroma token.
+- **Changes:**
+  - **Universal Heading Token in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css):**
+    - Corrected `.title_apart` to `.apart_title, .apartment_title` in the global Michroma `600` weight declaration.
+    - Standardized `.title_amenities` to `font-weight: 600 !important;`.
+  - **Fluid Responsive Clamp Sizing:**
+    - `.apart_title`: Set to `clamp(18px, 1.25vw, 24px) !important;` with `font-weight: 600 !important;` and `line-height: 1.2 !important;`.
+    - `.price_txt`: Set to `clamp(16px, 1.1vw, 21px) !important;` with `font-weight: 600 !important;` and `line-height: 1.2 !important;`.
+    - `.mnth_txt`: Set to `clamp(11px, 0.75vw, 14px) !important;` with `opacity: 0.7`.
+    - `.icon_price`: Calibrated to `clamp(20px, 1.3vw, 26px)` with responsive internal padding.
+    - `.apart_title_line`: Added `gap: 8px !important;` and responsive margins to prevent title/price collision on narrow grid items while preserving ample breathing room (gap of `66px` to `208px` on wide viewports).
+  - **Mobile & Breakpoint Optimization:**
+    - Cleaned up media query overrides (`@media (max-width: 991px)`, `@media (max-width: 767px)`, `@media (max-width: 479px)`) across [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css) and [apartment-detail.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/apartment-detail.css), ensuring card titles scale gracefully down to `18px` (font-weight `600`) and prices to `16px` (font-weight `600`) without overflowing.
+- **Verification:**
+  - Automated Chrome CDP computed style inspection across Desktop (1920px) and Mobile (390px):
+    - Desktop 1920px: `.apart_title` computes to **`24px` / `font-weight: 600`** in Michroma; `.price_txt` computes to **`21px` / `font-weight: 600`**.
+    - Mobile 390px: `.apart_title` computes to **`18px` / `font-weight: 600`**; `.price_txt` computes to **`16px` / `font-weight: 600`**.
+    - High-resolution visual screenshots captured and verified:
+      - `verify_final_home_slider_1920.png` (desktop property slider)
+      - `verify_final_apartments_1920.png` (desktop apartments catalog grid)
+      - `verify_final_home_mobile_390.png` (mobile homepage slider)
+      - `verify_final_apartments_mobile_390.png` (mobile apartments catalog)
+  - Production build (`npm run build`) completed cleanly with 0 errors in 7.28s.
+  - Zero content, images, or copy altered.
+
+---
+
 ## 🎯 Next Steps
 - Awaiting your guidance for the next task or adjustment.
+
 
 
 

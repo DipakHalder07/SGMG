@@ -825,8 +825,13 @@
     font-size:4.9em;
   }
 
-  .price_txt,.price_txt.specific_card,.apart_title {
-    font-size:3em;
+  .apart_title {
+    font-size: clamp(18px, 3.8vw, 22px) !important;
+    font-weight: 600 !important;
+  }
+  .price_txt, .price_txt.specific_card {
+    font-size: clamp(16px, 3.4vw, 20px) !important;
+    font-weight: 600 !important;
   }
 
   .overlay_amenities {
