@@ -1232,7 +1232,7 @@ export default function HomePage() {
                             </div>
                             <div className="price_box">
                               <div className="icon_price">
-                                <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
+                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
                               </div>
                               <div className="price_txt">{apart.price}</div>
                             </div>
@@ -1420,7 +1420,7 @@ export default function HomePage() {
                       </div>
                       <div className="price_box">
                         <div className="icon_price">
-                          <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                          <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
                         </div>
                         <div className="price_txt">{apart.price}</div>
                       </div>
@@ -1491,7 +1491,7 @@ export default function HomePage() {
                           </Link>
                           <div className="price_box">
                             <div className="icon_price">
-                              <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                              <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
                             </div>
                             <div className="price_txt">{apart.price}</div>
                           </div>

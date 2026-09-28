@@ -176,6 +176,28 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
 
 ---
 
+### Item 13: Button Typography (Michroma) & Indian Rupee (₹) Currency Standardization
+- **Goal:**
+  1. Apply the website's heading font family (`Michroma`, `--font-heading`) to all buttons across the entire website.
+  2. Eliminate all `$` dollar currency symbols/icons and replace them with the Indian Rupee symbol (`₹`).
+- **Changes:**
+  - **Universal Heading Font Family (`Michroma`) for All Buttons:**
+    - Added global typography rules in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css) mapping `button`, `input[type="button"]`, `input[type="submit"]`, `input[type="reset"]`, `.button`, `.text_box`, `.header_button`, `.contact_button`, `.submit_button`, `.button_apply`, `.button_schedule`, `.clear_btn`, `.team_tab_btn`, `.team_member_bio_btn`, `.team_modal_close_btn`, `.faq-explore-btn`, `.apartment-lightbox-view-page-btn`, `.apartment-lightbox-apply-btn`, and `[class*="button"]` to `font-family: var(--font-heading, "Michroma", sans-serif) !important;` with refined tracking (`letter-spacing: 0.02em;`).
+    - Updated specific button definitions in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css), [apartment-detail.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/apartment-detail.css), [contact.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/contact.css), [team.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/team.css), and [not-found.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/not-found.css) to eliminate any conflicting `Plus Jakarta Sans` overrides.
+  - **Indian Rupee (`₹`) Currency Replacement:**
+    - Swapped out the legacy `$` bitmap icon asset by replacing `public/assets/icons/price-icon.png` with the Indian Rupee `₹` glyph asset.
+    - Updated image references in [HomePage.tsx](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/pages/HomePage.tsx), [ApartmentDetailPage.tsx](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/pages/ApartmentDetailPage.tsx), and [ApartmentCard.tsx](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/components/ApartmentCard.tsx) to use crisp vector `/assets/icons/rupee-icon.svg` with `alt="₹"`.
+    - Verified all price sliders, fee items, and price displays across the website display `₹` and zero `$` occurrences.
+- **Verification:**
+  - Automated Chrome CDP scan across Desktop (1920px) and Mobile (390px) verified across 4 major routes (`/`, `/apartments`, `/apartments/d1`, `/contact`):
+    - **100% of tested buttons compute to `font-family: Michroma, sans-serif`**.
+    - **0 literal `$` occurrences** found in page text content or alt attributes.
+    - Price badges visibly render the crisp Indian Rupee symbol `₹` alongside unit pricing.
+  - Production build (`npm run build`) passed with zero errors in 3.67s.
+
+---
+
 ## 🎯 Next Steps
-- Awaiting your guidance for the next issue to address.
+- Awaiting your guidance for the next task or adjustment.
+
 

@@ -621,7 +621,7 @@ export default function ApartmentDetailPage() {
                         <div className="price_box">
                           <div className="icon_price">
                             <img
-                              src="/assets/icons/price-icon.png"
+                              src="/assets/icons/rupee-icon.svg"
                               loading="lazy"
                               alt="₹"
                               className="image"

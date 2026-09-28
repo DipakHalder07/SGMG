@@ -144,12 +144,14 @@
 }
 
 .team_tab_btn {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 1.15rem;
   border-radius: 9999px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid transparent;
   background-color: transparent;
@@ -449,10 +451,12 @@
 }
 
 .team_member_bio_btn {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #292929;
   background: none;

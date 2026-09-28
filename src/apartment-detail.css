@@ -354,6 +354,8 @@
 }
 
 .button_apply {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.03em;
   background-color: var(--primary);
   color: var(--black);
   border-radius: 4px;
@@ -361,7 +363,7 @@
   align-items: center;
   min-height: 3.25em;
   padding: 1em;
-  font-size: 0.76em;
+  font-size: 0.72em;
   transition: all 0.4s;
   display: flex;
   text-decoration: none;
@@ -374,6 +376,8 @@
 }
 
 .button_schedule {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.03em;
   text-align: center;
   border: 1px solid #29292933;
   background-color: var(--white);
@@ -383,7 +387,7 @@
   align-items: center;
   min-height: 3.25em;
   padding: 1em;
-  font-size: 0.76em;
+  font-size: 0.72em;
   transition: all 0.4s;
   display: flex;
   text-decoration: none;
