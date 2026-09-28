@@ -83,7 +83,7 @@
 }
 
 .title_apply {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: clamp(1.25rem, 2.2vw, 2.25rem);
   font-weight: 400;
   line-height: 1.1;
@@ -240,7 +240,7 @@
 }
 
 .title_step {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.65rem;
   font-weight: 400;
   line-height: 1.15;
@@ -385,7 +385,7 @@
 }
 
 .about_story_lead {
-  font-family: "Romie", "Exposure", Georgia, serif;
+  font-family: "Romie", "Plus Jakarta Sans", sans-serif;
   font-size: clamp(1.2rem, 1.8vw, 1.65rem);
   line-height: 1.35;
   color: #292929;
@@ -456,7 +456,7 @@
 }
 
 .about_pillar_title {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.45rem;
   font-weight: 400;
   color: #292929;
@@ -492,8 +492,8 @@
   text-align: center;
 }
 
-.testimonials_heading .h2.bigger {
-  font-family: "Michroma", sans-serif !important;
+.testimonials_heading .h2.bigger  {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 300;
   line-height: 1.1;
@@ -597,7 +597,7 @@
 }
 
 .author_name_txt {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.15rem;
   color: #292929;
   font-weight: 500;
@@ -634,7 +634,7 @@
 }
 
 .testimonial_txt {
-  font-family: "Romie", "Exposure", Georgia, serif;
+  font-family: "Romie", "Plus Jakarta Sans", sans-serif;
   font-size: clamp(1.2rem, 1.85vw, 1.75rem);
   line-height: 1.45;
   color: #292929;
@@ -700,7 +700,7 @@
 }
 
 .faqs.light .bot_txt_faq {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.35rem;
   font-weight: 400;
   line-height: 1.2;
@@ -732,7 +732,7 @@
 }
 
 .faqs.light .item_title {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.3;

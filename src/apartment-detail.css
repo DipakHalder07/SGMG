@@ -562,7 +562,7 @@
 .splide__slide.amenities_splide .title_amenities {
   color: #ffffff;
   font-size: 1.05em;
-  font-family: Exposure, Georgia, sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -575,7 +575,7 @@
   color: #ffffff;
   font-size: 0.85em;
   line-height: 1.5;
-  font-family: Exposure, Georgia, sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 /* FAQ Accordion interaction */
@@ -1283,7 +1283,7 @@
   font-size: 3.5em;
   font-weight: 400;
   line-height: 0.9;
-  font-family: "Michroma", sans-serif !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
 }
 
 .tags_info {
@@ -1329,7 +1329,7 @@
 .title_temp {
   color: var(--white, #ffffff);
   font-size: 1.05em;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
 }
 
 .p_apartments {

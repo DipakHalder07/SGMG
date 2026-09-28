@@ -568,8 +568,8 @@
   margin-bottom: 1.25rem;
 }
 
-.team_value_heading {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+.team_value_heading  {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: 0.95rem;
   font-weight: 500;
   color: #292929;

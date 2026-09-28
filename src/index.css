@@ -1,5 +1,5 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Michroma&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap");
 
 @font-face {
   font-family: "Exposure";
@@ -21,9 +21,19 @@ html {
   scroll-behavior: auto;
 }
 
+body {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  color: var(--black, #292929);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :root {
   --font-heading: "Michroma", sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Michroma", sans-serif;
+  --font-serif: "Plus Jakarta Sans", sans-serif;
   --primary: #2391cf;
   --primary-rgb: 35, 145, 207;
   --primary-light: #e4f3fa;
@@ -60,6 +70,18 @@ h1, h2, h3, h4, h5, h6,
 .locations_specific,
 .specific_map,
 ._404_heading,
+.title_amenities,
+.title_how,
+.title_line,
+.title_txt,
+.title_apart,
+.cap_footer,
+.txt_cta,
+.pink_cta .heading_cta .txt_cta,
+.faq-main-heading,
+.apartment-lightbox-unit-title,
+.testimonials_heading .h2,
+.faq_heading .h2,
 .endless-stairs-embed .es-overlay h2 {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
 }
@@ -179,6 +201,46 @@ main {
   overflow-x: clip;
 }
 
+/* =========================================================
+   CANONICAL CONTAINER & WRAPPER SYSTEM (Matching 21oaks.org)
+   ========================================================= */
+.wrapper_general {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1rem 2rem 6rem;
+  box-sizing: border-box;
+}
+
+.wrapper_general.basic {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container.only_amenities {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
+.container.only_mobile {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 /* 21Oaks Interactive Signature Button */
 @media (min-width: 992px) {
   .button {
@@ -223,7 +285,7 @@ main {
     background-color: var(--primary, #2391cf);
     border-radius: 0.375em;
     color: #ffffff;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-size: 0.8em;
     font-weight: 400;
   }
@@ -237,7 +299,7 @@ main {
     transition: transform var(--dur) var(--ease);
     will-change: transform;
     background-color: var(--logo-green, #a2cd3a) !important;
-    border-radius: 0.375em;
+    border-radius: 4px;
     overflow: hidden;
   }
 
@@ -313,10 +375,10 @@ main {
   .button {
     display: inline-flex !important;
     align-items: stretch !important;
-    gap: 0.25em !important;
+    gap: 3px !important;
     width: 100% !important;
-    height: 39px !important;
-    min-height: 39px !important;
+    height: 40px !important;
+    min-height: 40px !important;
     text-decoration: none !important;
     overflow: visible !important;
     position: relative !important;
@@ -331,32 +393,37 @@ main {
 
   .button .text_box {
     flex: 1 !important;
-    height: 39px !important;
+    height: 40px !important;
     transform: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0 4em !important;
-    font-size: 11.7px !important;
-    font-weight: 400 !important;
+    padding: 0 1.25rem !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
     color: #ffffff !important;
     background-color: var(--primary, #2391cf) !important;
-    border-radius: 0.375em !important;
+    border-radius: 4px !important;
     white-space: nowrap !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
 
   .button .icon_box.is-right {
     position: static !important;
-    width: 39px !important;
-    height: 39px !important;
+    width: 40px !important;
+    height: 40px !important;
     transform: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
     background-color: var(--logo-green, #a2cd3a) !important;
-    border-radius: 0.375em !important;
+    border-radius: 4px !important;
+  }
+
+  .button.header_cta .icon_box.is-right,
+  .icon_box.is-right.header_btn {
+    background-color: var(--logo-green, #a2cd3a) !important;
   }
 
   .button .arrow_icon {
@@ -392,7 +459,15 @@ main {
   .button .icon_box.is-right svg path,
   .button .icon_box.is-left svg path {
     fill: #ffffff !important;
-    stroke: #ffffff !important;
+    stroke: none !important;
+  }
+
+  .button .icon_box svg path,
+  .button .icon_box.is-right svg path,
+  .button .icon_box.is-left svg path,
+  .icon_box.is-right svg path {
+    fill: #ffffff !important;
+    stroke: none !important;
   }
 }
 
@@ -560,7 +635,7 @@ body.is-hero .menu {
   cursor: pointer;
   color: #ffffff;
   font-size: 0.7em;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   user-select: none;
 }
 
@@ -595,7 +670,7 @@ body.is-hero .menu {
 .menu_txt {
   color: #ffffff;
   font-size: 1em;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   line-height: 1;
 }
 
@@ -625,7 +700,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   font-size: 0.7em;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.4s ease;
@@ -690,7 +765,7 @@ body.is-hero .menu {
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px;
     color: #ffffff !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-size: 12.15px;
     font-weight: 400;
     line-height: 1;
@@ -840,7 +915,7 @@ body.is-hero .menu {
 .mobile_link {
   color: #ffffff !important;
   font-size: clamp(13px, 0.85em, 16px);
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   text-decoration: none;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -870,7 +945,7 @@ body.is-hero .menu {
   justify-content: center;
   font-size: clamp(12px, 0.8em, 15px);
   font-weight: 500;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   text-decoration: none;
   text-align: center;
   margin-top: 1.25em;
@@ -1238,12 +1313,15 @@ body.is-hero .menu {
   position: relative;
   z-index: 10;
   width: 100%;
+  max-width: none;
+  margin: 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start !important;
-  padding: 0 4% 5vh;
+  padding: 0 2rem 5vh;
+  box-sizing: border-box;
   pointer-events: none;
 }
 
@@ -1253,9 +1331,9 @@ body.is-hero .menu {
   text-align: left;
 }
 
-.hero .heading_box h1 {
+.hero .heading_box h1  {
   color: #fff;
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(28px, 4vw, 76px);
   font-weight: 400;
   line-height: 1.08;
@@ -1264,9 +1342,9 @@ body.is-hero .menu {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
-.hero .heading_box .p_gen {
+.hero .heading_box .p_gen  {
   color: rgba(255, 255, 255, 0.92);
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   font-size: clamp(14px, 1.1vw, 20px);
   line-height: 1.4;
   margin-top: 20px;
@@ -1570,7 +1648,7 @@ body.is-hero .menu {
 }
 
 .dynamic_section .middle .h2.second_h {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(27px, 3.8vw, 53px);
   line-height: 1.02;
   font-weight: 400;
@@ -1589,8 +1667,9 @@ body.is-hero .menu {
 
 .property_slider_container {
   width: 100%;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  max-width: none;
+  margin: 0;
+  padding: 0 2rem;
   box-sizing: border-box;
 }
 
@@ -1934,10 +2013,10 @@ body.is-hero .menu {
 
 .wrapper_sides {
   width: 100%;
-  max-width: 2200px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   height: 100%;
-  padding: 3.5rem clamp(1.5rem, 2.5vw, 3.5rem);
+  padding: 3.5rem 2rem;
   box-sizing: border-box;
 }
 
@@ -2179,12 +2258,12 @@ body.is-hero .menu {
     pointer-events: none;
   }
 
-  .heading_apartments .h2.smaller {
-    font-family: var(--font-display, "Exposure", Georgia, serif);
-    font-size: clamp(27px, 3.2vw, 45px);
-    line-height: 1.05;
-    color: #292929;
-  }
+  .heading_apartments .h2.smaller  {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(27px, 3.2vw, 45px);
+  line-height: 1.05;
+  color: #292929;
+}
 
   .apart_cards_viewport.only_desktop {
     z-index: 2;
@@ -2228,9 +2307,18 @@ body.is-hero .menu {
 /* Apartments Mobile Responsive Carousel */
 @media (max-width: 991px) {
   .apartments {
-    background: linear-gradient(180deg, #ffffff 0%, #e4f3fa 45%, #ffffff 100%) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #edf6fb 50%, #ffffff 100%) !important;
     overflow: hidden !important;
     width: 100% !important;
+  }
+
+  .apartments .apartments_bg_gradient,
+  .apartments_bg_gradient,
+  .apartments_bg_gradient.only_mobile {
+    display: none !important;
+    opacity: 0 !important;
+    background: none !important;
+    background-image: none !important;
   }
 
   .wrapper_apartments {
@@ -2520,9 +2608,9 @@ body.is-hero .menu {
   z-index: 5;
 }
 
-.heading_fs .h2.white {
+.heading_fs .h2.white  {
   color: #fff;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(27px, 3.5vw, 48px);
   line-height: 1.05;
 }
@@ -2615,138 +2703,173 @@ body.is-hero .menu {
   }
 }
 
-/* Everything You Need Section */
+/* =========================================================
+   SECTION 6: EVERYTHING YOU NEED (Location Reach)
+   ========================================================= */
 .everything_u_need {
   width: 100%;
   background: #fff;
+  position: relative;
 }
 
 .everything_u_need .wrapper_general {
-  padding: 6rem 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(3.5rem, 6vw, 6.5rem) 2rem clamp(2rem, 3.5vw, 3.5rem);
   box-sizing: border-box;
 }
 
 .everything_u_need .h2.everything_you_need {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(27px, 3.5vw, 48px);
-  line-height: 1.05;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-size: clamp(32px, 3.8vw, 68px);
+  line-height: 1.06;
   color: #292929;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .txt_sides {
-  margin-top: 4rem;
   display: flex;
-  gap: 3rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: clamp(2.5rem, 4vw, 5rem);
+  width: 100%;
 }
 
 .left_lines {
-  width: 45%;
+  width: 35%;
+  max-width: 650px;
+}
+
+.lines_caption {
+  margin-bottom: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+.lines_caption .p_gen {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: clamp(15px, 1.1vw, 20px);
+  line-height: 1.5;
+  color: #333333;
+  font-weight: 400;
 }
 
 .lines_list {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1.25rem, 1.8vw, 2rem);
 }
 
 .lines_dynamic {
-  row-gap: 8px;
   display: flex;
   flex-direction: column;
+  gap: 0.65rem;
 }
 
 .flex_dyn {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 16px;
-  font-weight: 500;
-  color: #292929;
 }
 
-.timing_txt {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 15px;
-  color: #666;
+.flex_dyn .title_line {
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-size: clamp(15px, 1.1vw, 20px);
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.flex_dyn .timing_txt {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: clamp(14px, 0.95vw, 17px);
+  color: #666666;
+  font-weight: 400;
 }
 
 .lines_dynamic .bar_dynamic {
   position: relative;
   height: 3px;
-  background: rgba(41, 41, 41, 0.12);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .lines_dynamic .active_bar {
   height: 100%;
-  background: #292929;
+  background: #1a1a1a;
+  border-radius: 2px;
   transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .p_right {
-  width: 45%;
+  width: 40%;
+  max-width: 740px;
   margin-left: auto;
+  padding-right: 0;
 }
 
 .md_p {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: clamp(18px, 1.6vw, 28px);
+  line-height: 1.35;
+  color: #1a1a1a;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 @media (max-width: 991px) {
   .everything_u_need .wrapper_general {
-    padding: 3.5rem 1rem 3rem !important;
+    padding: 3rem 1.25rem 2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
   }
 
   .everything_u_need .h2.everything_you_need {
-    font-size: clamp(20px, 5.3vw, 25px) !important;
+    font-size: clamp(24px, 5.5vw, 36px) !important;
     line-height: 1.1 !important;
     margin-bottom: 0 !important;
   }
 
   .everything_u_need .txt_sides {
+    display: flex !important;
     flex-direction: column !important;
     gap: 0 !important;
-    margin-top: 1.5rem !important;
+    margin-top: 2rem !important;
+    width: 100% !important;
   }
 
   .everything_u_need .p_right {
     order: -9999 !important;
     width: 100% !important;
-    margin: 0 0 1.75rem 0 !important;
+    max-width: 100% !important;
+    margin: 0 0 2rem 0 !important;
     padding: 0 !important;
   }
 
-  .everything_u_need .md_p,
-  .md_p {
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-    font-size: 15.6px !important;
-    line-height: 1.35 !important;
+  .everything_u_need .md_p {
+    font-size: 16px !important;
+    line-height: 1.45 !important;
     color: #292929 !important;
     margin: 0 !important;
-    padding: 0 !important;
   }
 
   .everything_u_need .left_lines {
     width: 100% !important;
+    max-width: 100% !important;
     margin-top: 0 !important;
   }
 
   .everything_u_need .lines_caption {
-    margin-bottom: 1rem !important;
+    margin-bottom: 1.25rem !important;
   }
 
   .everything_u_need .lines_caption .p_gen {
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
     font-size: 14px !important;
-    line-height: 1.4 !important;
-    color: #292929 !important;
+    line-height: 1.45 !important;
+    color: #4a4a4a !important;
   }
 
   .everything_u_need .lines_list {
@@ -2757,22 +2880,20 @@ body.is-hero .menu {
   }
 
   .everything_u_need .title_line {
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    color: #292929 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #1a1a1a !important;
   }
 
   .everything_u_need .timing_txt {
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-    font-size: 16px !important;
+    font-size: 14px !important;
     font-weight: 400 !important;
-    color: #292929 !important;
+    color: #666 !important;
   }
 
   .everything_u_need .lines_dynamic .bar_dynamic {
     height: 3px !important;
-    background: rgba(41, 41, 41, 0.12) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
     border-radius: 2px !important;
     margin-top: 8px !important;
   }
@@ -2785,12 +2906,15 @@ body.is-hero .menu {
   width: 100%;
   overflow: hidden;
   position: relative;
+  background: #fff;
+  scroll-margin-top: 100px;
 }
 
 .amenities_section .wrapper_general.basic.slider_spec {
-  padding: 6rem 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(6.5rem, 9vw, 10rem) 2rem clamp(4rem, 6vw, 7.5rem);
   box-sizing: border-box;
 }
 
@@ -2799,53 +2923,34 @@ body.is-hero .menu {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.5rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .amenities_heading .h2.middle_spec {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
-  font-size: clamp(27px, 3.8vw, 53px);
-  line-height: 1.02;
-  color: #292929;
-}
-
-.container.only_amenities {
-  width: 100%;
-  overflow: hidden;
-}
-
-.amenities_section {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.amenities_section .wrapper_general.basic.slider_spec {
-  padding-top: 5rem;
-  padding-bottom: 4.5rem;
-}
-
-.amenities_heading {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.amenities_heading .h2.middle_spec {
-  font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-  font-size: clamp(22px, 2.5vw, 34px);
-  line-height: 1.1 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(28px, 3.4vw, 56px) !important;
+  line-height: 1.2 !important;
+  color: #292929 !important;
+  letter-spacing: -0.015em;
   text-align: center !important;
-  margin-bottom: 1.25rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .amenities_heading .button_amenities {
   display: flex !important;
   justify-content: center !important;
-  margin-bottom: 2rem !important;
+  margin-top: clamp(1.2rem, 1.8vw, 2rem) !important;
+  margin-bottom: 0 !important;
+}
+
+.container.only_amenities {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  overflow: visible !important;
 }
 
 .amenities_section .splide {
@@ -2858,17 +2963,24 @@ body.is-hero .menu {
   width: 100%;
 }
 
+.amenities_section .splide__list {
+  display: flex;
+  width: 100%;
+}
+
 .amenities_section .splide__slide {
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  height: 410px !important;
+  height: auto !important;
 }
 
 .image_amenities {
   position: relative;
   width: 100%;
-  height: 410px !important;
-  border-radius: 6px;
+  aspect-ratio: 1440 / 1546 !important;
+  min-height: clamp(420px, 30vw, 640px) !important;
+  height: auto !important;
+  border-radius: 8px;
   overflow: hidden;
   display: block;
 }
@@ -2890,9 +3002,9 @@ body.is-hero .menu {
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  padding: 1.4rem;
+  padding: clamp(1.5rem, 2vw, 2.25rem);
   z-index: 5;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 40%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.78) 100%);
 }
 
 .heading_text {
@@ -2901,12 +3013,12 @@ body.is-hero .menu {
 
 .title_amenities {
   color: #fff !important;
-  font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-  font-size: 23px !important;
-  font-weight: 400 !important;
-  line-height: 1.15 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(18px, 1.4vw, 26px) !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
   margin: 0 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .bottom_amenities {
@@ -2915,12 +3027,11 @@ body.is-hero .menu {
 
 .desc_amenities,
 .desc_amenities .p_gen {
-  font-family: var(--font-display, "Exposure", Georgia, serif) !important;
-  font-size: 13.65px !important;
-  line-height: 1.5 !important;
-  color: rgba(255, 255, 255, 0.95) !important;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: clamp(13px, 0.95vw, 15px) !important;
+  line-height: 1.45 !important;
+  color: rgba(255, 255, 255, 0.92) !important;
   font-weight: 400 !important;
-  letter-spacing: 0.01em !important;
   margin: 0 !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
@@ -2931,27 +3042,29 @@ body.is-hero .menu {
 
 @media (max-width: 991px) {
   .amenities_section .wrapper_general.basic.slider_spec {
-    padding: 3.5rem 0rem 3.5rem !important;
+    padding: clamp(4rem, 7vw, 5rem) 1rem clamp(3rem, 5vw, 4rem) !important;
   }
   .amenities_heading {
     padding: 0 1rem !important;
+    margin-bottom: 2rem !important;
   }
   .amenities_section .splide {
     padding-left: 1rem !important;
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(21px, 6.2vw, 25px) !important;
-    line-height: 1.1 !important;
-    margin-bottom: 1.25rem !important;
+    font-size: clamp(24px, 5.5vw, 36px) !important;
+    line-height: 1.15 !important;
   }
 
   .amenities_section .splide__slide {
-    height: 408px !important;
+    height: auto !important;
   }
 
   .image_amenities {
-    height: 408px !important;
+    aspect-ratio: 1440 / 1546 !important;
+    min-height: 380px !important;
+    height: auto !important;
   }
 
   .overlay_amenities {
@@ -2973,22 +3086,25 @@ body.is-hero .menu {
 .how_it_works .wrapper_general.basic,
 .wrapper_how_to {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 5.5rem 2.5rem;
+  max-width: none;
+  margin: 0;
+  padding: clamp(4rem, 8vw, 10rem) 2rem;
   box-sizing: border-box;
   overflow: visible !important;
 }
 
 .flex_how {
   display: flex;
-  gap: 4.5rem;
+  justify-content: space-between;
+  gap: clamp(3rem, 6vw, 6rem);
   align-items: flex-start;
   position: relative;
+  width: 100%;
 }
 
 .left_title {
   width: 38%;
+  max-width: 740px;
   flex: 0 0 38%;
   position: -webkit-sticky;
   position: sticky;
@@ -3017,8 +3133,10 @@ body.is-hero .menu {
 }
 
 .right_cards {
-  width: 58%;
-  flex: 1;
+  width: 48%;
+  max-width: 740px;
+  margin-left: auto;
+  flex: 0 0 48%;
 }
 
 .how_cms {
@@ -3296,13 +3414,16 @@ body.is-hero .menu {
 }
 
 .testimonials .wrapper_general.basic {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(4rem, 8vw, 10rem) 2rem;
+  box-sizing: border-box;
 }
 
 .testimonials_heading .h2.bigger,
 .testimonials_heading .h2,
-.testimonials_heading h2 {
+.testimonials_heading h2  {
   letter-spacing: -0.02em;
   font-size: clamp(22px, 3.2vw, 38px) !important;
   font-weight: 400;
@@ -3423,7 +3544,7 @@ body.is-hero .menu {
 .author_name_txt {
   font-size: 0.88em;
   font-weight: 400;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   color: var(--black, #292929);
 }
 
@@ -3488,7 +3609,7 @@ body.is-hero .menu {
   font-size: 2.1em;
   line-height: 1.2;
   display: flex;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-weight: 400;
   color: var(--black, #292929);
 }
@@ -3554,7 +3675,7 @@ body.is-hero .menu {
   }
   .author_name_txt {
     font-size: 1.4em;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-weight: 400;
   }
   .author_item:not(.is-active) .author_name {
@@ -3697,8 +3818,11 @@ body.is-hero .menu {
 }
 
 .faqs .wrapper_general.basic {
-  padding-top: 10rem;
-  padding-bottom: 8rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(4rem, 8vw, 10rem) 2rem clamp(3rem, 6vw, 8rem);
+  box-sizing: border-box;
 }
 
 .faq_heading {
@@ -3711,8 +3835,8 @@ body.is-hero .menu {
   display: flex;
 }
 
-.faq_heading .h2.smaller {
-  font-family: Exposure, Georgia, serif;
+.faq_heading .h2.smaller  {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(27px, 3.2vw, 48px);
   line-height: 1;
   font-weight: 400;
@@ -3750,7 +3874,7 @@ body.is-hero .menu {
   line-height: 1.5;
   font-size: 1.05rem;
   color: var(--black);
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .bottom_faq {
@@ -3765,7 +3889,7 @@ body.is-hero .menu {
   line-height: 1.35;
   font-weight: 500;
   color: var(--black);
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .faq_general {
@@ -3825,7 +3949,7 @@ body.is-hero .menu {
   letter-spacing: -0.01em;
   font-size: clamp(1.2rem, 1.45vw, 1.38rem);
   font-weight: 500;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   color: #1a1a1a;
   line-height: 1.35;
   transition: color 0.2s ease;
@@ -3882,7 +4006,7 @@ body.is-hero .menu {
   font-size: 0.98rem !important;
   line-height: 1.65 !important;
   color: rgba(41, 41, 41, 0.82) !important;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   text-align: left;
   transform: translate3d(0px, 12px, 0px);
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s ease;
@@ -3950,7 +4074,7 @@ body.is-hero .menu {
     font-size: 17.16px !important;
     line-height: 1.35 !important;
     margin-bottom: 0.8rem;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
   .faq_general {
     order: 1;
@@ -3960,14 +4084,14 @@ body.is-hero .menu {
   .item_title {
     font-size: 14.5px !important;
     line-height: 1.35 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
   .item_paragraph,
   .item_paragraph p {
     max-width: 100%;
     font-size: 13.65px !important;
     line-height: 1.5 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
 }
 
@@ -4026,10 +4150,10 @@ body.is-hero .menu {
 }
 
 .txt_cta,
-.pink_cta .heading_cta .txt_cta {
+.pink_cta .heading_cta .txt_cta  {
   font-size: clamp(20px, 2.2vw, 34px);
   line-height: 1.05;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   color: #ffffff !important;
 }
 
@@ -4090,8 +4214,11 @@ body.is-hero .menu {
 }
 
 .wrapper_footer {
-  padding: 4.5rem 2.5rem 1rem;
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 4.5rem 2rem 1rem;
+  box-sizing: border-box;
 }
 
 .flex_f_top {
@@ -4128,7 +4255,7 @@ body.is-hero .menu {
   letter-spacing: -0.01em;
   font-size: clamp(24px, 2.2vw, 38px);
   line-height: 1.08;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
 }
 
 /* Other Ventures in Footer */
@@ -4233,7 +4360,7 @@ body.is-hero .menu {
   line-height: 1.25;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .link_f:hover {
@@ -4252,7 +4379,7 @@ body.is-hero .menu {
   font-size: 0.9em;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   display: inline-block;
 }
 
@@ -4326,7 +4453,7 @@ body.is-hero .menu {
   display: flex;
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: Exposure, Georgia, serif;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .last_line.ll_fs {
@@ -4441,7 +4568,7 @@ body.is-hero .menu {
   .txt_cta {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.15 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
   .footer_logo_img {
     height: 44px !important;
@@ -4450,7 +4577,7 @@ body.is-hero .menu {
   .cap_footer {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.1 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
   .menu_footer {
     grid-template-columns: 1fr 1fr;
@@ -4460,13 +4587,13 @@ body.is-hero .menu {
   .title_footer {
     font-size: 12.675px !important;
     line-height: 1.2 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
     margin-bottom: 0.75rem;
   }
   .link_f {
     font-size: 15.6px !important;
     line-height: 1.35 !important;
-    font-family: var(--font-display, "Exposure", Georgia, serif) !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   }
   .links_list {
     row-gap: 0.5rem;
@@ -4578,7 +4705,7 @@ body.is-hero .menu {
 }
 
 .filter_title {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-size: 0.9em; /* 12.96px */
   font-weight: 400;
   color: #292929;
@@ -4607,7 +4734,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .clear_btn > div,
@@ -4661,13 +4788,13 @@ body.is-hero .menu {
   color: #292929;
   background: #ffffff;
   box-sizing: border-box;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .dash_field {
   font-size: 11.52px;
   color: #171717;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .fs-rangeslider_track.helper {
@@ -4708,7 +4835,7 @@ body.is-hero .menu {
   transform: translateX(-50%);
   font-size: 11.52px;
   color: #292929;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   white-space: nowrap;
 }
 
@@ -4773,7 +4900,7 @@ body.is-hero .menu {
   padding: 0.5em 0.4em 0.5em 0.5em;
   font-size: 0.7em;
   color: rgb(41, 41, 41);
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   align-self: flex-start;
   display: flex;
   pointer-events: auto;
@@ -4814,7 +4941,7 @@ body.is-hero .menu {
   display: flex;
   color: rgb(41, 41, 41);
   line-height: 1;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .icon_tag {
@@ -5202,7 +5329,7 @@ body.is-hero .menu {
 .mnth_txt {
   opacity: 0.55;
   margin-bottom: auto;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-size: 0.8em;
   line-height: 1;
   color: var(--black, #292929);
@@ -5405,10 +5532,10 @@ body.is-hero .menu {
   .filters.is-open {
     display: flex;
   }
-  .filter_heading {
+  .filter_heading  {
     justify-content: space-between;
     align-items: center;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
     font-size: 5.5em;
     line-height: 1.1;
     color: #292929;
@@ -5486,7 +5613,7 @@ body.is-hero .menu {
     justify-content: center;
     align-items: center;
     padding: 12px 16px;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-size: 1.85em;
     display: flex;
     cursor: pointer;
@@ -5503,7 +5630,7 @@ body.is-hero .menu {
     height: 3.15rem;
     padding: 12px 16px;
     color: var(--black, #292929);
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-size: 1.85em;
     display: flex;
     cursor: pointer;
@@ -5554,7 +5681,7 @@ body.is-hero .menu {
     justify-content: center;
     align-items: center;
     padding: 12px 16px;
-    font-family: var(--font-display, "Exposure", Georgia, serif);
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
     font-size: 1.75em;
     column-gap: 1rem;
     display: flex;
@@ -5705,7 +5832,7 @@ body.is-hero .menu {
 }
 
 .no-apartments-found h3 {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
@@ -5738,7 +5865,7 @@ body.is-hero .menu {
 }
 
 .faq-prompt-text {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-size: 1.5rem;
   line-height: 1.3;
   margin-bottom: 1.5rem;
@@ -5805,7 +5932,7 @@ body.is-hero .menu {
 }
 
 .faq-question-title {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-size: 1.25rem;
   color: #18181b;
 }
@@ -5830,9 +5957,9 @@ body.is-hero .menu {
   border-top: none;
 }
 
-.faq-main-heading.white {
+.faq-main-heading.white  {
   color: #ffffff;
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(1.6rem, 2.8vw, 2.3rem);
   line-height: 1.15;
   margin-bottom: 1.5rem;
@@ -5915,7 +6042,7 @@ body.is-hero .menu {
 }
 
 .apartment-lightbox-unit-title {
-  font-family: var(--font-display, "Exposure", Georgia, serif);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: 1.8rem;
   margin: 0;
   color: #ffffff;

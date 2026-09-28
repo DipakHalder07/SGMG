@@ -47,7 +47,7 @@
 }
 
 .number_active {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: clamp(2.45rem, 3.85vw, 4.05rem);
   font-weight: 300;
   line-height: 1;
@@ -130,7 +130,7 @@
   gap: 0.35rem !important;
   width: auto !important;
   white-space: nowrap !important;
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   font-variant-numeric: tabular-nums !important;
@@ -138,7 +138,7 @@
 
 .gallery .active_small,
 .gallery .all_small {
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   display: inline-flex !important;
@@ -147,7 +147,7 @@
 }
 
 .gallery .gallery_caption {
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   width: auto !important;
