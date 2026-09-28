@@ -107,24 +107,73 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     const handleOutsideClick = (e: MouseEvent) => {
       if (!menuOpen) return;
       const target = e.target as HTMLElement;
-      if (headerRef.current && !headerRef.current.contains(target)) {
-        setMenuOpen(false);
+      const menuLink = headerRef.current?.querySelector(".menu_link");
+      const menuFs = headerRef.current?.querySelector(".menu_fs");
+      if (menuLink?.contains(target) || menuFs?.contains(target)) {
+        return;
       }
+      setMenuOpen(false);
     };
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
-  // Non-home, non-apartment, and non-location routes should be in light mode by default
+  // Dynamic Header theme with data-section detector (21Oaks exact ground truth)
   useEffect(() => {
-    const isApartmentDetail =
-      location.pathname.startsWith("/apartments/") ||
-      location.pathname.startsWith("/apartments-cards/");
-    const isLocationPage = location.pathname.startsWith("/location");
-    if (location.pathname !== "/" && !isApartmentDetail && !isLocationPage) {
-      document.body.classList.remove("is-hero");
-      document.body.classList.add("is-light");
-    }
+    const updateHeaderTheme = () => {
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          '[data-section="hero"], [data-section="light"], [data-section="dark"]'
+        )
+      );
+      if (!sections.length) {
+        if (location.pathname !== "/") {
+          document.body.classList.remove("is-hero", "is-dark");
+          document.body.classList.add("is-light");
+        }
+        return;
+      }
+
+      const header = headerRef.current;
+      const headerH = header ? header.offsetHeight : 64;
+      const y = headerH + 1;
+      let mode: string | null = null;
+
+      for (const el of sections) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom > y) {
+          mode = el.getAttribute("data-section");
+          break;
+        }
+      }
+
+      if (!mode) {
+        const hero = document.querySelector<HTMLElement>('[data-section="hero"]');
+        if (hero && hero.getBoundingClientRect().bottom <= y) {
+          mode = "light";
+        } else {
+          mode = "hero";
+        }
+      }
+
+      const isContact = location.pathname.replace(/\/$/, "") === "/contact";
+      const mapSec = document.querySelector<HTMLElement>(".map_sec");
+      const isMobile = window.matchMedia("(max-width: 991px)").matches;
+      const preMap = isContact && isMobile && mapSec && mapSec.getBoundingClientRect().top > headerH;
+      document.body.classList.toggle("is-contact-premap", !!preMap);
+
+      document.body.classList.toggle("is-hero", mode === "hero");
+      document.body.classList.toggle("is-light", mode === "light");
+      document.body.classList.toggle("is-dark", mode === "dark");
+    };
+
+    updateHeaderTheme();
+    window.addEventListener("scroll", updateHeaderTheme, { passive: true });
+    window.addEventListener("resize", updateHeaderTheme);
+    return () => {
+      window.removeEventListener("scroll", updateHeaderTheme);
+      window.removeEventListener("resize", updateHeaderTheme);
+    };
   }, [location.pathname]);
 
   const handleNavClick = (path: string, hash?: string) => {
@@ -274,18 +323,6 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 }}
               >
                 <div>FAQ</div>
-              </a>
-              <a
-                href="/contact"
-                className="mobile_link w-inline-block"
-                onMouseEnter={() => prefetchRoute("/contact")}
-                onTouchStart={() => prefetchRoute("/contact")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/contact");
-                }}
-              >
-                <div>Contact</div>
               </a>
             </div>
             <a
