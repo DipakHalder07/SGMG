@@ -222,6 +222,34 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
 
 ---
 
+### Item 15: Section Heading Font Weight (600) Standardization
+- **Goal:** Set the font-weight of all section headings across the entire website to `600` (semi-bold) while preserving their heading font family (`Michroma`, `--font-heading`), fluid sizing scales, responsive clamp rules, and layout stability.
+- **Root Cause:**
+  - `public/webflow.min.css` default resets set `.h1 { font-weight: 400; }` and `.h2 { font-weight: 400; }`.
+  - Multiple subpages and dedicated section classes had localized `font-weight: 400;` or `font-weight: 300;` definitions, causing all headings to compute to regular `400` weight instead of semi-bold `600`.
+- **Changes:**
+  - **Universal Headings Weight in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css):**
+    - Updated universal headings block to include `font-weight: 600 !important;` covering `h1..h6`, `.h1..h6`, `.heading`, `[class*="heading"]`, and all section heading classes (`.second_h`, `.middle_spec`, `.apartments_heading`, `.spec_how`, `.everything_you_need`, `.spec_amenities`, `.gen_h`, `.pets_h`, `.locations_specific`, `.specific_map`, `._404_heading`, `.title_amenities`, `.title_how`, `.faq-main-heading`, `.testimonials_heading .h2`, `.faq_heading .h2`, `.endless-stairs-embed .es-overlay h2`, etc.).
+    - Updated Universal Headings Scale (`h1..h6`, `.h1..h6`) to include `font-weight: 600 !important;`.
+    - Updated specific heading rules in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css): `.hero .heading_box h1`, `.dynamic_section .middle .h2.second_h`, `.left_side .h2.smaller`, `.title_how`, `.testimonials_heading h2`, `.faq_heading .h2.smaller`, and `.heading_aparts .h1.black.spec_amenities`.
+  - **Subpage Heading Styles Updated to `600`:**
+    - [location.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/location.css): `.h2.locations_specific`, `.h2.white.specific_map`, and `.faqs.black .h2.smaller`.
+    - [team.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/team.css): `.team_hero_title`, `.team_spotlight_name`, `.team_section_title`, `.team_values_title`, `.team_value_heading`, and `.team_cta_title`.
+    - [careers.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/careers.css): `.careers_hero_title`, `.careers_culture_title`, `.careers_section_title`, and `.careers_talent_title`.
+    - [contact.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/contact.css): `.h1.black` and `.h2.smaller`.
+    - [not-found.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/not-found.css): `._404_heading` and `.endless-stairs-embed .es-overlay h2`.
+    - [apartment-detail.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/apartment-detail.css): `.h1_apartments .h1`.
+    - [faq.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/faq.css): `.faq .h1.black.gen_h`.
+    - [emi-calculator.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/emi-calculator.css): `.emi_calc_main_title`.
+- **Verification:**
+  - Automated Chrome CDP scan across Desktop (1920px) and Mobile (390px) across all 8 major routes (`/`, `/apartments`, `/apartments/d1`, `/how-to-apply`, `/contact`, `/team`, `/careers`, `/faq`):
+    - **100% of tested section headings compute cleanly to `font-weight: 600`**.
+    - Fluid `clamp()` formulas, line heights, letter spacings, and responsive alignments remain 100% stable with zero layout clipping or text overlap.
+    - Verified on high-res screenshots (`verify_home_weight_600.png`, `verify_home_section_heading_600.png`, `verify_mobile_heading_600.png`).
+  - Production build (`npm run build`) completed cleanly with zero errors in 3.57s.
+
+---
+
 ## 🎯 Next Steps
 - Awaiting your guidance for the next task or adjustment.
 

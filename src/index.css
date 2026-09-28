@@ -44,10 +44,11 @@ body {
   --white: #ffffff;
 }
 
-/* Headings with Michroma font */
+/* Headings with Michroma font & 600 weight */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6,
 .heading,
+[class*="heading"],
 [class*="heading"] h1,
 [class*="heading"] h2,
 [class*="heading"] h3,
@@ -82,8 +83,20 @@ h1, h2, h3, h4, h5, h6,
 .apartment-lightbox-unit-title,
 .testimonials_heading .h2,
 .faq_heading .h2,
-.endless-stairs-embed .es-overlay h2 {
+.endless-stairs-embed .es-overlay h2,
+.team_hero_title,
+.team_spotlight_name,
+.team_section_title,
+.team_values_title,
+.team_member_name,
+.team_modal_name,
+.careers_hero_title,
+.careers_culture_title,
+.careers_section_title,
+.careers_modal_title,
+.emi_calc_main_title {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-weight: 600 !important;
 }
 
 /* =========================================================
@@ -124,23 +137,29 @@ input[type="reset"],
 h1, .h1, .h1.black, .h1.black.gen_h, .h1.black.spec_amenities {
   font-size: clamp(28px, 4vw, 76px) !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-weight: 600 !important;
 }
 h2, .h2, .h2.smaller, .h2.smaller.spec_how, .h2.bigger, .h2.second_h, .h2.middle_spec, .h2.white, .h2.pets_h, .h2.apartments_heading, .h2.locations_specific, .h2.everything_you_need, .h2.legals, .h2.legal_heading, .h2.licenses_title {
   font-size: clamp(24px, 3.4vw, 66px) !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-weight: 600 !important;
 }
 h3, .h3 {
   font-size: clamp(20px, 2.4vw, 46px) !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-weight: 600 !important;
 }
 h4, .h4 {
   font-size: clamp(16px, 1.8vw, 32px) !important;
+  font-weight: 600 !important;
 }
 h5, .h5 {
   font-size: clamp(14px, 1.4vw, 24px) !important;
+  font-weight: 600 !important;
 }
 h6, .h6 {
   font-size: clamp(12px, 1.1vw, 18px) !important;
+  font-weight: 600 !important;
 }
 
 /* Custom Scrollbar matching 21oaks.org */
@@ -1374,7 +1393,7 @@ body.is-hero .menu {
   color: #fff;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(28px, 4vw, 76px);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.015em;
   margin: 0;
@@ -1690,7 +1709,7 @@ body.is-hero .menu {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(27px, 3.8vw, 53px);
   line-height: 1.02;
-  font-weight: 400;
+  font-weight: 600;
   color: #292929;
 }
 
@@ -2092,7 +2111,7 @@ body.is-hero .menu {
   font-family: var(--font-heading, "Michroma", sans-serif);
   font-size: clamp(30px, 3.6vw, 66px);
   line-height: 1.08;
-  font-weight: 400;
+  font-weight: 600;
   color: #292929;
   letter-spacing: -0.02em;
   margin-top: 0;
@@ -3242,7 +3261,7 @@ body.is-hero .menu {
 .title_how {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
   line-height: 1.25;
@@ -3480,7 +3499,7 @@ body.is-hero .menu {
 .testimonials_heading h2  {
   letter-spacing: -0.02em;
   font-size: clamp(22px, 3.2vw, 38px) !important;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.1 !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   color: var(--black, #292929);
@@ -3893,7 +3912,7 @@ body.is-hero .menu {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   font-size: clamp(27px, 3.2vw, 48px);
   line-height: 1;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--black);
   text-align: center;
   margin: 0;
@@ -4716,7 +4735,7 @@ body.is-hero .menu {
   color: #292929 !important;
   margin: 0;
   padding: 0;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .apartments_sides {

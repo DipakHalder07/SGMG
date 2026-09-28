@@ -112,7 +112,7 @@
   color: #ffffff;
   font-family: "Michroma", sans-serif !important;
   font-size: 40.32px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -1.152px;
   margin: 0;
@@ -278,7 +278,7 @@
   color: #ffffff;
   font-family: "Michroma", sans-serif !important;
   font-size: clamp(1.75rem, 3.85vw, 3.85rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0;
@@ -681,7 +681,7 @@
   color: #ffffff !important;
   font-family: "Michroma", sans-serif !important;
   font-size: 46.37px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -1.3248px;
   text-align: center;
