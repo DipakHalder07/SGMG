@@ -197,7 +197,33 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
 
 ---
 
+### Item 14: Mouse Drag & Swipe Interaction for "Everything modern living should be" Slider
+- **Goal:** Enable mouse dragging/swiping on desktop and trackpads so users can click and drag the slider horizontally to move slides, in addition to touch and navigation buttons.
+- **Changes:**
+  - **Unified Pointer & Mouse Drag System in [HomePage.tsx](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/pages/HomePage.tsx):**
+    - Implemented `onPointerDown`, `onPointerMove`, `onPointerUp`, and `onPointerCancel` with pointer capture for seamless tracking even if the cursor moves outside the viewport.
+    - Added real-time visual drag tracking: track translates in real time with cursor offset (`translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`) with `transition: none` during drag for 0-latency feedback.
+    - Added organic boundary resistance (dampened to `0.32` factor) when dragging past the first or last slide.
+    - Integrated flick velocity detection and distance thresholds (`threshold = slideWidth * 0.18`, velocity > `0.3px/ms`) to advance or retreat slides on release.
+    - Added horizontal trackpad / mouse wheel gesture support via `onWheel`.
+  - **False Click Prevention:**
+    - Captured clicks during dragging with `onClickCapture` and guarded card links (`<Link>`, `<WebflowButton>`), ensuring that dragging across cards never accidentally triggers unwanted navigation.
+    - Added `draggable={false}` and `user-drag: none` to all card images and links to eliminate native browser image drag ghosts.
+  - **Grab Cursor Styling in [index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css):**
+    - Set `.property_slider_viewport` to `cursor: grab;`.
+    - Applied `.property_slider_viewport:active, .property_slider_viewport.is-dragging` to `cursor: grabbing !important;` with `user-select: none !important;`.
+- **Verification:**
+  - Automated Chrome CDP tests on both Mobile (390px) and Desktop (1920px):
+    - Dragged left by 200px / 350px: active slide dot moved from `0` to `1` (advance slide).
+    - Dragged right by 200px / 350px: active slide dot moved from `1` to `0` (retreat slide).
+    - Verified real-time transform translation during drag.
+    - Captured verification screenshots (`slider_drag_1_slid_left.png`, `desktop_slider_dragged.png`).
+  - Production build (`npm run build`) completed cleanly with zero errors in 3.50s.
+
+---
+
 ## 🎯 Next Steps
 - Awaiting your guidance for the next task or adjustment.
+
 
 

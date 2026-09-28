@@ -1724,10 +1724,25 @@ body.is-hero .menu {
   box-sizing: border-box;
   touch-action: pan-y;
   cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.property_slider_viewport:active {
-  cursor: grabbing;
+.property_slider_viewport:active,
+.property_slider_viewport.is-dragging {
+  cursor: grabbing !important;
+}
+
+.property_slider_viewport.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.property_slider_slide img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .property_slider_track {

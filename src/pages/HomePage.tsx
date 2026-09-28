@@ -245,8 +245,17 @@ export default function HomePage() {
   // Property Listing Card Slider State for "Everything modern living should be"
   const [propertySlideIndex, setPropertySlideIndex] = useState(0);
   const [visibleSlides, setVisibleSlides] = useState(3);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchDeltaX, setTouchDeltaX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const sliderViewportRef = useRef<HTMLDivElement>(null);
+  const isPointerDownRef = useRef(false);
+  const didDragRef = useRef(false);
+  const pointerStartXRef = useRef(0);
+  const pointerStartYRef = useRef(0);
+  const pointerStartTimeRef = useRef(0);
+  const currentDragOffsetRef = useRef(0);
+  const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -271,22 +280,113 @@ export default function HomePage() {
     }
   }, [maxPropertySlideIndex, propertySlideIndex]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-    setTouchDeltaX(0);
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    isPointerDownRef.current = true;
+    didDragRef.current = false;
+    pointerStartXRef.current = e.clientX;
+    pointerStartYRef.current = e.clientY;
+    pointerStartTimeRef.current = Date.now();
+    currentDragOffsetRef.current = 0;
+    setDragOffset(0);
   };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    setTouchDeltaX(e.touches[0].clientX - touchStartX);
-  };
-  const handleTouchEnd = () => {
-    if (touchDeltaX < -45) {
-      setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
-    } else if (touchDeltaX > 45) {
-      setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current) return;
+    const dx = e.clientX - pointerStartXRef.current;
+    const dy = e.clientY - pointerStartYRef.current;
+
+    if (!didDragRef.current) {
+      // If mostly vertical scrolling, cancel drag so user can scroll page normally
+      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) {
+        isPointerDownRef.current = false;
+        return;
+      }
+      if (Math.abs(dx) > 6) {
+        didDragRef.current = true;
+        setIsDragging(true);
+        try {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+        } catch (_) {}
+      }
     }
-    setTouchStartX(null);
-    setTouchDeltaX(0);
+
+    if (didDragRef.current) {
+      let effectiveDx = dx;
+      // Boundary resistance factor for organic elastic feel
+      if (propertySlideIndex === 0 && dx > 0) {
+        effectiveDx = dx * 0.32;
+      } else if (propertySlideIndex >= maxPropertySlideIndex && dx < 0) {
+        effectiveDx = dx * 0.32;
+      }
+      currentDragOffsetRef.current = effectiveDx;
+      setDragOffset(effectiveDx);
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current && !isDragging) return;
+    isPointerDownRef.current = false;
+
+    try {
+      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+
+    if (didDragRef.current) {
+      const dx = currentDragOffsetRef.current;
+      const dt = Math.max(1, Date.now() - pointerStartTimeRef.current);
+      const velocity = dx / dt; // px per ms
+
+      const viewportWidth = sliderViewportRef.current?.clientWidth || window.innerWidth;
+      const slideWidth = viewportWidth / visibleSlides;
+      const threshold = Math.min(80, Math.max(35, slideWidth * 0.18));
+
+      if (dx < -threshold || velocity < -0.3) {
+        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
+      } else if (dx > threshold || velocity > 0.3) {
+        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+      }
+
+      setDragOffset(0);
+      setIsDragging(false);
+
+      setTimeout(() => {
+        didDragRef.current = false;
+      }, 100);
+    } else {
+      setDragOffset(0);
+      setIsDragging(false);
+    }
+  };
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    isPointerDownRef.current = false;
+    try {
+      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+    setDragOffset(0);
+    setIsDragging(false);
+    setTimeout(() => {
+      didDragRef.current = false;
+    }, 100);
+  };
+
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(e.deltaX) > 25) {
+      if (wheelTimeoutRef.current) return;
+      if (e.deltaX > 25) {
+        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
+      } else if (e.deltaX < -25) {
+        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+      }
+      wheelTimeoutRef.current = setTimeout(() => {
+        wheelTimeoutRef.current = null;
+      }, 400);
+    }
   };
 
   const apartmentsSectionRef = useRef<HTMLElement>(null);
@@ -1165,16 +1265,27 @@ export default function HomePage() {
           <div className="property_slider_container">
             <div className="property_slider_wrapper">
               <div
-                className="property_slider_viewport"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                ref={sliderViewportRef}
+                className={`property_slider_viewport ${isDragging ? "is-dragging" : ""}`}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerCancel}
+                onWheel={handleWheel}
+                onClickCapture={(e) => {
+                  if (didDragRef.current) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                }}
               >
                 <div
                   className="property_slider_track"
                   style={{
-                    transform: `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
-                    transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                    transform: isDragging
+                      ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
+                      : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
+                    transition: isDragging ? "none" : "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
                   }}
                 >
                   {apartments.map((apart) => (
@@ -1187,7 +1298,13 @@ export default function HomePage() {
                         <Link
                           to={`/apartments/${apart.id}`}
                           className="apart_image"
+                          draggable={false}
                           style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                          onClick={(e) => {
+                            if (didDragRef.current) {
+                              e.preventDefault();
+                            }
+                          }}
                         >
                           <div className="overlay_tags">
                             <div className="tag_available">
@@ -1197,26 +1314,26 @@ export default function HomePage() {
                             <div className="tags_info">
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.beds}</div>
                               </div>
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.baths}</div>
                               </div>
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.sqft}</div>
                                 <div>ft<sup>2</sup></div>
                               </div>
                             </div>
                           </div>
-                          <img src={apart.image} alt={apart.name} className="image" />
+                          <img src={apart.image} alt={apart.name} className="image" draggable={false} />
                         </Link>
 
                         <div className="content_apart">
@@ -1225,14 +1342,20 @@ export default function HomePage() {
                               <Link
                                 to={`/apartments/${apart.id}`}
                                 className="apart_title"
+                                draggable={false}
                                 style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                                onClick={(e) => {
+                                  if (didDragRef.current) {
+                                    e.preventDefault();
+                                  }
+                                }}
                               >
                                 {apart.name}
                               </Link>
                             </div>
                             <div className="price_box">
                               <div className="icon_price">
-                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
+                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" draggable={false} />
                               </div>
                               <div className="price_txt">{apart.price}</div>
                             </div>
@@ -1248,6 +1371,7 @@ export default function HomePage() {
                               href={`/apartments/${apart.id}`}
                               onClick={(e) => {
                                 e.preventDefault();
+                                if (didDragRef.current) return;
                                 navigate(`/apartments/${apart.id}`);
                               }}
                             />
