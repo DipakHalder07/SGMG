@@ -99,7 +99,7 @@ const apartments = [
     baths: "2 Baths",
     sqft: "1,108",
     image: "/__l5e/assets-v1/99fd06dd-6afa-4b67-abf8-39ede97c7f0c/13-D1-Gen.avif",
-    desc: "A thoughtfully planned 4-bedroom residence offering generous natural light, expansive living spaces, and refined architecture tailored for modern families.",
+    desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
   },
   {
     id: "d1-premium",
@@ -109,7 +109,7 @@ const apartments = [
     baths: "2 Baths",
     sqft: "1,108",
     image: "/__l5e/assets-v1/acd690d1-5688-4922-bb11-74d7b9907009/14-D1-Hero.avif",
-    desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
+    desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
   },
   {
     id: "d2",
@@ -119,7 +119,7 @@ const apartments = [
     baths: "4 Baths",
     sqft: "1,372",
     image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
-    desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
+    desc: "A spacious 4-bedroom layout designed for students who enjoy a more social atmosphere, combining open common areas with comfortable private spaces for everyday balance.",
   },
   {
     id: "d2-premium",
@@ -129,7 +129,7 @@ const apartments = [
     baths: "4 Baths",
     sqft: "1,372",
     image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
-    desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
+    desc: "A spacious premium 4-bedroom layout that combines open social living with hospitality-inspired interiors, creating a student apartment that feels both connected and elevated.",
   },
   {
     id: "c1",
@@ -139,7 +139,7 @@ const apartments = [
     baths: "3 Baths",
     sqft: "1,107",
     image: "/assets/plans/C1-Gen.avif",
-    desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
+    desc: "A bright and functional 3-bedroom layout designed around calm student living, blending comfortable shared spaces with private areas that support focus and everyday routines.",
   },
   {
     id: "c1-premium",
@@ -149,7 +149,7 @@ const apartments = [
     baths: "3 Baths",
     sqft: "1,107",
     image: "/assets/plans/C1-Hero.avif",
-    desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
+    desc: "A refined and balanced 3-bedroom layout with brighter interiors, curated details, and comfortable shared spaces designed for a calmer and more elevated student living experience.",
   },
 ];
 
@@ -242,7 +242,7 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
-  // Property Listing Card Slider State
+  // Property Listing Card Slider State for "Everything modern living should be"
   const [propertySlideIndex, setPropertySlideIndex] = useState(0);
   const [visibleSlides, setVisibleSlides] = useState(3);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
@@ -288,6 +288,8 @@ export default function HomePage() {
     setTouchStartX(null);
     setTouchDeltaX(0);
   };
+
+  const apartmentsSectionRef = useRef<HTMLElement>(null);
 
   const bgCurrentRef = useRef<HTMLImageElement>(null);
   const bgNextRef = useRef<HTMLImageElement>(null);
@@ -460,6 +462,8 @@ export default function HomePage() {
 
 
 
+
+
   // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -494,6 +498,151 @@ export default function HomePage() {
     });
 
     return () => ctx.revert();
+  }, []);
+
+  // 4. Apartments Cards Horizontal Scroll GSAP ScrollTrigger (Desktop)
+  useEffect(() => {
+    const section = apartmentsSectionRef.current;
+    if (!section) return;
+
+    const sticky = section.querySelector<HTMLElement>(".wrapper_apartments");
+    const title = section.querySelector<HTMLElement>(".heading_apartments");
+    const desktopViewport = section.querySelector<HTMLElement>(".apart_cards_viewport.only_desktop");
+    const track = desktopViewport?.querySelector<HTMLElement>(".apart_cards_track");
+    const cards = gsap.utils.toArray<HTMLElement>(track?.querySelectorAll(".apart_card") || []);
+    const scribbles = gsap.utils.toArray<HTMLElement>(
+      title?.querySelectorAll('[data-scribble="4"].scribble-wrap') || []
+    );
+
+    if (!sticky || !title || !desktopViewport || !track || cards.length < 2) return;
+    const trackEl = track;
+
+    let bg = sticky.querySelector<HTMLElement>(".apartments_bg_gradient");
+    if (!bg) {
+      bg = document.createElement("div");
+      bg.className = "apartments_bg_gradient";
+      sticky.prepend(bg);
+    }
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 992px)", () => {
+      const vw = window.innerWidth;
+      const getTrackWidth = () => trackEl.scrollWidth || (cards.length * 360 + (cards.length - 1) * 40);
+      const xStart = vw + 220;
+
+      gsap.set(trackEl, { x: xStart, force3D: true });
+      gsap.set(title, { y: 0, opacity: 1, scale: 1 });
+      gsap.set(bg, { opacity: 0 });
+      gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
+
+      const presets = [
+        { dir: 1, baseRot: -3.2, xAmp: 8, yAmp: 3.5, rotAmp: 3.2 },
+        { dir: -1, baseRot: 3.0, xAmp: 9, yAmp: 4.5, rotAmp: 3.4 },
+        { dir: 1, baseRot: -2.8, xAmp: 7, yAmp: 3.0, rotAmp: 2.9 },
+        { dir: -1, baseRot: 3.4, xAmp: 8, yAmp: 4.0, rotAmp: 3.6 },
+      ];
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+        gsap.set(card, {
+          xPercent: 0,
+          yPercent: 0,
+          rotation: p.baseRot,
+          force3D: true,
+        });
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=430%",
+          pin: sticky,
+          pinSpacing: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(title, { y: -240, duration: 0.3 }, 0.0)
+        .to(bg, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.06)
+        .to(
+          scribbles,
+          { "--scribble-line-color": "#292929", duration: 0.45, ease: "power2.out" },
+          0.1
+        )
+        .to(trackEl, { x: () => -(getTrackWidth() + 220), duration: 1.0 }, 0.08)
+        .to(title, { y: 0, duration: 0.24 }, 0.82);
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+
+        tl.to(
+          card,
+          {
+            xPercent: p.dir * p.xAmp,
+            yPercent: -p.yAmp,
+            rotation: p.baseRot + p.rotAmp,
+            duration: 0.24,
+          },
+          0.1
+        )
+          .to(
+            card,
+            {
+              xPercent: -p.dir * (p.xAmp * 0.7),
+              yPercent: p.yAmp * 0.55,
+              rotation: p.baseRot - p.rotAmp * 0.7,
+              duration: 0.26,
+            },
+            0.36
+          )
+          .to(
+            card,
+            {
+              xPercent: p.dir * (p.xAmp * 0.35),
+              yPercent: -p.yAmp * 0.3,
+              rotation: p.baseRot + 0.8,
+              duration: 0.24,
+            },
+            0.64
+          );
+      });
+
+      // Refresh on image / font load
+      const imgs = Array.from(desktopViewport.querySelectorAll("img"));
+      imgs.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+          img.addEventListener("error", () => ScrollTrigger.refresh(), { once: true });
+        }
+      });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
+      }
+
+      ScrollTrigger.refresh();
+      const tId = setTimeout(() => ScrollTrigger.refresh(), 250);
+
+      return () => {
+        clearTimeout(tId);
+        gsap.set(trackEl, { clearProps: "x,transform" });
+        gsap.set(title, { clearProps: "y,opacity,scale,transform" });
+        gsap.set(bg, { clearProps: "opacity" });
+        gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
+        cards.forEach((card: any) =>
+          gsap.set(card, { clearProps: "xPercent,yPercent,rotation,transform" })
+        );
+      };
+    });
+
+    return () => {
+      mm.revert();
+    };
   }, []);
 
 
@@ -1005,7 +1154,7 @@ export default function HomePage() {
         </section>
 
         {/* PROPERTY LISTINGS SECTION */}
-        <section className="dynamic_section property_listing_section" id="apartments" data-section="light">
+        <section className="dynamic_section property_listing_section" id="residences" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything modern<br />
@@ -1200,6 +1349,200 @@ export default function HomePage() {
                       <div className="caption_txt">Vibrant clubhouses, lush gardens, and spaces designed to connect</div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* APARTMENTS SECTION (Where student life feels balanced) */}
+      <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
+        <div className="wrapper_apartments">
+          <div className="apartments_bg_gradient"></div>
+          <div className="heading_apartments">
+            <h2 className="h2 smaller">
+              Where student life<br />
+              feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
+            </h2>
+          </div>
+
+          {/* Desktop Horizontal Track */}
+          <div className="apart_cards_viewport only_desktop">
+            <div className="apart_cards_track">
+              {apartments.slice(0, 4).map((apart) => (
+                <div className="apart_card" key={apart.id}>
+                  <Link
+                    to={`/apartments/${apart.id}`}
+                    className="apart_image"
+                    style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                  >
+                    <div className="overlay_tags">
+                      <div className="tag_available">
+                        <div className="dot_available"></div>
+                        <div>Available</div>
+                      </div>
+                      <div className="tags_info">
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.beds}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.baths}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.sqft}</div>
+                          <div>ft<sup>2</sup></div>
+                        </div>
+                      </div>
+                    </div>
+                    <img src={apart.image} alt={apart.name} className="image" />
+                  </Link>
+
+                  <div className="content_apart">
+                    <div className="apart_title_line">
+                      <div>
+                        <Link
+                          to={`/apartments/${apart.id}`}
+                          className="apart_title"
+                          style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                        >
+                          {apart.name}
+                        </Link>
+                      </div>
+                      <div className="price_box">
+                        <div className="icon_price">
+                          <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                        </div>
+                        <div className="price_txt">{apart.price}</div>
+                      </div>
+                    </div>
+
+                    <div className="desc_home">
+                      <div className="p_gen black specific">{apart.desc}</div>
+                    </div>
+
+                    <div className="explore_button" style={{ marginTop: "18px" }}>
+                      <WebflowButton
+                        text="Explore Details"
+                        href={`/apartments/${apart.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/apartments/${apart.id}`);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Touch Splide Slider */}
+          <div className="container only_mobile">
+            <div className="splide slider1">
+              <div className="splide__track">
+                <div className="splide__list">
+                  {apartments.map((apart) => (
+                    <div className="splide__slide apart_card" key={apart.id}>
+                      <Link
+                        to={`/apartments/${apart.id}`}
+                        className="apart_image"
+                        style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                      >
+                        <div className="overlay_tags">
+                          <div className="tag_available">
+                            <div className="dot_available"></div>
+                            <div>Available</div>
+                          </div>
+                          <div className="tags_info">
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
+                              <div>{apart.beds}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
+                              <div>{apart.baths}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
+                              <div>{apart.sqft}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <img src={apart.image} alt={apart.name} className="image" />
+                      </Link>
+                      <div className="content_apart">
+                        <div className="apart_title_line">
+                          <Link
+                            to={`/apartments/${apart.id}`}
+                            className="apart_title"
+                            style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                          >
+                            {apart.name}
+                          </Link>
+                          <div className="price_box">
+                            <div className="icon_price">
+                              <img src="/assets/icons/price-icon.png" alt="$" className="image" />
+                            </div>
+                            <div className="price_txt">{apart.price}</div>
+                          </div>
+                        </div>
+                        <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
+                        <div className="explore_button" style={{ marginTop: "16px" }}>
+                          <WebflowButton
+                            text="Explore Details"
+                            href={`/apartments/${apart.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate(`/apartments/${apart.id}`);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
+              <div className="pagination_arrows">
+                <ul className="splide__pagination"></ul>
+                <div className="splide__arrows">
+                  <button
+                    className="splide__arrow splide__arrow--prev"
+                    type="button"
+                    aria-label="Previous apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go("<");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-left.svg" alt="Previous" />
+                  </button>
+                  <button
+                    className="splide__arrow splide__arrow--next"
+                    type="button"
+                    aria-label="Next apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go(">");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-right.svg" alt="Next" />
+                  </button>
                 </div>
               </div>
             </div>
