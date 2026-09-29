@@ -45,7 +45,6 @@ export default function ApartmentCard({
               <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
             </div>
             <div className="price_txt">{apartment.priceFormatted}</div>
-            <div className="mnth_txt">/month</div>
           </div>
         </div>
 
