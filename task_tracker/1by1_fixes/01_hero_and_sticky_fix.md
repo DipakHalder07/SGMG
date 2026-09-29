@@ -37,7 +37,39 @@
 
 ---
 
+## Fix 4: Header Responsiveness, Enlarged Logo, Heading Font for Menu, & Desktop Tab Buttons
+- **User Requirements**:
+  1. Header font responsive issue: text was too small (under 10px-12px); fix and make responsive.
+  2. Make logo more big: enlarge the brand logo across desktop and mobile.
+  3. Menu item heading font family: use heading font family (`Michroma`) for menu items.
+  4. Apartment detail "What's Included" tab buttons not working on desktop: fix tab buttons ("Interior", "Features", "Community Spaces").
+- **Root Cause & Solution Applied**:
+  1. **Desktop Tab Buttons Inoperable**:
+     - The transparent fixed header (`.header`, `.wrapper_header`, `.grid_header`) had `pointer-events: auto` applied via `.header * { pointer-events: auto; }`.
+     - `.menu_fs` was assigned to `grid-area: 2 / 2 / 3 / 3` in `.grid_header` with `display: flex`, creating an invisible 245px tall row in the header that intercepted mouse clicks across the upper part of desktop viewports.
+     - Solution: Set `.header`, `.wrapper_header`, and `.grid_header` to `pointer-events: none !important`, only granting `pointer-events: auto !important` to actual clickable items (logo, pill, buttons, open drawer). Positioned `.menu_fs` on desktop as `position: absolute; left: 50%; top: calc(100% + 0.6em); transform: translate3d(-50%, ...)` to eliminate the ghost 190px grid row.
+     - Added `position: relative; z-index: 13; pointer-events: auto !important; cursor: pointer;` to `.tab_gen` and `pointer-events: none` on child text in `src/apartment-detail.css`.
+     - Added `ScrollTrigger.refresh()` upon tab switching in `src/pages/ApartmentDetailPage.tsx`.
+  2. **Enlarged Logo**:
+     - Desktop: Increased `.logo_box` height to `clamp(52px, 3.8vw, 64px)` and `.logo_img` to `height: clamp(48px, 3.8vw, 62px); max-height: 64px; max-width: clamp(200px, 16vw, 290px)`.
+     - Mobile: Increased `.logo_box` height to `38px` and `.logo_img` to `height: 36px; max-height: 40px; max-width: 175px` (up from 21.4px / 26px).
+  3. **Menu Item Heading Font Family**:
+     - Set `.menu_txt`, `.menu_link`, `.mobile_link`, and `.mobile_link div` to `font-family: var(--font-heading, "Michroma", sans-serif) !important` with `letter-spacing: 0.02em`.
+  4. **Header Font Responsiveness**:
+     - Replaced hard-coded small font sizes (`0.7em` inside `0.85em` = ~9.5px) with responsive `clamp(...)` values:
+       - `.menu_txt`, `.menu_link`: `font-size: clamp(13px, 0.95vw, 15px)`
+       - `.header_button`: `font-size: clamp(12.5px, 0.88vw, 14px)`
+       - `.button.header_cta .text_box`: `font-size: clamp(13.5px, 0.95vw, 15px)`
+       - Mobile `.menu_link`, `.menu_txt`: `font-size: 13.5px !important`
+       - Mobile `.button.header_cta .text_box`: `font-size: clamp(12.5px, 3.2vw, 14px) !important`
+
+---
+
 ## Verification Status
-- `npm run build`: Passed (0 errors, 6.06s).
-- Visual Chrome headless tests: Verified at 390x844 viewport.
-- Hero title is left-aligned and vertically centered; description is left-aligned at the bottom side with clean breathing room above the sticky card.
+- `npm run build`: Passed (0 errors, 10.93s).
+- Visual Chrome headless tests: Verified at 1440x900 (Desktop) and 390x844 (Mobile).
+- Desktop What's Included tab clicks: Verified with real mouse events clicking "Features" and "Community Spaces", with DOM and tab classes updating dynamically.
+- Screenshots captured and verified:
+  - `desktop_header_verified.png`
+  - `desktop_tabs_verified.png`
+  - `mobile_header_verified.png`

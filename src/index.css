@@ -536,12 +536,33 @@ main {
   width: 100vw;
   z-index: 99;
   background-color: transparent;
-  pointer-events: none;
+  pointer-events: none !important;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.header * {
-  pointer-events: auto;
+.header *,
+.wrapper_header,
+.grid_header {
+  pointer-events: none;
+}
+
+.logo_box,
+.logo_box a,
+.logo,
+.logo_img,
+.menu,
+.flex_menu,
+.menu_link,
+.menu_txt,
+.header_button,
+.hamburger,
+.button.header_cta,
+.button.header_cta *,
+.apply_button,
+.apply_button *,
+.menu_fs.is-open,
+.menu_fs.is-open * {
+  pointer-events: auto !important;
 }
 
 body:not(.is-hero) .header {
@@ -581,8 +602,8 @@ body.is-hero .header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 2.5em;
-  min-height: 40px;
+  height: clamp(52px, 3.8vw, 64px);
+  min-height: 52px;
   align-self: center;
   justify-self: start;
 }
@@ -601,10 +622,10 @@ body.is-hero .header {
 }
 
 .logo_img {
-  height: clamp(34px, 2.3em, 46px);
-  max-height: 48px;
+  height: clamp(48px, 3.8vw, 62px);
+  max-height: 64px;
   width: auto;
-  max-width: clamp(160px, 12vw, 220px);
+  max-width: clamp(200px, 16vw, 290px);
   object-fit: contain;
   display: block;
 }
@@ -649,11 +670,11 @@ body.is-light:not(.is-hero) .header:not(.is-dark) .logo_img.logo_img_dark {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.4em;
-  width: 23em;
-  min-width: 326px;
-  height: 2.5em;
-  min-height: 40px;
-  padding: 0.2em 0.2em 0.2em 1em;
+  width: 25em;
+  min-width: 340px;
+  height: clamp(44px, 3.2vw, 48px);
+  min-height: 44px;
+  padding: 4px 4px 4px 18px;
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
   box-sizing: border-box;
 }
@@ -677,8 +698,7 @@ body.is-hero .menu {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  column-gap: clamp(36px, 4.5em, 80px);
-  font-size: 0.85em;
+  column-gap: clamp(24px, 2.5vw, 48px);
   box-sizing: border-box;
 }
 
@@ -686,12 +706,13 @@ body.is-hero .menu {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  column-gap: 0.8em;
+  column-gap: 0.75em;
   height: 100%;
   cursor: pointer;
   color: #ffffff;
-  font-size: 0.7em;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(13px, 0.95vw, 15px);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em !important;
   user-select: none;
 }
 
@@ -700,15 +721,15 @@ body.is-hero .menu {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2.3em;
-  height: 1.5em;
+  width: 2.1em;
+  height: 1.4em;
   row-gap: 0.1875em;
 }
 
 .line_one,
 .line_two {
   background-color: #ffffff;
-  width: 2em;
+  width: 1.9em;
   height: 0.125em;
   border-radius: 1px;
   transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -725,8 +746,9 @@ body.is-hero .menu {
 
 .menu_txt {
   color: #ffffff;
-  font-size: 1em;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: inherit;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em !important;
   line-height: 1;
 }
 
@@ -750,12 +772,12 @@ body.is-hero .menu {
   background-color: var(--primary, #2391cf);
   color: #ffffff;
   border-radius: 0.25em;
-  padding: 0 1.4em;
+  padding: 0 1.5em;
   height: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7em;
+  font-size: clamp(12.5px, 0.88vw, 14px);
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.02em !important;
   font-weight: 500;
@@ -785,12 +807,12 @@ body.is-hero .menu {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 2.84px;
+    gap: 3px;
     width: fit-content;
     flex: 0 0 auto;
-    height: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
     text-decoration: none;
     overflow: visible;
     cursor: pointer;
@@ -798,8 +820,8 @@ body.is-hero .menu {
     border: none !important;
     padding: 0 !important;
     align-self: center;
-    --icon: 40px;
-    --shift-gap: 2.84px;
+    --icon: 44px;
+    --shift-gap: 3px;
     --dur: 650ms;
     --ease: cubic-bezier(0.83, 0, 0.17, 1);
   }
@@ -811,21 +833,21 @@ body.is-hero .menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
     box-sizing: border-box;
     padding: 0 32px !important;
     white-space: nowrap;
-    transform: translateX(calc(-1 * (40px + var(--shift-gap, 2.84px))));
+    transform: translateX(calc(-1 * (44px + var(--shift-gap, 3px))));
     transition: transform var(--dur, 650ms) var(--ease, cubic-bezier(0.83, 0, 0.17, 1));
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px;
     color: #ffffff !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
     letter-spacing: 0.02em !important;
-    font-size: 12.15px;
-    font-weight: 400;
+    font-size: clamp(13.5px, 0.95vw, 15px) !important;
+    font-weight: 500;
     line-height: 1;
     overflow: hidden;
     margin: 0 !important;
@@ -841,12 +863,12 @@ body.is-hero .menu {
   .button.header_cta .icon_box,
   .button.header_cta .icon_box.is-right,
   .button.header_cta .icon_box.is-left {
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    min-height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -932,39 +954,41 @@ body.is-hero .menu {
 /* Desktop Dropdown Menu Drawer */
 #w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b,
 .menu_fs {
-  grid-area: 2 / 2 / 3 / 3;
-  width: 23em;
-  min-width: 326px;
-  margin-top: 0.6em;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  top: calc(100% + 0.6em);
+  left: 50%;
+  transform: translate3d(-50%, -10px, 0px);
+  width: 25em;
+  min-width: 340px;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
   background-color: var(--primary, #2391cf);
   border: none;
   border-radius: 0.4rem;
-  padding: 1em;
+  padding: 1.2em;
   box-sizing: border-box;
   z-index: 200;
   flex-direction: column;
   overflow: hidden;
   display: flex;
   opacity: 0;
-  transform: translate3d(0px, -10%, 0px);
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 700ms cubic-bezier(0.62, 0.008, 0.351, 0.996),
-              transform 700ms cubic-bezier(0.684, 0.002, 0.363, 0.996),
-              visibility 0s linear 700ms;
+  transition: opacity 500ms cubic-bezier(0.62, 0.008, 0.351, 0.996),
+              transform 500ms cubic-bezier(0.684, 0.002, 0.363, 0.996),
+              visibility 0s linear 500ms;
 }
 
 #w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b.is-open,
 .menu_fs.is-open {
   display: flex !important;
   opacity: 1 !important;
-  transform: translate3d(0px, 0%, 0px) !important;
+  transform: translate3d(-50%, 0%, 0px) !important;
   pointer-events: auto !important;
   visibility: visible !important;
-  transition: opacity 700ms cubic-bezier(0.62, 0.008, 0.351, 0.996),
-              transform 700ms cubic-bezier(0.684, 0.002, 0.363, 0.996),
+  transition: opacity 500ms cubic-bezier(0.62, 0.008, 0.351, 0.996),
+              transform 500ms cubic-bezier(0.684, 0.002, 0.363, 0.996),
               visibility 0s linear 0s !important;
 }
 
@@ -979,17 +1003,20 @@ body.is-hero .menu {
 
 .mobile_link {
   color: #ffffff !important;
-  font-size: clamp(13px, 0.85em, 16px);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(13px, 0.9vw, 15px);
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em !important;
   text-decoration: none;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
   transition: all 0.45s ease;
   display: block;
 }
 
 .mobile_link div {
   color: #ffffff !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em !important;
 }
 
 .mobile_link:hover,
@@ -1047,7 +1074,28 @@ body.is-hero .menu {
     pointer-events: none !important;
   }
 
-  .header * {
+  .header *,
+  .wrapper_header,
+  .grid_header {
+    pointer-events: none !important;
+  }
+
+  .logo_box,
+  .logo_box a,
+  .logo,
+  .logo_img,
+  .menu,
+  .flex_menu,
+  .menu_link,
+  .menu_txt,
+  .header_button,
+  .hamburger,
+  .button.header_cta,
+  .button.header_cta *,
+  .apply_button,
+  .apply_button *,
+  .menu_fs.is-open,
+  .menu_fs.is-open * {
     pointer-events: auto !important;
   }
 
@@ -1067,7 +1115,7 @@ body.is-hero .menu {
   }
 
   .wrapper_header {
-    padding: 12.8px 16px !important;
+    padding: 10px 16px !important;
     width: 100% !important;
     height: auto !important;
     display: block !important;
@@ -1080,8 +1128,8 @@ body.is-hero .menu {
     justify-content: space-between !important;
     align-items: center !important;
     width: 100% !important;
-    height: 37.05px !important;
-    min-height: 37.05px !important;
+    height: 42px !important;
+    min-height: 42px !important;
     position: relative !important;
   }
 
@@ -1089,22 +1137,22 @@ body.is-hero .menu {
   .logo_box {
     display: flex !important;
     align-items: center !important;
-    height: 21.45px !important;
-    min-height: 21.45px !important;
+    height: 38px !important;
+    min-height: 38px !important;
     flex-shrink: 0 !important;
   }
 
   .logo {
     display: inline-flex !important;
     align-items: center !important;
-    height: 21.45px !important;
+    height: 38px !important;
   }
 
   .logo_img {
-    height: 26px !important;
-    max-height: 26px !important;
+    height: 36px !important;
+    max-height: 40px !important;
     width: auto !important;
-    max-width: 130px !important;
+    max-width: 175px !important;
     object-fit: contain !important;
   }
 
@@ -1112,14 +1160,14 @@ body.is-hero .menu {
   .apply_button {
     display: block !important;
     margin-left: auto !important;
-    height: 37.05px !important;
+    height: 38px !important;
     flex-shrink: 0 !important;
   }
 
   .button.header_cta {
     width: auto !important;
-    height: 37.05px !important;
-    min-height: 37.05px !important;
+    height: 38px !important;
+    min-height: 38px !important;
     display: inline-flex !important;
     align-items: stretch !important;
     background: transparent !important;
@@ -1132,13 +1180,13 @@ body.is-hero .menu {
 
   .button.header_cta .text_box,
   .text_box.header_btn {
-    height: 37.05px !important;
-    min-height: 37.05px !important;
-    padding: 0 22.62px !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 0 20px !important;
     border-radius: 4px !important;
-    font-size: 11.31px !important;
+    font-size: clamp(12.5px, 3.2vw, 14px) !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     letter-spacing: 0.02em !important;
     transform: none !important;
     margin-right: 0px !important;
@@ -1146,7 +1194,6 @@ body.is-hero .menu {
     color: #ffffff !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
   }
 
   .button.header_cta .text_box div,
@@ -1245,7 +1292,9 @@ body.is-hero .menu {
   }
 
   .menu_link {
-    font-size: 11.6px !important;
+    font-size: 13.5px !important;
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    letter-spacing: 0.02em !important;
     column-gap: 8px !important;
     color: #ffffff !important;
     display: flex !important;
@@ -1254,6 +1303,12 @@ body.is-hero .menu {
     height: 100% !important;
     user-select: none !important;
     -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .menu_txt {
+    font-size: inherit !important;
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    letter-spacing: 0.02em !important;
   }
 
   .hamburger {
@@ -1288,10 +1343,10 @@ body.is-hero .menu {
     height: 43.61px !important;
     min-height: 43.61px !important;
     padding: 0 20px !important;
-    font-size: 11.6px !important;
+    font-size: 13px !important;
     border-radius: 4px !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     letter-spacing: 0.02em !important;
     background-color: var(--primary, #2391cf) !important;
     color: #ffffff !important;
@@ -1375,8 +1430,10 @@ body.is-hero .menu {
   .mobile_link,
   .mobile_link div {
     color: #ffffff !important;
-    font-size: 15.21px !important;
-    padding: 3.2px 0 !important;
+    font-size: 14.5px !important;
+    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    letter-spacing: 0.02em !important;
+    padding: 4px 0 !important;
     font-weight: 500 !important;
     transition: all 0.45s ease !important;
   }
@@ -2361,7 +2418,7 @@ body.is-hero .menu {
 }
 
 /* =========================================================
-   SECTION 5: APARTMENTS (Where student life feels balanced)
+   SECTION 5: APARTMENTS (Find the home that fits your life)
    ========================================================= */
 .apartments {
   background: #fff;

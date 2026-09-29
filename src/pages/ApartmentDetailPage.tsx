@@ -1031,21 +1031,30 @@ export default function ApartmentDetailPage() {
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Interior" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Interior")}
+                            onClick={() => {
+                              setActiveAmenityTab("Interior");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Interior</div>
                           </button>
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Features" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Features")}
+                            onClick={() => {
+                              setActiveAmenityTab("Features");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Features</div>
                           </button>
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Community" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Community")}
+                            onClick={() => {
+                              setActiveAmenityTab("Community");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Community Spaces</div>
                           </button>

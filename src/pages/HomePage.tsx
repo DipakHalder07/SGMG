@@ -1480,14 +1480,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* APARTMENTS SECTION (Where student life feels balanced) */}
+      {/* APARTMENTS SECTION (Find the home that fits your life) */}
       <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
         <div className="wrapper_apartments">
           <div className="apartments_bg_gradient"></div>
           <div className="heading_apartments">
             <h2 className="h2 smaller">
-              Where student life<br />
-              feels <span data-scribble="4" className="scribble-wrap scribble-visible">balanced</span>
+              Find the home<br />
+              that fits <span data-scribble="4" className="scribble-wrap scribble-visible">your life</span>
             </h2>
           </div>
 

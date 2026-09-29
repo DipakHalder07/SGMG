@@ -407,10 +407,35 @@
 }
 
 /* Tab styles */
+.part_3 {
+  position: relative;
+  z-index: 10;
+}
+
+.included_list {
+  position: relative;
+  z-index: 10;
+}
+
+.tabs_boxes {
+  position: relative;
+  z-index: 12;
+  pointer-events: auto !important;
+}
+
 .tab_gen {
-  cursor: pointer;
+  cursor: pointer !important;
   user-select: none;
+  position: relative;
+  z-index: 13;
+  pointer-events: auto !important;
   transition: all 0.25s ease;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  letter-spacing: 0.02em;
+}
+
+.tab_gen * {
+  pointer-events: none !important;
 }
 
 .tab_gen.w--current {
