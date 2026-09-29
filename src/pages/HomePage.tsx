@@ -7,6 +7,7 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -108,7 +109,7 @@ const apartments = [
     beds: "3 Bed",
     baths: "3 Baths",
     sqft: "1,340",
-    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
+    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.jpg",
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
   },
   {
@@ -155,29 +156,29 @@ const apartments = [
 
 const amenitiesList = [
   {
-    title: "Landscaped Garden & Play Area",
-    desc: "Sculpted green lawns, flowering walkways and a dedicated children’s play zone made for unhurried evenings with family.",
-    image: "/assets/gallery/Landscape_Lawn_1.webp",
-  },
-  {
-    title: "Open-Air Swimming Pool",
-    desc: "A sunlit pool with wooden sun deck and pergola seating, framed by open North Bengal skies and Himalayan foothill air.",
+    title: "Rooftop Swimming Pool",
+    desc: "An open-air pool on the roof, with deck seating and views across the neighbourhood.",
     image: "/assets/gallery/Swimming_Pool_1.webp",
   },
   {
-    title: "Grand Community Hall",
-    desc: "An elegant air-conditioned banquet hall for pujas, weddings, annaprashan and society gatherings, with catering support.",
-    image: "/assets/gallery/CommunityHall_1.webp",
-  },
-  {
-    title: "Fully-Equipped Gymnasium",
-    desc: "Cardio and strength stations with mirrored training zones and a dedicated yoga corner, open through the day for every age.",
+    title: "Multi-Gym, Aerobics & Yoga",
+    desc: "Cardio and strength equipment with a dedicated floor for aerobics and yoga.",
     image: "/assets/gallery/Gym_1.webp",
   },
   {
     title: "Indoor Games Arena",
-    desc: "A double-height lounge for carrom, cards, table games and darts — the community’s favourite corner on monsoon afternoons.",
+    desc: "A double-height lounge for carrom, cards, table games and darts.",
     image: "/assets/gallery/Indoor_Games_Arena_1.webp",
+  },
+  {
+    title: "Community Hall",
+    desc: "An air-conditioned hall for pujas, weddings, annaprashan and society gatherings.",
+    image: "/assets/gallery/CommunityHall_1.webp",
+  },
+  {
+    title: "Landscaped Garden",
+    desc: "Green lawns, flowering walkways and a children\u2019s play zone within the grounds.",
+    image: "/assets/gallery/Landscape_Lawn_1.webp",
   },
 ];
 
@@ -566,6 +567,10 @@ export default function HomePage() {
 
   // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
   useEffect(() => {
+    // Scrubbed parallax on large images is a main-thread cost that iOS Safari
+    // pays on every scroll frame. Desktop only.
+    if (!window.matchMedia("(min-width: 992px)").matches) return;
+
     const ctx = gsap.context(() => {
       const parallaxConfigs = [
         { trigger: ".sides_f .right_side", img: ".sides_f .right_side .image" },
@@ -1213,7 +1218,7 @@ export default function HomePage() {
               </div>
               <div className="p_box">
                 <div className="p_gen">
-                  Luxury residences crafted on 40 years of trust. World-class amenities, RERA approved, and bank loan ready.
+                  Residences built on four decades of trust in Siliguri. Established 1985, a unit of the Begraj Group.
                 </div>
               </div>
             </div>
@@ -1337,7 +1342,7 @@ export default function HomePage() {
                               </div>
                             </div>
                           </div>
-                          <img src={apart.image} alt={apart.name} className="image" draggable={false} />
+                          <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
                         </Link>
 
                         <div className="content_apart">
@@ -1443,7 +1448,7 @@ export default function HomePage() {
                 </h2>
                 <div className="small_box">
                   <div className="image_small">
-                    <img src="/assets/everyday-living/living-room.png" alt="Luxurious Modern Living Room" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/living-room.jpg" alt="Luxurious Modern Living Room" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1455,7 +1460,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="right_side">
-                <img src="/assets/everyday-living/high-rise-elevation.png" alt="Modern Luxury High-Rise Elevation" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/high-rise-elevation.jpg" alt="Modern Luxury High-Rise Elevation" className="image" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -1463,12 +1468,12 @@ export default function HomePage() {
           <div className="sides_s">
             <div className="sides_wrap">
               <div className="right_side">
-                <img src="/assets/everyday-living/modern-residential.png" alt="State of the Art Modern Architecture" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/modern-residential.jpg" alt="State of the Art Modern Architecture" className="image" loading="lazy" decoding="async" />
               </div>
               <div className="left_side">
                 <div className="small_box caption_info right_box second_b">
                   <div className="image_small">
-                    <img src="/assets/everyday-living/clubhouse-landscape.png" alt="Community Clubhouse and Landscape" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/clubhouse-landscape.jpg" alt="Community Clubhouse and Landscape" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1532,7 +1537,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                    <img src={apart.image} alt={apart.name} className="image" />
+                    <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                   </Link>
 
                   <div className="content_apart">
@@ -1606,7 +1611,7 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <img src={apart.image} alt={apart.name} className="image" />
+                        <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                       </Link>
                       <div className="content_apart">
                         <div className="apart_title_line">
@@ -1700,7 +1705,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
+            <ImageWithSkeleton src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -1801,7 +1806,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <img src={amenity.image} alt={amenity.title} className="image" />
+                        <ImageWithSkeleton src={amenity.image} alt={amenity.title} className="image" loading="lazy" decoding="async" />
                       </div>
                     </div>
                   ))}
@@ -2048,7 +2053,7 @@ export default function HomePage() {
           </div>
 
           <div className="fs_bg">
-            <img src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
+            <ImageWithSkeleton src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" loading="lazy" decoding="async" />
           </div>
         </section>
 

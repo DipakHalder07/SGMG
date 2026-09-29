@@ -79,19 +79,19 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 72.40,
     priceFormatted: "72.40 L",
     status: "Available",
-    coverImage: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
+    coverImage: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.jpg",
     gallery: [
-      "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
-      "/images/apartments/d1-premium/06_living_room_interior_architectural_photograph_of_a_bright_spacious_modern.png",
-      "/images/apartments/d1-premium/07_master_bedroom_high_end_interior_photograph_of_a_master_bedroom_in_green.png",
-      "/images/apartments/d1-premium/08_second_bedroom_realistic_family_and_guest_bedroom_in_green_view_residency.png",
-      "/images/apartments/d1-premium/09_modern_kitchen_architectural_interior_photo_of_a_premium_modular_kitchen.png",
-      "/images/apartments/d1-premium/10_dining_area_sophisticated_open_plan_dining_space_in_green_view_residency.png",
-      "/images/apartments/d1-premium/16_children_s_play_area_dedicated_children_s_play_park_within_the_green_view.png",
-      "/images/apartments/d1-premium/17_clubhouse_community_space_upscale_community_lounge_and_clubhouse_interior_at.png",
-      "/images/apartments/d1-premium/18_parking_area_clean_well_lit_covered_and_open_residential_parking_bay_at.png",
-      "/images/apartments/d1-premium/19_blue_hour_exterior_twilight_blue_hour_architectural_photograph_of_green_view.png",
-      "/images/apartments/d1-premium/20_premium_website_hero_image_spectacular_wide_angle_elevated_hero_photograph.png"
+      "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.jpg",
+      "/images/apartments/d1-premium/06_living_room_interior_architectural_photograph_of_a_bright_spacious_modern.jpg",
+      "/images/apartments/d1-premium/07_master_bedroom_high_end_interior_photograph_of_a_master_bedroom_in_green.jpg",
+      "/images/apartments/d1-premium/08_second_bedroom_realistic_family_and_guest_bedroom_in_green_view_residency.jpg",
+      "/images/apartments/d1-premium/09_modern_kitchen_architectural_interior_photo_of_a_premium_modular_kitchen.jpg",
+      "/images/apartments/d1-premium/10_dining_area_sophisticated_open_plan_dining_space_in_green_view_residency.jpg",
+      "/images/apartments/d1-premium/16_children_s_play_area_dedicated_children_s_play_park_within_the_green_view.jpg",
+      "/images/apartments/d1-premium/17_clubhouse_community_space_upscale_community_lounge_and_clubhouse_interior_at.jpg",
+      "/images/apartments/d1-premium/18_parking_area_clean_well_lit_covered_and_open_residential_parking_bay_at.jpg",
+      "/images/apartments/d1-premium/19_blue_hour_exterior_twilight_blue_hour_architectural_photograph_of_green_view.jpg",
+      "/images/apartments/d1-premium/20_premium_website_hero_image_spectacular_wide_angle_elevated_hero_photograph.jpg"
     ],
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
     aboutText: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
@@ -275,108 +275,6 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       { label: "Legal & documentation", value: "₹25,000" },
     ],
     pricePerSqft: "₹5,400 / sq ft"
-  }
-];
-
-export const LOCATION_HERO_SLIDES = [
-  {
-    id: "usc",
-    name: "University of South Carolina",
-    description: "A major research institution recognized for its expansive academic campus, cultural landmarks, and architectural legacy in the heart of Columbia.",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7daba7_Slide%201.avif",
-    thumb: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7daba7_Slide%201.avif",
-    commute: {
-      walk: "14 min walk",
-      bike: "5 min bike",
-      drive: "5 min drive"
-    }
-  },
-  {
-    id: "arena",
-    name: "Colonial Life Arena",
-    description: "Columbia's premier entertainment venue hosting concerts, basketball games, live events, and major performances throughout the year.",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6ce946f82f1fc4ef6f6e_untitled_Topaz%20Image%20Upscale_2026-07-17_17-56-39%20(1).avif",
-    thumb: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6ce946f82f1fc4ef6f6e_untitled_Topaz%20Image%20Upscale_2026-07-17_17-56-39%20(1).avif",
-    commute: {
-      walk: "12 min walk",
-      bike: "4 min bike",
-      drive: "4 min drive"
-    }
-  },
-  {
-    id: "museum",
-    name: "South Carolina State Museum",
-    description: "A large multidisciplinary museum featuring South Carolina history, art, science, technology, and immersive planetarium experiences.",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6f0663982887dfcb990d_SCSM%20Museum.avif",
-    thumb: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6f0663982887dfcb990d_SCSM%20Museum.avif",
-    commute: {
-      walk: "16 min walk",
-      bike: "6 min bike",
-      drive: "5 min drive"
-    }
-  }
-];
-
-export const LOCATION_PLACES = [
-  {
-    id: "soda-city",
-    category: "Groceries",
-    name: "Soda City Market",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8a_1%20(1).avif",
-    lat: 34.0028,
-    lng: -81.0348,
-    distance: "1.2 miles",
-    note: "Saturday morning artisan & food market on Main St."
-  },
-  {
-    id: "orangetheory",
-    category: "Workouts",
-    name: "Orangetheory Fitness",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8b_2%20(1).avif",
-    lat: 33.9984,
-    lng: -81.0265,
-    distance: "0.9 miles",
-    note: "High-intensity interval group workouts nearby."
-  },
-  {
-    id: "usc-campus",
-    category: "Campus",
-    name: "University of South Carolina",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8c_3%20(1).avif",
-    lat: 33.9961,
-    lng: -81.0274,
-    distance: "0.6 miles",
-    note: "Main historic Horseshoe and academic center."
-  },
-  {
-    id: "colonial-arena",
-    category: "Events",
-    name: "Colonial Life Arena",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8d_4%20(1).avif",
-    lat: 33.9936,
-    lng: -81.0345,
-    distance: "0.7 miles",
-    note: "Gamecock basketball, concerts, and live tours."
-  },
-  {
-    id: "dipratos",
-    category: "Coffee & Bites",
-    name: "DiPrato's",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8e_5%20(1).avif",
-    lat: 33.9912,
-    lng: -81.0189,
-    distance: "1.1 miles",
-    note: "Famous pimento cheese, sandwiches & espresso."
-  },
-  {
-    id: "sc-museum",
-    category: "Culture",
-    name: "South Carolina State Museum",
-    image: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8f_6.avif",
-    lat: 33.9972,
-    lng: -81.0478,
-    distance: "1.4 miles",
-    note: "Art, planetarium, history, and science galleries."
   }
 ];
 

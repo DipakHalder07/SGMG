@@ -158,6 +158,12 @@ export default function HowToApplyPage() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      // Desktop only. A pinned, scrubbed section on iOS Safari fights the
+      // collapsing toolbar and reads as the page freezing, so small screens
+      // get the plain stacked layout from how-to-apply.css instead.
+      mm.add("(min-width: 992px)", () => {
       const cards = gsap.utils.toArray<HTMLElement>(".card_how_item");
       if (!cards.length) return;
 
@@ -204,7 +210,8 @@ export default function HowToApplyPage() {
             else if (p >= 0.34) active = 3;
             else if (p >= 0.10) active = 2;
             else active = 1;
-            setActiveStep(active);
+            // Only re-render when the step actually changes, not every frame.
+            setActiveStep((prev) => (prev === active ? prev : active));
           },
         },
       });
@@ -233,6 +240,7 @@ export default function HowToApplyPage() {
 
       // Brief dwell on final card before unpinning
       tl.to({}, { duration: 0.3 });
+      });
     }, stepsSectionRef);
 
     // Refresh after DOM and images are completely ready
@@ -328,7 +336,7 @@ export default function HowToApplyPage() {
             <div className="shift_box">
               <div className="apply_box">
                 <div className="title_apply">
-                  Four decades of building trust in North Bengal.
+                  Building in Siliguri since 1985.
                 </div>
                 <div className="p_apply_box">
                   <div className="p_gen black">
@@ -463,7 +471,7 @@ export default function HowToApplyPage() {
               <div className="about_img_frame">
                 <img
                   src="/assets/Front_Elevation_View.webp"
-                  alt="SGMG Cosmos Crest Landmark in Siliguri"
+                  alt="An SGMG residential development in Siliguri"
                   loading="lazy"
                   className="about_feature_img"
                 />
@@ -476,24 +484,24 @@ export default function HowToApplyPage() {
 
             <div className="about_story_content">
               <div className="about_story_lead">
-                “True luxury is not merely crafted from steel and stone — it is the quiet harmony of enduring design, open air, and timeless trust.”
+                “Performance with purpose — creating neighbourhoods to live in, healthy environments to work in, and malls that serve as a complete family destination.”
               </div>
               <div className="p_gen black about_story_body">
-                Founded with a visionary commitment to elevate living standards across North Bengal, Sushil Gangadhar Mittal Group (SGMG) brings together architectural ingenuity, uncompromising engineering, and transparent governance. From iconic commercial landmarks like Cosmos Mall to peaceful residential communities, SGMG builds spaces where families flourish and investments appreciate for generations.
+                Established in 1985 as a unit of the Begraj Group, SGMG has grown into one of Siliguri’s leading real estate names. The group has delivered townships, office towers and residential-commercial projects across the region — Cosmos Valley, Cosmos View, Green Valley and Green View among the residences, and Cosmos Mall, Vega Circle Mall and Jeevandeep among the commercial landmarks. Its guiding principle is straightforward: dependability and quality on every project, delivered on schedule.
               </div>
 
               <div className="about_story_stats">
                 <div className="about_stat_box">
-                  <div className="about_stat_num">40+</div>
-                  <div className="about_stat_lbl">Years of Group Heritage</div>
+                  <div className="about_stat_num">1985</div>
+                  <div className="about_stat_lbl">Established, a unit of the Begraj Group</div>
                 </div>
                 <div className="about_stat_box">
                   <div className="about_stat_num">100%</div>
                   <div className="about_stat_lbl">RERA & Title Transparency</div>
                 </div>
                 <div className="about_stat_box">
-                  <div className="about_stat_num">Sevoke Rd</div>
-                  <div className="about_stat_lbl">Siliguri Premier Hub</div>
+                  <div className="about_stat_num">Jeevandeep</div>
+                  <div className="about_stat_lbl">Corporate office, Siliguri</div>
                 </div>
               </div>
             </div>

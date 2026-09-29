@@ -27,7 +27,9 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
     const ctx = gsap.context(() => {
       const ctaEl = ctaRef.current;
       const ctaImg = ctaEl?.querySelector<HTMLElement>(".fs_bg .image");
-      if (ctaEl && ctaImg) {
+      // Parallax is desktop only; it costs too much per frame on iOS Safari.
+      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
+      if (isDesktop && ctaEl && ctaImg) {
         gsap.set(ctaImg, { scale: 1.12, transformOrigin: "50% 50%", force3D: true });
         gsap.fromTo(
           ctaImg,

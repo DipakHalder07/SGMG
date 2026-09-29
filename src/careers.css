@@ -26,6 +26,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--cr-bg);
   color: var(--cr-ink);
   overflow-x: hidden;
@@ -119,8 +120,16 @@
 
 /* --- IMAGE BAND (quiet full-width figure between sections) --- */
 .careers_figure {
+  position: relative;
   margin: 0;
   padding-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+/* Constrain the skeleton to the image box so it never covers the caption. */
+.careers_figure .img_skel {
+  bottom: auto;
+  height: clamp(220px, 34vw, 420px);
+  border-radius: 4px;
 }
 
 .careers_figure img {

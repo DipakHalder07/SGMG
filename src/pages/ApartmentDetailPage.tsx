@@ -6,6 +6,7 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
 
@@ -19,29 +20,29 @@ interface AmenityShowcaseItem {
 
 const AMENITY_SHOWCASE: AmenityShowcaseItem[] = [
   {
-    title: "Landscaped Gardens",
-    desc: "Stone walkways, shaded pergolas and open lawns for unhurried evening strolls.",
-    img: "/assets/amenities/garden-landscape.jpg",
+    title: "Rooftop Swimming Pool",
+    desc: "An open-air pool on the roof, with deck seating and views across the neighbourhood.",
+    img: "/assets/gallery/Swimming_Pool_1.webp",
   },
   {
-    title: "Swimming Pool",
-    desc: "A sunlit pool with loungers and a paved deck, framed by flowering borders.",
-    img: "/assets/amenities/swimming-pool.jpg",
+    title: "Multi-Gym, Aerobics & Yoga",
+    desc: "Cardio and strength equipment with a dedicated floor for aerobics and yoga.",
+    img: "/assets/gallery/Gym_1.webp",
   },
   {
-    title: "Clubhouse Lounge",
-    desc: "A double-height lounge for gatherings, games and quiet afternoons alike.",
-    img: "/assets/amenities/clubhouse-lounge.jpg",
+    title: "Indoor Games Arena",
+    desc: "A double-height lounge for carrom, cards, table games and darts.",
+    img: "/assets/gallery/Indoor_Games_Arena_1.webp",
   },
   {
-    title: "Fitness Centre",
-    desc: "Cardio and strength equipment with garden views and a mirrored training wall.",
-    img: "/assets/amenities/fitness-centre.jpg",
+    title: "Community Hall",
+    desc: "An air-conditioned hall for pujas, weddings, annaprashan and society gatherings.",
+    img: "/assets/gallery/CommunityHall_1.webp",
   },
   {
-    title: "Children’s Play Area",
-    desc: "A fenced, soft-surfaced play zone set safely within the landscaped grounds.",
-    img: "/assets/amenities/kids-play-area.jpg",
+    title: "Landscaped Garden",
+    desc: "Green lawns, flowering walkways and a children\u2019s play zone within the grounds.",
+    img: "/assets/gallery/Landscape_Lawn_1.webp",
   },
 ];
 
@@ -797,7 +798,7 @@ export default function ApartmentDetailPage() {
               <div className="fs_template" ref={flyerRef}>
                 <div className="fs_template_inner">
                   <div className="overlay_template"></div>
-                  <img
+                  <ImageWithSkeleton
                     src={unit.coverImage}
                     loading="eager"
                     alt={unit.name}
@@ -932,7 +933,7 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         className="image_box_mobile"
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={imgUrl}
                           alt={`${unit.name} photo ${idx + 2}`}
                           loading="lazy"
@@ -965,7 +966,7 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         className="image_box_mobile"
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={imgUrl}
                           alt={`${unit.name} photo ${idx + 4}`}
                           loading="lazy"
@@ -1216,37 +1217,37 @@ export default function ApartmentDetailPage() {
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2d_c-icon-1.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Fitness Centre</div>
+                                    <div>Vaastu compliant</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2b_c-icon-5.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Swimming Pool</div>
+                                    <div>Rooftop pool</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b0c_c-icon-2.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Community Hall</div>
+                                    <div>24x7 power back-up</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2e_c-icon-6.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Clubhouse</div>
+                                    <div>24x7 filtered water</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2a_c-icon-3.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Indoor Games</div>
+                                    <div>Fully automatic lifts</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2c_c-icon-7.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Landscaped Garden</div>
+                                    <div>Intercom ready</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
@@ -1275,7 +1276,7 @@ export default function ApartmentDetailPage() {
                         role="listitem"
                         className="list_item_image w-dyn-item w-dyn-repeater-item"
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={photoUrl}
                           loading="lazy"
                           alt={`${unit.name} photo ${idx + 2}`}
@@ -1320,7 +1321,7 @@ export default function ApartmentDetailPage() {
                   className="item_gallery w-dyn-item w-dyn-repeater-item"
                 >
                   <div className="box_image_gallery">
-                    <img
+                    <ImageWithSkeleton
                       src={photoUrl}
                       loading="lazy"
                       alt={`${unit.name} slide ${idx + 1}`}
@@ -1371,7 +1372,7 @@ export default function ApartmentDetailPage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <img
+                        <ImageWithSkeleton
                           alt={item.title}
                           loading="lazy"
                           src={item.img}
