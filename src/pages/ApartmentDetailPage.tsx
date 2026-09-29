@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
-import Header, { ArrowIcon } from "../components/Header";
+import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
@@ -63,6 +63,7 @@ export default function ApartmentDetailPage() {
 
   // Splide Slider Ref
   const splideContainerRef = useRef<HTMLDivElement | null>(null);
+  const splideInstanceRef = useRef<Splide | null>(null);
 
   // Sticky price card collapsed / expanded state
   const [feesOpen, setFeesOpen] = useState<boolean>(() => {
@@ -422,42 +423,124 @@ export default function ApartmentDetailPage() {
     };
   }, [slug, unit]);
 
+  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction (Authentic 21Oaks mechanism)
+  // On 21Oaks: Triggered by <main> (Hero + Apartment Details section).
+  // From 0% to 85% progress: translateY(0%) (visible).
+  // From 85% to 100% progress: translateY(150%) (smoothly slides down out of view).
+  // After <main> (Gallery, Amenities, Pets, FAQs, CTA, Footer): stays hidden at translateY(150%).
+  // Scrolling back up into <main>: smoothly slides back into view.
+  useEffect(() => {
+    const mainEl = document.querySelector<HTMLElement>("main");
+    const fixedPriceEl = document.querySelector<HTMLElement>(".fixed_price");
+    if (!mainEl || !fixedPriceEl) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: mainEl,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.4,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (self.progress >= 0.98) {
+            fixedPriceEl.style.pointerEvents = "none";
+          } else {
+            fixedPriceEl.style.pointerEvents = "auto";
+          }
+        },
+        onLeave: () => {
+          gsap.set(fixedPriceEl, { yPercent: 150, pointerEvents: "none" });
+        },
+        onLeaveBack: () => {
+          gsap.set(fixedPriceEl, { yPercent: 0, pointerEvents: "auto" });
+        },
+        onEnter: () => {
+          fixedPriceEl.style.pointerEvents = "auto";
+        },
+        onEnterBack: () => {
+          fixedPriceEl.style.pointerEvents = "auto";
+        },
+      },
+    });
+
+    tl.to(fixedPriceEl, {
+      yPercent: 0,
+      ease: "none",
+      duration: 0.85,
+    }).to(fixedPriceEl, {
+      yPercent: 150,
+      ease: "power1.in",
+      duration: 0.15,
+    });
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+      gsap.set(fixedPriceEl, { clearProps: "transform,pointerEvents" });
+    };
+  }, [slug, unit]);
+
   // 4. Splide Slider for Amenities Carousel ("Just outside your door")
   useEffect(() => {
     let splideInstance: Splide | null = null;
+    let observer: ResizeObserver | null = null;
     const container = splideContainerRef.current;
     if (container) {
-      splideInstance = new Splide(container, {
-        perPage: 3,
-        perMove: 1,
-        focus: 0,
-        type: "slide",
-        gap: "0.5em",
-        arrows: false,
-        pagination: false,
-        speed: 800,
-        dragAngleThreshold: 60,
-        autoWidth: false,
-        rewind: false,
-        rewindSpeed: 500,
-        waitForTransition: true,
-        updateOnMove: false,
-        trimSpace: true,
-        breakpoints: {
-          991: { perPage: 2, gap: "0.5em" },
-          767: { perPage: 1, gap: "0.5em" },
-          479: { perPage: 1, gap: "0.5em" },
-        },
-      });
+      try {
+        splideInstance = new Splide(container, {
+          perPage: 3,
+          perMove: 1,
+          focus: 0,
+          type: "slide",
+          gap: "1.5rem",
+          arrows: false,
+          pagination: false,
+          speed: 800,
+          drag: true,
+          flickPower: 600,
+          dragAngleThreshold: 60,
+          autoWidth: false,
+          rewind: false,
+          rewindSpeed: 500,
+          waitForTransition: true,
+          updateOnMove: false,
+          trimSpace: false,
+          breakpoints: {
+            991: {
+              perPage: 2,
+              gap: "1.25rem",
+              padding: { right: "2.5rem" },
+            },
+            767: {
+              perPage: 1,
+              gap: "1rem",
+              padding: { right: "3rem" },
+            },
+            479: {
+              perPage: 1,
+              gap: "0.85rem",
+              padding: { left: "0rem", right: "2.5rem" },
+            },
+          },
+        });
 
-      splideInstance.mount();
+        splideInstance.mount();
+        splideInstanceRef.current = splideInstance;
 
-      const imgs = container.querySelectorAll("img");
-      imgs.forEach((img) => {
-        if (!img.complete) {
-          img.addEventListener("load", () => splideInstance?.refresh(), { once: true });
-        }
-      });
+        const imgs = container.querySelectorAll("img");
+        imgs.forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener("load", () => splideInstance?.refresh(), { once: true });
+          }
+        });
+
+        observer = new ResizeObserver(() => {
+          splideInstance?.refresh();
+        });
+        observer.observe(container);
+      } catch (err) {
+        console.warn("Splide init notice:", err);
+      }
     }
 
     const onResize = () => {
@@ -467,8 +550,12 @@ export default function ApartmentDetailPage() {
 
     return () => {
       window.removeEventListener("resize", onResize);
+      if (observer) {
+        observer.disconnect();
+      }
       if (splideInstance) {
         splideInstance.destroy();
+        splideInstanceRef.current = null;
       }
     };
   }, []);
@@ -1276,7 +1363,7 @@ export default function ApartmentDetailPage() {
       </section>
 
       {/* Just Outside Your Door Section (Splide Carousel) */}
-      <section className="amenities_section">
+      <section className="amenities_section" id="amenities-showcase">
         <div className="wrapper_general basic slider_spec">
           <div className="amenities_heading">
             <h2 className="h2 middle_spec">
@@ -1284,23 +1371,29 @@ export default function ApartmentDetailPage() {
               <br />
               your door
             </h2>
-            <div className="button_amenities"></div>
+            <div className="button_amenities">
+              <WebflowButton
+                text="Discover Amenities"
+                href="https://calendly.com/dipakh810/30min"
+                target="_blank"
+              />
+            </div>
           </div>
 
           <div className="container only_amenities">
             <div className="splide slider1 second_splide" ref={splideContainerRef}>
-              <div className="splide__track w-dyn-list">
-                <div role="list" className="splide__list w-dyn-items">
+              <div className="splide__track">
+                <div role="list" className="splide__list">
                   {AMENITY_SHOWCASE.map((item, idx) => (
-                    <div key={idx} role="listitem" className="splide__slide amenities_splide w-dyn-item">
+                    <div key={idx} role="listitem" className="splide__slide amenities_splide">
                       <div className="image_amenities">
                         <div className="overlay_amenities">
                           <div className="heading_text">
-                            <div className="title_amenities">{item.title}</div>
+                            <h3 className="title_amenities">{item.title}</h3>
                           </div>
                           <div className="bottom_amenities">
                             <div className="desc_amenities">
-                              <div className="p_gen">{item.desc}</div>
+                              <p className="p_gen">{item.desc}</p>
                             </div>
                           </div>
                         </div>
