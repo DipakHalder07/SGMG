@@ -280,7 +280,7 @@
 }
 
 .button_apply {
-  background-color:var(--primary);border-radius:4px;justify-content:center;align-items:center;min-height:3.25em;padding:1em;font-size:.76em;transition:all .4s;display:flex;
+  background-color:var(--primary);border-radius:4px;justify-content:center;align-items:center;min-height:3.25em;padding:1em;font-size:.76em;transition:all .4s;display:flex;color:#ffffff;
 }
 
 .button_schedule {
@@ -357,7 +357,7 @@
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.03em;
   background-color: var(--primary);
-  color: var(--black);
+  color: #ffffff !important;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
@@ -367,12 +367,21 @@
   transition: all 0.4s;
   display: flex;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.button_apply div {
+  color: #ffffff !important;
 }
 
 .button_apply:hover {
   opacity: 1;
-  background-color: #d8c0ed;
+  background-color: var(--primary-hover, #1c7bb3);
+  color: #ffffff !important;
+}
+
+.button_apply:hover div {
+  color: #ffffff !important;
 }
 
 .button_schedule {
@@ -487,18 +496,20 @@
 .list_item_image {
   border-radius: 8px;
   overflow: hidden;
-  cursor: zoom-in;
   background-color: #f7f7f7;
 }
 
-.list_item_image img {
+.list_item_image img,
+.list_item_image .image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
 }
 
-.list_item_image:hover img {
+.list_item_image:hover img,
+.list_item_image:hover .image {
   transform: scale(1.015);
 }
 
@@ -956,6 +967,14 @@
 
   .image_box_mobile {
     border-radius:4px;width:100%;height:28rem;overflow:hidden;
+  }
+
+  .image_box_mobile img,
+  .image_box_mobile .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .collection_mobile {
@@ -1510,3 +1529,18 @@
     background-image: linear-gradient(#0000, #00000026 35%, #0003);
   }
 }
+
+/* Indian Currency Icon Styling - White Icon on Primary Blue Badge */
+.icon_price {
+  background-color: var(--primary, #2391cf);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon_price img,
+.icon_price .image {
+  filter: brightness(0) invert(1);
+}
+

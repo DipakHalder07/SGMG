@@ -7,7 +7,6 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import Header, { ArrowIcon } from "../components/Header";
 import Footer from "../components/Footer";
-import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
 import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
 
@@ -79,9 +78,6 @@ export default function ApartmentDetailPage() {
 
   // Amenities tab state
   const [activeAmenityTab, setActiveAmenityTab] = useState<"Interior" | "Features" | "Community">("Interior");
-
-  // Lightbox Modal state
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // FAQ accordion active state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -884,8 +880,6 @@ export default function ApartmentDetailPage() {
                       <div
                         key={idx}
                         className="image_box_mobile"
-                        onClick={() => setLightboxIndex(idx + 1)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={imgUrl}
@@ -919,8 +913,6 @@ export default function ApartmentDetailPage() {
                       <div
                         key={idx}
                         className="image_box_mobile"
-                        onClick={() => setLightboxIndex(idx + 3)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={imgUrl}
@@ -1222,8 +1214,6 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         role="listitem"
                         className="list_item_image w-dyn-item w-dyn-repeater-item"
-                        onClick={() => setLightboxIndex(idx + 1)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={photoUrl}
@@ -1268,14 +1258,6 @@ export default function ApartmentDetailPage() {
                   key={idx}
                   role="listitem"
                   className="item_gallery w-dyn-item w-dyn-repeater-item"
-                  onClick={(e) => {
-                    if (hasDraggedRef.current) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      return;
-                    }
-                    setLightboxIndex(idx);
-                  }}
                 >
                   <div className="box_image_gallery">
                     <img
@@ -1422,15 +1404,6 @@ export default function ApartmentDetailPage() {
       </section>
 
       <Footer />
-
-      {/* Fullscreen Lightbox Modal */}
-      {lightboxIndex !== null && (
-        <ApartmentLightboxModal
-          unit={unit}
-          initialPhotoIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
-      )}
     </div>
   );
 }
