@@ -510,7 +510,7 @@ export default function HomePage() {
         willChange: "clip-path",
       });
 
-      // Signature 21Oaks circular mask reveal animation (responsive and smooth)
+      // Signature circular mask reveal animation (responsive and smooth)
       gsap.to(bgNext, {
         clipPath: "circle(150% at 100% 50%)",
         duration: 1.1,

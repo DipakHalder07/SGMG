@@ -124,7 +124,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
-  // Dynamic Header theme with data-section detector (21Oaks exact ground truth)
+  // Dynamic Header theme with data-section detector
   useEffect(() => {
     // If navigating to a known light page, immediately set is-light to prevent flash
     const path = location.pathname.replace(/\/$/, "");
@@ -170,7 +170,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
         }
       }
 
-      // Live 21Oaks rule: If hero mode, verify the logo actually overlaps a hero element
+      // If hero mode, verify the logo actually overlaps a hero element
       if (mode === "hero") {
         const logo = document.querySelector<HTMLElement>(".logo");
         const heroEl = document.querySelector<HTMLElement>(

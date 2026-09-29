@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AUTHENTIC 21OAKS APARTMENT DETAILS PAGE STYLES
+   APARTMENT DETAILS PAGE STYLES
    Exact Webflow classes, layout, responsive breakpoints, and animations
    ========================================================================== */
 
@@ -290,7 +290,7 @@
 
 /* --- INTERACTIVE ANIMATIONS & ENHANCEMENTS --- */
 
-/* --- AUTHENTIC 21OAKS FIXED PRICE CARD --- */
+/* --- FIXED PRICE CARD --- */
 
 .fixed_price {
   z-index: 99;
@@ -1138,12 +1138,9 @@
     font-size:1.45em;
   }
 
-  .button_apply {
-    min-height:4.5em;font-size:1.45em;
-  }
-
+  .button_apply,
   .button_schedule {
-    min-height:4.5em;padding-top:1em;padding-bottom:1em;font-size:1.45em;
+    min-height:3.1em;padding:.75em 1em;font-size:1.45em;font-weight:600;
   }
 }
 
@@ -1384,13 +1381,13 @@
   }
 
   .button_apply,.button_schedule {
-    padding-top:20px;padding-bottom:20px;font-size:3em;
+    min-height:2.8em;padding-top:12px;padding-bottom:12px;font-size:3em;font-weight:600;
   }
 }
 
 
 /* ==========================================================================
-   HERO SCROLL STAGE & GSAP SCROLLTRIGGER (AUTHENTIC 21OAKS)
+   HERO SCROLL STAGE & GSAP SCROLLTRIGGER
    ========================================================================== */
 .scroll_stage {
   height: 252vh;

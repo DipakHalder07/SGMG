@@ -215,7 +215,7 @@ export default function ApartmentCardSlider({
     return items;
   };
 
-  // Dots calculation (matching live 21oaks sliding window)
+  // Dots calculation (sliding window)
   const isCompact = count <= 5;
   const winStart = !isCompact ? Math.max(0, Math.min(logicalIndex - 2, count - 5)) : 0;
 

@@ -121,7 +121,7 @@ export default function ContactPage() {
     <div className="contact_page_wrapper">
       <Header />
 
-      {/* Main 21Oaks Contact Section (1:1 Live DOM) */}
+      {/* Main Contact Section */}
       <main data-section="light" className="contact">
         <div className="wrapper_general gen_f">
           <div className="contact_h1">

@@ -243,7 +243,13 @@
     gap: 3rem;
   }
 
+  /* Stacked: the EMI result reads first, the sliders that drive it sit below. */
   .emi_calc_results_col {
+    order: 1;
+  }
+
+  .emi_calc_sliders_col {
+    order: 2;
     margin-top: 1rem;
   }
 }

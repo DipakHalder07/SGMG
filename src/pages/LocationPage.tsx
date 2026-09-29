@@ -223,7 +223,7 @@ export default function LocationPage() {
   }, []);
 
   // -------------------------------------------------------------
-  // GSAP Hero Slideshow: 1:1 Parallax Slide Transition (21oaks replica)
+  // GSAP Hero Slideshow: Parallax Slide Transition
   // -------------------------------------------------------------
   const startSlideTimer = useCallback((slideIndex: number) => {
     if (autoplayTimerRef.current) {

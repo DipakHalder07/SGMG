@@ -136,7 +136,7 @@ export default function ApartmentDetailPage() {
     };
   }, []);
 
-  // 3. Signature GSAP ScrollTrigger Hero Pinning & Flyer Scaling (Authentic 21Oaks mechanism)
+  // 3. Signature GSAP ScrollTrigger Hero Pinning & Flyer Scaling
   useEffect(() => {
     // A. Dynamic Header Color Switcher (is-hero, is-light, is-dark)
     const updateHeaderMode = () => {
@@ -395,8 +395,8 @@ export default function ApartmentDetailPage() {
     };
   }, [slug, unit]);
 
-  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction (Authentic 21Oaks mechanism)
-  // On 21Oaks: Triggered by <main> (Hero + Apartment Details section).
+  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction
+  // Triggered by <main> (Hero + Apartment Details section).
   // From 0% to 85% progress: translateY(0%) (visible).
   // From 85% to 100% progress: translateY(150%) (smoothly slides down out of view).
   // After <main> (Gallery, Amenities, Pets, FAQs, CTA, Footer): stays hidden at translateY(150%).
@@ -739,7 +739,7 @@ export default function ApartmentDetailPage() {
       </div>
 
       <main>
-        {/* Signature 21Oaks ScrollTrigger Hero Stage */}
+        {/* Signature ScrollTrigger Hero Stage */}
         <div data-section="hero" className="scroll_stage" ref={stageRef}>
           <div className="pin_inner" ref={pinInnerRef}>
             <div className="hero_section">
