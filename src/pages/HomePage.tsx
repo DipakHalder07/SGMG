@@ -7,6 +7,7 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -1337,7 +1338,7 @@ export default function HomePage() {
                               </div>
                             </div>
                           </div>
-                          <img src={apart.image} alt={apart.name} className="image" draggable={false} />
+                          <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" draggable={false} />
                         </Link>
 
                         <div className="content_apart">
@@ -1443,7 +1444,7 @@ export default function HomePage() {
                 </h2>
                 <div className="small_box">
                   <div className="image_small">
-                    <img src="/assets/everyday-living/living-room.png" alt="Luxurious Modern Living Room" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/living-room.png" alt="Luxurious Modern Living Room" className="image" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1455,7 +1456,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="right_side">
-                <img src="/assets/everyday-living/high-rise-elevation.png" alt="Modern Luxury High-Rise Elevation" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/high-rise-elevation.png" alt="Modern Luxury High-Rise Elevation" className="image" />
               </div>
             </div>
           </div>
@@ -1463,12 +1464,12 @@ export default function HomePage() {
           <div className="sides_s">
             <div className="sides_wrap">
               <div className="right_side">
-                <img src="/assets/everyday-living/modern-residential.png" alt="State of the Art Modern Architecture" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/modern-residential.png" alt="State of the Art Modern Architecture" className="image" />
               </div>
               <div className="left_side">
                 <div className="small_box caption_info right_box second_b">
                   <div className="image_small">
-                    <img src="/assets/everyday-living/clubhouse-landscape.png" alt="Community Clubhouse and Landscape" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/clubhouse-landscape.png" alt="Community Clubhouse and Landscape" className="image" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1532,7 +1533,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                    <img src={apart.image} alt={apart.name} className="image" />
+                    <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" />
                   </Link>
 
                   <div className="content_apart">
@@ -1606,7 +1607,7 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <img src={apart.image} alt={apart.name} className="image" />
+                        <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" />
                       </Link>
                       <div className="content_apart">
                         <div className="apart_title_line">
@@ -1700,7 +1701,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
+            <ImageWithSkeleton src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
           </div>
         </div>
       </section>
@@ -1801,7 +1802,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <img src={amenity.image} alt={amenity.title} className="image" />
+                        <ImageWithSkeleton src={amenity.image} alt={amenity.title} className="image" />
                       </div>
                     </div>
                   ))}
@@ -2048,7 +2049,7 @@ export default function HomePage() {
           </div>
 
           <div className="fs_bg">
-            <img src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
+            <ImageWithSkeleton src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
           </div>
         </section>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 import gsap from "gsap";
 import "../gallery.css";
 
@@ -185,7 +186,7 @@ export default function GalleryPage() {
                         role="listitem"
                         className={`gallery_item w-dyn-item ${isActive ? "is-active" : ""}`}
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={img.src}
                           alt={img.alt}
                           className="image main_visual"
@@ -213,7 +214,7 @@ export default function GalleryPage() {
                         className={`thumb_item ${isActive ? "is-active" : ""}`}
                         onClick={() => goToSlide(idx)}
                       >
-                        <img
+                        <ImageWithSkeleton
                           src={img.src}
                           alt={`Thumbnail ${formatNum(idx + 1)}`}
                           loading="lazy"

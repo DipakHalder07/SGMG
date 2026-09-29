@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header, { WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 import "../careers.css";
 
 export interface JobOpening {
@@ -290,7 +291,7 @@ export default function CareersPage() {
       <section>
         <div className="careers_wrap">
           <figure className="careers_figure">
-            <img
+            <ImageWithSkeleton
               src="/images/careers/studio.jpg"
               alt="SGMG design team reviewing drawings and a tower model in the studio"
               loading="lazy"
@@ -335,7 +336,7 @@ export default function CareersPage() {
       <section>
         <div className="careers_wrap">
           <figure className="careers_figure">
-            <img
+            <ImageWithSkeleton
               src="/images/careers/project.jpg"
               alt="Front elevation of an SGMG residential development in Siliguri"
               loading="lazy"
