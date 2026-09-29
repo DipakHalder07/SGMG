@@ -1032,7 +1032,10 @@ body.is-hero .menu {
    ========================================================= */
 @media (max-width: 991px) {
   .header {
-    width: 100vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
     height: auto !important;
     position: fixed !important;
     inset: 0% 0% auto !important;
@@ -1210,7 +1213,7 @@ body.is-hero .menu {
     left: 16px !important;
     right: 16px !important;
     width: calc(100% - 32px) !important;
-    max-width: 360px !important;
+    max-width: none !important;
     margin: 0 auto !important;
     height: 53.2px !important;
     min-height: 53.2px !important;
@@ -1306,7 +1309,7 @@ body.is-hero .menu {
     left: 16px !important;
     right: 16px !important;
     width: calc(100% - 32px) !important;
-    max-width: 360px !important;
+    max-width: none !important;
     margin: 0 auto !important;
     top: auto !important;
     z-index: 999 !important;
@@ -1338,6 +1341,27 @@ body.is-hero .menu {
     transition: opacity 700ms cubic-bezier(0.62, 0.008, 0.351, 0.996),
                 transform 700ms cubic-bezier(0.684, 0.002, 0.363, 0.996),
                 visibility 0s linear 0s !important;
+  }
+
+  /* Centered dock on landscape mobile and small tablets (481px - 991px) matching 21oaks ground truth */
+  @media (min-width: 481px) and (max-width: 991px) {
+    #w-node-ad93d22d-cd7e-431b-047e-2560671c8e92-671c8e8b,
+    .menu {
+      width: 352px !important;
+      max-width: calc(100% - 32px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 auto !important;
+    }
+
+    #w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b,
+    .menu_fs {
+      width: 352px !important;
+      max-width: calc(100% - 32px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 auto !important;
+    }
   }
 
   .grid_menu_mobile {
