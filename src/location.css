@@ -276,11 +276,11 @@
 
 .h2.white.specific_map {
   color: #ffffff;
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.75rem, 3.85vw, 3.85rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(24px, 3.4vw, 66px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
   margin: 0;
 }
 
@@ -679,16 +679,16 @@
   margin: 0 auto;
 }
 
-.faqs.black .h2.smaller {
+.faqs.black .h2.smaller,
+.faq_heading.white_ver .h2.smaller {
   color: #ffffff !important;
-  font-family: "Michroma", sans-serif !important;
-  font-size: 46.37px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -1.3248px;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(24px, 3.4vw, 66px) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
   text-align: center;
   margin: 0;
-  white-space: pre-line;
 }
 
 .faqs.black .sides_faq {
@@ -969,11 +969,6 @@
     padding: 48px 24px 72px;
   }
 
-  .faqs.black .h2.smaller {
-    font-size: 36px;
-    line-height: 1.05;
-  }
-
   .faqs.black .sides_faq {
     margin-top: 80px;
   }
@@ -1084,7 +1079,7 @@
   }
 
   .location_on_map {
-    padding: 24px 20px 14px !important;
+    padding: 85px 20px 20px !important;
   }
 
   .locations_headings {
@@ -1093,9 +1088,9 @@
   }
 
   .h2.white.specific_map {
-    font-size: 24.5px !important;
-    line-height: 1 !important;
-    letter-spacing: -0.7px !important;
+    font-size: 24px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.02em !important;
   }
 
   .on_the_map .map_sec {
@@ -1152,10 +1147,11 @@
     padding: 36px 16px 56px !important;
   }
 
-  .faqs.black .h2.smaller {
-    font-size: 26.6px;
-    line-height: 1.08;
-    letter-spacing: -0.8px;
+  .faqs.black .h2.smaller,
+  .faq_heading.white_ver .h2.smaller {
+    font-size: 24px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.02em !important;
   }
 
   .faqs.black .sides_faq {

@@ -18,9 +18,9 @@ export default function ApartmentsPage() {
 
   // Filters state
   const [selectedType, setSelectedType] = useState<"All" | "General" | "Premium">("All");
-  const [selectedBeds, setSelectedBeds] = useState<number | null>(null); // null = all, 3, 4
+  const [selectedBeds, setSelectedBeds] = useState<number | null>(null); // null = all, 2, 3, 4
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(865);
+  const [maxPrice, setMaxPrice] = useState<number>(95);
   const [selectedMoveIn, setSelectedMoveIn] = useState<"Now" | "Later" | "All">("All");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 
@@ -119,7 +119,7 @@ export default function ApartmentsPage() {
                       <div className="filter_title"><div>Bedrooms</div></div>
                       <div className="filters_wrap">
                         <div className="filters_type">
-                          {([3, 4] as const).map((b) => (
+                          {([2, 3, 4] as const).map((b) => (
                             <label
                               key={b}
                               className={`checkbox ${selectedBeds === b ? "is-active" : ""}`}
@@ -142,7 +142,7 @@ export default function ApartmentsPage() {
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
                             value={minPrice.toFixed(2)}
-                            placeholder="₹0.00"
+                            placeholder="₹0.00 L"
                             readOnly
                           />
                           <div className="dash_field">-</div>
@@ -150,7 +150,7 @@ export default function ApartmentsPage() {
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
                             value={maxPrice.toFixed(2)}
-                            placeholder="₹865.00"
+                            placeholder="₹95.00 L"
                             readOnly
                           />
                         </div>
@@ -160,14 +160,14 @@ export default function ApartmentsPage() {
                             style={{
                               position: "absolute",
                               left: "0px",
-                              width: `${Math.min(100, Math.max(0, (maxPrice / 865) * 100))}%`
+                              width: `${Math.min(100, Math.max(0, (maxPrice / 95) * 100))}%`
                             }}
                           />
                           <input
                             type="range"
                             min="0"
-                            max="865"
-                            step="5"
+                            max="95"
+                            step="1"
                             value={maxPrice}
                             onChange={(e) => setMaxPrice(Number(e.target.value))}
                             className="fs-rangeslider_native_range"
@@ -192,11 +192,11 @@ export default function ApartmentsPage() {
                               position: "absolute",
                               top: "50%",
                               transform: "translate(-50%, -50%)",
-                              left: `${Math.min(100, Math.max(0, (maxPrice / 865) * 100))}%`
+                              left: `${Math.min(100, Math.max(0, (maxPrice / 95) * 100))}%`
                             }}
                           >
                             <div className="fs-rangeslider_handle-value">
-                              ₹<span className="fs-rangeslider_handle-span helper">{maxPrice}</span>
+                              ₹<span className="fs-rangeslider_handle-span helper">{maxPrice}</span> L
                             </div>
                           </div>
                         </div>

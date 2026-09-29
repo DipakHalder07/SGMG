@@ -696,21 +696,23 @@ export default function ApartmentDetailPage() {
                     </div>
                   </div>
 
-                  <div className="list_prices" style={{ maxHeight: feesOpen ? "250px" : "0px" }}>
+                  <div className="list_prices" style={{ maxHeight: feesOpen ? "420px" : "0px" }}>
                     <div className="list_prices_inner">
                       <div className="box_prices">
                         <div className="title_prices">
-                          <div>One time fees</div>
+                          <div>Indicative charges</div>
                         </div>
                         <div className="lists_prices">
                           <div className="line_price">
-                            <div>Application fee per person</div>
-                            <div>{unit.fees.application}</div>
+                            <div>Base rate</div>
+                            <div>{unit.pricePerSqft}</div>
                           </div>
-                          <div className="line_price">
-                            <div>Admin fee per person</div>
-                            <div>{unit.fees.admin}</div>
-                          </div>
+                          {unit.charges.map((charge) => (
+                            <div className="line_price" key={charge.label}>
+                              <div>{charge.label}</div>
+                              <div>{charge.value}</div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
