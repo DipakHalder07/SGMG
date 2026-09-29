@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback, lazy } from "react";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splide from "@splidejs/splide";
@@ -7,9 +7,19 @@ import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import EmiCalculator from "../components/EmiCalculator";
-import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
+import {
+  ApartmentUnit,
+  APARTMENT_FAQS,
+  findUnitById,
+  findUnitBySlug,
+  getUnitPath,
+  getUnitSlug,
+} from "../data/apartmentsData";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Same chunk App.tsx lazy-loads for the catch-all route.
+const NotFoundPage = lazy(() => import("./NotFoundPage"));
 
 interface AmenityShowcaseItem {
   title: string;
@@ -45,13 +55,30 @@ const AMENITY_SHOWCASE: AmenityShowcaseItem[] = [
   },
 ];
 
+/* Resolves the URL before any page hooks run: a name slug renders the page,
+   a legacy id (/apartments/d1-premium) redirects to its name URL, and
+   anything else is a real 404 rather than silently showing another unit. */
 export default function ApartmentDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug = "" } = useParams<{ slug: string }>();
 
-  // Find apartment by slug/id (or default to D1)
-  const unit: ApartmentUnit =
-    APARTMENTS_DATA.find((a) => a.id.toLowerCase() === (slug || "").toLowerCase()) ||
-    APARTMENTS_DATA[0];
+  const unit = findUnitBySlug(slug);
+  if (unit) {
+    // Case variants (/apartments/Green-View) settle on the one lowercase URL.
+    return slug === getUnitSlug(unit) ? (
+      <ApartmentDetail unit={unit} />
+    ) : (
+      <Navigate to={getUnitPath(unit)} replace />
+    );
+  }
+
+  const legacy = findUnitById(slug);
+  if (legacy) return <Navigate to={getUnitPath(legacy)} replace />;
+
+  return <NotFoundPage />;
+}
+
+function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
+  const { slug } = useParams<{ slug: string }>();
 
   // GSAP ScrollTrigger Hero Stage Refs
   const stageRef = useRef<HTMLDivElement | null>(null);

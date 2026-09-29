@@ -290,7 +290,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
 
               <a
                 href="/about"
-                className={`mobile_link w-inline-block ${location.pathname === "/about" || location.pathname === "/how-to-apply" ? "w--current" : ""}`}
+                className={`mobile_link w-inline-block ${location.pathname === "/about" ? "w--current" : ""}`}
                 onMouseEnter={() => prefetchRoute("/about")}
                 onTouchStart={() => prefetchRoute("/about")}
                 onClick={(e) => {

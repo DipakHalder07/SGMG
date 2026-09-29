@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 interface ApartmentCardSliderProps {
   photos: string[];
-  apartId: string;
+  detailUrl: string;
   apartName: string;
   status: string;
   beds: string;
@@ -13,7 +13,7 @@ interface ApartmentCardSliderProps {
 
 export default function ApartmentCardSlider({
   photos,
-  apartId,
+  detailUrl,
   apartName,
   status,
   beds,
@@ -154,7 +154,7 @@ export default function ApartmentCardSlider({
     if (count === 1) {
       return (
         <div className="carousel_item w-dyn-item w-dyn-repeater-item">
-          <Link to={`/apartments-cards/${apartId}`} className="carousel_apartments w-inline-block">
+          <Link to={detailUrl} className="carousel_apartments w-inline-block">
             <img src={realItems[0]} alt={apartName} className="image_carousel" loading="eager" />
           </Link>
         </div>
@@ -172,7 +172,7 @@ export default function ApartmentCardSlider({
         data-carousel-clone="1"
         aria-hidden="true"
       >
-        <Link to={`/apartments-cards/${apartId}`} className="carousel_apartments w-inline-block" tabIndex={-1}>
+        <Link to={detailUrl} className="carousel_apartments w-inline-block" tabIndex={-1}>
           <img src={realItems[count - 1]} alt={apartName} className="image_carousel" loading="lazy" />
         </Link>
       </div>
@@ -183,7 +183,7 @@ export default function ApartmentCardSlider({
       items.push(
         <div key={idx} role="listitem" className="carousel_item w-dyn-item w-dyn-repeater-item">
           <Link
-            to={`/apartments-cards/${apartId}`}
+            to={detailUrl}
             className="carousel_apartments w-inline-block"
             onClick={(e) => {
               if (hasMovedRef.current) {
@@ -206,7 +206,7 @@ export default function ApartmentCardSlider({
         data-carousel-clone="1"
         aria-hidden="true"
       >
-        <Link to={`/apartments-cards/${apartId}`} className="carousel_apartments w-inline-block" tabIndex={-1}>
+        <Link to={detailUrl} className="carousel_apartments w-inline-block" tabIndex={-1}>
           <img src={realItems[0]} alt={apartName} className="image_carousel" loading="lazy" />
         </Link>
       </div>

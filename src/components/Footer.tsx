@@ -302,16 +302,6 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                   <div className="link_f">Site Visits: Available 7 Days</div>
                 </div>
               </div>
-
-              <div className="box_menu">
-                <div className="title_footer">Legals</div>
-                <div className="links_list">
-                  <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
-                  <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
-                  <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
-                  <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
-                </div>
-              </div>
             </div>
           </div>
 

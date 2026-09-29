@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { ApartmentUnit } from "../data/apartmentsData";
+import { ApartmentUnit, getUnitPath } from "../data/apartmentsData";
 import { Link } from "react-router-dom";
 
 interface ApartmentLightboxModalProps {
@@ -70,7 +70,7 @@ export default function ApartmentLightboxModal({
 
           <div className="apartment-lightbox-actions">
             <Link
-              to={`/apartments-cards/${unit.id}`}
+              to={getUnitPath(unit)}
               className="apartment-lightbox-view-page-btn"
               onClick={onClose}
             >

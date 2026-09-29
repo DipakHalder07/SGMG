@@ -7,6 +7,7 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
+import { getUnitPathById } from "../data/apartmentsData";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -1305,7 +1306,7 @@ export default function HomePage() {
                     >
                       <div className="apart_card">
                         <Link
-                          to={`/apartments/${apart.id}`}
+                          to={getUnitPathById(apart.id)}
                           className="apart_image"
                           draggable={false}
                           style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
@@ -1349,7 +1350,7 @@ export default function HomePage() {
                           <div className="apart_title_line">
                             <div>
                               <Link
-                                to={`/apartments/${apart.id}`}
+                                to={getUnitPathById(apart.id)}
                                 className="apart_title"
                                 draggable={false}
                                 style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
@@ -1377,11 +1378,11 @@ export default function HomePage() {
                           <div className="explore_button" style={{ marginTop: "18px" }}>
                             <WebflowButton
                               text="Explore Details"
-                              href={`/apartments/${apart.id}`}
+                              href={getUnitPathById(apart.id)}
                               onClick={(e) => {
                                 e.preventDefault();
                                 if (didDragRef.current) return;
-                                navigate(`/apartments/${apart.id}`);
+                                navigate(getUnitPathById(apart.id));
                               }}
                             />
                           </div>
@@ -1506,7 +1507,7 @@ export default function HomePage() {
               {apartments.slice(0, 4).map((apart) => (
                 <div className="apart_card" key={apart.id}>
                   <Link
-                    to={`/apartments/${apart.id}`}
+                    to={getUnitPathById(apart.id)}
                     className="apart_image"
                     style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
                   >
@@ -1544,7 +1545,7 @@ export default function HomePage() {
                     <div className="apart_title_line">
                       <div>
                         <Link
-                          to={`/apartments/${apart.id}`}
+                          to={getUnitPathById(apart.id)}
                           className="apart_title"
                           style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
                         >
@@ -1566,10 +1567,10 @@ export default function HomePage() {
                     <div className="explore_button" style={{ marginTop: "18px" }}>
                       <WebflowButton
                         text="Explore Details"
-                        href={`/apartments/${apart.id}`}
+                        href={getUnitPathById(apart.id)}
                         onClick={(e) => {
                           e.preventDefault();
-                          navigate(`/apartments/${apart.id}`);
+                          navigate(getUnitPathById(apart.id));
                         }}
                       />
                     </div>
@@ -1587,7 +1588,7 @@ export default function HomePage() {
                   {apartments.map((apart) => (
                     <div className="splide__slide apart_card" key={apart.id}>
                       <Link
-                        to={`/apartments/${apart.id}`}
+                        to={getUnitPathById(apart.id)}
                         className="apart_image"
                         style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
                       >
@@ -1616,7 +1617,7 @@ export default function HomePage() {
                       <div className="content_apart">
                         <div className="apart_title_line">
                           <Link
-                            to={`/apartments/${apart.id}`}
+                            to={getUnitPathById(apart.id)}
                             className="apart_title"
                             style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
                           >
@@ -1633,10 +1634,10 @@ export default function HomePage() {
                         <div className="explore_button" style={{ marginTop: "16px" }}>
                           <WebflowButton
                             text="Explore Details"
-                            href={`/apartments/${apart.id}`}
+                            href={getUnitPathById(apart.id)}
                             onClick={(e) => {
                               e.preventDefault();
-                              navigate(`/apartments/${apart.id}`);
+                              navigate(getUnitPathById(apart.id));
                             }}
                           />
                         </div>
@@ -2114,8 +2115,8 @@ export default function HomePage() {
                   <div className="title_footer">Discover</div>
                   <div className="links_list">
                     <Link to="/apartments" className="link_f">Residences</Link>
-                    <a href="#gallery" className="link_f">Gallery</a>
-                    <a href="#how-it-works" className="link_f">How to apply</a>
+                    <Link to="/gallery" className="link_f">Gallery</Link>
+                    <a href="#how-it-works" className="link_f">How it works</a>
                     <a href="#contact" className="link_f">Contact</a>
                   </div>
                 </div>
@@ -2158,16 +2159,6 @@ export default function HomePage() {
                     <div className="link_f">Mon - Sat: 10:00 AM - 7:00 PM</div>
                     <div className="link_f">Sunday: 10:00 AM - 5:00 PM</div>
                     <div className="link_f">Site Visits: Available 7 Days</div>
-                  </div>
-                </div>
-
-                <div className="box_menu">
-                  <div className="title_footer">Legals</div>
-                  <div className="links_list">
-                    <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
-                    <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
-                    <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
-                    <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
                   </div>
                 </div>
               </div>

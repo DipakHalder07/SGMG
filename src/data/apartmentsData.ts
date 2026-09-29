@@ -278,6 +278,39 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
   }
 ];
 
+/* URLs come from the display name so the address bar always matches the page
+   ("Green View" -> /apartments/green-view). Names must therefore stay unique.
+   `id` remains the stable internal key and still resolves as a legacy URL. */
+export function getUnitSlug(unit: ApartmentUnit): string {
+  return unit.name
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getUnitPath(unit: ApartmentUnit): string {
+  return `/apartments/${getUnitSlug(unit)}`;
+}
+
+export function findUnitBySlug(slug: string): ApartmentUnit | undefined {
+  const key = slug.toLowerCase();
+  return APARTMENTS_DATA.find((unit) => getUnitSlug(unit) === key);
+}
+
+export function findUnitById(id: string): ApartmentUnit | undefined {
+  const key = id.toLowerCase();
+  return APARTMENTS_DATA.find((unit) => unit.id.toLowerCase() === key);
+}
+
+/* For lists that keep their own copy of unit data (HomePage): joins on the
+   stable id so the URL always comes from the canonical name above. */
+export function getUnitPathById(id: string): string {
+  const unit = findUnitById(id);
+  return unit ? getUnitPath(unit) : `/apartments/${id}`;
+}
+
 export const TESTIMONIALS_DATA = [
   {
     author: "Mrs. P. Sherpa",

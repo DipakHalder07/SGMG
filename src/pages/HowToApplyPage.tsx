@@ -142,7 +142,7 @@ export default function HowToApplyPage() {
   const isAutoScrollingRef = useRef(false);
 
   useEffect(() => {
-    document.title = "How To Book Your Home • SGMG Luxury Residences Siliguri";
+    document.title = "About Us • SGMG Luxury Residences Siliguri";
   }, []);
 
   // Testimonials state

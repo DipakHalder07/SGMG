@@ -2,29 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ApartmentCardSlider from "./ApartmentCardSlider";
 import PillButton from "./PillButton";
-import { ApartmentUnit } from "../data/apartmentsData";
+import { ApartmentUnit, getUnitPath } from "../data/apartmentsData";
 
 export interface ApartmentCardProps {
   apartment: ApartmentUnit;
-  linkPrefix?: string;
 }
 
-export default function ApartmentCard({
-  apartment,
-  linkPrefix = "/apartments-cards",
-}: ApartmentCardProps) {
+export default function ApartmentCard({ apartment }: ApartmentCardProps) {
   const photos =
     apartment.gallery && apartment.gallery.length > 0
       ? apartment.gallery
       : [apartment.coverImage];
 
-  const detailUrl = `${linkPrefix}/${apartment.id}`;
+  const detailUrl = getUnitPath(apartment);
 
   return (
     <div role="listitem" className="apartment_item w-dyn-item">
       <ApartmentCardSlider
         photos={photos}
-        apartId={apartment.id}
+        detailUrl={detailUrl}
         apartName={apartment.name}
         status={apartment.status}
         beds={apartment.beds}
