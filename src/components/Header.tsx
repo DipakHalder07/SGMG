@@ -56,18 +56,24 @@ export function WebflowButton({
 }
 
 export function HeaderApplyButton({
-  href = "/#contact",
+  href = "/contact",
   text = "Apply Now",
   onClick,
+  onMouseEnter,
+  onTouchStart,
 }: {
   href?: string;
   text?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onMouseEnter?: () => void;
+  onTouchStart?: () => void;
 }) {
   return (
     <a
       href={href}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onTouchStart={onTouchStart}
       className="button header_cta w-inline-block"
       aria-label={text}
     >
@@ -118,7 +124,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
-  // Dynamic Header theme with data-section detector (21Oaks exact ground truth)
+  // Dynamic Header theme with data-section detector
   useEffect(() => {
     // If navigating to a known light page, immediately set is-light to prevent flash
     const path = location.pathname.replace(/\/$/, "");
@@ -164,7 +170,7 @@ export default function Header({ darkTheme = false }: HeaderProps) {
         }
       }
 
-      // Live 21Oaks rule: If hero mode, verify the logo actually overlaps a hero element
+      // If hero mode, verify the logo actually overlaps a hero element
       if (mode === "hero") {
         const logo = document.querySelector<HTMLElement>(".logo");
         const heroEl = document.querySelector<HTMLElement>(
@@ -283,20 +289,8 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               </a>
 
               <a
-                href="/location"
-                className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
-                onMouseEnter={() => prefetchRoute("/location")}
-                onTouchStart={() => prefetchRoute("/location")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/location");
-                }}
-              >
-                <div>Location</div>
-              </a>
-              <a
                 href="/about"
-                className={`mobile_link w-inline-block ${location.pathname === "/about" || location.pathname === "/how-to-apply" ? "w--current" : ""}`}
+                className={`mobile_link w-inline-block ${location.pathname === "/about" ? "w--current" : ""}`}
                 onMouseEnter={() => prefetchRoute("/about")}
                 onTouchStart={() => prefetchRoute("/about")}
                 onClick={(e) => {
@@ -406,9 +400,12 @@ export default function Header({ darkTheme = false }: HeaderProps) {
           {/* Right Apply Button */}
           <div className="apply_button">
             <HeaderApplyButton
+              href="/contact"
+              onMouseEnter={() => prefetchRoute("/contact")}
+              onTouchStart={() => prefetchRoute("/contact")}
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("/", "contact");
+                handleNavClick("/contact");
               }}
             />
           </div>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback, lazy } from "react";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Splide from "@splidejs/splide";
@@ -7,9 +7,19 @@ import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import EmiCalculator from "../components/EmiCalculator";
-import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
+import {
+  ApartmentUnit,
+  APARTMENT_FAQS,
+  findUnitById,
+  findUnitBySlug,
+  getUnitPath,
+  getUnitSlug,
+} from "../data/apartmentsData";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Same chunk App.tsx lazy-loads for the catch-all route.
+const NotFoundPage = lazy(() => import("./NotFoundPage"));
 
 interface AmenityShowcaseItem {
   title: string;
@@ -45,13 +55,30 @@ const AMENITY_SHOWCASE: AmenityShowcaseItem[] = [
   },
 ];
 
+/* Resolves the URL before any page hooks run: a name slug renders the page,
+   a legacy id (/apartments/d1-premium) redirects to its name URL, and
+   anything else is a real 404 rather than silently showing another unit. */
 export default function ApartmentDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug = "" } = useParams<{ slug: string }>();
 
-  // Find apartment by slug/id (or default to D1)
-  const unit: ApartmentUnit =
-    APARTMENTS_DATA.find((a) => a.id.toLowerCase() === (slug || "").toLowerCase()) ||
-    APARTMENTS_DATA[0];
+  const unit = findUnitBySlug(slug);
+  if (unit) {
+    // Case variants (/apartments/Green-View) settle on the one lowercase URL.
+    return slug === getUnitSlug(unit) ? (
+      <ApartmentDetail unit={unit} />
+    ) : (
+      <Navigate to={getUnitPath(unit)} replace />
+    );
+  }
+
+  const legacy = findUnitById(slug);
+  if (legacy) return <Navigate to={getUnitPath(legacy)} replace />;
+
+  return <NotFoundPage />;
+}
+
+function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
+  const { slug } = useParams<{ slug: string }>();
 
   // GSAP ScrollTrigger Hero Stage Refs
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -136,7 +163,7 @@ export default function ApartmentDetailPage() {
     };
   }, []);
 
-  // 3. Signature GSAP ScrollTrigger Hero Pinning & Flyer Scaling (Authentic 21Oaks mechanism)
+  // 3. Signature GSAP ScrollTrigger Hero Pinning & Flyer Scaling
   useEffect(() => {
     // A. Dynamic Header Color Switcher (is-hero, is-light, is-dark)
     const updateHeaderMode = () => {
@@ -395,8 +422,8 @@ export default function ApartmentDetailPage() {
     };
   }, [slug, unit]);
 
-  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction (Authentic 21Oaks mechanism)
-  // On 21Oaks: Triggered by <main> (Hero + Apartment Details section).
+  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction
+  // Triggered by <main> (Hero + Apartment Details section).
   // From 0% to 85% progress: translateY(0%) (visible).
   // From 85% to 100% progress: translateY(150%) (smoothly slides down out of view).
   // After <main> (Gallery, Amenities, Pets, FAQs, CTA, Footer): stays hidden at translateY(150%).
@@ -719,9 +746,9 @@ export default function ApartmentDetailPage() {
                   </div>
 
                   <div className="buttons_last">
-                    <a href="/contact" className="button_apply w-inline-block">
+                    <Link to="/contact" className="button_apply w-inline-block">
                       <div>Apply Now</div>
-                    </a>
+                    </Link>
                     <a
                       href="https://calendly.com/dipakh810/30min"
                       target="_blank"
@@ -739,7 +766,7 @@ export default function ApartmentDetailPage() {
       </div>
 
       <main>
-        {/* Signature 21Oaks ScrollTrigger Hero Stage */}
+        {/* Signature ScrollTrigger Hero Stage */}
         <div data-section="hero" className="scroll_stage" ref={stageRef}>
           <div className="pin_inner" ref={pinInnerRef}>
             <div className="hero_section">

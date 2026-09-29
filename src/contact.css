@@ -1,6 +1,5 @@
 /* ==========================================================================
-   21OAKS CONTACT PAGE - 100% PIXEL-PERFECT STYLES
-   Exact 1:1 match with https://21oaks.org/contact
+   SGMG CONTACT PAGE STYLES
    ========================================================================== */
 
 :root {
@@ -589,7 +588,7 @@ main.contact {
 }
 
 /* ==========================================================================
-   MAP SECTION (.map_sec matching 21oaks.org 1:1)
+   MAP SECTION (.map_sec)
    Full-Screen 100vw x 100vh, Edge-to-Edge, 0 Border, 0 Border-Radius
    ========================================================================== */
 .contact_page_wrapper .map_sec,

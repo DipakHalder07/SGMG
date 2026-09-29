@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { ApartmentUnit } from "../data/apartmentsData";
+import { ApartmentUnit, getUnitPath } from "../data/apartmentsData";
 import { Link } from "react-router-dom";
 
 interface ApartmentLightboxModalProps {
@@ -70,20 +70,19 @@ export default function ApartmentLightboxModal({
 
           <div className="apartment-lightbox-actions">
             <Link
-              to={`/apartments-cards/${unit.id}`}
+              to={getUnitPath(unit)}
               className="apartment-lightbox-view-page-btn"
               onClick={onClose}
             >
               Full Details
             </Link>
-            <a
-              href="https://calendly.com/dipakh810/30min"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               className="apartment-lightbox-apply-btn"
+              onClick={onClose}
             >
               Apply Now
-            </a>
+            </Link>
             <button
               className="apartment-lightbox-close-btn"
               onClick={onClose}

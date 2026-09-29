@@ -11,6 +11,7 @@
   --tm-fs-base: 0.9375rem; /* body */
   --tm-fs-item: 0.8125rem; /* item headings (h3) */
   --tm-fs-lg: 0.9375rem;   /* member names */
+  --tm-fs-card: clamp(1rem, 1.15vw, 1.1875rem); /* card member names */
   --tm-fs-xl: clamp(0.9375rem, 1vw, 1.0625rem);  /* section headings (h2) */
   --tm-fs-2xl: clamp(1.5rem, 2.6vw, 2.25rem);    /* page title (h1) */
 
@@ -49,7 +50,9 @@
 .team_page .team_section_subtitle,
 .team_page .team_member_role,
 .team_page .team_member_bio,
-.team_page .team_contact_link {
+.team_page .team_action,
+.team_page .team_contact_label,
+.team_page .team_contact_value {
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   letter-spacing: normal;
 }
@@ -105,81 +108,135 @@
   margin: 0 0 var(--tm-gap-block);
 }
 
-/* --- LEADERSHIP LIST --- */
-.team_list {
-  border-top: 1px solid var(--tm-line);
-}
-
-.team_row {
+/* --- LEADERSHIP CARDS --- */
+/* No box, no hover: photo, name, role, bio, text links. */
+.team_grid {
   display: grid;
-  grid-template-columns: 18rem 1fr;
-  gap: 2rem;
-  padding: 1.75rem 0;
-  border-bottom: 1px solid var(--tm-line);
-  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem clamp(1.25rem, 2vw, 2rem);
 }
 
-.team_row_head {
+.team_card {
+  display: flex;
+  flex-direction: column;
+}
+
+.team_card_media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(41, 41, 41, 0.06);
+}
+
+/* The source photos are wide environmental shots: a square crop biased just
+   above centre keeps the subject framed instead of filling with ceiling. */
+.team_photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  display: block;
+}
+
+/* Monogram fills the media area whenever a headshot fails to load. */
+.team_initials {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: center;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: 0.06em;
+  color: var(--tm-muted);
 }
 
-/* Monogram stands in for a headshot until real photographs are supplied. */
-.team_initials {
-  flex: none;
-  width: 2.75rem;
-  height: 2.75rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--tm-line);
-  border-radius: 4px;
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: var(--tm-fs-xs);
-  color: var(--tm-muted);
+.team_card_body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-top: 1.25rem;
 }
 
 .team_member_name {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: var(--tm-fs-lg) !important;
+  font-size: var(--tm-fs-card) !important;
   font-weight: 400 !important;
-  line-height: 1.4 !important;
+  line-height: 1.35 !important;
   color: var(--tm-ink);
-  margin: 0 0 0.2rem !important;
+  margin: 0 0 0.3rem !important;
 }
 
 .team_member_role {
   font-size: var(--tm-fs-sm);
   color: var(--tm-muted);
-  margin: 0;
+  margin: 0 0 1rem;
 }
 
+/* flex:1 pushes the links to the bottom so they line up across cards whose
+   bios differ in length. */
 .team_member_bio {
+  flex: 1;
   font-size: var(--tm-fs-sm);
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--tm-muted);
   margin: 0;
 }
 
-/* --- CONTACT --- */
-.team_contact_row {
+.team_card_actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
 }
 
-.team_contact_link {
-  font-size: var(--tm-fs-base);
+.team_action {
+  font-size: var(--tm-fs-sm);
   color: var(--tm-ink);
   text-decoration: none;
   border-bottom: 1px solid var(--tm-line);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.team_contact_link:hover {
+.team_action:hover {
   color: var(--tm-accent);
   border-bottom-color: var(--tm-accent);
+}
+
+/* --- CONTACT --- */
+.team_contact_row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+.team_contact_card {
+  display: block;
+  padding-top: 1rem;
+  border-top: 1px solid var(--tm-line);
+  text-decoration: none;
+  color: inherit;
+}
+
+.team_contact_label {
+  font-size: var(--tm-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--tm-muted);
+  margin: 0 0 0.6rem;
+}
+
+.team_contact_value {
+  font-size: var(--tm-fs-base);
+  line-height: 1.6;
+  color: var(--tm-ink);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.team_contact_card--link:hover .team_contact_value {
+  color: var(--tm-accent);
 }
 
 /* --- RESPONSIVE --- */
@@ -189,9 +246,9 @@
     padding-right: 1.35rem;
   }
 
-  .team_row {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
+  .team_grid,
+  .team_contact_row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -201,7 +258,17 @@
     padding-right: 1rem;
   }
 
+  .team_grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.75rem;
+  }
+
+  .team_card_media {
+    aspect-ratio: 3 / 2;
+  }
+
   .team_contact_row {
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
   }
 }

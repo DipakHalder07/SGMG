@@ -49,6 +49,11 @@ export default function ApartmentsPage() {
     });
   }, [selectedType, selectedBeds, minPrice, maxPrice]);
 
+  const isAnyFilterActive =
+    selectedType !== "All" ||
+    selectedBeds !== null ||
+    minPrice > 0 ||
+    maxPrice < 95;
 
   return (
     <div className="page-wrapper apartments-page-view">
@@ -59,10 +64,24 @@ export default function ApartmentsPage() {
         <section data-section="light">
           <div className="wrapper_general apartments_gen">
           <div className="heading_aparts">
-            <h1 className="h1 black spec_amenities">
-              Residences<br />
-              in <span data-scribble="2" className="scribble-wrap scribble-visible">Siliguri</span>
-            </h1>
+            <div className="heading_aparts_row">
+              <h1 className="h1 black spec_amenities">
+                Residences<br />
+                in <span data-scribble="2" className="scribble-wrap scribble-visible">Siliguri</span>
+              </h1>
+              <button
+                type="button"
+                className="heading_filter_btn"
+                onClick={() => setMobileFiltersOpen(true)}
+                aria-label="Filter apartments"
+                title="Filters"
+              >
+                <div className="icon_filter">
+                  <img src="/assets/icons/filter-icon.png" loading="lazy" alt="Filter icon" className="image" />
+                </div>
+                {isAnyFilterActive && <span className="filter_indicator_dot" />}
+              </button>
+            </div>
           </div>
 
           <div className="apartments_sides">
@@ -238,7 +257,7 @@ export default function ApartmentsPage() {
                         setSelectedType("All");
                         setSelectedBeds(null);
                         setMinPrice(0);
-                        setMaxPrice(865);
+                        setMaxPrice(95);
                         setSelectedMoveIn("All");
                         setMobileFiltersOpen(false);
                       }}
@@ -278,20 +297,6 @@ export default function ApartmentsPage() {
                 </div>
               )}
             </div>
-          </div>
-
-          {/* Mobile Sticky Floating Filter Button */}
-          <div className="fix_filter">
-            <button
-              type="button"
-              className="filter_button"
-              onClick={() => setMobileFiltersOpen(true)}
-            >
-              <div className="icon_filter">
-                <img src="/assets/icons/filter-icon.png" loading="lazy" alt="Filter icon" className="image" />
-              </div>
-              <div>All Filters</div>
-            </button>
           </div>
         </div>
         </section>

@@ -117,7 +117,7 @@ export default function EndlessStairsGame() {
     const LEADER_MIN = 30000;
     const FINISH_M = 49000;
     const RUN_MS = 10 * 60 * 1000;
-    const LB_KEY = "endlessStairs21oaksLb_v1";
+    const LB_KEY = "sgmgEndlessStairsLb_v1";
 
     const CRUMBLE_ALT_MIN = 1200;
     const CRUMBLE_DELAY_TOP = 0.36;

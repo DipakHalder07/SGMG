@@ -206,15 +206,6 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     Residences
                   </span>
                   <span
-                    onClick={() => handleNavClick("/location")}
-                    onMouseEnter={() => prefetchRoute("/location")}
-                    onTouchStart={() => prefetchRoute("/location")}
-                    className="link_f"
-                    style={{ cursor: "pointer" }}
-                  >
-                    Location
-                  </span>
-                  <span
                     onClick={() => handleNavClick("/gallery")}
                     onMouseEnter={() => prefetchRoute("/gallery")}
                     onTouchStart={() => prefetchRoute("/gallery")}
@@ -311,16 +302,6 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                   <div className="link_f">Site Visits: Available 7 Days</div>
                 </div>
               </div>
-
-              <div className="box_menu">
-                <div className="title_footer">Legals</div>
-                <div className="links_list">
-                  <a href="/privacy-policy" target="_blank" className="link_f">Privacy Policy</a>
-                  <a href="/accessibility-policy" target="_blank" className="link_f">Accessibility Policy</a>
-                  <a href="/equal-housing-fair-housing" target="_blank" className="link_f">Equal Housing</a>
-                  <a href="/disclosures-licenses" target="_blank" className="link_f">Disclosures</a>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -350,9 +331,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
           <div className="last_txt">© Copyright 2026 by Sushil Gangadhar Mittal Group</div>
           <div className="web_dev_by">
             <span className="op_spec">Website by </span>
-            <a href="https://digitalgrove.in" target="_blank" rel="noreferrer" className="spec_link">
-              Dipak
-            </a>
+            <span className="spec_name">Dipak</span>
           </div>
 
         </div>

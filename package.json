@@ -1,11 +1,11 @@
 {
-  "name": "sgmg-21oaks-website",
+  "name": "sgmg-website",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node -e \"import('fs').then(fs => fs.copyFileSync('dist/index.html', 'dist/404.html'))\"",
     "preview": "vite preview"
   },
   "dependencies": {
