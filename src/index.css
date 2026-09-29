@@ -3211,6 +3211,7 @@ body.is-hero .menu {
   border-radius: 8px !important;
   overflow: hidden !important;
   height: auto !important;
+  cursor: pointer !important;
 }
 
 .image_amenities {
