@@ -341,9 +341,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
           <div className="last_txt">© Copyright 2026 by Sushil Gangadhar Mittal Group</div>
           <div className="web_dev_by">
             <span className="op_spec">Website by </span>
-            <a href="https://digitalgrove.in" target="_blank" rel="noreferrer" className="spec_link">
-              Dipak
-            </a>
+            <span className="spec_name">Dipak</span>
           </div>
 
         </div>

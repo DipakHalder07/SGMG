@@ -1138,9 +1138,15 @@
     font-size:1.45em;
   }
 
+  /* Slim, bolder CTAs on mobile. Explicit px: the inherited em chain
+     compounds differently at each breakpoint and renders inconsistently. */
   .button_apply,
   .button_schedule {
-    min-height:3.1em;padding:.75em 1em;font-size:1.45em;font-weight:600;
+    min-height: 52px;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
   }
 }
 
@@ -1381,7 +1387,11 @@
   }
 
   .button_apply,.button_schedule {
-    min-height:2.8em;padding-top:12px;padding-bottom:12px;font-size:3em;font-weight:600;
+    min-height: 50px;
+    padding: 13px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
   }
 }
 
@@ -1619,7 +1629,9 @@ height: 100dvh;
   }
   .apartment_content {
     padding-top: max(4.5rem, 14vh);
-    padding-bottom: calc(190px + 6rem);
+    /* Sits at the bottom edge, clearing only the mobile dock; the fixed
+       price card overlays it. */
+    padding-bottom: calc(53px + 1.75rem);
     padding-left: 1.35rem;
     padding-right: 1.35rem;
     height: 100%;
@@ -1692,7 +1704,7 @@ height: 100dvh;
   .apartment_content {
     height: 100%;
     padding-top: max(4.5rem, 14vh);
-    padding-bottom: calc(185px + 5.8rem);
+    padding-bottom: calc(53px + 1.5rem);
     padding-left: 1.35rem;
     padding-right: 1.35rem;
     justify-content: space-between;

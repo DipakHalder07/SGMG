@@ -4696,10 +4696,14 @@ body.is-hero .menu {
   margin-right: 1.5em;
 }
 
-.spec_link {
+.spec_link,
+.spec_name {
   color: var(--white);
-  text-decoration: underline;
   opacity: 0.85;
+}
+
+.spec_link {
+  text-decoration: underline;
 }
 
 .spec_link:hover {
