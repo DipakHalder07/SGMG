@@ -6678,34 +6678,7 @@ body.is-hero .menu {
   }
 }
 
-/* =========================================================
-   IMAGE SKELETON LOADER (see components/ImageWithSkeleton.tsx)
-   Positions react-loading-skeleton as an overlay on the image box.
-   ========================================================= */
-.img_skel {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-  line-height: 0;
-}
 
-/* react-loading-skeleton wraps its span in a container; make both fill. */
-.img_skel .img_skel_fill,
-.img_skel .img_skel_fill > span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .img_skel .react-loading-skeleton::after {
-    animation: none;
-  }
-}
 
 /* =========================================================
    iOS: release promoted compositor layers.

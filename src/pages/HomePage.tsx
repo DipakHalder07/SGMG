@@ -7,7 +7,6 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
-import ImageWithSkeleton from "../components/ImageWithSkeleton";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -1342,7 +1341,7 @@ export default function HomePage() {
                               </div>
                             </div>
                           </div>
-                          <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
+                          <img src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
                         </Link>
 
                         <div className="content_apart">
@@ -1448,7 +1447,7 @@ export default function HomePage() {
                 </h2>
                 <div className="small_box">
                   <div className="image_small">
-                    <ImageWithSkeleton src="/assets/everyday-living/living-room.jpg" alt="Luxurious Modern Living Room" className="image" loading="lazy" decoding="async" />
+                    <img src="/assets/everyday-living/living-room.jpg" alt="Luxurious Modern Living Room" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1460,7 +1459,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="right_side">
-                <ImageWithSkeleton src="/assets/everyday-living/high-rise-elevation.jpg" alt="Modern Luxury High-Rise Elevation" className="image" loading="lazy" decoding="async" />
+                <img src="/assets/everyday-living/high-rise-elevation.jpg" alt="Modern Luxury High-Rise Elevation" className="image" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -1468,12 +1467,12 @@ export default function HomePage() {
           <div className="sides_s">
             <div className="sides_wrap">
               <div className="right_side">
-                <ImageWithSkeleton src="/assets/everyday-living/modern-residential.jpg" alt="State of the Art Modern Architecture" className="image" loading="lazy" decoding="async" />
+                <img src="/assets/everyday-living/modern-residential.jpg" alt="State of the Art Modern Architecture" className="image" loading="lazy" decoding="async" />
               </div>
               <div className="left_side">
                 <div className="small_box caption_info right_box second_b">
                   <div className="image_small">
-                    <ImageWithSkeleton src="/assets/everyday-living/clubhouse-landscape.jpg" alt="Community Clubhouse and Landscape" className="image" loading="lazy" decoding="async" />
+                    <img src="/assets/everyday-living/clubhouse-landscape.jpg" alt="Community Clubhouse and Landscape" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1537,7 +1536,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                    <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
+                    <img src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                   </Link>
 
                   <div className="content_apart">
@@ -1611,7 +1610,7 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
+                        <img src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                       </Link>
                       <div className="content_apart">
                         <div className="apart_title_line">
@@ -1705,7 +1704,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <ImageWithSkeleton src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" loading="lazy" decoding="async" />
+            <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -1806,7 +1805,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <ImageWithSkeleton src={amenity.image} alt={amenity.title} className="image" loading="lazy" decoding="async" />
+                        <img src={amenity.image} alt={amenity.title} className="image" loading="lazy" decoding="async" />
                       </div>
                     </div>
                   ))}
@@ -2053,7 +2052,7 @@ export default function HomePage() {
           </div>
 
           <div className="fs_bg">
-            <ImageWithSkeleton src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" loading="lazy" decoding="async" />
+            <img src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" loading="lazy" decoding="async" />
           </div>
         </section>
 

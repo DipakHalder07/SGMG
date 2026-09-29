@@ -6,7 +6,6 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
-import ImageWithSkeleton from "../components/ImageWithSkeleton";
 import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
 
@@ -798,7 +797,7 @@ export default function ApartmentDetailPage() {
               <div className="fs_template" ref={flyerRef}>
                 <div className="fs_template_inner">
                   <div className="overlay_template"></div>
-                  <ImageWithSkeleton
+                  <img
                     src={unit.coverImage}
                     loading="eager"
                     alt={unit.name}
@@ -933,7 +932,7 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         className="image_box_mobile"
                       >
-                        <ImageWithSkeleton
+                        <img
                           src={imgUrl}
                           alt={`${unit.name} photo ${idx + 2}`}
                           loading="lazy"
@@ -966,7 +965,7 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         className="image_box_mobile"
                       >
-                        <ImageWithSkeleton
+                        <img
                           src={imgUrl}
                           alt={`${unit.name} photo ${idx + 4}`}
                           loading="lazy"
@@ -1276,7 +1275,7 @@ export default function ApartmentDetailPage() {
                         role="listitem"
                         className="list_item_image w-dyn-item w-dyn-repeater-item"
                       >
-                        <ImageWithSkeleton
+                        <img
                           src={photoUrl}
                           loading="lazy"
                           alt={`${unit.name} photo ${idx + 2}`}
@@ -1321,7 +1320,7 @@ export default function ApartmentDetailPage() {
                   className="item_gallery w-dyn-item w-dyn-repeater-item"
                 >
                   <div className="box_image_gallery">
-                    <ImageWithSkeleton
+                    <img
                       src={photoUrl}
                       loading="lazy"
                       alt={`${unit.name} slide ${idx + 1}`}
@@ -1372,7 +1371,7 @@ export default function ApartmentDetailPage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <ImageWithSkeleton
+                        <img
                           alt={item.title}
                           loading="lazy"
                           src={item.img}
