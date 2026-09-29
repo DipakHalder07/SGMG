@@ -50,9 +50,11 @@
      - Solution: Set `.header`, `.wrapper_header`, and `.grid_header` to `pointer-events: none !important`, only granting `pointer-events: auto !important` to actual clickable items (logo, pill, buttons, open drawer). Positioned `.menu_fs` on desktop as `position: absolute; left: 50%; top: calc(100% + 0.6em); transform: translate3d(-50%, ...)` to eliminate the ghost 190px grid row.
      - Added `position: relative; z-index: 13; pointer-events: auto !important; cursor: pointer;` to `.tab_gen` and `pointer-events: none` on child text in `src/apartment-detail.css`.
      - Added `ScrollTrigger.refresh()` upon tab switching in `src/pages/ApartmentDetailPage.tsx`.
-  2. **Enlarged Logo**:
-     - Desktop: Increased `.logo_box` height to `clamp(52px, 3.8vw, 64px)` and `.logo_img` to `height: clamp(48px, 3.8vw, 62px); max-height: 64px; max-width: clamp(200px, 16vw, 290px)`.
-     - Mobile: Increased `.logo_box` height to `38px` and `.logo_img` to `height: 36px; max-height: 40px; max-width: 175px` (up from 21.4px / 26px).
+  2. **Logo Big (Without Making Full Header Big)**:
+     - Scaled the brand logo itself to be prominent and clear (`.logo_img` height `clamp(44px, 3.2vw, 50px)`, max-width 240px) while keeping `.logo_box` aligned at 46px.
+     - Kept the header wrapper compact (`padding: 0.6em 2rem`).
+     - Maintained sleek 40px standard height for the center menu pill (`.menu` height: 40px, width: 23em) and the CTA button (`.button.header_cta` height: 40px).
+     - The full header remains sleek and compact at ~58px, while only the logo stands out large and clear.
   3. **Menu Item Heading Font Family**:
      - Set `.menu_txt`, `.menu_link`, `.mobile_link`, and `.mobile_link div` to `font-family: var(--font-heading, "Michroma", sans-serif) !important` with `letter-spacing: 0.02em`.
   4. **Header Font Responsiveness**:

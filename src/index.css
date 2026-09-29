@@ -578,7 +578,7 @@ body.is-hero .header {
 .wrapper_header {
   width: 100%;
   height: 100%;
-  padding: 0.85em 2rem;
+  padding: 0.6em 2rem;
   display: flex;
   box-sizing: border-box;
 }
@@ -602,8 +602,8 @@ body.is-hero .header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: clamp(52px, 3.8vw, 64px);
-  min-height: 52px;
+  height: 46px;
+  min-height: 40px;
   align-self: center;
   justify-self: start;
 }
@@ -622,10 +622,10 @@ body.is-hero .header {
 }
 
 .logo_img {
-  height: clamp(48px, 3.8vw, 62px);
-  max-height: 64px;
+  height: clamp(44px, 3.2vw, 50px);
+  max-height: 52px;
   width: auto;
-  max-width: clamp(200px, 16vw, 290px);
+  max-width: clamp(190px, 15vw, 240px);
   object-fit: contain;
   display: block;
 }
@@ -670,11 +670,11 @@ body.is-light:not(.is-hero) .header:not(.is-dark) .logo_img.logo_img_dark {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.4em;
-  width: 25em;
-  min-width: 340px;
-  height: clamp(44px, 3.2vw, 48px);
-  min-height: 44px;
-  padding: 4px 4px 4px 18px;
+  width: 23em;
+  min-width: 326px;
+  height: 2.5em;
+  min-height: 40px;
+  padding: 0.2em 0.2em 0.2em 1em;
   transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
   box-sizing: border-box;
 }
@@ -710,7 +710,7 @@ body.is-hero .menu {
   height: 100%;
   cursor: pointer;
   color: #ffffff;
-  font-size: clamp(13px, 0.95vw, 15px);
+  font-size: 13px;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.02em !important;
   user-select: none;
@@ -772,12 +772,12 @@ body.is-hero .menu {
   background-color: var(--primary, #2391cf);
   color: #ffffff;
   border-radius: 0.25em;
-  padding: 0 1.5em;
+  padding: 0 1.25em;
   height: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(12.5px, 0.88vw, 14px);
+  font-size: 12.5px;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.02em !important;
   font-weight: 500;
@@ -807,12 +807,12 @@ body.is-hero .menu {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 3px;
+    gap: 2.84px;
     width: fit-content;
     flex: 0 0 auto;
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
     text-decoration: none;
     overflow: visible;
     cursor: pointer;
@@ -820,8 +820,8 @@ body.is-hero .menu {
     border: none !important;
     padding: 0 !important;
     align-self: center;
-    --icon: 44px;
-    --shift-gap: 3px;
+    --icon: 40px;
+    --shift-gap: 2.84px;
     --dur: 650ms;
     --ease: cubic-bezier(0.83, 0, 0.17, 1);
   }
@@ -833,20 +833,20 @@ body.is-hero .menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
     box-sizing: border-box;
-    padding: 0 32px !important;
+    padding: 0 30px !important;
     white-space: nowrap;
-    transform: translateX(calc(-1 * (44px + var(--shift-gap, 3px))));
+    transform: translateX(calc(-1 * (40px + var(--shift-gap, 2.84px))));
     transition: transform var(--dur, 650ms) var(--ease, cubic-bezier(0.83, 0, 0.17, 1));
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px;
     color: #ffffff !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
     letter-spacing: 0.02em !important;
-    font-size: clamp(13.5px, 0.95vw, 15px) !important;
+    font-size: 13px !important;
     font-weight: 500;
     line-height: 1;
     overflow: hidden;
@@ -863,12 +863,12 @@ body.is-hero .menu {
   .button.header_cta .icon_box,
   .button.header_cta .icon_box.is-right,
   .button.header_cta .icon_box.is-left {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-    max-width: 44px !important;
-    max-height: 44px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -958,8 +958,8 @@ body.is-hero .menu {
   top: calc(100% + 0.6em);
   left: 50%;
   transform: translate3d(-50%, -10px, 0px);
-  width: 25em;
-  min-width: 340px;
+  width: 23em;
+  min-width: 326px;
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
@@ -4491,12 +4491,6 @@ body.is-hero .menu {
   padding: 0 !important;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
-}
-
-.venture_link:hover,
-.venture_card:hover {
-  transform: translateY(-3px) scale(1.05);
 }
 
 .venture_logo_img {
@@ -4508,24 +4502,7 @@ body.is-hero .menu {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  transition: filter 0.28s ease, transform 0.28s ease;
-}
-
-/* Subtle light drop-shadow on cosmos-global so dark text is readable on the dark background without any background box or border */
-.venture_logo_cosmos {
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
-}
-
-.venture_link:hover .venture_logo_cosmos {
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 6px rgba(162, 205, 58, 0.65));
-}
-
-.venture_logo_inox {
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
-
-.venture_link:hover .venture_logo_inox {
-  filter: drop-shadow(0 0 8px rgba(35, 145, 207, 0.65));
+  filter: none;
 }
 
 .menu_footer {
@@ -4652,7 +4629,6 @@ body.is-hero .menu {
   font-size: 0.82em;
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 

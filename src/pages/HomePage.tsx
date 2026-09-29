@@ -155,29 +155,29 @@ const apartments = [
 
 const amenitiesList = [
   {
-    title: "Landscaped Courtyard",
-    desc: "Lush green open spaces and shaded pergolas designed for peaceful evening strolls and gatherings.",
-    image: "/assets/amenities/amenity-1.avif",
+    title: "Landscaped Garden & Play Area",
+    desc: "Sculpted green lawns, flowering walkways and a dedicated children’s play zone made for unhurried evenings with family.",
+    image: "/assets/gallery/Landscape_Lawn_1.webp",
   },
   {
-    title: "Resort-Style Infinity Pool",
-    desc: "Unwind by crystal waters with poolside cabanas, sun decks, and serene leisure zones.",
-    image: "/assets/amenities/amenity-2.avif",
+    title: "Open-Air Swimming Pool",
+    desc: "A sunlit pool with wooden sun deck and pergola seating, framed by open North Bengal skies and Himalayan foothill air.",
+    image: "/assets/gallery/Swimming_Pool_1.webp",
   },
   {
-    title: "Executive Business Lounge",
-    desc: "Quiet co-working pods and conference suites crafted for uninterrupted focus and collaboration.",
-    image: "/assets/amenities/amenity-3.avif",
+    title: "Grand Community Hall",
+    desc: "An elegant air-conditioned banquet hall for pujas, weddings, annaprashan and society gatherings, with catering support.",
+    image: "/assets/gallery/CommunityHall_1.webp",
   },
   {
-    title: "State-of-the-Art Fitness Center",
-    desc: "High-performance cardiovascular machines, strength training equipment, and dedicated yoga space.",
-    image: "/assets/amenities/amenity-4.avif",
+    title: "Fully-Equipped Gymnasium",
+    desc: "Cardio and strength stations with mirrored training zones and a dedicated yoga corner, open through the day for every age.",
+    image: "/assets/gallery/Gym_1.webp",
   },
   {
-    title: "Concierge Transit Access",
-    desc: "Seamless connectivity and dedicated transport services connecting you across Siliguri with ease.",
-    image: "/assets/amenities/amenity-5.avif",
+    title: "Indoor Games Arena",
+    desc: "A double-height lounge for carrom, cards, table games and darts — the community’s favourite corner on monsoon afternoons.",
+    image: "/assets/gallery/Indoor_Games_Arena_1.webp",
   },
 ];
 
