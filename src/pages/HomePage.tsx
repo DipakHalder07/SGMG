@@ -1793,7 +1793,7 @@ export default function HomePage() {
               <div className="splide__track">
                 <div className="splide__list">
                   {amenitiesList.map((amenity) => (
-                    <div className="splide__slide" key={amenity.title}>
+                    <div className="splide__slide amenities_splide" key={amenity.title}>
                       <div className="image_amenities">
                         <div className="overlay_amenities">
                           <div className="heading_text">

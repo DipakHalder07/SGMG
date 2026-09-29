@@ -3195,13 +3195,21 @@ body.is-hero .menu {
   width: 100%;
 }
 
-.amenities_section .splide__list {
-  display: flex;
+.amenities_section .splide__list,
+.slider1.second_splide .splide__list {
+  display: flex !important;
+  gap: 8px !important;
+  column-gap: 8px !important;
 }
 
-.amenities_section .splide__slide {
-  border-radius: 8px;
-  overflow: hidden;
+.amenities_section .splide__slide,
+.slider1.second_splide .splide__slide,
+.splide__slide.amenities_splide {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: transparent !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
   height: auto !important;
 }
 
