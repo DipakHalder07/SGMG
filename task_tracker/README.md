@@ -19,8 +19,9 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
 | 9 | **Global Typography System** (Michroma for all headings, Plus Jakarta Sans for all body text) |  Completed | `index.html`, `public/webflow.min.css`, `src/index.css`, `src/*.css` | Automated computed font audit & visual screenshots across viewports |
 | 10 | **Amenities Section ("Just outside your door") Header Clearance & Proportions** (fixed header collision, generous 160px top padding matching 21oaks, balanced Michroma heading scale) |  Completed | `src/index.css` | CDP bbox measurement & visual screenshot verification at 1920px, 1440px, 390px |
 | 11 | **Amenities Card Sizing & Aspect Ratio Restoration** (restored canonical Webflow `aspect-ratio: 1440 / 1546` (~0.931), eliminated horizontal squashing clamp, restored tall editorial portrait cards ~639px high on desktop matching 21oaks.org) |  Completed | `src/index.css` | Chrome CDP measurement (595px x 639px, ratio 0.931) & visual screenshots |
-| 12 | **Mobile Purple Background & Button Icon Box Design Fix** (eliminated all legacy `#e8ceff` purple gradients from mobile apartments section; set signature SGMG green icon box `#a2cd3a` with blue text box `#2391cf`, matching 40px height & 4px border-radius, and crisp white SVG arrow) |  Completed | `public/webflow.min.css`, `src/index.css` | Mobile CDP screenshots and computed style audits |
-| 13 | *Next item from user guidance...* |  Pending | — | — |
+| 16 | **Card Title Font Size & Weight Standardization** (`.apart_title` clamp 18px-24px, Michroma 600 weight) |  Completed | `src/index.css`, `src/apartment-detail.css` | CDP bbox measurement & visual screenshots |
+| 17 | **Mobile Screen Header Sizing & Menu Drawer Opening Fix** (fixed `#w-node` ID specificity blocking drawer, balanced mobile top header logo 30px / CTA 38px, streamlined floating menu dock 46px, verified open/close) |  Completed | `src/components/Header.tsx`, `src/index.css` | Chrome CDP computed style audit & visual screenshots (390px & 1920px) |
+| 18 | *Next item from user guidance...* |  Pending | — | — |
 
 ---
 
@@ -279,6 +280,39 @@ This directory tracks all items, bug fixes, design adjustments, and improvements
       - `verify_final_apartments_mobile_390.png` (mobile apartments catalog)
   - Production build (`npm run build`) completed cleanly with 0 errors in 7.28s.
   - Zero content, images, or copy altered.
+
+---
+
+### Item 17: Mobile Screen Header Sizing & Menu Drawer Opening Fix
+- **Goal:**
+  1. Fix the mobile menu drawer not showing when clicking "Menu" on mobile screens.
+  2. Refine and balance the mobile header size (both top header bar with logo & Apply button, and the floating menu pill dock).
+- **Root Cause:**
+  - **Menu Not Showing:** In [src/index.css](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/index.css) lines 1279-1309, `#w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b, .menu_fs` had `display: none !important; opacity: 0 !important;`. The active rule `.menu_fs.is-open` only had class specificity `(0, 2, 0)`, which was completely overridden by the `#w-node-...` ID selector's specificity `(1, 0, 0)` with `!important`. As a result, clicking "Menu" added `.is-open` to the element in the DOM, but it remained invisible with `display: none`.
+  - **Mobile Header Sizing:**
+    - Top header had a shrunken `24px` height and `max-width: 120px` logo alongside an awkward `37.05px` Apply CTA, leaving the brand mark cramped and illegible.
+    - Floating bottom menu pill had an oversized `53.2px` height with `43.61px` inner button, appearing bulky over mobile page content.
+- **Changes:**
+  - **Menu Drawer Specificity & Display Fix:**
+    - Removed `!important` from the base hidden state of `.menu_fs` and added `#w-node-_4a311b66-9aad-414b-99d1-0b895b530122-671c8e8b.is-open, .menu_fs.is-open` with `display: flex !important; opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important;` on both mobile and desktop.
+    - Refined outside click handler in [src/components/Header.tsx](file:///c:/Users/Ayushman/Downloads/SGMG-website%202/SGMG-website%202/src/components/Header.tsx) to check `menuEl?.contains(target)` so edge clicks on the floating pill container do not immediately dismiss the drawer.
+  - **Top Header Bar Sizing & Proportions:**
+    - Standardized `.wrapper_header` to `padding: 10px clamp(14px, 4vw, 20px) !important;` (height ~60px).
+    - Scaled `.logo_img` to `height: 30px !important; max-height: 32px !important; width: auto !important; max-width: clamp(130px, 38vw, 165px) !important;`, rendering the SGMG logo clearly.
+    - Standardized `.button.header_cta` to `height: 38px !important;` with `.text_box` padding `0 clamp(12px, 3vw, 16px)` in `Michroma` 600 weight, and signature SGMG green `.icon_box` at `38px x 38px`.
+  - **Floating Menu Dock Proportions:**
+    - Streamlined `.menu` to `height: 46px !important; min-height: 46px !important;` with `border-radius: 6px !important;` and `max-width: clamp(290px, 86vw, 340px) !important;`.
+    - Calibrated `.header_button` ("Schedule a Tour") to `height: 40px !important; padding: 0 16px !important; font-size: 11px !important;` in `Michroma` 600 weight.
+    - Aligned drawer `.menu_fs` to sit cleanly 8px above the dock (`bottom: calc(clamp(12px, 2.5vh, 18px) + 46px + 8px) !important;`).
+- **Verification:**
+  - Automated Chrome CDP tests at 390px mobile viewport:
+    - Top header height: `60px`, logo height: `30px`, Apply button: `38px`.
+    - Floating dock: `46px` height, `335.4px` width, `18px` bottom margin.
+    - Clicking `.menu_link`: `.menu_fs` opens instantly with `display: flex`, `opacity: 1`, `pointer-events: auto`, and all 8 links + Contact CTA cleanly accessible.
+    - Clicking `.menu_link` again: closes smoothly with `display: none`, `opacity: 0`.
+    - Verified on `/`, `/apartments`, `/contact`, and verified 1920px desktop dropdown continues working flawlessly.
+  - Production build (`npm run build`) passed cleanly with 0 errors in 3.40s.
+  - Zero copy or images altered.
 
 ---
 

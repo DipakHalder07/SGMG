@@ -107,9 +107,9 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     const handleOutsideClick = (e: MouseEvent) => {
       if (!menuOpen) return;
       const target = e.target as HTMLElement;
-      const menuLink = headerRef.current?.querySelector(".menu_link");
+      const menuEl = headerRef.current?.querySelector(".menu");
       const menuFs = headerRef.current?.querySelector(".menu_fs");
-      if (menuLink?.contains(target) || menuFs?.contains(target)) {
+      if (menuEl?.contains(target) || menuFs?.contains(target)) {
         return;
       }
       setMenuOpen(false);
