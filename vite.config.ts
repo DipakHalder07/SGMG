@@ -15,6 +15,9 @@ export default defineConfig({
     host: true,
   },
   build: {
+    // Hashed build output lives apart from public/assets, so vercel.json can
+    // cache it forever without also freezing replaceable images.
+    assetsDir: "static",
     rollupOptions: {
       output: {
         manualChunks: {
