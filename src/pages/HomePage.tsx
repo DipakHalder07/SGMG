@@ -94,60 +94,60 @@ const apartments = [
   {
     id: "d1",
     name: "D1",
-    price: "695.00",
-    beds: "4 Bed",
+    price: "61.65 L",
+    beds: "3 Bed",
     baths: "2 Baths",
-    sqft: "1,108",
+    sqft: "1,340",
     image: "/__l5e/assets-v1/99fd06dd-6afa-4b67-abf8-39ede97c7f0c/13-D1-Gen.avif",
-    desc: "A thoughtfully planned 4-bedroom residence offering generous natural light, expansive living spaces, and refined architecture tailored for modern families.",
+    desc: "A 4-bedroom layout that gives everyone their own space to unwind, recharge, and stay focused while shared areas keep everyday living easy and connected.",
   },
   {
     id: "d1-premium",
-    name: "D1 Premium",
-    price: "730.00",
-    beds: "4 Bed",
-    baths: "2 Baths",
-    sqft: "1,108",
-    image: "/__l5e/assets-v1/acd690d1-5688-4922-bb11-74d7b9907009/14-D1-Hero.avif",
+    name: "Green View",
+    price: "72.40 L",
+    beds: "3 Bed",
+    baths: "3 Baths",
+    sqft: "1,340",
+    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
   },
   {
     id: "d2",
     name: "D2",
-    price: "760.00",
+    price: "77.50 L",
     beds: "4 Bed",
-    baths: "4 Baths",
-    sqft: "1,372",
+    baths: "3 Baths",
+    sqft: "1,685",
     image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
     desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
   },
   {
     id: "d2-premium",
     name: "D2 Premium",
-    price: "820.00",
+    price: "91.00 L",
     beds: "4 Bed",
     baths: "4 Baths",
-    sqft: "1,372",
+    sqft: "1,685",
     image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
     desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
   },
   {
     id: "c1",
     name: "C1",
-    price: "815.00",
-    beds: "3 Bed",
-    baths: "3 Baths",
-    sqft: "1,107",
+    price: "50.85 L",
+    beds: "2 Bed",
+    baths: "2 Baths",
+    sqft: "1,105",
     image: "/assets/plans/C1-Gen.avif",
     desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
   },
   {
     id: "c1-premium",
     name: "C1 Premium",
-    price: "865.00",
-    beds: "3 Bed",
-    baths: "3 Baths",
-    sqft: "1,107",
+    price: "59.70 L",
+    beds: "2 Bed",
+    baths: "2 Baths",
+    sqft: "1,105",
     image: "/assets/plans/C1-Hero.avif",
     desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
   },
@@ -155,29 +155,29 @@ const apartments = [
 
 const amenitiesList = [
   {
-    title: "Landscaped Courtyard",
-    desc: "Lush green open spaces and shaded pergolas designed for peaceful evening strolls and gatherings.",
-    image: "/assets/amenities/amenity-1.avif",
+    title: "Landscaped Garden & Play Area",
+    desc: "Sculpted green lawns, flowering walkways and a dedicated children’s play zone made for unhurried evenings with family.",
+    image: "/assets/gallery/Landscape_Lawn_1.webp",
   },
   {
-    title: "Resort-Style Infinity Pool",
-    desc: "Unwind by crystal waters with poolside cabanas, sun decks, and serene leisure zones.",
-    image: "/assets/amenities/amenity-2.avif",
+    title: "Open-Air Swimming Pool",
+    desc: "A sunlit pool with wooden sun deck and pergola seating, framed by open North Bengal skies and Himalayan foothill air.",
+    image: "/assets/gallery/Swimming_Pool_1.webp",
   },
   {
-    title: "Executive Business Lounge",
-    desc: "Quiet co-working pods and conference suites crafted for uninterrupted focus and collaboration.",
-    image: "/assets/amenities/amenity-3.avif",
+    title: "Grand Community Hall",
+    desc: "An elegant air-conditioned banquet hall for pujas, weddings, annaprashan and society gatherings, with catering support.",
+    image: "/assets/gallery/CommunityHall_1.webp",
   },
   {
-    title: "State-of-the-Art Fitness Center",
-    desc: "High-performance cardiovascular machines, strength training equipment, and dedicated yoga space.",
-    image: "/assets/amenities/amenity-4.avif",
+    title: "Fully-Equipped Gymnasium",
+    desc: "Cardio and strength stations with mirrored training zones and a dedicated yoga corner, open through the day for every age.",
+    image: "/assets/gallery/Gym_1.webp",
   },
   {
-    title: "Concierge Transit Access",
-    desc: "Seamless connectivity and dedicated transport services connecting you across Siliguri with ease.",
-    image: "/assets/amenities/amenity-5.avif",
+    title: "Indoor Games Arena",
+    desc: "A double-height lounge for carrom, cards, table games and darts — the community’s favourite corner on monsoon afternoons.",
+    image: "/assets/gallery/Indoor_Games_Arena_1.webp",
   },
 ];
 
@@ -242,11 +242,20 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
-  // Property Listing Card Slider State
+  // Property Listing Card Slider State for "Everything modern living should be"
   const [propertySlideIndex, setPropertySlideIndex] = useState(0);
   const [visibleSlides, setVisibleSlides] = useState(3);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchDeltaX, setTouchDeltaX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const sliderViewportRef = useRef<HTMLDivElement>(null);
+  const isPointerDownRef = useRef(false);
+  const didDragRef = useRef(false);
+  const pointerStartXRef = useRef(0);
+  const pointerStartYRef = useRef(0);
+  const pointerStartTimeRef = useRef(0);
+  const currentDragOffsetRef = useRef(0);
+  const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -271,23 +280,116 @@ export default function HomePage() {
     }
   }, [maxPropertySlideIndex, propertySlideIndex]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-    setTouchDeltaX(0);
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    isPointerDownRef.current = true;
+    didDragRef.current = false;
+    pointerStartXRef.current = e.clientX;
+    pointerStartYRef.current = e.clientY;
+    pointerStartTimeRef.current = Date.now();
+    currentDragOffsetRef.current = 0;
+    setDragOffset(0);
   };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    setTouchDeltaX(e.touches[0].clientX - touchStartX);
-  };
-  const handleTouchEnd = () => {
-    if (touchDeltaX < -45) {
-      setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
-    } else if (touchDeltaX > 45) {
-      setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current) return;
+    const dx = e.clientX - pointerStartXRef.current;
+    const dy = e.clientY - pointerStartYRef.current;
+
+    if (!didDragRef.current) {
+      // If mostly vertical scrolling, cancel drag so user can scroll page normally
+      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) {
+        isPointerDownRef.current = false;
+        return;
+      }
+      if (Math.abs(dx) > 6) {
+        didDragRef.current = true;
+        setIsDragging(true);
+        try {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+        } catch (_) {}
+      }
     }
-    setTouchStartX(null);
-    setTouchDeltaX(0);
+
+    if (didDragRef.current) {
+      let effectiveDx = dx;
+      // Boundary resistance factor for organic elastic feel
+      if (propertySlideIndex === 0 && dx > 0) {
+        effectiveDx = dx * 0.32;
+      } else if (propertySlideIndex >= maxPropertySlideIndex && dx < 0) {
+        effectiveDx = dx * 0.32;
+      }
+      currentDragOffsetRef.current = effectiveDx;
+      setDragOffset(effectiveDx);
+    }
   };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current && !isDragging) return;
+    isPointerDownRef.current = false;
+
+    try {
+      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+
+    if (didDragRef.current) {
+      const dx = currentDragOffsetRef.current;
+      const dt = Math.max(1, Date.now() - pointerStartTimeRef.current);
+      const velocity = dx / dt; // px per ms
+
+      const viewportWidth = sliderViewportRef.current?.clientWidth || window.innerWidth;
+      const slideWidth = viewportWidth / visibleSlides;
+      const threshold = Math.min(80, Math.max(35, slideWidth * 0.18));
+
+      if (dx < -threshold || velocity < -0.3) {
+        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
+      } else if (dx > threshold || velocity > 0.3) {
+        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+      }
+
+      setDragOffset(0);
+      setIsDragging(false);
+
+      setTimeout(() => {
+        didDragRef.current = false;
+      }, 100);
+    } else {
+      setDragOffset(0);
+      setIsDragging(false);
+    }
+  };
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
+    isPointerDownRef.current = false;
+    try {
+      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+    setDragOffset(0);
+    setIsDragging(false);
+    setTimeout(() => {
+      didDragRef.current = false;
+    }, 100);
+  };
+
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(e.deltaX) > 25) {
+      if (wheelTimeoutRef.current) return;
+      if (e.deltaX > 25) {
+        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
+      } else if (e.deltaX < -25) {
+        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
+      }
+      wheelTimeoutRef.current = setTimeout(() => {
+        wheelTimeoutRef.current = null;
+      }, 400);
+    }
+  };
+
+  const apartmentsSectionRef = useRef<HTMLElement>(null);
 
   const bgCurrentRef = useRef<HTMLImageElement>(null);
   const bgNextRef = useRef<HTMLImageElement>(null);
@@ -341,10 +443,10 @@ export default function HomePage() {
 
       if (!mode) {
         const hero = document.querySelector<HTMLElement>('[data-section="hero"]');
-        if (hero && hero.getBoundingClientRect().bottom <= y) {
-          mode = "light";
-        } else {
+        if (hero && hero.getBoundingClientRect().top <= y && hero.getBoundingClientRect().bottom > y) {
           mode = "hero";
+        } else {
+          mode = "light";
         }
       }
 
@@ -460,6 +562,8 @@ export default function HomePage() {
 
 
 
+
+
   // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -496,6 +600,151 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
+  // 4. Apartments Cards Horizontal Scroll GSAP ScrollTrigger (Desktop)
+  useEffect(() => {
+    const section = apartmentsSectionRef.current;
+    if (!section) return;
+
+    const sticky = section.querySelector<HTMLElement>(".wrapper_apartments");
+    const title = section.querySelector<HTMLElement>(".heading_apartments");
+    const desktopViewport = section.querySelector<HTMLElement>(".apart_cards_viewport.only_desktop");
+    const track = desktopViewport?.querySelector<HTMLElement>(".apart_cards_track");
+    const cards = gsap.utils.toArray<HTMLElement>(track?.querySelectorAll(".apart_card") || []);
+    const scribbles = gsap.utils.toArray<HTMLElement>(
+      title?.querySelectorAll('[data-scribble="4"].scribble-wrap') || []
+    );
+
+    if (!sticky || !title || !desktopViewport || !track || cards.length < 2) return;
+    const trackEl = track;
+
+    let bg = sticky.querySelector<HTMLElement>(".apartments_bg_gradient");
+    if (!bg) {
+      bg = document.createElement("div");
+      bg.className = "apartments_bg_gradient";
+      sticky.prepend(bg);
+    }
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 992px)", () => {
+      const vw = window.innerWidth;
+      const getTrackWidth = () => trackEl.scrollWidth || (cards.length * 360 + (cards.length - 1) * 40);
+      const xStart = vw + 220;
+
+      gsap.set(trackEl, { x: xStart, force3D: true });
+      gsap.set(title, { y: 0, opacity: 1, scale: 1 });
+      gsap.set(bg, { opacity: 0 });
+      gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
+
+      const presets = [
+        { dir: 1, baseRot: -3.2, xAmp: 8, yAmp: 3.5, rotAmp: 3.2 },
+        { dir: -1, baseRot: 3.0, xAmp: 9, yAmp: 4.5, rotAmp: 3.4 },
+        { dir: 1, baseRot: -2.8, xAmp: 7, yAmp: 3.0, rotAmp: 2.9 },
+        { dir: -1, baseRot: 3.4, xAmp: 8, yAmp: 4.0, rotAmp: 3.6 },
+      ];
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+        gsap.set(card, {
+          xPercent: 0,
+          yPercent: 0,
+          rotation: p.baseRot,
+          force3D: true,
+        });
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=430%",
+          pin: sticky,
+          pinSpacing: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(title, { y: -240, duration: 0.3 }, 0.0)
+        .to(bg, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.06)
+        .to(
+          scribbles,
+          { "--scribble-line-color": "#292929", duration: 0.45, ease: "power2.out" },
+          0.1
+        )
+        .to(trackEl, { x: () => -(getTrackWidth() + 220), duration: 1.0 }, 0.08)
+        .to(title, { y: 0, duration: 0.24 }, 0.82);
+
+      cards.forEach((card: any, i) => {
+        const p = presets[i % presets.length];
+
+        tl.to(
+          card,
+          {
+            xPercent: p.dir * p.xAmp,
+            yPercent: -p.yAmp,
+            rotation: p.baseRot + p.rotAmp,
+            duration: 0.24,
+          },
+          0.1
+        )
+          .to(
+            card,
+            {
+              xPercent: -p.dir * (p.xAmp * 0.7),
+              yPercent: p.yAmp * 0.55,
+              rotation: p.baseRot - p.rotAmp * 0.7,
+              duration: 0.26,
+            },
+            0.36
+          )
+          .to(
+            card,
+            {
+              xPercent: p.dir * (p.xAmp * 0.35),
+              yPercent: -p.yAmp * 0.3,
+              rotation: p.baseRot + 0.8,
+              duration: 0.24,
+            },
+            0.64
+          );
+      });
+
+      // Refresh on image / font load
+      const imgs = Array.from(desktopViewport.querySelectorAll("img"));
+      imgs.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+          img.addEventListener("error", () => ScrollTrigger.refresh(), { once: true });
+        }
+      });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
+      }
+
+      ScrollTrigger.refresh();
+      const tId = setTimeout(() => ScrollTrigger.refresh(), 250);
+
+      return () => {
+        clearTimeout(tId);
+        gsap.set(trackEl, { clearProps: "x,transform" });
+        gsap.set(title, { clearProps: "y,opacity,scale,transform" });
+        gsap.set(bg, { clearProps: "opacity" });
+        gsap.set(scribbles, { "--scribble-line-color": "#2391cf" });
+        cards.forEach((card: any) =>
+          gsap.set(card, { clearProps: "xPercent,yPercent,rotation,transform" })
+        );
+      };
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
+
 
 
   // 5. Splide Carousel for Amenities and Mobile Apartments
@@ -514,24 +763,28 @@ export default function HomePage() {
               perMove: 1,
               focus: 0,
               type: "slide",
-              gap: "1.5rem",
+              gap: "0rem",
               arrows: false,
               pagination: false,
               speed: 800,
+              trimSpace: true,
+              dragAngleThreshold: 60,
+              rewind: false,
+              rewindSpeed: 500,
               breakpoints: {
                 991: {
                   perPage: 2,
-                  gap: "1rem",
+                  gap: "0rem",
                   padding: { right: "2rem" },
                 },
                 767: {
                   perPage: 1,
-                  gap: "1rem",
+                  gap: "0rem",
                   padding: { right: "2rem" },
                 },
                 479: {
                   perPage: 1,
-                  gap: "0.85rem",
+                  gap: "0rem",
                   padding: { left: "0rem", right: "2.6rem" },
                 },
               },
@@ -1005,7 +1258,7 @@ export default function HomePage() {
         </section>
 
         {/* PROPERTY LISTINGS SECTION */}
-        <section className="dynamic_section property_listing_section" id="apartments" data-section="light">
+        <section className="dynamic_section property_listing_section" id="residences" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything modern<br />
@@ -1016,16 +1269,27 @@ export default function HomePage() {
           <div className="property_slider_container">
             <div className="property_slider_wrapper">
               <div
-                className="property_slider_viewport"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
+                ref={sliderViewportRef}
+                className={`property_slider_viewport ${isDragging ? "is-dragging" : ""}`}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerCancel}
+                onWheel={handleWheel}
+                onClickCapture={(e) => {
+                  if (didDragRef.current) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                }}
               >
                 <div
                   className="property_slider_track"
                   style={{
-                    transform: `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
-                    transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                    transform: isDragging
+                      ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
+                      : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
+                    transition: isDragging ? "none" : "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
                   }}
                 >
                   {apartments.map((apart) => (
@@ -1038,7 +1302,13 @@ export default function HomePage() {
                         <Link
                           to={`/apartments/${apart.id}`}
                           className="apart_image"
+                          draggable={false}
                           style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                          onClick={(e) => {
+                            if (didDragRef.current) {
+                              e.preventDefault();
+                            }
+                          }}
                         >
                           <div className="overlay_tags">
                             <div className="tag_available">
@@ -1048,26 +1318,26 @@ export default function HomePage() {
                             <div className="tags_info">
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.beds}</div>
                               </div>
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.baths}</div>
                               </div>
                               <div className="tag_info">
                                 <div className="icon_tag">
-                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" draggable={false} />
                                 </div>
                                 <div>{apart.sqft}</div>
                                 <div>ft<sup>2</sup></div>
                               </div>
                             </div>
                           </div>
-                          <img src={apart.image} alt={apart.name} className="image" />
+                          <img src={apart.image} alt={apart.name} className="image" draggable={false} />
                         </Link>
 
                         <div className="content_apart">
@@ -1076,14 +1346,20 @@ export default function HomePage() {
                               <Link
                                 to={`/apartments/${apart.id}`}
                                 className="apart_title"
+                                draggable={false}
                                 style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                                onClick={(e) => {
+                                  if (didDragRef.current) {
+                                    e.preventDefault();
+                                  }
+                                }}
                               >
                                 {apart.name}
                               </Link>
                             </div>
                             <div className="price_box">
                               <div className="icon_price">
-                                <img src="/assets/icons/price-icon.png" alt="₹" className="image" />
+                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" draggable={false} />
                               </div>
                               <div className="price_txt">{apart.price}</div>
                             </div>
@@ -1099,6 +1375,7 @@ export default function HomePage() {
                               href={`/apartments/${apart.id}`}
                               onClick={(e) => {
                                 e.preventDefault();
+                                if (didDragRef.current) return;
                                 navigate(`/apartments/${apart.id}`);
                               }}
                             />
@@ -1207,6 +1484,200 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* APARTMENTS SECTION (Find the home that fits your life) */}
+      <section ref={apartmentsSectionRef} data-section="light" className="apartments" id="apartments">
+        <div className="wrapper_apartments">
+          <div className="apartments_bg_gradient"></div>
+          <div className="heading_apartments">
+            <h2 className="h2 smaller">
+              Find the home<br />
+              that fits <span data-scribble="4" className="scribble-wrap scribble-visible">your life</span>
+            </h2>
+          </div>
+
+          {/* Desktop Horizontal Track */}
+          <div className="apart_cards_viewport only_desktop">
+            <div className="apart_cards_track">
+              {apartments.slice(0, 4).map((apart) => (
+                <div className="apart_card" key={apart.id}>
+                  <Link
+                    to={`/apartments/${apart.id}`}
+                    className="apart_image"
+                    style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                  >
+                    <div className="overlay_tags">
+                      <div className="tag_available">
+                        <div className="dot_available"></div>
+                        <div>Available</div>
+                      </div>
+                      <div className="tags_info">
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bed-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.beds}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/bath-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.baths}</div>
+                        </div>
+                        <div className="tag_info">
+                          <div className="icon_tag">
+                            <img src="/assets/icons/ft-icon.png" alt="" className="image" />
+                          </div>
+                          <div>{apart.sqft}</div>
+                          <div>ft<sup>2</sup></div>
+                        </div>
+                      </div>
+                    </div>
+                    <img src={apart.image} alt={apart.name} className="image" />
+                  </Link>
+
+                  <div className="content_apart">
+                    <div className="apart_title_line">
+                      <div>
+                        <Link
+                          to={`/apartments/${apart.id}`}
+                          className="apart_title"
+                          style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                        >
+                          {apart.name}
+                        </Link>
+                      </div>
+                      <div className="price_box">
+                        <div className="icon_price">
+                          <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
+                        </div>
+                        <div className="price_txt">{apart.price}</div>
+                      </div>
+                    </div>
+
+                    <div className="desc_home">
+                      <div className="p_gen black specific">{apart.desc}</div>
+                    </div>
+
+                    <div className="explore_button" style={{ marginTop: "18px" }}>
+                      <WebflowButton
+                        text="Explore Details"
+                        href={`/apartments/${apart.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/apartments/${apart.id}`);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Touch Splide Slider */}
+          <div className="container only_mobile">
+            <div className="splide slider1">
+              <div className="splide__track">
+                <div className="splide__list">
+                  {apartments.map((apart) => (
+                    <div className="splide__slide apart_card" key={apart.id}>
+                      <Link
+                        to={`/apartments/${apart.id}`}
+                        className="apart_image"
+                        style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                      >
+                        <div className="overlay_tags">
+                          <div className="tag_available">
+                            <div className="dot_available"></div>
+                            <div>Available</div>
+                          </div>
+                          <div className="tags_info">
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bed-icon.png" alt="" className="image" /></div>
+                              <div>{apart.beds}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/bath-icon.png" alt="" className="image" /></div>
+                              <div>{apart.baths}</div>
+                            </div>
+                            <div className="tag_info">
+                              <div className="icon_tag"><img src="/assets/icons/ft-icon.png" alt="" className="image" /></div>
+                              <div>{apart.sqft}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <img src={apart.image} alt={apart.name} className="image" />
+                      </Link>
+                      <div className="content_apart">
+                        <div className="apart_title_line">
+                          <Link
+                            to={`/apartments/${apart.id}`}
+                            className="apart_title"
+                            style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                          >
+                            {apart.name}
+                          </Link>
+                          <div className="price_box">
+                            <div className="icon_price">
+                              <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" />
+                            </div>
+                            <div className="price_txt">{apart.price}</div>
+                          </div>
+                        </div>
+                        <div className="desc_home"><div className="p_gen black specific">{apart.desc}</div></div>
+                        <div className="explore_button" style={{ marginTop: "16px" }}>
+                          <WebflowButton
+                            text="Explore Details"
+                            href={`/apartments/${apart.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate(`/apartments/${apart.id}`);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
+              <div className="pagination_arrows">
+                <ul className="splide__pagination"></ul>
+                <div className="splide__arrows">
+                  <button
+                    className="splide__arrow splide__arrow--prev"
+                    type="button"
+                    aria-label="Previous apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go("<");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-left.svg" alt="Previous" />
+                  </button>
+                  <button
+                    className="splide__arrow splide__arrow--next"
+                    type="button"
+                    aria-label="Next apartment"
+                    onClick={() => {
+                      const apartInst = splideInstancesRef.current.find(
+                        (inst) => !inst.root.classList.contains("second_splide")
+                      );
+                      apartInst?.go(">");
+                    }}
+                  >
+                    <img src="/assets/icons/chevron-right.svg" alt="Next" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* FULLSCREEN SECTION (Closer than you think) */}
       <section className="fs" id="location">
@@ -1229,7 +1700,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of SGMG Residences in Siliguri" className="image" />
+            <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
           </div>
         </div>
       </section>

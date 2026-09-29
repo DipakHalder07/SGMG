@@ -21,10 +21,8 @@ export interface ApartmentUnit {
     livingRoom: string[];
     bedroom: string[];
   };
-  fees: {
-    application: string;
-    admin: string;
-  };
+  pricePerSqft: string;
+  charges: { label: string; value: string }[];
 }
 
 export const APARTMENTS_DATA: ApartmentUnit[] = [
@@ -32,13 +30,13 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     id: "d1",
     name: "D1",
     type: "General",
-    bedrooms: 4,
+    bedrooms: 3,
     bathrooms: 2,
-    beds: "4 Bed",
+    beds: "3 Bed",
     baths: "2 Baths",
-    sqft: "1,108",
-    price: 795.00,
-    priceFormatted: "795.00",
+    sqft: "1,340",
+    price: 61.65,
+    priceFormatted: "61.65 L",
     status: "Available",
     coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bae_D1-Gen.avif",
     gallery: [
@@ -59,58 +57,72 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       livingRoom: ["Expansive lounge", "Dining hall space", "Designer tile floor", "Wide balcony access"],
       bedroom: ["Spacious king suite", "Cross ventilation", "Attached toilet space", "Wardrobe niche", "High-speed optical point"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹4.32 L" },
+      { label: "GST (5%, under construction)", value: "₹3.08 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹4,600 / sq ft"
   },
   {
     id: "d1-premium",
-    name: "D1 Premium",
+    name: "Green View",
     type: "Premium",
-    bedrooms: 4,
-    bathrooms: 2,
-    beds: "4 Bed",
-    baths: "2 Baths",
-    sqft: "1,108",
-    price: 730.00,
-    priceFormatted: "730.00",
+    bedrooms: 3,
+    bathrooms: 3,
+    beds: "3 Bed",
+    baths: "3 Baths",
+    sqft: "1,340",
+    price: 72.40,
+    priceFormatted: "72.40 L",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb0_D1-Hero.avif",
+    coverImage: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
     gallery: [
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba2_D1-1.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba0_D1-2.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba1_D1-3.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193ba3_D1-4.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b9f_D1-5.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bbb_D1-6.avif",
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bba_D1-7.avif"
+      "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
+      "/images/apartments/d1-premium/06_living_room_interior_architectural_photograph_of_a_bright_spacious_modern.png",
+      "/images/apartments/d1-premium/07_master_bedroom_high_end_interior_photograph_of_a_master_bedroom_in_green.png",
+      "/images/apartments/d1-premium/08_second_bedroom_realistic_family_and_guest_bedroom_in_green_view_residency.png",
+      "/images/apartments/d1-premium/09_modern_kitchen_architectural_interior_photo_of_a_premium_modular_kitchen.png",
+      "/images/apartments/d1-premium/10_dining_area_sophisticated_open_plan_dining_space_in_green_view_residency.png",
+      "/images/apartments/d1-premium/16_children_s_play_area_dedicated_children_s_play_park_within_the_green_view.png",
+      "/images/apartments/d1-premium/17_clubhouse_community_space_upscale_community_lounge_and_clubhouse_interior_at.png",
+      "/images/apartments/d1-premium/18_parking_area_clean_well_lit_covered_and_open_residential_parking_bay_at.png",
+      "/images/apartments/d1-premium/19_blue_hour_exterior_twilight_blue_hour_architectural_photograph_of_green_view.png",
+      "/images/apartments/d1-premium/20_premium_website_hero_image_spectacular_wide_angle_elevated_hero_photograph.png"
     ],
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
     aboutText: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
     storyTitle: "Bespoke finishes and panoramic views",
-    storyDesc: "D1 Premium elevates residential living with imported vitrified tile flooring, designer sanitary fixtures, and generous double-glazed windows. Enjoy expansive living areas, an Italian-inspired modular kitchen, and serene private balconies overlooking Siliguri's greenery.",
+    storyDesc: "Green View elevates residential living with imported vitrified tile flooring, designer sanitary fixtures, and generous double-glazed windows. Enjoy expansive living areas, an Italian-inspired modular kitchen, and serene private balconies overlooking Siliguri's greenery.",
     amenities: {
       kitchen: ["Italian-finish modular units", "Quartz worktops", "Double stainless sink", "Piped gas provision", "Separate utility"],
       livingRoom: ["Double-aspect grand hall", "Recessed LED lighting", "Polished vitrified floors", "Panoramic deck"],
       bedroom: ["Master suite balcony", "En-suite bathroom", "Hardwood-style tiling", "Walk-in closet space"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹5.07 L" },
+      { label: "GST (5%, under construction)", value: "₹3.62 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹5,400 / sq ft"
   },
   {
     id: "d2",
     name: "D2",
     type: "General",
     bedrooms: 4,
-    bathrooms: 4,
+    bathrooms: 3,
     beds: "4 Bed",
-    baths: "4 Baths",
-    sqft: "1,372",
-    price: 760.00,
-    priceFormatted: "760.00",
+    baths: "3 Baths",
+    sqft: "1,685",
+    price: 77.50,
+    priceFormatted: "77.50 L",
     status: "Available",
     coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193baf_D2-Gen.avif",
     gallery: [
@@ -131,10 +143,15 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       livingRoom: ["Grand drawing room", "Formal dining alcove", "Decorative false ceiling points", "Expansive picture windows"],
       bedroom: ["4 Private en-suite baths", "Dressing areas", "Anti-skid premium tiles", "Branded CP sanitary ware"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹5.42 L" },
+      { label: "GST (5%, under construction)", value: "₹3.88 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹4,600 / sq ft"
   },
   {
     id: "d2-premium",
@@ -144,9 +161,9 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     bathrooms: 4,
     beds: "4 Bed",
     baths: "4 Baths",
-    sqft: "1,372",
-    price: 820.00,
-    priceFormatted: "820.00",
+    sqft: "1,685",
+    price: 91.00,
+    priceFormatted: "91.00 L",
     status: "Available",
     coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb3_D2-Hero.avif",
     gallery: [
@@ -167,22 +184,27 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       livingRoom: ["Custom accent wall detailing", "Designer lighting channels", "Grand terrace deck", "Pendant chandelier fixture"],
       bedroom: ["En-suite luxury bath with glass partition", "Rain showerhead", "Walk-in wardrobe", "Sound-insulated glazing"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹6.37 L" },
+      { label: "GST (5%, under construction)", value: "₹4.55 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹5,400 / sq ft"
   },
   {
     id: "c1",
     name: "C1",
     type: "General",
-    bedrooms: 3,
-    bathrooms: 3,
-    beds: "3 Bed",
-    baths: "3 Baths",
-    sqft: "1,107",
-    price: 815.00,
-    priceFormatted: "815.00",
+    bedrooms: 2,
+    bathrooms: 2,
+    beds: "2 Bed",
+    baths: "2 Baths",
+    sqft: "1,105",
+    price: 50.85,
+    priceFormatted: "50.85 L",
     status: "Waitlist",
     coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb2_C1-Gen.avif",
     gallery: [
@@ -203,22 +225,27 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       livingRoom: ["Sunlit drawing room", "Dining space", "Ceramic tile flooring", "Balcony sit-out"],
       bedroom: ["3 Private baths", "Spacious room layout", "Ventilated windows", "Concealed copper wiring"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹3.56 L" },
+      { label: "GST (5%, under construction)", value: "₹2.54 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹4,600 / sq ft"
   },
   {
     id: "c1-premium",
     name: "C1 Premium",
     type: "Premium",
-    bedrooms: 3,
-    bathrooms: 3,
-    beds: "3 Bed",
-    baths: "3 Baths",
-    sqft: "1,107",
-    price: 865.00,
-    priceFormatted: "865.00",
+    bedrooms: 2,
+    bathrooms: 2,
+    beds: "2 Bed",
+    baths: "2 Baths",
+    sqft: "1,105",
+    price: 59.70,
+    priceFormatted: "59.70 L",
     status: "Available",
     coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bb1_C1-Hero.avif",
     gallery: [
@@ -239,10 +266,15 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
       livingRoom: ["Designer lounge space", "Recessed cove lighting", "Terrace view balcony", "Breakfast counter"],
       bedroom: ["3 Private en-suite baths", "Imported sanitary fittings", "Large UPVC acoustic windows", "Wardrobe niches"]
     },
-    fees: {
-      application: "₹50.00",
-      admin: "₹150.00"
-    }
+    charges: [
+      { label: "Booking amount", value: "₹2,00,000" },
+      { label: "Stamp duty & registration (7%)", value: "₹4.18 L" },
+      { label: "GST (5%, under construction)", value: "₹2.98 L" },
+      { label: "Covered car parking", value: "₹3,50,000" },
+      { label: "Maintenance deposit (12 months)", value: "₹75,000" },
+      { label: "Legal & documentation", value: "₹25,000" },
+    ],
+    pricePerSqft: "₹5,400 / sq ft"
   }
 ];
 

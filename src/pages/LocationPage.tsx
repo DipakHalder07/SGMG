@@ -711,7 +711,7 @@ export default function LocationPage() {
                 >
                   Siliguri Mall
                 </span>
-                . Near Everything.
+                .<br />Near Everything.
               </h2>
             </div>
           </div>
@@ -753,7 +753,7 @@ export default function LocationPage() {
                               {place.walk}
                             </span>
                           </div>
-                          <h3 className="title_map_card">{place.name}</h3>
+                          <div className="title_map_card">{place.name}</div>
                         </div>
                       </div>
                     </div>
@@ -777,7 +777,9 @@ export default function LocationPage() {
         <section className="faqs black" data-section="dark">
           <div className="wrapper_general basic">
             <div className="faq_heading white_ver">
-              <h2 className="h2 smaller">Frequently asked{"\n"}questions</h2>
+              <h2 className="h2 smaller">
+                Frequently asked<br />questions
+              </h2>
             </div>
             <div className="sides_faq">
               <div className="short_left">

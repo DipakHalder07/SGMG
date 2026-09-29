@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-  --es-font: "Exposure", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --es-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 ._404_page {
@@ -46,13 +46,13 @@
   z-index: 10;
 }
 
-._404_heading {
-  font-family: "Michroma", sans-serif !important;
+._404_heading  {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   color: #2391cf;
   text-align: center;
   margin: 0;
   font-size: clamp(1.82rem, 3.15vw, 2.94rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.025em;
   user-select: none;
@@ -92,8 +92,9 @@
   background-color: #2391cf;
   color: #ffffff;
   border-radius: 9999px;
-  font-family: "Exposure", Georgia, serif;
-  font-size: 1rem;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em;
+  font-size: 0.92rem;
   font-weight: 400;
   white-space: nowrap;
   transition: transform var(--dur) var(--ease), background-color 0.25s ease;
@@ -232,7 +233,7 @@
   letter-spacing: 0.02em;
   font-weight: 500;
   align-self: flex-start;
-  font-family: "Exposure", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .endless-stairs-embed .es-score-left {
@@ -293,10 +294,10 @@
 
 .endless-stairs-embed .es-overlay h2 {
   font-size: 1.55rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.3;
-  font-family: "Michroma", sans-serif !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
   margin: 0;
   color: #1a1a1a;
 }
@@ -318,8 +319,9 @@
   border: 1.5px solid #1a1a1a;
   background: #1a1a1a;
   color: #faf9f7;
-  font-family: var(--es-font);
-  font-size: 0.9rem;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s ease;

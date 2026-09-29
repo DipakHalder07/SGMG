@@ -20,7 +20,7 @@
 .emi_calc_main_title {
   font-family: Michroma, var(--font-display, sans-serif);
   font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 600;
   color: #1a1a1a;
   margin: 0 0 3rem 0;
   letter-spacing: -0.02em;

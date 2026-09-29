@@ -107,24 +107,104 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     const handleOutsideClick = (e: MouseEvent) => {
       if (!menuOpen) return;
       const target = e.target as HTMLElement;
-      if (headerRef.current && !headerRef.current.contains(target)) {
-        setMenuOpen(false);
+      const menuEl = headerRef.current?.querySelector(".menu");
+      const menuFs = headerRef.current?.querySelector(".menu_fs");
+      if (menuEl?.contains(target) || menuFs?.contains(target)) {
+        return;
       }
+      setMenuOpen(false);
     };
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
-  // Non-home, non-apartment, and non-location routes should be in light mode by default
+  // Dynamic Header theme with data-section detector (21Oaks exact ground truth)
   useEffect(() => {
-    const isApartmentDetail =
-      location.pathname.startsWith("/apartments/") ||
-      location.pathname.startsWith("/apartments-cards/");
-    const isLocationPage = location.pathname.startsWith("/location");
-    if (location.pathname !== "/" && !isApartmentDetail && !isLocationPage) {
-      document.body.classList.remove("is-hero");
+    // If navigating to a known light page, immediately set is-light to prevent flash
+    const path = location.pathname.replace(/\/$/, "");
+    const isHeroRoute = path === "" || path === "/location" || (path.startsWith("/apartments/") && path !== "/apartments");
+    if (!isHeroRoute) {
+      document.body.classList.remove("is-hero", "is-dark");
       document.body.classList.add("is-light");
     }
+
+    const updateHeaderTheme = () => {
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          '[data-section="hero"], [data-section="light"], [data-section="dark"]'
+        )
+      );
+      if (!sections.length) {
+        if (!isHeroRoute) {
+          document.body.classList.remove("is-hero", "is-dark");
+          document.body.classList.add("is-light");
+        }
+        return;
+      }
+
+      const header = headerRef.current;
+      const headerH = header ? header.offsetHeight : 64;
+      const y = headerH + 1;
+      let mode: string | null = null;
+
+      for (const el of sections) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom > y) {
+          mode = el.getAttribute("data-section");
+          break;
+        }
+      }
+
+      if (!mode) {
+        const hero = document.querySelector<HTMLElement>('[data-section="hero"]');
+        if (hero && hero.getBoundingClientRect().top <= y && hero.getBoundingClientRect().bottom > y) {
+          mode = "hero";
+        } else {
+          mode = "light";
+        }
+      }
+
+      // Live 21Oaks rule: If hero mode, verify the logo actually overlaps a hero element
+      if (mode === "hero") {
+        const logo = document.querySelector<HTMLElement>(".logo");
+        const heroEl = document.querySelector<HTMLElement>(
+          '.fs_template, .apartments_f1, .scroll_stage, [data-section="hero"]'
+        );
+        if (logo && heroEl) {
+          const logoR = logo.getBoundingClientRect();
+          const heroR = heroEl.getBoundingClientRect();
+          const overlaps = !(
+            logoR.right < heroR.left ||
+            logoR.left > heroR.right ||
+            logoR.bottom < heroR.top ||
+            logoR.top > heroR.bottom
+          );
+          if (!overlaps) {
+            mode = "light";
+          }
+        }
+      }
+
+      const isContact = path === "/contact";
+      const mapSec = document.querySelector<HTMLElement>(".map_sec");
+      const isMobile = window.matchMedia("(max-width: 991px)").matches;
+      const preMap = isContact && isMobile && mapSec && mapSec.getBoundingClientRect().top > headerH;
+      document.body.classList.toggle("is-contact-premap", !!preMap);
+
+      document.body.classList.toggle("is-hero", mode === "hero");
+      document.body.classList.toggle("is-light", mode === "light");
+      document.body.classList.toggle("is-dark", mode === "dark");
+    };
+
+    updateHeaderTheme();
+    const rafId = requestAnimationFrame(updateHeaderTheme);
+    window.addEventListener("scroll", updateHeaderTheme, { passive: true });
+    window.addEventListener("resize", updateHeaderTheme);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", updateHeaderTheme);
+      window.removeEventListener("resize", updateHeaderTheme);
+    };
   }, [location.pathname]);
 
   const handleNavClick = (path: string, hash?: string) => {
@@ -274,18 +354,6 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 }}
               >
                 <div>FAQ</div>
-              </a>
-              <a
-                href="/contact"
-                className="mobile_link w-inline-block"
-                onMouseEnter={() => prefetchRoute("/contact")}
-                onTouchStart={() => prefetchRoute("/contact")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/contact");
-                }}
-              >
-                <div>Contact</div>
               </a>
             </div>
             <a

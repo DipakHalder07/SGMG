@@ -2,12 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
-import Header, { ArrowIcon } from "../components/Header";
+import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
-import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
 import EmiCalculator from "../components/EmiCalculator";
 import { APARTMENTS_DATA, ApartmentUnit, APARTMENT_FAQS } from "../data/apartmentsData";
 
@@ -21,29 +19,29 @@ interface AmenityShowcaseItem {
 
 const AMENITY_SHOWCASE: AmenityShowcaseItem[] = [
   {
-    title: "Grilling Courtyard",
-    desc: "Host easy evenings with friends in the outdoor social zone.",
-    img: "/assets/amenities/amenity-1.avif",
+    title: "Landscaped Gardens",
+    desc: "Stone walkways, shaded pergolas and open lawns for unhurried evening strolls.",
+    img: "/assets/amenities/garden-landscape.jpg",
   },
   {
-    title: "Resort-Style Pool",
-    desc: "Unwind, cool off, and recharge between classes.",
-    img: "/assets/amenities/amenity-2.avif",
+    title: "Swimming Pool",
+    desc: "A sunlit pool with loungers and a paved deck, framed by flowering borders.",
+    img: "/assets/amenities/swimming-pool.jpg",
   },
   {
-    title: "Study Spaces",
-    desc: "Quiet corners built for deep focus and productive days.",
-    img: "/assets/amenities/amenity-3.avif",
+    title: "Clubhouse Lounge",
+    desc: "A double-height lounge for gatherings, games and quiet afternoons alike.",
+    img: "/assets/amenities/clubhouse-lounge.jpg",
   },
   {
-    title: "Fitness Center",
-    desc: "Train on your schedule with modern cardio and strength equipment.",
-    img: "/assets/amenities/amenity-4.avif",
+    title: "Fitness Centre",
+    desc: "Cardio and strength equipment with garden views and a mirrored training wall.",
+    img: "/assets/amenities/fitness-centre.jpg",
   },
   {
-    title: "Campus Shuttle",
-    desc: "Fast, reliable rides that keep your day moving.",
-    img: "/assets/amenities/amenity-5.avif",
+    title: "Children’s Play Area",
+    desc: "A fenced, soft-surfaced play zone set safely within the landscaped grounds.",
+    img: "/assets/amenities/kids-play-area.jpg",
   },
 ];
 
@@ -64,6 +62,7 @@ export default function ApartmentDetailPage() {
 
   // Splide Slider Ref
   const splideContainerRef = useRef<HTMLDivElement | null>(null);
+  const splideInstanceRef = useRef<Splide | null>(null);
 
   // Sticky price card collapsed / expanded state
   const [feesOpen, setFeesOpen] = useState<boolean>(() => {
@@ -79,9 +78,6 @@ export default function ApartmentDetailPage() {
 
   // Amenities tab state
   const [activeAmenityTab, setActiveAmenityTab] = useState<"Interior" | "Features" | "Community">("Interior");
-
-  // Lightbox Modal state
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // FAQ accordion active state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -166,10 +162,10 @@ export default function ApartmentDetailPage() {
 
       if (!mode) {
         const hero = stageRef.current || document.querySelector<HTMLElement>('[data-section="hero"]');
-        if (hero && hero.getBoundingClientRect().bottom <= y) {
-          mode = "light";
-        } else {
+        if (hero && hero.getBoundingClientRect().top <= y && hero.getBoundingClientRect().bottom > y) {
           mode = "hero";
+        } else {
+          mode = "light";
         }
       }
 
@@ -200,32 +196,9 @@ export default function ApartmentDetailPage() {
     window.addEventListener("scroll", updateHeaderMode, { passive: true });
     window.addEventListener("resize", updateHeaderMode);
 
-    // B. Lenis Smooth Scrolling for Desktop (Matching Webflow production)
-    let lenis: Lenis | null = null;
-    const isDesktop = window.matchMedia("(min-width: 992px)").matches;
-    if (isDesktop) {
-      try {
-        lenis = new Lenis({
-          autoRaf: true,
-          autoToggle: false,
-          anchors: true,
-          allowNestedScroll: true,
-          naiveDimensions: true,
-          stopInertiaOnNavigate: true,
-        });
-
-        (window as any).lenis = lenis;
-
-        lenis.on("scroll", () => {
-          ScrollTrigger.update();
-          updateHeaderMode();
-        });
-
-        ScrollTrigger.refresh();
-      } catch (err) {
-        console.warn("Lenis initialization skipped:", err);
-      }
-    }
+    // B. Lenis smooth scrolling is mounted globally by <SmoothScroll /> in App.tsx.
+    // Lenis scrolls the window, so the native listener above keeps the header in
+    // sync; a second instance here would fight the global one for the scroller.
 
     // C. GSAP MatchMedia & Hero ScrollTrigger
     const mm = gsap.matchMedia();
@@ -419,52 +392,123 @@ export default function ApartmentDetailPage() {
       window.removeEventListener("resize", updateHeaderMode);
       document.body.classList.remove("is-hero", "is-light", "is-dark");
       mm.revert();
-      if (lenis) {
-        lenis.destroy();
-        delete (window as any).lenis;
-      }
+    };
+  }, [slug, unit]);
+
+  // 3B. Signature Fixed Price Card Scroll Progress Hide/Show Interaction (Authentic 21Oaks mechanism)
+  // On 21Oaks: Triggered by <main> (Hero + Apartment Details section).
+  // From 0% to 85% progress: translateY(0%) (visible).
+  // From 85% to 100% progress: translateY(150%) (smoothly slides down out of view).
+  // After <main> (Gallery, Amenities, Pets, FAQs, CTA, Footer): stays hidden at translateY(150%).
+  // Scrolling back up into <main>: smoothly slides back into view.
+  useEffect(() => {
+    const mainEl = document.querySelector<HTMLElement>("main");
+    const fixedPriceEl = document.querySelector<HTMLElement>(".fixed_price");
+    if (!mainEl || !fixedPriceEl) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: mainEl,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.4,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (self.progress >= 0.98) {
+            fixedPriceEl.style.pointerEvents = "none";
+          } else {
+            fixedPriceEl.style.pointerEvents = "auto";
+          }
+        },
+        onLeave: () => {
+          gsap.set(fixedPriceEl, { yPercent: 150, pointerEvents: "none" });
+        },
+        onLeaveBack: () => {
+          gsap.set(fixedPriceEl, { yPercent: 0, pointerEvents: "auto" });
+        },
+        onEnter: () => {
+          fixedPriceEl.style.pointerEvents = "auto";
+        },
+        onEnterBack: () => {
+          fixedPriceEl.style.pointerEvents = "auto";
+        },
+      },
+    });
+
+    tl.to(fixedPriceEl, {
+      yPercent: 0,
+      ease: "none",
+      duration: 0.85,
+    }).to(fixedPriceEl, {
+      yPercent: 150,
+      ease: "power1.in",
+      duration: 0.15,
+    });
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+      gsap.set(fixedPriceEl, { clearProps: "transform,pointerEvents" });
     };
   }, [slug, unit]);
 
   // 4. Splide Slider for Amenities Carousel ("Just outside your door")
   useEffect(() => {
     let splideInstance: Splide | null = null;
+    let observer: ResizeObserver | null = null;
     const container = splideContainerRef.current;
     if (container) {
-      splideInstance = new Splide(container, {
-        perPage: 3,
-        perMove: 1,
-        focus: 0,
-        type: "slide",
-        gap: "0.5em",
-        arrows: false,
-        pagination: false,
-        speed: 800,
-        dragAngleThreshold: 60,
-        autoWidth: false,
-        rewind: false,
-        rewindSpeed: 500,
-        waitForTransition: true,
-        updateOnMove: false,
-        trimSpace: true,
-        breakpoints: {
-          991: { perPage: 2, gap: "0.5em" },
-          767: { perPage: 1, gap: "0.5em" },
-          479: { perPage: 1, gap: "0.5em" },
-        },
-      });
+      try {
+        splideInstance = new Splide(container, {
+          perPage: 3,
+          perMove: 1,
+          focus: 0,
+          type: "slide",
+          gap: "0rem",
+          arrows: false,
+          pagination: false,
+          speed: 800,
+          drag: true,
+          flickPower: 600,
+          dragAngleThreshold: 60,
+          autoWidth: false,
+          rewind: false,
+          rewindSpeed: 500,
+          waitForTransition: true,
+          updateOnMove: false,
+          trimSpace: true,
+          breakpoints: {
+            991: {
+              perPage: 2,
+              gap: "0rem",
+              padding: { right: "2.5rem" },
+            },
+            767: {
+              perPage: 1,
+              gap: "0rem",
+              padding: { right: "3rem" },
+            },
+            479: {
+              perPage: 1,
+              gap: "0rem",
+              padding: { left: "0rem", right: "2.5rem" },
+            },
+          },
+        });
 
-      splideInstance.mount();
+        splideInstance.mount();
+        splideInstanceRef.current = splideInstance;
+        (container as any).splide = splideInstance;
 
-      const imgs = container.querySelectorAll("img");
-      imgs.forEach((img) => {
-        if (!img.complete) {
-          img.addEventListener("load", () => splideInstance?.refresh(), { once: true });
-        }
-      });
+      } catch (err) {
+        console.warn("Splide init notice:", err);
+      }
     }
 
+    let lastWidth = window.innerWidth;
     const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       splideInstance?.refresh();
     };
     window.addEventListener("resize", onResize);
@@ -473,6 +517,7 @@ export default function ApartmentDetailPage() {
       window.removeEventListener("resize", onResize);
       if (splideInstance) {
         splideInstance.destroy();
+        splideInstanceRef.current = null;
       }
     };
   }, []);
@@ -621,7 +666,7 @@ export default function ApartmentDetailPage() {
                         <div className="price_box">
                           <div className="icon_price">
                             <img
-                              src="/assets/icons/price-icon.png"
+                              src="/assets/icons/rupee-icon.svg"
                               loading="lazy"
                               alt="₹"
                               className="image"
@@ -651,21 +696,23 @@ export default function ApartmentDetailPage() {
                     </div>
                   </div>
 
-                  <div className="list_prices" style={{ maxHeight: feesOpen ? "250px" : "0px" }}>
+                  <div className="list_prices" style={{ maxHeight: feesOpen ? "420px" : "0px" }}>
                     <div className="list_prices_inner">
                       <div className="box_prices">
                         <div className="title_prices">
-                          <div>One time fees</div>
+                          <div>Indicative charges</div>
                         </div>
                         <div className="lists_prices">
                           <div className="line_price">
-                            <div>Application fee per person</div>
-                            <div>{unit.fees.application}</div>
+                            <div>Base rate</div>
+                            <div>{unit.pricePerSqft}</div>
                           </div>
-                          <div className="line_price">
-                            <div>Admin fee per person</div>
-                            <div>{unit.fees.admin}</div>
-                          </div>
+                          {unit.charges.map((charge) => (
+                            <div className="line_price" key={charge.label}>
+                              <div>{charge.label}</div>
+                              <div>{charge.value}</div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -884,8 +931,6 @@ export default function ApartmentDetailPage() {
                       <div
                         key={idx}
                         className="image_box_mobile"
-                        onClick={() => setLightboxIndex(idx + 1)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={imgUrl}
@@ -919,8 +964,6 @@ export default function ApartmentDetailPage() {
                       <div
                         key={idx}
                         className="image_box_mobile"
-                        onClick={() => setLightboxIndex(idx + 3)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={imgUrl}
@@ -952,21 +995,30 @@ export default function ApartmentDetailPage() {
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Interior" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Interior")}
+                            onClick={() => {
+                              setActiveAmenityTab("Interior");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Interior</div>
                           </button>
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Features" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Features")}
+                            onClick={() => {
+                              setActiveAmenityTab("Features");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Features</div>
                           </button>
                           <button
                             type="button"
                             className={`tab_gen w-inline-block w-tab-link ${activeAmenityTab === "Community" ? "w--current" : ""}`}
-                            onClick={() => setActiveAmenityTab("Community")}
+                            onClick={() => {
+                              setActiveAmenityTab("Community");
+                              setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }}
                           >
                             <div>Community Spaces</div>
                           </button>
@@ -1158,25 +1210,25 @@ export default function ApartmentDetailPage() {
                           {activeAmenityTab === "Community" && (
                             <div className="tab_content w-tab-pane w--tab-active">
                               <div className="content_part">
-                                <div className="title_list"><div>Spaces to recharge, study &amp; connect</div></div>
+                                <div className="title_list"><div>Spaces to unwind, gather &amp; connect</div></div>
                                 <div className="grid_apart_list">
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2d_c-icon-1.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Fitness Center</div>
+                                    <div>Fitness Centre</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2b_c-icon-5.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Resort-Style Pool</div>
+                                    <div>Swimming Pool</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b0c_c-icon-2.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Study Lounge</div>
+                                    <div>Community Hall</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
@@ -1188,13 +1240,13 @@ export default function ApartmentDetailPage() {
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2a_c-icon-3.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Coffee Bar</div>
+                                    <div>Indoor Games</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2c_c-icon-7.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Outdoor Courtyard</div>
+                                    <div>Landscaped Garden</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
@@ -1222,8 +1274,6 @@ export default function ApartmentDetailPage() {
                         key={idx}
                         role="listitem"
                         className="list_item_image w-dyn-item w-dyn-repeater-item"
-                        onClick={() => setLightboxIndex(idx + 1)}
-                        style={{ cursor: "zoom-in" }}
                       >
                         <img
                           src={photoUrl}
@@ -1268,14 +1318,6 @@ export default function ApartmentDetailPage() {
                   key={idx}
                   role="listitem"
                   className="item_gallery w-dyn-item w-dyn-repeater-item"
-                  onClick={(e) => {
-                    if (hasDraggedRef.current) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      return;
-                    }
-                    setLightboxIndex(idx);
-                  }}
                 >
                   <div className="box_image_gallery">
                     <img
@@ -1294,7 +1336,7 @@ export default function ApartmentDetailPage() {
       </section>
 
       {/* Just Outside Your Door Section (Splide Carousel) */}
-      <section className="amenities_section">
+      <section className="amenities_section" id="amenities-showcase">
         <div className="wrapper_general basic slider_spec">
           <div className="amenities_heading">
             <h2 className="h2 middle_spec">
@@ -1302,23 +1344,29 @@ export default function ApartmentDetailPage() {
               <br />
               your door
             </h2>
-            <div className="button_amenities"></div>
+            <div className="button_amenities">
+              <WebflowButton
+                text="Discover Amenities"
+                href="https://calendly.com/dipakh810/30min"
+                target="_blank"
+              />
+            </div>
           </div>
 
           <div className="container only_amenities">
             <div className="splide slider1 second_splide" ref={splideContainerRef}>
-              <div className="splide__track w-dyn-list">
-                <div role="list" className="splide__list w-dyn-items">
+              <div className="splide__track">
+                <div role="list" className="splide__list">
                   {AMENITY_SHOWCASE.map((item, idx) => (
-                    <div key={idx} role="listitem" className="splide__slide amenities_splide w-dyn-item">
+                    <div key={idx} role="listitem" className="splide__slide amenities_splide">
                       <div className="image_amenities">
                         <div className="overlay_amenities">
                           <div className="heading_text">
-                            <div className="title_amenities">{item.title}</div>
+                            <h3 className="title_amenities">{item.title}</h3>
                           </div>
                           <div className="bottom_amenities">
                             <div className="desc_amenities">
-                              <div className="p_gen">{item.desc}</div>
+                              <p className="p_gen">{item.desc}</p>
                             </div>
                           </div>
                         </div>
@@ -1422,15 +1470,6 @@ export default function ApartmentDetailPage() {
       </section>
 
       <Footer />
-
-      {/* Fullscreen Lightbox Modal */}
-      {lightboxIndex !== null && (
-        <ApartmentLightboxModal
-          unit={unit}
-          initialPhotoIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
-      )}
     </div>
   );
 }

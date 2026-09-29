@@ -6,7 +6,7 @@ import "../careers.css";
 export interface JobOpening {
   id: string;
   title: string;
-  department: "Architecture & Design" | "Engineering & Green Tech" | "Resident Experience" | "Sales & Advisory" | "Operations & Tech";
+  department: "Architecture" | "Engineering" | "Resident Experience" | "Sales & Advisory" | "Technology";
   location: "Siliguri HQ" | "North Bengal" | "Kolkata" | "Remote";
   type: "Full-time" | "Hybrid" | "Onsite";
   experience: string;
@@ -20,8 +20,8 @@ export interface JobOpening {
 const JOB_OPENINGS: JobOpening[] = [
   {
     id: "lead-project-architect",
-    title: "Senior Project Architect (Residential Developments)",
-    department: "Architecture & Design",
+    title: "Senior Project Architect",
+    department: "Architecture",
     location: "Siliguri HQ",
     type: "Onsite",
     experience: "5 - 8 Years",
@@ -48,8 +48,8 @@ const JOB_OPENINGS: JobOpening[] = [
   },
   {
     id: "biophilic-interior-designer",
-    title: "Biophilic Residential Interior Designer",
-    department: "Architecture & Design",
+    title: "Interior Designer",
+    department: "Architecture",
     location: "Siliguri HQ",
     type: "Hybrid",
     experience: "3 - 6 Years",
@@ -76,8 +76,8 @@ const JOB_OPENINGS: JobOpening[] = [
   },
   {
     id: "green-building-mep-lead",
-    title: "Green Building & Sustainable MEP Lead",
-    department: "Engineering & Green Tech",
+    title: "MEP & Green Building Lead",
+    department: "Engineering",
     location: "Siliguri HQ",
     type: "Onsite",
     experience: "6 - 10 Years",
@@ -104,7 +104,7 @@ const JOB_OPENINGS: JobOpening[] = [
   },
   {
     id: "community-experience-manager",
-    title: "Clubhouse & Resident Experience Manager",
+    title: "Resident Experience Manager",
     department: "Resident Experience",
     location: "Siliguri HQ",
     type: "Onsite",
@@ -132,7 +132,7 @@ const JOB_OPENINGS: JobOpening[] = [
   },
   {
     id: "luxury-leasing-specialist",
-    title: "Luxury Residential Sales & Advisory Specialist",
+    title: "Sales & Advisory Specialist",
     department: "Sales & Advisory",
     location: "Siliguri HQ",
     type: "Onsite",
@@ -160,8 +160,8 @@ const JOB_OPENINGS: JobOpening[] = [
   },
   {
     id: "resident-portal-engineer",
-    title: "Full-Stack Homeowner Platform Engineer",
-    department: "Operations & Tech",
+    title: "Full-Stack Engineer",
+    department: "Technology",
     location: "Remote",
     type: "Hybrid",
     experience: "3 - 6 Years",
@@ -190,24 +190,15 @@ const JOB_OPENINGS: JobOpening[] = [
 
 const DEPARTMENTS = [
   "All Roles",
-  "Architecture & Design",
-  "Engineering & Green Tech",
+  "Architecture",
+  "Engineering",
   "Resident Experience",
   "Sales & Advisory",
-  "Operations & Tech",
-] as const;
-
-const LOCATIONS = [
-  "All Locations",
-  "Siliguri HQ",
-  "North Bengal",
-  "Kolkata",
-  "Remote",
+  "Technology",
 ] as const;
 
 export default function CareersPage() {
   const [selectedDept, setSelectedDept] = useState<string>("All Roles");
-  const [selectedLoc, setSelectedLoc] = useState<string>("All Locations");
   const [activeJobModal, setActiveJobModal] = useState<JobOpening | null>(null);
 
   // Application Form State
@@ -262,212 +253,106 @@ export default function CareersPage() {
   };
 
   // Filter jobs
-  const filteredJobs = JOB_OPENINGS.filter((job) => {
-    const matchDept = selectedDept === "All Roles" || job.department === selectedDept;
-    const matchLoc = selectedLoc === "All Locations" || job.location === selectedLoc;
-    return matchDept && matchLoc;
-  });
+  const filteredJobs = JOB_OPENINGS.filter(
+    (job) => selectedDept === "All Roles" || job.department === selectedDept
+  );
 
   return (
-    <div className="careers_page">
+    <div className="careers_page" data-section="light">
       {/* Brand Navigation Header */}
       <Header />
 
-      {/* --- HERO SECTION --- */}
-      <section className="careers_hero">
-        <div className="careers_hero_container">
+      {/* --- HERO --- */}
+      <section className="careers_hero" data-section="light">
+        <div className="careers_wrap">
           <h1 className="careers_hero_title">
             Build the <span className="accent_scribble">future of living</span> with us
           </h1>
 
           <p className="careers_hero_desc">
-            We are architects, client advisors, green engineers, and technologists united by a shared mission:
-            crafting elevated, tranquil residential living in Siliguri and North Bengal. Join our family.
+            Architects, engineers and advisors building homes across Siliguri and
+            North Bengal.
           </p>
 
           <div className="careers_hero_actions">
             <WebflowButton
-              text="Explore Open Positions"
+              text="See open roles"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToJobs();
               }}
             />
-            <WebflowButton
-              text="Meet Our Leadership Team"
-              href="/team"
-            />
-          </div>
-
-          {/* Stats Bar */}
-          <div className="careers_stats_grid">
-            <div className="careers_stat_item">
-              <span className="careers_stat_num">4.8 ★</span>
-              <span className="careers_stat_label">Team Satisfaction & Culture Rating</span>
-            </div>
-            <div className="careers_stat_item">
-              <span className="careers_stat_num">6+</span>
-              <span className="careers_stat_label">Current Open Strategic Roles</span>
-            </div>
-            <div className="careers_stat_item">
-              <span className="careers_stat_num">HQ</span>
-              <span className="careers_stat_label">Corporate Studio • Jeevandeep Tower, Siliguri</span>
-            </div>
-            <div className="careers_stat_item">
-              <span className="careers_stat_num">98%</span>
-              <span className="careers_stat_label">Annual Employee Retention & Growth</span>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* --- CULTURE & STUDIO SHOWCASE --- */}
-      <section className="careers_culture_section">
-        <div className="careers_culture_card">
-          <div className="careers_culture_media">
+      {/* --- STUDIO IMAGE --- */}
+      <section>
+        <div className="careers_wrap">
+          <figure className="careers_figure">
             <img
-              src="/images/careers-studio.jpg"
-              alt="SGMG Corporate Studio in Siliguri"
-              className="careers_culture_img"
+              src="/images/careers/studio.jpg"
+              alt="SGMG design team reviewing drawings and a tower model in the studio"
+              loading="lazy"
             />
-            <div className="careers_culture_badge">SGMG Studio • Siliguri HQ</div>
-          </div>
-
-          <div className="careers_culture_content">
-            <span className="careers_culture_tag">Life at SGMG</span>
-            <h2 className="careers_culture_title">Where craftsmanship meets architectural distinction</h2>
-            <p className="careers_culture_desc">
-              At SGMG, you will never be just a number. You will have a direct hand in shaping
-              physical living sanctuaries that house generations of families across Siliguri and North Bengal.
-            </p>
-
-            <div className="careers_culture_bullets">
-              <div className="careers_bullet_item">
-                <span className="careers_bullet_icon">✓</span>
-                <span><strong>Radical Ownership:</strong> Lead projects from blueprint concept to homeowner key handover with autonomy.</span>
-              </div>
-              <div className="careers_bullet_item">
-                <span className="careers_bullet_icon">✓</span>
-                <span><strong>Purpose-Driven Impact:</strong> Create green, biophilic environments that foster tranquil family living and enduring value.</span>
-              </div>
-              <div className="careers_bullet_item">
-                <span className="careers_bullet_icon">✓</span>
-                <span><strong>Cross-Disciplinary Excellence:</strong> Architects, structural engineers, and relationship advisors shaping communities together.</span>
-              </div>
-            </div>
-          </div>
+            <figcaption>The studio &mdash; Jeevandeep Tower, Siliguri</figcaption>
+          </figure>
         </div>
       </section>
 
-      {/* --- PERKS & BENEFITS --- */}
-      <section className="careers_perks_section">
-        <div className="careers_perks_container">
-          <div className="careers_section_header">
-            <span className="careers_section_badge">Why You'll Love It Here</span>
-            <h2 className="careers_section_title">Thoughtfully designed for your thriving life</h2>
-            <p className="careers_section_subtitle">
-              We look after our people with the same attention, care, and quality that we pour into our residential properties.
-            </p>
-          </div>
-
-          <div className="careers_perks_grid">
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23" />
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Competitive Pay & ESOPs</h3>
-              <p className="careers_perk_desc">
-                Top-of-market compensation packages, milestone performance incentives, and long-term equity participation in our growth.
-              </p>
-            </div>
-
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Complete Family Healthcare</h3>
-              <p className="careers_perk_desc">
-                Comprehensive health, accidental, and term life insurance covering you, your spouse, children, and dependent parents.
-              </p>
-            </div>
-
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                  <polyline points="2 17 12 22 22 17" />
-                  <polyline points="2 12 12 17 22 12" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Learning & Research Grants</h3>
-              <p className="careers_perk_desc">
-                Annual budget for international architectural tours, sustainability certifications (LEED/IGBC), and university courses.
-              </p>
-            </div>
-
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 14 14" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Work-Life Harmony</h3>
-              <p className="careers_perk_desc">
-                Hybrid flexibility, generous paid time off, mental health recharge days, and paid parental leave for new parents.
-              </p>
-            </div>
-
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
-                  <line x1="12" y1="17" x2="12" y2="21" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Sunlit Modern Studios</h3>
-              <p className="careers_perk_desc">
-                State-of-the-art biophilic workspaces with ergonomic workstations, modern meeting suites, and creative design spaces in Siliguri.
-              </p>
-            </div>
-
-            <div className="careers_perk_card">
-              <div className="careers_perk_icon_wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <h3 className="careers_perk_title">Wellness & Gym Access</h3>
-              <p className="careers_perk_desc">
-                Unlimited access to our onsite fitness studios, heated swimming pools, weekly yoga sessions, and nutritious daily snacks.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- JOB OPENINGS SECTION --- */}
-      <section className="careers_jobs_section" ref={jobsListRef} id="openings">
-        <div className="careers_section_header">
-          <span className="careers_section_badge">Join Our Team</span>
-          <h2 className="careers_section_title">Current Strategic Openings</h2>
+      {/* --- LIFE AT SGMG --- */}
+      <section className="careers_section">
+        <div className="careers_wrap">
+          <h2 className="careers_section_title">Life at SGMG</h2>
           <p className="careers_section_subtitle">
-            Find the role where your skills, passion, and aspirations can make a profound difference.
+            A small team, so the work you do is visible.
           </p>
-        </div>
 
-        {/* Filter Controls */}
-        <div className="careers_filters_wrap">
-          {/* Department Tabs */}
+          <div className="careers_values">
+            <div>
+              <h3 className="careers_value_title">Own the whole project</h3>
+              <p className="careers_value_desc">
+                From first drawing to handover, with the same team throughout.
+              </p>
+            </div>
+            <div>
+              <h3 className="careers_value_title">Work that lasts</h3>
+              <p className="careers_value_desc">
+                What you design in Siliguri will house families for decades.
+              </p>
+            </div>
+            <div>
+              <h3 className="careers_value_title">One team, one floor</h3>
+              <p className="careers_value_desc">
+                Everyone sits together at Jeevandeep Tower.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PROJECT IMAGE --- */}
+      <section>
+        <div className="careers_wrap">
+          <figure className="careers_figure">
+            <img
+              src="/images/careers/project.jpg"
+              alt="Front elevation of an SGMG residential development in Siliguri"
+              loading="lazy"
+            />
+            <figcaption>What you would be building</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* --- OPEN ROLES --- */}
+      <section className="careers_section" ref={jobsListRef} id="openings">
+        <div className="careers_wrap">
+          <h2 className="careers_section_title">Open roles</h2>
+          <p className="careers_section_subtitle">
+            {JOB_OPENINGS.length} positions, Siliguri unless noted.
+          </p>
+
           <div className="careers_dept_tabs" role="tablist">
             {DEPARTMENTS.map((dept) => {
               const count =
@@ -485,124 +370,40 @@ export default function CareersPage() {
                   className={`careers_dept_tab ${isActive ? "is-active" : ""}`}
                   onClick={() => setSelectedDept(dept)}
                 >
-                  <span>{dept}</span>
+                  {dept}
                   <span className="careers_dept_count">{count}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Location Filters */}
-          <div className="careers_location_filter_row">
-            <div className="careers_location_pills">
-              <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#666" }}>Filter by City:</span>
-              {LOCATIONS.map((loc) => {
-                const isActive = selectedLoc === loc;
-                return (
-                  <button
-                    key={loc}
-                    type="button"
-                    className={`careers_loc_btn ${isActive ? "is-active" : ""}`}
-                    onClick={() => setSelectedLoc(loc)}
-                  >
-                    {loc}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="careers_jobs_count_label">
-              Showing {filteredJobs.length} {filteredJobs.length === 1 ? "Opening" : "Openings"}
-            </div>
+          <div className="careers_jobs_list">
+            {filteredJobs.length === 0 ? (
+              <p className="careers_empty">No open roles in this team right now.</p>
+            ) : (
+              filteredJobs.map((job) => (
+                <button
+                  key={job.id}
+                  type="button"
+                  className="careers_job_row"
+                  onClick={() => setActiveJobModal(job)}
+                >
+                  <span>
+                    <span className="careers_job_title">{job.title}</span>
+                    <span className="careers_job_meta">
+                      <span>{job.department}</span>
+                      <span>{job.location}</span>
+                      <span>{job.experience}</span>
+                      <span>{job.salaryRange}</span>
+                    </span>
+                  </span>
+                  <span className="careers_job_arrow">View role &rarr;</span>
+                </button>
+              ))
+            )}
           </div>
         </div>
-
-        {/* Job Cards */}
-        <div className="careers_jobs_grid">
-          {filteredJobs.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "4rem 2rem", background: "#ffffff", borderRadius: "18px" }}>
-              <h3 style={{ fontFamily: "var(--font-heading)", color: "#292929", marginBottom: "0.5rem" }}>
-                No active openings in this filter
-              </h3>
-              <p style={{ color: "#666666", marginBottom: "1.5rem" }}>
-                Try selecting "All Roles" or "All Locations", or submit a spontaneous application below.
-              </p>
-              <button
-                type="button"
-                className="careers_apply_btn"
-                onClick={() => {
-                  setSelectedDept("All Roles");
-                  setSelectedLoc("All Locations");
-                }}
-              >
-                Reset Filters
-              </button>
-            </div>
-          ) : (
-            filteredJobs.map((job) => (
-              <article
-                key={job.id}
-                className="careers_job_card"
-                onClick={() => setActiveJobModal(job)}
-              >
-                <div className="careers_job_info">
-                  <div className="careers_job_badges">
-                    <span className="careers_job_badge dept">{job.department}</span>
-                    <span className="careers_job_badge loc">{job.location}</span>
-                    <span className="careers_job_badge type">{job.type}</span>
-                  </div>
-
-                  <h3 className="careers_job_title">{job.title}</h3>
-                  <p className="careers_job_desc">{job.description}</p>
-
-                  <div className="careers_job_meta_row">
-                    <div className="careers_job_meta_item">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                      </svg>
-                      <span>Experience: {job.experience}</span>
-                    </div>
-
-                    <div className="careers_job_meta_item">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="12" y1="1" x2="12" y2="23" />
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                      </svg>
-                      <span>Compensation: {job.salaryRange}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="careers_job_actions">
-                  <button
-                    type="button"
-                    className="careers_view_btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveJobModal(job);
-                    }}
-                  >
-                    View Details
-                  </button>
-                  <button
-                    type="button"
-                    className="careers_apply_btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveJobModal(job);
-                    }}
-                  >
-                    Apply Now
-                  </button>
-                </div>
-              </article>
-            ))
-          )}
-        </div>
       </section>
-
-
 
       {/* --- INTERACTIVE JOB DETAIL & APPLICATION MODAL --- */}
       {activeJobModal && (
@@ -628,81 +429,52 @@ export default function CareersPage() {
               </svg>
             </button>
 
-            <div className="careers_modal_badges">
-              <span className="careers_job_badge dept">{activeJobModal.department}</span>
-              <span className="careers_job_badge loc">{activeJobModal.location}</span>
-              <span className="careers_job_badge type">{activeJobModal.type}</span>
-            </div>
-
             <h2 className="careers_modal_title">{activeJobModal.title}</h2>
 
-            <div className="careers_modal_meta_grid">
-              <div className="careers_modal_meta_box">
-                <span className="careers_modal_meta_title">Location</span>
-                <span className="careers_modal_meta_val">{activeJobModal.location}</span>
-              </div>
-              <div className="careers_modal_meta_box">
-                <span className="careers_modal_meta_title">Experience Required</span>
-                <span className="careers_modal_meta_val">{activeJobModal.experience}</span>
-              </div>
-              <div className="careers_modal_meta_box">
-                <span className="careers_modal_meta_title">Compensation Tier</span>
-                <span className="careers_modal_meta_val">{activeJobModal.salaryRange}</span>
-              </div>
-            </div>
-
-            <p style={{ fontSize: "1.05rem", lineHeight: "1.7", color: "#555" }}>
-              {activeJobModal.description}
+            <p className="careers_modal_meta">
+              <span>{activeJobModal.department}</span>
+              <span>{activeJobModal.location}</span>
+              <span>{activeJobModal.type}</span>
+              <span>{activeJobModal.experience}</span>
+              <span>{activeJobModal.salaryRange}</span>
             </p>
 
+            <p className="careers_modal_desc">{activeJobModal.description}</p>
+
             <div className="careers_modal_section_heading">Key Responsibilities</div>
-            <div className="careers_modal_list">
+            <ul className="careers_modal_list">
               {activeJobModal.responsibilities.map((r, i) => (
-                <div key={i} className="careers_modal_list_item">
-                  <span className="careers_modal_list_dot" />
-                  <span>{r}</span>
-                </div>
+                <li key={i}>{r}</li>
               ))}
-            </div>
+            </ul>
 
             <div className="careers_modal_section_heading">Qualifications & Skills</div>
-            <div className="careers_modal_list">
+            <ul className="careers_modal_list">
               {activeJobModal.requirements.map((req, i) => (
-                <div key={i} className="careers_modal_list_item">
-                  <span className="careers_modal_list_dot" />
-                  <span>{req}</span>
-                </div>
+                <li key={i}>{req}</li>
               ))}
-            </div>
+            </ul>
 
-            <div className="careers_modal_section_heading">Perks for this Role</div>
-            <div className="careers_modal_list">
+            <div className="careers_modal_section_heading">What comes with the role</div>
+            <ul className="careers_modal_list">
               {activeJobModal.benefits.map((b, i) => (
-                <div key={i} className="careers_modal_list_item">
-                  <span className="careers_modal_list_dot" style={{ backgroundColor: "#a2cd3a" }} />
-                  <span>{b}</span>
-                </div>
+                <li key={i}>{b}</li>
               ))}
-            </div>
+            </ul>
 
             {/* Application Form */}
             <div className="careers_app_form">
-              <div className="careers_modal_section_heading" style={{ marginTop: 0 }}>
-                Apply for this Position
+              <div className="careers_modal_first_heading careers_modal_section_heading">
+                Apply for this role
               </div>
 
               {formSubmitted ? (
-                <div className="careers_success_box">
-                  <div className="careers_success_icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <h3 className="careers_success_title">Application Received!</h3>
+                <div>
+                  <h3 className="careers_success_title">Application received</h3>
                   <p className="careers_success_desc">
-                    Thank you, {applicantName || "Candidate"}! Our People & Talent team has received your application
-                    for <strong>{activeJobModal.title}</strong>. We review every profile carefully and will be in touch
-                    via email within 48 business hours.
+                    Thank you{applicantName ? `, ${applicantName}` : ""}. We have your
+                    application for <strong>{activeJobModal.title}</strong> and will be
+                    in touch by email within a few working days.
                   </p>
                 </div>
               ) : (

@@ -47,7 +47,7 @@
 }
 
 .number_active {
-  font-family: "Exposure", "Romie", Georgia, serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: clamp(2.45rem, 3.85vw, 4.05rem);
   font-weight: 300;
   line-height: 1;
@@ -94,8 +94,9 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: min(22rem, 30vw);
-  height: min(22rem, 30vw);
+  /* Square monogram, so smaller than the wide sketch it replaced. */
+  width: min(13rem, 18vw);
+  height: min(13rem, 18vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +131,7 @@
   gap: 0.35rem !important;
   width: auto !important;
   white-space: nowrap !important;
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   font-variant-numeric: tabular-nums !important;
@@ -138,7 +139,7 @@
 
 .gallery .active_small,
 .gallery .all_small {
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   display: inline-flex !important;
@@ -147,7 +148,7 @@
 }
 
 .gallery .gallery_caption {
-  font-family: "Exposure", Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   font-size: 0.95rem !important;
   color: #292929 !important;
   width: auto !important;
@@ -338,8 +339,8 @@
     left: auto;
     transform: translateY(-50%);
     margin: 0;
-    width: 11rem;
-    height: 11rem;
+    width: 8rem;
+    height: 8rem;
   }
 
   .thumb_item {
@@ -403,8 +404,8 @@
     left: auto;
     transform: translateY(-50%);
     margin: 0;
-    width: 8.5rem;
-    height: 8.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
   }
 
   .gallery .bottom_active {

@@ -328,19 +328,21 @@ export default function HowToApplyPage() {
             <div className="shift_box">
               <div className="apply_box">
                 <div className="title_apply">
-                  Apply in just a few simple steps.
+                  Four decades of building trust in North Bengal.
                 </div>
                 <div className="p_apply_box">
                   <div className="p_gen black">
-                    From choosing your floor plan to moving in, the process is
-                    designed to be clear, quick, and easy to follow.
+                    From landmark commercial addresses in Siliguri to homes where
+                    families settle for generations, SGMG is built on one
+                    principle — deliver exactly what was promised, on time.
                   </div>
                 </div>
               </div>
               <div className="button_amenities">
                 <WebflowButton
-                  text="Apply Now"
-                  href="/#contact"
+                  text="Schedule a Site Visit"
+                  href="https://calendly.com/dipakh810/30min"
+                  target="_blank"
                   className=""
                 />
               </div>
@@ -482,7 +484,7 @@ export default function HowToApplyPage() {
 
               <div className="about_story_stats">
                 <div className="about_stat_box">
-                  <div className="about_stat_num">25+</div>
+                  <div className="about_stat_num">40+</div>
                   <div className="about_stat_lbl">Years of Group Heritage</div>
                 </div>
                 <div className="about_stat_box">
