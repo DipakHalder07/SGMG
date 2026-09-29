@@ -108,7 +108,7 @@ const apartments = [
     beds: "4 Bed",
     baths: "2 Baths",
     sqft: "1,108",
-    image: "/__l5e/assets-v1/acd690d1-5688-4922-bb11-74d7b9907009/14-D1-Hero.avif",
+    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
     desc: "An elevated 4-bedroom layout with refined interiors, warm shared spaces, and a more curated atmosphere designed to make student living feel more comfortable and intentional.",
   },
   {
