@@ -23,7 +23,7 @@ const HERO_SLIDES: SlideData[] = [
     title: "Vega Circle Mall, Sevoke Road",
     description:
       "Siliguri’s premier retail, dining, and cinema destination on Sevoke Road, offering top international brands, multiplex entertainment, food courts, and daily excitement.",
-    image: "/assets/locations/modern-commercial-complex.png",
+    image: "/assets/locations/modern-commercial-complex.jpg",
     alt: "Modern Commercial Retail & Shopping Complex on Sevoke Road in Siliguri",
     walk: "2 min walk",
     bike: "1 min bike",
@@ -76,7 +76,7 @@ const MAP_PLACES: MapPlace[] = [
     lng: 88.4385,
     address: "3rd Mile, Sevoke Road, Siliguri, West Bengal 734008",
     hours: "10:30 AM – 9:30 PM Daily",
-    image: "/assets/locations/thumbs/modern-commercial-complex.png",
+    image: "/assets/locations/thumbs/modern-commercial-complex.jpg",
     walk: "2 min walk",
     bike: "1 min bike",
     drive: "1 min drive",

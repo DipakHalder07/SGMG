@@ -109,7 +109,7 @@ const apartments = [
     beds: "3 Bed",
     baths: "3 Baths",
     sqft: "1,340",
-    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.png",
+    image: "/images/apartments/d1-premium/03_front_exterior_professional_eye_level_architectural_photograph_of_green_view.jpg",
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
   },
   {
@@ -567,6 +567,10 @@ export default function HomePage() {
 
   // 3b. Sides Section & Fullscreen Parallax Scrub (matching Webflow a-3 Parallax General)
   useEffect(() => {
+    // Scrubbed parallax on large images is a main-thread cost that iOS Safari
+    // pays on every scroll frame. Desktop only.
+    if (!window.matchMedia("(min-width: 992px)").matches) return;
+
     const ctx = gsap.context(() => {
       const parallaxConfigs = [
         { trigger: ".sides_f .right_side", img: ".sides_f .right_side .image" },
@@ -1338,7 +1342,7 @@ export default function HomePage() {
                               </div>
                             </div>
                           </div>
-                          <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" draggable={false} />
+                          <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
                         </Link>
 
                         <div className="content_apart">
@@ -1444,7 +1448,7 @@ export default function HomePage() {
                 </h2>
                 <div className="small_box">
                   <div className="image_small">
-                    <ImageWithSkeleton src="/assets/everyday-living/living-room.png" alt="Luxurious Modern Living Room" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/living-room.jpg" alt="Luxurious Modern Living Room" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1456,7 +1460,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="right_side">
-                <ImageWithSkeleton src="/assets/everyday-living/high-rise-elevation.png" alt="Modern Luxury High-Rise Elevation" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/high-rise-elevation.jpg" alt="Modern Luxury High-Rise Elevation" className="image" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -1464,12 +1468,12 @@ export default function HomePage() {
           <div className="sides_s">
             <div className="sides_wrap">
               <div className="right_side">
-                <ImageWithSkeleton src="/assets/everyday-living/modern-residential.png" alt="State of the Art Modern Architecture" className="image" />
+                <ImageWithSkeleton src="/assets/everyday-living/modern-residential.jpg" alt="State of the Art Modern Architecture" className="image" loading="lazy" decoding="async" />
               </div>
               <div className="left_side">
                 <div className="small_box caption_info right_box second_b">
                   <div className="image_small">
-                    <ImageWithSkeleton src="/assets/everyday-living/clubhouse-landscape.png" alt="Community Clubhouse and Landscape" className="image" />
+                    <ImageWithSkeleton src="/assets/everyday-living/clubhouse-landscape.jpg" alt="Community Clubhouse and Landscape" className="image" loading="lazy" decoding="async" />
                   </div>
                   <div className="caption_info">
                     <div className="purple_dot"></div>
@@ -1533,7 +1537,7 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                    <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" />
+                    <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                   </Link>
 
                   <div className="content_apart">
@@ -1607,7 +1611,7 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
-                        <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" />
+                        <ImageWithSkeleton src={apart.image} alt={apart.name} className="image" loading="lazy" decoding="async" />
                       </Link>
                       <div className="content_apart">
                         <div className="apart_title_line">
@@ -1701,7 +1705,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <ImageWithSkeleton src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
+            <ImageWithSkeleton src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -1802,7 +1806,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="overlay_color"></div>
-                        <ImageWithSkeleton src={amenity.image} alt={amenity.title} className="image" />
+                        <ImageWithSkeleton src={amenity.image} alt={amenity.title} className="image" loading="lazy" decoding="async" />
                       </div>
                     </div>
                   ))}
@@ -2049,7 +2053,7 @@ export default function HomePage() {
           </div>
 
           <div className="fs_bg">
-            <ImageWithSkeleton src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" />
+            <ImageWithSkeleton src="/assets/image_cta.avif" alt="SGMG luxury residences lounge" className="image" loading="lazy" decoding="async" />
           </div>
         </section>
 

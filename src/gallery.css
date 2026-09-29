@@ -6,6 +6,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background-color: #ffffff;
   overflow: hidden;
   z-index: 1;
@@ -294,6 +295,7 @@
   .gallery {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
   }
 
@@ -354,6 +356,7 @@
   .gallery {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
   }
 

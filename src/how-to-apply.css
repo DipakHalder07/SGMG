@@ -5,6 +5,7 @@
   position: relative;
   width: 100vw;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: #ffffff;
   color: #292929;
   overflow: hidden;
@@ -108,6 +109,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background-color: #ffffff;
   overflow: hidden;
 }
@@ -117,6 +119,7 @@
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 5.5rem 3rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -187,6 +190,7 @@
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   pointer-events: none;
 }
 
@@ -980,5 +984,45 @@
 
   .faqs.light .h2.smaller {
     font-size: 1.5rem;
+  }
+}
+
+/* =========================================================
+   MOBILE / TABLET: no pinned GSAP stack below 992px.
+   The cards fall back to a plain vertical list so iOS Safari
+   never has to hold a pinned, scrubbed section.
+   ========================================================= */
+@media (max-width: 991px) {
+  .card_how_parent {
+    min-height: 0;
+    height: auto;
+  }
+
+  .cards_how_list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    height: auto;
+    padding-bottom: 2rem;
+  }
+
+  .card_how_item {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 15rem;
+    opacity: 1 !important;
+    z-index: auto !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    will-change: auto;
+  }
+
+  .how_to_apply {
+    height: auto;
+    min-height: 0;
   }
 }

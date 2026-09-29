@@ -158,6 +158,12 @@ export default function HowToApplyPage() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      // Desktop only. A pinned, scrubbed section on iOS Safari fights the
+      // collapsing toolbar and reads as the page freezing, so small screens
+      // get the plain stacked layout from how-to-apply.css instead.
+      mm.add("(min-width: 992px)", () => {
       const cards = gsap.utils.toArray<HTMLElement>(".card_how_item");
       if (!cards.length) return;
 
@@ -204,7 +210,8 @@ export default function HowToApplyPage() {
             else if (p >= 0.34) active = 3;
             else if (p >= 0.10) active = 2;
             else active = 1;
-            setActiveStep(active);
+            // Only re-render when the step actually changes, not every frame.
+            setActiveStep((prev) => (prev === active ? prev : active));
           },
         },
       });
@@ -233,6 +240,7 @@ export default function HowToApplyPage() {
 
       // Brief dwell on final card before unpinning
       tl.to({}, { duration: 0.3 });
+      });
     }, stepsSectionRef);
 
     // Refresh after DOM and images are completely ready

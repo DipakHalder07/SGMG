@@ -26,6 +26,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--tm-bg);
   color: var(--tm-ink);
   overflow-x: hidden;
