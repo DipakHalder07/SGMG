@@ -155,29 +155,29 @@ const apartments = [
 
 const amenitiesList = [
   {
-    title: "Landscaped Garden & Play Area",
-    desc: "Sculpted green lawns, flowering walkways and a dedicated children’s play zone made for unhurried evenings with family.",
-    image: "/assets/gallery/Landscape_Lawn_1.webp",
-  },
-  {
-    title: "Open-Air Swimming Pool",
-    desc: "A sunlit pool with wooden sun deck and pergola seating, framed by open North Bengal skies and Himalayan foothill air.",
+    title: "Rooftop Swimming Pool",
+    desc: "An open-air pool on the roof, with deck seating and views across the neighbourhood.",
     image: "/assets/gallery/Swimming_Pool_1.webp",
   },
   {
-    title: "Grand Community Hall",
-    desc: "An elegant air-conditioned banquet hall for pujas, weddings, annaprashan and society gatherings, with catering support.",
-    image: "/assets/gallery/CommunityHall_1.webp",
-  },
-  {
-    title: "Fully-Equipped Gymnasium",
-    desc: "Cardio and strength stations with mirrored training zones and a dedicated yoga corner, open through the day for every age.",
+    title: "Multi-Gym, Aerobics & Yoga",
+    desc: "Cardio and strength equipment with a dedicated floor for aerobics and yoga.",
     image: "/assets/gallery/Gym_1.webp",
   },
   {
     title: "Indoor Games Arena",
-    desc: "A double-height lounge for carrom, cards, table games and darts — the community’s favourite corner on monsoon afternoons.",
+    desc: "A double-height lounge for carrom, cards, table games and darts.",
     image: "/assets/gallery/Indoor_Games_Arena_1.webp",
+  },
+  {
+    title: "Community Hall",
+    desc: "An air-conditioned hall for pujas, weddings, annaprashan and society gatherings.",
+    image: "/assets/gallery/CommunityHall_1.webp",
+  },
+  {
+    title: "Landscaped Garden",
+    desc: "Green lawns, flowering walkways and a children\u2019s play zone within the grounds.",
+    image: "/assets/gallery/Landscape_Lawn_1.webp",
   },
 ];
 
@@ -1213,7 +1213,7 @@ export default function HomePage() {
               </div>
               <div className="p_box">
                 <div className="p_gen">
-                  Luxury residences crafted on 40 years of trust. World-class amenities, RERA approved, and bank loan ready.
+                  Residences built on four decades of trust in Siliguri. Established 1985, a unit of the Begraj Group.
                 </div>
               </div>
             </div>
