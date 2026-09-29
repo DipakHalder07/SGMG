@@ -56,18 +56,24 @@ export function WebflowButton({
 }
 
 export function HeaderApplyButton({
-  href = "/#contact",
+  href = "/contact",
   text = "Apply Now",
   onClick,
+  onMouseEnter,
+  onTouchStart,
 }: {
   href?: string;
   text?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onMouseEnter?: () => void;
+  onTouchStart?: () => void;
 }) {
   return (
     <a
       href={href}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onTouchStart={onTouchStart}
       className="button header_cta w-inline-block"
       aria-label={text}
     >
@@ -283,18 +289,6 @@ export default function Header({ darkTheme = false }: HeaderProps) {
               </a>
 
               <a
-                href="/location"
-                className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
-                onMouseEnter={() => prefetchRoute("/location")}
-                onTouchStart={() => prefetchRoute("/location")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/location");
-                }}
-              >
-                <div>Location</div>
-              </a>
-              <a
                 href="/about"
                 className={`mobile_link w-inline-block ${location.pathname === "/about" || location.pathname === "/how-to-apply" ? "w--current" : ""}`}
                 onMouseEnter={() => prefetchRoute("/about")}
@@ -406,9 +400,12 @@ export default function Header({ darkTheme = false }: HeaderProps) {
           {/* Right Apply Button */}
           <div className="apply_button">
             <HeaderApplyButton
+              href="/contact"
+              onMouseEnter={() => prefetchRoute("/contact")}
+              onTouchStart={() => prefetchRoute("/contact")}
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("/", "contact");
+                handleNavClick("/contact");
               }}
             />
           </div>

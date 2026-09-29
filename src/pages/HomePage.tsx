@@ -2115,7 +2115,6 @@ export default function HomePage() {
                   <div className="title_footer">Discover</div>
                   <div className="links_list">
                     <Link to="/apartments" className="link_f">Residences</Link>
-                    <Link to="/location" className="link_f">Location</Link>
                     <a href="#gallery" className="link_f">Gallery</a>
                     <a href="#how-it-works" className="link_f">How to apply</a>
                     <a href="#contact" className="link_f">Contact</a>
