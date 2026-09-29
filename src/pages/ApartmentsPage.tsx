@@ -54,9 +54,10 @@ export default function ApartmentsPage() {
     <div className="page-wrapper apartments-page-view">
       <Header />
 
-      <main className="apartments-page-main">
+      <main className="apartments-page-main" data-section="light">
         {/* Main Section */}
-        <div className="wrapper_general apartments_gen">
+        <section data-section="light">
+          <div className="wrapper_general apartments_gen">
           <div className="heading_aparts">
             <h1 className="h1 black spec_amenities">
               Residences<br />
@@ -293,6 +294,7 @@ export default function ApartmentsPage() {
             </button>
           </div>
         </div>
+        </section>
 
         {/* Testimonials Section */}
         <TestimonialsSection />

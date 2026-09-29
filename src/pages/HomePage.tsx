@@ -443,10 +443,10 @@ export default function HomePage() {
 
       if (!mode) {
         const hero = document.querySelector<HTMLElement>('[data-section="hero"]');
-        if (hero && hero.getBoundingClientRect().bottom <= y) {
-          mode = "light";
-        } else {
+        if (hero && hero.getBoundingClientRect().top <= y && hero.getBoundingClientRect().bottom > y) {
           mode = "hero";
+        } else {
+          mode = "light";
         }
       }
 
@@ -763,24 +763,28 @@ export default function HomePage() {
               perMove: 1,
               focus: 0,
               type: "slide",
-              gap: "1.5rem",
+              gap: "0rem",
               arrows: false,
               pagination: false,
               speed: 800,
+              trimSpace: true,
+              dragAngleThreshold: 60,
+              rewind: false,
+              rewindSpeed: 500,
               breakpoints: {
                 991: {
                   perPage: 2,
-                  gap: "1rem",
+                  gap: "0rem",
                   padding: { right: "2rem" },
                 },
                 767: {
                   perPage: 1,
-                  gap: "1rem",
+                  gap: "0rem",
                   padding: { right: "2rem" },
                 },
                 479: {
                   perPage: 1,
-                  gap: "0.85rem",
+                  gap: "0rem",
                   padding: { left: "0rem", right: "2.6rem" },
                 },
               },
@@ -1696,7 +1700,7 @@ export default function HomePage() {
           </div>
           <div className="overlay_fs"></div>
           <div className="fs_box_m">
-            <img src="/__l5e/assets-v1/0965a376-88b5-41d6-800b-c528286cc0ab/19-fs-image.avif" alt="Aerial view of SGMG Residences in Siliguri" className="image" />
+            <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" />
           </div>
         </div>
       </section>

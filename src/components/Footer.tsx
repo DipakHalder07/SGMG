@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FooterIllustration from "./FooterIllustration";
 import { WebflowButton } from "./Header";
 import { prefetchRoute } from "../lib/prefetch";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FooterProps {
   hidePreFooterCta?: boolean;
@@ -12,6 +16,61 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const ctaRef = useRef<HTMLElement | null>(null);
+  const footerRef = useRef<HTMLElement | null>(null);
+
+  // Scroll effects matching the homepage: parallax scrub on the pre-footer CTA
+  // image, then a single soft rise for the footer columns as they enter view.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = gsap.context(() => {
+      const ctaEl = ctaRef.current;
+      const ctaImg = ctaEl?.querySelector<HTMLElement>(".fs_bg .image");
+      if (ctaEl && ctaImg) {
+        gsap.set(ctaImg, { scale: 1.12, transformOrigin: "50% 50%", force3D: true });
+        gsap.fromTo(
+          ctaImg,
+          { yPercent: -8 },
+          {
+            yPercent: 8,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ctaEl,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      const footerEl = footerRef.current;
+      if (!footerEl) return;
+      const rows = footerEl.querySelectorAll<HTMLElement>(
+        ".caption_left, .box_menu, .back_socials, .last_line"
+      );
+      if (!rows.length) return;
+
+      gsap.from(rows, {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.08,
+        scrollTrigger: { trigger: footerEl, start: "top 85%", once: true },
+      });
+    });
+
+    // Footer sits at the page bottom, so late-loading images shift its triggers.
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      ctx.revert();
+    };
+  }, [hidePreFooterCta]);
 
   const handleCopy = (text: string, msg: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -44,7 +103,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
       {/* PRE-FOOTER CTA SECTION */}
       {!hidePreFooterCta && (
         <section data-section="dark" id="contact">
-          <section className="fs_cta">
+          <section ref={ctaRef} className="fs_cta">
             <div className="abs_box">
               <div className="pink_cta">
                 <div className="wrapper_box_cta">
@@ -80,7 +139,7 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
       )}
 
       {/* FOOTER */}
-      <footer className="footer">
+      <footer ref={footerRef} className="footer">
         <div className="wrapper_footer">
           <div className="flex_f_top">
             <div className="caption_left">

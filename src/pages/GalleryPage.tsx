@@ -128,7 +128,7 @@ export default function GalleryPage() {
     <>
       <Header />
 
-      <main className="gallery" onWheel={handleWheel}>
+      <main className="gallery" data-section="light" onWheel={handleWheel}>
         <div className="gallery_wrapper">
           {/* Top Half: Meta, Counter, Sketch Room Illustration & Big Visual */}
           <div className="top_side">

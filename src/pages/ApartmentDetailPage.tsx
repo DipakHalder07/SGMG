@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
@@ -20,29 +19,29 @@ interface AmenityShowcaseItem {
 
 const AMENITY_SHOWCASE: AmenityShowcaseItem[] = [
   {
-    title: "Grilling Courtyard",
-    desc: "Host easy evenings with friends in the outdoor social zone.",
-    img: "/assets/amenities/amenity-1.avif",
+    title: "Landscaped Gardens",
+    desc: "Stone walkways, shaded pergolas and open lawns for unhurried evening strolls.",
+    img: "/assets/amenities/garden-landscape.jpg",
   },
   {
-    title: "Resort-Style Pool",
-    desc: "Unwind, cool off, and recharge between classes.",
-    img: "/assets/amenities/amenity-2.avif",
+    title: "Swimming Pool",
+    desc: "A sunlit pool with loungers and a paved deck, framed by flowering borders.",
+    img: "/assets/amenities/swimming-pool.jpg",
   },
   {
-    title: "Study Spaces",
-    desc: "Quiet corners built for deep focus and productive days.",
-    img: "/assets/amenities/amenity-3.avif",
+    title: "Clubhouse Lounge",
+    desc: "A double-height lounge for gatherings, games and quiet afternoons alike.",
+    img: "/assets/amenities/clubhouse-lounge.jpg",
   },
   {
-    title: "Fitness Center",
-    desc: "Train on your schedule with modern cardio and strength equipment.",
-    img: "/assets/amenities/amenity-4.avif",
+    title: "Fitness Centre",
+    desc: "Cardio and strength equipment with garden views and a mirrored training wall.",
+    img: "/assets/amenities/fitness-centre.jpg",
   },
   {
-    title: "Campus Shuttle",
-    desc: "Fast, reliable rides that keep your day moving.",
-    img: "/assets/amenities/amenity-5.avif",
+    title: "Children’s Play Area",
+    desc: "A fenced, soft-surfaced play zone set safely within the landscaped grounds.",
+    img: "/assets/amenities/kids-play-area.jpg",
   },
 ];
 
@@ -163,10 +162,10 @@ export default function ApartmentDetailPage() {
 
       if (!mode) {
         const hero = stageRef.current || document.querySelector<HTMLElement>('[data-section="hero"]');
-        if (hero && hero.getBoundingClientRect().bottom <= y) {
-          mode = "light";
-        } else {
+        if (hero && hero.getBoundingClientRect().top <= y && hero.getBoundingClientRect().bottom > y) {
           mode = "hero";
+        } else {
+          mode = "light";
         }
       }
 
@@ -197,32 +196,9 @@ export default function ApartmentDetailPage() {
     window.addEventListener("scroll", updateHeaderMode, { passive: true });
     window.addEventListener("resize", updateHeaderMode);
 
-    // B. Lenis Smooth Scrolling for Desktop (Matching Webflow production)
-    let lenis: Lenis | null = null;
-    const isDesktop = window.matchMedia("(min-width: 992px)").matches;
-    if (isDesktop) {
-      try {
-        lenis = new Lenis({
-          autoRaf: true,
-          autoToggle: false,
-          anchors: true,
-          allowNestedScroll: true,
-          naiveDimensions: true,
-          stopInertiaOnNavigate: true,
-        });
-
-        (window as any).lenis = lenis;
-
-        lenis.on("scroll", () => {
-          ScrollTrigger.update();
-          updateHeaderMode();
-        });
-
-        ScrollTrigger.refresh();
-      } catch (err) {
-        console.warn("Lenis initialization skipped:", err);
-      }
-    }
+    // B. Lenis smooth scrolling is mounted globally by <SmoothScroll /> in App.tsx.
+    // Lenis scrolls the window, so the native listener above keeps the header in
+    // sync; a second instance here would fight the global one for the scroller.
 
     // C. GSAP MatchMedia & Hero ScrollTrigger
     const mm = gsap.matchMedia();
@@ -416,10 +392,6 @@ export default function ApartmentDetailPage() {
       window.removeEventListener("resize", updateHeaderMode);
       document.body.classList.remove("is-hero", "is-light", "is-dark");
       mm.revert();
-      if (lenis) {
-        lenis.destroy();
-        delete (window as any).lenis;
-      }
     };
   }, [slug, unit]);
 
@@ -492,7 +464,7 @@ export default function ApartmentDetailPage() {
           perMove: 1,
           focus: 0,
           type: "slide",
-          gap: "1.5rem",
+          gap: "0rem",
           arrows: false,
           pagination: false,
           speed: 800,
@@ -504,21 +476,21 @@ export default function ApartmentDetailPage() {
           rewindSpeed: 500,
           waitForTransition: true,
           updateOnMove: false,
-          trimSpace: false,
+          trimSpace: true,
           breakpoints: {
             991: {
               perPage: 2,
-              gap: "1.25rem",
+              gap: "0rem",
               padding: { right: "2.5rem" },
             },
             767: {
               perPage: 1,
-              gap: "1rem",
+              gap: "0rem",
               padding: { right: "3rem" },
             },
             479: {
               perPage: 1,
-              gap: "0.85rem",
+              gap: "0rem",
               padding: { left: "0rem", right: "2.5rem" },
             },
           },
@@ -526,33 +498,23 @@ export default function ApartmentDetailPage() {
 
         splideInstance.mount();
         splideInstanceRef.current = splideInstance;
+        (container as any).splide = splideInstance;
 
-        const imgs = container.querySelectorAll("img");
-        imgs.forEach((img) => {
-          if (!img.complete) {
-            img.addEventListener("load", () => splideInstance?.refresh(), { once: true });
-          }
-        });
-
-        observer = new ResizeObserver(() => {
-          splideInstance?.refresh();
-        });
-        observer.observe(container);
       } catch (err) {
         console.warn("Splide init notice:", err);
       }
     }
 
+    let lastWidth = window.innerWidth;
     const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       splideInstance?.refresh();
     };
     window.addEventListener("resize", onResize);
 
     return () => {
       window.removeEventListener("resize", onResize);
-      if (observer) {
-        observer.disconnect();
-      }
       if (splideInstance) {
         splideInstance.destroy();
         splideInstanceRef.current = null;
@@ -1246,25 +1208,25 @@ export default function ApartmentDetailPage() {
                           {activeAmenityTab === "Community" && (
                             <div className="tab_content w-tab-pane w--tab-active">
                               <div className="content_part">
-                                <div className="title_list"><div>Spaces to recharge, study &amp; connect</div></div>
+                                <div className="title_list"><div>Spaces to unwind, gather &amp; connect</div></div>
                                 <div className="grid_apart_list">
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2d_c-icon-1.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Fitness Center</div>
+                                    <div>Fitness Centre</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2b_c-icon-5.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Resort-Style Pool</div>
+                                    <div>Swimming Pool</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b0c_c-icon-2.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Study Lounge</div>
+                                    <div>Community Hall</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
@@ -1276,13 +1238,13 @@ export default function ApartmentDetailPage() {
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2a_c-icon-3.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Coffee Bar</div>
+                                    <div>Indoor Games</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">
                                       <img src="/assets/icons/6a31483f3822b51654193b2c_c-icon-7.png" loading="lazy" alt="" className="image" />
                                     </div>
-                                    <div>Outdoor Courtyard</div>
+                                    <div>Landscaped Garden</div>
                                   </div>
                                   <div className="item_apartment">
                                     <div className="icon_apartments">

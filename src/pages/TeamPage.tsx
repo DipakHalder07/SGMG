@@ -205,12 +205,12 @@ export default function TeamPage() {
   const founder = TEAM_MEMBERS.find((m) => m.id === "sushil-mittal") || TEAM_MEMBERS[0];
 
   return (
-    <div className="team_page">
+    <div className="team_page" data-section="light">
       {/* Brand Header */}
       <Header />
 
       {/* --- HERO SECTION --- */}
-      <section className="team_hero">
+      <section className="team_hero" data-section="light">
         <div className="team_hero_container">
           <h1 className="team_hero_title">
             Crafting spaces that{" "}
