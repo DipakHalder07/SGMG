@@ -466,9 +466,8 @@ export default function HomePage() {
 
   // 2. Hero Circular Mask Transition with GSAP & Auto Advance
   const handleSlideChange = useCallback(
-    async (index: number) => {
-      if (index === activeSlideRef.current || heroBusyRef.current) return;
-      heroBusyRef.current = true;
+    (index: number) => {
+      if (index === activeSlideRef.current) return;
 
       const targetImg = heroSlides[index].image;
       setActiveSlide(index);
@@ -486,56 +485,48 @@ export default function HomePage() {
         return;
       }
 
-      try {
-        // 1. Pre-decode the target image in memory so it renders immediately
-        const preloadImg = new Image();
-        preloadImg.src = targetImg;
-        if (typeof preloadImg.decode === "function") {
-          await preloadImg.decode().catch(() => { });
-        }
-
-        // 2. Set next image source and decode on the element
-        bgNext.src = targetImg;
-        if (typeof bgNext.decode === "function") {
-          await bgNext.decode().catch(() => { });
-        }
-        setNextHeroImg(targetImg);
-
+      // If an animation is already in flight when clicked, settle previous image onto bgCurrent immediately
+      if (heroBusyRef.current) {
         gsap.killTweensOf([bgNext, bgCurrent]);
-
-        // 3. Keep current image visible underneath and reset next image masked
-        gsap.set(bgCurrent, { opacity: 1, scale: 1 });
-        gsap.set(bgNext, {
-          opacity: 1,
-          clipPath: "circle(0% at 100% 50%)",
-          willChange: "clip-path",
-        });
-
-        // 4. Smooth circular mask reveal
-        gsap.to(bgNext, {
-          clipPath: "circle(150% at 100% 50%)",
-          duration: 1.25,
-          ease: "power3.out",
-          onComplete: () => {
-            // Immediately mirror targetImg on the bgCurrent DOM element before resetting bgNext.
-            // This guarantees bgCurrent already displays the new image, preventing any 1-frame flash.
-            bgCurrent.src = targetImg;
-            setCurrentHeroImg(targetImg);
-
-            gsap.set(bgCurrent, { opacity: 1 });
-            gsap.set(bgNext, {
-              opacity: 0,
-              clipPath: "circle(0% at 100% 50%)",
-              clearProps: "willChange",
-            });
-            heroBusyRef.current = false;
-          },
-        });
-      } catch (err) {
-        console.error("Hero slide transition error:", err);
-        setCurrentHeroImg(targetImg);
-        heroBusyRef.current = false;
+        if (bgNext.src) {
+          bgCurrent.src = bgNext.src;
+          setCurrentHeroImg(bgNext.src);
+        }
       }
+
+      heroBusyRef.current = true;
+      bgNext.src = targetImg;
+      setNextHeroImg(targetImg);
+
+      gsap.killTweensOf([bgNext, bgCurrent]);
+
+      // Base current image visible underneath
+      gsap.set(bgCurrent, { opacity: 1, scale: 1 });
+
+      // Reset next image to start circular mask from right side
+      gsap.set(bgNext, {
+        opacity: 1,
+        clipPath: "circle(0% at 100% 50%)",
+        willChange: "clip-path",
+      });
+
+      // Signature 21Oaks circular mask reveal animation (responsive and smooth)
+      gsap.to(bgNext, {
+        clipPath: "circle(150% at 100% 50%)",
+        duration: 1.1,
+        ease: "power2.out",
+        onComplete: () => {
+          bgCurrent.src = targetImg;
+          setCurrentHeroImg(targetImg);
+          gsap.set(bgCurrent, { opacity: 1 });
+          gsap.set(bgNext, {
+            opacity: 0,
+            clipPath: "circle(0% at 100% 50%)",
+            clearProps: "willChange",
+          });
+          heroBusyRef.current = false;
+        },
+      });
     },
     [startAutoTimer]
   );
@@ -770,11 +761,11 @@ export default function HomePage() {
               gap: "0rem",
               arrows: false,
               pagination: false,
-              speed: 800,
+              speed: 400,
               trimSpace: true,
               dragAngleThreshold: 60,
               rewind: false,
-              rewindSpeed: 500,
+              rewindSpeed: 400,
               breakpoints: {
                 991: {
                   perPage: 2,
@@ -827,6 +818,12 @@ export default function HomePage() {
             }
         );
         inst.mount();
+        // Allow clicking any slide to instantly navigate to that slide
+        inst.on("click", (slide) => {
+          if (slide && typeof slide.index === "number") {
+            inst.go(slide.index);
+          }
+        });
         instances.push(inst);
       } catch (err) {
         console.warn("Splide init notice:", err);
@@ -1226,7 +1223,7 @@ export default function HomePage() {
             <div className="thumbnails_images">
               {heroSlides.map((slide, i) => (
                 <div
-                  key={`${slide.image}-${activeSlide === i ? "active" : "inactive"}`}
+                  key={slide.image}
                   className={`image_thumbnail ${activeSlide === i ? "is-active" : ""}`}
                   onClick={() => handleSlideChange(i)}
                   title={slide.alt}
@@ -1293,14 +1290,19 @@ export default function HomePage() {
                     transform: isDragging
                       ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
                       : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
-                    transition: isDragging ? "none" : "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                    transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
                   }}
                 >
-                  {apartments.map((apart) => (
+                  {apartments.map((apart, apartIdx) => (
                     <div
                       className="property_slider_slide"
                       key={apart.id}
                       style={{ flex: `0 0 ${100 / visibleSlides}%` }}
+                      onClick={() => {
+                        if (!didDragRef.current) {
+                          setPropertySlideIndex(Math.min(apartIdx, maxPropertySlideIndex));
+                        }
+                      }}
                     >
                       <div className="apart_card">
                         <Link
