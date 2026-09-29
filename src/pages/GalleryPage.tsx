@@ -146,12 +146,12 @@ export default function GalleryPage() {
                 </div>
               </div>
 
-              {/* Hand-Drawn Room Sketch Illustration with interactive physics */}
+              {/* SGMG monogram, bounced by GSAP on each slide change */}
               <div className="ill_middle">
                 <img
                   ref={illImgRef}
-                  src="/images/gallery/gallery-ill.svg"
-                  alt="SGMG Residence Room Sketch Illustration"
+                  src="/images/sgmg-icon.svg"
+                  alt="SGMG"
                   className="image"
                 />
               </div>

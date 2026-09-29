@@ -66,7 +66,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
   },
   {
     id: "d1-premium",
-    name: "D1 Premium",
+    name: "Green View",
     type: "Premium",
     bedrooms: 4,
     bathrooms: 2,
@@ -99,7 +99,7 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     desc: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
     aboutText: "An elevated 4-bedroom sanctuary featuring upgraded designer finishes, panoramic view vistas, and private suite layouts that redefine luxury living.",
     storyTitle: "Bespoke finishes and panoramic views",
-    storyDesc: "D1 Premium elevates residential living with imported vitrified tile flooring, designer sanitary fixtures, and generous double-glazed windows. Enjoy expansive living areas, an Italian-inspired modular kitchen, and serene private balconies overlooking Siliguri's greenery.",
+    storyDesc: "Green View elevates residential living with imported vitrified tile flooring, designer sanitary fixtures, and generous double-glazed windows. Enjoy expansive living areas, an Italian-inspired modular kitchen, and serene private balconies overlooking Siliguri's greenery.",
     amenities: {
       kitchen: ["Italian-finish modular units", "Quartz worktops", "Double stainless sink", "Piped gas provision", "Separate utility"],
       livingRoom: ["Double-aspect grand hall", "Recessed LED lighting", "Polished vitrified floors", "Panoramic deck"],

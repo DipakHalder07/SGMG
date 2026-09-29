@@ -94,8 +94,9 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: min(22rem, 30vw);
-  height: min(22rem, 30vw);
+  /* Square monogram, so smaller than the wide sketch it replaced. */
+  width: min(13rem, 18vw);
+  height: min(13rem, 18vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,8 +339,8 @@
     left: auto;
     transform: translateY(-50%);
     margin: 0;
-    width: 11rem;
-    height: 11rem;
+    width: 8rem;
+    height: 8rem;
   }
 
   .thumb_item {
@@ -403,8 +404,8 @@
     left: auto;
     transform: translateY(-50%);
     margin: 0;
-    width: 8.5rem;
-    height: 8.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
   }
 
   .gallery .bottom_active {

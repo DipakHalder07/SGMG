@@ -314,7 +314,7 @@
   width: 100%;
   max-width: 680px;
   background: var(--cr-bg);
-  border-radius: 6px;
+  border-radius: 4px;
   padding: clamp(1.75rem, 4vw, 3rem);
 }
 

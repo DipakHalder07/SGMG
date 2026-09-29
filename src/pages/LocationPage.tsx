@@ -753,7 +753,7 @@ export default function LocationPage() {
                               {place.walk}
                             </span>
                           </div>
-                          <h3 className="title_map_card">{place.name}</h3>
+                          <div className="title_map_card">{place.name}</div>
                         </div>
                       </div>
                     </div>

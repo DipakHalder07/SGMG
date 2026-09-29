@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header, { WebflowButton } from "../components/Header";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../team.css";
 
@@ -201,53 +201,34 @@ export default function TeamPage() {
       ? TEAM_MEMBERS
       : TEAM_MEMBERS.filter((m) => m.department === selectedDept);
 
-  // Founder spotlight item
-  const founder = TEAM_MEMBERS.find((m) => m.id === "sushil-mittal") || TEAM_MEMBERS[0];
-
   return (
     <div className="team_page" data-section="light">
       {/* Brand Header */}
       <Header />
 
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO --- */}
       <section className="team_hero" data-section="light">
-        <div className="team_hero_container">
+        <div className="team_wrap">
           <h1 className="team_hero_title">
             Crafting spaces that{" "}
-            <span className="accent_scribble">inspire & elevate</span>
+            <span className="accent_scribble">inspire &amp; elevate</span>
           </h1>
 
           <p className="team_hero_desc">
-            From architectural visionaries and green engineers to dedicated client experience directors,
-            our multidisciplinary leadership is committed to setting new benchmarks for luxury residential
-            living in Siliguri.
+            The architects, engineers and advisors behind every SGMG home in
+            Siliguri.
           </p>
-
-          {/* Key Metrics / Highlights */}
-          <div className="team_stats_grid">
-            <div className="team_stat_item">
-              <span className="team_stat_num">35+</span>
-              <span className="team_stat_label">Years of Group Heritage & Excellence</span>
-            </div>
-            <div className="team_stat_item">
-              <span className="team_stat_num">600+</span>
-              <span className="team_stat_label">Luxury Residences Delivered</span>
-            </div>
-            <div className="team_stat_item">
-              <span className="team_stat_num">99.2%</span>
-              <span className="team_stat_label">Resident Satisfaction & Trust Index</span>
-            </div>
-            <div className="team_stat_item">
-              <span className="team_stat_num">24 / 7</span>
-              <span className="team_stat_label">Onsite Concierge, Security & Facility Support</span>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* --- FILTER TABS BAR --- */}
-      <div className="team_filter_bar">
-        <div className="team_filter_container">
+      {/* --- LEADERSHIP --- */}
+      <section className="team_section">
+        <div className="team_wrap">
+          <h2 className="team_section_title">Leadership</h2>
+          <p className="team_section_subtitle">
+            {TEAM_MEMBERS.length} people, based at Jeevandeep Tower.
+          </p>
+
           <div className="team_filter_tabs" role="tablist">
             {DEPARTMENTS.map((dept) => {
               const count =
@@ -265,233 +246,77 @@ export default function TeamPage() {
                   className={`team_tab_btn ${isActive ? "is-active" : ""}`}
                   onClick={() => setSelectedDept(dept)}
                 >
-                  <span>{dept}</span>
+                  {dept}
                   <span className="team_tab_count">{count}</span>
                 </button>
               );
             })}
           </div>
 
-          <div className="team_filter_info">
-            Showing {filteredMembers.length} {filteredMembers.length === 1 ? "Leader" : "Leaders"}
+          <div className="team_cards_grid">
+            {filteredMembers.map((member) => (
+              <button
+                key={member.id}
+                type="button"
+                className="team_member_card"
+                onClick={() => setSelectedMember(member)}
+              >
+                <span className="team_member_image_wrapper">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="team_member_image"
+                    loading="lazy"
+                  />
+                </span>
+                <span className="team_member_name">{member.name}</span>
+                <span className="team_member_role">{member.role}</span>
+              </button>
+            ))}
           </div>
-        </div>
-      </div>
-
-      {/* --- FEATURED FOUNDER SPOTLIGHT (Shown when "All Leaders" or "Executive Leadership" is selected) --- */}
-      {(selectedDept === "All Leaders" || selectedDept === "Executive Leadership") && (
-        <section className="team_spotlight_section">
-          <div className="team_spotlight_card">
-            <div className="team_spotlight_image_box">
-              <img
-                src={founder.image}
-                alt={founder.name}
-                className="team_spotlight_image"
-              />
-              <div className="team_spotlight_badge">Group Founder</div>
-            </div>
-
-            <div className="team_spotlight_content">
-              <div className="team_spotlight_role">{founder.role}</div>
-              <h2 className="team_spotlight_name">{founder.name}</h2>
-              <blockquote className="team_spotlight_quote">
-                {founder.quote}
-              </blockquote>
-              <p className="team_spotlight_bio">{founder.bio}</p>
-
-              <div className="team_spotlight_tags">
-                {founder.highlights.map((h, idx) => (
-                  <span key={idx} className="team_spotlight_tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2391cf" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    {h}
-                  </span>
-                ))}
-              </div>
-
-              <div className="team_spotlight_actions">
-                <WebflowButton
-                  text="Read Full Journey"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedMember(founder);
-                  }}
-                />
-                <a
-                  href={`mailto:${founder.email}`}
-                  className="team_member_social_link"
-                  title={`Email ${founder.name}`}
-                  aria-label={`Email ${founder.name}`}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* --- TEAM MEMBERS GRID --- */}
-      <section className="team_grid_section">
-        <div className="team_section_header">
-          <h2 className="team_section_title">
-            {selectedDept === "All Leaders" ? "Executive & Department Leadership" : selectedDept}
-          </h2>
-          <p className="team_section_subtitle">
-            Dedicated professionals committed to delivering unmatched living, architectural precision, and community well-being.
-          </p>
-        </div>
-
-        <div className="team_cards_grid">
-          {filteredMembers.map((member) => (
-            <article
-              key={member.id}
-              className="team_member_card"
-              onClick={() => setSelectedMember(member)}
-            >
-              <div className="team_member_image_wrapper">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="team_member_image"
-                  loading="lazy"
-                />
-                <span className="team_member_dept_badge">{member.department}</span>
-              </div>
-
-              <div className="team_member_content">
-                <h3 className="team_member_name">{member.name}</h3>
-                <div className="team_member_title">{member.role}</div>
-                <p className="team_member_tagline">{member.tagline}</p>
-
-                <div className="team_member_footer">
-                  <button
-                    type="button"
-                    className="team_member_bio_btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedMember(member);
-                    }}
-                  >
-                    <span>Read Bio</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </button>
-
-                  <div className="team_member_social_row">
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="team_member_social_link"
-                      onClick={(e) => e.stopPropagation()}
-                      title={`Email ${member.name}`}
-                      aria-label={`Email ${member.name}`}
-                    >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                        <polyline points="22,6 12,13 2,6" />
-                      </svg>
-                    </a>
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="team_member_social_link"
-                      onClick={(e) => e.stopPropagation()}
-                      title={`${member.name} on LinkedIn`}
-                      aria-label={`${member.name} on LinkedIn`}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
-      {/* --- OUR VALUES & CULTURE SECTION --- */}
-      <section className="team_values_section">
-        <div className="team_values_container">
-          <div className="team_values_header">
-            <span className="team_values_badge">Our Core Principles</span>
-            <h2 className="team_values_title">What drives our leadership every single day</h2>
-            <p className="team_values_subtitle">
-              We believe a home is much more than a structure. It is the fertile soil where
-              aspirations take flight, families thrive, and lifelong memories are forged.
-            </p>
-          </div>
+      {/* --- WHAT WE BUILD FOR --- */}
+      <section className="team_section">
+        <div className="team_wrap">
+          <h2 className="team_section_title">What we build for</h2>
+          <p className="team_section_subtitle">
+            The four things every project is measured against.
+          </p>
 
           <div className="team_values_grid">
-            <div className="team_value_card">
-              <div className="team_value_icon_wrap">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <h3 className="team_value_heading">Resident-First Empathy</h3>
+            <div>
+              <h3 className="team_value_heading">Residents first</h3>
               <p className="team_value_text">
-                Every architectural layout, expansive balcony, and community amenity is designed around
-                what families need to thrive comfortably and peacefully.
+                Layouts are planned around how families actually live, not around
+                what fits on a drawing.
               </p>
             </div>
-
-            <div className="team_value_card">
-              <div className="team_value_icon_wrap">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                  <polyline points="2 17 12 22 22 17" />
-                  <polyline points="2 12 12 17 22 12" />
-                </svg>
-              </div>
-              <h3 className="team_value_heading">Architectural Distinction</h3>
+            <div>
+              <h3 className="team_value_heading">Daylight and air</h3>
               <p className="team_value_text">
-                We craft spaces with natural daylight, superior acoustic soundproofing, and biophilic landscaped courtyards
-                that encourage deep relaxation and tranquil family living.
+                Cross ventilation, deep balconies and landscaped courtyards on
+                every project.
               </p>
             </div>
-
-            <div className="team_value_card">
-              <div className="team_value_icon_wrap">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                  <path d="M2 12h20" />
-                </svg>
-              </div>
-              <h3 className="team_value_heading">IGBC Green Standards</h3>
+            <div>
+              <h3 className="team_value_heading">Green standards</h3>
               <p className="team_value_text">
-                Committed to environmental stewardship with high-yield solar rooftop arrays, rainwater recycling,
-                and energy-efficient smart climate controls.
+                Rainwater harvesting, solar provision and efficient services,
+                built to IGBC guidance.
               </p>
             </div>
-
-            <div className="team_value_card">
-              <div className="team_value_icon_wrap">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <h3 className="team_value_heading">Safety & Peace of Mind</h3>
+            <div>
+              <h3 className="team_value_heading">Safety</h3>
               <p className="team_value_text">
-                Multi-tier security access, 24/7 onsite surveillance professionals, and dedicated resident concierge
-                give homeowners and families total peace of mind.
+                Multi-tier access control, round-the-clock surveillance and
+                on-site facility staff.
               </p>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* --- INTERACTIVE MEMBER DETAIL MODAL --- */}
       {selectedMember && (
@@ -517,63 +342,39 @@ export default function TeamPage() {
               </svg>
             </button>
 
-            <div className="team_modal_left">
-              <div className="team_modal_avatar_box">
-                <img
-                  src={selectedMember.image}
-                  alt={selectedMember.name}
-                  className="team_modal_avatar"
-                />
-              </div>
+            <img
+              src={selectedMember.image}
+              alt={selectedMember.name}
+              className="team_modal_avatar"
+            />
 
-              <div className="team_modal_contact_box">
-                <a
-                  href={`mailto:${selectedMember.email}`}
-                  className="team_modal_contact_link"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                  <span>{selectedMember.email}</span>
-                </a>
+            <h2 className="team_modal_name">{selectedMember.name}</h2>
+            <p className="team_modal_role">{selectedMember.role}</p>
 
-                <a
-                  href={selectedMember.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="team_modal_contact_link"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                  <span>Connect on LinkedIn</span>
-                </a>
-              </div>
-            </div>
+            <p className="team_modal_bio">{selectedMember.bio}</p>
 
-            <div className="team_modal_right">
-              <span className="team_modal_dept">{selectedMember.department}</span>
-              <h2 className="team_modal_name">{selectedMember.name}</h2>
-              <div className="team_modal_role">{selectedMember.role}</div>
+            <div className="team_modal_highlights_title">Focus areas</div>
+            <ul className="team_modal_list">
+              {selectedMember.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
 
-              <blockquote className="team_modal_quote">
-                {selectedMember.quote}
-              </blockquote>
-
-              <p className="team_modal_bio">{selectedMember.bio}</p>
-
-              <div>
-                <div className="team_modal_highlights_title">Key Specializations & Leadership Roles</div>
-                <div className="team_modal_highlights_list">
-                  {selectedMember.highlights.map((h, i) => (
-                    <div key={i} className="team_modal_highlight_item">
-                      <span className="team_modal_highlight_dot" />
-                      <span>{h}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="team_modal_contact_box">
+              <a
+                href={`mailto:${selectedMember.email}`}
+                className="team_modal_contact_link"
+              >
+                {selectedMember.email}
+              </a>
+              <a
+                href={selectedMember.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="team_modal_contact_link"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>
