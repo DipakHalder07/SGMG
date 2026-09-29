@@ -76,14 +76,13 @@ export default function ApartmentLightboxModal({
             >
               Full Details
             </Link>
-            <a
-              href="https://calendly.com/dipakh810/30min"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               className="apartment-lightbox-apply-btn"
+              onClick={onClose}
             >
               Apply Now
-            </a>
+            </Link>
             <button
               className="apartment-lightbox-close-btn"
               onClick={onClose}

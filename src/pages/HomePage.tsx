@@ -1173,8 +1173,7 @@ export default function HomePage() {
 
   const handleApplyClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
-    window.open("https://calendly.com/dipakh810/30min", "_blank");
+    navigate("/contact");
   };
 
   const handleScrollToTop = (e: React.MouseEvent) => {

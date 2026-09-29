@@ -48,7 +48,9 @@
    [class*="heading"]. Body copy takes the body face back explicitly. */
 .team_page .team_hero_desc,
 .team_page .team_section_subtitle,
+.team_page .team_member_role,
 .team_page .team_member_bio,
+.team_page .team_action,
 .team_page .team_contact_label,
 .team_page .team_contact_value {
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
@@ -107,33 +109,23 @@
 }
 
 /* --- LEADERSHIP CARDS --- */
+/* No box, no hover: photo, name, role, bio, text links. */
 .team_grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2vw, 1.75rem);
+  gap: 3rem clamp(1.25rem, 2vw, 2rem);
 }
 
 .team_card {
   display: flex;
   flex-direction: column;
-  background: var(--tm-bg);
-  border: 1px solid var(--tm-line);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-.team_card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(41, 41, 41, 0.2);
-  box-shadow: 0 20px 44px -24px rgba(41, 41, 41, 0.5);
 }
 
 .team_card_media {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  border-radius: 4px;
   background: rgba(41, 41, 41, 0.06);
 }
 
@@ -145,37 +137,6 @@
   object-fit: cover;
   object-position: center 28%;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.team_card:hover .team_photo {
-  transform: scale(1.04);
-}
-
-/* Scrim so the role chip stays legible over any photo. */
-.team_card_media::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(to top, rgba(18, 18, 18, 0.72), transparent);
-  pointer-events: none;
-}
-
-.team_member_role {
-  position: absolute;
-  left: 0.9rem;
-  bottom: 0.9rem;
-  z-index: 1;
-  margin: 0;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  font-size: var(--tm-fs-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.1em !important;
-  color: var(--tm-ink);
 }
 
 /* Monogram fills the media area whenever a headshot fails to load. */
@@ -195,7 +156,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: clamp(1.15rem, 1.6vw, 1.5rem);
+  padding-top: 1.25rem;
 }
 
 .team_member_name {
@@ -204,58 +165,43 @@
   font-weight: 400 !important;
   line-height: 1.35 !important;
   color: var(--tm-ink);
-  margin: 0 0 0.75rem !important;
+  margin: 0 0 0.3rem !important;
 }
 
-/* flex:1 pushes the action row to the bottom so it lines up across cards
-   whose bios differ in length. */
+.team_member_role {
+  font-size: var(--tm-fs-sm);
+  color: var(--tm-muted);
+  margin: 0 0 1rem;
+}
+
+/* flex:1 pushes the links to the bottom so they line up across cards whose
+   bios differ in length. */
 .team_member_bio {
   flex: 1;
   font-size: var(--tm-fs-sm);
   line-height: 1.7;
   color: var(--tm-muted);
   margin: 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--tm-line);
 }
 
 .team_card_actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1.25rem;
   margin-top: 1.25rem;
 }
 
 .team_action {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid var(--tm-line);
-  border-radius: 999px;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: var(--tm-fs-xs);
-  letter-spacing: normal;
-  color: var(--tm-muted);
+  font-size: var(--tm-fs-sm);
+  color: var(--tm-ink);
   text-decoration: none;
-  transition: color 0.25s ease, border-color 0.25s ease,
-    background-color 0.25s ease;
-}
-
-.team_action svg {
-  width: 0.95rem;
-  height: 0.95rem;
-  flex: none;
-}
-
-.team_action--icon {
-  padding: 0.5rem;
+  border-bottom: 1px solid var(--tm-line);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .team_action:hover {
   color: var(--tm-accent);
-  border-color: var(--tm-accent);
-  background-color: rgba(35, 145, 207, 0.06);
+  border-bottom-color: var(--tm-accent);
 }
 
 /* --- CONTACT --- */
@@ -267,17 +213,10 @@
 
 .team_contact_card {
   display: block;
-  padding: clamp(1.25rem, 1.8vw, 1.75rem);
-  border: 1px solid var(--tm-line);
-  border-radius: 10px;
+  padding-top: 1rem;
+  border-top: 1px solid var(--tm-line);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.team_contact_card--link:hover {
-  border-color: var(--tm-accent);
-  background-color: rgba(35, 145, 207, 0.04);
 }
 
 .team_contact_label {
@@ -293,6 +232,7 @@
   line-height: 1.6;
   color: var(--tm-ink);
   margin: 0;
+  transition: color 0.2s ease;
 }
 
 .team_contact_card--link:hover .team_contact_value {
@@ -320,6 +260,7 @@
 
   .team_grid {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.75rem;
   }
 
   .team_card_media {

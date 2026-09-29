@@ -719,9 +719,9 @@ export default function ApartmentDetailPage() {
                   </div>
 
                   <div className="buttons_last">
-                    <a href="/contact" className="button_apply w-inline-block">
+                    <Link to="/contact" className="button_apply w-inline-block">
                       <div>Apply Now</div>
-                    </a>
+                    </Link>
                     <a
                       href="https://calendly.com/dipakh810/30min"
                       target="_blank"
