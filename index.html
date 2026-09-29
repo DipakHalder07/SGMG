@@ -13,28 +13,24 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Preload custom Exposure font -->
-    <link
-      rel="preload"
-      href="/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-
     <!-- Google Fonts: Michroma for Headings & Plus Jakarta Sans for Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
-    <!-- Preload initial hero image -->
-    <link
-      rel="preload"
-      href="/assets/hero-banner-1.avif"
-      as="image"
-      type="image/avif"
-      fetchpriority="high"
-    />
+    <!-- Preload the home hero on the home page only. index.html is shared by
+         every route, and elsewhere this 309 KB image would download unused. -->
+    <script>
+      if (location.pathname === "/") {
+        var heroPreload = document.createElement("link");
+        heroPreload.rel = "preload";
+        heroPreload.as = "image";
+        heroPreload.type = "image/avif";
+        heroPreload.href = "/assets/hero-banner-1.avif";
+        heroPreload.setAttribute("fetchpriority", "high");
+        document.head.appendChild(heroPreload);
+      }
+    </script>
 
     <!-- Webflow Base Stylesheet -->
     <link rel="stylesheet" type="text/css" href="/webflow.min.css" />
