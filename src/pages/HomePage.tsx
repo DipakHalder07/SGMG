@@ -835,7 +835,7 @@ export default function HomePage() {
         },
       });
 
-      tl.to(title, { y: -240, duration: 0.3 }, 0.0)
+      tl.to(title, { y: -285, duration: 0.3 }, 0.0)
         .to(bg, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.06)
         .to(
           scribbles,
