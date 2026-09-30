@@ -1869,8 +1869,8 @@ export default function HomePage() {
           <div className="txt_wrap">
             <div className="heading_fs">
               <h2 className="h2 white">
-                <span data-scribble="3" className="scribble-wrap scribble-visible">Closer</span> than<br />
-                you think
+                <span data-scribble="3" className="scribble-wrap scribble-visible">Closer</span>&nbsp;than<br />
+                you&nbsp;think
               </h2>
             </div>
           </div>

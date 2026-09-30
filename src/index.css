@@ -2791,6 +2791,8 @@ body.is-hero .menu {
 .fs {
   width: 100%;
   height: 68em;
+  max-height: 85vh;
+  min-height: 540px;
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -2810,111 +2812,271 @@ body.is-hero .menu {
   position: relative;
 }
 
-.fs_box_m img {
+.fs_box_m img,
+.fs_box_m .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.overlay_fs {
+  z-index: 6;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.22) 100%);
+  display: block;
+  position: absolute;
+  inset: 0%;
+  pointer-events: none;
 }
 
 .txt_wrap {
+  z-index: 9;
+  padding-top: 3.2em;
+  padding-left: 2.8em;
   position: absolute;
-  top: 3rem;
-  left: 3rem;
-  z-index: 5;
+  inset: 0%;
+  pointer-events: none;
 }
 
-.heading_fs .h2.white  {
-  color: #fff;
+.heading_fs {
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.heading_fs .h2.white {
+  color: #fff !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(27px, 3.5vw, 48px);
-  line-height: 1.05;
+  font-size: clamp(30px, 3.8vw, 54px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0.08em !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+  margin: 0;
+}
+
+.heading_fs [data-scribble="3"] {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.16em;
+}
+
+.heading_fs [data-scribble="3"]::after {
+  bottom: -0.15em;
+  height: 0.36em;
 }
 
 .svg_items {
+  z-index: 7;
+  flex-flow: column;
+  padding: 2.2em 3.5em 14em;
+  display: flex;
   position: absolute;
-  inset: 0;
-  z-index: 5;
+  inset: 0%;
   pointer-events: none;
 }
 
 .clouds_top {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
+  column-gap: 5.7em;
+  justify-content: flex-end;
+  align-items: center;
   display: flex;
-  gap: 1.5rem;
+  width: 100%;
 }
 
 .cloud_f {
   background-image: url("/assets/icons/cloud-1.png");
-  background-position: center;
+  background-position: 50% center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 4.2rem;
-  height: 4.2rem;
+  width: 4.2em;
+  height: 4.2em;
+  margin-top: -0.6rem;
+  margin-bottom: 3em;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
 .cloud_s {
   background-image: url("/assets/icons/cloud-small.png");
-  background-position: center;
+  background-position: 50% center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 5.5rem;
-  height: 5rem;
-  margin-top: 1.5rem;
+  width: 6em;
+  height: 5.5em;
+  margin-top: 2em;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
 .cloud_t {
   background-image: url("/assets/icons/cloud-2.png");
-  background-position: center;
+  background-position: 50% center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 5.3em;
+  height: 5.3em;
+  margin-bottom: 1em;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
-.overlay_fs {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.45) 100%);
-  z-index: 2;
+.pin_ill {
+  background-image: url("/assets/icons/pin-fs.png");
+  background-position: 50% center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.2em;
+  height: 3.1em;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 0.5em;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
 }
 
 @media (max-width: 991px) {
   .fs {
-    height: 380px !important;
-    padding: 1rem !important;
+    height: 72em !important;
+    max-height: 70vh !important;
+    min-height: 420px !important;
+    padding: 1rem 0.6rem !important;
+  }
+
+  .svg_items {
+    padding: 2em 2rem 10em !important;
   }
 
   .txt_wrap {
-    top: 1.5rem !important;
-    left: 1.5rem !important;
+    padding-top: 2em !important;
+    padding-left: 1.5em !important;
   }
 
   .heading_fs .h2.white {
-    font-size: clamp(21px, 5.3vw, 29px) !important;
+    font-size: clamp(24px, 4.5vw, 36px) !important;
+    word-spacing: 0.3em !important;
   }
 
   .clouds_top {
-    top: 1.25rem !important;
-    right: 1.25rem !important;
-    gap: 0.75rem !important;
+    column-gap: 3.5em !important;
   }
 
   .cloud_f {
-    width: 2.8rem !important;
-    height: 2.8rem !important;
+    width: 3.5em !important;
+    height: 3.5em !important;
+    margin-bottom: 1.5em !important;
   }
 
   .cloud_s {
-    width: 3.2rem !important;
-    height: 3rem !important;
+    width: 4.8em !important;
+    height: 4.4em !important;
+    margin-top: 1.2em !important;
+  }
+
+  .cloud_t {
+    width: 4.2em !important;
+    height: 4.2em !important;
+  }
+
+  .pin_ill {
+    width: 2em !important;
+    height: 2.8em !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .fs {
+    height: 60em !important;
+    max-height: 65vh !important;
+    min-height: 380px !important;
+    padding: 0.5rem !important;
+  }
+
+  .svg_items {
+    padding: 1.5em 1.2rem 8em !important;
+  }
+
+  .txt_wrap {
+    padding-top: 1.5em !important;
+    padding-left: 1.2em !important;
+  }
+
+  .heading_fs .h2.white {
+    font-size: clamp(21px, 5.2vw, 30px) !important;
+    line-height: 1.15 !important;
+    word-spacing: 0.28em !important;
+  }
+
+  .clouds_top {
+    column-gap: 2em !important;
+  }
+
+  .cloud_f {
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .cloud_s {
+    width: 3.6rem !important;
+    height: 3.3rem !important;
     margin-top: 0.8rem !important;
   }
 
   .cloud_t {
-    width: 2.8rem !important;
-    height: 2.8rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .fs {
+    height: 32rem !important;
+    min-height: 340px !important;
+    padding: 0.375rem !important;
+  }
+
+  .svg_items {
+    padding: 1.2rem 0.8rem 6rem 1rem !important;
+  }
+
+  .clouds_top {
+    column-gap: 1.2rem !important;
+  }
+
+  .cloud_f {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .cloud_s {
+    width: 2.7rem !important;
+    height: 2.5rem !important;
+    margin-top: 0.6rem !important;
+  }
+
+  .cloud_t {
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pin_ill {
+    width: 1.8rem !important;
+    height: 2.4rem !important;
+  }
+
+  .txt_wrap {
+    padding-top: 1.2rem !important;
+    padding-left: 1rem !important;
+  }
+
+  .heading_fs .h2.white {
+    font-size: clamp(18px, 5.8vw, 24px) !important;
+    word-spacing: 0.25em !important;
+    line-height: 1.18 !important;
   }
 }
 
