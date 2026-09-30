@@ -30,9 +30,14 @@ export default function SmoothScroll() {
           allowNestedScroll: true,
           naiveDimensions: true,
           stopInertiaOnNavigate: true,
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          wheelMultiplier: 1,
         });
         (window as any).lenis = lenis;
         lenis.on("scroll", handleScroll);
+        gsap.ticker.lagSmoothing(0);
         ScrollTrigger.refresh();
       } catch (err) {
         console.warn("Lenis initialization skipped:", err);

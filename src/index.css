@@ -1735,32 +1735,6 @@ body.is-hero .menu {
   transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Author Circle Progress Ring */
-.author_circle {
-  --ring-size: 3px;
-  --p: 0;
-  position: relative;
-  border-radius: 999px;
-  padding: 3px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.author_circle:hover {
-  transform: scale(1.05);
-}
-
-.author_circle img {
-  display: block;
-  width: 60px;
-  height: 60px;
-  border-radius: 999px;
-  object-fit: cover;
-}
-
-.author_item.is-active .author_circle {
-  box-shadow: 0 0 0 3px var(--logo-green, #a2cd3a);
-}
 
 /* Lamp Glow Flicker in Footer */
 #lamp-glow {
@@ -3649,13 +3623,9 @@ body.is-hero .menu {
   opacity: 1 !important;
 }
 
-/* Testimonials Section Webflow Styles */
-.testimonials {
-  position: relative;
-  background: #fff;
-  width: 100%;
-}
-
+/* ==========================================================================
+   TESTIMONIALS SECTION - EXACT MATCH TO 21OAKS.ORG & DEMO-HOME-PAGE.HTML
+   ========================================================================== */
 .testimonials {
   position: relative;
   background-color: var(--white);
@@ -3666,18 +3636,21 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(4rem, 8vw, 10rem) 2rem;
+  padding: 10rem 2rem;
   box-sizing: border-box;
 }
 
+.testimonials_heading {
+  width: 100%;
+}
+
 .testimonials_heading .h2.bigger,
-.testimonials_heading .h2,
-.testimonials_heading h2  {
-  letter-spacing: -0.02em;
-  font-size: clamp(22px, 3.2vw, 38px) !important;
-  font-weight: 600;
-  line-height: 1.1 !important;
+.testimonials_heading .h2 {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: clamp(2.4rem, 5.2vw, 4.2rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em;
   color: var(--black, #292929);
   margin: 0;
 }
@@ -3685,10 +3658,12 @@ body.is-hero .menu {
 .cms_testimonials {
   justify-content: flex-start;
   align-items: center;
-  min-height: 240px;
-  margin-top: 2.5rem;
+  height: 60vh;
+  min-height: 380px;
+  margin-top: 8rem;
   display: flex;
   position: relative;
+  width: 100%;
 }
 
 .authors {
@@ -3698,6 +3673,7 @@ body.is-hero .menu {
 }
 
 .author_coll {
+  grid-row-gap: 0.375em;
   row-gap: 0.375em;
   flex-flow: column;
   display: flex;
@@ -3760,7 +3736,7 @@ body.is-hero .menu {
   border-radius: 999px;
   background: conic-gradient(
     from -90deg,
-    var(--logo-green, #a2cd3a) calc(var(--p, 0) * 1%),
+    var(--primary, #2391cf) calc(var(--p, 0) * 1%),
     #e6e6e6 0
   );
   opacity: 0;
@@ -3791,8 +3767,9 @@ body.is-hero .menu {
 }
 
 .author_name_txt {
-  font-size: 0.88em;
-  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  font-weight: 500;
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   color: var(--black, #292929);
 }
@@ -3841,6 +3818,7 @@ body.is-hero .menu {
   text-align: center;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .testimonial_item.is-active {
@@ -3855,29 +3833,34 @@ body.is-hero .menu {
   align-items: center;
   width: 100%;
   height: 100%;
-  font-size: 2.1em;
-  line-height: 1.2;
+  font-size: clamp(1.4rem, 2.1vw, 2.25rem);
+  line-height: 1.25;
   display: flex;
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-weight: 400;
   color: var(--black, #292929);
 }
 
-@media (max-width: 991px) {
+.testimonials_custom {
+  margin-bottom: 0;
+  display: none;
+}
+
+/* @media screen and (max-width: 991px) - Tablet */
+@media screen and (max-width: 991px) {
   .testimonials .wrapper_general.basic {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 8em 1.35rem;
   }
   .testimonials_heading .h2.bigger,
-  .testimonials_heading .h2,
-  .testimonials_heading h2 {
-    font-size: clamp(21px, 4.5vw, 32px) !important;
+  .testimonials_heading .h2 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem) !important;
     line-height: 1.1 !important;
   }
   .cms_testimonials {
     flex-flow: column;
-    min-height: 200px;
-    margin-top: 1.5rem;
+    height: 45vh;
+    min-height: 380px;
+    margin-top: 10em;
   }
   .authors {
     width: 60%;
@@ -3893,16 +3876,16 @@ body.is-hero .menu {
   .author_item,
   .author_item.is-active {
     opacity: 1;
-    transform-origin: initial;
-    transition: opacity 0.25s;
     transform: none !important;
+    transform-origin: initial;
+    transition: opacity 0.25s ease;
   }
   .author_circle {
-    width: 3.5rem;
-    height: 3.5rem;
-    min-width: 3.5rem;
-    min-height: 3.5rem;
     flex: 0 0 auto;
+    width: 5.5em;
+    height: 5.5em;
+    max-width: 3.5rem;
+    max-height: 3.5rem;
   }
   .author_circle img {
     width: 100%;
@@ -3914,24 +3897,32 @@ body.is-hero .menu {
     opacity: 1;
     max-width: none;
     width: auto;
-    min-width: 0px;
+    min-width: 0;
     transform: none;
     overflow: visible;
     white-space: normal;
-    transition: opacity 0.25s;
+    transition: opacity 0.25s ease;
     margin-top: 1em;
     margin-left: 0;
+    text-align: center;
   }
   .author_name_txt {
-    font-size: 1.4em;
+    font-size: 0.82rem !important;
+    line-height: 1.25 !important;
     font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
-    font-weight: 400;
+    font-weight: 500;
+    color: var(--black, #292929);
+    text-align: center;
+    white-space: normal;
   }
   .author_item:not(.is-active) .author_name {
     opacity: 0.75;
   }
   .quotes {
     width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 2rem;
   }
   .testimonial_item {
     text-align: center;
@@ -3940,21 +3931,26 @@ body.is-hero .menu {
   }
   .testimonial_txt {
     text-align: center;
-    font-size: 2.6em;
+    font-size: clamp(1.25rem, 2.8vw, 1.85rem);
     line-height: 1.3;
   }
 }
 
-@media (max-width: 767px) {
+/* @media screen and (max-width: 767px) - Mobile Landscape */
+@media screen and (max-width: 767px) {
+  .testimonials .wrapper_general.basic {
+    padding: 4.5rem 1rem;
+  }
   .testimonials_heading .h2.bigger,
-  .testimonials_heading .h2,
-  .testimonials_heading h2 {
-    font-size: clamp(20px, 5.5vw, 26px) !important;
+  .testimonials_heading .h2 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
     line-height: 1.1 !important;
   }
   .cms_testimonials {
     flex-flow: column;
-    margin-top: 1.5rem;
+    height: auto;
+    min-height: 380px;
+    margin-top: 6rem;
   }
   .authors {
     justify-content: center;
@@ -3963,6 +3959,7 @@ body.is-hero .menu {
     display: flex;
   }
   .author_coll {
+    grid-column-gap: 2rem;
     column-gap: 2rem;
     flex-flow: row;
     justify-content: center;
@@ -3976,40 +3973,60 @@ body.is-hero .menu {
     width: auto;
   }
   .author_circle {
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 3.5rem;
+    min-height: 3.5rem;
   }
   .author_name {
     text-align: center;
     width: 100%;
-    margin-top: 0.7rem;
-    margin-left: 0px;
+    margin-top: 0.6rem;
+    margin-left: 0;
+    opacity: 1;
+    max-width: none;
+    overflow: visible;
   }
   .author_name_txt {
-    font-size: 1.9em;
+    font-size: 0.8rem !important;
+    line-height: 1.25 !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-weight: 500;
+    color: var(--black, #292929);
+    text-align: center;
+    white-space: normal;
+  }
+  .quotes {
+    width: 100%;
+    margin-top: 2.5rem;
   }
   .testimonial_item {
     text-align: center;
     padding-left: 0%;
+    padding-right: 0%;
   }
   .testimonial_txt {
     text-align: center;
-    font-size: 3em;
+    font-size: clamp(1.15rem, 3.5vw, 1.6rem);
     line-height: 1.4;
   }
 }
 
-@media (max-width: 479px) {
+/* @media screen and (max-width: 479px) - Mobile Portrait */
+@media screen and (max-width: 479px) {
+  .testimonials .wrapper_general.basic {
+    padding: 3.25rem 1rem;
+  }
   .testimonials_heading .h2.bigger,
-  .testimonials_heading .h2,
-  .testimonials_heading h2 {
-    font-size: clamp(18px, 6.5vw, 24px) !important;
+  .testimonials_heading .h2 {
+    font-size: clamp(1.5rem, 6vw, 2.15rem) !important;
     line-height: 1.15 !important;
   }
   .cms_testimonials {
     flex-flow: column;
-    min-height: 180px;
-    margin-top: 1.25rem;
+    height: 45vh;
+    min-height: 360px;
+    margin-top: 3rem;
   }
   .authors {
     order: -9999;
@@ -4019,28 +4036,55 @@ body.is-hero .menu {
     display: flex;
   }
   .author_coll {
-    gap: 0px 1rem;
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+    grid-row-gap: 0px;
+    row-gap: 0px;
     flex-flow: row;
     justify-content: space-between;
     width: 100%;
   }
   .author_item {
+    grid-row-gap: 0.4rem;
     row-gap: 0.4rem;
     flex-flow: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 33%;
+    width: 32%;
+    text-align: center;
   }
   .author_circle {
-    padding: 0.1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+    padding: 0.1em;
   }
   .author_name {
     width: 100%;
-    margin-top: 0.3rem;
+    margin-top: 0.35rem;
+    margin-left: 0;
+    text-align: center;
+    opacity: 1;
+    max-width: none;
+    overflow: visible;
+  }
+  .author_item:not(.is-active) .author_name {
+    opacity: 0.75;
+  }
+  .author_item.is-active .author_name {
+    opacity: 1;
   }
   .author_name_txt {
     text-align: center;
-    font-size: 3.2em;
+    font-size: 0.78rem !important;
+    line-height: 1.25 !important;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-weight: 500;
+    color: var(--black, #292929);
+    white-space: normal;
+    word-break: normal;
+    display: block;
   }
   .quotes {
     width: 100%;
@@ -4052,12 +4096,13 @@ body.is-hero .menu {
   }
   .testimonial_txt {
     text-align: center;
-    font-size: 4.5em;
+    font-size: clamp(1.05rem, 4.5vw, 1.4rem);
+    line-height: 1.4;
   }
 }
 
 /* ==========================================================================
-   FAQS SECTION
+   FAQS SECTION - EXACT MATCH TO DEMO-HOME-PAGE.HTML
    ========================================================================== */
 .faqs {
   position: relative;
@@ -4070,37 +4115,43 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(4rem, 8vw, 10rem) 2rem clamp(3rem, 6vw, 8rem);
+  padding: 10rem 2rem;
   box-sizing: border-box;
 }
 
 .faq_heading {
   text-align: center;
   flex-flow: column;
-  width: 67ch;
-  max-width: 100%;
+  width: 100%;
+  max-width: 67ch;
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.faq_heading .h2.smaller  {
+.faq_heading .h2.smaller {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(27px, 3.2vw, 48px);
-  line-height: 1;
+  font-size: clamp(2rem, 3.2vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   font-weight: 600;
   color: var(--black);
   text-align: center;
   margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .sides_faq {
-  margin-top: 6rem;
+  margin-top: 7.5em;
   display: flex;
   justify-content: space-between;
   align-items: flex-start !important;
   position: relative;
-  gap: 4rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .short_left {
@@ -4110,59 +4161,65 @@ body.is-hero .menu {
   flex-direction: column;
   flex-shrink: 0;
   position: sticky !important;
-  top: 110px !important;
+  top: 120px !important;
   align-self: flex-start !important;
   z-index: 10;
-  padding-bottom: 2rem;
+  box-sizing: border-box;
 }
 
 .caption_faq {
-  opacity: 0.75;
-  width: 100%;
-  max-width: 28ch;
-  line-height: 1.5;
-  font-size: 1.05rem;
+  opacity: 0.65;
+  width: 29ch;
+  max-width: 100%;
+  line-height: 1.4;
+  font-size: 1.15rem;
+  font-weight: 400;
   color: var(--black);
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .bottom_faq {
+  grid-row-gap: 0.6em;
+  gap: 0.6em;
+  flex-flow: column;
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
-  margin-top: clamp(5rem, 14vh, 9rem);
+  margin-top: 12em;
+  box-sizing: border-box;
 }
 
 .p_gen.black.caption_cta {
-  font-size: 1.15rem;
+  font-size: 1.1em;
   line-height: 1.35;
   font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--black);
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
 }
 
 .faq_general {
-  width: 62%;
-  max-width: 820px;
+  width: 50%;
   margin-left: auto;
+  box-sizing: border-box;
 }
 
 .collection_faq {
-  border-top: 1px solid rgba(41, 41, 41, 0.15) !important;
+  border-top: 1px solid #29292933 !important;
   width: 100%;
 }
 
 .accordion-item {
   cursor: pointer;
-  border-bottom: 1px solid rgba(41, 41, 41, 0.15) !important;
+  border-top: 1px transparent;
+  border-bottom: 1px solid #29292933 !important;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-end;
   width: 100%;
-  padding: 1.6rem 0 !important;
+  padding: 0.8em 0 !important;
   display: flex;
   user-select: none;
   background: transparent;
-  transition: all 0.25s ease;
+  transition: border-color 0.25s ease;
   box-sizing: border-box;
 }
 
@@ -4187,160 +4244,233 @@ body.is-hero .menu {
 }
 
 .title_wrapper {
-  display: flex;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr .25fr;
+  grid-auto-columns: 1fr;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  display: flex;
   gap: 1.5rem;
 }
 
 .item_title {
-  letter-spacing: -0.01em;
-  font-size: clamp(1.2rem, 1.45vw, 1.38rem);
-  font-weight: 500;
+  letter-spacing: 0;
+  font-size: 1.2em;
+  font-weight: 400;
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   color: #1a1a1a;
   line-height: 1.35;
-  transition: color 0.2s ease;
+  transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .icon_wrapper {
   background-image: url("/assets/icons/plus-icon.svg");
-  background-position: center;
+  background-position: 50%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   justify-content: center;
   align-items: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  padding: 0;
-  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 1.35em;
+  height: 1.35em;
+  padding: 0.1em;
   display: flex;
   flex-shrink: 0;
   opacity: 0.85;
 }
 
-.accordion-item.is-open .icon_wrapper {
-  transform: rotate(45deg);
-}
-
+/* Accordion Expansion: Exact 21oaks.org layout - GSAP handles smooth 600ms outQuart animation */
 .item_content-wrapper {
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 100%;
   display: flex;
   overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s ease;
-}
-
-.accordion-item.is-open .item_content-wrapper {
-  max-height: 500px;
-  opacity: 1;
+  height: 0;
 }
 
 .accordion_paragraph {
   flex-direction: column;
   width: 100%;
-  margin-top: 1.15rem !important;
-  margin-bottom: 0.35rem !important;
+  padding-top: 0.8em;
+  padding-bottom: 0.35em;
+  margin: 0;
   display: flex;
   align-items: flex-start;
 }
 
 .item_paragraph {
   width: 100%;
-  max-width: 95%;
-  font-size: 0.98rem !important;
-  line-height: 1.65 !important;
-  color: rgba(41, 41, 41, 0.82) !important;
+  max-width: 91%;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: rgba(41, 41, 41, 0.78);
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   text-align: left;
-  transform: translate3d(0px, 12px, 0px);
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.35s ease;
+  opacity: 0;
 }
 
-.accordion-item.is-open .item_paragraph {
-  transform: translate3d(0px, 0px, 0px);
+.item_paragraph p {
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 }
 
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
   .faqs .wrapper_general.basic {
-    padding-top: 6rem;
-    padding-bottom: 5rem;
+    padding: 8em 1.35rem;
   }
   .faq_heading {
-    width: 100%;
+    width: 77ch;
+    max-width: 100%;
+  }
+  .faq_heading .h2.smaller {
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
   }
   .sides_faq {
-    margin-top: 4.5rem;
-    gap: 3rem;
+    margin-top: 8em;
   }
   .short_left {
     position: static !important;
     width: 100% !important;
     max-width: 100% !important;
     top: auto !important;
-    padding-bottom: 0;
+  }
+  .caption_faq {
+    font-size: 1.25rem;
   }
   .faq_general {
-    width: 100%;
+    width: 55%;
   }
   .bottom_faq {
-    margin-top: 3rem;
+    grid-row-gap: 1em;
+    gap: 1em;
+    margin-top: 3.5rem;
+  }
+  .accordion-item {
+    padding-top: 1.25em !important;
+    padding-bottom: 1.25em !important;
+  }
+  .item_title {
+    font-size: 1.25rem !important;
+  }
+  .item_paragraph {
+    font-size: 0.98rem !important;
+    line-height: 1.45 !important;
+  }
+  .icon_wrapper {
+    background-size: 18px 18px;
   }
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .faqs .wrapper_general.basic {
-    padding-top: 5rem;
-    padding-bottom: 4.5rem;
+    padding: 4.5rem 1rem;
+  }
+  .faq_heading {
+    width: 100%;
   }
   .faq_heading .h2.smaller {
-    font-size: clamp(22px, 5.6vw, 31px);
+    font-size: clamp(1.6rem, 5.5vw, 2.15rem);
+    line-height: 1.1;
     text-align: center;
   }
   .sides_faq {
     flex-flow: column;
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
   .short_left {
     order: 2;
-    width: 100%;
-    margin-top: 3rem;
+    width: 100% !important;
+    margin-top: 2rem;
+    justify-content: space-between;
+    display: flex;
   }
   .caption_faq {
     display: none;
   }
-  .bottom_faq {
-    margin-top: 0;
-    width: 100%;
-    align-items: flex-start;
-  }
-  .bottom_faq .caption_cta,
-  .p_gen.black.caption_cta {
-    font-size: 17.16px !important;
-    line-height: 1.35 !important;
-    margin-bottom: 0.8rem;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  }
   .faq_general {
-    order: 1;
+    order: -9999;
     width: 100%;
     margin-left: 0;
   }
-  .item_title {
-    font-size: 14.5px !important;
+  .bottom_faq {
+    width: 100%;
+    margin-top: 0;
+    grid-row-gap: 0.6rem;
+    gap: 0.6rem;
+  }
+  .bottom_faq .caption_cta,
+  .p_gen.black.caption_cta {
+    font-size: 1.1rem !important;
     line-height: 1.35 !important;
+    margin-bottom: 0.35rem;
     font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  }
+  .accordion-item {
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+  }
+  .accordion_paragraph {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+  }
+  .item_title {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+    width: 90%;
+    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  }
+  .icon_wrapper {
+    width: 1.25rem;
+    height: 1.25rem;
   }
   .item_paragraph,
   .item_paragraph p {
     max-width: 100%;
-    font-size: 13.65px !important;
+    font-size: 0.92rem !important;
     line-height: 1.5 !important;
     font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .faqs .wrapper_general.basic {
+    padding: 3.25rem 1rem;
+  }
+  .faq_heading .h2.smaller {
+    font-size: clamp(1.5rem, 6.8vw, 1.85rem);
+    line-height: 1.12;
+  }
+  .sides_faq {
+    margin-top: 2.5rem;
+  }
+  .accordion-item {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+  .accordion_paragraph {
+    margin-top: 0.4rem !important;
+    margin-bottom: 0 !important;
+  }
+  .item_title {
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+  }
+  .item_paragraph,
+  .item_paragraph p {
+    font-size: 0.88rem !important;
+    line-height: 1.48 !important;
+  }
+  .icon_wrapper {
+    width: 1.3rem;
+    height: 1.3rem;
+    padding: 0.1em;
+  }
+  .bottom_faq {
+    grid-row-gap: 0.6rem;
+    gap: 0.6rem;
+    width: 100%;
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
@@ -9,8 +10,8 @@ import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
 import { getUnitPathById } from "../data/apartmentsData";
 
-
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+CustomEase.create("webflowEase", "0.165, 0.84, 0.44, 1");
 
 if (typeof window !== "undefined") {
   (window as any).gsap = gsap;
@@ -234,13 +235,184 @@ const faqsList = [
   },
 ];
 
+function HomeFaqItem({
+  faq,
+  isOpen,
+  onToggle,
+}: {
+  faq: { q: string; a: string };
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const paragraphRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const content = contentRef.current;
+    const paragraph = paragraphRef.current;
+    const icon = iconRef.current;
+    if (!content || !paragraph) return;
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      if (isOpen) {
+        gsap.set(content, { height: "auto" });
+        gsap.set(paragraph, { opacity: 1, y: "0%", yPercent: 0 });
+        if (icon) gsap.set(icon, { rotateZ: 45 });
+      } else {
+        gsap.set(content, { height: 0 });
+        gsap.set(paragraph, { opacity: 0, y: "20%", yPercent: 0 });
+        if (icon) gsap.set(icon, { rotateZ: 0 });
+      }
+      return;
+    }
+
+    gsap.killTweensOf([content, paragraph, icon].filter(Boolean));
+
+    if (isOpen) {
+      content.style.overflow = "hidden";
+      const currentHeight = content.offsetHeight;
+      gsap.set(paragraph, { y: "0%", yPercent: 0 });
+      content.style.height = "auto";
+      const targetHeight = Math.ceil(content.scrollHeight);
+      content.style.height = `${currentHeight}px`;
+      gsap.set(paragraph, { y: "20%", yPercent: 0 });
+
+      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
+      gsap.to(content, {
+        height: targetHeight,
+        duration: 0.6,
+        ease: "power3.out",
+        onComplete: () => {
+          content.style.height = "auto";
+          content.style.overflow = "visible";
+          ScrollTrigger.refresh();
+        },
+      });
+
+      // 2. Plus icon rotation (0deg -> 45deg) exact 600ms outQuart
+      if (icon) {
+        gsap.to(icon, {
+          rotateZ: 45,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      }
+
+      // 3. Paragraph slide and fade: 100ms delay, 600ms duration, outQuart
+      gsap.fromTo(
+        paragraph,
+        { opacity: 0, y: "20%", yPercent: 0 },
+        {
+          opacity: 1,
+          y: "0%",
+          yPercent: 0,
+          delay: 0.1,
+          duration: 0.6,
+          ease: "power3.out",
+        }
+      );
+    } else {
+      content.style.overflow = "hidden";
+      const currentHeight = content.offsetHeight;
+      content.style.height = `${currentHeight}px`;
+
+      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
+      gsap.to(content, {
+        height: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        onComplete: () => {
+          content.style.height = "0px";
+          ScrollTrigger.refresh();
+        },
+      });
+
+      // 2. Plus icon rotation (45deg -> 0deg) exact 600ms outQuart
+      if (icon) {
+        gsap.to(icon, {
+          rotateZ: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      }
+
+      // 3. Paragraph fade and slide down: 100ms delay, 600ms duration, outQuart
+      gsap.to(paragraph, {
+        opacity: 0,
+        y: "20%",
+        yPercent: 0,
+        delay: 0.1,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    }
+  }, [isOpen]);
+
+  return (
+    <div
+      role="listitem"
+      className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onToggle();
+        }
+      }}
+      tabIndex={0}
+      aria-expanded={isOpen}
+    >
+      <div className="accordion_head-wrapper">
+        <div className="item_head">
+          <div className="title_wrapper">
+            <div className="item_title">{faq.q}</div>
+            <div ref={iconRef} className="icon_wrapper" />
+          </div>
+        </div>
+      </div>
+
+      <div
+        ref={contentRef}
+        className="item_content-wrapper"
+        style={{ height: 0, overflow: "hidden" }}
+      >
+        <div className="accordion_paragraph">
+          <div
+            ref={paragraphRef}
+            className="item_paragraph w-richtext"
+            style={{
+              opacity: 0,
+            }}
+          >
+            <p>{faq.a}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set());
+  const handleToggleFaq = (index: number) => {
+    setOpenFaqs((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
   // Property Listing Card Slider State for "Everything modern living should be"
@@ -1103,10 +1275,13 @@ export default function HomePage() {
       startRing();
     }
 
+    const clickHandlers: (() => void)[] = [];
     authors.forEach((el, i) => {
-      el.addEventListener("click", () => {
+      const handler = () => {
         setActive(i, !canAnimateNow());
-      });
+      };
+      clickHandlers.push(handler);
+      el.addEventListener("click", handler);
     });
 
     const onVisibilityChange = () => {
@@ -1143,6 +1318,9 @@ export default function HomePage() {
     return () => {
       if (ringTween) ringTween.kill();
       if (quoteTween) quoteTween.kill();
+      authors.forEach((el, i) => {
+        if (clickHandlers[i]) el.removeEventListener("click", clickHandlers[i]);
+      });
       document.removeEventListener("visibilitychange", onVisibilityChange);
       if (desktopMq.removeEventListener) {
         desktopMq.removeEventListener("change", syncDesktopMode);
@@ -1986,34 +2164,17 @@ export default function HomePage() {
             </div>
 
             <div className="faq_general">
-              <div className="collection_faq w-dyn-list">
-                <div role="list" className="w-dyn-items">
+              <div className="w-dyn-list">
+                <div role="list" className="collection_faq w-dyn-items">
                   {faqsList.map((faq, index) => {
-                    const isOpen = openFaq === index;
+                    const isOpen = openFaqs.has(index);
                     return (
-                      <div
-                        role="listitem"
+                      <HomeFaqItem
                         key={faq.q}
-                        className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
-                        onClick={() => setOpenFaq(isOpen ? null : index)}
-                      >
-                        <div className="accordion_head-wrapper">
-                          <div className="item_head">
-                            <div className="title_wrapper">
-                              <div className="item_title">{faq.q}</div>
-                              <div className="icon_wrapper" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="item_content-wrapper">
-                          <div className="accordion_paragraph">
-                            <div className="item_paragraph w-richtext">
-                              <p>{faq.a}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        faq={faq}
+                        isOpen={isOpen}
+                        onToggle={() => handleToggleFaq(index)}
+                      />
                     );
                   })}
                 </div>
