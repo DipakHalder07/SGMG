@@ -7,6 +7,7 @@ import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import EmiCalculator from "../components/EmiCalculator";
+import FaqAccordionItem from "../components/FaqAccordionItem";
 import {
   ApartmentUnit,
   APARTMENT_FAQS,
@@ -1459,36 +1460,17 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
             <div className="faq_general">
               <div className="w-dyn-list">
                 <div role="list" className="collection_faq w-dyn-items">
-                  {APARTMENT_FAQS.map((faq, idx) => {
-                    const isOpen = openFaqIndex === idx;
-                    return (
-                      <div
-                        key={idx}
-                        role="listitem"
-                        className={`accordion-item w-dyn-item ${isOpen ? "is-open" : "is-collapsed"}`}
-                      >
-                        <div
-                          className="accordion_head-wrapper"
-                          onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                        >
-                          <div className="item_head">
-                            <div className="title_wrapper">
-                              <div className="item_title">{faq.q}</div>
-                              <div className="icon_wrapper"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="item_content-wrapper">
-                          <div className="accordion_paragraph">
-                            <div className="item_paragraph w-richtext">
-                              <p>{faq.a}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {APARTMENT_FAQS.map((faq, idx) => (
+                    <FaqAccordionItem
+                      key={faq.q}
+                      question={faq.q}
+                      answer={faq.a}
+                      isOpen={openFaqIndex === idx}
+                      onToggle={() =>
+                        setOpenFaqIndex(openFaqIndex === idx ? null : idx)
+                      }
+                    />
+                  ))}
                 </div>
               </div>
             </div>

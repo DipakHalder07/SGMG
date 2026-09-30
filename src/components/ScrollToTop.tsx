@@ -36,12 +36,20 @@ export default function ScrollToTop() {
     }
 
     if (!hash) {
-      window.scrollTo(0, 0);
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     } else {
       const id = hash.replace("#", "");
       const elem = document.getElementById(id);
       if (elem) {
-        elem.scrollIntoView({ behavior: "smooth" });
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(elem, { duration: 1.2 });
+        } else {
+          elem.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
   }, [pathname, hash]);
