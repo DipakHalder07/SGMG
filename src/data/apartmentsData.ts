@@ -28,7 +28,7 @@ export interface ApartmentUnit {
 export const APARTMENTS_DATA: ApartmentUnit[] = [
   {
     id: "d1",
-    name: "D1",
+    name: "Cosmos Valley",
     type: "General",
     bedrooms: 3,
     bathrooms: 2,
@@ -38,9 +38,9 @@ export const APARTMENTS_DATA: ApartmentUnit[] = [
     price: 61.65,
     priceFormatted: "61.65 L",
     status: "Available",
-    coverImage: "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193bae_D1-Gen.avif",
+    coverImage: "/assets/cosmos-valley-cover.avif",
     gallery: [
-      "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b92_D1-1.avif",
+      "/assets/cosmos-valley-cover.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b93_D1-2.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b90_D1-3.avif",
       "https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b94_D1-4.avif",
