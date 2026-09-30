@@ -1887,6 +1887,7 @@ export default function HomePage() {
             <img src="/assets/location/aerial-community.jpg" alt="Aerial view of the residential community and the surrounding neighbourhood" className="image" loading="lazy" decoding="async" />
           </div>
         </div>
+        <div className="apartments_bg_gradient only_mobile"></div>
       </section>
 
       {/* EVERYTHING YOU NEED SECTION */}

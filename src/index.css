@@ -2502,7 +2502,7 @@ body.is-hero .menu {
     pointer-events: none;
     z-index: 1;
     opacity: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #e4f3fa 43%, #d2ecf9 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #c4e9fb 43%, #b2e2f9 100%);
     will-change: opacity;
   }
 }
@@ -2510,15 +2510,13 @@ body.is-hero .menu {
 /* Apartments Mobile Responsive Carousel */
 @media (max-width: 991px) {
   .apartments {
-    background: linear-gradient(180deg, #ffffff 0%, #e4f3fa 43%, #d2ecf9 100%) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #c4e9fb 35%, #b2e2f9 100%) !important;
     overflow: hidden !important;
     width: 100% !important;
     position: relative !important;
   }
 
-  .apartments .apartments_bg_gradient,
-  .apartments_bg_gradient,
-  .apartments_bg_gradient.only_mobile {
+  .apartments .apartments_bg_gradient {
     display: block !important;
     position: absolute !important;
     inset: 0 !important;
@@ -2527,7 +2525,7 @@ body.is-hero .menu {
     opacity: 1 !important;
     pointer-events: none !important;
     z-index: 0 !important;
-    background: linear-gradient(180deg, #ffffff 0%, #e4f3fa 43%, #d2ecf9 100%) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #c4e9fb 35%, #b2e2f9 100%) !important;
   }
 
   .wrapper_apartments {
@@ -2791,10 +2789,11 @@ body.is-hero .menu {
 .fs {
   width: 100%;
   height: 68em;
-  max-height: 85vh;
-  min-height: 540px;
+  font-size: 14.16px;
   padding: 2rem;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .fs_box {
@@ -2803,6 +2802,11 @@ body.is-hero .menu {
   height: 100%;
   position: relative;
   overflow: hidden;
+  z-index: 4;
+}
+
+.fs .apartments_bg_gradient.only_mobile {
+  display: none;
 }
 
 .fs_box_m {
@@ -2941,6 +2945,20 @@ body.is-hero .menu {
     max-height: 70vh !important;
     min-height: 420px !important;
     padding: 1rem 0.6rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, #b2e2f9 0%, #c8ecfb 32%, #e2f4fd 65%, rgba(255, 255, 255, 0) 100%) !important;
+  }
+
+  .fs .apartments_bg_gradient.only_mobile {
+    display: block !important;
+    position: absolute !important;
+    inset: 0% !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    background: linear-gradient(180deg, #b2e2f9 0%, #c8ecfb 32%, #e2f4fd 65%, rgba(255, 255, 255, 0) 100%) !important;
   }
 
   .svg_items {
@@ -2990,6 +3008,9 @@ body.is-hero .menu {
     max-height: 65vh !important;
     min-height: 380px !important;
     padding: 0.5rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, #b2e2f9 0%, #c8ecfb 32%, #e2f4fd 65%, rgba(255, 255, 255, 0) 100%) !important;
   }
 
   .svg_items {
@@ -3030,10 +3051,25 @@ body.is-hero .menu {
 }
 
 @media (max-width: 479px) {
+  .apartments {
+    background: linear-gradient(180deg, #ffffff 0%, #c4e9fb 28%, #b2e2f9 100%) !important;
+  }
+
+  .apartments .apartments_bg_gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #c4e9fb 28%, #b2e2f9 100%) !important;
+  }
+
   .fs {
     height: 32rem !important;
     min-height: 340px !important;
     padding: 0.375rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, #b2e2f9 0%, #c4e9fb 45%, rgba(196, 233, 251, 0) 100%) !important;
+  }
+
+  .fs .apartments_bg_gradient.only_mobile {
+    background: linear-gradient(180deg, #b2e2f9 0%, #c4e9fb 45%, rgba(196, 233, 251, 0) 100%) !important;
   }
 
   .svg_items {
