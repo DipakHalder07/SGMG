@@ -3117,11 +3117,14 @@ body.is-hero .menu {
 /* =========================================================
    SECTION 7: AMENITIES (Just outside your door)
    ========================================================= */
+/* ==========================================================================
+   SECTION: AMENITIES ("Just outside your door") - EXACT MATCH TO 21OAKS.ORG
+   ========================================================================== */
 .amenities_section {
   width: 100%;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: var(--white, #ffffff);
   scroll-margin-top: 100px;
 }
 
@@ -3129,60 +3132,101 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(6.5rem, 9vw, 10rem) 2rem clamp(4rem, 6vw, 7.5rem);
+  padding: 10rem 0 !important;
   box-sizing: border-box;
 }
 
 .amenities_heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+  gap: 1.75rem !important;
+  padding: 0 2rem !important;
 }
 
 .amenities_heading .h2.middle_spec {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(28px, 3.4vw, 56px) !important;
-  line-height: 1.2 !important;
-  color: #292929 !important;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--black, #292929) !important;
   text-align: center !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  margin: 0 !important;
 }
 
-.amenities_heading .button_amenities {
+.button_amenities {
   display: flex !important;
   justify-content: center !important;
-  margin-top: clamp(1.2rem, 1.8vw, 2rem) !important;
-  margin-bottom: 0 !important;
+  align-items: center !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+.button_amenities .button {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  gap: 0.25em !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  text-decoration: none !important;
+}
+
+.button_amenities .button .text_box {
+  background-color: var(--primary, #2391cf) !important;
+  color: #ffffff !important;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  padding: 0 28px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+  text-transform: none !important;
+}
+
+.button_amenities .button .icon_box {
+  background-color: var(--primary, #2391cf) !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+}
+
+.button_amenities .button .icon_box svg path {
+  fill: #ffffff !important;
 }
 
 .container.only_amenities {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 3.5rem 0 3.5rem 2rem !important;
   display: block !important;
   overflow: visible !important;
 }
 
 .amenities_section .splide {
-  width: 100%;
-  overflow: visible;
+  width: 100% !important;
+  overflow: visible !important;
 }
 
 .amenities_section .splide__track {
   overflow: visible !important;
-  width: 100%;
+  width: 100% !important;
+  cursor: grab !important;
+}
+
+.amenities_section .splide__track:active {
+  cursor: grabbing !important;
 }
 
 .amenities_section .splide__list,
 .slider1.second_splide .splide__list {
   display: flex !important;
-  gap: 8px !important;
-  column-gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .amenities_section .splide__slide,
@@ -3191,107 +3235,155 @@ body.is-hero .menu {
   padding: 0 !important;
   margin: 0 !important;
   background-color: transparent !important;
-  border-radius: 8px !important;
+  border-radius: 4px !important;
   overflow: hidden !important;
-  height: auto !important;
-  cursor: pointer !important;
+  cursor: grab !important;
+  box-sizing: border-box !important;
 }
 
 .image_amenities {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1440 / 1546 !important;
-  min-height: clamp(420px, 30vw, 640px) !important;
-  height: auto !important;
-  border-radius: 8px;
-  overflow: hidden;
-  display: block;
+  position: relative !important;
+  width: 100% !important;
+  height: 484px !important;
+  max-height: 484px !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  display: block !important;
 }
 
 .image_amenities img,
 .image_amenities img.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.overlay_color {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  background-color: rgba(0, 0, 0, 0.28) !important;
 }
 
 .overlay_amenities {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: clamp(1.5rem, 2vw, 2.25rem);
-  z-index: 5;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 40%, rgba(0, 0, 0, 0.25) 65%, rgba(0, 0, 0, 0.78) 100%);
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  padding: 1.6rem !important;
+  z-index: 5 !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.65) 100%) !important;
 }
 
 .heading_text {
-  width: 100%;
+  width: 100% !important;
 }
 
 .title_amenities {
-  color: #fff !important;
+  color: #ffffff !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(18px, 1.4vw, 26px) !important;
+  font-size: clamp(1.15rem, 1.4vw, 1.4rem) !important;
   font-weight: 600 !important;
-  line-height: 1.2 !important;
+  line-height: 1.25 !important;
   margin: 0 !important;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.01em !important;
+  text-shadow: none !important;
 }
 
 .bottom_amenities {
-  width: 100%;
+  width: 100% !important;
 }
 
 .desc_amenities,
 .desc_amenities .p_gen {
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: clamp(13px, 0.95vw, 15px) !important;
+  font-size: clamp(0.78rem, 0.85vw, 0.88rem) !important;
   line-height: 1.45 !important;
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
   font-weight: 400 !important;
   margin: 0 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-shadow: none !important;
 }
 
-.amenities_section .splide__pagination {
+.amenities_section .splide__pagination,
+.amenities_section .splide__arrows {
   display: none !important;
 }
 
-@media (max-width: 991px) {
+/* Responsive Breakpoints */
+@media screen and (max-width: 991px) {
   .amenities_section .wrapper_general.basic.slider_spec {
-    padding: clamp(4rem, 7vw, 5rem) 1rem clamp(3rem, 5vw, 4rem) !important;
+    padding: 8rem 0 !important;
+  }
+  .amenities_heading {
+    padding: 0 1.35rem !important;
+    gap: 1.25rem !important;
+  }
+  .amenities_heading .h2.middle_spec {
+    font-size: clamp(2rem, 5.5vw, 3.2rem) !important;
+  }
+  .container.only_amenities {
+    padding: 2.5rem 0 2.5rem 1.35rem !important;
+  }
+  .image_amenities {
+    height: 420px !important;
+    max-height: 420px !important;
+  }
+  .overlay_amenities {
+    padding: 1.35rem !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .amenities_section .wrapper_general.basic.slider_spec {
+    padding: 4.5rem 0 !important;
   }
   .amenities_heading {
     padding: 0 1rem !important;
-    margin-bottom: 2rem !important;
+    gap: 1.1rem !important;
   }
-  .amenities_section .splide {
-    padding-left: 1rem !important;
-  }
-
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(24px, 5.5vw, 36px) !important;
-    line-height: 1.15 !important;
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
   }
-
-  .amenities_section .splide__slide {
-    height: auto !important;
+  .container.only_amenities {
+    padding: 2rem 0 2rem 1rem !important;
   }
-
   .image_amenities {
-    aspect-ratio: 1440 / 1546 !important;
-    min-height: 380px !important;
-    height: auto !important;
+    height: 380px !important;
+    max-height: 380px !important;
   }
-
   .overlay_amenities {
-    padding: 1.25rem 1.4rem !important;
+    padding: 1.2rem !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .amenities_section .wrapper_general.basic.slider_spec {
+    padding: 3.25rem 0 !important;
+  }
+  .amenities_heading {
+    padding: 0 1rem !important;
+    gap: 1rem !important;
+  }
+  .amenities_heading .h2.middle_spec {
+    font-size: clamp(1.5rem, 7vw, 2.15rem) !important;
+  }
+  .container.only_amenities {
+    padding: 1.75rem 0 1.75rem 1rem !important;
+  }
+  .image_amenities {
+    height: 350px !important;
+    max-height: 350px !important;
+  }
+  .overlay_amenities {
+    padding: 1.1rem !important;
   }
 }
 
