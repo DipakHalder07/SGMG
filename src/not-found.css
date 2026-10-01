@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-  --es-font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --es-font: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 ._404_page {
@@ -49,7 +49,7 @@
 }
 
 ._404_heading {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   color: #2391cf;
   text-align: center;
   margin: 0;
@@ -99,7 +99,7 @@
   background-color: #2391cf;
   color: #ffffff;
   border-radius: 9999px;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em;
   font-size: 0.88rem;
   font-weight: 500;
@@ -249,7 +249,7 @@
   letter-spacing: 0.02em;
   font-weight: 500;
   align-self: flex-start;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .endless-stairs-embed .es-score-left {
@@ -313,7 +313,7 @@
   font-weight: var(--fw-heading, 400);
   letter-spacing: -0.02em;
   line-height: 1.3;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   margin: 0;
   color: #1a1a1a;
 }
@@ -335,7 +335,7 @@
   border: 1.5px solid #1a1a1a;
   background: #1a1a1a;
   color: #faf9f7;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em;
   font-size: 0.82rem;
   font-weight: var(--fw-button, 400);

@@ -16,11 +16,23 @@
   background-color: var(--primary, #2391cf);
   font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #ffffff;
-  font-size: 16px;
-  line-height: 1.2;
+  font-size: 14.4px !important;
+  line-height: 14.4px !important;
   width: 100%;
   position: relative;
   overflow-x: clip;
+}
+
+.contact_page_wrapper .wrapper_general,
+.contact_page_wrapper .wrapper_general.basic,
+.contact_page_wrapper .wrapper_general.gen_f {
+  font-size: 14.4px !important;
+  line-height: 14.4px !important;
+}
+
+.contact_page_wrapper .button.header_cta {
+  font-size: 11.52px !important;
+  line-height: 11.52px !important;
 }
 
 /* -------------------------------------------------------------
@@ -115,8 +127,10 @@ main.contact {
 }
 
 .wrapper_general.gen_f {
-  padding-top: 10rem;
+  padding-top: 172.8px;
   padding-bottom: 0;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 @media screen and (max-width: 991px) {
@@ -155,11 +169,11 @@ main.contact {
 .h1.black {
   color: #ffffff !important;
   font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--fs-h1-subpage);
+  font-size: var(--fs-h1-subpage, 64.8px);
   font-weight: var(--fw-heading, 400);
-  line-height: var(--lh-h1-subpage, 0.95);
+  line-height: 58.32px !important;
   margin: 0;
-  letter-spacing: var(--ls-heading, -0.015em);
+  letter-spacing: normal !important;
   word-break: break-word;
 }
 
@@ -407,21 +421,23 @@ main.contact {
 
 .title {
   margin-bottom: 0;
-  font-size: 0.9rem;
+  font-size: 11.52px !important;
+  line-height: 11.52px !important;
   font-weight: 400;
   color: #ffffff;
 }
 
 .input_field {
-  height: 48px;
-  min-height: 48px;
+  height: 38.0156px;
+  min-height: 38.016px;
   color: var(--black, #292929);
   background-color: #ffffff;
   border: none;
   border-radius: 4px;
   margin-bottom: 0;
-  padding: 0.5rem 1rem;
-  font-size: 1rem; /* 16px to prevent iOS auto-zoom */
+  padding: 4.32px 11.52px;
+  font-size: 11.52px;
+  line-height: 16.4571px;
   font-family: inherit;
   box-sizing: border-box;
   width: 100%;
@@ -443,7 +459,7 @@ main.contact {
 .input_field.areabox_sp {
   height: auto;
   min-height: 130px;
-  padding: 0.75rem 1rem;
+  padding: 8px 11.52px;
   resize: vertical;
 }
 
@@ -479,20 +495,22 @@ main.contact {
 
 .submit_button {
   background-color: var(--black, #292929);
-  height: 48px;
-  min-height: 48px;
+  height: 37.4375px;
+  min-height: 37.4375px;
   min-width: 140px;
   color: var(--white, #ffffff);
   border-radius: 4px;
-  padding: 0 1.75rem;
-  font-size: 0.95rem;
+  padding: 5.76px 11.52px;
+  margin: 0px 0px 0px 18.5312px;
+  font-size: 11.52px;
+  line-height: 11.52px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  letter-spacing: var(--ls-button, 0.02em);
+  letter-spacing: normal !important;
   font-weight: var(--fw-button, 400);
   transition: all 0.3s ease;
   flex-shrink: 0;
@@ -600,22 +618,15 @@ main.contact {
 .contact_page_wrapper .map_sec,
 .map_sec {
   background-color: #121214 !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 100vw !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  min-height: 100vh !important;
-  min-height: 100dvh !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 757px !important;
+  min-height: 600px !important;
   max-height: none !important;
-  padding: 0 !important;
+  padding: 16px !important;
   margin: 0 !important;
   border: none !important;
-  border-width: 0 !important;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
   box-shadow: none !important;
-  outline: none !important;
   position: relative !important;
   box-sizing: border-box !important;
   overflow: hidden !important;

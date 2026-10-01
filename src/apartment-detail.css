@@ -355,7 +355,7 @@
 }
 
 .button_apply {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.03em;
   background-color: var(--primary);
   color: #ffffff !important;
@@ -386,7 +386,7 @@
 }
 
 .button_schedule {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.03em;
   text-align: center;
   border: 1px solid #29292933;
@@ -431,7 +431,7 @@
   z-index: 13;
   pointer-events: auto !important;
   transition: all 0.25s ease;
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   letter-spacing: 0.02em;
 }
 
@@ -628,7 +628,7 @@
 
 .splide__slide.amenities_splide .title_amenities {
   color: #ffffff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 21.6px !important;
   font-weight: 400 !important;
   line-height: 21.6px !important;
@@ -652,7 +652,7 @@
 
 .splide__slide.amenities_splide .desc_amenities .p_gen {
   color: rgba(255, 255, 255, 0.95) !important;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.24px !important;
   line-height: 18.36px !important;
   letter-spacing: 0.1224px !important;
@@ -687,7 +687,7 @@
 
   .title_amenities {
     font-size: clamp(16px, 2.2vw, 20px) !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 400 !important;
     color: #ffffff !important;
     display: block !important;
@@ -884,7 +884,7 @@
 
   .title_amenities {
     font-size: clamp(16px, 3.5vw, 20px) !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 400 !important;
     color: #ffffff !important;
     display: block !important;
@@ -1124,7 +1124,7 @@
 
   .title_amenities {
     font-size: clamp(15px, 4vw, 18px) !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 400 !important;
     color: #ffffff !important;
     display: block !important;
@@ -1386,7 +1386,7 @@
   font-size: var(--fs-h1-subpage) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h1-subpage, 0.95) !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
 }
 
 .tags_info {
@@ -1432,7 +1432,7 @@
 .title_temp {
   color: var(--white, #ffffff);
   font-size: 1.05em;
-  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-display, "Exposure", Georgia, sans-serif);
 }
 
 .p_apartments {

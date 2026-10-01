@@ -35,6 +35,8 @@ html {
 body {
   font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   color: var(--black, #292929);
+  font-size: clamp(14px, 1vw, 14.4px);
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -84,14 +86,14 @@ body {
   --fs-caption: 14.4px;
   --fs-caption-sm: 12.24px;
   --fs-faq-title: clamp(15px, 1.2vw, 17.28px);
-  --fs-body: clamp(12px, 0.9vw, 12.96px);
+  --fs-body: clamp(11.5px, 0.85vw, 12.24px);
   --fs-body-sm: 11px;
-  --fs-button: 12px;
+  --fs-button: 11.52px;
 
   /* 4. Line Heights */
-  --lh-h1-hero: 0.95;
-  --lh-h1-subpage: 0.95;
-  --lh-h2-testimonials: 0.75;
+  --lh-h1-hero: 0.9;
+  --lh-h1-subpage: 0.9;
+  --lh-h2-testimonials: 0.7;
   --lh-h2-pets: 1.15;
   --lh-h2-second: 1.15;
   --lh-h2-location: 1.0;
@@ -104,17 +106,17 @@ body {
   --lh-card-title: 1.2;
   --lh-step-title: 1.1;
   --lh-faq-title: 1.2;
-  --lh-caption: 1.4;
+  --lh-caption: 1.0;
   --lh-caption-cta: 1.3;
   --lh-body: 1.5;
   --lh-button: 1.0;
 
   /* 5. Letter Spacing */
   --ls-heading-tight: -0.02em;
-  --ls-heading: -0.015em;
+  --ls-heading: normal;
   --ls-heading-loose: -0.01em;
   --ls-body: 0.01em;
-  --ls-button: 0.02em;
+  --ls-button: normal;
 
   /* --- BRAND COLORS --- */
   --primary: #2391cf;
@@ -186,7 +188,7 @@ h6,
 .careers_section_title,
 .careers_modal_title,
 .emi_calc_main_title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-weight: var(--fw-heading, 400) !important;
 }
 
@@ -217,7 +219,7 @@ input[type="reset"],
 .careers_dept_tab,
 [class*="button"],
 [class*="btn"] {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-weight: var(--fw-button, 400) !important;
   letter-spacing: var(--ls-button, 0.02em);
 }
@@ -228,35 +230,51 @@ input[type="reset"],
    Body text uses Plus Jakarta Sans.
    ========================================================= */
 
-/* 1. Main Hero H1 (Home, FAQ) - 72px desktop base */
+/* 1. Main Hero H1 (Home) - 72px desktop base */
 h1,
 .h1,
 .hero .heading_box h1,
-.hero_h1,
+.hero_h1 {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-hero, 72px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h1-hero, 0.9) !important;
+  letter-spacing: normal !important;
+}
+
+/* 1b. FAQ Hero H1 - 72px / 79.2px line-height (1.1 ratio on 21oaks) */
 .faq .h1.black.gen_h,
 .h1.black.gen_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: var(--fs-h1-hero) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-hero, 72px) !important;
   font-weight: var(--fw-heading, 400) !important;
-  line-height: var(--lh-h1-hero, 0.95) !important;
-  letter-spacing: var(--ls-heading, -0.015em);
+  line-height: 1.1 !important;
+  letter-spacing: normal !important;
 }
 
 /* 2. Subpage Hero H1 (Apartments, Amenities, Contact, How to Apply) - 64.8px desktop base */
 .h1.black,
-.h1.black.spec_amenities,
-.spec_amenities,
 .contact_h1 .h1,
 .heading_apply .h1,
 .heading_aparts .h1,
 .heading_aparts .h1.black,
-.heading_aparts .h1.black.spec_amenities,
 .h1_apartments .h1 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: var(--fs-h1-subpage) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-subpage, 64.8px) !important;
   font-weight: var(--fw-heading, 400) !important;
-  line-height: var(--lh-h1-subpage, 0.95) !important;
-  letter-spacing: var(--ls-heading, -0.015em);
+  line-height: var(--lh-h1-subpage, 0.9) !important;
+  letter-spacing: normal !important;
+}
+
+/* 2b. Featured Amenities & Apartments H1 - 64.8px base / 0.9 line-height on 21oaks */
+.h1.black.spec_amenities,
+.spec_amenities,
+.heading_aparts .h1.black.spec_amenities {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(32px, 4.5vw, 64.8px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 0.9 !important;
+  letter-spacing: normal !important;
 }
 
 /* 3. Big Impact Display H2s */
@@ -264,10 +282,10 @@ h1,
 .h2.bigger,
 .testimonials_heading .h2.bigger,
 .testimonials_heading .h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-testimonials) !important;
   font-weight: var(--fw-heading, 400) !important;
-  line-height: var(--lh-h2-testimonials, 0.75) !important;
+  line-height: var(--lh-h2-testimonials, 0.7) !important;
   letter-spacing: var(--ls-heading-tight, -0.02em) !important;
 }
 
@@ -275,7 +293,7 @@ h1,
 .h2.pets_h,
 .pets_heading .h2.pets_h,
 .pets_heading .h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-pets) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-pets, 1.15) !important;
@@ -286,7 +304,7 @@ h1,
 .h2.second_h,
 .dynamic_section .middle .h2,
 .dynamic_section .middle .h2.second_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-second) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-second, 1.15) !important;
@@ -297,7 +315,7 @@ h1,
 .h2.locations_specific,
 .heading_h_carousel .h2,
 .heading_h_carousel .h2.locations_specific {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-location) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-location, 1.0) !important;
@@ -317,7 +335,7 @@ h2,
 .faq_heading .h2.smaller,
 .faqs.black .h2.smaller,
 .faq_heading.white_ver .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-section, 1.0) !important;
@@ -327,7 +345,7 @@ h2,
 /* 4b. Specialized H2s Matching 21Oaks Exact Scale */
 .h2.everything_you_need,
 .everything_u_need .h2.everything_you_need {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: 1.1 !important;
@@ -336,24 +354,31 @@ h2,
 
 .h2.middle_spec,
 .amenities_heading .h2.middle_spec {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-middle, clamp(36px, 5vw, 72px)) !important;
   font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.05 !important;
+  line-height: 0.7 !important;
   letter-spacing: var(--ls-heading-tight, -0.02em) !important;
 }
 
+@media screen and (max-width: 767px) {
+  .h2.middle_spec,
+  .amenities_heading .h2.middle_spec {
+    line-height: 1.05 !important;
+  }
+}
+
 .heading_fs .h2.white {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
   font-weight: var(--fw-heading, 400) !important;
-  line-height: 0.8 !important;
+  line-height: 50.544px !important;
   letter-spacing: var(--ls-heading-tight, -0.02em) !important;
 }
 
 /* 5. Footer Brand Heading ("Tranquility and Living.") - 41.76px desktop base */
 .cap_footer {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-footer) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-footer, 1.0) !important;
@@ -363,7 +388,7 @@ h2,
 /* 6. Section H3 - Subsections & Groupings */
 h3,
 .h3 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h3) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h3, 1.25) !important;
@@ -373,7 +398,7 @@ h3,
 /* 6b. How it Works Card Titles (21Oaks canonical: 21.6px / 1.0) */
 .title_how,
 .how_card .title_how {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 21.6px !important;
   font-weight: 400 !important;
   line-height: 21.6px !important;
@@ -383,7 +408,7 @@ h3,
 
 /* 7. Step & Card Titles */
 .title_step {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-step-title) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-step-title, 1.1) !important;
@@ -396,7 +421,7 @@ h3,
 .apartment_title,
 .apartment-lightbox-unit-title,
 .title_amenities {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-card-title) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-card-title, 1.2) !important;
@@ -406,7 +431,7 @@ h3,
 .price_txt,
 .apart_card .price_txt,
 .apartments .price_box .price_txt {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-price) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-card-title, 1.2) !important;
@@ -415,7 +440,7 @@ h3,
 /* 8. H4, H5, H6 Scale */
 h4,
 .h4 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h4) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h4, 1.25) !important;
@@ -423,7 +448,7 @@ h4,
 
 h5,
 .h5 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h5) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h5, 1.3) !important;
@@ -431,25 +456,31 @@ h5,
 
 h6,
 .h6 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h6) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h6, 1.35) !important;
 }
 
-/* 9. Captions and Eyebrows */
-.caption_left,
+.caption_left {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption, 14.4px) !important;
+  font-weight: 400 !important;
+  line-height: 14.4px !important;
+  letter-spacing: normal !important;
+}
+
 .caption_faq {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: var(--fs-caption) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: var(--lh-caption, 1.4) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption, 14.4px) !important;
+  font-weight: 400 !important;
+  line-height: 20.16px !important;
   letter-spacing: normal !important;
 }
 
 .caption_small,
 .how_it_works .caption_small {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-caption-sm, 12.24px) !important;
   font-weight: 400 !important;
   line-height: 12.24px !important;
@@ -461,7 +492,7 @@ h6,
 .caption_cta,
 .p_gen.caption_cta,
 .caption_cta .p_gen {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-caption-cta, 15.84px) !important;
   font-weight: 400 !important;
   line-height: 20.592px !important;
@@ -471,7 +502,7 @@ h6,
 /* 10. FAQ Accordions (Question & Answer) */
 .item_title,
 .faqs .item_title {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-faq-title, 17.28px) !important;
   font-weight: 400 !important;
   line-height: 17.28px !important;
@@ -481,8 +512,8 @@ h6,
 .item_paragraph,
 .item_paragraph p,
 .faqs .item_paragraph {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: var(--fs-body, 12.96px) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.96px !important;
   font-weight: 400 !important;
   line-height: 18.144px !important;
   letter-spacing: normal !important;
@@ -490,7 +521,7 @@ h6,
 
 .author_name_txt,
 .authors .author_name_txt {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.672px !important;
   font-weight: 400 !important;
   line-height: 12.672px !important;
@@ -499,11 +530,12 @@ h6,
 
 /* 11. Body Text Scale */
 .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: var(--fs-body) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-body, 12.24px) !important;
   font-weight: var(--fw-body, 400) !important;
   line-height: var(--lh-body, 1.5) !important;
   letter-spacing: var(--ls-body, 0.01em) !important;
+  margin-top: 0 !important;
 }
 
 /* Custom Scrollbar */
@@ -748,7 +780,7 @@ main {
     background-color: var(--primary, #2391cf);
     border-radius: 0.375em;
     color: #ffffff;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.02em;
     font-size: 0.8em;
     font-weight: 400;
@@ -869,7 +901,7 @@ main {
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px !important;
     white-space: nowrap !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.02em !important;
   }
 
@@ -1120,7 +1152,7 @@ body.is-hero .menu {
   cursor: pointer;
   color: #ffffff;
   font-size: 10.5px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.04em !important;
   user-select: none;
 }
@@ -1156,7 +1188,7 @@ body.is-hero .menu {
 .menu_txt {
   color: #ffffff;
   font-size: 10.5px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.04em !important;
   line-height: 1;
 }
@@ -1187,7 +1219,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   font-size: 10px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.04em !important;
   font-weight: 500;
   text-decoration: none;
@@ -1253,7 +1285,7 @@ body.is-hero .menu {
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px;
     color: #ffffff !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.04em !important;
     font-size: 10px !important;
     font-weight: 500;
@@ -1413,7 +1445,7 @@ body.is-hero .menu {
 .mobile_link {
   color: #ffffff !important;
   font-size: clamp(13px, 0.9vw, 15px);
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em !important;
   text-decoration: none;
   padding-top: 0.35rem;
@@ -1445,7 +1477,7 @@ body.is-hero .menu {
   justify-content: center;
   font-size: clamp(12px, 0.8em, 15px);
   font-weight: 500;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em !important;
   text-decoration: none;
   text-align: center;
@@ -1593,7 +1625,7 @@ body.is-hero .menu {
     padding: 0 16px !important;
     border-radius: 4px !important;
     font-size: 10.5px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 500 !important;
     letter-spacing: 0.03em !important;
     transform: none !important;
@@ -1701,7 +1733,7 @@ body.is-hero .menu {
 
   .menu_link {
     font-size: 11px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.03em !important;
     column-gap: 8px !important;
     color: #ffffff !important;
@@ -1715,7 +1747,7 @@ body.is-hero .menu {
 
   .menu_txt {
     font-size: 11px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.03em !important;
   }
 
@@ -1753,7 +1785,7 @@ body.is-hero .menu {
     padding: 0 16px !important;
     font-size: 10.5px !important;
     border-radius: 4px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 500 !important;
     letter-spacing: 0.03em !important;
     background-color: var(--primary, #2391cf) !important;
@@ -1839,7 +1871,7 @@ body.is-hero .menu {
   .mobile_link {
     color: #ffffff !important;
     font-size: 12px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.03em !important;
     padding: 4px 0 !important;
     font-weight: 500 !important;
@@ -1872,7 +1904,7 @@ body.is-hero .menu {
     align-items: center !important;
     justify-content: center !important;
     text-decoration: none !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 400 !important;
     transition: background-color 0.3s ease, transform 0.3s ease !important;
   }
@@ -1933,7 +1965,7 @@ body.is-hero .menu {
 
 .hero .heading_box h1 {
   color: #fff;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(36px, 5vw, 72px);
   font-weight: 400;
   line-height: 0.95;
@@ -1944,7 +1976,7 @@ body.is-hero .menu {
 
 .hero .heading_box .p_gen {
   color: rgba(255, 255, 255, 0.92);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(12px, 0.9vw, 13px);
   line-height: 1.5;
   margin-top: 20px;
@@ -2559,7 +2591,7 @@ body.is-hero .menu {
 }
 
 .dynamic_section .middle .h2.second_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(28px, 4.6vw, 66.24px);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -2964,7 +2996,7 @@ body.is-hero .menu {
 }
 
 .left_side .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: clamp(28px, 4.6vw, 66.24px);
   line-height: 1.0;
   font-weight: 400;
@@ -3037,7 +3069,7 @@ body.is-hero .menu {
 }
 
 .flex_txt .title_txt {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: 1.05em;
   font-weight: 400;
   color: #1a1a1a;
@@ -3190,7 +3222,7 @@ body.is-hero .menu {
   }
 
   .heading_apartments .h2.smaller {
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
     font-weight: 400 !important;
     line-height: var(--lh-h2-section, 1.0) !important;
@@ -3305,7 +3337,7 @@ body.is-hero .menu {
   .apart_cards_track .apart_title {
     font-size: 1.22em;
     font-weight: 400;
-    font-family: var(--font-heading, "Michroma", sans-serif);
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
     color: #292929;
     white-space: nowrap;
     overflow: hidden;
@@ -3323,7 +3355,7 @@ body.is-hero .menu {
   .apart_cards_track .price_txt {
     font-size: 1.15em;
     font-weight: 400;
-    font-family: var(--font-heading, "Michroma", sans-serif);
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
     color: #292929;
     white-space: nowrap;
     flex-shrink: 0;
@@ -3474,7 +3506,7 @@ body.is-hero .menu {
   .apartment_title .apart_title {
     font-size: clamp(17px, 1.25vw, 22px) !important;
     font-weight: 400 !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
     letter-spacing: -0.01em;
@@ -3492,7 +3524,7 @@ body.is-hero .menu {
   .price_box .price_txt {
     font-size: clamp(15px, 1.1vw, 20px) !important;
     font-weight: 400 !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
   }
@@ -3698,7 +3730,7 @@ body.is-hero .menu {
 
 .heading_fs .h2.white {
   color: #fff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
   font-weight: 400 !important;
   line-height: 0.8 !important;
@@ -3979,12 +4011,12 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(3.5rem, 6vw, 6.5rem) 2rem clamp(2rem, 3.5vw, 3.5rem);
+  padding: 1rem 2rem 6rem;
   box-sizing: border-box;
 }
 
 .everything_u_need .h2.everything_you_need {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
   font-weight: 400 !important;
   line-height: 1.1 !important;
@@ -4012,7 +4044,7 @@ body.is-hero .menu {
 }
 
 .lines_caption .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.96px !important;
   line-height: 16.848px !important;
   letter-spacing: 0.1296px !important;
@@ -4039,7 +4071,7 @@ body.is-hero .menu {
 }
 
 .flex_dyn .title_line {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 17.28px !important;
   font-weight: 400 !important;
   line-height: 17.28px !important;
@@ -4048,7 +4080,7 @@ body.is-hero .menu {
 }
 
 .flex_dyn .timing_txt {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 14.4px !important;
   font-weight: 400 !important;
   line-height: 14.4px !important;
@@ -4079,7 +4111,7 @@ body.is-hero .menu {
 }
 
 .md_p {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 23.04px !important;
   line-height: 26.2656px !important;
   color: #1a1a1a;
@@ -4185,7 +4217,7 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 10rem 0 !important;
+  padding: 10rem 2rem !important;
   box-sizing: border-box;
 }
 
@@ -4222,7 +4254,7 @@ body.is-hero .menu {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
-  padding: 3.5rem 0 3.5rem 2rem !important;
+  padding: 3.6rem 0 !important;
   display: block !important;
   overflow: visible !important;
 }
@@ -4308,7 +4340,7 @@ body.is-hero .menu {
 
 .title_amenities {
   color: #ffffff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 21.6px !important;
   font-weight: 400 !important;
   line-height: 21.6px !important;
@@ -4323,7 +4355,7 @@ body.is-hero .menu {
 
 .desc_amenities,
 .desc_amenities .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.24px !important;
   line-height: 18.36px !important;
   color: rgba(255, 255, 255, 0.95) !important;
@@ -4488,7 +4520,7 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(4rem, 8vw, 10rem) 2rem;
+  padding: 10rem 2rem;
   box-sizing: border-box;
   overflow: visible !important;
 }
@@ -4524,7 +4556,7 @@ body.is-hero .menu {
 .headline_box .h2,
 .headline_box .h2.smaller,
 .headline_box h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
   font-weight: 400 !important;
   line-height: var(--lh-h2-section, 1.0) !important;
@@ -4535,7 +4567,7 @@ body.is-hero .menu {
 
 .left_title .p_gen,
 .bottom_how .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.96px !important;
   font-weight: 400 !important;
   line-height: 16.848px !important;
@@ -4597,7 +4629,7 @@ body.is-hero .menu {
 }
 
 .title_how {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 21.6px !important;
   font-weight: 400 !important;
   letter-spacing: normal !important;
@@ -4608,7 +4640,7 @@ body.is-hero .menu {
 .how_card .p_gen,
 .how_card p,
 .content_how .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.96px !important;
   font-weight: 400 !important;
   line-height: 16.848px !important;
@@ -4863,10 +4895,10 @@ body.is-hero .menu {
 
 .testimonials_heading .h2.bigger,
 .testimonials_heading .h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(38px, 6vw, 86.4px) !important;
   font-weight: 400 !important;
-  line-height: 0.75 !important;
+  line-height: 0.7 !important;
   letter-spacing: -0.02em !important;
   color: var(--black, #292929);
   margin: 0;
@@ -4986,7 +5018,7 @@ body.is-hero .menu {
   line-height: 12.672px !important;
   font-weight: 400 !important;
   letter-spacing: normal !important;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   color: var(--black, #292929);
 }
 
@@ -5053,7 +5085,7 @@ body.is-hero .menu {
   line-height: 1.2 !important;
   letter-spacing: normal !important;
   display: flex;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-weight: 400;
   color: var(--black, #292929);
 }
@@ -5136,7 +5168,7 @@ body.is-hero .menu {
   .author_name_txt {
     font-size: 0.82rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     text-align: center;
@@ -5229,7 +5261,7 @@ body.is-hero .menu {
   .author_name_txt {
     font-size: 0.8rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     text-align: center;
@@ -5331,7 +5363,7 @@ body.is-hero .menu {
     text-align: center;
     font-size: 0.78rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     white-space: normal;
@@ -5387,7 +5419,7 @@ body.is-hero .menu {
 }
 
 .faq_heading .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(28px, 4.6vw, 66.24px);
   line-height: 1.0;
   letter-spacing: -0.02em;
@@ -5430,7 +5462,7 @@ body.is-hero .menu {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--black);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .bottom_faq {
@@ -5449,7 +5481,7 @@ body.is-hero .menu {
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--black);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .faq_general {
@@ -5513,7 +5545,7 @@ body.is-hero .menu {
   letter-spacing: 0;
   font-size: 1.2em;
   font-weight: 400;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #1a1a1a;
   line-height: 1.35;
   transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -5560,7 +5592,7 @@ body.is-hero .menu {
   font-size: 0.9em;
   line-height: 1.45;
   color: rgba(41, 41, 41, 0.78);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   text-align: left;
   opacity: 0;
 }
@@ -5679,7 +5711,7 @@ body.is-hero .menu {
     font-size: 1.1rem !important;
     line-height: 1.35 !important;
     margin-bottom: 0.35rem;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .accordion-item {
@@ -5696,7 +5728,7 @@ body.is-hero .menu {
     font-size: 1.15rem !important;
     line-height: 1.35 !important;
     width: 90%;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .icon_wrapper {
@@ -5709,7 +5741,7 @@ body.is-hero .menu {
     max-width: 100%;
     font-size: 0.92rem !important;
     line-height: 1.5 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 }
 
@@ -5820,7 +5852,7 @@ body.is-hero .menu {
 .pink_cta .heading_cta .txt_cta {
   font-size: clamp(20px, 2.2vw, 34px);
   line-height: 1.05;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   color: #ffffff !important;
 }
 
@@ -5922,7 +5954,7 @@ body.is-hero .menu {
   letter-spacing: -0.01em;
   font-size: clamp(24px, 2.2vw, 38px);
   line-height: 1.08;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
 }
 
 /* Other Ventures in Footer */
@@ -6004,7 +6036,7 @@ body.is-hero .menu {
   line-height: 1.25;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .link_f:hover {
@@ -6023,7 +6055,7 @@ body.is-hero .menu {
   font-size: 0.9em;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   display: inline-block;
 }
 
@@ -6096,7 +6128,7 @@ body.is-hero .menu {
   font-size: 0.82em;
   display: flex;
   align-items: center;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .last_line.ll_fs {
@@ -6272,7 +6304,7 @@ body.is-hero .menu {
   .txt_cta {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.15 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .footer_logo_img {
@@ -6283,7 +6315,7 @@ body.is-hero .menu {
   .cap_footer {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.1 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .menu_footer {
@@ -6295,14 +6327,14 @@ body.is-hero .menu {
   .title_footer {
     font-size: 12.675px !important;
     line-height: 1.2 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
     margin-bottom: 0.75rem;
   }
 
   .link_f {
     font-size: 15.6px !important;
     line-height: 1.35 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .links_list {
@@ -6382,10 +6414,10 @@ body.is-hero .menu {
 .heading_aparts .h1.black,
 .heading_aparts .h1.black.spec_amenities,
 .h1.black.spec_amenities {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(32px, 4.5vw, 64.8px) !important;
-  line-height: 0.95 !important;
-  letter-spacing: -0.015em;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(36px, 5vw, 72px) !important;
+  line-height: 0.9 !important;
+  letter-spacing: normal !important;
   color: #292929 !important;
   margin: 0;
   padding: 0;
@@ -6432,7 +6464,7 @@ body.is-hero .menu {
 }
 
 .filter_title {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 0.9em;
   /* 12.96px */
   font-weight: 400;
@@ -6464,7 +6496,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .clear_btn>div,
@@ -6519,13 +6551,13 @@ body.is-hero .menu {
   color: #292929;
   background: #ffffff;
   box-sizing: border-box;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .dash_field {
   font-size: 11.52px;
   color: #171717;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .fs-rangeslider_track.helper {
@@ -6566,7 +6598,7 @@ body.is-hero .menu {
   transform: translateX(-50%);
   font-size: 11.52px;
   color: #292929;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   white-space: nowrap;
 }
 
@@ -6631,7 +6663,7 @@ body.is-hero .menu {
   padding: 0.5em 0.4em 0.5em 0.5em;
   font-size: 0.7em;
   color: rgb(41, 41, 41);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   align-self: flex-start;
   display: flex;
   pointer-events: auto;
@@ -6672,7 +6704,7 @@ body.is-hero .menu {
   display: flex;
   color: rgb(41, 41, 41);
   line-height: 1;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .icon_tag {
@@ -7016,7 +7048,7 @@ body.is-hero .menu {
 }
 
 .apart_title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(17px, 1.25vw, 22px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
@@ -7056,7 +7088,7 @@ body.is-hero .menu {
 }
 
 .price_txt {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(15px, 1.1vw, 20px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
@@ -7067,7 +7099,7 @@ body.is-hero .menu {
 .mnth_txt {
   opacity: 0.7;
   margin-bottom: auto;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: clamp(11px, 0.75vw, 14px) !important;
   line-height: 1.2;
   color: var(--black, #292929);
@@ -7382,7 +7414,7 @@ body.is-hero .menu {
   .filter_heading {
     justify-content: space-between;
     align-items: center;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-size: 5.5em;
     line-height: 1.1;
     color: #292929;
@@ -7494,7 +7526,7 @@ body.is-hero .menu {
     justify-content: center;
     align-items: center;
     padding: 0 10px !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-size: 13px !important;
     font-weight: 500 !important;
     line-height: 1 !important;
@@ -7528,7 +7560,7 @@ body.is-hero .menu {
     max-height: 38px !important;
     padding: 0 10px !important;
     color: var(--black, #292929);
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-size: 13px !important;
     font-weight: 500 !important;
     line-height: 1 !important;
@@ -7755,7 +7787,7 @@ body.is-hero .menu {
 }
 
 .no-apartments-found h3 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
@@ -7788,7 +7820,7 @@ body.is-hero .menu {
 }
 
 .faq-prompt-text {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.5rem;
   line-height: 1.3;
   margin-bottom: 1.5rem;
@@ -7856,7 +7888,7 @@ body.is-hero .menu {
 }
 
 .faq-question-title {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.25rem;
   color: #18181b;
 }
@@ -7883,7 +7915,7 @@ body.is-hero .menu {
 
 .faq-main-heading.white {
   color: #ffffff;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(1.6rem, 2.8vw, 2.3rem);
   line-height: 1.15;
   margin-bottom: 1.5rem;
@@ -7971,7 +8003,7 @@ body.is-hero .menu {
 }
 
 .apartment-lightbox-unit-title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1.8rem;
   margin: 0;
   color: #ffffff;

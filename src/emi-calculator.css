@@ -18,7 +18,7 @@
 }
 
 .emi_calc_main_title {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: clamp(1.8rem, 2.8vw, 2.5rem);
   font-weight: var(--fw-heading, 400);
   color: #1a1a1a;

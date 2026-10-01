@@ -15,16 +15,16 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 10rem 2rem 8rem;
+  padding: 172.8px 32px 100.8px;
   box-sizing: border-box;
 }
 
 .faq .h1.black.gen_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: var(--fs-h1-hero);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-hero, 72px);
   font-weight: var(--fw-heading, 400);
-  line-height: var(--lh-h1-hero, 0.95);
-  letter-spacing: var(--ls-heading, -0.015em);
+  line-height: 1.1 !important;
+  letter-spacing: normal !important;
   color: #292929;
   margin: 0;
 }
@@ -72,7 +72,7 @@
   border-radius: 4px;
   padding: 0.75rem 1.15rem;
   font-size: 0.85rem;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-weight: 400;
   color: #292929;
   text-decoration: none;
@@ -172,7 +172,7 @@
 }
 
 .title_faq {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.58rem;
   font-weight: 400;
   color: #292929;
@@ -187,7 +187,7 @@
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 0.95rem;
   font-weight: 400;
   color: #ffffff;
@@ -249,7 +249,7 @@
   letter-spacing: 0;
   font-size: 1.2em;
   font-weight: 400;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #1a1a1a;
   line-height: 1.35;
   transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -295,7 +295,7 @@
   font-size: 0.9em;
   line-height: 1.45;
   color: rgba(41, 41, 41, 0.78);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   text-align: left;
   opacity: 0;
 }

@@ -29,11 +29,11 @@
 }
 
 .amenities-page .h1.black.spec_amenities {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: var(--fs-h1-subpage);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(32px, 4.5vw, 64.8px) !important;
   font-weight: var(--fw-heading, 400);
-  line-height: var(--lh-h1-subpage, 0.95);
-  letter-spacing: var(--ls-heading-tight, -0.02em);
+  line-height: 0.9 !important;
+  letter-spacing: normal !important;
   color: var(--black, #292929);
   margin-top: 0;
   margin-bottom: 0;
@@ -148,7 +148,7 @@
 .amenities-page .md_txt {
   text-align: center;
   width: 31ch;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.7em;
   line-height: 1.2;
   color: #292929;
@@ -206,7 +206,7 @@
   border-radius: 4px;
   padding: .45em .85em;
   font-size: .85em;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-weight: 600;
   line-height: 1;
   display: inline-flex;
@@ -221,7 +221,7 @@
   width: 15ch;
   font-size: 3.5em;
   line-height: 1.1;
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   color: #292929;
   margin-top: 0.6em;
   margin-bottom: 0;
@@ -231,7 +231,7 @@
   width: 42ch;
   font-size: 1.05em;
   line-height: 1.4;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #292929;
   margin-top: 1.2em;
   margin-bottom: 0;
@@ -247,14 +247,14 @@
 .amenities-page .inc_title {
   opacity: .65;
   font-size: 1.05em;
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
 }
 
 .amenities-page .inc_desc {
   width: 42ch;
   font-size: 1.05em;
   line-height: 1.35;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .amenities-page .amenities_img {
@@ -303,7 +303,7 @@
 
 .amenities-page .time_clock {
   font-size: 1.4em;
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   color: #292929;
 }
 
@@ -375,7 +375,7 @@
 
 .amenities-page .h2.pets_h {
   font-size: var(--fs-h2-pets);
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-weight: var(--fw-heading, 400);
   line-height: var(--lh-h2-pets, 1.15);
   color: #292929;
@@ -412,7 +412,7 @@
   letter-spacing: .01em;
   font-size: .85em;
   line-height: 1.5;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .amenities-page .p_gen.black {
@@ -442,7 +442,7 @@
   font-weight: 400 !important;
   line-height: 24.48px !important;
   letter-spacing: normal !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   color: #292929;
 }
 
@@ -450,7 +450,7 @@
   width: 47ch;
   font-size: .85em;
   line-height: 1.4;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: rgba(41, 41, 41, 0.85);
 }
 

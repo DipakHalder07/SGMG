@@ -32,7 +32,7 @@
 }
 
 .h1.black {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h1-subpage);
   font-weight: var(--fw-heading, 400);
   line-height: var(--lh-h1-subpage, 0.95);
@@ -85,7 +85,7 @@
 }
 
 .title_apply {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: clamp(1.25rem, 2.2vw, 2.25rem);
   font-weight: 400;
   line-height: 1.1;
@@ -136,7 +136,7 @@
 }
 
 .h2.smaller.spec_how {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section);
   line-height: var(--lh-h2-section, 1.0);
   letter-spacing: var(--ls-heading-tight, -0.02em);
@@ -246,7 +246,7 @@
 }
 
 .title_step {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.65rem;
   font-weight: 400;
   line-height: 1.15;
@@ -316,7 +316,7 @@
 
 .h2.about_story_h,
 .h2.pets_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section);
   font-weight: var(--fw-heading, 400);
   line-height: var(--lh-h2-section, 1.0);
@@ -392,7 +392,7 @@
 }
 
 .about_story_lead {
-  font-family: "Romie", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: clamp(1.2rem, 1.8vw, 1.65rem);
   line-height: 1.35;
   color: #292929;
@@ -424,7 +424,7 @@
 }
 
 .about_stat_num {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: 1.75rem;
   font-weight: var(--fw-heading, 400);
   color: #292929;
@@ -455,7 +455,7 @@
 }
 
 .about_pillar_num {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: 0.95rem;
   color: var(--logo-blue, #2391cf);
   letter-spacing: 0.08em;
@@ -463,7 +463,7 @@
 }
 
 .about_pillar_title {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.45rem;
   font-weight: 400;
   color: #292929;
@@ -501,7 +501,7 @@
 }
 
 .testimonials_heading .h2.bigger {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-testimonials) !important;
   font-weight: var(--fw-heading, 400) !important;
   line-height: var(--lh-h2-testimonials, 0.75) !important;
@@ -606,7 +606,7 @@
 }
 
 .author_name_txt {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.15rem;
   color: #292929;
   font-weight: 500;
@@ -643,7 +643,7 @@
 }
 
 .testimonial_txt {
-  font-family: "Romie", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: clamp(1.2rem, 1.85vw, 1.75rem);
   line-height: 1.45;
   color: #292929;
