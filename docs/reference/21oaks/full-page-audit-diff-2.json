@@ -1,0 +1,1350 @@
+{
+  "home": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "14197.6px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "16px 32px 96px",
+        "margin": "0px",
+        "height": "608.281px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "633.562px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "147.594px"
+      },
+      "h2, .h2": {
+        "fontSize": "66.24px",
+        "lineHeight": "76.176px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "168.859px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "149.016px"
+      },
+      ".h2.bigger": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "142.562px"
+      },
+      ".h2.second_h": {
+        "fontSize": "66.24px",
+        "lineHeight": "76.176px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "168.859px"
+      },
+      ".h2.middle_spec": {
+        "fontSize": "72px",
+        "lineHeight": "50.4px",
+        "letterSpacing": "-1.44px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "118.781px"
+      },
+      ".h2.everything_you_need": {
+        "fontSize": "93.6px",
+        "lineHeight": "102.96px",
+        "letterSpacing": "-1.872px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "229.297px"
+      },
+      ".h2.white": {
+        "fontSize": "64.8px",
+        "lineHeight": "50.544px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "117.25px"
+      },
+      ".p_gen": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "55.0312px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.96px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.25px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "auto"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17801.4px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "16px 32px 96px",
+        "margin": "0px",
+        "height": "622.656px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "1100.92px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "142.547px"
+      },
+      "h2, .h2": {
+        "fontSize": "66.24px",
+        "lineHeight": "76.176px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "164.234px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "144.391px"
+      },
+      ".h2.bigger": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "136.516px"
+      },
+      ".h2.second_h": {
+        "fontSize": "66.24px",
+        "lineHeight": "76.176px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "164.234px"
+      },
+      ".h2.middle_spec": {
+        "fontSize": "72px",
+        "lineHeight": "50.4px",
+        "letterSpacing": "-1.44px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "113.734px"
+      },
+      ".h2.everything_you_need": {
+        "fontSize": "93.6px",
+        "lineHeight": "102.96px",
+        "letterSpacing": "-1.872px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "222.75px"
+      },
+      ".h2.white": {
+        "fontSize": "64.8px",
+        "lineHeight": "51.84px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "114.016px"
+      },
+      ".p_gen": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.6875px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "54.4219px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "256.875px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    }
+  },
+  "contact": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "3968.69px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 0px",
+        "margin": "0px",
+        "height": "1127.44px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "865.75px"
+      },
+      ".wrapper_general.gen_f": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 0px",
+        "margin": "0px",
+        "height": "1127.44px"
+      },
+      "h1, .h1": {
+        "fontSize": "64.8px",
+        "lineHeight": "58.32px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "58.3125px"
+      },
+      "h2, .h2": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".p_gen": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.96px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.25px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".title": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "11.5156px"
+      },
+      ".input_field": {
+        "fontSize": "11.52px",
+        "lineHeight": "16.4571px",
+        "letterSpacing": "normal",
+        "padding": "4.32px 11.52px",
+        "margin": "0px",
+        "height": "38.0156px"
+      },
+      ".submit_button": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "5.76px 11.52px",
+        "margin": "0px 0px 0px 18.5312px",
+        "height": "37.4375px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      },
+      ".map_sec": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "16px",
+        "margin": "0px",
+        "height": "757px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "4658.14px"
+      },
+      ".wrapper_general": {
+        "fontSize": "16px",
+        "lineHeight": "19.2px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 0px",
+        "margin": "0px",
+        "height": "1082.06px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "16px",
+        "lineHeight": "19.2px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "870.781px"
+      },
+      ".wrapper_general.gen_f": {
+        "fontSize": "16px",
+        "lineHeight": "19.2px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 0px",
+        "margin": "0px",
+        "height": "1082.06px"
+      },
+      "h1, .h1": {
+        "fontSize": "64.8px",
+        "lineHeight": "58.32px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "58.3125px"
+      },
+      "h2, .h2": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".p_gen": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.2812px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "256.875px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".title": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "11.5156px"
+      },
+      ".input_field": {
+        "fontSize": "11.52px",
+        "lineHeight": "16.4571px",
+        "letterSpacing": "normal",
+        "padding": "4.32px 11.52px",
+        "margin": "0px",
+        "height": "38.0156px"
+      },
+      ".submit_button": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "5.76px 11.52px",
+        "margin": "0px 0px 0px 18.5312px",
+        "height": "37.4375px"
+      },
+      ".button.header_cta": {
+        "fontSize": "12.8px",
+        "lineHeight": "15.36px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      },
+      ".map_sec": {
+        "fontSize": "16px",
+        "lineHeight": "19.2px",
+        "letterSpacing": "normal",
+        "padding": "16px",
+        "margin": "0px",
+        "height": "757px"
+      }
+    }
+  },
+  "amenities": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "11059.8px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "419.375px"
+      },
+      ".wrapper_general.base_ab": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "419.375px"
+      },
+      "h1, .h1": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "145.781px"
+      },
+      "h2, .h2": {
+        "fontSize": "89.28px",
+        "lineHeight": "102.672px",
+        "letterSpacing": "-1.7856px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "227.656px"
+      },
+      ".p_gen": {
+        "fontSize": "12.96px",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "117.797px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "10967.4px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "421.188px"
+      },
+      ".wrapper_general.base_ab": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "421.188px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "147.594px"
+      },
+      "h2, .h2": {
+        "fontSize": "89.28px",
+        "lineHeight": "102.672px",
+        "letterSpacing": "-1.7856px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "227.656px"
+      },
+      ".p_gen": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "110.062px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "259.797px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    }
+  },
+  "apartments": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "5300.22px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "144px 32px",
+        "margin": "0px",
+        "height": "1414.22px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "1044.75px"
+      },
+      "h1, .h1": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "145.781px"
+      },
+      "h2, .h2": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "142.562px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.bigger": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "142.562px"
+      },
+      ".p_gen": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.96px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.25px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "5225.45px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "144px 31.9997px",
+        "margin": "0px",
+        "height": "1436.86px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "1038.7px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "142.547px"
+      },
+      "h2, .h2": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "136.516px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.bigger": {
+        "fontSize": "86.4px",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "136.516px"
+      },
+      ".p_gen": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "54.4219px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "256.875px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    }
+  },
+  "location": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "3952.81px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "865.75px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "865.75px"
+      },
+      "h1, .h1": {
+        "fontSize": "38px",
+        "lineHeight": "44px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "-1px",
+        "height": "1px"
+      },
+      "h2, .h2": {
+        "fontSize": "57.6px",
+        "lineHeight": "57.6px",
+        "letterSpacing": "-1.152px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "115.188px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.white": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "145.781px"
+      },
+      ".h2.white.specific_map": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "145.781px"
+      },
+      ".p_gen": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "55.0312px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.96px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.25px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      },
+      ".map_sec": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "16px",
+        "margin": "0px",
+        "height": "757px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "4080.73px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "1083.95px"
+      },
+      ".wrapper_general.basic": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "160px 32px",
+        "margin": "0px",
+        "height": "1083.95px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "-1px",
+        "height": "1px"
+      },
+      "h2, .h2": {
+        "fontSize": "57.6px",
+        "lineHeight": "57.6px",
+        "letterSpacing": "-1.152px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "115.188px"
+      },
+      ".h2.smaller": {
+        "fontSize": "66.24px",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "132.469px"
+      },
+      ".h2.white": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "141.25px"
+      },
+      ".h2.white.specific_map": {
+        "fontSize": "64.8px",
+        "lineHeight": "64.8px",
+        "letterSpacing": "-1.296px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "141.25px"
+      },
+      ".p_gen": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "55.0312px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "22.464px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "22.4531px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "54.4219px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "256.875px"
+      },
+      ".caption_faq": {
+        "fontSize": "14.4px",
+        "lineHeight": "20.16px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40.3125px"
+      },
+      ".caption_cta": {
+        "fontSize": "15.84px",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "41.1875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      },
+      ".map_sec": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "16px",
+        "margin": "0px",
+        "height": "757px"
+      }
+    }
+  },
+  "faq": {
+    "oaks": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "4248.23px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "2272.73px"
+      },
+      ".wrapper_general.base_ab": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "2272.73px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "79.2px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "158.375px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.96px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.25px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "413.203px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    },
+    "sgmg": {
+      "body": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "4183.25px"
+      },
+      ".wrapper_general": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "2299.11px"
+      },
+      ".wrapper_general.base_ab": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "172.8px 32px 100.8px",
+        "margin": "0px",
+        "height": "2299.11px"
+      },
+      "h1, .h1": {
+        "fontSize": "72px",
+        "lineHeight": "79.2px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "158.375px"
+      },
+      ".item_title": {
+        "fontSize": "17.28px",
+        "lineHeight": "17.28px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "17.2812px"
+      },
+      ".item_paragraph": {
+        "fontSize": "12.24px",
+        "lineHeight": "18.144px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "36.2812px"
+      },
+      ".caption_left": {
+        "fontSize": "14.4px",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "256.875px"
+      },
+      ".button.header_cta": {
+        "fontSize": "11.52px",
+        "lineHeight": "11.52px",
+        "letterSpacing": "normal",
+        "padding": "0px",
+        "margin": "0px",
+        "height": "40px"
+      }
+    }
+  }
+}
