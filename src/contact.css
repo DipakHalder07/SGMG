@@ -7,12 +7,14 @@
   --primary-light: #e4f3fa;
   --black: #292929;
   --white: #ffffff;
+  --font-heading: "Exposure", Georgia, sans-serif;
+  --font-body: "Exposure", Georgia, sans-serif;
 }
 
 /* Contact Page Root Container */
 .contact_page_wrapper {
   background-color: var(--primary, #2391cf);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #ffffff;
   font-size: 16px;
   line-height: 1.2;
@@ -152,7 +154,7 @@ main.contact {
 
 .h1.black {
   color: #ffffff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h1-subpage);
   font-weight: var(--fw-heading, 400);
   line-height: var(--lh-h1-subpage, 0.95);
@@ -489,7 +491,7 @@ main.contact {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: var(--ls-button, 0.02em);
   font-weight: var(--fw-button, 400);
   transition: all 0.3s ease;
@@ -894,7 +896,7 @@ main.contact {
 }
 
 .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section);
   font-weight: var(--fw-heading, 400);
   line-height: var(--lh-h2-section, 1.0);
