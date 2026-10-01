@@ -1,0 +1,743 @@
+/* ==========================================================================
+   Amenities Page Styles - 100% Pixel-by-Pixel Parity with 21Oaks
+   ========================================================================== */
+
+.amenities-page {
+  /* Fluid 1vw base scaling identical to 21oaks desktop Webflow system */
+  font-size: 1vw;
+  line-height: 1;
+  background-color: #ffffff;
+  color: #292929;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ==========================================
+   HEADINGS & HERO SECTION
+   ========================================== */
+
+.amenities-page .wrapper_general.base_ab {
+  padding-top: 12em;
+  padding-bottom: 7em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amenities-page .middle_h1 {
+  text-align: center;
+  width: 100%;
+}
+
+.amenities-page .h1.black.spec_amenities {
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-size: var(--fs-h1-subpage);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h1-subpage, 0.95);
+  letter-spacing: var(--ls-heading-tight, -0.02em);
+  color: var(--black, #292929);
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/* Scribble Reveal Animation */
+.amenities-page [data-scribble] {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.25em;
+}
+
+.amenities-page [data-scribble]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.14em;
+  height: 0.32em;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 100%;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+.amenities-page [data-scribble].scribble-visible::after {
+  animation: scribble-reveal 1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+.amenities-page [data-scribble='1']::after {
+  background-image: url('/assets/svg/scribble-1-21oaks.svg');
+}
+
+.amenities-page [data-scribble='5']::after {
+  background-image: url('/assets/svg/scribble-5-21oaks.svg');
+}
+
+@keyframes scribble-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ==========================================
+   FULLSCREEN SKETCH & DRAWN SVG ROUTE
+   ========================================== */
+
+.amenities-page .amenities_fs {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.amenities-page .box_fs_image {
+  width: 100%;
+  height: 100%;
+}
+
+.amenities-page .image.amenities_fs_spec {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.amenities-page .ovelay_fs_sketch {
+  z-index: 3;
+  background-image: linear-gradient(#fff0, #fff0 81%, #fff);
+  position: absolute;
+  inset: 0%;
+  pointer-events: none;
+}
+
+.amenities-page .path_overlay {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+  pointer-events: none;
+}
+
+.amenities-page .path_overlay .amenities-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.amenities-page .path_overlay .route-line {
+  fill: none;
+  stroke: var(--primary, #2391cf);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+/* ==========================================
+   INTERMEDIATE TEXT
+   ========================================== */
+
+.amenities-page .md_amenities {
+  justify-content: center;
+  align-items: center;
+  padding: 3.8em 2rem;
+  display: flex;
+}
+
+.amenities-page .md_txt {
+  text-align: center;
+  width: 31ch;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: 1.7em;
+  line-height: 1.2;
+  color: #292929;
+}
+
+/* ==========================================
+   AMENITIES FLOW & STICKY SUN CLOCK
+   ========================================== */
+
+.amenities-page .amenities_flow {
+  background-color: #ffffff;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.15s ease-out;
+}
+
+.amenities-page .amenities_wrapper {
+  padding: 10rem 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.amenities-page .amenities_cms,
+.amenities-page .amenities_parent {
+  position: relative;
+}
+
+.amenities-page .amenities_flex {
+  grid-row-gap: 3.25rem;
+  flex-flow: column;
+  display: flex;
+}
+
+.amenities-page .amenities_item {
+  display: flex;
+  position: relative;
+}
+
+.amenities-page .amenities_info {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 45%;
+  display: flex;
+}
+
+.amenities-page .top_amen {
+  display: flex;
+}
+
+.amenities-page .tag_amen {
+  background-color: #f1f5f9;
+  color: #292929;
+  border: 1px solid rgba(41, 41, 41, 0.12);
+  border-radius: 4px;
+  padding: .45em .85em;
+  font-size: .85em;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+}
+
+.amenities-page .info_amen {
+  display: flex;
+  flex-direction: column;
+}
+
+.amenities-page .title_amen {
+  width: 15ch;
+  font-size: 3.5em;
+  line-height: 1.1;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  color: #292929;
+  margin-top: 0.6em;
+  margin-bottom: 0;
+}
+
+.amenities-page .desc_amen {
+  width: 42ch;
+  font-size: 1.05em;
+  line-height: 1.4;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  color: #292929;
+  margin-top: 1.2em;
+  margin-bottom: 0;
+}
+
+.amenities-page .included_box {
+  grid-row-gap: .6rem;
+  flex-flow: column;
+  margin-top: 14em;
+  display: flex;
+}
+
+.amenities-page .inc_title {
+  opacity: .65;
+  font-size: 1.05em;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+}
+
+.amenities-page .inc_desc {
+  width: 42ch;
+  font-size: 1.05em;
+  line-height: 1.35;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+}
+
+.amenities-page .amenities_img {
+  border-radius: .25em;
+  width: 50%;
+  height: 57em;
+  margin-left: auto;
+  overflow: hidden;
+  background-color: #e4e4e7;
+}
+
+.amenities-page .amenities_img .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Sticky Sun Clock Container */
+.amenities-page .sun-clock {
+  grid-column-gap: .4em;
+  justify-content: flex-start;
+  align-items: center;
+  width: 11em;
+  height: auto;
+  margin-left: 35em;
+  display: flex;
+  position: sticky;
+  inset: 9em auto auto 0%;
+  z-index: 99;
+}
+
+.amenities-page .lottie_on_scroll {
+  width: 6em;
+  height: 4.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amenities-page .sun_changing {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.amenities-page .time_clock {
+  font-size: 1.4em;
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  color: #292929;
+}
+
+.amenities-page .time_clock [data-clock] {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  min-width: 5ch;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.amenities-page .time_clock .clock-digits {
+  display: inline-flex;
+}
+
+.amenities-page .time_clock .digit-wrap {
+  position: relative;
+  width: 1ch;
+  height: 1em;
+  line-height: 1em;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.amenities-page .time_clock .digit-current,
+.amenities-page .time_clock .digit-next {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.amenities-page .time_clock .clock-suffix {
+  position: absolute;
+  right: -2.2ch;
+  top: 0;
+  transform: translateY(-62%);
+  font-size: 0.56em;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* ==========================================
+   PETS SECTION (LIGHT BRAND SECTION)
+   ========================================== */
+
+.amenities-page .pets {
+  background-color: var(--primary, #2391cf);
+  color: #292929;
+  position: relative;
+}
+
+.amenities-page .wrapper_pets {
+  padding: 5.1rem 2rem 3.15rem;
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.amenities-page .pets_heading {
+  display: block;
+}
+
+.amenities-page .h2.pets_h {
+  font-size: var(--fs-h2-pets);
+  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h2-pets, 1.15);
+  color: #292929;
+  margin: 0;
+}
+
+.amenities-page .pets_ill {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8rem;
+  display: flex;
+  position: relative;
+}
+
+.amenities-page .box_pets {
+  background-image: url("/assets/amenities/pets.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 35em;
+  height: 35em;
+  margin-left: auto;
+  margin-right: 6.5em;
+  position: static;
+  flex-shrink: 0;
+}
+
+.amenities-page .p_pets {
+  width: 39ch;
+}
+
+.amenities-page .p_gen {
+  color: #292929;
+  letter-spacing: .01em;
+  font-size: .85em;
+  line-height: 1.5;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+}
+
+.amenities-page .p_gen.black {
+  color: #292929 !important;
+  font-size: .9em;
+  line-height: 1.4;
+}
+
+.amenities-page .pet_boxes {
+  grid-column-gap: 4rem;
+  grid-row-gap: 0px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  margin-top: 8rem;
+  display: grid;
+}
+
+.amenities-page .pet_box {
+  grid-row-gap: .45rem;
+  flex-flow: column;
+  display: flex;
+}
+
+.amenities-page .pet_title {
+  font-size: 24.48px !important;
+  font-weight: 400 !important;
+  line-height: 24.48px !important;
+  letter-spacing: normal !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  color: #292929;
+}
+
+.amenities-page .pet_desc {
+  width: 47ch;
+  font-size: .85em;
+  line-height: 1.4;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  color: rgba(41, 41, 41, 0.85);
+}
+
+/* ==========================================
+   EXACT 21OAKS RESPONSIVE MEDIA QUERIES
+   ========================================== */
+
+/* Tablet (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .amenities-page {
+    font-size: 1.35vw;
+  }
+  .amenities-page .h1.black,
+  .amenities-page .h1.black.spec_amenities {
+    font-size: 6em;
+  }
+  .amenities-page .p_gen { font-size: 1.4em; }
+  .amenities-page .p_gen.black { font-size: 1.6em; line-height: 1.34; }
+  .amenities-page .wrapper_general.base_ab {
+    padding-top: 18em;
+    padding-left: 1.35rem;
+    padding-right: 1.35rem;
+  }
+  .amenities-page .amenities_wrapper {
+    padding: 8rem 1.35rem;
+  }
+  .amenities-page .amenities_img {
+    border-radius: 4px;
+  }
+  .amenities-page .tag_amen {
+    border-radius: 2px;
+    font-size: 1.3em;
+  }
+  .amenities-page .title_amen {
+    width: auto;
+    font-size: 4.5em;
+  }
+  .amenities-page .desc_amen {
+    width: 40ch;
+    font-size: 1.5em;
+    line-height: 1.3;
+  }
+  .amenities-page .inc_title {
+    font-size: 1.5em;
+  }
+  .amenities-page .inc_desc {
+    width: 38ch;
+    font-size: 1.5em;
+  }
+  .amenities-page .sun-clock {
+    top: 15em;
+  }
+  .amenities-page .time_clock {
+    font-size: 1.6em;
+  }
+  .amenities-page .wrapper_pets {
+    padding: 3.125rem 1.35rem;
+  }
+  .amenities-page .box_pets {
+    width: 40em;
+    height: 40em;
+    margin-left: 0;
+  }
+  .amenities-page .p_pets {
+    width: 59ch;
+  }
+  .amenities-page .pet_boxes {
+    grid-column-gap: 2rem;
+  }
+  .amenities-page .pet_title {
+    font-size: 2.15em;
+  }
+  .amenities-page .pet_desc {
+    width: auto;
+    font-size: 1.35em;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .amenities-page {
+    font-size: 2vw;
+  }
+  .amenities-page .h1.black.spec_amenities {
+    font-size: 7em;
+  }
+  .amenities-page .p_gen,
+  .amenities-page .p_gen.black {
+    font-size: 2em;
+  }
+  .amenities-page .wrapper_general.base_ab {
+    padding-top: 16em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .amenities-page .md_txt {
+    font-size: 2.1em;
+    width: auto;
+  }
+  .amenities-page .amenities_wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .amenities-page .amenities_item {
+    flex-flow: column;
+  }
+  .amenities-page .amenities_info {
+    grid-column-gap: 1rem;
+    grid-row-gap: 3rem;
+    flex-flow: row;
+    grid-template-rows: auto auto;
+    grid-template-columns: .6fr 1fr;
+    grid-auto-columns: 1fr;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding-right: 5rem;
+    display: grid;
+    position: static;
+  }
+  .amenities-page .amenities_img {
+    order: -9999;
+    width: 100%;
+    height: 64em;
+  }
+  .amenities-page .tag_amen {
+    border-radius: 2px;
+    font-size: 1.5em;
+  }
+  .amenities-page .desc_amen {
+    width: 100%;
+    font-size: 1.85em;
+    line-height: 1.3;
+  }
+  .amenities-page .inc_title {
+    font-size: 2em;
+  }
+  .amenities-page .inc_desc {
+    width: 100%;
+    font-size: 1.85em;
+  }
+  .amenities-page .included_box {
+    margin-top: 0;
+  }
+  .amenities-page .sun-clock {
+    z-index: 99;
+    grid-column-gap: .3rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(41, 41, 41, 0.2);
+    border-radius: 6px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 8.3rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 0 .47rem;
+    position: fixed;
+    inset: auto 0 1.25rem 0%;
+  }
+  .amenities-page .lottie_on_scroll {
+    width: 3.15rem;
+    height: 3.15rem;
+  }
+  .amenities-page .time_clock {
+    font-size: 2.15em;
+  }
+  .amenities-page .wrapper_pets {
+    padding-top: 3.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .amenities-page .p_pets {
+    width: 71ch;
+  }
+  .amenities-page .pet_boxes {
+    grid-column-gap: 0rem;
+    grid-row-gap: 1.5rem;
+    grid-template-columns: 1fr;
+    margin-top: 5rem;
+  }
+  .amenities-page .pet_box {
+    width: 60%;
+  }
+  .amenities-page .pet_desc {
+    font-size: 1.89em;
+    width: auto;
+  }
+}
+
+/* Small Mobile (max-width: 479px) */
+@media screen and (max-width: 479px) {
+  .amenities-page {
+    font-size: 3.2vw;
+  }
+  .amenities-page .h1.black.spec_amenities {
+    font-size: 8.7em;
+  }
+  .amenities-page .h2.pets_h {
+    font-size: 13em;
+  }
+  .amenities-page .wrapper_general.base_ab {
+    padding-top: 7.5rem;
+    padding-bottom: 3rem;
+  }
+  .amenities-page .md_amenities {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .amenities-page .md_txt {
+    font-size: 4.1em;
+    width: auto;
+  }
+  .amenities-page .amenities_wrapper {
+    padding-left: 1rem;
+  }
+  .amenities-page .amenities_flex {
+    grid-row-gap: 2rem;
+  }
+  .amenities-page .amenities_info {
+    grid-row-gap: 0rem;
+    flex-flow: column;
+    margin-top: 1.05rem;
+    padding-right: 0;
+    display: flex;
+  }
+  .amenities-page .amenities_img {
+    height: 102em;
+  }
+  .amenities-page .tag_amen {
+    font-size: 3.2em;
+  }
+  .amenities-page .title_amen {
+    font-size: 8em;
+  }
+  .amenities-page .desc_amen {
+    font-size: 3.5em;
+  }
+  .amenities-page .inc_title {
+    font-size: 3.5em;
+  }
+  .amenities-page .inc_desc {
+    font-size: 3.5em;
+    line-height: 1.4;
+  }
+  .amenities-page .included_box {
+    margin-top: 2rem;
+  }
+  .amenities-page .sun-clock {
+    justify-content: flex-start;
+    align-items: center;
+    width: 32em;
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 0 .45rem;
+    bottom: 5.5rem;
+  }
+  .amenities-page .time_clock {
+    font-size: 3.5em;
+  }
+  .amenities-page .wrapper_pets {
+    padding: 2.5rem 1rem 3rem;
+  }
+  .amenities-page .pets_ill {
+    grid-row-gap: 1rem;
+    flex-flow: column;
+    margin-top: 4rem;
+  }
+  .amenities-page .box_pets {
+    width: 100%;
+    height: 60em;
+    margin-right: 0;
+  }
+  .amenities-page .p_pets {
+    width: 100%;
+  }
+  .amenities-page .pet_boxes {
+    grid-column-gap: 0rem;
+    grid-row-gap: 1.75rem;
+    grid-template-columns: 1fr;
+    margin-top: 5.125rem;
+  }
+  .amenities-page .pet_box {
+    width: 100%;
+  }
+  .amenities-page .pet_title {
+    font-size: 4.5em;
+  }
+  .amenities-page .pet_desc {
+    font-size: 3.5em;
+  }
+}

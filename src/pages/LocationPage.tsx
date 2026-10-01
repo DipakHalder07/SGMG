@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import "../location.css";
 import Header, { WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
+import FaqSection from "../components/FaqSection";
 
 interface SlideData {
   id: string;
@@ -120,6 +121,19 @@ const MAP_PLACES: MapPlace[] = [
     bike: "8 min bike",
     drive: "6 min drive",
   },
+  {
+    id: "savin-kingdom",
+    name: "Savin Kingdom",
+    category: "Leisure & Nature Park",
+    lat: 26.7328,
+    lng: 88.4065,
+    address: "Dagapur, Siliguri, West Bengal 734010",
+    hours: "10:30 AM – 7:30 PM Daily",
+    image: "/assets/locations/thumbs/savin-kingdom.jpg",
+    walk: "40 min walk",
+    bike: "18 min bike",
+    drive: "12 min drive",
+  },
 ];
 
 const SGMG_LOCATION = {
@@ -161,12 +175,9 @@ const LOCATION_FAQS = [
   },
 ];
 
-const ICON_WALK =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b47_walk.png";
-const ICON_BIKE =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b48_bike.png";
-const ICON_DRIVE =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b49_drive.png";
+const ICON_WALK = "/assets/location/walk.png";
+const ICON_BIKE = "/assets/location/bike.png";
+const ICON_DRIVE = "/assets/location/drive.png";
 
 export default function LocationPage() {
   // Hero Slideshow Refs & State
@@ -186,9 +197,6 @@ export default function LocationPage() {
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
   const routePolylineRef = useRef<L.Polyline | null>(null);
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Document title
   useEffect(() => {
@@ -772,74 +780,16 @@ export default function LocationPage() {
         </section>
 
         {/* ==============================================================
-            SECTION 3: FAQS SECTION (DARK)
+            SECTION 3: FAQS SECTION (DARK THEME)
             ============================================================== */}
-        <section className="faqs black" data-section="dark">
-          <div className="wrapper_general basic">
-            <div className="faq_heading white_ver">
-              <h2 className="h2 smaller">
-                Frequently asked<br />questions
-              </h2>
-            </div>
-            <div className="sides_faq">
-              <div className="short_left">
-                <div className="caption_faq white_ver">
-                  <div>Everything you might want to know before moving in.</div>
-                </div>
-                <div className="bottom_faq">
-                  <div className="caption_cta white_ver">
-                    Didn’t find what you were<br />looking for?
-                  </div>
-                  <div>
-                    <WebflowButton text="Explore FAQ" href="/faq" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="faq_general">
-                <div className="w-dyn-list">
-                  <div
-                    role="list"
-                    className="collection_faq white_ver w-dyn-items"
-                  >
-                    {LOCATION_FAQS.map((faq, idx) => {
-                      const isOpen = openFaq === idx;
-                      return (
-                        <div
-                          key={idx}
-                          role="listitem"
-                          className={`accordion-item white_ver w-dyn-item ${
-                            isOpen ? "is-open" : ""
-                          }`}
-                          onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        >
-                          <div className="accordion_head-wrapper">
-                            <div className="item_head">
-                              <div className="title_wrapper">
-                                <div className="item_title">{faq.q}</div>
-                                <div className="icon_wrapper white_ver"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="item_content-wrapper">
-                            <div className="accordion_paragraph">
-                              <div className="item_paragraph w-richtext">
-                                <p>{faq.a}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          className="black"
+          faqs={LOCATION_FAQS}
+          caption="Everything you might want to know before moving in."
+        />
       </main>
 
-      <Footer />
+      <Footer hidePreFooterCta={true} />
     </div>
   );
 }

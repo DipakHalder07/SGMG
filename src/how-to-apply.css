@@ -18,12 +18,13 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: auto;
-  padding: 6.5rem 3rem 2.5rem;
-  max-width: 1560px;
+  padding: 6.5rem 2rem 2.5rem;
+  max-width: none;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .heading_apply {
@@ -31,11 +32,11 @@
 }
 
 .h1.black {
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(2.45rem, 5.6vw, 5.95rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h1-subpage);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h1-subpage, 0.95);
+  letter-spacing: var(--ls-heading, -0.015em);
   color: #292929;
   margin: 0;
 }
@@ -135,12 +136,13 @@
 }
 
 .h2.smaller.spec_how {
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.95rem, 3.85vw, 4.05rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-section);
+  line-height: var(--lh-h2-section, 1.0);
+  letter-spacing: var(--ls-heading-tight, -0.02em);
   color: #292929;
   margin: 0;
+  font-weight: var(--fw-heading, 400);
 }
 
 /* Step Chips Bar */
@@ -292,7 +294,7 @@
 /* --- ABOUT SGMG STORY & PHILOSOPHY SECTION --- */
 .about_story_sec,
 .pets {
-  background-color: var(--primary-light, #e4f3fa);
+  background-color: #ffffff;
   padding: 5rem 3rem 4.5rem;
   position: relative;
   width: 100%;
@@ -301,9 +303,10 @@
 
 .wrapper_about_story,
 .wrapper_pets {
-  max-width: 1440px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .about_story_heading,
@@ -313,11 +316,11 @@
 
 .h2.about_story_h,
 .h2.pets_h {
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(2.2rem, 4.8vw, 4.6rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-section);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h2-section, 1.0);
+  letter-spacing: var(--ls-heading-tight, -0.02em);
   color: #292929;
   margin: 0;
 }
@@ -421,9 +424,9 @@
 }
 
 .about_stat_num {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-heading, "Michroma", sans-serif);
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: var(--fw-heading, 400);
   color: #292929;
   line-height: 1.1;
 }
@@ -452,11 +455,11 @@
 }
 
 .about_pillar_num {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-heading, "Michroma", sans-serif);
   font-size: 0.95rem;
   color: var(--logo-blue, #2391cf);
   letter-spacing: 0.08em;
-  font-weight: 600;
+  font-weight: var(--fw-heading, 400);
 }
 
 .about_pillar_title {
@@ -485,9 +488,10 @@
 .testimonials .wrapper_general.basic {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  max-width: 1320px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .testimonials_heading {
@@ -496,12 +500,12 @@
   text-align: center;
 }
 
-.testimonials_heading .h2.bigger  {
+.testimonials_heading .h2.bigger {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: var(--fs-h2-testimonials) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-testimonials, 0.75) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
   color: #292929;
   margin: 0;
 }
@@ -510,7 +514,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1180px;
+  max-width: none;
+  width: 100%;
   margin: 0 auto !important;
   margin-top: 0 !important;
   height: auto !important;
@@ -646,141 +651,7 @@
   text-align: left;
 }
 
-/* --- LIGHT FAQS SECTION --- */
-.faqs.light {
-  background-color: #ffffff;
-  color: #292929;
-  padding: 3.5rem 3rem 4rem;
-  border-top: 1px solid rgba(41, 41, 41, 0.08);
-}
 
-.faqs.light .wrapper_general.basic {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-.faqs.light .h2.smaller {
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.95rem, 3.2vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: #292929;
-  max-width: 700px;
-}
-
-.faqs.light .sides_faq {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2.75rem;
-  gap: 3.5rem;
-}
-
-.faqs.light .short_left {
-  width: 320px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: sticky !important;
-  top: 110px !important;
-  align-self: flex-start !important;
-  z-index: 10;
-}
-
-.faqs.light .caption_faq {
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: rgba(41, 41, 41, 0.7);
-}
-
-.faqs.light .bottom_faq {
-  margin-top: 3.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.faqs.light .bot_txt_faq {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1.35rem;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #292929;
-}
-
-.faqs.light .faq_general {
-  flex: 1;
-  max-width: 780px;
-  margin-left: auto;
-}
-
-.faqs.light .faq_row {
-  border-top: 1px solid rgba(41, 41, 41, 0.15);
-  cursor: pointer;
-  padding: 1.6rem 0 !important;
-  transition: background-color 0.2s ease;
-}
-
-.faqs.light .faq_row:last-child {
-  border-bottom: 1px solid rgba(41, 41, 41, 0.15);
-}
-
-.faqs.light .faq_question_bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.faqs.light .item_title {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.3;
-  color: #292929;
-  margin: 0;
-}
-
-.faqs.light .icon_faq {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.faqs.light .faq_row.is-open .icon_faq {
-  transform: rotate(45deg);
-}
-
-.faqs.light .icon_faq svg path {
-  fill: #292929;
-}
-
-.faqs.light .faq_answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, margin-top 0.35s ease;
-  opacity: 0;
-  margin-top: 0;
-}
-
-.faqs.light .faq_row.is-open .faq_answer {
-  max-height: 300px;
-  opacity: 1;
-  margin-top: 0.85rem;
-}
-
-.faqs.light .p_faq {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(41, 41, 41, 0.8);
-}
 
 /* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 991px) {
@@ -855,28 +726,7 @@
     line-height: 1.45 !important;
   }
 
-  .faqs.light .wrapper_general.basic {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
 
-  .faqs.light .sides_faq {
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  .faqs.light .faq_general {
-    max-width: 100%;
-    margin-left: 0;
-  }
-
-  .faqs.light .short_left {
-    width: 100%;
-  }
-
-  .faqs.light .bottom_faq {
-    margin-top: 3rem;
-  }
 }
 
 @media (max-width: 767px) {
@@ -978,13 +828,6 @@
     font-size: 1.05rem !important;
   }
 
-  .faqs.light {
-    padding: 2.25rem 1rem 2.5rem !important;
-  }
-
-  .faqs.light .h2.smaller {
-    font-size: 1.5rem;
-  }
 }
 
 /* =========================================================

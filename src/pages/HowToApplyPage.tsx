@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header, { WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
+import FaqSection from "../components/FaqSection";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../how-to-apply.css";
@@ -27,7 +28,7 @@ const STEPS: StepItem[] = [
   {
     step: 1,
     title: "Choose your space",
-    bg: "#e4f3fa",
+    bg: "#f8fafc",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
@@ -37,7 +38,7 @@ const STEPS: StepItem[] = [
   {
     step: 2,
     title: "Schedule a visit",
-    bg: "#feb7b9",
+    bg: "#f1f5f9",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
@@ -47,7 +48,7 @@ const STEPS: StepItem[] = [
   {
     step: 3,
     title: "Complete your booking",
-    bg: "#f3ede6",
+    bg: "#f8fafc",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
@@ -67,7 +68,7 @@ const STEPS: StepItem[] = [
   {
     step: 5,
     title: "Possession & Handover",
-    bg: "#fee5b7",
+    bg: "#f1f5f9",
     textColor: "#292929",
     numberBg: "#292929",
     numberColor: "#ffffff",
@@ -148,9 +149,6 @@ export default function HowToApplyPage() {
   // Testimonials state
   const [activeTestimonial, setActiveTestimonial] = useState<number>(0);
   const [testimonialProgress, setTestimonialProgress] = useState<number>(0);
-
-  // FAQ state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // --- GSAP CARD STACKING & PEELING ANIMATION ---
   useEffect(() => {
@@ -600,74 +598,11 @@ export default function HowToApplyPage() {
         </div>
       </section>
 
-      {/* --- LIGHT FAQS SECTION --- */}
-      <section className="faqs light">
-        <div className="wrapper_general basic">
-          <div className="heading_faq">
-            <h2 className="h2 smaller">
-              Frequently asked
-              <br />
-              questions
-            </h2>
-          </div>
-
-          <div className="sides_faq">
-            {/* Left Column: Context & Explore FAQ Button */}
-            <div className="short_left">
-              <div className="caption_faq">
-                Everything you might want to know before purchasing your home.
-              </div>
-              <div className="bottom_faq">
-                <div className="bot_txt_faq">
-                  Didn’t find what you were looking for?
-                </div>
-                <WebflowButton
-                  text="Explore FAQ"
-                  href="/faq"
-                  className=""
-                />
-              </div>
-            </div>
-
-            {/* Right Column: Accordion List */}
-            <div className="faq_general">
-              {FAQS.map((faq, index) => {
-                const isOpen = openFaqIndex === index;
-                return (
-                  <div
-                    key={index}
-                    className={`faq_row ${isOpen ? "is-open" : ""}`}
-                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  >
-                    <div className="faq_question_bar">
-                      <div className="item_title">{faq.q}</div>
-                      <div className="icon_faq">
-                        <svg
-                          width="100%"
-                          height="100%"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10 0V20M0 10H20"
-                            stroke="#292929"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="faq_answer">
-                      <div className="p_faq">{faq.a}</div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* --- FAQS SECTION --- */}
+      <FaqSection
+        faqs={FAQS}
+        caption="Everything you might want to know before purchasing your home."
+      />
 
       {/* --- PRE-FOOTER CTA & FOOTER --- */}
       <Footer />

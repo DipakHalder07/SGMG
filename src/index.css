@@ -29,11 +29,82 @@ body {
 }
 
 :root {
+  /* =========================================================
+     TYPOGRAPHY SYSTEM VARIABLES (21OAKS CANONICAL TOKENS)
+     ========================================================= */
+
+  /* 1. Font Families */
   --font-heading: "Michroma", sans-serif;
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Michroma", sans-serif;
   --font-serif: "Plus Jakarta Sans", sans-serif;
+
+  /* 2. Font Weights */
+  --fw-heading: 400;
+  --fw-button: 400;
+  --fw-regular: 400;
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* 3. Fluid Typographic Scale (Font Sizes) */
+  --fs-h1-hero: clamp(36px, 5vw, 72px);
+  --fs-h1-subpage: clamp(32px, 4.5vw, 64.8px);
+  --fs-h2-huge: clamp(38px, 6.5vw, 93.6px);      /* Everything you need: 93.6px desktop */
+  --fs-h2-middle: clamp(36px, 5vw, 72px);        /* Just outside your door: 72px desktop */
+  --fs-h2-white-fs: clamp(32px, 4.5vw, 64.8px);  /* Closer than you think: 64.8px desktop */
+  --fs-h2-testimonials: clamp(38px, 6vw, 86.4px);
+  --fs-h2-pets: clamp(40px, 6.2vw, 89.28px);
+  --fs-h2-second: clamp(28px, 4.6vw, 66.24px);
+  --fs-h2-location: clamp(26px, 4vw, 57.6px);
+  --fs-h2-section: clamp(28px, 4.6vw, 66.24px);
+  --fs-h2-footer: clamp(24px, 2.9vw, 41.76px);
+  --fs-h3: clamp(18px, 1.6vw, 28px);
+  --fs-h4: clamp(15px, 1.2vw, 20px);
+  --fs-h5: clamp(13px, 1vw, 17px);
+  --fs-h6: clamp(12px, 0.85vw, 14px);
+  --fs-card-title: clamp(17px, 1.25vw, 22px);
+  --fs-step-title: clamp(16px, 1.3vw, 18.72px);
+  --fs-price: clamp(15px, 1.1vw, 20px);
+  --fs-caption-cta: 15.84px;
+  --fs-caption: 14.4px;
+  --fs-caption-sm: 12.24px;
+  --fs-faq-title: clamp(15px, 1.2vw, 17.28px);
+  --fs-body: clamp(12px, 0.9vw, 12.96px);
+  --fs-body-sm: 11px;
+  --fs-button: 12px;
+
+  /* 4. Line Heights */
+  --lh-h1-hero: 0.95;
+  --lh-h1-subpage: 0.95;
+  --lh-h2-testimonials: 0.75;
+  --lh-h2-pets: 1.15;
+  --lh-h2-second: 1.15;
+  --lh-h2-location: 1.0;
+  --lh-h2-section: 1.0;
+  --lh-h2-footer: 1.0;
+  --lh-h3: 1.25;
+  --lh-h4: 1.25;
+  --lh-h5: 1.3;
+  --lh-h6: 1.35;
+  --lh-card-title: 1.2;
+  --lh-step-title: 1.1;
+  --lh-faq-title: 1.2;
+  --lh-caption: 1.4;
+  --lh-caption-cta: 1.3;
+  --lh-body: 1.5;
+  --lh-button: 1.0;
+
+  /* 5. Letter Spacing */
+  --ls-heading-tight: -0.02em;
+  --ls-heading: -0.015em;
+  --ls-heading-loose: -0.01em;
+  --ls-body: 0.01em;
+  --ls-button: 0.02em;
+
+  /* --- BRAND COLORS --- */
   --primary: #2391cf;
   --primary-rgb: 35, 145, 207;
   --primary-light: #e4f3fa;
@@ -44,7 +115,7 @@ body {
   --white: #ffffff;
 }
 
-/* Headings with Michroma font & 600 weight */
+/* Headings with Michroma font & 400 weight (crisp native geometry, no faux-bold distortion) */
 h1,
 h2,
 h3,
@@ -104,7 +175,7 @@ h6,
 .careers_modal_title,
 .emi_calc_main_title {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-weight: var(--fw-heading, 400) !important;
 }
 
 /* =========================================================
@@ -135,63 +206,292 @@ input[type="reset"],
 [class*="button"],
 [class*="btn"] {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: 0.02em;
+  font-weight: var(--fw-button, 400) !important;
+  letter-spacing: var(--ls-button, 0.02em);
 }
 
-/* Universal Headings Scale - Responsive fluid scaling for all viewports including large displays */
+/* =========================================================
+   UNIVERSAL TYPOGRAPHIC SCALE - 100% PARITY WITH 21OAKS
+   Headings use Michroma at native weight 400 (no synthetic faux-bold).
+   Body text uses Plus Jakarta Sans.
+   ========================================================= */
+
+/* 1. Main Hero H1 (Home, FAQ) - 72px desktop base */
 h1,
 .h1,
-.h1.black,
-.h1.black.gen_h,
-.h1.black.spec_amenities {
-  font-size: clamp(28px, 4vw, 76px) !important;
+.hero .heading_box h1,
+.hero_h1,
+.faq .h1.black.gen_h,
+.h1.black.gen_h {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-size: var(--fs-h1-hero) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h1-hero, 0.95) !important;
+  letter-spacing: var(--ls-heading, -0.015em);
 }
 
+/* 2. Subpage Hero H1 (Apartments, Amenities, Contact, How to Apply) - 64.8px desktop base */
+.h1.black,
+.h1.black.spec_amenities,
+.spec_amenities,
+.contact_h1 .h1,
+.heading_apply .h1,
+.heading_aparts .h1,
+.heading_aparts .h1.black,
+.heading_aparts .h1.black.spec_amenities,
+.h1_apartments .h1 {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h1-subpage) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h1-subpage, 0.95) !important;
+  letter-spacing: var(--ls-heading, -0.015em);
+}
+
+/* 3. Big Impact Display H2s */
+/* 3a. Testimonials / Resident Experience H2 - 86.4px desktop base */
+.h2.bigger,
+.testimonials_heading .h2.bigger,
+.testimonials_heading .h2 {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-testimonials) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-testimonials, 0.75) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3b. Pets Section H2 ("For You. For Them.") - 89.28px desktop base */
+.h2.pets_h,
+.pets_heading .h2.pets_h,
+.pets_heading .h2 {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-pets) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-pets, 1.15) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3c. Second Hero / Transition H2 ("Everything modern living should be") - 66.24px desktop base */
+.h2.second_h,
+.dynamic_section .middle .h2,
+.dynamic_section .middle .h2.second_h {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-second) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-second, 1.15) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3d. Location Hero Carousel H2 - 57.6px desktop base */
+.h2.locations_specific,
+.heading_h_carousel .h2,
+.heading_h_carousel .h2.locations_specific {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-location) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-location, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 4. Standard Section H2s (FAQ, Made for everyday living, How it works, etc.) - 66.24px desktop base */
 h2,
 .h2,
 .h2.smaller,
 .h2.smaller.spec_how,
-.h2.bigger,
-.h2.second_h,
-.h2.middle_spec,
-.h2.white,
-.h2.pets_h,
 .h2.apartments_heading,
-.h2.locations_specific,
-.h2.everything_you_need,
 .h2.legals,
 .h2.legal_heading,
-.h2.licenses_title {
-  font-size: clamp(24px, 3.4vw, 66px) !important;
+.h2.licenses_title,
+.faq_heading .h2,
+.faq_heading .h2.smaller,
+.faqs.black .h2.smaller,
+.faq_heading.white_ver .h2.smaller {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-size: var(--fs-h2-section) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-section, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
 }
 
+/* 4b. Specialized H2s Matching 21Oaks Exact Scale */
+.h2.everything_you_need,
+.everything_u_need .h2.everything_you_need {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 1.1 !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+.h2.middle_spec,
+.amenities_heading .h2.middle_spec {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-middle, clamp(36px, 5vw, 72px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 1.05 !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+.heading_fs .h2.white {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 0.8 !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 5. Footer Brand Heading ("Tranquility and Living.") - 41.76px desktop base */
+.cap_footer {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-footer) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-footer, 1.0) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
+}
+
+/* 6. Section H3 - Subsections & Groupings */
 h3,
 .h3 {
-  font-size: clamp(20px, 2.4vw, 46px) !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-size: var(--fs-h3) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h3, 1.25) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
 }
 
+/* 6b. How it Works Card Titles (21Oaks canonical: 21.6px / 1.0) */
+.title_how,
+.how_card .title_how {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  line-height: 21.6px !important;
+  letter-spacing: normal !important;
+  margin-bottom: 0.65rem !important;
+}
+
+/* 7. Step & Card Titles */
+.title_step {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-step-title) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-step-title, 1.1) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+.apart_title,
+.apart_card .apart_title,
+.apartments .apart_title,
+.apartment_title,
+.apartment-lightbox-unit-title,
+.title_amenities {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-card-title, 1.2) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
+}
+
+.price_txt,
+.apart_card .price_txt,
+.apartments .price_box .price_txt {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-price) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-card-title, 1.2) !important;
+}
+
+/* 8. H4, H5, H6 Scale */
 h4,
 .h4 {
-  font-size: clamp(16px, 1.8vw, 32px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h4) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h4, 1.25) !important;
 }
 
 h5,
 .h5 {
-  font-size: clamp(14px, 1.4vw, 24px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h5) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h5, 1.3) !important;
 }
 
 h6,
 .h6 {
-  font-size: clamp(12px, 1.1vw, 18px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h6) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h6, 1.35) !important;
+}
+
+/* 9. Captions and Eyebrows */
+.caption_left,
+.caption_faq {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-caption, 1.4) !important;
+  letter-spacing: normal !important;
+}
+
+.caption_small,
+.how_it_works .caption_small {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-caption-sm, 12.24px) !important;
+  font-weight: 400 !important;
+  line-height: 12.24px !important;
+  letter-spacing: normal !important;
+  color: #292929 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.caption_cta,
+.p_gen.caption_cta,
+.caption_cta .p_gen {
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-caption-cta, 15.84px) !important;
+  font-weight: 400 !important;
+  line-height: 20.592px !important;
+  letter-spacing: 0.1584px !important;
+}
+
+/* 10. FAQ Accordions (Question & Answer) */
+.item_title,
+.faqs .item_title {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: var(--fs-faq-title, 17.28px) !important;
+  font-weight: 400 !important;
+  line-height: 17.28px !important;
+  letter-spacing: normal !important;
+}
+
+.item_paragraph,
+.item_paragraph p,
+.faqs .item_paragraph {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: var(--fs-body, 12.96px) !important;
+  font-weight: 400 !important;
+  line-height: 18.144px !important;
+  letter-spacing: normal !important;
+}
+
+.author_name_txt,
+.authors .author_name_txt {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 12.672px !important;
+  font-weight: 400 !important;
+  line-height: 12.672px !important;
+  letter-spacing: normal !important;
+}
+
+/* 11. Body Text Scale */
+.p_gen {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-body, 400) !important;
+  line-height: var(--lh-body, 1.5) !important;
+  letter-spacing: var(--ls-body, 0.01em) !important;
 }
 
 /* Custom Scrollbar */
@@ -333,6 +633,39 @@ main {
 .wrapper_general.basic {
   padding-top: 10rem;
   padding-bottom: 10rem;
+}
+
+@media screen and (max-width: 991px) {
+  .wrapper_general {
+    padding-left: 1.35rem;
+    padding-right: 1.35rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper_general {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .wrapper_general {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+  }
 }
 
 .container {
@@ -1528,7 +1861,7 @@ body.is-hero .menu {
     justify-content: center !important;
     text-decoration: none !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
     transition: background-color 0.3s ease, transform 0.3s ease !important;
   }
 }
@@ -1589,9 +1922,9 @@ body.is-hero .menu {
 .hero .heading_box h1 {
   color: #fff;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(28px, 4vw, 76px);
-  font-weight: 600;
-  line-height: 1.08;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.95;
   letter-spacing: -0.015em;
   margin: 0;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
@@ -1600,8 +1933,8 @@ body.is-hero .menu {
 .hero .heading_box .p_gen {
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: clamp(14px, 1.1vw, 20px);
-  line-height: 1.4;
+  font-size: clamp(12px, 0.9vw, 13px);
+  line-height: 1.5;
   margin-top: 20px;
   max-width: clamp(420px, 35vw, 600px);
 }
@@ -1697,6 +2030,297 @@ body.is-hero .menu {
   }
 }
 
+/* ===== Hero SVG masks & Interactive Zones matching 21oaks ===== */
+.svg_mask::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 80px 40px rgba(0, 0, 0, 0.18);
+}
+
+.svg_mask {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, #fff 0%, #fff 58%, rgba(255, 255, 255, 0) 100%);
+  mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, #fff 0%, #fff 58%, rgba(255, 255, 255, 0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  mask-position: center;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.hero-tooltips {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+/* SVG masks (stacked slides) */
+.svg_mask .hero-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.25s ease;
+}
+
+.hero[data-hero-slide='0'] .svg_mask .hero-svg[data-hero-slide='0'],
+.hero[data-hero-slide='1'] .svg_mask .hero-svg[data-hero-slide='1'],
+.hero[data-hero-slide='2'] .svg_mask .hero-svg[data-hero-slide='2'] {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.hero-svg .zone {
+  pointer-events: all;
+  cursor: pointer;
+  vector-effect: non-scaling-stroke;
+  fill-opacity: 0 !important;
+  stroke-opacity: 0 !important;
+  filter: none;
+  transition:
+    fill-opacity 0.2s ease,
+    stroke-opacity 0.2s ease,
+    filter 0.2s ease;
+}
+
+.hero-svg .zone.is-active {
+  fill-opacity: 0.85 !important;
+  stroke-opacity: 0.35 !important;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
+}
+
+.hero-svg .zone-stroke {
+  pointer-events: none;
+  vector-effect: non-scaling-stroke;
+  stroke-opacity: 0 !important;
+  transition: stroke-opacity 0.2s ease;
+}
+
+.hero-svg .zone-stroke.is-active {
+  stroke-opacity: 0.35 !important;
+}
+
+.hero-svg .zone--light {
+  fill-opacity: 0.65 !important;
+  stroke-opacity: 0 !important;
+  pointer-events: none;
+  filter: drop-shadow(0 0 16px rgba(255, 242, 125, 0.45));
+}
+
+/* ===== Tooltips ===== */
+.hero-tip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.8em;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-tip.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-tip img {
+  width: 1.75em;
+  height: 1.75em;
+  display: block;
+  object-fit: contain;
+  transform-origin: 50% 50%;
+}
+
+/* Slide 1 tooltips */
+.tip--comod {
+  left: 26%;
+  top: 68%;
+  flex-direction: row;
+}
+.tip--comod img {
+  transform: rotate(180deg);
+}
+
+.tip--bed {
+  left: 55%;
+  top: 43%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 8px;
+  white-space: normal;
+  max-width: 10.6em;
+  line-height: 1.05;
+}
+.tip--bed img {
+  transform: rotate(130deg);
+  margin-bottom: 2px;
+}
+
+.tip--table {
+  left: 68%;
+  top: 59%;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.tip--table img {
+  transform: rotate(135deg);
+}
+
+/* Slide 2 tooltips */
+.tip--living {
+  left: 32%;
+  top: 58%;
+  flex-direction: row;
+}
+.tip--living img {
+  transform: rotate(120deg);
+}
+
+.tip--accent {
+  left: 72%;
+  top: 52%;
+  flex-direction: row;
+}
+.tip--accent img {
+  transform: rotate(200deg);
+}
+
+/* Slide 3 tooltips */
+.tip--builtins {
+  left: 78%;
+  top: 48%;
+  flex-direction: row;
+}
+.tip--builtins img {
+  transform: rotate(160deg);
+}
+
+.tip--overhead {
+  left: 82%;
+  top: 28%;
+  flex-direction: row;
+}
+.tip--overhead img {
+  transform: rotate(180deg);
+}
+
+.tip--lounge {
+  left: 48%;
+  top: 72%;
+  flex-direction: row;
+}
+.tip--lounge img {
+  transform: rotate(90deg);
+}
+
+/* ===== Brightness panel (slide 0 only) ===== */
+.hero-brightness-panel {
+  position: absolute;
+  right: 1.1em;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625em;
+  user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.hero[data-hero-slide='0'] .hero-brightness-panel {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-brightness-icon {
+  width: 1.3em;
+  height: 1.3em;
+  display: block;
+  opacity: 1;
+}
+
+.hero-brightness-range {
+  -webkit-appearance: none;
+  appearance: none;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 0.125em;
+  height: 7.35em;
+  background: transparent;
+  accent-color: #fff;
+}
+
+.hero-brightness-range::-webkit-slider-runnable-track {
+  width: 0.125em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hero-brightness-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.875em;
+  height: 0.875em;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+  margin-left: -0.375em;
+}
+
+.hero-brightness-range::-moz-range-track {
+  width: 0.125em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.hero-brightness-range::-moz-range-progress {
+  width: 0.125em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.hero-brightness-range::-moz-range-thumb {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+}
+
+@media (max-width: 991px) {
+  .svg_mask,
+  .hero-tooltips,
+  .light_box,
+  .hero-brightness-panel {
+    display: none !important;
+  }
+}
+
 
 /* Hero Mobile Responsive Styles */
 @media (max-width: 991px) {
@@ -1719,8 +2343,8 @@ body.is-hero .menu {
   }
 
   .hero .heading_box h1 {
-    font-size: clamp(20px, 4.5vw, 27px);
-    line-height: 1.08;
+    font-size: clamp(28px, 6vw, 36px);
+    line-height: 1.0;
     letter-spacing: -0.015em;
   }
 
@@ -1924,9 +2548,10 @@ body.is-hero .menu {
 
 .dynamic_section .middle .h2.second_h {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(27px, 3.8vw, 53px);
-  line-height: 1.02;
-  font-weight: 600;
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
   color: #292929;
 }
 
@@ -2328,9 +2953,9 @@ body.is-hero .menu {
 
 .left_side .h2.smaller {
   font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(30px, 3.6vw, 66px);
-  line-height: 1.08;
-  font-weight: 600;
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.0;
+  font-weight: 400;
   color: #292929;
   letter-spacing: -0.02em;
   margin-top: 0;
@@ -2402,7 +3027,7 @@ body.is-hero .menu {
 .flex_txt .title_txt {
   font-family: var(--font-heading, "Michroma", sans-serif);
   font-size: 1.05em;
-  font-weight: 600;
+  font-weight: 400;
   color: #1a1a1a;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -2554,8 +3179,10 @@ body.is-hero .menu {
 
   .heading_apartments .h2.smaller {
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-size: clamp(30px, 3.4vw, 50px);
-    line-height: 1.1;
+    font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
+    font-weight: 400 !important;
+    line-height: var(--lh-h2-section, 1.0) !important;
+    letter-spacing: var(--ls-heading-tight, -0.02em) !important;
     color: #292929;
   }
 
@@ -2665,7 +3292,7 @@ body.is-hero .menu {
 
   .apart_cards_track .apart_title {
     font-size: 1.22em;
-    font-weight: 600;
+    font-weight: 400;
     font-family: var(--font-heading, "Michroma", sans-serif);
     color: #292929;
     white-space: nowrap;
@@ -2683,7 +3310,7 @@ body.is-hero .menu {
 
   .apart_cards_track .price_txt {
     font-size: 1.15em;
-    font-weight: 600;
+    font-weight: 400;
     font-family: var(--font-heading, "Michroma", sans-serif);
     color: #292929;
     white-space: nowrap;
@@ -2833,8 +3460,8 @@ body.is-hero .menu {
   .apart_card .apart_title,
   .apart_title_line .apart_title,
   .apartment_title .apart_title {
-    font-size: clamp(18px, 1.25vw, 24px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 1.25vw, 22px) !important;
+    font-weight: 400 !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
@@ -2851,8 +3478,8 @@ body.is-hero .menu {
   .apartments .price_box .price_txt,
   .apart_card .price_txt,
   .price_box .price_txt {
-    font-size: clamp(16px, 1.1vw, 21px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 1.1vw, 20px) !important;
+    font-weight: 400 !important;
     font-family: var(--font-heading, "Michroma", sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
@@ -3060,10 +3687,11 @@ body.is-hero .menu {
 .heading_fs .h2.white {
   color: #fff !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(30px, 3.8vw, 54px) !important;
-  line-height: 1.15 !important;
-  letter-spacing: 0 !important;
-  word-spacing: 0.08em !important;
+  font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: -0.02em !important;
+  word-spacing: normal !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
   margin: 0;
 }
@@ -3344,11 +3972,12 @@ body.is-hero .menu {
 }
 
 .everything_u_need .h2.everything_you_need {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(32px, 3.8vw, 68px);
-  line-height: 1.06;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
   color: #292929;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02em !important;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -3371,11 +4000,12 @@ body.is-hero .menu {
 }
 
 .lines_caption .p_gen {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(15px, 1.1vw, 20px);
-  line-height: 1.5;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
   color: #333333;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .lines_list {
@@ -3397,18 +4027,21 @@ body.is-hero .menu {
 }
 
 .flex_dyn .title_line {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(15px, 1.1vw, 20px);
-  font-weight: 500;
+  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-size: 17.28px !important;
+  font-weight: 400 !important;
+  line-height: 17.28px !important;
   color: #1a1a1a;
-  letter-spacing: -0.01em;
+  letter-spacing: normal !important;
 }
 
 .flex_dyn .timing_txt {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(14px, 0.95vw, 17px);
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 14.4px !important;
+  font-weight: 400 !important;
+  line-height: 14.4px !important;
   color: #666666;
-  font-weight: 400;
+  letter-spacing: normal !important;
 }
 
 .lines_dynamic .bar_dynamic {
@@ -3434,12 +4067,12 @@ body.is-hero .menu {
 }
 
 .md_p {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(18px, 1.6vw, 28px);
-  line-height: 1.35;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 23.04px !important;
+  line-height: 26.2656px !important;
   color: #1a1a1a;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
 }
 
 @media (max-width: 991px) {
@@ -3451,7 +4084,7 @@ body.is-hero .menu {
   }
 
   .everything_u_need .h2.everything_you_need {
-    font-size: clamp(24px, 5.5vw, 36px) !important;
+    font-size: clamp(28px, 6.5vw, 44px) !important;
     line-height: 1.1 !important;
     margin-bottom: 0 !important;
   }
@@ -3664,11 +4297,11 @@ body.is-hero .menu {
 .title_amenities {
   color: #ffffff !important;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(1.15rem, 1.4vw, 1.4rem) !important;
-  font-weight: 600 !important;
-  line-height: 1.25 !important;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  line-height: 21.6px !important;
   margin: 0 !important;
-  letter-spacing: -0.01em !important;
+  letter-spacing: normal !important;
   text-shadow: none !important;
 }
 
@@ -3679,10 +4312,11 @@ body.is-hero .menu {
 .desc_amenities,
 .desc_amenities .p_gen {
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: clamp(0.78rem, 0.85vw, 0.88rem) !important;
-  line-height: 1.45 !important;
+  font-size: 12.24px !important;
+  line-height: 18.36px !important;
   color: rgba(255, 255, 255, 0.95) !important;
   font-weight: 400 !important;
+  letter-spacing: 0.1224px !important;
   margin: 0 !important;
   text-shadow: none !important;
 }
@@ -3693,6 +4327,10 @@ body.is-hero .menu {
 }
 
 /* Responsive Breakpoints */
+.amenities_section {
+  scroll-margin-top: 70px;
+}
+
 @media screen and (max-width: 991px) {
   .amenities_section .wrapper_general.basic.slider_spec {
     padding: 8rem 0 !important;
@@ -3705,15 +4343,29 @@ body.is-hero .menu {
 
   .amenities_heading .h2.middle_spec {
     font-size: clamp(2rem, 5.5vw, 3.2rem) !important;
+    line-height: 1.05 !important;
   }
 
   .container.only_amenities {
-    padding: 2.5rem 0 2.5rem 1.35rem !important;
+    margin-top: 2rem !important;
+    padding: 1.35rem 0 1.35rem 1.2rem !important;
   }
 
-  .image_amenities {
-    height: 420px !important;
-    max-height: 420px !important;
+  .splide__slide.amenities_splide {
+    border-radius: 4px !important;
+    width: 50% !important;
+    height: 25.5rem !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
   }
 
   .overlay_amenities {
@@ -3732,16 +4384,30 @@ body.is-hero .menu {
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    font-size: clamp(34px, 7.5vw, 48px) !important;
+    line-height: 1.05 !important;
   }
 
   .container.only_amenities {
-    padding: 2rem 0 2rem 1rem !important;
+    margin-top: 1.5rem !important;
+    padding: 1.25rem 0 1.25rem 1rem !important;
   }
 
-  .image_amenities {
-    height: 380px !important;
-    max-height: 380px !important;
+  .splide__slide.amenities_splide {
+    border-radius: 6px !important;
+    width: 92% !important;
+    height: 25.5rem !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
   }
 
   .overlay_amenities {
@@ -3760,16 +4426,33 @@ body.is-hero .menu {
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(1.5rem, 7vw, 2.15rem) !important;
+    font-size: clamp(32px, 8.5vw, 40px) !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    text-align: center !important;
   }
 
   .container.only_amenities {
-    padding: 1.75rem 0 1.75rem 1rem !important;
+    margin-top: 1.25rem !important;
+    padding: 1.1rem 0 1.1rem 1rem !important;
   }
 
-  .image_amenities {
-    height: 350px !important;
-    max-height: 350px !important;
+  .splide__slide.amenities_splide {
+    background-color: transparent !important;
+    border-radius: 6px !important;
+    width: 94% !important;
+    height: 25.5rem !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
   }
 
   .overlay_amenities {
@@ -3830,11 +4513,22 @@ body.is-hero .menu {
 .headline_box .h2.smaller,
 .headline_box h2 {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3vw, 40px) !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.02em;
+  font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
+  font-weight: 400 !important;
+  line-height: var(--lh-h2-section, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
   color: #292929 !important;
   margin: 0;
+}
+
+.left_title .p_gen,
+.bottom_how .p_gen {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 12.96px !important;
+  font-weight: 400 !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
+  color: #292929 !important;
 }
 
 .right_cards {
@@ -3892,11 +4586,21 @@ body.is-hero .menu {
 
 .title_how {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-  line-height: 1.25;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  margin-bottom: 0.65rem !important;
+  line-height: 21.6px !important;
+}
+
+.how_card .p_gen,
+.how_card p,
+.content_how .p_gen {
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-size: 12.96px !important;
+  font-weight: 400 !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
 }
 
 /* Card Themes matching SGMG Brand Colors */
@@ -3912,8 +4616,8 @@ body.is-hero .menu {
 .how_card.card_blue .p_gen,
 .how_card.card_blue p {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_blue .icon_how img {
@@ -3932,8 +4636,8 @@ body.is-hero .menu {
 .how_card.card_green .p_gen,
 .how_card.card_green p {
   color: rgba(41, 41, 41, 0.88) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_green .icon_how img {
@@ -3953,8 +4657,8 @@ body.is-hero .menu {
 .how_card.card_black .p_gen,
 .how_card.card_black p {
   color: rgba(255, 255, 255, 0.88) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_black .icon_how img {
@@ -3990,7 +4694,7 @@ body.is-hero .menu {
   .headline_box .h2,
   .headline_box .h2.smaller,
   .headline_box h2 {
-    font-size: clamp(20px, 5.5vw, 28px) !important;
+    font-size: clamp(26px, 6vw, 36px) !important;
   }
 
   .right_cards {
@@ -4004,6 +4708,24 @@ body.is-hero .menu {
 
   .content_how {
     margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .how_it_works .wrapper_general.basic,
+  .wrapper_how_to {
+    padding: 4.5rem 1rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .how_it_works .wrapper_general.basic,
+  .wrapper_how_to {
+    padding: 3.25rem 1rem !important;
+  }
+
+  .flex_how {
+    gap: 1.75rem !important;
   }
 }
 
@@ -4130,10 +4852,10 @@ body.is-hero .menu {
 .testimonials_heading .h2.bigger,
 .testimonials_heading .h2 {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(2.4rem, 5.2vw, 4.2rem) !important;
-  font-weight: 600 !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.02em;
+  font-size: clamp(38px, 6vw, 86.4px) !important;
+  font-weight: 400 !important;
+  line-height: 0.75 !important;
+  letter-spacing: -0.02em !important;
   color: var(--black, #292929);
   margin: 0;
 }
@@ -4248,10 +4970,11 @@ body.is-hero .menu {
 }
 
 .author_name_txt {
-  font-size: 0.85rem;
-  line-height: 1.25;
-  font-weight: 500;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: 12.672px !important;
+  line-height: 12.672px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
   color: var(--black, #292929);
 }
 
@@ -4315,7 +5038,8 @@ body.is-hero .menu {
   width: 100%;
   height: 100%;
   font-size: clamp(1.4rem, 2.1vw, 2.25rem);
-  line-height: 1.25;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
   display: flex;
   font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
   font-weight: 400;
@@ -4652,10 +5376,10 @@ body.is-hero .menu {
 
 .faq_heading .h2.smaller {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(2rem, 3.2vw, 3.25rem);
-  line-height: 1.15;
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.0;
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--black);
   text-align: center;
   margin: 0;
@@ -5647,13 +6371,13 @@ body.is-hero .menu {
 .heading_aparts .h1.black.spec_amenities,
 .h1.black.spec_amenities {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3.2vw, 38px) !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.02em;
+  font-size: clamp(32px, 4.5vw, 64.8px) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.015em;
   color: #292929 !important;
   margin: 0;
   padding: 0;
-  font-weight: 600;
+  font-weight: 400 !important;
 }
 
 .apartments_sides {
@@ -6281,10 +7005,10 @@ body.is-hero .menu {
 
 .apart_title {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(18px, 1.25vw, 24px) !important;
+  font-size: clamp(17px, 1.25vw, 22px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -6321,10 +7045,10 @@ body.is-hero .menu {
 
 .price_txt {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(16px, 1.1vw, 21px) !important;
+  font-size: clamp(15px, 1.1vw, 20px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   white-space: nowrap;
 }
 
@@ -6367,12 +7091,6 @@ body.is-hero .menu {
 @media screen and (max-width: 991px) {
   .wrapper_general.apartments_gen {
     padding: 15em 1.35rem 8rem;
-  }
-
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(22px, 4.2vw, 34px) !important;
   }
 
   .heading_aparts {
@@ -6476,13 +7194,13 @@ body.is-hero .menu {
   }
 
   .apart_title {
-    font-size: clamp(18px, 1.25vw, 22px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 1.25vw, 22px) !important;
+    font-weight: 400 !important;
   }
 
   .price_txt {
-    font-size: clamp(16px, 1.1vw, 20px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 1.1vw, 20px) !important;
+    font-weight: 400 !important;
   }
 
   .mnth_txt {
@@ -6561,13 +7279,6 @@ body.is-hero .menu {
     padding-top: 12em;
   }
 
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(20px, 5.2vw, 28px) !important;
-    line-height: 1.05 !important;
-  }
-
   .heading_aparts {
     margin-bottom: 1.75rem !important;
   }
@@ -6593,14 +7304,14 @@ body.is-hero .menu {
   }
 
   .apart_title {
-    font-size: clamp(18px, 3.8vw, 22px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 3.8vw, 22px) !important;
+    font-weight: 400 !important;
   }
 
   .price_txt,
   .price_txt.specific_card {
-    font-size: clamp(16px, 3.4vw, 20px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 3.4vw, 20px) !important;
+    font-weight: 400 !important;
   }
 
   .mnth_txt {
@@ -6878,12 +7589,6 @@ body.is-hero .menu {
     padding-right: 1rem;
   }
 
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(18px, 6vw, 24px) !important;
-  }
-
   .apartments_grid {
     row-gap: 1.6rem;
     grid-template-columns: 1fr;
@@ -6903,14 +7608,14 @@ body.is-hero .menu {
   }
 
   .apart_title {
-    font-size: clamp(18px, 4.6vw, 22px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 4.6vw, 22px) !important;
+    font-weight: 400 !important;
   }
 
   .price_txt,
   .price_txt.specific_card {
-    font-size: clamp(16px, 4.2vw, 20px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 4.2vw, 20px) !important;
+    font-weight: 400 !important;
   }
 
   .mnth_txt {
@@ -7085,25 +7790,26 @@ body.is-hero .menu {
 }
 
 .faq-explore-btn {
-  background: #e8d9fd;
-  color: #18181b;
+  background: var(--primary, #2391cf);
+  color: #ffffff;
   padding: 0.75rem 1.4rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .faq-explore-btn:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
+  color: #ffffff;
 }
 
 .faq-arrow-link {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #e8d9fd;
+  background: var(--primary, #2391cf);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7112,7 +7818,7 @@ body.is-hero .menu {
 }
 
 .faq-arrow-link:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
 }
 
 .faq-arrow-link .arrow_icon {
@@ -7287,18 +7993,19 @@ body.is-hero .menu {
 }
 
 .apartment-lightbox-apply-btn {
-  background: #e8d9fd;
-  color: #18181b;
+  background: var(--primary, #2391cf);
+  color: #ffffff;
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .apartment-lightbox-apply-btn:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
+  color: #ffffff;
 }
 
 .apartment-lightbox-close-btn {

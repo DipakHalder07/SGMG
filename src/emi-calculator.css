@@ -18,12 +18,12 @@
 }
 
 .emi_calc_main_title {
-  font-family: Michroma, var(--font-display, sans-serif);
+  font-family: var(--font-heading, "Michroma", sans-serif);
   font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  font-weight: 600;
+  font-weight: var(--fw-heading, 400);
   color: #1a1a1a;
   margin: 0 0 3rem 0;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--ls-heading-tight, -0.02em);
 }
 
 .emi_calc_row {

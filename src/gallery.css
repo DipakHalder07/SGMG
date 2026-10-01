@@ -16,9 +16,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 6.5rem 2.5rem 1.5rem;
+  max-width: none;
+  margin: 0;
+  padding: 6.5rem 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

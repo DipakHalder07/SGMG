@@ -1,0 +1,24 @@
+{
+  "childrenCount": 3,
+  "children": [
+    {
+      "tag": "DIV",
+      "className": "wrapper_slider slideshow--ready",
+      "id": "",
+      "htmlSnippet": "<div data-slideshow=\"wrap\" class=\"wrapper_slider slideshow--ready\"><h1 class=\"sr-only\">Location</h1><div data-slideshow=\"nav\" class=\"nav_cms\"><div class=\"collection-list-wrapper-2 w-dyn-list\"><div role=\"list\" class=\"flex_nav w-dyn-items\"><div data-slide-index=\"1\" data-slideshow=\"thumb\" role=\"listitem\" class=\"nav_item w-dyn-item is-active is--current\"><div class=\"overlay_active\"></div><div class=\"nav_wrap\"><img src=\"https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a5a6a3026da06299c7da"
+    },
+    {
+      "tag": "DIV",
+      "className": "js_slider w-embed w-script",
+      "id": "",
+      "htmlSnippet": "<div class=\"js_slider w-embed w-script\"><style>\n  [data-slideshow=\"wrap\"] .gallery_slider_list {\n    position: relative;\n    overflow: hidden;\n    min-height: 100vh;\n  }\n\n  [data-slideshow=\"wrap\"] .gallery_slider {\n    min-height: 100vh;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"] {\n    position: absolute;\n    inset: 0;\n    z-index: 1;\n    backface-visibility: hidden;\n    transform: translateZ(0);\n    visibility: hidden;\n    opacity: 0;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow="
+    },
+    {
+      "tag": "DIV",
+      "className": "css_js w-embed",
+      "id": "",
+      "htmlSnippet": "<div class=\"css_js w-embed\"><style>\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border: 0;\n}\n</style></div>"
+    }
+  ],
+  "sec2Snippet": "<div class=\"js_slider w-embed w-script\"><style>\n  [data-slideshow=\"wrap\"] .gallery_slider_list {\n    position: relative;\n    overflow: hidden;\n    min-height: 100vh;\n  }\n\n  [data-slideshow=\"wrap\"] .gallery_slider {\n    min-height: 100vh;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"] {\n    position: absolute;\n    inset: 0;\n    z-index: 1;\n    backface-visibility: hidden;\n    transform: translateZ(0);\n    visibility: hidden;\n    opacity: 0;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"].is--current {\n    z-index: 2;\n    visibility: visible;\n    opacity: 1;\n  }\n\n  [data-slideshow=\"wrap\"]:not(:has([data-slideshow=\"slide\"].is--current))\n    [data-slideshow=\"slide\"]:first-child {\n    visibility: visible;\n    opacity: 1;\n    z-index: 2;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"]:not(.is--current) {\n    pointer-events: none;\n  }\n\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"] .gallery_img-slide__inner,\n  [data-slideshow=\"wrap\"] [data-slideshow=\"slide\"] [data-slideshow=\"parallax\"] {\n    backface-visibility: hidden;\n    transform: translateZ(0);\n  }\n\n  [data-slideshow=\"nav\"] .nav_item {\n    position: relative;\n    overflow: hidden;\n    cursor: pointer;\n  }\n\n  [data-slideshow=\"nav\"] [data-slideshow=\"thumb\"] {\n    position: relative;\n    overflow: hidden;\n    cursor: pointer;\n  }\n\n  [data-slideshow=\"nav\"] .nav_item > .slideshow-thumb-progress,\n  [data-slideshow=\"nav\"] [data-slideshow=\"thumb\"] > .slideshow-thumb-progress {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: auto;\n    width: 100%;\n    height: 0;\n    z-index: 3;\n    pointer-events: none;\n    background: rgba(0, 0, 0, 0.45);\n  }\n</style>\n\n<script>\n(function () {\n  'use strict';\n\n  var animationDuration = 0.65;\n  var autoplaySeconds = 10;\n\n  function prepSlideshowDOM() {\n    document.querySelectorAll('[data-slideshow=\"wrap\"]').forEach(function (wrap) {\n      if (wrap._slideshowPrepped) return;\n      wrap._slideshowPrepped = true;\n\n      var slides = wrap.querySelectorAll('[data-slideshow=\"slide\"]');\n      if (!slides.length) return;\n\n      var current = 0;\n      for (var i = 0; i < slides.length; i++) {\n        if (slides[i].classList.contains('is--current')) {\n          current = i;\n          break;\n        }\n      }\n\n      for (var j = 0; j < slides.length; j++) {\n        slides[j].classList.toggle('is--current', j === current);\n      }\n    });\n  }\n\n  prepSlideshowDOM();\n\n  function whenGsapReady(done) {\n    if (window.gsap && typeof Observer !== 'undefined') {\n      done();\n      return;\n    }\n    var n = 0;\n    var id = setInterval(function () {\n      n += 1;\n      if (window.gsap && typeof Observer !== 'undefined') {\n        clearInterval(id);\n        done();\n      } else if (n > 160) {\n        clearInterval(id);\n        console.warn('[slideshow] GSAP or Observer not loaded (timeout)');\n      }\n    }, 50);\n  }\n\n  function slideArrayIndexFromThumb(thumb, thumbs, slides) {\n    var tid = thumb.getAttribute('data-slide-index');\n    if (t"
+}

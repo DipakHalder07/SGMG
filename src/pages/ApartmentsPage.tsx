@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import ApartmentLightboxModal from "../components/ApartmentLightboxModal";
 import ApartmentCard from "../components/ApartmentCard";
 import PillButton from "../components/PillButton";
-import FaqAccordionItem from "../components/FaqAccordionItem";
+import FaqSection from "../components/FaqSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import {
   APARTMENTS_DATA,
@@ -26,9 +26,6 @@ export default function ApartmentsPage() {
 
   // Active Lightbox Modal state
   const [activeModalUnit, setActiveModalUnit] = useState<ApartmentUnit | null>(null);
-
-  // FAQ open index state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // Filter logic
   const filteredApartments = useMemo(() => {
@@ -305,52 +302,10 @@ export default function ApartmentsPage() {
         <TestimonialsSection />
 
         {/* FAQS SECTION */}
-        <section data-section="light" className="faqs" id="faq">
-          <div className="wrapper_general basic">
-            <div className="faq_heading">
-              <h2 className="h2 smaller">
-                Frequently asked<br />questions
-              </h2>
-            </div>
-
-            <div className="sides_faq">
-              <div className="short_left">
-                <div className="caption_faq">
-                  <div>Everything you might want to know before moving in.</div>
-                </div>
-                <div className="bottom_faq">
-                  <div className="p_gen black caption_cta">
-                    Didn’t find what you were<br />looking for?
-                  </div>
-                  <div>
-                    <PillButton
-                      text="Explore FAQ"
-                      to="/faq"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="faq_general">
-                <div className="collection_faq w-dyn-list">
-                  <div role="list" className="w-dyn-items">
-                    {APARTMENT_FAQS.map((faq, index) => (
-                      <FaqAccordionItem
-                        key={faq.q}
-                        question={faq.q}
-                        answer={faq.a}
-                        isOpen={openFaqIndex === index}
-                        onToggle={() =>
-                          setOpenFaqIndex(openFaqIndex === index ? null : index)
-                        }
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          faqs={APARTMENT_FAQS}
+          caption="Everything you might want to know before moving in."
+        />
       </main>
 
       <Footer />

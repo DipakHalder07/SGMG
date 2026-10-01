@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 // Code-split secondary routes for rapid initial bundle size
 const ApartmentsPage = lazy(() => import("./pages/ApartmentsPage"));
 const ApartmentDetailPage = lazy(() => import("./pages/ApartmentDetailPage"));
+const AmenitiesPage = lazy(() => import("./pages/AmenitiesPage"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
 const HowToApplyPage = lazy(() => import("./pages/HowToApplyPage"));
 const FaqPage = lazy(() => import("./pages/FaqPage"));
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/apartments" element={<ApartmentsPage />} />
           <Route path="/apartments/:slug" element={<ApartmentDetailPage />} />
+          <Route path="/amenities" element={<AmenitiesPage />} />
           <Route path="/location" element={<LocationPage />} />
           <Route path="/about" element={<HowToApplyPage />} />
           <Route path="/faq" element={<FaqPage />} />

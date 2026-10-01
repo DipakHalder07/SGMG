@@ -1,0 +1,743 @@
+[
+  {
+    "secClass": "header",
+    "secId": "",
+    "items": [
+      {
+        "tag": "DIV",
+        "class": "text_box header_btn",
+        "text": "Apply Now",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "hero",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H1",
+        "class": "h1",
+        "text": "Live better,\ncloser to USC",
+        "fontSize": "72px",
+        "fontWeight": "400",
+        "lineHeight": "64.8px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Freshly renovated and upgraded",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      }
+    ]
+  },
+  {
+    "secClass": "dynamic_section",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 second_h",
+        "text": "Everything student\nliving shou",
+        "fontSize": "66.24px",
+        "fontWeight": "400",
+        "lineHeight": "76.176px",
+        "letterSpacing": "-1.3248px"
+      }
+    ]
+  },
+  {
+    "secClass": "sides",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 smaller",
+        "text": "Made for\neveryday living",
+        "fontSize": "66.24px",
+        "fontWeight": "400",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px"
+      }
+    ]
+  },
+  {
+    "secClass": "apartments",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 smaller",
+        "text": "Where student life\nfeels balan",
+        "fontSize": "66.24px",
+        "fontWeight": "400",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D1",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "695.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A 4-bedroom layout that gives ",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Explore Details",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D1 Premium",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "730.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "An elevated 4-bedroom layout w",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Explore Details",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D2",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "760.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A spacious 4-bedroom layout de",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Explore Details",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D2 Premium",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "820.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A spacious premium 4-bedroom l",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Explore Details",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D2 Premium",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "820.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A spacious premium 4-bedroom l",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "C1",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "815.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A bright and functional 3-bedr",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "C1 Premium",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "865.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A refined and balanced 3-bedro",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D1 Premium",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "730.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "An elevated 4-bedroom layout w",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D2",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "760.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A spacious 4-bedroom layout de",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "apart_title",
+        "text": "D1",
+        "fontSize": "20.88px",
+        "fontWeight": "400",
+        "lineHeight": "20.88px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "price_txt",
+        "text": "695.00",
+        "fontSize": "18.72px",
+        "fontWeight": "400",
+        "lineHeight": "18.72px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black specific",
+        "text": "A 4-bedroom layout that gives ",
+        "fontSize": "10.656px",
+        "fontWeight": "400",
+        "lineHeight": "13.8528px",
+        "letterSpacing": "0.10656px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box apartments_button",
+        "text": "Explore Details",
+        "fontSize": "9.216px",
+        "fontWeight": "400",
+        "lineHeight": "9.216px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "fs",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 white",
+        "text": "Closer than\nyou think",
+        "fontSize": "64.8px",
+        "fontWeight": "400",
+        "lineHeight": "50.544px",
+        "letterSpacing": "-1.296px"
+      }
+    ]
+  },
+  {
+    "secClass": "everything_u_need",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 everything_you_need",
+        "text": "Everything you\n‍need, within r",
+        "fontSize": "93.6px",
+        "fontWeight": "400",
+        "lineHeight": "102.96px",
+        "letterSpacing": "-1.872px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black",
+        "text": "From campus to everyday essent",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px"
+      }
+    ]
+  },
+  {
+    "secClass": "amenities_section",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 middle_spec",
+        "text": "Just outside\nyour door",
+        "fontSize": "72px",
+        "fontWeight": "400",
+        "lineHeight": "50.4px",
+        "letterSpacing": "-1.44px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Discover Amenities",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Host easy evenings with friend",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Unwind, cool off, and recharge",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Quiet corners built for deep f",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Train on your schedule with mo",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen",
+        "text": "Fast, reliable rides that keep",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "18.36px",
+        "letterSpacing": "0.1224px"
+      }
+    ]
+  },
+  {
+    "secClass": "how_it_works",
+    "secId": "",
+    "items": [
+      {
+        "tag": "DIV",
+        "class": "caption_small",
+        "text": "Simple Move-In",
+        "fontSize": "12.24px",
+        "fontWeight": "400",
+        "lineHeight": "12.24px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "H2",
+        "class": "h2 smaller",
+        "text": "How it Works",
+        "fontSize": "66.24px",
+        "fontWeight": "400",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black",
+        "text": "Sounds like a fit?\nApply now o",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Schedule a Tour",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black",
+        "text": "Explore different layouts, com",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black",
+        "text": "Complete your application onli",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black",
+        "text": "Once approved, everything is r",
+        "fontSize": "12.96px",
+        "fontWeight": "400",
+        "lineHeight": "16.848px",
+        "letterSpacing": "0.1296px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black caption_cta",
+        "text": "Sounds like a fit? Apply now o",
+        "fontSize": "15.84px",
+        "fontWeight": "400",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Schedule a Tour",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "testimonials",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 bigger",
+        "text": "Real student\nexperiences",
+        "fontSize": "86.4px",
+        "fontWeight": "400",
+        "lineHeight": "60.48px",
+        "letterSpacing": "-1.728px"
+      }
+    ]
+  },
+  {
+    "secClass": "faqs",
+    "secId": "",
+    "items": [
+      {
+        "tag": "H2",
+        "class": "h2 smaller",
+        "text": "Frequently asked questions",
+        "fontSize": "66.24px",
+        "fontWeight": "400",
+        "lineHeight": "66.24px",
+        "letterSpacing": "-1.3248px"
+      },
+      {
+        "tag": "DIV",
+        "class": "p_gen black caption_cta",
+        "text": "Didn’t find what you were\nlook",
+        "fontSize": "15.84px",
+        "fontWeight": "400",
+        "lineHeight": "20.592px",
+        "letterSpacing": "0.1584px"
+      },
+      {
+        "tag": "DIV",
+        "class": "text_box",
+        "text": "Explore FAQ",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "section-11",
+    "secId": "",
+    "items": [
+      {
+        "tag": "DIV",
+        "class": "text_box black",
+        "text": "Schedule a Tour",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      },
+      {
+        "tag": "DIV",
+        "class": "caption_left",
+        "text": "21Oaks\nYour space. Still on.",
+        "fontSize": "14.4px",
+        "fontWeight": "400",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "fs_cta",
+    "secId": "",
+    "items": [
+      {
+        "tag": "DIV",
+        "class": "text_box black",
+        "text": "Schedule a Tour",
+        "fontSize": "9.4464px",
+        "fontWeight": "400",
+        "lineHeight": "9.4464px",
+        "letterSpacing": "normal"
+      }
+    ]
+  },
+  {
+    "secClass": "footer",
+    "secId": "",
+    "items": [
+      {
+        "tag": "DIV",
+        "class": "caption_left",
+        "text": "21Oaks\nYour space. Still on.",
+        "fontSize": "14.4px",
+        "fontWeight": "400",
+        "lineHeight": "14.4px",
+        "letterSpacing": "normal"
+      }
+    ]
+  }
+]

@@ -170,7 +170,17 @@ export default function Header({ darkTheme = false }: HeaderProps) {
         }
       }
 
-      // If hero mode, verify the logo actually overlaps a hero element
+      const flow = document.querySelector<HTMLElement>(".amenities_flow");
+      if (flow) {
+        const fr = flow.getBoundingClientRect();
+        if (fr.top <= y && fr.bottom > y) {
+          const bg = getComputedStyle(flow).backgroundColor;
+          const m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          const lum = m ? (0.2126 * +m[1] + 0.7152 * +m[2] + 0.0722 * +m[3]) / 255 : 1;
+          mode = lum < 0.45 ? "dark" : "light";
+        }
+      }
+
       if (mode === "hero") {
         const logo = document.querySelector<HTMLElement>(".logo");
         const heroEl = document.querySelector<HTMLElement>(
@@ -206,10 +216,13 @@ export default function Header({ darkTheme = false }: HeaderProps) {
     const rafId = requestAnimationFrame(updateHeaderTheme);
     window.addEventListener("scroll", updateHeaderTheme, { passive: true });
     window.addEventListener("resize", updateHeaderTheme);
+    const lenis = (window as any).lenis;
+    if (lenis) lenis.on("scroll", updateHeaderTheme);
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", updateHeaderTheme);
       window.removeEventListener("resize", updateHeaderTheme);
+      if (lenis) lenis.off("scroll", updateHeaderTheme);
     };
   }, [location.pathname]);
 
@@ -286,6 +299,30 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 }}
               >
                 <div>Residences</div>
+              </a>
+              <a
+                href="/amenities"
+                className={`mobile_link w-inline-block ${location.pathname === "/amenities" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/amenities")}
+                onTouchStart={() => prefetchRoute("/amenities")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/amenities");
+                }}
+              >
+                <div>Amenities</div>
+              </a>
+              <a
+                href="/location"
+                className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
+                onMouseEnter={() => prefetchRoute("/location")}
+                onTouchStart={() => prefetchRoute("/location")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("/location");
+                }}
+              >
+                <div>Location</div>
               </a>
 
               <a

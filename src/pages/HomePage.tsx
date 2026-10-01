@@ -8,6 +8,7 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
+import FaqSection from "../components/FaqSection";
 import { getUnitPathById } from "../data/apartmentsData";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -235,332 +236,183 @@ const faqsList = [
   },
 ];
 
-function HomeFaqItem({
-  faq,
-  isOpen,
-  onToggle,
-}: {
-  faq: { q: string; a: string };
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLDivElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    const content = contentRef.current;
-    const paragraph = paragraphRef.current;
-    const icon = iconRef.current;
-    if (!content || !paragraph) return;
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      if (isOpen) {
-        gsap.set(content, { height: "auto" });
-        gsap.set(paragraph, { opacity: 1, y: "0%", yPercent: 0 });
-        if (icon) gsap.set(icon, { rotateZ: 45 });
-      } else {
-        gsap.set(content, { height: 0 });
-        gsap.set(paragraph, { opacity: 0, y: "20%", yPercent: 0 });
-        if (icon) gsap.set(icon, { rotateZ: 0 });
-      }
-      return;
-    }
-
-    gsap.killTweensOf([content, paragraph, icon].filter(Boolean));
-
-    if (isOpen) {
-      content.style.overflow = "hidden";
-      const currentHeight = content.offsetHeight;
-      gsap.set(paragraph, { y: "0%", yPercent: 0 });
-      content.style.height = "auto";
-      const targetHeight = Math.ceil(content.scrollHeight);
-      content.style.height = `${currentHeight}px`;
-      gsap.set(paragraph, { y: "20%", yPercent: 0 });
-
-      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
-      gsap.to(content, {
-        height: targetHeight,
-        duration: 0.6,
-        ease: "power3.out",
-        onComplete: () => {
-          content.style.height = "auto";
-          content.style.overflow = "visible";
-          ScrollTrigger.refresh();
-        },
-      });
-
-      // 2. Plus icon rotation (0deg -> 45deg) exact 600ms outQuart
-      if (icon) {
-        gsap.to(icon, {
-          rotateZ: 45,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-      }
-
-      // 3. Paragraph slide and fade: 100ms delay, 600ms duration, outQuart
-      gsap.fromTo(
-        paragraph,
-        { opacity: 0, y: "20%", yPercent: 0 },
-        {
-          opacity: 1,
-          y: "0%",
-          yPercent: 0,
-          delay: 0.1,
-          duration: 0.6,
-          ease: "power3.out",
-        }
-      );
-    } else {
-      content.style.overflow = "hidden";
-      const currentHeight = content.offsetHeight;
-      content.style.height = `${currentHeight}px`;
-
-      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
-      gsap.to(content, {
-        height: 0,
-        duration: 0.6,
-        ease: "power3.out",
-        onComplete: () => {
-          content.style.height = "0px";
-          ScrollTrigger.refresh();
-        },
-      });
-
-      // 2. Plus icon rotation (45deg -> 0deg) exact 600ms outQuart
-      if (icon) {
-        gsap.to(icon, {
-          rotateZ: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-      }
-
-      // 3. Paragraph fade and slide down: 100ms delay, 600ms duration, outQuart
-      gsap.to(paragraph, {
-        opacity: 0,
-        y: "20%",
-        yPercent: 0,
-        delay: 0.1,
-        duration: 0.6,
-        ease: "power3.out",
-      });
-    }
-  }, [isOpen]);
-
-  return (
-    <div
-      role="listitem"
-      className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
-      onClick={onToggle}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onToggle();
-        }
-      }}
-      tabIndex={0}
-      aria-expanded={isOpen}
-    >
-      <div className="accordion_head-wrapper">
-        <div className="item_head">
-          <div className="title_wrapper">
-            <div className="item_title">{faq.q}</div>
-            <div ref={iconRef} className="icon_wrapper" />
-          </div>
-        </div>
-      </div>
-
-      <div
-        ref={contentRef}
-        className="item_content-wrapper"
-        style={{ height: 0, overflow: "hidden" }}
-      >
-        <div className="accordion_paragraph">
-          <div
-            ref={paragraphRef}
-            className="item_paragraph w-richtext"
-            style={{
-              opacity: 0,
-            }}
-          >
-            <p>{faq.a}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function HomePage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
-  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set());
-  const handleToggleFaq = (index: number) => {
-    setOpenFaqs((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
-  };
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
-  // Property Listing Card Slider State for "Everything modern living should be"
-  const [propertySlideIndex, setPropertySlideIndex] = useState(0);
-  const [visibleSlides, setVisibleSlides] = useState(3);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+  // Hero Interactive Zones & Brightness State (matching 21oaks)
+  const brightnessInputRef = useRef<HTMLInputElement>(null);
+  const dynamicSectionRef = useRef<HTMLElement>(null);
 
-  const sliderViewportRef = useRef<HTMLDivElement>(null);
-  const isPointerDownRef = useRef(false);
-  const didDragRef = useRef(false);
-  const pointerStartXRef = useRef(0);
-  const pointerStartYRef = useRef(0);
-  const pointerStartTimeRef = useRef(0);
-  const currentDragOffsetRef = useRef(0);
-  const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleBrightnessChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+    const min = Number(e.target.min || 0);
+    const max = Number(e.target.max || 100);
+    const t = (val - min) / (max - min);
+    const p = t * 100;
+    e.target.style.background = `linear-gradient(to top, #ffffff 0%, #ffffff ${p}%, rgba(255,255,255,0.25) ${p}%, rgba(255,255,255,0.25) 100%)`;
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setVisibleSlides(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleSlides(2);
-      } else {
-        setVisibleSlides(3);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const hero = document.querySelector<HTMLElement>(".hero");
+    const slide0 = hero?.querySelector<SVGElement>('.hero-svg[data-hero-slide="0"]');
+    const lightZone = slide0?.querySelector<SVGPathElement>(".zone--light");
+    const lightDecor = slide0?.querySelector<SVGGElement>(".decor--light");
+
+    if (lightZone) {
+      const fill = 0.2 + t * 0.7;
+      lightZone.style.fillOpacity = fill.toFixed(3);
+      lightZone.style.filter = `drop-shadow(0 0 ${8 + t * 20}px rgba(255,242,125,${0.2 + t * 0.5}))`;
+    }
+    if (lightDecor) {
+      lightDecor.style.opacity = (0.25 + t * 0.75).toFixed(3);
+    }
+  };
+
+  const clearHeroZoneUi = useCallback(() => {
+    document.querySelectorAll(".hero-svg .zone.is-active").forEach((el) => el.classList.remove("is-active"));
+    document.querySelectorAll(".hero-svg .zone-stroke.is-active").forEach((el) => el.classList.remove("is-active"));
+    document.querySelectorAll(".hero-tip.is-active").forEach((el) => el.classList.remove("is-active"));
   }, []);
 
-  const maxPropertySlideIndex = Math.max(0, apartments.length - visibleSlides);
+  const handleZoneMouseEnter = (zoneName: string) => {
+    clearHeroZoneUi();
+    document.querySelectorAll(`.hero-svg .zone[data-zone="${zoneName}"]`).forEach((el) => el.classList.add("is-active"));
+    document.querySelectorAll(`.hero-svg .zone-stroke[data-zone="${zoneName}"]`).forEach((el) => el.classList.add("is-active"));
+    document.querySelectorAll(`.hero-tip[data-tip="${zoneName}"]`).forEach((el) => el.classList.add("is-active"));
+  };
+
+  const handleZoneMouseLeave = (zoneName: string) => {
+    document.querySelectorAll(`.hero-svg .zone[data-zone="${zoneName}"]`).forEach((el) => el.classList.remove("is-active"));
+    document.querySelectorAll(`.hero-svg .zone-stroke[data-zone="${zoneName}"]`).forEach((el) => el.classList.remove("is-active"));
+    document.querySelectorAll(`.hero-tip[data-tip="${zoneName}"]`).forEach((el) => el.classList.remove("is-active"));
+  };
 
   useEffect(() => {
-    if (propertySlideIndex > maxPropertySlideIndex) {
-      setPropertySlideIndex(maxPropertySlideIndex);
+    if (brightnessInputRef.current) {
+      const val = Number(brightnessInputRef.current.value || 65);
+      brightnessInputRef.current.style.background = `linear-gradient(to top, #ffffff 0%, #ffffff ${val}%, rgba(255,255,255,0.25) ${val}%, rgba(255,255,255,0.25) 100%)`;
     }
-  }, [maxPropertySlideIndex, propertySlideIndex]);
+  }, []);
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0) return;
-    isPointerDownRef.current = true;
-    didDragRef.current = false;
-    pointerStartXRef.current = e.clientX;
-    pointerStartYRef.current = e.clientY;
-    pointerStartTimeRef.current = Date.now();
-    currentDragOffsetRef.current = 0;
-    setDragOffset(0);
-  };
+  // 3. Dynamic Section Photos GSAP ScrollTrigger (Pinning + Outward Flyout Physics matching 21oaks)
+  useEffect(() => {
+    const section = dynamicSectionRef.current;
+    if (!section) return;
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isPointerDownRef.current) return;
-    const dx = e.clientX - pointerStartXRef.current;
-    const dy = e.clientY - pointerStartYRef.current;
+    const ctx = gsap.context(() => {
+      const title = section.querySelector(".middle");
+      const gallery = section.querySelector(".interaction_gallery");
+      const center = section.querySelector(".photo--center");
 
-    if (!didDragRef.current) {
-      // If mostly vertical scrolling, cancel drag so user can scroll page normally
-      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) {
-        isPointerDownRef.current = false;
-        return;
-      }
-      if (Math.abs(dx) > 6) {
-        didDragRef.current = true;
-        setIsDragging(true);
-        try {
-          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-        } catch (_) {}
-      }
-    }
+      const lt = section.querySelector(".photo--lt");
+      const lm = section.querySelector(".photo--lm");
+      const lb = section.querySelector(".photo--lb");
+      const rt = section.querySelector(".photo--rt");
+      const rm = section.querySelector(".photo--rm");
+      const rb = section.querySelector(".photo--rb");
 
-    if (didDragRef.current) {
-      let effectiveDx = dx;
-      // Boundary resistance factor for organic elastic feel
-      if (propertySlideIndex === 0 && dx > 0) {
-        effectiveDx = dx * 0.32;
-      } else if (propertySlideIndex >= maxPropertySlideIndex && dx < 0) {
-        effectiveDx = dx * 0.32;
-      }
-      currentDragOffsetRef.current = effectiveDx;
-      setDragOffset(effectiveDx);
-    }
-  };
+      if (!title || !gallery || !center) return;
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isPointerDownRef.current && !isDragging) return;
-    isPointerDownRef.current = false;
+      const left = [lt, lm, lb].filter(Boolean) as HTMLElement[];
+      const right = [rt, rm, rb].filter(Boolean) as HTMLElement[];
 
-    try {
-      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
-        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-      }
-    } catch (_) {}
+      const offLeft = (el: HTMLElement) =>
+        -(window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160);
+      const offRight = (el: HTMLElement) =>
+        window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160;
 
-    if (didDragRef.current) {
-      const dx = currentDragOffsetRef.current;
-      const dt = Math.max(1, Date.now() - pointerStartTimeRef.current);
-      const velocity = dx / dt; // px per ms
+      gsap.set(center, { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set([lt, lm, lb, rt, rm, rb].filter(Boolean), {
+        autoAlpha: 0,
+        y: 180,
+        scale: 0.9,
+        x: 0,
+      });
 
-      const viewportWidth = sliderViewportRef.current?.clientWidth || window.innerWidth;
-      const slideWidth = viewportWidth / visibleSlides;
-      const threshold = Math.min(80, Math.max(35, slideWidth * 0.18));
+      // Title zoom scrub matching live 21oaks.org
+      gsap.to(center, {
+        scale: 1.12,
+        ease: "none",
+        scrollTrigger: {
+          trigger: title,
+          start: "top top",
+          end: "bottom -120%",
+          scrub: true,
+        },
+      });
 
-      if (dx < -threshold || velocity < -0.3) {
-        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
-      } else if (dx > threshold || velocity > 0.3) {
-        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
-      }
+      // Gallery stage pin & scatter timeline
+      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: gallery,
+          start: "top top",
+          end: "+=300%",
+          pin: true,
+          pinSpacing: true,
+          scrub: isDesktop ? 1.2 : true,
+          anticipatePin: isDesktop ? 1 : 0,
+          fastScrollEnd: true,
+          invalidateOnRefresh: true,
+        },
+      });
 
-      setDragOffset(0);
-      setIsDragging(false);
+      tl.to(
+        [lt, lm, lb, rt, rm, rb].filter(Boolean),
+        {
+          autoAlpha: 1,
+          scale: 1,
+          ease: "none",
+          duration: 0.2,
+          stagger: 0.02,
+        },
+        0.02
+      );
 
-      setTimeout(() => {
-        didDragRef.current = false;
-      }, 100);
-    } else {
-      setDragOffset(0);
-      setIsDragging(false);
-    }
-  };
+      if (lt) tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
+      if (lm) tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
+      if (lb) tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
+      if (rt) tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
+      if (rm) tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
+      if (rb) tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
 
-  const handlePointerCancel = (e: React.PointerEvent<HTMLDivElement>) => {
-    isPointerDownRef.current = false;
-    try {
-      if ((e.currentTarget as HTMLElement).hasPointerCapture(e.pointerId)) {
-        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-      }
-    } catch (_) {}
-    setDragOffset(0);
-    setIsDragging(false);
-    setTimeout(() => {
-      didDragRef.current = false;
-    }, 100);
-  };
+      tl.to(
+        left,
+        {
+          x: (_: any, el: any) => offLeft(el),
+          y: "-=52",
+          ease: "none",
+          duration: 1.1,
+          stagger: 0.05,
+        },
+        1.25
+      );
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (Math.abs(e.deltaX) > 25) {
-      if (wheelTimeoutRef.current) return;
-      if (e.deltaX > 25) {
-        setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1));
-      } else if (e.deltaX < -25) {
-        setPropertySlideIndex((prev) => Math.max(0, prev - 1));
-      }
-      wheelTimeoutRef.current = setTimeout(() => {
-        wheelTimeoutRef.current = null;
-      }, 400);
-    }
-  };
+      tl.to(
+        right,
+        {
+          x: (_: any, el: any) => offRight(el),
+          y: "-=52",
+          ease: "none",
+          duration: 1.1,
+          stagger: 0.05,
+        },
+        1.25
+      );
+
+      const onResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", onResize);
+
+      return () => {
+        window.removeEventListener("resize", onResize);
+      };
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   const apartmentsSectionRef = useRef<HTMLElement>(null);
 
@@ -1414,6 +1266,313 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Hero Tooltips matching 21oaks.org */}
+          <div className="hero-tooltips">
+            {/* Slide 1 x3 */}
+            <div className="hero-tip tip--comod" data-tip="comod">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Within reach</span>
+            </div>
+            <div className="hero-tip tip--bed" data-tip="bed">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Designed to recharge</span>
+            </div>
+            <div className="hero-tip tip--table" data-tip="table">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Built for focus</span>
+            </div>
+
+            {/* Slide 2 x2 */}
+            <div className="hero-tip tip--living" data-tip="living">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Comfort in every corner</span>
+            </div>
+            <div className="hero-tip tip--accent" data-tip="accent">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Little details matter</span>
+            </div>
+
+            {/* Slide 3 x3 */}
+            <div className="hero-tip tip--builtins" data-tip="builtins">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Movie nights ready</span>
+            </div>
+            <div className="hero-tip tip--overhead" data-tip="overhead">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Sink into comfort</span>
+            </div>
+            <div className="hero-tip tip--lounge" data-tip="lounge">
+              <img src="/assets/svg/arrow-hover.png" alt="" />
+              <span>Spaces meant to connect</span>
+            </div>
+          </div>
+
+          {/* Hero Brightness Slider matching 21oaks.org */}
+          <div className="light_box">
+            <div className="hero-brightness-panel">
+              <img
+                className="hero-brightness-icon"
+                src="/assets/svg/sun.svg"
+                alt="Adjust brightness"
+              />
+              <input
+                ref={brightnessInputRef}
+                className="hero-brightness-range"
+                type="range"
+                min="0"
+                max="100"
+                defaultValue="65"
+                step="1"
+                onChange={handleBrightnessChange}
+                aria-label="Room lighting brightness"
+              />
+            </div>
+          </div>
+
+          {/* Interactive SVG Room Zones matching 21oaks.org */}
+          <div className="svg_mask">
+            <div className="embed_svg">
+              {/* Slide 0 SVG */}
+              <svg className="hero-svg" viewBox="0 0 1920 1080" data-hero-slide="0" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hero interactive masks">
+                <g clipPath="url(#clip0_427_3224)">
+                  {/* TABLE ZONE */}
+                  <path
+                    className="zone zone--table"
+                    data-zone="table"
+                    d="M1921 961.5L1238 755L1380 724.177V715L1371.5 708.5V697.152H1504.5L1572 682.5L1859.5 723.5L1921 748V961.5Z"
+                    fill="white"
+                    fillOpacity="0.75"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("table")}
+                    onMouseLeave={() => handleZoneMouseLeave("table")}
+                  />
+
+                  {/* LIGHT DECOR + LIGHT SOURCE */}
+                  <g filter="url(#filter0_f_427_3224)" className="decor decor--light" style={{ pointerEvents: "none" }}>
+                    <path
+                      className="zone zone--light zone--light-source"
+                      data-zone="light"
+                      d="M1695 499C1682 489.5 1682 472.5 1682 472.5C1682 472.5 1650.54 472.465 1631.5 471C1623.81 470.409 1616.24 469.489 1606.5 468.224C1597.89 467.106 1584.5 465 1584.5 465C1584.5 465 1600.5 460.572 1618.5 456C1684.5 439.238 1793.61 432.808 1865 436.5C1883.12 437.437 1902 436 1908 442C1914 448 1869.77 454.492 1844.5 459C1819.4 463.476 1779.5 465 1779.5 465C1779.5 465 1777.5 486 1767 494.5C1755.5 503.81 1744.68 507.151 1729 507.5C1715.32 507.804 1706.05 507.075 1695 499Z"
+                      fill="#FFF27D"
+                      fillOpacity="0.55"
+                      style={{ mixBlendMode: "soft-light", vectorEffect: "non-scaling-stroke" }}
+                    />
+                  </g>
+
+                  {/* COMOD ZONE */}
+                  <path
+                    className="zone zone--comod"
+                    data-zone="comod"
+                    d="M442 538L101.5 532.5H97.5V1081H442.5L466.5 918L472.5 535L442 538Z"
+                    fill="white"
+                    fillOpacity="0.75"
+                    style={{ mixBlendMode: "soft-light", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("comod")}
+                    onMouseLeave={() => handleZoneMouseLeave("comod")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--comod"
+                    data-zone="comod"
+                    d="M442 538L101.5 532.5H97.5V1081H442.5L466.5 918L472.5 535L442 538Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+
+                  {/* BED ZONE */}
+                  <path
+                    className="zone zone--bed"
+                    data-zone="bed"
+                    d="M946.5 882H928.5V871L918 863.5L906.5 848.5L895 830L888 815V785.5L881.5 779.5L870.5 770.5L865 769L862 766L853 759L846.5 756.5L832 737.5L820 727L809.5 712L799 705.5L787.5 699.5L781 689L772 684.5L760 671.5L753 668L751 631.5L738 620.5L742.5 611.5L746.5 593.5L758 579.5L779 570V503L776 492.5L790.5 496V484.5L787.5 476L790.5 461L798.5 464L812 472L825 483L838 488L845.5 492.5L848 489.5L854.5 483L864.5 476L870 469L874.5 467.5L880.5 475H887.5L913 481.5L928 489.5H942.5L949 486L970 474L983 472L983.5 476.5L982 492.842L988.5 493.5L997 489.5L1004.5 491.5L1012 489.5L1017.5 492V509L1020.5 516.5L1033 564H1046.5L1066.5 560.5L1083.5 566L1198 564L1212 568.5L1256.5 587L1257.87 633L1194.5 639L1179 635.5L1174.5 630.5L1165.5 634.5L1162 642L1165.5 654L1168.5 656.5L1182.5 706L1109.5 709L1105 706L1091.5 710.5H1064.5L1060 715H1046.5L1026.5 719L1017.5 715L1005.5 721H993.5V725L987.5 727V741L979 744.5L974.5 770.5L967 782V803H954L946.5 815V882Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("bed")}
+                    onMouseLeave={() => handleZoneMouseLeave("bed")}
+                  />
+                  <path
+                    className="zone zone--bed zone--bed-part"
+                    data-zone="bed"
+                    d="M1182.5 651.5L1188 667H1215.5L1182.5 651.5Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("bed")}
+                    onMouseLeave={() => handleZoneMouseLeave("bed")}
+                  />
+                  <path
+                    className="zone zone--bed zone--bed-part"
+                    data-zone="bed"
+                    d="M1194.5 684.5L1190 674L1248 670.5L1280 664.724L1334.5 654L1338 663.5L1243 681L1210.5 683L1194.5 684.5Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("bed")}
+                    onMouseLeave={() => handleZoneMouseLeave("bed")}
+                  />
+                  <path
+                    className="zone zone--bed zone--bed-part"
+                    data-zone="bed"
+                    d="M1216 705.5L1215.5 702L1228 700L1240 699L1233.5 706L1225.5 705.5H1216Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("bed")}
+                    onMouseLeave={() => handleZoneMouseLeave("bed")}
+                  />
+
+                  {/* BED STROKES */}
+                  <g style={{ pointerEvents: "none" }}>
+                    <path d="M946.5 882H928.5V871L918 863.5L906.5 848.5L895 830L888 815V785.5L881.5 779.5L870.5 770.5L865 769L862 766L853 759L846.5 756.5L832 737.5L820 727L809.5 712L799 705.5L787.5 699.5L781 689L772 684.5L760 671.5L753 668L751 631.5L738 620.5L742.5 611.5L746.5 593.5L758 579.5L779 570V503L776 492.5L790.5 496V484.5L787.5 476L790.5 461L798.5 464L812 472L825 483L838 488L845.5 492.5L848 489.5L854.5 483L864.5 476L870 469L874.5 467.5L880.5 475H887.5L913 481.5L928 489.5H942.5L949 486L970 474L983 472L983.5 476.5L982 492.842L988.5 493.5L997 489.5L1004.5 491.5L1012 489.5L1017.5 492V509L1020.5 516.5L1033 564H1046.5L1066.5 560.5L1083.5 566L1198 564L1212 568.5L1256.5 587L1257.87 633L1194.5 639L1179 635.5L1174.5 630.5L1165.5 634.5L1162 642L1165.5 654L1168.5 656.5L1182.5 706L1109.5 709L1105 706L1091.5 710.5H1064.5L1060 715H1046.5L1026.5 719L1017.5 715L1005.5 721H993.5V725L987.5 727V741L979 744.5L974.5 770.5L967 782V803H954L946.5 815V882Z" stroke="white" strokeOpacity="0.2" strokeWidth="2" fill="none" style={{ vectorEffect: "non-scaling-stroke" }} />
+                    <path d="M1182.5 651.5L1188 667H1215.5L1182.5 651.5Z" stroke="white" strokeOpacity="0.2" strokeWidth="2" fill="none" style={{ vectorEffect: "non-scaling-stroke" }} />
+                    <path d="M1194.5 684.5L1190 674L1248 670.5L1280 664.724L1334.5 654L1338 663.5L1243 681L1210.5 683L1194.5 684.5Z" stroke="white" strokeOpacity="0.2" strokeWidth="2" fill="none" style={{ vectorEffect: "non-scaling-stroke" }} />
+                    <path d="M1216 705.5L1215.5 702L1228 700L1240 699L1233.5 706L1225.5 705.5H1216Z" stroke="white" strokeOpacity="0.2" strokeWidth="2" fill="none" style={{ vectorEffect: "non-scaling-stroke" }} />
+                  </g>
+                </g>
+
+                <defs>
+                  <filter id="filter0_f_427_3224" x="1554.3" y="405.291" width="384.453" height="132.463" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="15.1" result="effect1_foregroundBlur_427_3224" />
+                  </filter>
+                  <clipPath id="clip0_427_3224">
+                    <rect width="1920" height="1080" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              {/* Slide 1 SVG */}
+              <svg className="hero-svg" data-hero-slide="1" viewBox="0 0 1921 1082" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hero slide 2 interactive masks">
+                <g clipPath="url(#clip_hero2)">
+                  <path
+                    className="zone zone--living"
+                    data-zone="living"
+                    d="M168 502H-0.5V1082H701.5L809.5 1057.5L980.5 1022L996 1008.5L974.5 994L980.5 976.5L1002.5 984.5L1012.5 969L1002.5 947.5L1012.5 926.5L1037 917.5L1022 897.5L1037 880L1050 862L1048 842.5L1052 823L1071 830L1075.5 812L1087 813.5L1099 806L1121.5 799L1150.5 813.5L1162 801L1180.5 796L1187 813.5L1162 828L1171.5 834L1183.5 850.5L1213 837.5L1216.5 862L1204.5 886L1221.5 917.5V866.5L1218.5 775V686.5L1203.5 678L1159.5 675L997.5 671.5L994 651V622L996 609L997.5 570.5L1002.5 560.5V537L1009.5 486L1012.5 461L1016.5 440L1004.5 438L991.5 440H981.5L971 444.5L898 461L831 478L823.5 486L800.5 483.5L785 486L744.5 483.5L571 475L548 483.5V502L201.5 495L181 519L168 502Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("living")}
+                    onMouseLeave={() => handleZoneMouseLeave("living")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--living"
+                    data-zone="living"
+                    d="M168 502H-0.5V1082H701.5L809.5 1057.5L980.5 1022L996 1008.5L974.5 994L980.5 976.5L1002.5 984.5L1012.5 969L1002.5 947.5L1012.5 926.5L1037 917.5L1022 897.5L1037 880L1050 862L1048 842.5L1052 823L1071 830L1075.5 812L1087 813.5L1099 806L1121.5 799L1150.5 813.5L1162 801L1180.5 796L1187 813.5L1162 828L1171.5 834L1183.5 850.5L1213 837.5L1216.5 862L1204.5 886L1221.5 917.5V866.5L1218.5 775V686.5L1203.5 678L1159.5 675L997.5 671.5L994 651V622L996 609L997.5 570.5L1002.5 560.5V537L1009.5 486L1012.5 461L1016.5 440L1004.5 438L991.5 440H981.5L971 444.5L898 461L831 478L823.5 486L800.5 483.5L785 486L744.5 483.5L571 475L548 483.5V502L201.5 495L181 519L168 502Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+
+                  <path
+                    className="zone zone--accent"
+                    data-zone="accent"
+                    d="M1367 562L1375.5 574.5V603L1228 599.5H1162.5L1151.5 591.5V550H1162.5H1176.5L1198 545.5L1221.5 539L1228 562L1235 591.5H1249V574.5L1244.5 558.5L1240 545.5L1265 539H1363V550L1367 562Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("accent")}
+                    onMouseLeave={() => handleZoneMouseLeave("accent")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--accent"
+                    data-zone="accent"
+                    d="M1367 562L1375.5 574.5V603L1228 599.5H1162.5L1151.5 591.5V550H1162.5H1176.5L1198 545.5L1221.5 539L1228 562L1235 591.5H1249V574.5L1244.5 558.5L1240 545.5L1265 539H1363V550L1367 562Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+                </g>
+
+                <defs>
+                  <clipPath id="clip_hero2">
+                    <rect width="1921" height="1082" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              {/* Slide 2 SVG */}
+              <svg className="hero-svg" data-hero-slide="2" viewBox="0 0 1922 1080" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hero slide 3 interactive masks">
+                <g clipPath="url(#clip_hero3)">
+                  <path
+                    className="zone zone--builtins"
+                    data-zone="builtins"
+                    d="M1086.5 839V645L1197.5 640.5L1201.5 630.5L1205.5 613L1210 610.5H1216.5L1224.5 613L1229.5 611.5L1241.5 613L1251.5 616H1259L1269.5 620L1271.5 610.5L1275.5 603L1280.5 604.5L1303 613H1310.5L1321 610.5H1331L1343.5 603L1353.5 604.5V611.5L1349.5 630.5H1363.5L1387 633L1401 640.5L1412.5 637.5L1431 635.5L1458.5 633L1476 629.5H1484.5L1489 633V642L1484.5 650.5L1478.5 663L1922 724V1080.5H1544L1322 964.5L1086.5 839Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("builtins")}
+                    onMouseLeave={() => handleZoneMouseLeave("builtins")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--builtins"
+                    data-zone="builtins"
+                    d="M1086.5 839V645L1197.5 640.5L1201.5 630.5L1205.5 613L1210 610.5H1216.5L1224.5 613L1229.5 611.5L1241.5 613L1251.5 616H1259L1269.5 620L1271.5 610.5L1275.5 603L1280.5 604.5L1303 613H1310.5L1321 610.5H1331L1343.5 603L1353.5 604.5V611.5L1349.5 630.5H1363.5L1387 633L1401 640.5L1412.5 637.5L1431 635.5L1458.5 633L1476 629.5H1484.5L1489 633V642L1484.5 650.5L1478.5 663L1922 724V1080.5H1544L1322 964.5L1086.5 839Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+
+                  <path
+                    className="zone zone--overhead"
+                    data-zone="overhead"
+                    d="M1557 508.5L1547 301L1920.5 214.5V529H1723H1592L1587.5 517H1581L1575.5 511L1570.5 513.5L1557 508.5Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("overhead")}
+                    onMouseLeave={() => handleZoneMouseLeave("overhead")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--overhead"
+                    data-zone="overhead"
+                    d="M1557 508.5L1547 301L1920.5 214.5V529H1723H1592L1587.5 517H1581L1575.5 511L1570.5 513.5L1557 508.5Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+
+                  <path
+                    className="zone zone--lounge"
+                    data-zone="lounge"
+                    d="M784.5 874L617 895C617 895 600.299 900.24 592 906C583.701 911.76 574.5 924.5 574.5 924.5L568.5 938V961.5L592.5 1079.5H1166.5C1166.5 1079.5 1195.18 1076.12 1208.5 1065C1218.98 1056.25 1224.07 1049.07 1228 1036C1231.82 1023.28 1228 1002 1228 1002L1215.5 982.5L1113.5 916.5L1035 863.5C1035 863.5 1016.19 855.985 1003.5 854C989.224 851.768 966.5 854 966.5 854L784.5 874Z"
+                    fill="white"
+                    fillOpacity="0.65"
+                    style={{ mixBlendMode: "overlay", vectorEffect: "non-scaling-stroke" }}
+                    onMouseEnter={() => handleZoneMouseEnter("lounge")}
+                    onMouseLeave={() => handleZoneMouseLeave("lounge")}
+                  />
+                  <path
+                    className="zone-stroke zone-stroke--lounge"
+                    data-zone="lounge"
+                    d="M784.5 874L617 895C617 895 600.299 900.24 592 906C583.701 911.76 574.5 924.5 574.5 924.5L568.5 938V961.5L592.5 1079.5H1166.5C1166.5 1079.5 1195.18 1076.12 1208.5 1065C1218.98 1056.25 1224.07 1049.07 1228 1036C1231.82 1023.28 1228 1002 1228 1002L1215.5 982.5L1113.5 916.5L1035 863.5C1035 863.5 1016.19 855.985 1003.5 854C989.224 851.768 966.5 854 966.5 854L784.5 874Z"
+                    stroke="white"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{ vectorEffect: "non-scaling-stroke", pointerEvents: "none" }}
+                  />
+                </g>
+
+                <defs>
+                  <clipPath id="clip_hero3">
+                    <rect width="1922" height="1080" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
           {/* Background Images Layer with GSAP circular reveal */}
           <div className="hero-shade" />
           <div className="background">
@@ -1436,8 +1595,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PROPERTY LISTINGS SECTION */}
-        <section className="dynamic_section property_listing_section" id="residences" data-section="light">
+        {/* DYNAMIC SECTION (Everything modern living should be) */}
+        <section ref={dynamicSectionRef} className="dynamic_section" id="residences" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything modern<br />
@@ -1445,169 +1604,29 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="property_slider_container">
-            <div className="property_slider_wrapper">
-              <div
-                ref={sliderViewportRef}
-                className={`property_slider_viewport ${isDragging ? "is-dragging" : ""}`}
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                onPointerCancel={handlePointerCancel}
-                onWheel={handleWheel}
-                onClickCapture={(e) => {
-                  if (didDragRef.current) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }
-                }}
-              >
-                <div
-                  className="property_slider_track"
-                  style={{
-                    transform: isDragging
-                      ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
-                      : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
-                    transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
-                  }}
-                >
-                  {apartments.map((apart, apartIdx) => (
-                    <div
-                      className="property_slider_slide"
-                      key={apart.id}
-                      style={{ flex: `0 0 ${100 / visibleSlides}%` }}
-                      onClick={() => {
-                        if (!didDragRef.current) {
-                          setPropertySlideIndex(Math.min(apartIdx, maxPropertySlideIndex));
-                        }
-                      }}
-                    >
-                      <div className="apart_card">
-                        <Link
-                          to={getUnitPathById(apart.id)}
-                          className="apart_image"
-                          draggable={false}
-                          style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
-                          onClick={(e) => {
-                            if (didDragRef.current) {
-                              e.preventDefault();
-                            }
-                          }}
-                        >
-                          <div className="overlay_tags">
-                            <div className="tag_available">
-                              <div className="dot_available"></div>
-                              <div>Available</div>
-                            </div>
-                            <div className="tags_info">
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.beds}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.baths}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.sqft}</div>
-                                <div>ft<sup>2</sup></div>
-                              </div>
-                            </div>
-                          </div>
-                          <img src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
-                        </Link>
-
-                        <div className="content_apart">
-                          <div className="apart_title_line">
-                            <div>
-                              <Link
-                                to={getUnitPathById(apart.id)}
-                                className="apart_title"
-                                draggable={false}
-                                style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
-                                onClick={(e) => {
-                                  if (didDragRef.current) {
-                                    e.preventDefault();
-                                  }
-                                }}
-                              >
-                                {apart.name}
-                              </Link>
-                            </div>
-                            <div className="price_box">
-                              <div className="icon_price">
-                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" draggable={false} />
-                              </div>
-                              <div className="price_txt">{apart.price}</div>
-                            </div>
-                          </div>
-
-                          <div className="desc_home">
-                            <div className="p_gen black specific">{apart.desc}</div>
-                          </div>
-
-                          <div className="explore_button" style={{ marginTop: "18px" }}>
-                            <WebflowButton
-                              text="Explore Details"
-                              href={getUnitPathById(apart.id)}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                if (didDragRef.current) return;
-                                navigate(getUnitPathById(apart.id));
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+          <div className="interaction_gallery">
+            <div className="wrapper_dynamic">
+              <div className="interaction__stage">
+                <div className="photo photo--rt">
+                  <img src="/assets/gallery/Elevation_Evening_1.webp" loading="lazy" decoding="async" alt="Elevation Evening" className="image" />
                 </div>
-              </div>
-
-              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
-              <div className="property_slider_controls">
-                <div className="property_slider_pagination">
-                  {Array.from({ length: maxPropertySlideIndex + 1 }).map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      className={`property_slider_dot ${propertySlideIndex === idx ? "is-active" : ""}`}
-                      onClick={() => setPropertySlideIndex(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
+                <div className="photo photo--lt">
+                  <img src="/assets/gallery/Landscape_Lawn_1.webp" loading="lazy" decoding="async" alt="Landscape Lawn" className="image" />
                 </div>
-
-                <div className="property_slider_arrows">
-                  <button
-                    type="button"
-                    className="property_slider_arrow is-prev"
-                    onClick={() => setPropertySlideIndex((prev) => Math.max(0, prev - 1))}
-                    disabled={propertySlideIndex === 0}
-                    aria-label="Previous property"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="property_slider_arrow is-next"
-                    onClick={() => setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1))}
-                    disabled={propertySlideIndex >= maxPropertySlideIndex}
-                    aria-label="Next property"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-                  </button>
+                <div className="photo photo--center">
+                  <img src="/assets/gallery/center.webp" loading="eager" alt="SGMG Modern Living" className="image" />
+                </div>
+                <div className="photo photo--lm">
+                  <img src="/assets/gallery/Gym_1.webp" loading="lazy" decoding="async" alt="Modern Fitness Gym" className="image" />
+                </div>
+                <div className="photo photo--rm">
+                  <img src="/assets/gallery/Indoor_Games_Arena_1.webp" loading="lazy" decoding="async" alt="Indoor Games Arena" className="image" />
+                </div>
+                <div className="photo photo--lb">
+                  <img src="/assets/gallery/Swimming_Pool_1.webp" loading="lazy" decoding="async" alt="Swimming Pool" className="image" />
+                </div>
+                <div className="photo photo--rb">
+                  <img src="/assets/gallery/CommunityHall_1.webp" loading="lazy" decoding="async" alt="Community Hall" className="image" />
                 </div>
               </div>
             </div>
@@ -2138,52 +2157,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQS SECTION */}
-      <section data-section="light" className="faqs" id="faq">
-        <div className="wrapper_general basic">
-          <div className="faq_heading">
-            <h2 className="h2 smaller">
-              Frequently asked<br />questions
-            </h2>
-          </div>
-
-          <div className="sides_faq">
-            <div className="short_left">
-              <div className="caption_faq">
-                <div>Everything you need to know about purchasing your SGMG home.</div>
-              </div>
-              <div className="bottom_faq">
-                <div className="p_gen black caption_cta">
-                  Didn’t find what you were<br />looking for?
-                </div>
-                <div>
-                  <WebflowButton
-                    text="Explore FAQ"
-                    href="/faq"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="faq_general">
-              <div className="w-dyn-list">
-                <div role="list" className="collection_faq w-dyn-items">
-                  {faqsList.map((faq, index) => {
-                    const isOpen = openFaqs.has(index);
-                    return (
-                      <HomeFaqItem
-                        key={faq.q}
-                        faq={faq}
-                        isOpen={isOpen}
-                        onToggle={() => handleToggleFaq(index)}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FaqSection faqs={faqsList} />
 
       {/* PRE-FOOTER CTA SECTION */}
       <section data-section="dark" id="contact">

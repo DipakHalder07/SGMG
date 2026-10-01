@@ -1,5 +1,6 @@
 import React from "react";
-import PillButton from "../components/PillButton";
+import { Link } from "react-router-dom";
+import { ArrowIcon } from "../components/Header";
 import EndlessStairsGame from "../components/EndlessStairsGame";
 import "../not-found.css";
 
@@ -19,7 +20,25 @@ export default function NotFoundPage() {
           </h1>
 
           <div className="_404_btn">
-            <PillButton text="Back to Home" to="/" variant="lavender" />
+            <Link to="/" className="button w-inline-block" aria-label="Back to Home">
+              <div className="icon_box is-left">
+                <div className="arrow_icon">
+                  <div className="arrow-icon w-embed">
+                    <ArrowIcon fill="#ffffff" />
+                  </div>
+                </div>
+              </div>
+              <div className="text_box">
+                <div>Back to Home</div>
+              </div>
+              <div className="icon_box is-right">
+                <div className="arrow_icon">
+                  <div className="arrow-icon w-embed">
+                    <ArrowIcon fill="#ffffff" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 

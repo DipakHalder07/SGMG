@@ -28,9 +28,9 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  max-width: 1540px;
-  margin: 0 auto;
-  padding: 3rem 4rem;
+  max-width: none;
+  margin: 0;
+  padding: 3rem 2rem;
   box-sizing: border-box;
   gap: 3rem;
 }
@@ -48,15 +48,16 @@
   z-index: 10;
 }
 
-._404_heading  {
+._404_heading {
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   color: #2391cf;
   text-align: center;
   margin: 0;
-  font-size: clamp(1.82rem, 3.15vw, 2.94rem);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.4rem, 2.3vw, 2.15rem);
+  font-weight: var(--fw-heading, 400);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  max-width: 22ch;
   user-select: none;
 }
 
@@ -64,20 +65,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-/* Back to Home Button (Logo Blue Theme) */
+/* Back to Home Button (21Oaks Dual-Pill Blue Theme) */
 ._404_btn .button {
   --icon: 44px;
   --shift-gap: 0.25em;
-  --dur: 650ms;
-  --ease: cubic-bezier(0.83, 0, 0.17, 1);
+  --dur: 400ms;
+  --ease: cubic-bezier(0.165, 0.84, 0.44, 1);
 
   position: relative;
-  display: inline-flex;
-  align-items: stretch;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
   gap: 0.25em;
-  width: fit-content;
+  width: auto;
   flex: 0 0 auto;
   height: 44px;
   min-height: 44px;
@@ -86,7 +91,7 @@
   cursor: pointer;
 }
 
-._404_btn .text_box {
+._404_btn .button .text_box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,42 +101,46 @@
   border-radius: 9999px;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.02em;
-  font-size: 0.92rem;
-  font-weight: 400;
+  font-size: 0.88rem;
+  font-weight: 500;
   white-space: nowrap;
+  flex-shrink: 0;
+  height: 44px;
+  box-sizing: border-box;
   transition: transform var(--dur) var(--ease), background-color 0.25s ease;
   user-select: none;
 }
 
-._404_btn .icon_box {
+._404_btn .button .icon_box {
   width: 44px;
   height: 44px;
-  background-color: var(--logo-green, #a2cd3a);
+  background-color: #2391cf;
   border-radius: 9999px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-sizing: border-box;
   transition: transform var(--dur) var(--ease), background-color 0.25s ease;
 }
 
-._404_btn .icon_box.is-left {
-  display: none;
+._404_btn .button .icon_box.is-left {
+  display: flex !important;
 }
 
-._404_btn .icon_box.is-right {
-  display: flex;
+._404_btn .button .icon_box.is-right {
+  display: flex !important;
 }
 
-._404_btn .arrow_icon {
-  width: 20px;
-  height: 20px;
+._404_btn .button .arrow_icon {
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-._404_btn .arrow_icon svg path {
+._404_btn .button .arrow_icon svg path {
   fill: #ffffff;
   transition: fill 0.25s ease;
 }
@@ -140,12 +149,17 @@
 @media (min-width: 992px) {
   ._404_btn .button:hover .text_box {
     transform: translateX(calc(-1 * var(--shift-gap) * 1.5));
-    background-color: var(--primary-hover, #1c7bb3);
+    background-color: #1a7ab1;
   }
 
   ._404_btn .button:hover .icon_box.is-right {
     transform: translateX(calc(var(--shift-gap) * 1.5));
-    background-color: var(--primary-hover, #1c7bb3);
+    background-color: #1a7ab1;
+  }
+
+  ._404_btn .button:hover .icon_box.is-left {
+    transform: translateX(calc(-1 * var(--shift-gap) * 1.5));
+    background-color: #1a7ab1;
   }
 }
 
@@ -296,7 +310,7 @@
 
 .endless-stairs-embed .es-overlay h2 {
   font-size: 1.55rem;
-  font-weight: 600;
+  font-weight: var(--fw-heading, 400);
   letter-spacing: -0.02em;
   line-height: 1.3;
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
@@ -324,7 +338,7 @@
   font-family: var(--font-heading, "Michroma", sans-serif) !important;
   letter-spacing: 0.02em;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: var(--fw-button, 400);
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s ease;
 }
@@ -548,7 +562,8 @@
   }
 
   ._404_heading {
-    font-size: 1.575rem;
+    font-size: 1.35rem;
+    line-height: 1.22;
   }
 }
 
@@ -559,7 +574,8 @@
   }
 
   ._404_heading {
-    font-size: 1.365rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
   }
 
   .game_middle {
