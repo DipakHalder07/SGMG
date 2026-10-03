@@ -121,7 +121,7 @@ const apartments = [
     beds: "4 Bed",
     baths: "3 Baths",
     sqft: "1,685",
-    image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
+    image: "/images/apartments/d2/01-exterior.jpg",
     desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
   },
   {
@@ -131,7 +131,7 @@ const apartments = [
     beds: "4 Bed",
     baths: "4 Baths",
     sqft: "1,685",
-    image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
+    image: "/images/apartments/d2-premium/01-exterior.jpg",
     desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
   },
   {
@@ -141,7 +141,7 @@ const apartments = [
     beds: "2 Bed",
     baths: "2 Baths",
     sqft: "1,105",
-    image: "/assets/plans/C1-Gen.avif",
+    image: "/images/apartments/c1/01-exterior.jpg",
     desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
   },
   {
@@ -151,7 +151,7 @@ const apartments = [
     beds: "2 Bed",
     baths: "2 Baths",
     sqft: "1,105",
-    image: "/assets/plans/C1-Hero.avif",
+    image: "/images/apartments/c1-premium/01-exterior.jpg",
     desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
   },
 ];

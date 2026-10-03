@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import FamilySection from "../components/FamilySection";
 import "../amenities.css";
 
 interface AmenityFlowItem {
@@ -598,59 +599,8 @@ export default function AmenitiesPage() {
         </div>
       </section>
 
-      {/* Pet Friendly Section */}
-      <section data-section="light" className="pets">
-        <div className="wrapper_pets">
-          <div className="pets_heading">
-            <h2 className="h2 pets_h">
-              For You.
-              <br />
-              For{" "}
-              <span data-scribble="5" className="scribble-wrap">
-                Them.
-              </span>
-            </h2>
-          </div>
-
-          <div className="pets_ill">
-            <div className="box_pets" />
-            <div className="p_pets">
-              <div className="p_gen black">
-                A pet-friendly living environment designed to support everyday
-                life together, where comfort, routine, and space extend
-                naturally to your pet. From quiet moments of rest to daily
-                movement and shared routines, the space remains open, calm, and
-                easy to adapt — allowing both of you to settle in and feel at
-                home without compromise.
-              </div>
-            </div>
-          </div>
-
-          <div className="pet_boxes">
-            <div className="pet_box">
-              <div className="pet_title">A place to settle</div>
-              <div className="pet_desc">
-                Soft, quiet areas where your pet can rest, relax, and find a
-                consistent sense of comfort throughout the day.
-              </div>
-            </div>
-            <div className="pet_box">
-              <div className="pet_title">Room to move</div>
-              <div className="pet_desc">
-                Open, flexible layouts that support movement, play, and daily
-                routines without restriction or disruption.
-              </div>
-            </div>
-            <div className="pet_box">
-              <div className="pet_title">Part of everyday life</div>
-              <div className="pet_desc">
-                A setting where living with your pet feels natural, integrated,
-                and fully considered in how the space functions.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Family Section */}
+      <FamilySection />
 
       {/* Pre-Footer CTA & Lamp Footer */}
       <Footer />
