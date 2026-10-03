@@ -292,8 +292,7 @@
 }
 
 /* --- ABOUT SGMG STORY & PHILOSOPHY SECTION --- */
-.about_story_sec,
-.pets {
+.about_story_sec {
   background-color: #ffffff;
   padding: 5rem 3rem 4.5rem;
   position: relative;
@@ -301,21 +300,18 @@
   overflow: hidden;
 }
 
-.wrapper_about_story,
-.wrapper_pets {
+.wrapper_about_story {
   max-width: none;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
 }
 
-.about_story_heading,
-.pets_heading {
+.about_story_heading {
   max-width: 900px;
 }
 
-.h2.about_story_h,
-.h2.pets_h {
+.h2.about_story_h {
   font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: var(--fs-h2-section);
   font-weight: var(--fw-heading, 400);
@@ -663,23 +659,7 @@
     margin-top: 3rem;
   }
 
-  .pets_ill {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 4rem;
-  }
 
-  .box_pets {
-    width: 100%;
-    max-width: 440px;
-    height: 18rem;
-  }
-
-  .pet_boxes {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 4rem;
-  }
 
   .testimonials {
     padding: 2.5rem 1.5rem 2rem !important;
@@ -784,13 +764,11 @@
     display: none !important;
   }
 
-  .about_story_sec,
-  .pets {
+  .about_story_sec {
     padding: 3.5rem 1.25rem 3rem;
   }
 
-  .h2.about_story_h,
-  .h2.pets_h {
+  .h2.about_story_h {
     font-size: 2.5rem;
   }
 

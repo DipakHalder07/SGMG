@@ -40,8 +40,9 @@
   width:100%;max-width:100%;margin-top:0;overflow:hidden;
 }
 
-.pets {
-  background-color:var(--primary);
+.pets,
+section.pets {
+  background-color: var(--primary, #2391cf) !important;
 }
 
 .wrapper_pets {
@@ -221,11 +222,16 @@
 }
 
 .item_gallery {
-  width:auto;height:32em;position:relative;
+  width: auto;
+  height: clamp(380px, 32vw, 480px);
+  position: relative;
 }
 
 .box_image_gallery {
-  border-radius:4px;width:42vw;height:100%;overflow:hidden;
+  border-radius: 4px;
+  width: 42vw;
+  height: 100%;
+  overflow: hidden;
 }
 
 .gallery_slides {
@@ -572,7 +578,7 @@
 .splide__slide.amenities_splide .image_amenities {
   width: 100%;
   aspect-ratio: 1440 / 1546;
-  min-height: clamp(340px, 32vw, 560px);
+  height: auto;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -717,7 +723,11 @@
   }
 
   .box_pets {
-    width:40em;height:40em;margin-left:0;
+    width: 40vw;
+    height: 40vw;
+    max-width: 400px;
+    max-height: 400px;
+    margin-left: 0;
   }
 
   .p_pets {
@@ -817,11 +827,11 @@
   }
 
   .item_gallery {
-    height:40em;
+    height: 40vw;
   }
 
   .box_image_gallery {
-    width:54vw;
+    width: 54vw;
   }
 
   .ill_gallery {
@@ -829,31 +839,37 @@
   }
 
   .fixed_price {
-    width:40em;bottom:1.45rem;right:1.45rem;
+    width: 25rem;
+    bottom: 1.45rem;
+    right: 1.45rem;
   }
 
   .price_card_wrapper {
-    padding:1.2rem;
+    padding: 1.2rem;
   }
 
   .heading_card {
-    font-size:1.89em;
+    font-size: 1.25em;
   }
 
   .list_prices {
-    grid-row-gap:2.5em;padding-top:0;padding-bottom:0;
+    grid-row-gap: 1.5em;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .line_price {
-    font-size:1.25em;
+    font-size: 0.85em;
   }
 
   .buttons_last {
-    grid-row-gap:.8em;
+    grid-row-gap: 0.6em;
   }
 
-  .button_apply,.button_schedule {
-    font-size:1.25em;
+  .button_apply,
+  .button_schedule {
+    font-size: 0.85em;
+    min-height: 3.5em;
   }
 }
 
@@ -1042,51 +1058,273 @@
     padding-bottom:1.35rem;padding-left:1rem;padding-right:1rem;
   }
 
-  .full_gallery_apartment {
-    padding-left:1rem;padding-right:1rem;
+  .full_gallery_apartment,
+  .gallery_slides .full_gallery_apartment.w-dyn-items {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .item_gallery {
-    height:45em;
+    height: 45vw;
   }
 
   .box_image_gallery {
-    width:62vw;
+    width: 62vw;
   }
 
+  /* Mobile Price Card: Pixel-perfect replica of 21oaks */
   .fixed_price {
-    width:22rem;margin-left:auto;margin-right:auto;inset:auto 0% 12em;
+    position: fixed !important;
+    z-index: 99;
+    left: 16px !important;
+    right: 16px !important;
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    bottom: 4.6rem;
+    top: auto;
+    transform-origin: bottom center;
+    box-sizing: border-box !important;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    .fixed_price {
+      width: 352px !important;
+      max-width: calc(100% - 32px) !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 auto !important;
+    }
+  }
+
+  .price_card {
+    width: 100%;
+  }
+
+  .price_card_box {
+    width: 100%;
+  }
+
+  .price_card_item {
+    background-color: var(--white, #ffffff);
+    border: 1px solid rgba(41, 41, 41, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    overflow: hidden;
   }
 
   .price_card_wrapper {
-    padding:2em;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 12.8px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
   }
 
-  .chevron_dropdown {
-    width:2em;height:1.5em;
+  .top_line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
   }
 
   .heading_card {
-    font-size:2.1em;
+    font-size: clamp(17px, 4.8vw, 19.5px);
+    line-height: 1.15;
+    font-family: var(--font-heading, "Exposure", Georgia, serif);
+    font-weight: 400;
+    color: var(--black, #292929);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .right_chev {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .price_field {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+  }
+
+  .price_box {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+  }
+
+  .icon_price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25.6px;
+    height: 25.6px;
+    min-width: 25.6px;
+    min-height: 25.6px;
+    border-radius: 100%;
+    background-color: var(--primary, #006699);
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .icon_price img,
+  .icon_price .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    display: block;
+  }
+
+  .price_txt,
+  .price_txt.specific_card {
+    font-size: clamp(17px, 4.8vw, 19.5px) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, serif) !important;
+    font-weight: 400 !important;
+    color: var(--black, #292929);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .chevron_dropdown {
+    display: inline-block;
+    width: 13.6px;
+    height: 9.8px;
+    min-width: 13.6px;
+    min-height: 9.8px;
+    background-image: url(/assets/icons/chevron.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    margin-left: 2px;
+    flex-shrink: 0;
+  }
+
+  .chevron_dropdown.is-open {
+    transform: rotate(180deg);
   }
 
   .list_prices {
-    padding-top:0;padding-bottom:0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+  }
+
+  .price_card_wrapper.is-collapsed .list_prices {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .price_card_wrapper.is-open .list_prices {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .list_prices_inner {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .title_prices {
+    font-size: 11.7px;
+    opacity: 0.65;
+    color: var(--black, #292929);
+    margin-bottom: 8px;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+  }
+
+  .lists_prices {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin-bottom: 4px;
   }
 
   .line_price {
-    font-size:1.45em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11.3px;
+    color: var(--black, #292929);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   }
 
-  /* Slim, bolder CTAs on mobile. Explicit px: the inherited em chain
-     compounds differently at each breakpoint and renders inconsistently. */
-  .button_apply,
-  .button_schedule {
+  .buttons_last {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin-top: 12px;
+    width: 100%;
+  }
+
+  .button_apply {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 52px;
     min-height: 52px;
-    padding: 14px 16px;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    padding: 0 16px;
+    border-radius: 4px;
+    background-color: var(--primary, #006699);
+    color: #ffffff !important;
+    font-size: 11.7px;
+    font-weight: 500;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .button_apply div {
+    color: #ffffff !important;
+  }
+
+  .button_schedule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid rgba(41, 41, 41, 0.2);
+    color: var(--black, #292929) !important;
+    font-size: 11.7px;
+    font-weight: 500;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .button_schedule div {
+    color: var(--black, #292929) !important;
   }
 }
 
@@ -1151,11 +1389,17 @@
   }
 
   .pets_ill {
-    grid-row-gap:1rem;flex-flow:column;margin-top:4rem;
+    grid-row-gap: 1rem;
+    gap: 1rem;
+    flex-flow: column;
+    margin-top: 4rem;
   }
 
   .box_pets {
-    width:100%;height:60em;margin-right:0;
+    width: 100%;
+    height: 60vw;
+    max-height: 280px;
+    margin-right: 0;
   }
 
   .p_pets {
@@ -1282,16 +1526,20 @@
     padding-top:2rem;padding-bottom:1rem;
   }
 
-  .full_gallery_apartment {
-    grid-column-gap:.8em;
+  .full_gallery_apartment,
+  .gallery_slides .full_gallery_apartment.w-dyn-items {
+    grid-column-gap: 12px;
+    gap: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .item_gallery {
-    height:62em;
+    height: 62vw;
   }
 
   .box_image_gallery {
-    width:82vw;
+    width: 82vw;
   }
 
   .ill_gallery {
@@ -1299,39 +1547,12 @@
   }
 
   .fixed_price {
-    width:92.5em;bottom:4.6rem;
-  }
-
-  .price_card_wrapper {
-    padding:.8rem;
-  }
-
-  .chevron_dropdown {
-    width:3.5em;height:2.5em;
-  }
-
-  .heading_card {
-    font-size:3.5em;
-  }
-
-  .list_prices {
-    grid-row-gap:16px;padding-top:0;padding-bottom:0;
-  }
-
-  .line_price {
-    font-size:2.9em;
-  }
-
-  .buttons_last {
-    grid-row-gap:.6rem;margin-top:12px;
-  }
-
-  .button_apply,.button_schedule {
-    min-height: 50px;
-    padding: 13px 14px;
-    font-size: 12.5px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    left: 16px !important;
+    right: 16px !important;
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    bottom: 4.6rem;
   }
 }
 

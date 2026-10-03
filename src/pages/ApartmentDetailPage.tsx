@@ -681,7 +681,24 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
             <div role="list" className="price_card_box w-dyn-items">
               <div role="listitem" className="price_card_item w-dyn-item">
                 <div className={`price_card_wrapper ${feesOpen ? "is-open" : "is-collapsed"}`}>
-                  <div className="top_line">
+                  <div
+                    className="top_line"
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={feesOpen}
+                    aria-label="Toggle indicative charges breakdown"
+                    onClick={() => {
+                      manualOverrideRef.current = true;
+                      setFeesOpen(!feesOpen);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        manualOverrideRef.current = true;
+                        setFeesOpen(!feesOpen);
+                      }
+                    }}
+                  >
                     <div className="heading_card">
                       <div>{unit.name}</div>
                     </div>
@@ -701,21 +718,7 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
                       </div>
                       <div
                         className={`chevron_dropdown ${feesOpen ? "is-open" : ""}`}
-                        role="button"
-                        tabIndex={0}
-                        aria-expanded={feesOpen}
-                        aria-label="Toggle one-time fees"
-                        onClick={() => {
-                          manualOverrideRef.current = true;
-                          setFeesOpen(!feesOpen);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            manualOverrideRef.current = true;
-                            setFeesOpen(!feesOpen);
-                          }
-                        }}
+                        aria-hidden="true"
                       ></div>
                     </div>
                   </div>
