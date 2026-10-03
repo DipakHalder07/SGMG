@@ -6163,6 +6163,41 @@ body.is-hero .menu {
   color: var(--primary);
 }
 
+/* Footer illustration: lit windows glow steadily; a few, and the stars, twinkle */
+.footer-win {
+  opacity: 0.78;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer-win--twinkle {
+    animation: footerWinTwinkle 7s ease-in-out infinite;
+  }
+
+  .footer-star {
+    animation: footerStarTwinkle 3.6s ease-in-out infinite;
+  }
+}
+
+@keyframes footerWinTwinkle {
+  0%, 40%, 100% {
+    opacity: 0.78;
+  }
+
+  50%, 70% {
+    opacity: 0.08;
+  }
+}
+
+@keyframes footerStarTwinkle {
+  0%, 100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
+
 /* Flicker keyframe animation for lamp */
 #lamp-glow {
   opacity: 0.18;
