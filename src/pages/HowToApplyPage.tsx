@@ -535,7 +535,7 @@ export default function HowToApplyPage() {
       </section>
 
       {/* --- TESTIMONIALS SECTION --- */}
-      <section className="testimonials">
+      <section data-section="light" className="testimonials" id="testimonials">
         <div className="wrapper_general basic">
           <div className="testimonials_heading">
             <h2 className="h2 bigger">
@@ -554,44 +554,50 @@ export default function HowToApplyPage() {
           <div className="cms_testimonials">
             {/* Authors List with Radial Progress Ring */}
             <div className="authors">
-              <div className="author_coll">
-                {TESTIMONIALS.map((t, idx) => (
-                  <div
-                    key={t.id}
-                    className={`author_item ${activeTestimonial === idx ? "is-active" : ""}`}
-                    onClick={() => selectTestimonial(idx)}
-                  >
+              <div className="collection-list-wrapper w-dyn-list">
+                <div role="list" className="author_coll w-dyn-items">
+                  {TESTIMONIALS.map((t, idx) => (
                     <div
-                      className="author_circle"
-                      style={
-                        {
-                          "--p": activeTestimonial === idx ? testimonialProgress : 0,
-                        } as React.CSSProperties
-                      }
+                      role="listitem"
+                      key={t.id}
+                      className={`author_item w-dyn-item ${activeTestimonial === idx ? "is-active" : ""}`}
+                      onClick={() => selectTestimonial(idx)}
                     >
-                      <div className="author_photo">
-                        <img src={t.avatar} alt={t.name} loading="lazy" />
+                      <div
+                        className="author_circle"
+                        style={
+                          {
+                            "--p": activeTestimonial === idx ? testimonialProgress : 0,
+                          } as React.CSSProperties
+                        }
+                      >
+                        <div className="author_photo">
+                          <img src={t.avatar} alt={t.name} className="image" />
+                        </div>
+                      </div>
+                      <div className="author_name">
+                        <div className="author_name_txt">{t.name}</div>
                       </div>
                     </div>
-                    <div className="author_name">
-                      <div className="author_name_txt">{t.name}</div>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Active Quote Display */}
             <div className="quotes">
-              <div className="testimonial_coll">
-                {TESTIMONIALS.map((t, idx) => (
-                  <div
-                    key={t.id}
-                    className={`testimonial_item ${activeTestimonial === idx ? "is-active" : ""}`}
-                  >
-                    <div className="testimonial_txt">{t.quote}</div>
-                  </div>
-                ))}
+              <div className="testimonial_coll w-dyn-list">
+                <div role="list" className="testimonial_list w-dyn-items">
+                  {TESTIMONIALS.map((t, idx) => (
+                    <div
+                      role="listitem"
+                      key={t.id}
+                      className={`testimonial_item w-dyn-item ${activeTestimonial === idx ? "is-active" : ""}`}
+                    >
+                      <div className="testimonial_txt">{t.quote}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

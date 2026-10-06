@@ -79,14 +79,19 @@
   will-change: transform;
 }
 
+/* Shades the top and left (title and description) and the bottom (travel
+   times and thumbnails) so white text stays readable on bright daytime photos */
 .hero_bg_overlay {
   z-index: 9;
-  background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.44),
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.1)
-  );
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.44),
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.1) 65%,
+      rgba(0, 0, 0, 0.5)
+    );
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -254,7 +259,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 2: ON THE MAP / NEAR SILIGURI MALL
+   SECTION 2: ON THE MAP / NEARBY PLACES
    -------------------------------------------------------------------------- */
 .on_the_map {
   background-color: #121214;
@@ -267,11 +272,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(7.5rem, 11vw, 11rem) 2rem 3.5rem;
+  padding: clamp(7.5rem, 11vw, 11rem) 2rem 2rem;
 }
 
 .locations_headings {
   text-align: center;
+  width: auto;
   max-width: 900px;
   margin-inline: auto;
 }
@@ -286,10 +292,89 @@
   margin: 0;
 }
 
-/* Address line and directions button are mobile-only */
-.map_address_line,
-.map_directions {
-  display: none;
+.map_address_line {
+  margin: 16px 0 0;
+  text-wrap: balance;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Category tabs above the map */
+.map_tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 2rem 1.5rem;
+}
+
+.map_tab {
+  appearance: none;
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.map_tab:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.map_tab.is-active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #121214;
+}
+
+.map_tab:focus-visible {
+  outline: 2px solid #2391cf;
+  outline-offset: 2px;
+}
+
+/* Directions link and distance note under the map */
+.map_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+
+.map_directions_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.map_directions_link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.map_note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* Map Section Outer Container */
@@ -391,9 +476,45 @@
   display: block;
 }
 
-/* Numbers matching the pins, mobile-only */
+/* Places without a photo get an icon tile */
+.image_map_card {
+  position: relative;
+}
+
+.image_map_card.is-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaf4fb;
+  color: #2391cf;
+}
+
+.map_card.is-active .image_map_card.is-icon {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* Number matching the card's pin */
 .map_card_num {
-  display: none;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #121214;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.map_card.is-active .map_card_num {
+  background: #ffffff;
+  color: #121214;
 }
 
 .map_card:hover .image_map_card img {
@@ -437,11 +558,6 @@
   font-weight: 500;
   color: #64748b;
   white-space: nowrap;
-}
-
-/* Walk-or-drive time shown on mobile in place of the walk time */
-.transit_pill_card.is-mobile {
-  display: none;
 }
 
 .map_card.is-active .transit_pill_card {
@@ -513,37 +629,37 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Leaflet Popup Styling - Sleek Dark Theme */
+/* Leaflet Popup: a small dark card with a text link, no big button */
 .leaflet-popup-content-wrapper {
   background: #18181b !important;
   color: #ffffff !important;
-  border-radius: 14px !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
   padding: 0 !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .leaflet-popup-tip {
   background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35) !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .leaflet-popup-content {
-  margin: 1.15rem 1.35rem !important;
+  margin: 14px 16px !important;
   line-height: 1.4 !important;
-  min-width: 260px !important;
-  max-width: 300px !important;
+  min-width: 220px !important;
+  max-width: 260px !important;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-  color: rgba(255, 255, 255, 0.65) !important;
-  top: 10px !important;
-  right: 12px !important;
-  font-size: 18px !important;
-  width: 24px !important;
-  height: 24px !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  top: 8px !important;
+  right: 8px !important;
+  font-size: 16px !important;
+  width: 22px !important;
+  height: 22px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -553,94 +669,148 @@
 
 .leaflet-container a.leaflet-popup-close-button:hover {
   color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.popup-kicker {
+  margin-bottom: 4px;
+  padding-right: 20px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .popup-title {
+  padding-right: 20px;
   font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1rem !important;
   font-weight: 400 !important;
   color: #ffffff !important;
-  margin-bottom: 0.35rem !important;
   letter-spacing: -0.01em !important;
   line-height: 1.25 !important;
 }
 
 .popup-address {
-  font-size: 0.82rem !important;
-  color: rgba(255, 255, 255, 0.72) !important;
-  margin-bottom: 0.45rem !important;
-  line-height: 1.4 !important;
-  font-weight: 400 !important;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.popup-hours {
-  font-size: 0.8rem !important;
-  color: var(--logo-green, #a2cd3a) !important;
-  font-weight: 500 !important;
-  margin-bottom: 0.85rem !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.35rem !important;
-}
-
-.popup-meta {
-  display: none !important;
-}
-
-.popup-meta-row {
-  display: none !important;
-}
-
-.popup-directions-link {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.4rem !important;
-  width: 100% !important;
-  margin-top: 0.25rem !important;
-  padding: 0.65rem 1rem !important;
-  background: #2391cf !important;
-  color: #ffffff !important;
-  border-radius: 8px !important;
-  font-size: 0.82rem !important;
-  font-weight: var(--fw-button, 400) !important;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  letter-spacing: var(--ls-button, 0.02em) !important;
-  text-decoration: none !important;
-  transition: all 0.25s ease !important;
-  box-shadow: 0 4px 14px rgba(35, 145, 207, 0.35) !important;
-  box-sizing: border-box !important;
-}
-
-.popup-directions-link:hover {
-  background: #1c7bb3 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 6px 18px rgba(35, 145, 207, 0.45) !important;
-}
-
-/* Home Marker Pulse */
-.home-marker-pulse {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  background: #2391cf;
-  border-radius: 50%;
+.popup-footer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2.5px solid #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-distance {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.leaflet-container a.popup-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4aa9e0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.leaflet-container a.popup-link:hover {
+  color: #ffffff;
+}
+
+/* Project site marker: a name label pointing at a pulsing dot. The Leaflet
+   icon is zero-size, so this centres the label above the exact point. */
+.home-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, calc(-100% + 6px));
   cursor: pointer;
 }
 
-.home-marker-pulse::after {
+.home-marker-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: #121214;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  white-space: nowrap;
+}
+
+.home-marker-label::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #121214;
+}
+
+.home-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2391cf;
+  color: #ffffff;
+}
+
+.home-marker-name {
+  font-family: var(--font-heading, "Exposure", Georgia, serif);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.home-marker-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-top: 7px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: #2391cf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.home-marker-dot::after {
   content: "";
   position: absolute;
   inset: -6px;
   border-radius: 50%;
   border: 2px solid #2391cf;
   animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-marker-dot::after {
+    display: none;
+  }
 }
 
 @keyframes pulse-ring {
@@ -654,8 +824,9 @@
   }
 }
 
-/* Destination Hollow Pink Pin */
+/* Destination Pin */
 .poi-marker-pin {
+  position: relative;
   width: 28px;
   height: 42px;
   cursor: pointer;
@@ -669,8 +840,28 @@
   filter: drop-shadow(0 6px 10px rgba(35, 145, 207, 0.45));
 }
 
+.poi-marker-pin.is-active path {
+  fill: #121214;
+  stroke: #ffffff;
+}
+
+/* Pin numbers sit over the pin's hole and match the cards */
 .poi-marker-num {
-  display: none;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #121214;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -1117,18 +1308,26 @@
   }
 
   .map_address_line {
-    display: block;
-    margin: 12px 0 0;
+    margin-top: 12px;
     font-size: 14px;
-    line-height: 1.4;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.6);
   }
 
-  .map_directions {
-    display: flex;
-    justify-content: center;
-    padding: 24px 16px 0;
+  /* Tabs scroll sideways instead of wrapping */
+  .map_tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 16px 16px;
+    scrollbar-width: none;
+  }
+
+  .map_tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map_tab {
+    padding: 7px 14px;
+    font-size: 13px;
   }
 
   .on_the_map .map_sec {
@@ -1195,67 +1394,8 @@
   }
 
   .image_map_card {
-    position: relative;
     width: 56px;
     height: 56px;
-  }
-
-  .map_card_num {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #121214;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1;
-  }
-
-  .map_card.is-active .map_card_num {
-    background: #ffffff;
-    color: #121214;
-  }
-
-  .transit_pill_card {
-    display: none;
-  }
-
-  .transit_pill_card.is-mobile {
-    display: inline-flex;
-  }
-
-  /* Pin numbers sit over the pin's hole and match the cards */
-  .poi-marker-pin {
-    position: relative;
-  }
-
-  .poi-marker-num {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #121214;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .poi-marker-pin.is-active path {
-    fill: #121214;
-    stroke: #ffffff;
   }
 
   .on_the_map .map_box {
@@ -1267,24 +1407,13 @@
   }
 
   .leaflet-popup-content {
-    min-width: 220px !important;
-    max-width: 260px !important;
-    margin: 0.95rem 1.1rem !important;
+    min-width: 200px !important;
+    max-width: 240px !important;
+    margin: 12px 14px !important;
   }
 
   .popup-title {
     font-size: 0.92rem !important;
-    color: #ffffff !important;
-  }
-
-  .popup-address {
-    font-size: 0.78rem !important;
-    color: rgba(255, 255, 255, 0.72) !important;
-  }
-
-  .popup-meta,
-  .popup-meta-row {
-    display: none !important;
   }
 
   .faqs.black .wrapper_general.basic {
