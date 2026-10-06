@@ -6,6 +6,7 @@ import "../location.css";
 import Header, { WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
 import FaqSection from "../components/FaqSection";
+import PillButton from "../components/PillButton";
 
 interface SlideData {
   id: string;
@@ -141,8 +142,48 @@ const SGMG_LOCATION = {
   lat: 26.744,
   lng: 88.4365,
   address: "Sevoke Road, Siliguri, West Bengal 734008, India",
+  shortAddress: "Sevoke Road, Siliguri",
   hours: "Site Office: 9:00 AM – 7:00 PM",
 };
+
+const SGMG_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${SGMG_LOCATION.lat},${SGMG_LOCATION.lng}`;
+
+// Phones get the swipeable card strip over the map instead of the side panel
+const MOBILE_QUERY = "(max-width: 767px)";
+const isMobileViewport = () =>
+  typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches;
+
+// Keeps pins clear of the zoom buttons (top right) and the card strip that
+// sits over the bottom of the map on mobile.
+const mobileMapPadding = (cardStrip: HTMLElement | null): L.FitBoundsOptions => ({
+  paddingTopLeft: [32, 64],
+  paddingBottomRight: [56, (cardStrip?.offsetHeight ?? 0) + 16],
+});
+
+// Mobile cards only have room for one travel time: the walk when it's a
+// short stroll, otherwise the drive.
+const WALKABLE_MINUTES = 10;
+const isWalkable = (place: MapPlace) => parseInt(place.walk, 10) <= WALKABLE_MINUTES;
+
+const WALK_ICON_PATH =
+  "M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7";
+const CAR_ICON_PATH =
+  "M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z";
+
+function TransitIcon({ path }: { path: string }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      style={{ display: "inline-block", verticalAlign: "middle", marginRight: "3px", opacity: 0.75 }}
+    >
+      <path d={path} />
+    </svg>
+  );
+}
 
 const LOCATION_FAQS = [
   {
@@ -193,10 +234,16 @@ export default function LocationPage() {
 
   // Map Selected Place
   const [activePlaceId, setActivePlaceId] = useState<string>("vega-circle-mall");
+  const activePlaceIdRef = useRef("vega-circle-mall");
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
   const routePolylineRef = useRef<L.Polyline | null>(null);
+  const mapCardsRef = useRef<HTMLDivElement | null>(null);
+  const cardsScrollRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cardsScrollTargetRef = useRef<number | null>(null);
 
   // Document title
   useEffect(() => {
@@ -412,27 +459,49 @@ export default function LocationPage() {
   // Leaflet Map Initialization & Interactive Behavior
   // -------------------------------------------------------------
   const selectPlace = useCallback(
-    (place: MapPlace, shouldFly = true) => {
+    (
+      place: MapPlace,
+      { fly = true, popup = true }: { fly?: boolean; popup?: boolean } = {}
+    ) => {
       setActivePlaceId(place.id);
+      activePlaceIdRef.current = place.id;
 
       const map = mapInstanceRef.current;
       if (!map) return;
 
+      markersRef.current.forEach((marker, id) => {
+        const isActive = id === place.id;
+        marker.getElement()?.querySelector(".poi-marker-pin")?.classList.toggle("is-active", isActive);
+        marker.setZIndexOffset(isActive ? 1000 : 0);
+      });
+
       // Smooth pan / fly to place coordinates with offset on desktop & mobile
-      if (shouldFly) {
-        const isDesktop = typeof window !== "undefined" && window.innerWidth > 991;
-        const targetLng = isDesktop ? place.lng - 0.007 : place.lng;
-        const targetLat = isDesktop ? place.lat : place.lat + 0.013;
-        map.flyTo([targetLat, targetLng], isDesktop ? 14.8 : 14.0, {
-          duration: 0.85,
-          easeLinearity: 0.25,
-        });
+      if (fly) {
+        if (isMobileViewport()) {
+          // Frame home and destination together so the route reads end to end
+          map.flyToBounds(
+            L.latLngBounds([
+              [SGMG_LOCATION.lat, SGMG_LOCATION.lng],
+              [place.lat, place.lng],
+            ]),
+            { ...mobileMapPadding(mapCardsRef.current), maxZoom: 15, duration: 0.85 }
+          );
+        } else {
+          const isDesktop = window.innerWidth > 991;
+          const targetLng = isDesktop ? place.lng - 0.007 : place.lng;
+          const targetLat = isDesktop ? place.lat : place.lat + 0.013;
+          map.flyTo([targetLat, targetLng], isDesktop ? 14.8 : 14.0, {
+            duration: 0.85,
+            easeLinearity: 0.25,
+          });
+        }
       }
 
-      // Open Popup
       const marker = markersRef.current.get(place.id);
-      if (marker) {
-        marker.openPopup();
+      if (popup) {
+        marker?.openPopup();
+      } else {
+        map.closePopup();
       }
 
       // Draw dashed route from SGMG to Destination
@@ -458,6 +527,61 @@ export default function LocationPage() {
     []
   );
 
+  // -------------------------------------------------------------
+  // Mobile Card Strip ↔ Map Sync
+  // -------------------------------------------------------------
+  const scrollCardIntoView = useCallback((idx: number) => {
+    const strip = cardsScrollRef.current;
+    const card = cardRefs.current[idx];
+    const firstCard = cardRefs.current[0];
+    if (!strip || !card || !firstCard) return;
+    const left = card.offsetLeft - firstCard.offsetLeft;
+    const maxLeft = strip.scrollWidth - strip.clientWidth;
+    if (Math.abs(Math.min(left, maxLeft) - strip.scrollLeft) < 1) return;
+    cardsScrollTargetRef.current = idx;
+    strip.scrollTo({ left, behavior: "smooth" });
+  }, []);
+
+  // Select whichever card the strip comes to rest on after a swipe
+  const handleCardsScroll = () => {
+    if (!isMobileViewport()) return;
+    if (cardsSettleTimerRef.current) clearTimeout(cardsSettleTimerRef.current);
+    cardsSettleTimerRef.current = setTimeout(() => {
+      const strip = cardsScrollRef.current;
+      const [firstCard, secondCard] = cardRefs.current;
+      if (!strip || !firstCard || !secondCard) return;
+      const step = secondCard.offsetLeft - firstCard.offsetLeft;
+      const idx = Math.min(
+        MAP_PLACES.length - 1,
+        Math.max(0, Math.round(strip.scrollLeft / step))
+      );
+      // A smooth scroll we started (pin or card tap) can pause on the way;
+      // its card is already selected, so ignore stops until it arrives.
+      if (cardsScrollTargetRef.current !== null) {
+        if (idx === cardsScrollTargetRef.current) cardsScrollTargetRef.current = null;
+        return;
+      }
+      const place = MAP_PLACES[idx];
+      if (place.id !== activePlaceIdRef.current) {
+        selectPlace(place, { popup: false });
+      }
+    }, 120);
+  };
+
+  const handleCardClick = (place: MapPlace, idx: number) => {
+    if (!isMobileViewport()) {
+      selectPlace(place);
+      return;
+    }
+    if (place.id === activePlaceIdRef.current) {
+      // A second tap on the active card opens its address, hours and directions
+      markersRef.current.get(place.id)?.openPopup();
+      return;
+    }
+    selectPlace(place, { popup: false });
+    scrollCardIntoView(idx);
+  };
+
   useEffect(() => {
     if (!mapContainerRef.current) return;
     if (mapInstanceRef.current) return;
@@ -467,6 +591,9 @@ export default function LocationPage() {
       center: [SGMG_LOCATION.lat, SGMG_LOCATION.lng + 0.005],
       zoom: 14.5,
       scrollWheelZoom: false,
+      // A one-finger drag on a touch screen should scroll the page, not get
+      // trapped panning the map. Pinch and the zoom buttons still work.
+      dragging: !window.matchMedia("(pointer: coarse)").matches,
       zoomControl: false,
       attributionControl: false,
     });
@@ -522,7 +649,7 @@ export default function LocationPage() {
       });
 
     // 4. Add POI Markers
-    MAP_PLACES.forEach((place) => {
+    MAP_PLACES.forEach((place, idx) => {
       const pinIcon = L.divIcon({
         className: "poi-marker-wrap",
         html: `
@@ -539,6 +666,7 @@ export default function LocationPage() {
                 d="M27,13.5C27,19.07 20.25,27 14.75,34.5C14.02,35.5 12.98,35.5 12.25,34.5C6.75,27 0,19.22 0,13.5C0,6.04 6.04,0 13.5,0C20.96,0 27,6.04 27,13.5Z M13.5,8A5.5,5.5 0 1,0 13.5,19A5.5,5.5 0 1,0 13.5,8Z">
               </path>
             </svg>
+            <span class="poi-marker-num">${idx + 1}</span>
           </div>
         `,
         iconSize: [27, 41],
@@ -566,16 +694,27 @@ export default function LocationPage() {
         });
 
       marker.on("click", () => {
-        selectPlace(place, false);
+        selectPlace(place, { fly: false });
+        if (isMobileViewport()) scrollCardIntoView(idx);
       });
 
       markersRef.current.set(place.id, marker);
     });
 
-    // Default select Vega Circle Mall on desktop viewports
-    if (typeof window !== "undefined" && window.innerWidth > 767) {
-      const defaultPlace = MAP_PLACES[0];
-      selectPlace(defaultPlace, false);
+    // Default select Vega Circle Mall. On mobile, open on every place at once
+    // with its route drawn, and leave the details to the card strip.
+    if (isMobileViewport()) {
+      map.invalidateSize();
+      map.fitBounds(
+        L.latLngBounds([
+          [SGMG_LOCATION.lat, SGMG_LOCATION.lng],
+          ...MAP_PLACES.map((p): L.LatLngTuple => [p.lat, p.lng]),
+        ]),
+        mobileMapPadding(mapCardsRef.current)
+      );
+      selectPlace(MAP_PLACES[0], { fly: false, popup: false });
+    } else {
+      selectPlace(MAP_PLACES[0], { fly: false });
     }
 
     // Invalidate size after layout completes
@@ -592,10 +731,11 @@ export default function LocationPage() {
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
+      if (cardsSettleTimerRef.current) clearTimeout(cardsSettleTimerRef.current);
       map.remove();
       mapInstanceRef.current = null;
     };
-  }, [selectPlace]);
+  }, [selectPlace, scrollCardIntoView]);
 
 
 
@@ -721,21 +861,28 @@ export default function LocationPage() {
                 </span>
                 .<br />Near Everything.
               </h2>
+              <p className="map_address_line">{SGMG_LOCATION.shortAddress}</p>
             </div>
           </div>
 
           <div className="map_sec">
-            {/* Left POI Cards Panel */}
-            <div className="map_cards">
-              {/* 4 Places List */}
-              <div className="cards_list_scroll">
-                {MAP_PLACES.map((place) => {
+            {/* Left POI Cards Panel (a swipeable strip over the map on mobile) */}
+            <div className="map_cards" ref={mapCardsRef}>
+              <div
+                className="cards_list_scroll"
+                ref={cardsScrollRef}
+                onScroll={handleCardsScroll}
+                onTouchStart={() => (cardsScrollTargetRef.current = null)}
+              >
+                {MAP_PLACES.map((place, idx) => {
                   const isActive = place.id === activePlaceId;
+                  const walkable = isWalkable(place);
                   return (
                     <div
                       key={place.id}
+                      ref={(el) => (cardRefs.current[idx] = el)}
                       className={`map_card ${isActive ? "is-active" : ""}`}
-                      onClick={() => selectPlace(place, true)}
+                      onClick={() => handleCardClick(place, idx)}
                     >
                       <div className="wrapper_map_card">
                         <div className="image_map_card">
@@ -744,21 +891,20 @@ export default function LocationPage() {
                             loading="lazy"
                             src={place.image}
                           />
+                          <span className="map_card_num" aria-hidden="true">
+                            {idx + 1}
+                          </span>
                         </div>
                         <div className="content_info">
                           <div className="sub_box">
                             <span className="subtitle_text">{place.category}</span>
                             <span className="transit_pill_card">
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                style={{ display: "inline-block", verticalAlign: "middle", marginRight: "3px", opacity: 0.75 }}
-                              >
-                                <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7" />
-                              </svg>
+                              <TransitIcon path={WALK_ICON_PATH} />
                               {place.walk}
+                            </span>
+                            <span className="transit_pill_card is-mobile">
+                              <TransitIcon path={walkable ? WALK_ICON_PATH : CAR_ICON_PATH} />
+                              {walkable ? place.walk : place.drive}
                             </span>
                           </div>
                           <div className="title_map_card">{place.name}</div>
@@ -776,6 +922,15 @@ export default function LocationPage() {
               className="map_box"
               ref={mapContainerRef}
             ></div>
+          </div>
+
+          <div className="map_directions">
+            <PillButton
+              text="Get directions to SGMG"
+              href={SGMG_DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            />
           </div>
         </section>
 

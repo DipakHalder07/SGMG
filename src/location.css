@@ -286,6 +286,12 @@
   margin: 0;
 }
 
+/* Address line and directions button are mobile-only */
+.map_address_line,
+.map_directions {
+  display: none;
+}
+
 /* Map Section Outer Container */
 .on_the_map .map_sec {
   background-color: #121214;
@@ -385,6 +391,11 @@
   display: block;
 }
 
+/* Numbers matching the pins, mobile-only */
+.map_card_num {
+  display: none;
+}
+
 .map_card:hover .image_map_card img {
   transform: none !important;
 }
@@ -426,6 +437,11 @@
   font-weight: 500;
   color: #64748b;
   white-space: nowrap;
+}
+
+/* Walk-or-drive time shown on mobile in place of the walk time */
+.transit_pill_card.is-mobile {
+  display: none;
 }
 
 .map_card.is-active .transit_pill_card {
@@ -651,6 +667,10 @@
 .poi-marker-pin.is-active {
   transform: scale(1.15) translateY(-3px);
   filter: drop-shadow(0 6px 10px rgba(35, 145, 207, 0.45));
+}
+
+.poi-marker-num {
+  display: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -1096,6 +1116,21 @@
     letter-spacing: -0.02em !important;
   }
 
+  .map_address_line {
+    display: block;
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .map_directions {
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px 0;
+  }
+
   .on_the_map .map_sec {
     width: 100vw !important;
     max-width: 100vw !important;
@@ -1112,9 +1147,115 @@
     overflow: hidden !important;
   }
 
-  /* Completely hide location list / cards panel on mobile per user request */
+  /* Place cards become a swipeable strip over the bottom of the map */
   .map_cards {
-    display: none !important;
+    position: absolute;
+    top: auto;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cards_list_scroll {
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 16px 8px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .cards_list_scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Width leaves the next card peeking in, which shows the strip scrolls */
+  .map_card {
+    flex: 0 0 calc(100% - 64px);
+    max-width: 340px;
+    scroll-snap-align: start;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  .map_card:hover {
+    transform: none !important;
+  }
+
+  .wrapper_map_card {
+    height: 100%;
+    padding: 6px 12px 6px 6px;
+  }
+
+  .image_map_card {
+    position: relative;
+    width: 56px;
+    height: 56px;
+  }
+
+  .map_card_num {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #121214;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .map_card.is-active .map_card_num {
+    background: #ffffff;
+    color: #121214;
+  }
+
+  .transit_pill_card {
+    display: none;
+  }
+
+  .transit_pill_card.is-mobile {
+    display: inline-flex;
+  }
+
+  /* Pin numbers sit over the pin's hole and match the cards */
+  .poi-marker-pin {
+    position: relative;
+  }
+
+  .poi-marker-num {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #121214;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .poi-marker-pin.is-active path {
+    fill: #121214;
+    stroke: #ffffff;
   }
 
   .on_the_map .map_box {
