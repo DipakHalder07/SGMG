@@ -2684,6 +2684,34 @@ body.is-hero .menu {
   box-shadow: none !important;
 }
 
+.property_slider_slide .apart_image {
+  border-radius: 6px;
+  height: 18em;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.property_slider_slide .apart_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.property_slider_slide .content_apart {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.85rem;
+}
+
+@media (min-width: 992px) {
+  .property_listing_section.only_desktop {
+    display: block;
+    width: 100%;
+  }
+}
+
 .property_slider_controls {
   display: flex;
   justify-content: space-between;
@@ -6552,7 +6580,8 @@ body.is-hero .menu {
   box-sizing: border-box;
 }
 
-.checkbox.is-active {
+.checkbox.is-active,
+.clear_btn.is-active {
   background-color: #292929;
   color: #ffffff;
   border-color: #292929;
@@ -7026,10 +7055,7 @@ body.is-hero .menu {
 
   .apartments-grid-carousel-ui .carousel-prev,
   .apartments-grid-carousel-ui .carousel-next {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 3.5em;
-    padding: 0 0 0.1rem 0;
+    display: none !important;
   }
 
   .apartments-grid-carousel-ui .carousel-prev {
@@ -7258,92 +7284,194 @@ body.is-hero .menu {
   }
 
   .apartments_grid {
-    gap: 4em 1.5em;
+    column-gap: 1.5rem;
+    row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
 
   .apart_image.grid_apartments {
     width: 100%;
-    height: 38em;
+    height: clamp(260px, 38vw, 360px);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
-    padding: 1.15em;
+    padding: clamp(12px, 1.15vw, 18px);
   }
 
   .apart_title_line {
-    margin-top: 0.4em;
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(17px, 1.25vw, 22px) !important;
+    font-size: clamp(17px, 2.5vw, 22px) !important;
     font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .price_txt {
-    font-size: clamp(15px, 1.1vw, 20px) !important;
+    font-size: clamp(15px, 2.5vw, 20px) !important;
     font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .mnth_txt {
-    font-size: 1.3em;
+    font-size: clamp(11px, 1.3vw, 13px);
   }
 
   .icon_price {
-    width: 3em;
-    height: 3em;
-    padding: 0.65em;
+    width: clamp(22px, 3vw, 26px);
+    height: clamp(22px, 3vw, 26px);
+    padding: clamp(4px, 0.65vw, 6px);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content_apart {
     z-index: 2;
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
     position: relative;
   }
 
   .explore_button {
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
+    display: flex;
   }
 
-  .text_box.apartments_button {
-    width: auto !important;
-    min-height: auto !important;
-    padding-left: 4em !important;
-    padding-right: 4em !important;
-    font-size: 1.2em !important;
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
+    height: 40px !important;
+    min-height: 40px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    font-size: clamp(11px, 1.2vw, 13px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+  }
+
+  .explore_button .button .icon_box.is-right {
+    width: 40px !important;
+    height: 40px !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
   }
 
   .tag_available {
     padding: 0.5rem 0.4rem;
-    font-size: 1.4em;
+    font-size: clamp(11px, 1.4vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
   }
 
   .dot_available {
-    width: 0.35em;
-    height: 0.35em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 100%;
+    flex-shrink: 0;
   }
 
   .tag_info {
     padding: 0.25rem 0.37rem;
-    font-size: 1.4em;
+    font-size: clamp(11px, 1.4vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
   }
 
   .icon_tag {
-    width: 1.8em;
-    height: 1.8em;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   .checkbox,
-  .filter_title {
-    font-size: 1.2em;
+  .clear_btn {
+    font-size: 12.5px !important;
   }
 
-  .clear_btn {
-    font-size: 1.2em;
+  .filter_title {
+    font-size: 14px !important;
   }
 
   .filters_box.last_filter {
-    margin-top: 4.5em;
+    margin-top: 1.5rem !important;
   }
 
   .filters_wrap {
@@ -7371,71 +7499,214 @@ body.is-hero .menu {
   }
 
   .apartments_grid {
-    gap: 3.5em 1.5em;
+    column-gap: 1.5rem;
+    row-gap: 3.5rem;
     grid-template-columns: 1fr;
   }
 
   .apart_image.grid_apartments {
-    height: 62em;
+    height: clamp(280px, 62vw, 420px);
     width: 100%;
     border-radius: 4px;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
-    padding: 2em;
+    padding: clamp(14px, 2vw, 20px);
+  }
+
+  .apart_title_line {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(17px, 3.8vw, 22px) !important;
+    font-size: clamp(17px, 3vw, 22px) !important;
     font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .price_txt,
   .price_txt.specific_card {
-    font-size: clamp(15px, 3.4vw, 20px) !important;
+    font-size: clamp(15px, 3vw, 20px) !important;
     font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .mnth_txt {
-    font-size: 12px !important;
+    font-size: clamp(11px, 1.85vw, 13px) !important;
   }
 
   .icon_price {
-    width: 3.5em;
-    height: 3.5em;
-    padding: 0.7em;
+    width: clamp(24px, 3.5vw, 28px);
+    height: clamp(24px, 3.5vw, 28px);
+    padding: clamp(4px, 0.7vw, 6px);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content_apart {
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
   }
 
   .explore_button {
-    margin-top: 1.65em;
+    margin-top: 1.65rem !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
-  .text_box.apartments_button {
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: clamp(38px, 6vw, 42px) !important;
+    min-height: clamp(38px, 6vw, 42px) !important;
+    column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    font-size: clamp(11.5px, 1.45vw, 13.5px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+  }
+
+  .explore_button .button .icon_box.is-right {
     width: auto !important;
-    padding-left: 4em !important;
-    padding-right: 4em !important;
-    font-size: 1.45em !important;
+    height: 100% !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .tag_available,
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow-icon {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .explore_button .button .arrow_icon svg,
+  .explore_button .button .arrow-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
+  }
+
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: clamp(11px, 1.6vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .dot_available {
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 100%;
+    flex-shrink: 0;
+  }
+
   .tag_info {
-    font-size: 1.6em;
+    padding: 0.25rem 0.37rem;
+    font-size: clamp(11px, 1.6vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .icon_tag {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   /* Mobile Filters Drawer */
+  /* Mobile Filters Drawer */
   .filters {
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     background-color: var(--white, #ffffff);
     flex-flow: column;
     width: 100% !important;
     max-width: 100vw !important;
     height: 100vh;
     height: 100dvh;
-    padding: 1.5rem 1rem calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 1.25rem 1.15rem calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
     display: none;
     position: fixed;
     inset: 0%;
@@ -7453,12 +7724,14 @@ body.is-hero .menu {
     justify-content: space-between;
     align-items: center;
     font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-    font-size: 5.5em;
-    line-height: 1.1;
-    color: #292929;
+    font-size: clamp(22px, 6.5vw, 26px) !important;
+    line-height: 1.15 !important;
+    color: var(--black, #292929) !important;
     display: flex;
     width: 100%;
+    margin-bottom: clamp(16px, 4.5vw, 22px);
     box-sizing: border-box;
+    flex-shrink: 0;
   }
 
   .close_button {
@@ -7466,13 +7739,19 @@ body.is-hero .menu {
     border-radius: 100%;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.6rem;
+    width: clamp(32px, 8.5vw, 36px);
+    height: clamp(32px, 8.5vw, 36px);
+    padding: clamp(7px, 2vw, 9px);
     display: flex;
+    flex-shrink: 0;
     overflow: hidden;
     cursor: pointer;
     box-sizing: border-box;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .close_button:active {
+    transform: scale(0.92);
   }
 
   .close_button .image,
@@ -7480,6 +7759,8 @@ body.is-hero .menu {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
+    filter: brightness(0) invert(1);
   }
 
   .filter_form {
@@ -7493,26 +7774,29 @@ body.is-hero .menu {
 
   .form_filters {
     flex-flow: column;
-    height: 100%;
     display: flex;
     flex: 1;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    justify-content: space-between;
   }
 
   .filters_flex {
-    row-gap: 1.5rem;
+    row-gap: clamp(14px, 3.8vw, 20px);
+    gap: clamp(14px, 3.8vw, 20px);
     padding-right: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    margin-bottom: 1.5rem;
   }
 
   .filters_box {
-    row-gap: 1rem;
+    row-gap: 0.6rem;
+    gap: 0.6rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -7520,18 +7804,73 @@ body.is-hero .menu {
   }
 
   .filters_box.last_filter {
-    margin-top: 1.5rem;
+    margin-top: 0 !important;
   }
 
-  .filters_type {
-    column-gap: 0.5rem;
-    display: flex;
+  .filter_title {
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(13px, 3.5vw, 14.5px) !important;
+    font-weight: 500 !important;
+    color: var(--black, #292929) !important;
+    line-height: 1.2 !important;
   }
 
   .filters_wrap {
-    gap: 0.5rem;
+    gap: 6px;
+    row-gap: 6px;
+    column-gap: 6px;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .filters_type {
+    gap: 6px;
+    row-gap: 6px;
+    column-gap: 6px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .clear_btn,
+  .checkbox {
+    font-size: clamp(11.5px, 3vw, 12.5px) !important;
+    line-height: 1 !important;
+    border: 1px solid rgba(41, 41, 41, 0.22) !important;
+    border-radius: 4px !important;
+    background: transparent;
+    color: var(--black, #292929);
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: all 0.25s ease;
+  }
+
+  .clear_btn > div,
+  .checkbox_txt,
+  .radio_txt {
+    padding: 0.55rem 0.95rem !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+
+  .checkbox.is-active,
+  .clear_btn.is-active {
+    background-color: var(--black, #292929) !important;
+    color: #ffffff !important;
+    border-color: var(--black, #292929) !important;
   }
 
   .buttons_filters {
@@ -7541,121 +7880,155 @@ body.is-hero .menu {
     justify-content: stretch !important;
     align-items: center !important;
     margin-top: auto !important;
-    padding-top: 1.25rem !important;
-    padding-bottom: 0.5rem !important;
-    border-top: none !important;
+    padding-top: 1rem !important;
+    padding-bottom: 0.25rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
   .show_variants {
-    background-color: var(--primary, #2391cf);
+    background-color: var(--primary, #2391cf) !important;
     flex: 1.2 1 0 !important;
     width: auto !important;
     min-width: 0 !important;
-    max-width: none !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px !important;
-    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-    font-size: 13px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 14px !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(12.5px, 3.2vw, 14px) !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
     display: flex !important;
-    cursor: pointer;
+    cursor: pointer !important;
     box-sizing: border-box !important;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
   }
 
   .show_variants:hover {
-    opacity: 0.92;
+    opacity: 0.92 !important;
   }
 
   .show_variants:active {
-    transform: scale(0.98);
+    transform: scale(0.98) !important;
   }
 
   .clear_button {
-    background-color: rgba(41, 41, 41, 0.12);
-    border: none;
-    border-radius: 6px;
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(41, 41, 41, 0.08) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    justify-content: center !important;
+    align-items: center !important;
     flex: 1 1 0 !important;
     width: auto !important;
     min-width: 0 !important;
-    max-width: none !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
-    padding: 0 10px !important;
-    color: var(--black, #292929);
-    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-    font-size: 13px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    padding: 0 14px !important;
+    color: var(--black, #292929) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(12.5px, 3.2vw, 14px) !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
     display: flex !important;
-    cursor: pointer;
-    text-decoration: none;
+    cursor: pointer !important;
+    text-decoration: none !important;
     box-sizing: border-box !important;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
   }
 
   .clear_button:hover {
-    background-color: rgba(41, 41, 41, 0.16);
+    background-color: rgba(41, 41, 41, 0.14) !important;
   }
 
   .clear_button:active {
-    transform: scale(0.98);
+    transform: scale(0.98) !important;
   }
 
   .clear_button div {
-    font-size: 13px !important;
-    font-weight: 500 !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
     white-space: nowrap !important;
-  }
-
-  .checkbox {
-    font-size: 1.85em;
-  }
-
-  .filter_title {
-    font-size: 2em;
-  }
-
-  .clear_btn {
-    font-size: 1.85em;
+    color: inherit !important;
   }
 
   .fs-rangeslider_wrapper.helper {
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
   .fs-message {
     width: 100% !important;
+    display: flex !important;
     justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
     box-sizing: border-box !important;
   }
 
   .fs-rangeslider_input.helper {
-    width: 48% !important;
+    flex: 1 !important;
+    width: auto !important;
+    height: 38px !important;
+    padding: 0 12px !important;
+    font-size: 12.5px !important;
+    border: 1px solid rgba(41, 41, 41, 0.22) !important;
+    border-radius: 4px !important;
+    color: var(--black, #292929) !important;
+    background: #ffffff !important;
     box-sizing: border-box !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    text-align: center !important;
+  }
+
+  .dash_field {
+    font-size: 14px !important;
+    opacity: 0.45 !important;
+    flex-shrink: 0 !important;
   }
 
   .fs-rangeslider_track.helper {
-    width: calc(100% - 16px) !important;
-    margin: 10px 8px 24px 8px !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: rgba(41, 41, 41, 0.15) !important;
+    border-radius: 2px !important;
+    margin: 14px 0 18px 0 !important;
+    position: relative !important;
     box-sizing: border-box !important;
+  }
+
+  .fs-rangeslider_fill.helper {
+    background: var(--primary, #2391cf) !important;
+    height: 100% !important;
+    border-radius: 2px !important;
+  }
+
+  .fs-rangeslider_handle.helper {
+    width: 18px !important;
+    height: 18px !important;
+    background: #ffffff !important;
+    border: 2px solid var(--primary, #2391cf) !important;
+    border-radius: 100% !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
+  }
+
+  .fs-rangeslider_handle-value {
+    display: none !important;
   }
 
   /* Mobile Floating Sticky Filter Button - Removed per user request */
@@ -7674,34 +8047,130 @@ body.is-hero .menu {
   .apartments_grid {
     row-gap: 1.6rem;
     grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .apart_image.grid_apartments {
     border-radius: 4px;
-    height: 82em;
+    height: 82vw;
+    max-height: 380px;
+    min-height: 270px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
     padding: 0.8rem;
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: clamp(11px, 3.15vw, 12.5px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    pointer-events: auto;
+  }
+
+  .dot_available {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 100%;
+    flex-shrink: 0;
+  }
+
+  .txt_available {
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  .tags_info {
+    column-gap: 0.25rem;
+    gap: 0.25rem;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    pointer-events: auto;
+  }
+
+  .tag_info {
+    padding: 0.25rem 0.37rem;
+    font-size: clamp(10.5px, 3vw, 12px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .icon_tag {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon_tag img,
+  .icon_tag .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .content_apart {
+    margin-top: clamp(10px, 3vw, 14px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .apart_title_line {
-    margin-top: 0px;
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(17px, 4.6vw, 22px) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(18px, 5.5vw, 22px) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
     font-weight: 400 !important;
+    text-decoration: none;
+    white-space: nowrap;
   }
 
-  .price_txt,
-  .price_txt.specific_card {
-    font-size: clamp(15px, 4.2vw, 20px) !important;
-    font-weight: 400 !important;
-  }
-
-  .mnth_txt {
-    font-size: clamp(11px, 2.8vw, 13px) !important;
+  .price_box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 0.375rem;
+    gap: 0.375rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .icon_price {
@@ -7710,44 +8179,140 @@ body.is-hero .menu {
     width: 1.6rem;
     height: 1.6rem;
     padding: 0.4rem;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-radius: 100%;
   }
 
-  .content_apart,
+  .price_txt,
+  .price_txt.specific_card {
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(16px, 5.5vw, 21px) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
+    font-weight: 400 !important;
+    white-space: nowrap;
+  }
+
+  .mnth_txt {
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+    font-size: clamp(11px, 3.5vw, 14px) !important;
+    opacity: 0.55;
+    line-height: 1.2;
+    color: var(--black, #292929);
+    margin-bottom: auto;
+    white-space: nowrap;
+  }
+
   .explore_button {
-    margin-top: 3em;
+    margin-top: clamp(10px, 3vw, 14px) !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
-  .text_box.apartments_button {
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: clamp(38px, 10vw, 42px) !important;
+    min-height: clamp(38px, 10vw, 42px) !important;
+    grid-column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
     width: 88% !important;
-    font-size: 3em !important;
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 16px !important;
+    font-size: clamp(11px, 3vw, 13px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
   }
 
-  .tag_available {
-    padding: 0.5rem 0.4rem;
-    font-size: 3.15em;
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
   }
 
-  .dot_available {
-    width: 0.25rem;
-    height: 0.25rem;
+  .explore_button .button .icon_box.is-right {
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    height: 100% !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .tag_info {
-    padding: 0.25rem 0.37rem;
-    font-size: 3em;
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .icon_tag {
-    width: 1.25rem;
-    height: 1.25rem;
+  .explore_button .button .arrow-icon {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .explore_button .button .arrow_icon svg,
+  .explore_button .button .arrow-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
   }
 
   .filters {
-    z-index: 9999 !important;
-    padding-top: 1.25rem !important;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    z-index: 99999 !important;
+    padding: 1.15rem 1rem calc(1rem + env(safe-area-inset-bottom, 0px)) 1rem !important;
     width: 100% !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
@@ -7755,44 +8320,51 @@ body.is-hero .menu {
     overflow-y: auto !important;
   }
 
-  .filters_box {
-    row-gap: 0.8rem;
+  .filter_heading {
+    font-size: clamp(21px, 6vw, 24px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
   }
 
-  .filters_box.last_filter {
-    margin-top: 1.5rem !important;
+  .filters_box {
+    row-gap: 0.5rem;
+    gap: 0.5rem;
   }
 
   .filters_flex {
-    row-gap: 1.4rem;
-    padding-right: 0;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    row-gap: 1.15rem;
+    gap: 1.15rem;
+    margin-bottom: 1.25rem;
   }
 
-  .filter_heading {
-    justify-content: space-between;
-    align-items: center;
-    font-size: 6.5em;
-    width: 100%;
-    box-sizing: border-box;
+  .filter_title {
+    font-size: 13.5px !important;
+  }
+
+  .clear_btn,
+  .checkbox {
+    font-size: 11.5px !important;
+  }
+
+  .clear_btn > div,
+  .checkbox_txt,
+  .radio_txt {
+    padding: 0.5rem 0.85rem !important;
   }
 
   .buttons_filters {
-    column-gap: 8px !important;
     gap: 8px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+    column-gap: 8px !important;
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.25rem !important;
   }
 
   .show_variants,
   .clear_button {
     font-size: 13px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
   }
 
   .clear_button div {
@@ -7801,18 +8373,6 @@ body.is-hero .menu {
 
   .fix_filter {
     display: none !important;
-  }
-
-  .checkbox {
-    font-size: 3em;
-  }
-
-  .filter_title {
-    font-size: 3.5em;
-  }
-
-  .clear_btn {
-    font-size: 3em;
   }
 }
 

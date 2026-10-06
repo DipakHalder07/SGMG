@@ -104,7 +104,7 @@ export default function ApartmentsPage() {
                       <div className="filters_wrap">
                         <button
                           type="button"
-                          className="clear_btn w-inline-block"
+                          className={`clear_btn w-inline-block ${selectedType === "All" ? "is-active" : ""}`}
                           onClick={() => setSelectedType("All")}
                         >
                           <div>All</div>
@@ -157,7 +157,7 @@ export default function ApartmentsPage() {
                           <input
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
-                            value={minPrice.toFixed(2)}
+                            value={`₹${minPrice.toFixed(2)} L`}
                             placeholder="₹0.00 L"
                             readOnly
                           />
@@ -165,7 +165,7 @@ export default function ApartmentsPage() {
                           <input
                             className="fs-rangeslider_input helper w-input is-list-active"
                             type="text"
-                            value={maxPrice.toFixed(2)}
+                            value={`₹${maxPrice.toFixed(2)} L`}
                             placeholder="₹95.00 L"
                             readOnly
                           />
