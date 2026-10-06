@@ -5,6 +5,7 @@ import { prefetchCommonRoutes } from "../lib/prefetch";
 const ROUTE_TITLES: Record<string, string> = {
   "/": "SGMG Luxury Residences • Sushil Gangadhar Mittal Group",
   "/apartments": "Floor Plans & Residences • SGMG",
+  "/commercial": "Retail & Commercial • SGMG",
   "/location": "Neighborhood & Location Showcase • SGMG",
   "/about": "About Us • SGMG Residences",
   "/team": "Our Leadership Team • SGMG",

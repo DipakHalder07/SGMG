@@ -261,7 +261,6 @@ export default function HomePage() {
 
   // Hero Interactive Zones & Brightness State (matching 21oaks)
   const brightnessInputRef = useRef<HTMLInputElement>(null);
-  const dynamicSectionRef = useRef<HTMLElement>(null);
 
   const handleBrightnessChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = Number(e.target.value);
@@ -440,127 +439,7 @@ export default function HomePage() {
     }
   };
 
-  // 3. Dynamic Section Photos GSAP ScrollTrigger — mobile/tablet only
-  useEffect(() => {
-    const section = dynamicSectionRef.current;
-    if (!section) return;
 
-    const mm = gsap.matchMedia();
-    mm.add("(max-width: 991px)", () => {
-      const ctx = gsap.context(() => {
-      const title = section.querySelector(".middle");
-      const gallery = section.querySelector(".interaction_gallery");
-      const center = section.querySelector(".photo--center");
-
-      const lt = section.querySelector(".photo--lt");
-      const lm = section.querySelector(".photo--lm");
-      const lb = section.querySelector(".photo--lb");
-      const rt = section.querySelector(".photo--rt");
-      const rm = section.querySelector(".photo--rm");
-      const rb = section.querySelector(".photo--rb");
-
-      if (!title || !gallery || !center) return;
-
-      const left = [lt, lm, lb].filter(Boolean) as HTMLElement[];
-      const right = [rt, rm, rb].filter(Boolean) as HTMLElement[];
-
-      const offLeft = (el: HTMLElement) =>
-        -(window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160);
-      const offRight = (el: HTMLElement) =>
-        window.innerWidth + (el.offsetWidth || el.getBoundingClientRect().width || 200) + 160;
-
-      gsap.set(center, { scale: 0, transformOrigin: "50% 50%" });
-      gsap.set([lt, lm, lb, rt, rm, rb].filter(Boolean), {
-        autoAlpha: 0,
-        y: 180,
-        scale: 0.9,
-        x: 0,
-      });
-
-      // Title zoom scrub matching live 21oaks.org
-      gsap.to(center, {
-        scale: 1.12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: title,
-          start: "top top",
-          end: "bottom -120%",
-          scrub: true,
-        },
-      });
-
-      // Gallery stage pin & scatter timeline
-      const isDesktop = window.matchMedia("(min-width: 992px)").matches;
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: gallery,
-          start: "top top",
-          end: "+=300%",
-          pin: true,
-          pinSpacing: true,
-          scrub: isDesktop ? 1.2 : true,
-          anticipatePin: isDesktop ? 1 : 0,
-          fastScrollEnd: true,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.to(
-        [lt, lm, lb, rt, rm, rb].filter(Boolean),
-        {
-          autoAlpha: 1,
-          scale: 1,
-          ease: "none",
-          duration: 0.2,
-          stagger: 0.02,
-        },
-        0.02
-      );
-
-      if (lt) tl.to(lt, { y: -16, ease: "none", duration: 1.2 }, 0.02);
-      if (lm) tl.to(lm, { y: -24, ease: "none", duration: 1.2 }, 0.02);
-      if (lb) tl.to(lb, { y: -12, ease: "none", duration: 1.2 }, 0.02);
-      if (rt) tl.to(rt, { y: -18, ease: "none", duration: 1.2 }, 0.02);
-      if (rm) tl.to(rm, { y: -10, ease: "none", duration: 1.2 }, 0.02);
-      if (rb) tl.to(rb, { y: -22, ease: "none", duration: 1.2 }, 0.02);
-
-      tl.to(
-        left,
-        {
-          x: (_: any, el: any) => offLeft(el),
-          y: "-=52",
-          ease: "none",
-          duration: 1.1,
-          stagger: 0.05,
-        },
-        1.25
-      );
-
-      tl.to(
-        right,
-        {
-          x: (_: any, el: any) => offRight(el),
-          y: "-=52",
-          ease: "none",
-          duration: 1.1,
-          stagger: 0.05,
-        },
-        1.25
-      );
-
-      const onResize = () => ScrollTrigger.refresh();
-      window.addEventListener("resize", onResize);
-
-      return () => {
-        window.removeEventListener("resize", onResize);
-      };
-      }, section);
-
-      return () => ctx.revert();
-    });
-
-    return () => mm.revert();
-  }, []);
 
   const apartmentsSectionRef = useRef<HTMLElement>(null);
 
@@ -1744,7 +1623,7 @@ export default function HomePage() {
         </section>
 
         {/* DYNAMIC SECTION (Everything modern living should be) */}
-        <section ref={dynamicSectionRef} className="dynamic_section" id="residences" data-section="light">
+        <section className="dynamic_section desktop_only" id="residences" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything modern<br />
@@ -1916,33 +1795,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="interaction_gallery only_mobile">
-            <div className="wrapper_dynamic">
-              <div className="interaction__stage">
-                <div className="photo photo--rt">
-                  <img src="/assets/gallery/Elevation_Evening_1.webp" loading="lazy" decoding="async" alt="Elevation Evening" className="image" />
-                </div>
-                <div className="photo photo--lt">
-                  <img src="/assets/gallery/Landscape_Lawn_1.webp" loading="lazy" decoding="async" alt="Landscape Lawn" className="image" />
-                </div>
-                <div className="photo photo--center">
-                  <img src="/assets/gallery/center.webp" loading="eager" alt="SGMG Modern Living" className="image" />
-                </div>
-                <div className="photo photo--lm">
-                  <img src="/assets/gallery/Gym_1.webp" loading="lazy" decoding="async" alt="Modern Fitness Gym" className="image" />
-                </div>
-                <div className="photo photo--rm">
-                  <img src="/assets/gallery/Indoor_Games_Arena_1.webp" loading="lazy" decoding="async" alt="Indoor Games Arena" className="image" />
-                </div>
-                <div className="photo photo--lb">
-                  <img src="/assets/gallery/Swimming_Pool_1.webp" loading="lazy" decoding="async" alt="Swimming Pool" className="image" />
-                </div>
-                <div className="photo photo--rb">
-                  <img src="/assets/gallery/CommunityHall_1.webp" loading="lazy" decoding="async" alt="Community Hall" className="image" />
-                </div>
-              </div>
-            </div>
-          </div>
+
         </section>
       </main>
 

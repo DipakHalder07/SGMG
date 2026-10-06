@@ -1,274 +1,82 @@
 /* ==========================================================================
    SGMG TEAM PAGE
-   Same system as careers.css: one type scale, one accent, hairline rules.
-   Sizes and families carry !important because index.css forces Michroma and
-   large clamps onto h1/h2/h3, button and [class*="heading"].
+   Built from the Residences layout (index.css) and the shared story section
+   (story.css); these are only the extras the team page needs.
    ========================================================================== */
 
-.team_page {
-  --tm-fs-xs: 0.6875rem;   /* labels, counts */
-  --tm-fs-sm: 0.8125rem;   /* meta, card body */
-  --tm-fs-base: 0.9375rem; /* body */
-  --tm-fs-item: 0.8125rem; /* item headings (h3) */
-  --tm-fs-lg: 0.9375rem;   /* member names */
-  --tm-fs-card: clamp(1rem, 1.15vw, 1.1875rem); /* card member names */
-  --tm-fs-xl: clamp(0.9375rem, 1vw, 1.0625rem);  /* section headings (h2) */
-  --tm-fs-2xl: clamp(1.5rem, 2.6vw, 2.25rem);    /* page title (h1) */
-
-  --tm-gap-heading: 0.35rem;
-  --tm-gap-block: 2rem;
-
-  --tm-ink: #292929;
-  --tm-muted: #6b6b6b;
-  --tm-line: rgba(41, 41, 41, 0.12);
-  --tm-accent: #2391cf;
-  --tm-bg: #ffffff;
-
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: var(--tm-bg);
-  color: var(--tm-ink);
-  overflow-x: hidden;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-}
-
-/* Canonical container system (see index.css) — full bleed, 2rem side gutter. */
-.team_wrap {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+/* Left column, in the place of the Residences filters */
+.team_side {
+  width: 26%;
+  padding-right: 3em;
   box-sizing: border-box;
 }
 
-/* index.css forces Michroma !important on `button`, [class*="btn"] and
-   [class*="heading"]. Body copy takes the body face back explicitly. */
-.team_page .team_hero_desc,
-.team_page .team_section_subtitle,
-.team_page .team_member_role,
-.team_page .team_member_bio,
-.team_page .team_action,
-.team_page .team_contact_label,
-.team_page .team_contact_value {
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
-  letter-spacing: normal;
-}
-
-/* --- HERO --- */
-.team_hero {
-  padding: clamp(7rem, 14vw, 10rem) 0 clamp(2.5rem, 5vw, 3.75rem);
-}
-
-.team_hero_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--tm-fs-2xl) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.3 !important;
-  letter-spacing: -0.01em;
-  color: var(--tm-ink);
-  max-width: 22ch;
-  margin: 0 0 var(--tm-gap-heading);
-}
-
-.team_hero_title .accent_scribble {
-  color: var(--tm-accent);
-}
-
-.team_hero_desc {
-  font-size: var(--tm-fs-base);
+.team_side_text {
+  margin: 1em 0 0;
+  font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--tm-muted);
-  max-width: 62ch;
-  margin: 0;
+  color: rgba(41, 41, 41, 0.78);
 }
 
-/* --- SECTION --- */
-.team_section {
-  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
-  border-top: 1px solid var(--tm-line);
-}
-
-.team_section_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--tm-fs-xl) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.4 !important;
-  color: var(--tm-ink);
-  margin: 0 0 var(--tm-gap-heading);
-}
-
-.team_section_subtitle {
-  font-size: var(--tm-fs-base);
-  line-height: 1.6;
-  color: var(--tm-muted);
-  max-width: 66ch;
-  margin: 0 0 var(--tm-gap-block);
-}
-
-/* --- LEADERSHIP CARDS --- */
-/* No box, no hover: photo, name, role, bio, text links. */
-.team_grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 3rem clamp(1.25rem, 2vw, 2rem);
-}
-
-.team_card {
+.team_contact {
   display: flex;
   flex-direction: column;
+  gap: 1.1em;
+  margin: 2em 0 0;
 }
 
-.team_card_media {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 4px;
-  background: rgba(41, 41, 41, 0.06);
+.team_contact div {
+  padding-top: 0.8em;
+  border-top: 1px solid rgba(41, 41, 41, 0.15);
 }
 
-/* The source photos are wide environmental shots: a square crop biased just
-   above centre keeps the subject framed instead of filling with ceiling. */
-.team_photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 28%;
-  display: block;
-}
-
-/* Monogram fills the media area whenever a headshot fails to load. */
-.team_initials {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: 0.06em;
-  color: var(--tm-muted);
-}
-
-.team_card_body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-top: 1.25rem;
-}
-
-.team_member_name {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--tm-fs-card) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.35 !important;
-  color: var(--tm-ink);
-  margin: 0 0 0.3rem !important;
-}
-
-.team_member_role {
-  font-size: var(--tm-fs-sm);
-  color: var(--tm-muted);
-  margin: 0 0 1rem;
-}
-
-/* flex:1 pushes the links to the bottom so they line up across cards whose
-   bios differ in length. */
-.team_member_bio {
-  flex: 1;
-  font-size: var(--tm-fs-sm);
-  line-height: 1.7;
-  color: var(--tm-muted);
-  margin: 0;
-}
-
-.team_card_actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-.team_action {
-  font-size: var(--tm-fs-sm);
-  color: var(--tm-ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--tm-line);
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.team_action:hover {
-  color: var(--tm-accent);
-  border-bottom-color: var(--tm-accent);
-}
-
-/* --- CONTACT --- */
-.team_contact_row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2vw, 2rem);
-}
-
-.team_contact_card {
-  display: block;
-  padding-top: 1rem;
-  border-top: 1px solid var(--tm-line);
-  text-decoration: none;
-  color: inherit;
-}
-
-.team_contact_label {
-  font-size: var(--tm-fs-xs);
+.team_contact dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--tm-muted);
-  margin: 0 0 0.6rem;
+  color: rgba(41, 41, 41, 0.6);
+  margin-bottom: 0.35em;
 }
 
-.team_contact_value {
-  font-size: var(--tm-fs-base);
-  line-height: 1.6;
-  color: var(--tm-ink);
+.team_contact dd {
   margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #292929;
+}
+
+.team_contact a {
+  color: inherit;
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.team_contact_card--link:hover .team_contact_value {
-  color: var(--tm-accent);
+.team_contact a:hover {
+  color: #2391cf;
 }
 
-/* --- RESPONSIVE --- */
+/* Monogram in the photo's place until real headshots arrive */
+.team_monogram {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaf4fb;
+  color: #2391cf;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: 0.04em;
+}
+
+/* Tablet and phone: the column stacks under the cards */
 @media (max-width: 991px) {
-  .team_wrap {
-    padding-left: 1.35rem;
-    padding-right: 1.35rem;
+  .team-page-view .apartments_sides {
+    flex-direction: column-reverse;
   }
 
-  .team_grid,
-  .team_contact_row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767px) {
-  .team_wrap {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .team_grid {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 2.75rem;
-  }
-
-  .team_card_media {
-    aspect-ratio: 3 / 2;
-  }
-
-  .team_contact_row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.85rem;
+  .team_side {
+    width: 100%;
+    padding: 2.5em 0 0;
   }
 }

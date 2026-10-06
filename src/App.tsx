@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 // Code-split secondary routes for rapid initial bundle size
 const ApartmentsPage = lazy(() => import("./pages/ApartmentsPage"));
 const ApartmentDetailPage = lazy(() => import("./pages/ApartmentDetailPage"));
+const CommercialPage = lazy(() => import("./pages/CommercialPage"));
 const AmenitiesPage = lazy(() => import("./pages/AmenitiesPage"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
 const HowToApplyPage = lazy(() => import("./pages/HowToApplyPage"));
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/apartments" element={<ApartmentsPage />} />
           <Route path="/apartments/:slug" element={<ApartmentDetailPage />} />
+          <Route path="/commercial" element={<CommercialPage />} />
           <Route path="/amenities" element={<AmenitiesPage />} />
           <Route path="/location" element={<LocationPage />} />
           <Route path="/about" element={<HowToApplyPage />} />
@@ -51,6 +53,7 @@ export default function App() {
           <Route path="/how-to-apply" element={<Navigate to="/about" replace />} />
           <Route path="/faqs" element={<Navigate to="/faq" replace />} />
           <Route path="/our-team" element={<Navigate to="/team" replace />} />
+          <Route path="/commercial-retail" element={<Navigate to="/commercial" replace />} />
 
           {/* Catch-all 404 Route */}
           <Route path="*" element={<NotFoundPage />} />

@@ -5,6 +5,7 @@ import FaqSection from "../components/FaqSection";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../how-to-apply.css";
+import "../story.css";
 
 gsap.registerPlugin(ScrollTrigger);
 if (typeof window !== "undefined") {

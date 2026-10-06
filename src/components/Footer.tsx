@@ -206,6 +206,15 @@ export default function Footer({ hidePreFooterCta = false }: FooterProps) {
                     Residences
                   </span>
                   <span
+                    onClick={() => handleNavClick("/commercial")}
+                    onMouseEnter={() => prefetchRoute("/commercial")}
+                    onTouchStart={() => prefetchRoute("/commercial")}
+                    className="link_f"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Retail &amp; Commercial
+                  </span>
+                  <span
                     onClick={() => handleNavClick("/amenities")}
                     onMouseEnter={() => prefetchRoute("/amenities")}
                     onTouchStart={() => prefetchRoute("/amenities")}

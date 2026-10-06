@@ -1,543 +1,81 @@
 /* ==========================================================================
    SGMG CAREERS PAGE
-   Minimal layout. One type scale, one accent, hairline rules, no card chrome.
+   Built from the Residences layout (index.css) and the shared story section
+   (story.css); these are only the extras the careers page needs.
    ========================================================================== */
 
-.careers_page {
-  /* Type scale — every size on this page comes from these six steps. */
-  --cr-fs-xs: 0.6875rem;   /* captions, field labels */
-  --cr-fs-sm: 0.8125rem;   /* meta, item body */
-  --cr-fs-base: 0.9375rem; /* body */
-  --cr-fs-item: 0.8125rem; /* item headings (h3) */
-  --cr-fs-lg: 0.9375rem;   /* job titles */
-  --cr-fs-xl: clamp(0.9375rem, 1vw, 1.0625rem); /* section headings (h2) */
-  --cr-fs-2xl: clamp(1.5rem, 2.6vw, 2.25rem);   /* page title (h1) */
-
-  /* One rhythm for every heading -> body pair on the page. */
-  --cr-gap-heading: 0.35rem;
-  --cr-gap-block: 2rem;
-
-  --cr-ink: #292929;
-  --cr-muted: #6b6b6b;
-  --cr-line: rgba(41, 41, 41, 0.12);
-  --cr-accent: #2391cf;
-  --cr-bg: #ffffff;
-
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: var(--cr-bg);
-  color: var(--cr-ink);
-  overflow-x: hidden;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-}
-
-.careers_page section {
-  width: 100%;
-}
-
-/* Canonical container system (see index.css) — full bleed, 2rem side gutter. */
-.careers_wrap {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+/* Left column, in the place of the Residences filters */
+.careers_side {
+  width: 26%;
+  padding-right: 3em;
   box-sizing: border-box;
 }
 
-/* index.css forces Michroma !important on `button`, [class*="btn"] and
-   [class*="heading"]. The job rows and filter tabs ARE buttons, so their text
-   inherited a display face. Michroma is for headings only — everything below
-   takes the body face back explicitly. */
-.careers_page .careers_hero_desc,
-.careers_page .careers_section_subtitle,
-.careers_page .careers_value_desc,
-.careers_page .careers_figure figcaption,
-.careers_page .careers_job_row,
-.careers_page .careers_job_row *,
-.careers_page .careers_job_meta,
-.careers_page .careers_job_arrow,
-.careers_page .careers_dept_tab,
-.careers_page .careers_dept_tab *,
-.careers_page .careers_dept_count,
-.careers_page .careers_empty,
-.careers_page .careers_modal_meta,
-.careers_page .careers_modal_desc,
-.careers_page .careers_modal_section_heading,
-.careers_page .careers_modal_list,
-.careers_page .careers_modal_list li,
-.careers_page .careers_label,
-.careers_page .careers_input,
-.careers_page .careers_textarea,
-.careers_page .careers_submit_btn,
-.careers_page .careers_modal_close_btn,
-.careers_page .careers_success_desc {
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
-  letter-spacing: normal;
-}
-
-/* The two exceptions: real headings keep the display face. */
-.careers_page .careers_job_row .careers_job_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-}
-
-/* --- HERO --- */
-.careers_hero {
-  padding: clamp(7rem, 14vw, 10rem) 0 clamp(3.5rem, 7vw, 5.5rem);
-}
-
-.careers_hero_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--cr-fs-2xl) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.3 !important;
-  letter-spacing: -0.01em;
-  color: var(--cr-ink);
-  max-width: 24ch;
-  margin: 0 0 var(--cr-gap-heading);
-}
-
-.careers_hero_title .accent_scribble {
-  color: var(--cr-accent);
-}
-
-.careers_hero_desc {
-  font-size: var(--cr-fs-base);
+.careers_side_text {
+  margin: 1em 0 0;
+  font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--cr-muted);
-  max-width: 62ch;
-  margin: 0 0 var(--cr-gap-block);
+  color: rgba(41, 41, 41, 0.78);
 }
 
-.careers_hero_actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+.careers_side_cta {
+  margin-top: 1.5em;
 }
 
-/* --- IMAGE BAND (quiet full-width figure between sections) --- */
-.careers_figure {
-  position: relative;
-  margin: 0;
-  padding-bottom: clamp(3rem, 6vw, 4.5rem);
-}
-
-
-.careers_figure img {
-  display: block;
-  width: 100%;
-  height: clamp(220px, 34vw, 420px);
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.careers_figure figcaption {
-  margin-top: 0.55rem;
-  font-size: var(--cr-fs-xs);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--cr-muted);
-}
-
-/* --- SHARED SECTION HEADER --- */
-.careers_section {
-  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
-  border-top: 1px solid var(--cr-line);
-}
-
-.careers_section_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--cr-fs-xl) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.4 !important;
-  color: var(--cr-ink);
-  margin: 0 0 var(--cr-gap-heading);
-}
-
-.careers_section_subtitle {
-  font-size: var(--cr-fs-base);
-  line-height: 1.6;
-  color: var(--cr-muted);
-  max-width: 66ch;
-  margin: 0 0 var(--cr-gap-block);
-}
-
-/* --- LIFE AT SGMG --- */
-.careers_values {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-
-.careers_value_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--cr-fs-item) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.5 !important;
-  color: var(--cr-ink);
-  margin: 0 0 var(--cr-gap-heading);
-}
-
-.careers_value_desc {
-  font-size: var(--cr-fs-sm);
-  line-height: 1.6;
-  color: var(--cr-muted);
-  margin: 0;
-}
-
-/* The header is fixed, so scrolling to #openings must clear it. */
-#openings {
-  scroll-margin-top: 7rem;
-}
-
-/* --- JOB FILTERS --- */
-.careers_dept_tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--cr-line);
-}
-
-.careers_dept_tab {
-  appearance: none;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 0 0 0.75rem;
-  margin-bottom: -1px;
-  font-family: inherit;
-  font-size: var(--cr-fs-sm);
-  font-weight: 500;
-  color: var(--cr-muted);
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.careers_dept_tab:hover {
-  color: var(--cr-ink);
-}
-
-.careers_dept_tab.is-active {
-  color: var(--cr-ink);
-  border-bottom-color: var(--cr-ink);
-}
-
-.careers_dept_count {
-  margin-left: 0.4rem;
-  font-size: var(--cr-fs-xs);
-  color: var(--cr-muted);
-}
-
-/* --- JOB LIST (rows, not cards) --- */
-.careers_jobs_list {
-  border-top: 1px solid var(--cr-line);
-}
-
-.careers_job_row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 2rem;
-  width: 100%;
-  padding: 1.75rem 0;
-  border-bottom: 1px solid var(--cr-line);
-  background: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  text-align: left;
-  font-family: inherit;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.careers_job_row:hover .careers_job_title {
-  color: var(--cr-accent);
-}
-
-.careers_job_title {
-  display: block;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-  font-size: var(--cr-fs-lg);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--cr-ink);
-  margin: 0 0 var(--cr-gap-heading);
-  transition: color 0.2s ease;
-}
-
-.careers_job_meta {
-  display: block;
-  font-size: var(--cr-fs-sm);
-  color: var(--cr-muted);
-  margin: 0;
-}
-
-.careers_job_meta span + span::before {
-  content: "·";
-  margin: 0 0.5rem;
-}
-
-.careers_job_arrow {
-  font-size: var(--cr-fs-sm);
-  font-weight: 500;
-  color: var(--cr-muted);
-  white-space: nowrap;
-}
-
-.careers_job_row:hover .careers_job_arrow {
-  color: var(--cr-accent);
-}
-
-.careers_empty {
-  padding: 3rem 0;
-  font-size: var(--cr-fs-base);
-  color: var(--cr-muted);
-}
-
-/* --- MODAL --- */
-.careers_modal_backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(41, 41, 41, 0.45);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: clamp(1rem, 4vw, 3rem) 1rem;
-  overflow-y: auto;
-}
-
-.careers_modal_content {
-  position: relative;
-  width: 100%;
-  max-width: 680px;
-  background: var(--cr-bg);
-  border-radius: 4px;
-  padding: clamp(1.75rem, 4vw, 3rem);
-}
-
-.careers_modal_close_btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  color: var(--cr-muted);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.careers_modal_close_btn:hover {
-  color: var(--cr-ink);
-}
-
-.careers_modal_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--cr-fs-xl) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.4 !important;
-  color: var(--cr-ink);
-  margin: 0 2rem var(--cr-gap-heading) 0;
-}
-
-.careers_modal_meta {
-  font-size: var(--cr-fs-sm);
-  color: var(--cr-muted);
-  margin: 0 0 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--cr-line);
-}
-
-.careers_modal_meta span + span::before {
-  content: "·";
-  margin: 0 0.5rem;
-}
-
-.careers_modal_desc {
-  font-size: var(--cr-fs-base);
-  line-height: 1.65;
-  color: var(--cr-muted);
-  margin: 0;
-}
-
-.careers_modal_section_heading {
-  font-size: var(--cr-fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--cr-ink);
-  margin: 1.5rem 0 var(--cr-gap-heading);
-}
-
-.careers_modal_section_heading.careers_modal_first_heading {
-  margin-top: 0;
-}
-
-.careers_modal_list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.careers_modal_list li {
-  position: relative;
-  padding-left: 1.1rem;
-  margin-bottom: 0.6rem;
-  font-size: var(--cr-fs-sm);
-  line-height: 1.6;
-  color: var(--cr-muted);
-}
-
-.careers_modal_list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--cr-line);
-}
-
-/* --- APPLICATION FORM --- */
-.careers_app_form {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--cr-line);
-}
-
-.careers_form_grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-.careers_form_group {
+.careers_contact {
   display: flex;
   flex-direction: column;
+  gap: 1.1em;
+  margin: 2em 0 0;
 }
 
-.careers_form_group.full_width {
-  grid-column: 1 / -1;
+.careers_contact div {
+  padding-top: 0.8em;
+  border-top: 1px solid rgba(41, 41, 41, 0.15);
 }
 
-.careers_label {
-  font-size: var(--cr-fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.03em;
+.careers_contact dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cr-muted);
-  margin-bottom: 0.4rem;
+  color: rgba(41, 41, 41, 0.6);
+  margin-bottom: 0.35em;
 }
 
-.careers_input,
-.careers_textarea {
-  width: 100%;
-  padding: 0.7rem 0;
-  font-family: inherit;
-  font-size: var(--cr-fs-base);
-  color: var(--cr-ink);
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--cr-line);
-  border-radius: 0;
-  transition: border-color 0.2s ease;
-}
-
-.careers_input::placeholder,
-.careers_textarea::placeholder {
-  color: #b0b0b0;
-}
-
-.careers_input:focus,
-.careers_textarea:focus {
-  outline: none;
-  border-bottom-color: var(--cr-ink);
-}
-
-.careers_textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-.careers_submit_btn {
-  margin-top: 2rem;
-  padding: 0.85rem 2rem;
-  font-family: inherit;
-  font-size: var(--cr-fs-sm);
-  font-weight: 600;
-  color: #ffffff;
-  background: var(--cr-ink);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.careers_submit_btn:hover:not(:disabled) {
-  background: var(--cr-accent);
-}
-
-.careers_submit_btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.careers_success_title {
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  font-size: var(--cr-fs-lg) !important;
-  font-weight: var(--fw-heading, 400) !important;
-  line-height: 1.5 !important;
-  color: var(--cr-ink);
-  margin: 0 0 var(--cr-gap-heading);
-}
-
-.careers_success_desc {
-  font-size: var(--cr-fs-base);
-  line-height: 1.65;
-  color: var(--cr-muted);
+.careers_contact dd {
   margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #292929;
 }
 
-/* --- RESPONSIVE --- */
+.careers_contact a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.careers_contact a:hover {
+  color: #2391cf;
+}
+
+/* One line under the card title saying what the work involves */
+.careers_card_desc {
+  margin: 0.5em 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(41, 41, 41, 0.72);
+}
+
+/* Tablet and phone: the column stacks above the cards so the CV button is
+   the first thing people see */
 @media (max-width: 991px) {
-  .careers_wrap {
-    padding-left: 1.35rem;
-    padding-right: 1.35rem;
+  .careers-page-view .apartments_sides {
+    flex-direction: column;
   }
 
-  .careers_values {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .careers_wrap {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .careers_job_row {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .careers_form_grid {
-    grid-template-columns: 1fr;
-  }
-
-  .careers_dept_tabs {
-    gap: 1.15rem;
+  .careers_side {
+    width: 100%;
+    padding: 0 0 2.5em;
   }
 }
