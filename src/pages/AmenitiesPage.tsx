@@ -1,116 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import lottie, { AnimationItem } from "lottie-web";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FamilySection from "../components/FamilySection";
 import "../amenities.css";
-
-interface AmenityFlowItem {
-  id: string;
-  tag: string;
-  title: string;
-  description: string;
-  includedTitle: string;
-  includedDesc: string;
-  image: string;
-  alt: string;
-}
-
-const AMENITY_ITEMS: AmenityFlowItem[] = [
-  {
-    id: "amenity-1",
-    tag: "Start Your Day",
-    title: "Kitchen",
-    description:
-      "A clean, modern kitchen designed to make mornings easy, whether it’s a quick coffee before class or a simple meal to start the day without friction.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Modern appliances, ample storage, and a functional layout designed for everyday use.",
-    image: "/assets/amenities/flow/amenity-1.avif",
-    alt: "Modern clean kitchen with premium fittings and natural sunlight",
-  },
-  {
-    id: "amenity-2",
-    tag: "Head to Campus / Work",
-    title: "Walkable Location",
-    description:
-      "A well-connected location that keeps everything within reach, making it easy to get to campus, classes, and daily essentials without long commutes or extra planning.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Walkable access to campus, nearby essentials, and quick connections around the area.",
-    image: "/assets/amenities/flow/amenity-2.avif",
-    alt: "Central tree-lined connectivity path and walkable avenue",
-  },
-  {
-    id: "amenity-3",
-    tag: "Stay Focused",
-    title: "Study Lounge",
-    description:
-      "A calm, well-balanced space designed for concentration, offering a comfortable environment to settle in, stay productive, and move through the day with fewer distractions.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Quiet work areas, comfortable seating, and high-speed Wi-Fi.",
-    image: "/assets/amenities/flow/amenity-3.avif",
-    alt: "Quiet study lounge with ergonomic chairs and natural light",
-  },
-  {
-    id: "amenity-4",
-    tag: "Keep Moving",
-    title: "Fitness Center",
-    description:
-      "A flexible training space built to support daily movement, quick workouts, and moments of reset between classes, work, and everything in between.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Cardio and strength equipment, open workout areas, and flexible access.",
-    image: "/assets/amenities/flow/amenity-4.avif",
-    alt: "State of the art fitness center with cardio equipment and weights",
-  },
-  {
-    id: "amenity-5",
-    tag: "Slow Down",
-    title: "Pool, Sundeck & Hot Tub",
-    description:
-      "A resort-style setting designed for slower moments, where you can step outside, recharge, and ease into the evening at your own pace.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Resort pool with sun lounger deck, hot tub, and private cabana seating.",
-    image: "/assets/amenities/flow/amenity-5.avif",
-    alt: "Resort-style outdoor swimming pool and sun terrace",
-  },
-  {
-    id: "amenity-6",
-    tag: "Unwind Together",
-    title: "Clubroom",
-    description:
-      "A relaxed, social space designed for connection, offering a comfortable setting to spend time with others or simply wind down at the end of the day.",
-    includedTitle: "What's included",
-    includedDesc:
-      "Lounge seating, shared social areas, and flexible gathering spaces.",
-    image: "/assets/amenities/flow/amenity-6.avif",
-    alt: "Clubroom lounge with billiards table and gathering spaces",
-  },
-  {
-    id: "amenity-7",
-    tag: "Always Available",
-    title: "Essentials",
-    description:
-      "A layer of everyday conveniences that quietly supports daily life, making sure everything you need is always close and ready when you need it.",
-    includedTitle: "What's included",
-    includedDesc:
-      "On-site services, essential utilities, and convenient access.",
-    image: "/assets/amenities/flow/amenity-7.avif",
-    alt: "24/7 on-site facilities, gated security, and resident services",
-  },
-];
+import "../story.css";
 
 export default function AmenitiesPage() {
   const fsSectionRef = useRef<HTMLDivElement | null>(null);
   const routeLineRef = useRef<SVGPathElement | null>(null);
-  const flowSectionRef = useRef<HTMLElement | null>(null);
-  const cmsSectionRef = useRef<HTMLDivElement | null>(null);
-  const lottieContainerRef = useRef<HTMLDivElement | null>(null);
-  const clockContainerRef = useRef<HTMLDivElement | null>(null);
-  const animRef = useRef<AnimationItem | null>(null);
 
   useEffect(() => {
     document.title = "Amenities • SGMG";
@@ -198,253 +95,7 @@ export default function AmenitiesPage() {
     };
   }, []);
 
-  // 2. LOTTIE ANIMATION INITIALIZATION & PROGRESS SCRUBBING
-  useEffect(() => {
-    if (!lottieContainerRef.current) return;
-
-    try {
-      const anim = lottie.loadAnimation({
-        container: lottieContainerRef.current,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        path: "/assets/lottie/sun-evening.json",
-      });
-
-      animRef.current = anim;
-      anim.addEventListener("DOMLoaded", () => {
-        anim.goToAndStop(0, true);
-      });
-
-      return () => {
-        anim.destroy();
-      };
-    } catch (e) {
-      console.warn("Lottie error:", e);
-    }
-  }, []);
-
-  // 3. EXACT 21OAKS DYNAMIC CLOCK & DAY-TO-NIGHT COLOR SCRUBBING
-  useEffect(() => {
-    const section = cmsSectionRef.current;
-    const flow = flowSectionRef.current;
-    const root = clockContainerRef.current?.querySelector<HTMLElement>("[data-clock]");
-    const timeClock = clockContainerRef.current;
-
-    if (!section || !root || !flow || !timeClock) return;
-
-    const START_HOUR = 8;
-    const END_HOUR = 22;
-    const START_AT = 0.12;
-    const END_AT = 0.92;
-    const NIGHT_START = 17;
-    const NIGHT_END = 18;
-    const CLOCK_COLOR_SCRUB_MIN_WIDTH = 768;
-
-    function clamp(v: number, min: number, max: number) {
-      return Math.max(min, Math.min(max, v));
-    }
-    function lerp(a: number, b: number, t: number) {
-      return a + (b - a) * t;
-    }
-    function rgbToCss(c: number[]) {
-      return `rgb(${c[0]} ${c[1]} ${c[2]})`;
-    }
-
-    function parseRGB(str: string): number[] {
-      const m = str && str.match(/rgba?\(([\d.\s]+),\s*([\d.\s]+),\s*([\d.\s]+)/i);
-      if (!m) return [41, 41, 41];
-      return [Number(m[1]), Number(m[2]), Number(m[3])];
-    }
-
-    function rgbLerp(c1: number[], c2: number[], t: number) {
-      return [
-        Math.round(lerp(c1[0], c2[0], t)),
-        Math.round(lerp(c1[1], c2[1], t)),
-        Math.round(lerp(c1[2], c2[2], t)),
-      ];
-    }
-
-    function toUS(hour24: number) {
-      const isPM = hour24 >= 12;
-      let h12 = hour24 % 12;
-      if (h12 === 0) h12 = 12;
-      return {
-        hh: String(h12).padStart(2, "0"),
-        suffix: isPM ? "PM" : "AM",
-      };
-    }
-
-    function sectionProgress() {
-      const rect = section!.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const raw = (vh - rect.top) / (vh + rect.height);
-      return clamp((raw - START_AT) / (END_AT - START_AT), 0, 1);
-    }
-
-    const initial = toUS(START_HOUR);
-
-    const digits = document.createElement("span");
-    digits.className = "clock-digits";
-
-    function makeDigitWrap(ch: string) {
-      const wrap = document.createElement("span");
-      wrap.className = "digit-wrap";
-
-      const cur = document.createElement("span");
-      cur.className = "digit-current";
-      cur.textContent = ch;
-
-      const next = document.createElement("span");
-      next.className = "digit-next";
-      next.textContent = ch;
-      next.style.transform = "translateY(100%)";
-
-      wrap.appendChild(cur);
-      wrap.appendChild(next);
-      return { wrap, cur, next };
-    }
-
-    const d1 = makeDigitWrap(initial.hh[0]);
-    const d2 = makeDigitWrap(initial.hh[1]);
-
-    digits.appendChild(d1.wrap);
-    digits.appendChild(d2.wrap);
-
-    const mins = document.createElement("span");
-    mins.textContent = ":00";
-
-    const suffix = document.createElement("span");
-    suffix.className = "clock-suffix";
-    suffix.textContent = initial.suffix;
-
-    root.textContent = "";
-    root.appendChild(digits);
-    root.appendChild(mins);
-    root.appendChild(suffix);
-
-    let prevHourFloat = START_HOUR;
-
-    function setDigitProgress(
-      digitObj: { cur: HTMLElement; next: HTMLElement },
-      fromCh: string,
-      toCh: string,
-      t: number
-    ) {
-      if (fromCh === toCh) {
-        digitObj.cur.textContent = toCh;
-        digitObj.next.textContent = toCh;
-        digitObj.cur.style.transform = "translateY(0%)";
-        digitObj.next.style.transform = "translateY(100%)";
-        return;
-      }
-
-      const p = clamp(t, 0, 1);
-      digitObj.cur.textContent = fromCh;
-      digitObj.next.textContent = toCh;
-
-      digitObj.cur.style.transform = `translateY(${-100 * p}%)`;
-      digitObj.next.style.transform = `translateY(${100 - 100 * p}%)`;
-    }
-
-    function updateClock(hourFloat: number) {
-      const dir = hourFloat >= prevHourFloat ? 1 : -1;
-      const baseHour = dir >= 0 ? Math.floor(hourFloat) : Math.ceil(hourFloat);
-      const nextHour = clamp(baseHour + dir, START_HOUR, END_HOUR);
-
-      const fracRaw = dir >= 0 ? hourFloat - baseHour : baseHour - hourFloat;
-      const frac = clamp(fracRaw, 0, 1);
-
-      const a = toUS(baseHour);
-      const b = toUS(nextHour);
-
-      setDigitProgress(d1, a.hh[0], b.hh[0], frac);
-      setDigitProgress(d2, a.hh[1], b.hh[1], frac);
-
-      suffix.textContent = frac < 0.5 ? a.suffix : b.suffix;
-      prevHourFloat = hourFloat;
-    }
-
-    const allAmenityNodes = Array.from(flow.querySelectorAll<HTMLElement>(".amenities_item *"));
-    const tagNodes = Array.from(flow.querySelectorAll<HTMLElement>(".amenities_item .tag_amen, .amenities_item .tag_amen *"));
-
-    const textEls = allAmenityNodes.filter((el) => {
-      if (el.matches(".tag_amen")) return false;
-      if (el.closest(".tag_amen")) return false;
-      if (el.querySelector(".tag_amen")) return false;
-      return true;
-    });
-
-    const clockEls = [timeClock, ...Array.from(timeClock.querySelectorAll<HTMLElement>("*"))];
-
-    const dayBg = [255, 255, 255];
-    const nightBg = [18, 18, 20];
-    const nightText = [255, 255, 255];
-
-    const dayTextByEl = new Map<HTMLElement, number[]>();
-    textEls.forEach((el) => dayTextByEl.set(el, parseRGB(getComputedStyle(el).color)));
-
-    const dayClockByEl = new Map<HTMLElement, number[]>();
-    clockEls.forEach((el) => dayClockByEl.set(el, parseRGB(getComputedStyle(el).color)));
-
-    const dayTagByEl = new Map<HTMLElement, number[]>();
-    tagNodes.forEach((el) => dayTagByEl.set(el, parseRGB(getComputedStyle(el).color)));
-
-    function updateNightScrub(hourFloat: number) {
-      const t = clamp((hourFloat - NIGHT_START) / (NIGHT_END - NIGHT_START), 0, 1);
-
-      flow!.style.backgroundColor = rgbToCss(rgbLerp(dayBg, nightBg, t));
-
-      textEls.forEach((el) => {
-        const day = dayTextByEl.get(el) || [41, 41, 41];
-        el.style.color = rgbToCss(rgbLerp(day, nightText, t));
-      });
-
-      if (window.innerWidth >= CLOCK_COLOR_SCRUB_MIN_WIDTH) {
-        clockEls.forEach((el) => {
-          const day = dayClockByEl.get(el) || [41, 41, 41];
-          el.style.color = rgbToCss(rgbLerp(day, nightText, t));
-        });
-      } else {
-        clockEls.forEach((el) => {
-          el.style.color = "";
-        });
-      }
-
-      tagNodes.forEach((el) => {
-        const day = dayTagByEl.get(el) || [255, 255, 255];
-        el.style.color = rgbToCss(day);
-      });
-    }
-
-    function renderClock() {
-      const p = sectionProgress();
-      const hourFloat = START_HOUR + (END_HOUR - START_HOUR) * p;
-
-      updateClock(hourFloat);
-      updateNightScrub(hourFloat);
-
-      // Scrub Lottie sun/evening animation
-      if (animRef.current && animRef.current.totalFrames) {
-        const targetFrame = p * (animRef.current.totalFrames - 1);
-        animRef.current.goToAndStop(targetFrame, true);
-      }
-    }
-
-    window.addEventListener("scroll", renderClock, { passive: true });
-    window.addEventListener("resize", renderClock);
-    const lenis = (window as any).lenis;
-    if (lenis) lenis.on("scroll", renderClock);
-    renderClock();
-
-    return () => {
-      window.removeEventListener("scroll", renderClock);
-      window.removeEventListener("resize", renderClock);
-      if (lenis) lenis.off("scroll", renderClock);
-    };
-  }, []);
-
-  // 4. DYNAMIC SCRIBBLE INTERSECTION OBSERVER (EXACT 21OAKS DYNAMIC SCRIBBLE)
+  // 2. DYNAMIC SCRIBBLE INTERSECTION OBSERVER
   useEffect(() => {
     const nodes = document.querySelectorAll<HTMLElement>("[data-scribble]");
     if (!nodes.length) return;
@@ -478,11 +129,11 @@ export default function AmenitiesPage() {
         <div className="wrapper_general base_ab">
           <div className="middle_h1">
             <h1 className="h1 black spec_amenities">
-              Built around your
+              About our spaces &amp;
               <br />
-              daily{" "}
-              <span data-scribble="1" className="scribble-wrap">
-                routine
+              community{" "}
+              <span data-scribble="1" className="scribble-wrap scribble-visible">
+                living
               </span>
             </h1>
           </div>
@@ -525,82 +176,104 @@ export default function AmenitiesPage() {
         <div className="md_amenities">
           <div className="md_txt">
             <div>
-              From everyday essentials to spaces designed to recharge,
-              everything is thoughtfully placed to support how you live, study
-              and unwind.
+              Building Siliguri's trusted landmarks since 1985. Every SGMG
+              residence is planned around family life — combining open green
+              courtyards, wellness amenities, and spaces crafted for generations
+              to unwind and connect.
             </div>
           </div>
         </div>
-      </main>
 
-      {/* Amenities Flow Timeline Section */}
-      <section ref={flowSectionRef} className="amenities_flow">
-        <div className="amenities_wrapper">
-          <div ref={cmsSectionRef} className="amenities_cms">
-            {/* Sticky Sun Clock Container */}
-            <div ref={clockContainerRef} className="sun-clock">
-              <div className="lottie_on_scroll">
-                <div ref={lottieContainerRef} className="sun_changing" />
-              </div>
-              <div className="time_clock">
-                <div data-clock="">08:00</div>
-              </div>
+        {/* --- ABOUT SGMG HERITAGE & LIVING SECTION --- */}
+        <section data-section="light" className="about_story_sec">
+          <div className="wrapper_about_story">
+            <div className="about_story_heading">
+              <h2 className="h2 about_story_h">
+                Building Values.
+                <br />
+                Shaping{" "}
+                <span
+                  data-scribble="5"
+                  className="scribble-wrap scribble-visible"
+                >
+                  Tomorrow.
+                </span>
+              </h2>
             </div>
 
-            {/* 7 Amenity Flow Cards */}
-            <div className="amenities_parent w-dyn-list">
-              <div role="list" className="amenities_flex w-dyn-items">
-                {AMENITY_ITEMS.map((item) => (
-                  <div
-                    key={item.id}
-                    role="listitem"
-                    className="amenities_item w-dyn-item"
-                    id={item.id}
-                  >
-                    <div className="amenities_info">
-                      <div className="top_amen">
-                        <div className="tag_amen">
-                          <div>{item.tag}</div>
-                        </div>
-                      </div>
-
-                      <div className="info_amen">
-                        <div className="title_amen">
-                          <div>{item.title}</div>
-                        </div>
-                        <div className="desc_amen">
-                          <div>{item.description}</div>
-                        </div>
-                      </div>
-
-                      <div className="included_box">
-                        <div className="inc_title">
-                          <div>{item.includedTitle}</div>
-                        </div>
-                        <div className="inc_desc">
-                          <div>{item.includedDesc}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="amenities_img">
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        className="image"
-                        loading="lazy"
-                      />
-                    </div>
+            <div className="about_story_showcase">
+              <div className="about_story_visual">
+                <div className="about_img_frame">
+                  <img
+                    src="/assets/Front_Elevation_View.webp"
+                    alt="An SGMG residential development in Siliguri"
+                    loading="lazy"
+                    className="about_feature_img"
+                  />
+                  <div className="about_img_badge">
+                    <div className="badge_dot" />
+                    <span>Sushil Gangadhar Mittal Group</span>
                   </div>
-                ))}
+                </div>
+              </div>
+
+              <div className="about_story_content">
+                <div className="about_story_lead">
+                  “Performance with purpose — creating neighbourhoods to live in, healthy environments to work in, and residences designed for every generation.”
+                </div>
+                <div className="p_gen black about_story_body">
+                  Established in 1985 as a unit of the Begraj Group, SGMG has grown into one of Siliguri’s leading real estate names. The group has delivered townships, office towers and residential-commercial projects across the region — Cosmos Valley, Cosmos View, Green Valley and Green View among the residences, and Cosmos Mall, Vega Circle Mall and Jeevandeep among the commercial landmarks. Every amenity and common space is planned with intention: dependability and quality on every project, built to endure for generations.
+                </div>
+
+                <div className="about_story_stats">
+                  <div className="about_stat_box">
+                    <div className="about_stat_num">1985</div>
+                    <div className="about_stat_lbl">Established, unit of Begraj Group</div>
+                  </div>
+                  <div className="about_stat_box">
+                    <div className="about_stat_num">16+</div>
+                    <div className="about_stat_lbl">Landmark Developments</div>
+                  </div>
+                  <div className="about_stat_box">
+                    <div className="about_stat_num">100%</div>
+                    <div className="about_stat_lbl">RERA &amp; Title Transparency</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Core Value Pillars */}
+            <div className="about_pillars">
+              <div className="about_pillar_item">
+                <div className="about_pillar_num">01</div>
+                <div className="about_pillar_title">Architectural Mastery</div>
+                <div className="about_pillar_desc">
+                  Conceived by visionary architects with expansive floor layouts, abundant natural sunlight, private panoramic balconies, and seismic-engineered RCC construction.
+                </div>
+              </div>
+
+              <div className="about_pillar_item">
+                <div className="about_pillar_num">02</div>
+                <div className="about_pillar_title">Transparent Trust</div>
+                <div className="about_pillar_desc">
+                  Every SGMG residence is strictly RERA-compliant with crystal-clear land titles, transparent milestone pricing, and construction-linked schedules you can rely on.
+                </div>
+              </div>
+
+              <div className="about_pillar_item">
+                <div className="about_pillar_num">03</div>
+                <div className="about_pillar_title">Holistic Living</div>
+                <div className="about_pillar_desc">
+                  Immersed in lush landscaped courtyards, resident wellness amenities, 24/7 multi-tier security, and attentive concierge management tailored for modern families.
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Family Section */}
-      <FamilySection />
+        {/* Family Section */}
+        <FamilySection />
+      </main>
 
       {/* Pre-Footer CTA & Lamp Footer */}
       <Footer />

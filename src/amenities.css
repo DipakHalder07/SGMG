@@ -139,19 +139,24 @@
    ========================================== */
 
 .amenities-page .md_amenities {
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3.8em 2rem;
-  display: flex;
+  padding: clamp(3rem, 6vw, 5.5rem) 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .amenities-page .md_txt {
   text-align: center;
-  width: 31ch;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-  font-size: 1.7em;
-  line-height: 1.2;
+  max-width: 680px;
+  width: 100%;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.85rem) !important;
+  line-height: 1.45 !important;
   color: #292929;
+  letter-spacing: -0.01em;
+  margin: 0 auto;
 }
 
 /* ==========================================
@@ -550,8 +555,14 @@
     padding-right: 1rem;
   }
   .amenities-page .md_txt {
-    font-size: 2.1em;
-    width: auto;
+    font-size: clamp(1.1rem, 3.8vw, 1.45rem) !important;
+    max-width: 92%;
+    width: 100%;
+    line-height: 1.4 !important;
+  }
+  .amenities-page .h2.pets_h {
+    font-size: clamp(28px, 6vw, 48px) !important;
+    line-height: 1.1 !important;
   }
   .amenities-page .amenities_wrapper {
     padding-left: 1rem;
@@ -651,19 +662,21 @@
     font-size: 8.7em;
   }
   .amenities-page .h2.pets_h {
-    font-size: 13em;
+    font-size: clamp(26px, 7vw, 38px) !important;
+    line-height: 1.1 !important;
   }
   .amenities-page .wrapper_general.base_ab {
     padding-top: 7.5rem;
     padding-bottom: 3rem;
   }
   .amenities-page .md_amenities {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 2.5rem 1.25rem;
   }
   .amenities-page .md_txt {
-    font-size: 4.1em;
-    width: auto;
+    font-size: clamp(1.05rem, 4.5vw, 1.35rem) !important;
+    max-width: 100%;
+    width: 100%;
+    line-height: 1.45 !important;
   }
   .amenities-page .amenities_wrapper {
     padding-left: 1rem;
@@ -739,9 +752,10 @@
     width: 100%;
   }
   .amenities-page .pet_title {
-    font-size: 4.5em;
+    font-size: clamp(1.15rem, 4vw, 1.35rem) !important;
   }
   .amenities-page .pet_desc {
-    font-size: 3.5em;
+    font-size: clamp(0.9rem, 3vw, 1rem) !important;
+    line-height: 1.5 !important;
   }
 }
