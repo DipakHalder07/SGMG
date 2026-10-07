@@ -511,8 +511,8 @@ export default function AmenitiesPage() {
 
           <div className="box_fs_image">
             <img
-              src="/assets/amenities/amenities_sketch.avif"
-              alt="Architectural master plan sketch of residential community in Siliguri."
+              src="/assets/amenities/Gemini_Generated_Image_twk6oftwk6oftwk6.webp"
+              alt="Architectural sketch of Siliguri landmarks and residential master plan."
               className="image amenities_fs_spec"
               loading="eager"
             />
