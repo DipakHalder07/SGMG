@@ -7,18 +7,32 @@
   --primary-light: #e4f3fa;
   --black: #292929;
   --white: #ffffff;
+  --font-heading: "Exposure", Georgia, sans-serif;
+  --font-body: "Exposure", Georgia, sans-serif;
 }
 
 /* Contact Page Root Container */
 .contact_page_wrapper {
-  background-color: var(--primary-light, #e4f3fa);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  color: var(--black, #292929);
-  font-size: 16px;
-  line-height: 1.2;
+  background-color: var(--primary, #2391cf);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+  color: #ffffff;
+  font-size: 14.4px !important;
+  line-height: 14.4px !important;
   width: 100%;
   position: relative;
   overflow-x: clip;
+}
+
+.contact_page_wrapper .wrapper_general,
+.contact_page_wrapper .wrapper_general.basic,
+.contact_page_wrapper .wrapper_general.gen_f {
+  font-size: 14.4px !important;
+  line-height: 14.4px !important;
+}
+
+.contact_page_wrapper .button.header_cta {
+  font-size: 11.52px !important;
+  line-height: 11.52px !important;
 }
 
 /* -------------------------------------------------------------
@@ -43,10 +57,11 @@ body.is-light .header .menu .line_two {
   background-color: #ffffff !important;
 }
 
-/* Apply Now Button - Signature Logo Blue with White Text & Arrow */
-.header .apply_button .button .text_box,
-.header .apply_button .text_box.header_btn {
-  background-color: var(--primary, #2391cf) !important;
+/* Apply Now Button - Signature Dark Contrast Pill with White Text & Green Arrow on Contact Page */
+.contact_page_wrapper .header .apply_button .button .text_box,
+.contact_page_wrapper .header .apply_button .text_box.header_btn,
+body.is-dark .contact_page_wrapper .header .apply_button .button .text_box {
+  background-color: var(--black, #292929) !important;
   color: #ffffff !important;
 }
 
@@ -98,27 +113,30 @@ body.is-dark .header .apply_button .button .icon_box svg path {
    MAIN CONTACT SECTION (Exact Live Webflow Layout)
    ------------------------------------------------------------- */
 main.contact {
-  background-color: var(--primary-light, #e4f3fa);
+  background-color: var(--primary, #2391cf);
   position: relative;
   width: 100%;
 }
 
 .wrapper_general {
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 1rem 2rem 6rem;
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
 .wrapper_general.gen_f {
-  padding-top: 10rem;
+  padding-top: 172.8px;
   padding-bottom: 0;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 @media screen and (max-width: 991px) {
   .wrapper_general {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.35rem;
+    padding-right: 1.35rem;
   }
   .wrapper_general.gen_f {
     padding-top: 7rem;
@@ -127,8 +145,8 @@ main.contact {
 
 @media screen and (max-width: 767px) {
   .wrapper_general {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   .wrapper_general.gen_f {
     padding-top: 6rem;
@@ -149,13 +167,13 @@ main.contact {
 }
 
 .h1.black {
-  color: var(--black, #292929);
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.75rem, 3.85vw, 3.15rem);
-  font-weight: 600;
-  line-height: 1;
+  color: #ffffff !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-subpage, 64.8px);
+  font-weight: var(--fw-heading, 400);
+  line-height: 58.32px !important;
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: normal !important;
   word-break: break-word;
 }
 
@@ -247,7 +265,7 @@ main.contact {
 
 .icon_contact {
   cursor: pointer;
-  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9f_clipboard-svg.svg");
+  background-image: url("/assets/icons/clipboard.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -305,7 +323,7 @@ main.contact {
 }
 
 .social_icon.ig_white {
-  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9d_ig-icon.svg");
+  background-image: url("/assets/icons/ig-icon.svg");
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
@@ -314,7 +332,7 @@ main.contact {
 }
 
 .social_icon.fb_white {
-  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9c_fb-icon.svg");
+  background-image: url("/assets/icons/fb-icon.svg");
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
@@ -323,7 +341,7 @@ main.contact {
 }
 
 .social_icon.tiktok_white {
-  background-image: url("https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193a9e_tiktok-icon.svg");
+  background-image: url("/assets/icons/tiktok-icon.svg");
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
@@ -365,7 +383,7 @@ main.contact {
   max-width: 32ch;
   font-size: clamp(0.88rem, 1.54vw, 1.26rem);
   line-height: 1.35;
-  color: var(--black, #292929);
+  color: #ffffff;
   font-weight: 400;
   letter-spacing: -0.01em;
 }
@@ -403,32 +421,35 @@ main.contact {
 
 .title {
   margin-bottom: 0;
-  font-size: 0.9rem;
+  font-size: 11.52px !important;
+  line-height: 11.52px !important;
   font-weight: 400;
-  color: var(--black, #292929);
+  color: #ffffff;
 }
 
 .input_field {
-  height: 48px;
-  min-height: 48px;
+  height: 38.0156px;
+  min-height: 38.016px;
   color: var(--black, #292929);
-  background-color: #fbf7ff;
+  background-color: #ffffff;
   border: none;
   border-radius: 4px;
   margin-bottom: 0;
-  padding: 0.5rem 1rem;
-  font-size: 1rem; /* 16px to prevent iOS auto-zoom */
+  padding: 4.32px 11.52px;
+  font-size: 11.52px;
+  line-height: 16.4571px;
   font-family: inherit;
   box-sizing: border-box;
   width: 100%;
   outline: none;
-  transition: background-color 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .input_field:focus {
   border: none;
   outline: none;
   background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(41, 41, 41, 0.35);
 }
 
 .input_field::placeholder {
@@ -438,7 +459,7 @@ main.contact {
 .input_field.areabox_sp {
   height: auto;
   min-height: 130px;
-  padding: 0.75rem 1rem;
+  padding: 8px 11.52px;
   resize: vertical;
 }
 
@@ -468,27 +489,29 @@ main.contact {
 .captcha_caption {
   font-size: 0.82rem;
   line-height: 1.45;
-  color: rgba(41, 41, 41, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   max-width: 55ch;
 }
 
 .submit_button {
   background-color: var(--black, #292929);
-  height: 48px;
-  min-height: 48px;
+  height: 37.4375px;
+  min-height: 37.4375px;
   min-width: 140px;
   color: var(--white, #ffffff);
   border-radius: 4px;
-  padding: 0 1.75rem;
-  font-size: 0.95rem;
+  padding: 5.76px 11.52px;
+  margin: 0px 0px 0px 18.5312px;
+  font-size: 11.52px;
+  line-height: 11.52px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: 0.03em;
-  font-weight: 500;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  letter-spacing: normal !important;
+  font-weight: var(--fw-button, 400);
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
@@ -585,6 +608,7 @@ main.contact {
   height: 100%;
   object-fit: contain;
   display: block;
+  filter: brightness(0) invert(1);
 }
 
 /* ==========================================================================
@@ -594,22 +618,15 @@ main.contact {
 .contact_page_wrapper .map_sec,
 .map_sec {
   background-color: #121214 !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 100vw !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  min-height: 100vh !important;
-  min-height: 100dvh !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 757px !important;
+  min-height: 600px !important;
   max-height: none !important;
-  padding: 0 !important;
+  padding: 16px !important;
   margin: 0 !important;
   border: none !important;
-  border-width: 0 !important;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
   box-shadow: none !important;
-  outline: none !important;
   position: relative !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
@@ -769,7 +786,7 @@ main.contact {
   padding: 0.7rem 1.45rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   transition: all 0.25s ease;
   white-space: nowrap;
@@ -877,8 +894,9 @@ main.contact {
 }
 
 .wrapper_general.basic {
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
 .faq_heading.white_ver {
@@ -889,12 +907,12 @@ main.contact {
 }
 
 .h2.smaller {
-  font-family: "Michroma", sans-serif !important;
-  font-size: clamp(1.75rem, 3.36vw, 2.94rem);
-  font-weight: 600;
-  line-height: 1.05;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-section);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h2-section, 1.0);
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--ls-heading-tight, -0.02em);
 }
 
 .sides_faq {

@@ -1,0 +1,996 @@
+{
+  "mismatches": [
+    {
+      "selector": ".h2.white",
+      "oaks": {
+        "fs": "64.8px",
+        "lh": "50.544px",
+        "ls": "-1.296px",
+        "text": "Closer than\nyou think"
+      },
+      "sgmg": {
+        "fs": "64.8px",
+        "lh": "51.84px",
+        "ls": "-1.296px",
+        "text": "Closer than\nyou think"
+      },
+      "diff": {
+        "fsDiff": false,
+        "lhDiff": true,
+        "lsDiff": false
+      }
+    }
+  ],
+  "oaksHeadings": [
+    {
+      "tag": "DIV",
+      "cls": "heading_box",
+      "text": "Live better, closer to USC Freshly renovated and u",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_h1",
+      "text": "Live better, closer to USC",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H1",
+      "cls": "h1",
+      "text": "Live better, closer to USC",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 second_h",
+      "text": "Everything student living should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Made for everyday living",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_apartments",
+      "text": "Where student life feels balanced",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Where student life feels balanced",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_fs",
+      "text": "Closer than you think",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 white",
+      "text": "Closer than you think",
+      "fontSize": "64.8px",
+      "lineHeight": "50.544px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.296px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_times",
+      "text": "Everything you ‍need, within reach",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 everything_you_need",
+      "text": "Everything you ‍need, within reach",
+      "fontSize": "93.6px",
+      "lineHeight": "102.96px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.872px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "amenities_heading",
+      "text": "Just outside your door Discover Amenities",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 middle_spec",
+      "text": "Just outside your door",
+      "fontSize": "72px",
+      "lineHeight": "50.4px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.44px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Grilling Courtyard",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Resort-Style Pool",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Study Spaces",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Fitness Center",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Campus Shuttle",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "How it Works",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "testimonials_heading",
+      "text": "Real student experiences",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 bigger",
+      "text": "Real student experiences",
+      "fontSize": "86.4px",
+      "lineHeight": "60.48px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.728px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "faq_heading",
+      "text": "Frequently asked questions",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Frequently asked questions",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_cta",
+      "text": "Find your place. Make it yours.",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    }
+  ],
+  "sgmgHeadings": [
+    {
+      "tag": "DIV",
+      "cls": "heading_box",
+      "text": "Own your dream, home in Siliguri. Residences built",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_h1",
+      "text": "Own your dream, home in Siliguri.",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H1",
+      "cls": "h1",
+      "text": "Own your dream, home in Siliguri.",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 second_h",
+      "text": "Everything modern living should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Made for everyday living",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_apartments",
+      "text": "Find the home that fits your life",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Find the home that fits your life",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_fs",
+      "text": "Closer than you think",
+      "fontSize": "14.16px",
+      "lineHeight": "14.16px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 white",
+      "text": "Closer than you think",
+      "fontSize": "64.8px",
+      "lineHeight": "51.84px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.296px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_times",
+      "text": "Everything you need, within reach",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 everything_you_need",
+      "text": "Everything you need, within reach",
+      "fontSize": "93.6px",
+      "lineHeight": "102.96px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.872px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "amenities_heading",
+      "text": "Just outside your door Discover Amenities",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 middle_spec",
+      "text": "Just outside your door",
+      "fontSize": "72px",
+      "lineHeight": "50.4px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.44px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Rooftop Swimming Pool",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Multi-Gym, Aerobics & Yoga",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Indoor Games Arena",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Community Hall",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_text",
+      "text": "Landscaped Garden",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "How it Works",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "testimonials_heading",
+      "text": "Real resident experiences",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 bigger",
+      "text": "Real resident experiences",
+      "fontSize": "86.4px",
+      "lineHeight": "60.48px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.728px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "faq_heading",
+      "text": "Frequently asked questions",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "H2",
+      "cls": "h2 smaller",
+      "text": "Frequently asked questions",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    },
+    {
+      "tag": "DIV",
+      "cls": "heading_cta",
+      "text": "Your Gateway To An Elevated Lifestyle.",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "fontFamily": "Exposure, Georgia, sans-serif"
+    }
+  ],
+  "oaksSelectors": {
+    "h1": {
+      "count": 1,
+      "sampleText": "Live better,\ncloser to USC",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    "h2": {
+      "count": 9,
+      "sampleText": "Everything student\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h1": {
+      "count": 1,
+      "sampleText": "Live better,\ncloser to USC",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2": {
+      "count": 9,
+      "sampleText": "Everything student\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.smaller": {
+      "count": 4,
+      "sampleText": "Made for\neveryday living",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.bigger": {
+      "count": 1,
+      "sampleText": "Real student\nexperiences",
+      "fontSize": "86.4px",
+      "lineHeight": "60.48px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.728px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.second_h": {
+      "count": 1,
+      "sampleText": "Everything student\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.middle_spec": {
+      "count": 1,
+      "sampleText": "Just outside\nyour door",
+      "fontSize": "72px",
+      "lineHeight": "50.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.44px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.everything_you_need": {
+      "count": 1,
+      "sampleText": "Everything you\n‍need, within reach",
+      "fontSize": "93.6px",
+      "lineHeight": "102.96px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.872px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.white": {
+      "count": 1,
+      "sampleText": "Closer than\nyou think",
+      "fontSize": "64.8px",
+      "lineHeight": "50.544px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.296px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".p_gen": {
+      "count": 23,
+      "sampleText": "Freshly renovated and upgraded. Minutes ",
+      "fontSize": "12.24px",
+      "lineHeight": "18.36px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "0.1224px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".heading_apartments": {
+      "count": 1,
+      "sampleText": "Where student life\nfeels balanced",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px 394.078px 72px 394.062px",
+      "padding": "0px"
+    },
+    ".heading_apartments .h2": {
+      "count": 1,
+      "sampleText": "Where student life\nfeels balanced",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".heading_apartments .h2.smaller": {
+      "count": 1,
+      "sampleText": "Where student life\nfeels balanced",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".apart_card .tag_info": {
+      "count": 12,
+      "sampleText": "4 Bed",
+      "fontSize": "10.8px",
+      "lineHeight": "10.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "3.78px 4.86px"
+    },
+    ".hero .h1": {
+      "count": 1,
+      "sampleText": "Live better,\ncloser to USC",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".hero .p_gen": {
+      "count": 1,
+      "sampleText": "Freshly renovated and upgraded. Minutes ",
+      "fontSize": "12.24px",
+      "lineHeight": "18.36px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "0.1224px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".item_title": {
+      "count": 7,
+      "sampleText": "How do I apply for an apartment?",
+      "fontSize": "17.28px",
+      "lineHeight": "17.28px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".item_paragraph": {
+      "count": 7,
+      "sampleText": "Click “Apply Now,” choose your lease ter",
+      "fontSize": "12.96px",
+      "lineHeight": "18.144px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".caption_left": {
+      "count": 1,
+      "sampleText": "21Oaks\nYour space. Still on.",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".button": {
+      "count": 16,
+      "sampleText": "Apply Now",
+      "fontSize": "11.52px",
+      "lineHeight": "11.52px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".button.header_cta": {
+      "count": 1,
+      "sampleText": "Apply Now",
+      "fontSize": "11.52px",
+      "lineHeight": "11.52px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    }
+  },
+  "sgmgSelectors": {
+    "h1": {
+      "count": 1,
+      "sampleText": "Own your dream,\nhome in Siliguri.",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    "h2": {
+      "count": 9,
+      "sampleText": "Everything modern\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h1": {
+      "count": 1,
+      "sampleText": "Own your dream,\nhome in Siliguri.",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2": {
+      "count": 9,
+      "sampleText": "Everything modern\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.smaller": {
+      "count": 4,
+      "sampleText": "Made for\neveryday living",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.bigger": {
+      "count": 1,
+      "sampleText": "Real resident\nexperiences",
+      "fontSize": "86.4px",
+      "lineHeight": "60.48px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.728px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.second_h": {
+      "count": 1,
+      "sampleText": "Everything modern\nliving should be",
+      "fontSize": "66.24px",
+      "lineHeight": "76.176px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.middle_spec": {
+      "count": 1,
+      "sampleText": "Just outside\nyour door",
+      "fontSize": "72px",
+      "lineHeight": "50.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.44px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.everything_you_need": {
+      "count": 1,
+      "sampleText": "Everything you\nneed, within reach",
+      "fontSize": "93.6px",
+      "lineHeight": "102.96px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.872px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".h2.white": {
+      "count": 1,
+      "sampleText": "Closer than\nyou think",
+      "fontSize": "64.8px",
+      "lineHeight": "51.84px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.296px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".p_gen": {
+      "count": 22,
+      "sampleText": "Residences built on four decades of trus",
+      "fontSize": "12.24px",
+      "lineHeight": "18.36px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "0.1224px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".heading_apartments": {
+      "count": 1,
+      "sampleText": "Find the home\nthat fits your life",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px 391.578px 72px 391.562px",
+      "padding": "0px"
+    },
+    ".heading_apartments .h2": {
+      "count": 1,
+      "sampleText": "Find the home\nthat fits your life",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".heading_apartments .h2.smaller": {
+      "count": 1,
+      "sampleText": "Find the home\nthat fits your life",
+      "fontSize": "66.24px",
+      "lineHeight": "66.24px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "-1.3248px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".apart_card .tag_info": {
+      "count": 30,
+      "sampleText": "3 Bed",
+      "fontSize": "10.8px",
+      "lineHeight": "10.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "3.78px 4.86px"
+    },
+    ".hero .h1": {
+      "count": 1,
+      "sampleText": "Own your dream,\nhome in Siliguri.",
+      "fontSize": "72px",
+      "lineHeight": "64.8px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".hero .p_gen": {
+      "count": 1,
+      "sampleText": "Residences built on four decades of trus",
+      "fontSize": "12.24px",
+      "lineHeight": "18.36px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "0.1224px",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".item_title": {
+      "count": 7,
+      "sampleText": "How do I schedule a site visit or book a",
+      "fontSize": "17.28px",
+      "lineHeight": "17.28px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".item_paragraph": {
+      "count": 7,
+      "sampleText": "You can schedule a private site visit th",
+      "fontSize": "12.96px",
+      "lineHeight": "18.144px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".caption_left": {
+      "count": 1,
+      "sampleText": "Tranquility and Living.\nOTHER VENTURES",
+      "fontSize": "14.4px",
+      "lineHeight": "14.4px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".button": {
+      "count": 15,
+      "sampleText": "Apply Now",
+      "fontSize": "11.52px",
+      "lineHeight": "11.52px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    },
+    ".button.header_cta": {
+      "count": 1,
+      "sampleText": "Apply Now",
+      "fontSize": "11.52px",
+      "lineHeight": "11.52px",
+      "fontFamily": "Exposure, Georgia, sans-serif",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "margin": "0px",
+      "padding": "0px"
+    }
+  }
+}

@@ -3,15 +3,26 @@
 
 @font-face {
   font-family: "Exposure";
-  src: url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure.woff2") format("woff2");
+  src: url("/assets/fonts/exposure.woff2") format("woff2"),
+       url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure.woff2") format("woff2");
   font-display: swap;
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
+  font-family: "Exposure";
+  src: url("/assets/fonts/exposure-italic.woff2") format("woff2"),
+       url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure-italic.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+@font-face {
   font-family: "Exposure Italic";
-  src: url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure.woff2") format("woff2");
+  src: url("/assets/fonts/exposure-italic.woff2") format("woff2"),
+       url("/__l5e/assets-v1/831005fc-41c2-4279-9f57-24ea1ef8a61f/exposure-italic.woff2") format("woff2");
   font-display: swap;
   font-weight: 100 900;
   font-style: italic;
@@ -22,18 +33,92 @@ html {
 }
 
 body {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   color: var(--black, #292929);
+  font-size: clamp(14px, 1vw, 14.4px);
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  --font-heading: "Michroma", sans-serif;
-  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Michroma", sans-serif;
-  --font-serif: "Plus Jakarta Sans", sans-serif;
+  /* =========================================================
+     TYPOGRAPHY SYSTEM VARIABLES (21OAKS CANONICAL TOKENS)
+     ========================================================= */
+
+  /* 1. Font Families (Live Site Canonical: Exposure) */
+  --font-heading: "Exposure", Georgia, sans-serif;
+  --font-body: "Exposure", Georgia, sans-serif;
+  --font-sans: "Exposure", Georgia, sans-serif;
+  --font-display: "Exposure", Georgia, sans-serif;
+  --font-serif: "Exposure", Georgia, sans-serif;
+  --font-italic: "Exposure Italic", "Exposure", Georgia, serif;
+
+  /* 2. Font Weights */
+  --fw-heading: 400;
+  --fw-button: 400;
+  --fw-regular: 400;
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* 3. Fluid Typographic Scale (Font Sizes) */
+  --fs-h1-hero: clamp(36px, 5vw, 72px);
+  --fs-h1-subpage: clamp(32px, 4.5vw, 64.8px);
+  --fs-h2-huge: clamp(38px, 6.5vw, 93.6px);      /* Everything you need: 93.6px desktop */
+  --fs-h2-middle: clamp(36px, 5vw, 72px);        /* Just outside your door: 72px desktop */
+  --fs-h2-white-fs: clamp(32px, 4.5vw, 64.8px);  /* Closer than you think: 64.8px desktop */
+  --fs-h2-testimonials: clamp(38px, 6vw, 86.4px);
+  --fs-h2-pets: clamp(40px, 6.2vw, 89.28px);
+  --fs-h2-second: clamp(28px, 4.6vw, 66.24px);
+  --fs-h2-location: clamp(26px, 4vw, 57.6px);
+  --fs-h2-section: clamp(28px, 4.6vw, 66.24px);
+  --fs-h2-footer: clamp(24px, 2.9vw, 41.76px);
+  --fs-h3: clamp(18px, 1.6vw, 28px);
+  --fs-h4: clamp(15px, 1.2vw, 20px);
+  --fs-h5: clamp(13px, 1vw, 17px);
+  --fs-h6: clamp(12px, 0.85vw, 14px);
+  --fs-card-title: clamp(17px, 1.25vw, 22px);
+  --fs-step-title: clamp(16px, 1.3vw, 18.72px);
+  --fs-price: clamp(15px, 1.1vw, 20px);
+  --fs-caption-cta: 15.84px;
+  --fs-caption: 14.4px;
+  --fs-caption-sm: 12.24px;
+  --fs-faq-title: clamp(15px, 1.2vw, 17.28px);
+  --fs-body: clamp(11.5px, 0.85vw, 12.24px);
+  --fs-body-sm: 11px;
+  --fs-button: 11.52px;
+
+  /* 4. Line Heights */
+  --lh-h1-hero: 0.9;
+  --lh-h1-subpage: 0.9;
+  --lh-h2-testimonials: 0.7;
+  --lh-h2-pets: 1.15;
+  --lh-h2-second: 1.15;
+  --lh-h2-location: 1.0;
+  --lh-h2-section: 1.0;
+  --lh-h2-footer: 1.0;
+  --lh-h3: 1.25;
+  --lh-h4: 1.25;
+  --lh-h5: 1.3;
+  --lh-h6: 1.35;
+  --lh-card-title: 1.2;
+  --lh-step-title: 1.1;
+  --lh-faq-title: 1.2;
+  --lh-caption: 1.0;
+  --lh-caption-cta: 1.3;
+  --lh-body: 1.5;
+  --lh-button: 1.0;
+
+  /* 5. Letter Spacing */
+  --ls-heading-tight: -0.02em;
+  --ls-heading: normal;
+  --ls-heading-loose: -0.01em;
+  --ls-body: 0.01em;
+  --ls-button: normal;
+
+  /* --- BRAND COLORS --- */
   --primary: #2391cf;
   --primary-rgb: 35, 145, 207;
   --primary-light: #e4f3fa;
@@ -44,7 +129,7 @@ body {
   --white: #ffffff;
 }
 
-/* Headings with Michroma font & 600 weight */
+/* Headings with Michroma font & 400 weight (crisp native geometry, no faux-bold distortion) */
 h1,
 h2,
 h3,
@@ -103,8 +188,8 @@ h6,
 .careers_section_title,
 .careers_modal_title,
 .emi_calc_main_title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-weight: var(--fw-heading, 400) !important;
 }
 
 /* =========================================================
@@ -134,64 +219,323 @@ input[type="reset"],
 .careers_dept_tab,
 [class*="button"],
 [class*="btn"] {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: 0.02em;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-weight: var(--fw-button, 400) !important;
+  letter-spacing: var(--ls-button, 0.02em);
 }
 
-/* Universal Headings Scale - Responsive fluid scaling for all viewports including large displays */
+/* =========================================================
+   UNIVERSAL TYPOGRAPHIC SCALE - 100% PARITY WITH 21OAKS
+   Headings use Michroma at native weight 400 (no synthetic faux-bold).
+   Body text uses Plus Jakarta Sans.
+   ========================================================= */
+
+/* 1. Main Hero H1 (Home) - 72px desktop base */
 h1,
 .h1,
-.h1.black,
-.h1.black.gen_h,
-.h1.black.spec_amenities {
-  font-size: clamp(28px, 4vw, 76px) !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+.hero .heading_box h1,
+.hero_h1 {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-hero, 72px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h1-hero, 0.9) !important;
+  letter-spacing: normal !important;
 }
 
+/* 1b. FAQ Hero H1 - 72px / 79.2px line-height (1.1 ratio on 21oaks) */
+.faq .h1.black.gen_h,
+.h1.black.gen_h {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-hero, 72px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 1.1 !important;
+  letter-spacing: normal !important;
+}
+
+/* 2. Subpage Hero H1 (Apartments, Amenities, Contact, How to Apply) - 64.8px desktop base */
+.h1.black,
+.contact_h1 .h1,
+.heading_apply .h1,
+.heading_aparts .h1,
+.heading_aparts .h1.black,
+.h1_apartments .h1 {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h1-subpage, 64.8px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h1-subpage, 0.9) !important;
+  letter-spacing: normal !important;
+}
+
+/* 2b. Featured Amenities & Apartments H1 - 64.8px base / 0.9 line-height on 21oaks */
+.h1.black.spec_amenities,
+.spec_amenities,
+.heading_aparts .h1.black.spec_amenities {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(32px, 4.5vw, 64.8px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 0.9 !important;
+  letter-spacing: normal !important;
+}
+
+/* 3. Big Impact Display H2s */
+/* 3a. Testimonials / Resident Experience H2 - 86.4px desktop base */
+.h2.bigger,
+.testimonials_heading .h2.bigger,
+.testimonials_heading .h2 {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-testimonials) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-testimonials, 0.7) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3b. Pets Section H2 ("For You. For Them.") - 89.28px desktop base */
+.h2.pets_h,
+.pets_heading .h2.pets_h,
+.pets_heading .h2 {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-pets) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-pets, 1.15) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3c. Second Hero / Transition H2 ("Everything modern living should be") - 66.24px desktop base */
+.h2.second_h,
+.dynamic_section .middle .h2,
+.dynamic_section .middle .h2.second_h {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-second) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-second, 1.15) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 3d. Location Hero Carousel H2 - 57.6px desktop base */
+.h2.locations_specific,
+.heading_h_carousel .h2,
+.heading_h_carousel .h2.locations_specific {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-location) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-location, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 4. Standard Section H2s (FAQ, Made for everyday living, How it works, etc.) - 66.24px desktop base */
 h2,
 .h2,
 .h2.smaller,
 .h2.smaller.spec_how,
-.h2.bigger,
-.h2.second_h,
-.h2.middle_spec,
-.h2.white,
-.h2.pets_h,
 .h2.apartments_heading,
-.h2.locations_specific,
-.h2.everything_you_need,
 .h2.legals,
 .h2.legal_heading,
-.h2.licenses_title {
-  font-size: clamp(24px, 3.4vw, 66px) !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+.h2.licenses_title,
+.faq_heading .h2,
+.faq_heading .h2.smaller,
+.faqs.black .h2.smaller,
+.faq_heading.white_ver .h2.smaller {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-section) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-section, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
 }
 
+/* 4b. Specialized H2s Matching 21Oaks Exact Scale */
+.h2.everything_you_need,
+.everything_u_need .h2.everything_you_need {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 1.1 !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+.h2.middle_spec,
+.amenities_heading .h2.middle_spec {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-middle, clamp(36px, 5vw, 72px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 0.7 !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+@media screen and (max-width: 767px) {
+  .h2.middle_spec,
+  .amenities_heading .h2.middle_spec {
+    line-height: 1.05 !important;
+  }
+}
+
+.heading_fs .h2.white {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 50.544px !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+/* 5. Footer Brand Heading ("Tranquility and Living.") - 41.76px desktop base */
+.cap_footer {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-footer) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-footer, 1.0) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
+}
+
+/* 6. Section H3 - Subsections & Groupings */
 h3,
 .h3 {
-  font-size: clamp(20px, 2.4vw, 46px) !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h3) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h3, 1.25) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
 }
 
+/* 6b. How it Works Card Titles (21Oaks canonical: 21.6px / 1.0) */
+.title_how,
+.how_card .title_how {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  line-height: 21.6px !important;
+  letter-spacing: normal !important;
+  margin-bottom: 0.65rem !important;
+}
+
+/* 7. Step & Card Titles */
+.title_step {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-step-title) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-step-title, 1.1) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
+}
+
+.apart_title,
+.apart_card .apart_title,
+.apartments .apart_title,
+.apartment_title,
+.apartment-lightbox-unit-title,
+.title_amenities {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-card-title, 1.2) !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
+}
+
+.price_txt,
+.apart_card .price_txt,
+.apartments .price_box .price_txt {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-price) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-card-title, 1.2) !important;
+}
+
+/* 8. H4, H5, H6 Scale */
 h4,
 .h4 {
-  font-size: clamp(16px, 1.8vw, 32px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h4) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h4, 1.25) !important;
 }
 
 h5,
 .h5 {
-  font-size: clamp(14px, 1.4vw, 24px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h5) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h5, 1.3) !important;
 }
 
 h6,
 .h6 {
-  font-size: clamp(12px, 1.1vw, 18px) !important;
-  font-weight: 600 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h6) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h6, 1.35) !important;
+}
+
+.caption_left {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption, 14.4px) !important;
+  font-weight: 400 !important;
+  line-height: 14.4px !important;
+  letter-spacing: normal !important;
+}
+
+.caption_faq {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption, 14.4px) !important;
+  font-weight: 400 !important;
+  line-height: 20.16px !important;
+  letter-spacing: normal !important;
+}
+
+.caption_small,
+.how_it_works .caption_small {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption-sm, 12.24px) !important;
+  font-weight: 400 !important;
+  line-height: 12.24px !important;
+  letter-spacing: normal !important;
+  color: #292929 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.caption_cta,
+.p_gen.caption_cta,
+.caption_cta .p_gen {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption-cta, 15.84px) !important;
+  font-weight: 400 !important;
+  line-height: 20.592px !important;
+  letter-spacing: 0.1584px !important;
+}
+
+/* 10. FAQ Accordions (Question & Answer) */
+.item_title,
+.faqs .item_title {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-faq-title, 17.28px) !important;
+  font-weight: 400 !important;
+  line-height: 17.28px !important;
+  letter-spacing: normal !important;
+}
+
+.item_paragraph,
+.item_paragraph p,
+.faqs .item_paragraph {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.96px !important;
+  font-weight: 400 !important;
+  line-height: 18.144px !important;
+  letter-spacing: normal !important;
+}
+
+.author_name_txt,
+.authors .author_name_txt {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.672px !important;
+  font-weight: 400 !important;
+  line-height: 12.672px !important;
+  letter-spacing: normal !important;
+}
+
+/* 11. Body Text Scale */
+.p_gen {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-body, 12.24px) !important;
+  font-weight: var(--fw-body, 400) !important;
+  line-height: var(--lh-body, 1.5) !important;
+  letter-spacing: var(--ls-body, 0.01em) !important;
+  margin-top: 0 !important;
 }
 
 /* Custom Scrollbar */
@@ -335,6 +679,39 @@ main {
   padding-bottom: 10rem;
 }
 
+@media screen and (max-width: 991px) {
+  .wrapper_general {
+    padding-left: 1.35rem;
+    padding-right: 1.35rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper_general {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .wrapper_general {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .wrapper_general.basic {
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+  }
+}
+
 .container {
   width: 100%;
   max-width: none;
@@ -403,7 +780,7 @@ main {
     background-color: var(--primary, #2391cf);
     border-radius: 0.375em;
     color: #ffffff;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.02em;
     font-size: 0.8em;
     font-weight: 400;
@@ -524,7 +901,7 @@ main {
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px !important;
     white-space: nowrap !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.02em !important;
   }
 
@@ -770,49 +1147,57 @@ body.is-hero .menu {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  column-gap: 0.75em;
+  column-gap: 0.8em;
+  grid-column-gap: 0.8em;
   height: 100%;
   cursor: pointer;
   color: #ffffff;
-  font-size: 10.5px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: 0.04em !important;
+  font-size: 10.04px !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger {
   display: flex;
   flex-direction: column;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 2.1em;
-  height: 1.4em;
+  width: 2.3em;
+  height: 1.5em;
   row-gap: 0.1875em;
+  grid-row-gap: 0.1875em;
+  box-sizing: border-box;
 }
 
 .line_one,
 .line_two {
   background-color: #ffffff;
-  width: 1.9em;
+  width: 2em;
   height: 0.125em;
-  border-radius: 1px;
-  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
-  transform-origin: center;
+  border-radius: 0px !important;
+  transform-origin: center center;
+  transition: transform 650ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-sizing: border-box;
 }
 
 .menu.is-open .line_one {
-  transform: translateY(0.16em) rotate(-45deg);
+  transform: translate3d(0px, 2px, 0px) rotate(-45deg);
 }
 
 .menu.is-open .line_two {
-  transform: translateY(-0.16em) rotate(45deg);
+  transform: translate3d(0px, -2px, 0px) rotate(45deg);
 }
 
 .menu_txt {
   color: #ffffff;
-  font-size: 10.5px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: 0.04em !important;
+  font-size: 10.04px !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
   line-height: 1;
 }
 
@@ -842,7 +1227,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   font-size: 10px !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.04em !important;
   font-weight: 500;
   text-decoration: none;
@@ -908,7 +1293,7 @@ body.is-hero .menu {
     background-color: var(--primary, #2391cf) !important;
     border-radius: 4px;
     color: #ffffff !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.04em !important;
     font-size: 10px !important;
     font-weight: 500;
@@ -1068,7 +1453,7 @@ body.is-hero .menu {
 .mobile_link {
   color: #ffffff !important;
   font-size: clamp(13px, 0.9vw, 15px);
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em !important;
   text-decoration: none;
   padding-top: 0.35rem;
@@ -1100,7 +1485,7 @@ body.is-hero .menu {
   justify-content: center;
   font-size: clamp(12px, 0.8em, 15px);
   font-weight: 500;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   letter-spacing: 0.02em !important;
   text-decoration: none;
   text-align: center;
@@ -1248,7 +1633,7 @@ body.is-hero .menu {
     padding: 0 16px !important;
     border-radius: 4px !important;
     font-size: 10.5px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 500 !important;
     letter-spacing: 0.03em !important;
     transform: none !important;
@@ -1355,10 +1740,12 @@ body.is-hero .menu {
   }
 
   .menu_link {
-    font-size: 11px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    letter-spacing: 0.03em !important;
-    column-gap: 8px !important;
+    font-size: 11.16px !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 400 !important;
+    letter-spacing: normal !important;
+    column-gap: 8.93px !important;
+    grid-column-gap: 8.93px !important;
     color: #ffffff !important;
     display: flex !important;
     align-items: center !important;
@@ -1369,15 +1756,17 @@ body.is-hero .menu {
   }
 
   .menu_txt {
-    font-size: 11px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    letter-spacing: 0.03em !important;
+    font-size: 11.16px !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 400 !important;
+    letter-spacing: normal !important;
   }
 
   .hamburger {
-    width: 26.67px !important;
+    width: 25.66px !important;
     height: 24px !important;
     row-gap: 2.24px !important;
+    grid-row-gap: 2.24px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -1386,7 +1775,7 @@ body.is-hero .menu {
 
   .line_one,
   .line_two {
-    width: 23.2px !important;
+    width: 22.31px !important;
     height: 1.6px !important;
     background-color: #ffffff !important;
     border-radius: 0px !important;
@@ -1408,7 +1797,7 @@ body.is-hero .menu {
     padding: 0 16px !important;
     font-size: 10.5px !important;
     border-radius: 4px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     font-weight: 500 !important;
     letter-spacing: 0.03em !important;
     background-color: var(--primary, #2391cf) !important;
@@ -1481,6 +1870,32 @@ body.is-hero .menu {
       right: 0 !important;
       margin: 0 auto !important;
     }
+
+    .menu_link {
+      font-size: 13.5px !important;
+      letter-spacing: normal !important;
+      column-gap: 10.8px !important;
+      grid-column-gap: 10.8px !important;
+    }
+
+    .menu_txt {
+      font-size: 13.5px !important;
+      letter-spacing: normal !important;
+    }
+
+    .hamburger {
+      width: 31px !important;
+      height: 20.2px !important;
+      row-gap: 2.53px !important;
+      grid-row-gap: 2.53px !important;
+    }
+
+    .line_one,
+    .line_two {
+      width: 27px !important;
+      height: 1.67px !important;
+      border-radius: 0px !important;
+    }
   }
 
   .grid_menu_mobile {
@@ -1494,7 +1909,7 @@ body.is-hero .menu {
   .mobile_link {
     color: #ffffff !important;
     font-size: 12px !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     letter-spacing: 0.03em !important;
     padding: 4px 0 !important;
     font-weight: 500 !important;
@@ -1527,8 +1942,8 @@ body.is-hero .menu {
     align-items: center !important;
     justify-content: center !important;
     text-decoration: none !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-weight: 600 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 400 !important;
     transition: background-color 0.3s ease, transform 0.3s ease !important;
   }
 }
@@ -1588,10 +2003,10 @@ body.is-hero .menu {
 
 .hero .heading_box h1 {
   color: #fff;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(28px, 4vw, 76px);
-  font-weight: 600;
-  line-height: 1.08;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.95;
   letter-spacing: -0.015em;
   margin: 0;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
@@ -1599,9 +2014,9 @@ body.is-hero .menu {
 
 .hero .heading_box .p_gen {
   color: rgba(255, 255, 255, 0.92);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: clamp(14px, 1.1vw, 20px);
-  line-height: 1.4;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(12px, 0.9vw, 13px);
+  line-height: 1.5;
   margin-top: 20px;
   max-width: clamp(420px, 35vw, 600px);
 }
@@ -1719,8 +2134,8 @@ body.is-hero .menu {
   }
 
   .hero .heading_box h1 {
-    font-size: clamp(20px, 4.5vw, 27px);
-    line-height: 1.08;
+    font-size: clamp(28px, 6vw, 36px);
+    line-height: 1.0;
     letter-spacing: -0.015em;
   }
 
@@ -1923,10 +2338,11 @@ body.is-hero .menu {
 }
 
 .dynamic_section .middle .h2.second_h {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(27px, 3.8vw, 53px);
-  line-height: 1.02;
-  font-weight: 600;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
   color: #292929;
 }
 
@@ -2013,6 +2429,34 @@ body.is-hero .menu {
 
 .property_slider_slide .apart_card:hover {
   box-shadow: none !important;
+}
+
+.property_slider_slide .apart_image {
+  border-radius: 6px;
+  height: 18em;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.property_slider_slide .apart_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.property_slider_slide .content_apart {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.85rem;
+}
+
+@media (min-width: 992px) {
+  .property_listing_section.only_desktop {
+    display: block;
+    width: 100%;
+  }
 }
 
 .property_slider_controls {
@@ -2327,10 +2771,10 @@ body.is-hero .menu {
 }
 
 .left_side .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(30px, 3.6vw, 66px);
-  line-height: 1.08;
-  font-weight: 600;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.0;
+  font-weight: 400;
   color: #292929;
   letter-spacing: -0.02em;
   margin-top: 0;
@@ -2400,9 +2844,9 @@ body.is-hero .menu {
 }
 
 .flex_txt .title_txt {
-  font-family: var(--font-heading, "Michroma", sans-serif);
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: 1.05em;
-  font-weight: 600;
+  font-weight: 400;
   color: #1a1a1a;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -2553,9 +2997,11 @@ body.is-hero .menu {
   }
 
   .heading_apartments .h2.smaller {
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-size: clamp(30px, 3.4vw, 50px);
-    line-height: 1.1;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
+    font-weight: 400 !important;
+    line-height: var(--lh-h2-section, 1.0) !important;
+    letter-spacing: var(--ls-heading-tight, -0.02em) !important;
     color: #292929;
   }
 
@@ -2665,8 +3111,8 @@ body.is-hero .menu {
 
   .apart_cards_track .apart_title {
     font-size: 1.22em;
-    font-weight: 600;
-    font-family: var(--font-heading, "Michroma", sans-serif);
+    font-weight: 400;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
     color: #292929;
     white-space: nowrap;
     overflow: hidden;
@@ -2683,8 +3129,8 @@ body.is-hero .menu {
 
   .apart_cards_track .price_txt {
     font-size: 1.15em;
-    font-weight: 600;
-    font-family: var(--font-heading, "Michroma", sans-serif);
+    font-weight: 400;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
     color: #292929;
     white-space: nowrap;
     flex-shrink: 0;
@@ -2833,9 +3279,9 @@ body.is-hero .menu {
   .apart_card .apart_title,
   .apart_title_line .apart_title,
   .apartment_title .apart_title {
-    font-size: clamp(18px, 1.25vw, 24px) !important;
-    font-weight: 600 !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-size: clamp(17px, 1.25vw, 22px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
     letter-spacing: -0.01em;
@@ -2851,9 +3297,9 @@ body.is-hero .menu {
   .apartments .price_box .price_txt,
   .apart_card .price_txt,
   .price_box .price_txt {
-    font-size: clamp(16px, 1.1vw, 21px) !important;
-    font-weight: 600 !important;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
+    font-size: clamp(15px, 1.1vw, 20px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
     color: #292929 !important;
     line-height: 1.2 !important;
   }
@@ -3059,11 +3505,12 @@ body.is-hero .menu {
 
 .heading_fs .h2.white {
   color: #fff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(30px, 3.8vw, 54px) !important;
-  line-height: 1.15 !important;
-  letter-spacing: 0 !important;
-  word-spacing: 0.08em !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-white-fs, clamp(32px, 4.5vw, 64.8px)) !important;
+  font-weight: 400 !important;
+  line-height: 0.8 !important;
+  letter-spacing: -0.02em !important;
+  word-spacing: normal !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
   margin: 0;
 }
@@ -3339,16 +3786,17 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(3.5rem, 6vw, 6.5rem) 2rem clamp(2rem, 3.5vw, 3.5rem);
+  padding: 1rem 2rem 6rem;
   box-sizing: border-box;
 }
 
 .everything_u_need .h2.everything_you_need {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(32px, 3.8vw, 68px);
-  line-height: 1.06;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-huge, clamp(38px, 6.5vw, 93.6px)) !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
   color: #292929;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02em !important;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -3371,11 +3819,12 @@ body.is-hero .menu {
 }
 
 .lines_caption .p_gen {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(15px, 1.1vw, 20px);
-  line-height: 1.5;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
   color: #333333;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .lines_list {
@@ -3397,18 +3846,21 @@ body.is-hero .menu {
 }
 
 .flex_dyn .title_line {
-  font-family: var(--font-heading, "Michroma", sans-serif);
-  font-size: clamp(15px, 1.1vw, 20px);
-  font-weight: 500;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: 17.28px !important;
+  font-weight: 400 !important;
+  line-height: 17.28px !important;
   color: #1a1a1a;
-  letter-spacing: -0.01em;
+  letter-spacing: normal !important;
 }
 
 .flex_dyn .timing_txt {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(14px, 0.95vw, 17px);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 14.4px !important;
+  font-weight: 400 !important;
+  line-height: 14.4px !important;
   color: #666666;
-  font-weight: 400;
+  letter-spacing: normal !important;
 }
 
 .lines_dynamic .bar_dynamic {
@@ -3434,12 +3886,12 @@ body.is-hero .menu {
 }
 
 .md_p {
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  font-size: clamp(18px, 1.6vw, 28px);
-  line-height: 1.35;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 23.04px !important;
+  line-height: 26.2656px !important;
   color: #1a1a1a;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
 }
 
 @media (max-width: 991px) {
@@ -3451,7 +3903,7 @@ body.is-hero .menu {
   }
 
   .everything_u_need .h2.everything_you_need {
-    font-size: clamp(24px, 5.5vw, 36px) !important;
+    font-size: clamp(28px, 6.5vw, 44px) !important;
     line-height: 1.1 !important;
     margin-bottom: 0 !important;
   }
@@ -3540,7 +3992,7 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 10rem 0 !important;
+  padding: 10rem 2rem !important;
   box-sizing: border-box;
 }
 
@@ -3577,7 +4029,7 @@ body.is-hero .menu {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
-  padding: 3.5rem 0 3.5rem 2rem !important;
+  padding: 3.6rem 0 !important;
   display: block !important;
   overflow: visible !important;
 }
@@ -3616,11 +4068,14 @@ body.is-hero .menu {
   box-sizing: border-box !important;
 }
 
-.image_amenities {
+.image_amenities,
+.splide__slide.amenities_splide .image_amenities,
+.amenities_section .image_amenities {
   position: relative !important;
   width: 100% !important;
-  height: 484px !important;
-  max-height: 484px !important;
+  aspect-ratio: 1440 / 1546 !important;
+  height: auto !important;
+  max-height: none !important;
   border-radius: 4px !important;
   overflow: hidden !important;
   display: block !important;
@@ -3663,12 +4118,12 @@ body.is-hero .menu {
 
 .title_amenities {
   color: #ffffff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(1.15rem, 1.4vw, 1.4rem) !important;
-  font-weight: 600 !important;
-  line-height: 1.25 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  line-height: 21.6px !important;
   margin: 0 !important;
-  letter-spacing: -0.01em !important;
+  letter-spacing: normal !important;
   text-shadow: none !important;
 }
 
@@ -3678,11 +4133,12 @@ body.is-hero .menu {
 
 .desc_amenities,
 .desc_amenities .p_gen {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
-  font-size: clamp(0.78rem, 0.85vw, 0.88rem) !important;
-  line-height: 1.45 !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.24px !important;
+  line-height: 18.36px !important;
   color: rgba(255, 255, 255, 0.95) !important;
   font-weight: 400 !important;
+  letter-spacing: 0.1224px !important;
   margin: 0 !important;
   text-shadow: none !important;
 }
@@ -3693,6 +4149,10 @@ body.is-hero .menu {
 }
 
 /* Responsive Breakpoints */
+.amenities_section {
+  scroll-margin-top: 70px;
+}
+
 @media screen and (max-width: 991px) {
   .amenities_section .wrapper_general.basic.slider_spec {
     padding: 8rem 0 !important;
@@ -3705,15 +4165,29 @@ body.is-hero .menu {
 
   .amenities_heading .h2.middle_spec {
     font-size: clamp(2rem, 5.5vw, 3.2rem) !important;
+    line-height: 1.05 !important;
   }
 
   .container.only_amenities {
-    padding: 2.5rem 0 2.5rem 1.35rem !important;
+    margin-top: 2rem !important;
+    padding: 1.35rem 0 1.35rem 1.2rem !important;
   }
 
-  .image_amenities {
-    height: 420px !important;
-    max-height: 420px !important;
+  .splide__slide.amenities_splide {
+    border-radius: 4px !important;
+    width: 50% !important;
+    height: auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    aspect-ratio: 1440 / 1546 !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   .overlay_amenities {
@@ -3732,16 +4206,30 @@ body.is-hero .menu {
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+    font-size: clamp(34px, 7.5vw, 48px) !important;
+    line-height: 1.05 !important;
   }
 
   .container.only_amenities {
-    padding: 2rem 0 2rem 1rem !important;
+    margin-top: 1.5rem !important;
+    padding: 1.25rem 0 1.25rem 1rem !important;
   }
 
-  .image_amenities {
-    height: 380px !important;
-    max-height: 380px !important;
+  .splide__slide.amenities_splide {
+    border-radius: 6px !important;
+    width: 92% !important;
+    height: auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    aspect-ratio: 1440 / 1546 !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   .overlay_amenities {
@@ -3760,16 +4248,33 @@ body.is-hero .menu {
   }
 
   .amenities_heading .h2.middle_spec {
-    font-size: clamp(1.5rem, 7vw, 2.15rem) !important;
+    font-size: clamp(32px, 8.5vw, 40px) !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    text-align: center !important;
   }
 
   .container.only_amenities {
-    padding: 1.75rem 0 1.75rem 1rem !important;
+    margin-top: 1.25rem !important;
+    padding: 1.1rem 0 1.1rem 1rem !important;
   }
 
-  .image_amenities {
-    height: 350px !important;
-    max-height: 350px !important;
+  .splide__slide.amenities_splide {
+    background-color: transparent !important;
+    border-radius: 6px !important;
+    width: 94% !important;
+    height: auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .splide__slide.amenities_splide .image_amenities,
+  .amenities_section .image_amenities {
+    width: 100% !important;
+    aspect-ratio: 1440 / 1546 !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   .overlay_amenities {
@@ -3793,7 +4298,7 @@ body.is-hero .menu {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(4rem, 8vw, 10rem) 2rem;
+  padding: 10rem 2rem;
   box-sizing: border-box;
   overflow: visible !important;
 }
@@ -3829,12 +4334,23 @@ body.is-hero .menu {
 .headline_box .h2,
 .headline_box .h2.smaller,
 .headline_box h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3vw, 40px) !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
+  font-weight: 400 !important;
+  line-height: var(--lh-h2-section, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
   color: #292929 !important;
   margin: 0;
+}
+
+.left_title .p_gen,
+.bottom_how .p_gen {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.96px !important;
+  font-weight: 400 !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
+  color: #292929 !important;
 }
 
 .right_cards {
@@ -3891,12 +4407,22 @@ body.is-hero .menu {
 }
 
 .title_how {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-  line-height: 1.25;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: 21.6px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  margin-bottom: 0.65rem !important;
+  line-height: 21.6px !important;
+}
+
+.how_card .p_gen,
+.how_card p,
+.content_how .p_gen {
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+  font-size: 12.96px !important;
+  font-weight: 400 !important;
+  line-height: 16.848px !important;
+  letter-spacing: 0.1296px !important;
 }
 
 /* Card Themes matching SGMG Brand Colors */
@@ -3912,8 +4438,8 @@ body.is-hero .menu {
 .how_card.card_blue .p_gen,
 .how_card.card_blue p {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_blue .icon_how img {
@@ -3932,8 +4458,8 @@ body.is-hero .menu {
 .how_card.card_green .p_gen,
 .how_card.card_green p {
   color: rgba(41, 41, 41, 0.88) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_green .icon_how img {
@@ -3953,8 +4479,8 @@ body.is-hero .menu {
 .how_card.card_black .p_gen,
 .how_card.card_black p {
   color: rgba(255, 255, 255, 0.88) !important;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 12.96px !important;
+  line-height: 16.848px !important;
 }
 
 .how_card.card_black .icon_how img {
@@ -3990,7 +4516,7 @@ body.is-hero .menu {
   .headline_box .h2,
   .headline_box .h2.smaller,
   .headline_box h2 {
-    font-size: clamp(20px, 5.5vw, 28px) !important;
+    font-size: clamp(26px, 6vw, 36px) !important;
   }
 
   .right_cards {
@@ -4004,6 +4530,24 @@ body.is-hero .menu {
 
   .content_how {
     margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .how_it_works .wrapper_general.basic,
+  .wrapper_how_to {
+    padding: 4.5rem 1rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .how_it_works .wrapper_general.basic,
+  .wrapper_how_to {
+    padding: 3.25rem 1rem !important;
+  }
+
+  .flex_how {
+    gap: 1.75rem !important;
   }
 }
 
@@ -4129,11 +4673,11 @@ body.is-hero .menu {
 
 .testimonials_heading .h2.bigger,
 .testimonials_heading .h2 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(2.4rem, 5.2vw, 4.2rem) !important;
-  font-weight: 600 !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(38px, 6vw, 86.4px) !important;
+  font-weight: 400 !important;
+  line-height: 0.7 !important;
+  letter-spacing: -0.02em !important;
   color: var(--black, #292929);
   margin: 0;
 }
@@ -4248,10 +4792,11 @@ body.is-hero .menu {
 }
 
 .author_name_txt {
-  font-size: 0.85rem;
-  line-height: 1.25;
-  font-weight: 500;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-size: 12.672px !important;
+  line-height: 12.672px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   color: var(--black, #292929);
 }
 
@@ -4315,9 +4860,10 @@ body.is-hero .menu {
   width: 100%;
   height: 100%;
   font-size: clamp(1.4rem, 2.1vw, 2.25rem);
-  line-height: 1.25;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
   display: flex;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-weight: 400;
   color: var(--black, #292929);
 }
@@ -4400,7 +4946,7 @@ body.is-hero .menu {
   .author_name_txt {
     font-size: 0.82rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     text-align: center;
@@ -4493,7 +5039,7 @@ body.is-hero .menu {
   .author_name_txt {
     font-size: 0.8rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     text-align: center;
@@ -4595,7 +5141,7 @@ body.is-hero .menu {
     text-align: center;
     font-size: 0.78rem !important;
     line-height: 1.25 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
     font-weight: 500;
     color: var(--black, #292929);
     white-space: normal;
@@ -4651,11 +5197,11 @@ body.is-hero .menu {
 }
 
 .faq_heading .h2.smaller {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(2rem, 3.2vw, 3.25rem);
-  line-height: 1.15;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(28px, 4.6vw, 66.24px);
+  line-height: 1.0;
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--black);
   text-align: center;
   margin: 0;
@@ -4694,7 +5240,7 @@ body.is-hero .menu {
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--black);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .bottom_faq {
@@ -4713,7 +5259,7 @@ body.is-hero .menu {
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--black);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .faq_general {
@@ -4777,7 +5323,7 @@ body.is-hero .menu {
   letter-spacing: 0;
   font-size: 1.2em;
   font-weight: 400;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   color: #1a1a1a;
   line-height: 1.35;
   transition: color 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -4824,7 +5370,7 @@ body.is-hero .menu {
   font-size: 0.9em;
   line-height: 1.45;
   color: rgba(41, 41, 41, 0.78);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   text-align: left;
   opacity: 0;
 }
@@ -4943,7 +5489,7 @@ body.is-hero .menu {
     font-size: 1.1rem !important;
     line-height: 1.35 !important;
     margin-bottom: 0.35rem;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .accordion-item {
@@ -4960,7 +5506,7 @@ body.is-hero .menu {
     font-size: 1.15rem !important;
     line-height: 1.35 !important;
     width: 90%;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .icon_wrapper {
@@ -4973,7 +5519,7 @@ body.is-hero .menu {
     max-width: 100%;
     font-size: 0.92rem !important;
     line-height: 1.5 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 }
 
@@ -5084,7 +5630,7 @@ body.is-hero .menu {
 .pink_cta .heading_cta .txt_cta {
   font-size: clamp(20px, 2.2vw, 34px);
   line-height: 1.05;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   color: #ffffff !important;
 }
 
@@ -5186,7 +5732,7 @@ body.is-hero .menu {
   letter-spacing: -0.01em;
   font-size: clamp(24px, 2.2vw, 38px);
   line-height: 1.08;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
 }
 
 /* Other Ventures in Footer */
@@ -5268,7 +5814,7 @@ body.is-hero .menu {
   line-height: 1.25;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .link_f:hover {
@@ -5287,7 +5833,7 @@ body.is-hero .menu {
   font-size: 0.9em;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   display: inline-block;
 }
 
@@ -5360,7 +5906,7 @@ body.is-hero .menu {
   font-size: 0.82em;
   display: flex;
   align-items: center;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .last_line.ll_fs {
@@ -5390,6 +5936,41 @@ body.is-hero .menu {
 
 .spec_link:hover {
   color: var(--primary);
+}
+
+/* Footer illustration: lit windows glow steadily; a few, and the stars, twinkle */
+.footer-win {
+  opacity: 0.78;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .footer-win--twinkle {
+    animation: footerWinTwinkle 7s ease-in-out infinite;
+  }
+
+  .footer-star {
+    animation: footerStarTwinkle 3.6s ease-in-out infinite;
+  }
+}
+
+@keyframes footerWinTwinkle {
+  0%, 40%, 100% {
+    opacity: 0.78;
+  }
+
+  50%, 70% {
+    opacity: 0.08;
+  }
+}
+
+@keyframes footerStarTwinkle {
+  0%, 100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
 }
 
 /* Flicker keyframe animation for lamp */
@@ -5536,7 +6117,7 @@ body.is-hero .menu {
   .txt_cta {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.15 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .footer_logo_img {
@@ -5547,7 +6128,7 @@ body.is-hero .menu {
   .cap_footer {
     font-size: clamp(16px, 4.5vw, 18px) !important;
     line-height: 1.1 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .menu_footer {
@@ -5559,14 +6140,14 @@ body.is-hero .menu {
   .title_footer {
     font-size: 12.675px !important;
     line-height: 1.2 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
     margin-bottom: 0.75rem;
   }
 
   .link_f {
     font-size: 15.6px !important;
     line-height: 1.35 !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   }
 
   .links_list {
@@ -5646,14 +6227,14 @@ body.is-hero .menu {
 .heading_aparts .h1.black,
 .heading_aparts .h1.black.spec_amenities,
 .h1.black.spec_amenities {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3.2vw, 38px) !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(36px, 5vw, 72px) !important;
+  line-height: 0.9 !important;
+  letter-spacing: normal !important;
   color: #292929 !important;
   margin: 0;
   padding: 0;
-  font-weight: 600;
+  font-weight: 400 !important;
 }
 
 .apartments_sides {
@@ -5696,7 +6277,7 @@ body.is-hero .menu {
 }
 
 .filter_title {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 0.9em;
   /* 12.96px */
   font-weight: 400;
@@ -5728,7 +6309,7 @@ body.is-hero .menu {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .clear_btn>div,
@@ -5746,7 +6327,8 @@ body.is-hero .menu {
   box-sizing: border-box;
 }
 
-.checkbox.is-active {
+.checkbox.is-active,
+.clear_btn.is-active {
   background-color: #292929;
   color: #ffffff;
   border-color: #292929;
@@ -5783,13 +6365,13 @@ body.is-hero .menu {
   color: #292929;
   background: #ffffff;
   box-sizing: border-box;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .dash_field {
   font-size: 11.52px;
   color: #171717;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .fs-rangeslider_track.helper {
@@ -5830,7 +6412,7 @@ body.is-hero .menu {
   transform: translateX(-50%);
   font-size: 11.52px;
   color: #292929;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   white-space: nowrap;
 }
 
@@ -5895,7 +6477,7 @@ body.is-hero .menu {
   padding: 0.5em 0.4em 0.5em 0.5em;
   font-size: 0.7em;
   color: rgb(41, 41, 41);
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   align-self: flex-start;
   display: flex;
   pointer-events: auto;
@@ -5936,7 +6518,7 @@ body.is-hero .menu {
   display: flex;
   color: rgb(41, 41, 41);
   line-height: 1;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
 }
 
 .icon_tag {
@@ -6220,10 +6802,7 @@ body.is-hero .menu {
 
   .apartments-grid-carousel-ui .carousel-prev,
   .apartments-grid-carousel-ui .carousel-next {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 3.5em;
-    padding: 0 0 0.1rem 0;
+    display: none !important;
   }
 
   .apartments-grid-carousel-ui .carousel-prev {
@@ -6280,11 +6859,11 @@ body.is-hero .menu {
 }
 
 .apart_title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(18px, 1.25vw, 24px) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(17px, 1.25vw, 22px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -6320,18 +6899,18 @@ body.is-hero .menu {
 }
 
 .price_txt {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(16px, 1.1vw, 21px) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(15px, 1.1vw, 20px) !important;
   line-height: 1.2 !important;
   color: var(--black, #292929) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   white-space: nowrap;
 }
 
 .mnth_txt {
   opacity: 0.7;
   margin-bottom: auto;
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: clamp(11px, 0.75vw, 14px) !important;
   line-height: 1.2;
   color: var(--black, #292929);
@@ -6367,12 +6946,6 @@ body.is-hero .menu {
 @media screen and (max-width: 991px) {
   .wrapper_general.apartments_gen {
     padding: 15em 1.35rem 8rem;
-  }
-
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(22px, 4.2vw, 34px) !important;
   }
 
   .heading_aparts {
@@ -6458,92 +7031,194 @@ body.is-hero .menu {
   }
 
   .apartments_grid {
-    gap: 4em 1.5em;
+    column-gap: 1.5rem;
+    row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
 
   .apart_image.grid_apartments {
     width: 100%;
-    height: 38em;
+    height: clamp(260px, 38vw, 360px);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
-    padding: 1.15em;
+    padding: clamp(12px, 1.15vw, 18px);
   }
 
   .apart_title_line {
-    margin-top: 0.4em;
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(18px, 1.25vw, 22px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 2.5vw, 22px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .price_txt {
-    font-size: clamp(16px, 1.1vw, 20px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 2.5vw, 20px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .mnth_txt {
-    font-size: 1.3em;
+    font-size: clamp(11px, 1.3vw, 13px);
   }
 
   .icon_price {
-    width: 3em;
-    height: 3em;
-    padding: 0.65em;
+    width: clamp(22px, 3vw, 26px);
+    height: clamp(22px, 3vw, 26px);
+    padding: clamp(4px, 0.65vw, 6px);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content_apart {
     z-index: 2;
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
     position: relative;
   }
 
   .explore_button {
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
+    display: flex;
   }
 
-  .text_box.apartments_button {
-    width: auto !important;
-    min-height: auto !important;
-    padding-left: 4em !important;
-    padding-right: 4em !important;
-    font-size: 1.2em !important;
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
+    height: 40px !important;
+    min-height: 40px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    font-size: clamp(11px, 1.2vw, 13px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+  }
+
+  .explore_button .button .icon_box.is-right {
+    width: 40px !important;
+    height: 40px !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
   }
 
   .tag_available {
     padding: 0.5rem 0.4rem;
-    font-size: 1.4em;
+    font-size: clamp(11px, 1.4vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
   }
 
   .dot_available {
-    width: 0.35em;
-    height: 0.35em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 100%;
+    flex-shrink: 0;
   }
 
   .tag_info {
     padding: 0.25rem 0.37rem;
-    font-size: 1.4em;
+    font-size: clamp(11px, 1.4vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
   }
 
   .icon_tag {
-    width: 1.8em;
-    height: 1.8em;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   .checkbox,
-  .filter_title {
-    font-size: 1.2em;
+  .clear_btn {
+    font-size: 12.5px !important;
   }
 
-  .clear_btn {
-    font-size: 1.2em;
+  .filter_title {
+    font-size: 14px !important;
   }
 
   .filters_box.last_filter {
-    margin-top: 4.5em;
+    margin-top: 1.5rem !important;
   }
 
   .filters_wrap {
@@ -6561,13 +7236,6 @@ body.is-hero .menu {
     padding-top: 12em;
   }
 
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(20px, 5.2vw, 28px) !important;
-    line-height: 1.05 !important;
-  }
-
   .heading_aparts {
     margin-bottom: 1.75rem !important;
   }
@@ -6578,71 +7246,214 @@ body.is-hero .menu {
   }
 
   .apartments_grid {
-    gap: 3.5em 1.5em;
+    column-gap: 1.5rem;
+    row-gap: 3.5rem;
     grid-template-columns: 1fr;
   }
 
   .apart_image.grid_apartments {
-    height: 62em;
+    height: clamp(280px, 62vw, 420px);
     width: 100%;
     border-radius: 4px;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
-    padding: 2em;
+    padding: clamp(14px, 2vw, 20px);
+  }
+
+  .apart_title_line {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(18px, 3.8vw, 22px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(17px, 3vw, 22px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .price_txt,
   .price_txt.specific_card {
-    font-size: clamp(16px, 3.4vw, 20px) !important;
-    font-weight: 600 !important;
+    font-size: clamp(15px, 3vw, 20px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
   }
 
   .mnth_txt {
-    font-size: 12px !important;
+    font-size: clamp(11px, 1.85vw, 13px) !important;
   }
 
   .icon_price {
-    width: 3.5em;
-    height: 3.5em;
-    padding: 0.7em;
+    width: clamp(24px, 3.5vw, 28px);
+    height: clamp(24px, 3.5vw, 28px);
+    padding: clamp(4px, 0.7vw, 6px);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content_apart {
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
   }
 
   .explore_button {
-    margin-top: 1.65em;
+    margin-top: 1.65rem !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
-  .text_box.apartments_button {
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: clamp(38px, 6vw, 42px) !important;
+    min-height: clamp(38px, 6vw, 42px) !important;
+    column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 24px !important;
+    font-size: clamp(11.5px, 1.45vw, 13.5px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+  }
+
+  .explore_button .button .icon_box.is-right {
     width: auto !important;
-    padding-left: 4em !important;
-    padding-right: 4em !important;
-    font-size: 1.45em !important;
+    height: 100% !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .tag_available,
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .explore_button .button .arrow-icon {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .explore_button .button .arrow_icon svg,
+  .explore_button .button .arrow-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
+  }
+
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: clamp(11px, 1.6vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .dot_available {
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 100%;
+    flex-shrink: 0;
+  }
+
   .tag_info {
-    font-size: 1.6em;
+    padding: 0.25rem 0.37rem;
+    font-size: clamp(11px, 1.6vw, 13px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .icon_tag {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   /* Mobile Filters Drawer */
+  /* Mobile Filters Drawer */
   .filters {
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     background-color: var(--white, #ffffff);
     flex-flow: column;
     width: 100% !important;
     max-width: 100vw !important;
     height: 100vh;
     height: 100dvh;
-    padding: 1.5rem 1rem calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 1.25rem 1.15rem calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
     display: none;
     position: fixed;
     inset: 0%;
@@ -6659,13 +7470,15 @@ body.is-hero .menu {
   .filter_heading {
     justify-content: space-between;
     align-items: center;
-    font-family: var(--font-heading, "Michroma", sans-serif) !important;
-    font-size: 5.5em;
-    line-height: 1.1;
-    color: #292929;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(22px, 6.5vw, 26px) !important;
+    line-height: 1.15 !important;
+    color: var(--black, #292929) !important;
     display: flex;
     width: 100%;
+    margin-bottom: clamp(16px, 4.5vw, 22px);
     box-sizing: border-box;
+    flex-shrink: 0;
   }
 
   .close_button {
@@ -6673,13 +7486,19 @@ body.is-hero .menu {
     border-radius: 100%;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.6rem;
+    width: clamp(32px, 8.5vw, 36px);
+    height: clamp(32px, 8.5vw, 36px);
+    padding: clamp(7px, 2vw, 9px);
     display: flex;
+    flex-shrink: 0;
     overflow: hidden;
     cursor: pointer;
     box-sizing: border-box;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .close_button:active {
+    transform: scale(0.92);
   }
 
   .close_button .image,
@@ -6687,6 +7506,8 @@ body.is-hero .menu {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
+    filter: brightness(0) invert(1);
   }
 
   .filter_form {
@@ -6700,26 +7521,29 @@ body.is-hero .menu {
 
   .form_filters {
     flex-flow: column;
-    height: 100%;
     display: flex;
     flex: 1;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    justify-content: space-between;
   }
 
   .filters_flex {
-    row-gap: 1.5rem;
+    row-gap: clamp(14px, 3.8vw, 20px);
+    gap: clamp(14px, 3.8vw, 20px);
     padding-right: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
+    margin-bottom: 1.5rem;
   }
 
   .filters_box {
-    row-gap: 1rem;
+    row-gap: 0.6rem;
+    gap: 0.6rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6727,18 +7551,73 @@ body.is-hero .menu {
   }
 
   .filters_box.last_filter {
-    margin-top: 1.5rem;
+    margin-top: 0 !important;
   }
 
-  .filters_type {
-    column-gap: 0.5rem;
-    display: flex;
+  .filter_title {
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(13px, 3.5vw, 14.5px) !important;
+    font-weight: 500 !important;
+    color: var(--black, #292929) !important;
+    line-height: 1.2 !important;
   }
 
   .filters_wrap {
-    gap: 0.5rem;
+    gap: 6px;
+    row-gap: 6px;
+    column-gap: 6px;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .filters_type {
+    gap: 6px;
+    row-gap: 6px;
+    column-gap: 6px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .clear_btn,
+  .checkbox {
+    font-size: clamp(11.5px, 3vw, 12.5px) !important;
+    line-height: 1 !important;
+    border: 1px solid rgba(41, 41, 41, 0.22) !important;
+    border-radius: 4px !important;
+    background: transparent;
+    color: var(--black, #292929);
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: all 0.25s ease;
+  }
+
+  .clear_btn > div,
+  .checkbox_txt,
+  .radio_txt {
+    padding: 0.55rem 0.95rem !important;
+    font-size: inherit !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+
+  .checkbox.is-active,
+  .clear_btn.is-active {
+    background-color: var(--black, #292929) !important;
+    color: #ffffff !important;
+    border-color: var(--black, #292929) !important;
   }
 
   .buttons_filters {
@@ -6748,121 +7627,155 @@ body.is-hero .menu {
     justify-content: stretch !important;
     align-items: center !important;
     margin-top: auto !important;
-    padding-top: 1.25rem !important;
-    padding-bottom: 0.5rem !important;
-    border-top: none !important;
+    padding-top: 1rem !important;
+    padding-bottom: 0.25rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
   .show_variants {
-    background-color: var(--primary, #2391cf);
+    background-color: var(--primary, #2391cf) !important;
     flex: 1.2 1 0 !important;
     width: auto !important;
     min-width: 0 !important;
-    max-width: none !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px !important;
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
-    font-size: 13px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 14px !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(12.5px, 3.2vw, 14px) !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
     display: flex !important;
-    cursor: pointer;
+    cursor: pointer !important;
     box-sizing: border-box !important;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
   }
 
   .show_variants:hover {
-    opacity: 0.92;
+    opacity: 0.92 !important;
   }
 
   .show_variants:active {
-    transform: scale(0.98);
+    transform: scale(0.98) !important;
   }
 
   .clear_button {
-    background-color: rgba(41, 41, 41, 0.12);
-    border: none;
-    border-radius: 6px;
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(41, 41, 41, 0.08) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    justify-content: center !important;
+    align-items: center !important;
     flex: 1 1 0 !important;
     width: auto !important;
     min-width: 0 !important;
-    max-width: none !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
-    padding: 0 10px !important;
-    color: var(--black, #292929);
-    font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
-    font-size: 13px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    padding: 0 14px !important;
+    color: var(--black, #292929) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(12.5px, 3.2vw, 14px) !important;
     font-weight: 500 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
     display: flex !important;
-    cursor: pointer;
-    text-decoration: none;
+    cursor: pointer !important;
+    text-decoration: none !important;
     box-sizing: border-box !important;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
   }
 
   .clear_button:hover {
-    background-color: rgba(41, 41, 41, 0.16);
+    background-color: rgba(41, 41, 41, 0.14) !important;
   }
 
   .clear_button:active {
-    transform: scale(0.98);
+    transform: scale(0.98) !important;
   }
 
   .clear_button div {
-    font-size: 13px !important;
-    font-weight: 500 !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
     white-space: nowrap !important;
-  }
-
-  .checkbox {
-    font-size: 1.85em;
-  }
-
-  .filter_title {
-    font-size: 2em;
-  }
-
-  .clear_btn {
-    font-size: 1.85em;
+    color: inherit !important;
   }
 
   .fs-rangeslider_wrapper.helper {
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
   .fs-message {
     width: 100% !important;
+    display: flex !important;
     justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
     box-sizing: border-box !important;
   }
 
   .fs-rangeslider_input.helper {
-    width: 48% !important;
+    flex: 1 !important;
+    width: auto !important;
+    height: 38px !important;
+    padding: 0 12px !important;
+    font-size: 12.5px !important;
+    border: 1px solid rgba(41, 41, 41, 0.22) !important;
+    border-radius: 4px !important;
+    color: var(--black, #292929) !important;
+    background: #ffffff !important;
     box-sizing: border-box !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    text-align: center !important;
+  }
+
+  .dash_field {
+    font-size: 14px !important;
+    opacity: 0.45 !important;
+    flex-shrink: 0 !important;
   }
 
   .fs-rangeslider_track.helper {
-    width: calc(100% - 16px) !important;
-    margin: 10px 8px 24px 8px !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: rgba(41, 41, 41, 0.15) !important;
+    border-radius: 2px !important;
+    margin: 14px 0 18px 0 !important;
+    position: relative !important;
     box-sizing: border-box !important;
+  }
+
+  .fs-rangeslider_fill.helper {
+    background: var(--primary, #2391cf) !important;
+    height: 100% !important;
+    border-radius: 2px !important;
+  }
+
+  .fs-rangeslider_handle.helper {
+    width: 18px !important;
+    height: 18px !important;
+    background: #ffffff !important;
+    border: 2px solid var(--primary, #2391cf) !important;
+    border-radius: 100% !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15) !important;
+  }
+
+  .fs-rangeslider_handle-value {
+    display: none !important;
   }
 
   /* Mobile Floating Sticky Filter Button - Removed per user request */
@@ -6878,43 +7791,133 @@ body.is-hero .menu {
     padding-right: 1rem;
   }
 
-  .heading_aparts .h1,
-  .h1.black,
-  .h1.black.spec_amenities {
-    font-size: clamp(18px, 6vw, 24px) !important;
-  }
-
   .apartments_grid {
     row-gap: 1.6rem;
     grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .apart_image.grid_apartments {
     border-radius: 4px;
-    height: 82em;
+    height: 82vw;
+    max-height: 380px;
+    min-height: 270px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
   .overlay_tags {
     padding: 0.8rem;
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  .tag_available {
+    padding: 0.5rem 0.4rem;
+    font-size: clamp(11px, 3.15vw, 12.5px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    pointer-events: auto;
+  }
+
+  .dot_available {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 100%;
+    flex-shrink: 0;
+  }
+
+  .txt_available {
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  .tags_info {
+    column-gap: 0.25rem;
+    gap: 0.25rem;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    pointer-events: auto;
+  }
+
+  .tag_info {
+    padding: 0.25rem 0.37rem;
+    font-size: clamp(10.5px, 3vw, 12px);
+    border-radius: 3px;
+    column-gap: 0.35rem;
+    gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .icon_tag {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon_tag img,
+  .icon_tag .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .content_apart {
+    margin-top: clamp(10px, 3vw, 14px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .apart_title_line {
-    margin-top: 0px;
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 
   .apart_title {
-    font-size: clamp(18px, 4.6vw, 22px) !important;
-    font-weight: 600 !important;
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(18px, 5.5vw, 22px) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
+    font-weight: 400 !important;
+    text-decoration: none;
+    white-space: nowrap;
   }
 
-  .price_txt,
-  .price_txt.specific_card {
-    font-size: clamp(16px, 4.2vw, 20px) !important;
-    font-weight: 600 !important;
-  }
-
-  .mnth_txt {
-    font-size: clamp(11px, 2.8vw, 13px) !important;
+  .price_box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 0.375rem;
+    gap: 0.375rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .icon_price {
@@ -6923,44 +7926,140 @@ body.is-hero .menu {
     width: 1.6rem;
     height: 1.6rem;
     padding: 0.4rem;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-radius: 100%;
   }
 
-  .content_apart,
+  .price_txt,
+  .price_txt.specific_card {
+    font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+    font-size: clamp(16px, 5.5vw, 21px) !important;
+    line-height: 1.2 !important;
+    color: var(--black, #292929) !important;
+    font-weight: 400 !important;
+    white-space: nowrap;
+  }
+
+  .mnth_txt {
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+    font-size: clamp(11px, 3.5vw, 14px) !important;
+    opacity: 0.55;
+    line-height: 1.2;
+    color: var(--black, #292929);
+    margin-bottom: auto;
+    white-space: nowrap;
+  }
+
   .explore_button {
-    margin-top: 3em;
+    margin-top: clamp(10px, 3vw, 14px) !important;
+    display: flex !important;
+    width: 100% !important;
   }
 
-  .text_box.apartments_button {
+  .explore_button .button {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: clamp(38px, 10vw, 42px) !important;
+    min-height: clamp(38px, 10vw, 42px) !important;
+    grid-column-gap: 4px !important;
+    gap: 4px !important;
+    position: relative !important;
+    text-decoration: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .explore_button .button .icon_box.is-left {
+    display: none !important;
+  }
+
+  .explore_button .button .text_box.apartments_button {
     width: 88% !important;
-    font-size: 3em !important;
+    flex: 1 1 auto !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 16px !important;
+    font-size: clamp(11px, 3vw, 13px) !important;
+    font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    color: #ffffff !important;
+    background-color: var(--primary, #2391cf) !important;
+    box-sizing: border-box !important;
+    transform: none !important;
   }
 
-  .tag_available {
-    padding: 0.5rem 0.4rem;
-    font-size: 3.15em;
+  .explore_button .button .text_box.apartments_button div {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
   }
 
-  .dot_available {
-    width: 0.25rem;
-    height: 0.25rem;
+  .explore_button .button .icon_box.is-right {
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    height: 100% !important;
+    aspect-ratio: 1 !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    transform: none !important;
+    background-color: var(--logo-green, #a2cd3a) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .tag_info {
-    padding: 0.25rem 0.37rem;
-    font-size: 3em;
+  .explore_button .button .arrow_icon {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
-  .icon_tag {
-    width: 1.25rem;
-    height: 1.25rem;
+  .explore_button .button .arrow-icon {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .explore_button .button .arrow_icon svg,
+  .explore_button .button .arrow-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .explore_button .button .arrow_icon svg path,
+  .explore_button .button .arrow-icon svg path,
+  .explore_button .button .icon_box svg path {
+    fill: #ffffff !important;
   }
 
   .filters {
-    z-index: 9999 !important;
-    padding-top: 1.25rem !important;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    z-index: 99999 !important;
+    padding: 1.15rem 1rem calc(1rem + env(safe-area-inset-bottom, 0px)) 1rem !important;
     width: 100% !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
@@ -6968,44 +8067,51 @@ body.is-hero .menu {
     overflow-y: auto !important;
   }
 
-  .filters_box {
-    row-gap: 0.8rem;
+  .filter_heading {
+    font-size: clamp(21px, 6vw, 24px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
   }
 
-  .filters_box.last_filter {
-    margin-top: 1.5rem !important;
+  .filters_box {
+    row-gap: 0.5rem;
+    gap: 0.5rem;
   }
 
   .filters_flex {
-    row-gap: 1.4rem;
-    padding-right: 0;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    row-gap: 1.15rem;
+    gap: 1.15rem;
+    margin-bottom: 1.25rem;
   }
 
-  .filter_heading {
-    justify-content: space-between;
-    align-items: center;
-    font-size: 6.5em;
-    width: 100%;
-    box-sizing: border-box;
+  .filter_title {
+    font-size: 13.5px !important;
+  }
+
+  .clear_btn,
+  .checkbox {
+    font-size: 11.5px !important;
+  }
+
+  .clear_btn > div,
+  .checkbox_txt,
+  .radio_txt {
+    padding: 0.5rem 0.85rem !important;
   }
 
   .buttons_filters {
-    column-gap: 8px !important;
     gap: 8px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
+    column-gap: 8px !important;
+    padding-top: 0.85rem !important;
+    padding-bottom: 0.25rem !important;
   }
 
   .show_variants,
   .clear_button {
     font-size: 13px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
   }
 
   .clear_button div {
@@ -7014,18 +8120,6 @@ body.is-hero .menu {
 
   .fix_filter {
     display: none !important;
-  }
-
-  .checkbox {
-    font-size: 3em;
-  }
-
-  .filter_title {
-    font-size: 3.5em;
-  }
-
-  .clear_btn {
-    font-size: 3em;
   }
 }
 
@@ -7038,7 +8132,7 @@ body.is-hero .menu {
 }
 
 .no-apartments-found h3 {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
@@ -7071,7 +8165,7 @@ body.is-hero .menu {
 }
 
 .faq-prompt-text {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.5rem;
   line-height: 1.3;
   margin-bottom: 1.5rem;
@@ -7085,25 +8179,26 @@ body.is-hero .menu {
 }
 
 .faq-explore-btn {
-  background: #e8d9fd;
-  color: #18181b;
+  background: var(--primary, #2391cf);
+  color: #ffffff;
   padding: 0.75rem 1.4rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .faq-explore-btn:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
+  color: #ffffff;
 }
 
 .faq-arrow-link {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #e8d9fd;
+  background: var(--primary, #2391cf);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7112,7 +8207,7 @@ body.is-hero .menu {
 }
 
 .faq-arrow-link:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
 }
 
 .faq-arrow-link .arrow_icon {
@@ -7138,7 +8233,7 @@ body.is-hero .menu {
 }
 
 .faq-question-title {
-  font-family: var(--font-body, "Plus Jakarta Sans", sans-serif);
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
   font-size: 1.25rem;
   color: #18181b;
 }
@@ -7165,7 +8260,7 @@ body.is-hero .menu {
 
 .faq-main-heading.white {
   color: #ffffff;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: clamp(1.6rem, 2.8vw, 2.3rem);
   line-height: 1.15;
   margin-bottom: 1.5rem;
@@ -7253,7 +8348,7 @@ body.is-hero .menu {
 }
 
 .apartment-lightbox-unit-title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1.8rem;
   margin: 0;
   color: #ffffff;
@@ -7287,18 +8382,19 @@ body.is-hero .menu {
 }
 
 .apartment-lightbox-apply-btn {
-  background: #e8d9fd;
-  color: #18181b;
+  background: var(--primary, #2391cf);
+  color: #ffffff;
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .apartment-lightbox-apply-btn:hover {
-  background: #d8c2fc;
+  background: var(--primary-hover, #1c7bb3);
+  color: #ffffff;
 }
 
 .apartment-lightbox-close-btn {

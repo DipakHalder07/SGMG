@@ -6,8 +6,8 @@ import Splide from "@splidejs/splide";
 import "@splidejs/splide/css/core";
 import Header, { ArrowIcon, WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
-import EmiCalculator from "../components/EmiCalculator";
-import FaqAccordionItem from "../components/FaqAccordionItem";
+import FamilySection from "../components/FamilySection";
+import FaqSection from "../components/FaqSection";
 import {
   ApartmentUnit,
   APARTMENT_FAQS,
@@ -106,9 +106,6 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
 
   // Amenities tab state
   const [activeAmenityTab, setActiveAmenityTab] = useState<"Interior" | "Features" | "Community">("Interior");
-
-  // FAQ accordion active state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // 1. Route initialization: scroll to top & set document title
   useEffect(() => {
@@ -685,7 +682,24 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
             <div role="list" className="price_card_box w-dyn-items">
               <div role="listitem" className="price_card_item w-dyn-item">
                 <div className={`price_card_wrapper ${feesOpen ? "is-open" : "is-collapsed"}`}>
-                  <div className="top_line">
+                  <div
+                    className="top_line"
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={feesOpen}
+                    aria-label="Toggle indicative charges breakdown"
+                    onClick={() => {
+                      manualOverrideRef.current = true;
+                      setFeesOpen(!feesOpen);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        manualOverrideRef.current = true;
+                        setFeesOpen(!feesOpen);
+                      }
+                    }}
+                  >
                     <div className="heading_card">
                       <div>{unit.name}</div>
                     </div>
@@ -705,21 +719,7 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
                       </div>
                       <div
                         className={`chevron_dropdown ${feesOpen ? "is-open" : ""}`}
-                        role="button"
-                        tabIndex={0}
-                        aria-expanded={feesOpen}
-                        aria-label="Toggle one-time fees"
-                        onClick={() => {
-                          manualOverrideRef.current = true;
-                          setFeesOpen(!feesOpen);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            manualOverrideRef.current = true;
-                            setFeesOpen(!feesOpen);
-                          }
-                        }}
+                        aria-hidden="true"
                       ></div>
                     </div>
                   </div>
@@ -1416,67 +1416,14 @@ function ApartmentDetail({ unit }: { unit: ApartmentUnit }) {
         </div>
       </section>
 
-      {/* EMI Calculator Section */}
-      <EmiCalculator />
+      {/* Family Section */}
+      <FamilySection />
 
       {/* Frequently Asked Questions Accordion Section */}
-      <section className="faqs">
-        <div className="wrapper_general basic">
-          <div className="faq_heading">
-            <h2 className="h2 smaller">
-              Frequently asked<br />questions
-            </h2>
-          </div>
-
-          <div className="sides_faq">
-            <div className="short_left">
-              <div className="caption_faq">
-                <div>Everything you might want to know before moving in.</div>
-              </div>
-              <div className="bottom_faq">
-                <div className="p_gen black caption_cta">
-                  Didn’t find what you were<br />looking for?
-                </div>
-                <div>
-                  <a href="/faq" className="button w-inline-block">
-                    <div className="icon_box is-left">
-                      <div className="arrow_icon">
-                        <ArrowIcon />
-                      </div>
-                    </div>
-                    <div className="text_box">
-                      <div>Explore FAQ</div>
-                    </div>
-                    <div className="icon_box is-right">
-                      <div className="arrow_icon">
-                        <ArrowIcon />
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="faq_general">
-              <div className="w-dyn-list">
-                <div role="list" className="collection_faq w-dyn-items">
-                  {APARTMENT_FAQS.map((faq, idx) => (
-                    <FaqAccordionItem
-                      key={faq.q}
-                      question={faq.q}
-                      answer={faq.a}
-                      isOpen={openFaqIndex === idx}
-                      onToggle={() =>
-                        setOpenFaqIndex(openFaqIndex === idx ? null : idx)
-                      }
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FaqSection
+        faqs={APARTMENT_FAQS}
+        caption="Everything you might want to know before moving in."
+      />
 
       <Footer />
     </div>

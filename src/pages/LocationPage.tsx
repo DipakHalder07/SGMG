@@ -5,6 +5,45 @@ import "leaflet/dist/leaflet.css";
 import "../location.css";
 import Header, { WebflowButton } from "../components/Header";
 import Footer from "../components/Footer";
+import FaqSection from "../components/FaqSection";
+import {
+  ArrowUpRight,
+  BusFront,
+  GraduationCap,
+  Hospital,
+  MapPin,
+  Plane,
+  TrainFront,
+  type LucideIcon,
+} from "lucide-react";
+
+// The project site. Coordinates are from the Cosmos Prashil listing
+// (RERA WBRERA/P/DAR/2023/000769); the old sgmg.in nearby list agrees.
+const SGMG_LOCATION = {
+  name: "Cosmos Prashil",
+  lat: 26.7545,
+  lng: 88.41627,
+  address: "Devidanga, Champasari, Siliguri, West Bengal 734003",
+  shortAddress: "Devidanga, Champasari, Siliguri",
+};
+
+const directionsUrl = (lat: number, lng: number, fromSite = false) =>
+  `https://www.google.com/maps/dir/?api=1${
+    fromSite ? `&origin=${SGMG_LOCATION.lat},${SGMG_LOCATION.lng}` : ""
+  }&destination=${lat},${lng}`;
+
+const SGMG_DIRECTIONS_URL = directionsUrl(SGMG_LOCATION.lat, SGMG_LOCATION.lng);
+
+// Distances are by road from the site (OpenStreetMap car routing, Oct 2026).
+// Drive times assume ~25 km/h, a typical average in Siliguri traffic, so
+// they're estimates; longer trips are rounded up to the next 5 minutes.
+const CITY_SPEED_KMH = 25;
+const driveMinutes = (km: number) => {
+  const minutes = Math.ceil((km / CITY_SPEED_KMH) * 60);
+  return minutes > 20 ? Math.ceil(minutes / 5) * 5 : minutes;
+};
+const formatKm = (km: number) => `${km.toFixed(1)} km`;
+const formatDrive = (km: number) => `${driveMinutes(km)} min`;
 
 interface SlideData {
   id: string;
@@ -12,161 +51,170 @@ interface SlideData {
   description: string;
   image: string;
   alt: string;
-  walk: string;
-  bike: string;
-  drive: string;
+  km: number;
 }
 
 const HERO_SLIDES: SlideData[] = [
   {
-    id: "vega-circle-mall",
-    title: "Vega Circle Mall, Sevoke Road",
+    id: "city-centre",
+    title: "City Centre, Matigara",
     description:
-      "Siliguri’s premier retail, dining, and cinema destination on Sevoke Road, offering top international brands, multiplex entertainment, food courts, and daily excitement.",
-    image: "/assets/locations/modern-commercial-complex.jpg",
-    alt: "Modern Commercial Retail & Shopping Complex on Sevoke Road in Siliguri",
-    walk: "2 min walk",
-    bike: "1 min bike",
-    drive: "1 min drive",
+      "One of Siliguri’s biggest malls, in Uttorayon Township, with fashion brands, restaurants, entertainment and open-air plazas.",
+    image: "/assets/locations/city-centre.jpg",
+    alt: "City Centre mall in Siliguri",
+    km: 4.98,
+  },
+  {
+    id: "savin-kingdom",
+    title: "Savin Kingdom, Hill Cart Road",
+    description:
+      "A family amusement and water park with rides, water slides and a fairy-tale castle entrance, the closest big day out from home.",
+    image: "/assets/locations/savin-kingdom.jpg",
+    alt: "Savin Kingdom amusement and water park in Siliguri",
+    km: 4.48,
   },
   {
     id: "cosmos-mall",
-    title: "Cosmos Mall & Sevoke Road Hub",
+    title: "Cosmos Mall, Sevoke Road",
     description:
-      "A bustling shopping and retail center on 2nd Mile Sevoke Road with hypermarkets, PVR Cinemas, popular cafés, and vibrant weekend gatherings just minutes from SGMG.",
+      "An SGMG-built mall on 2nd Mile, Sevoke Road, with shops, cafés and busy weekends.",
     image: "/assets/locations/cosmos-mall.jpg",
-    alt: "Cosmos Mall on Sevoke Road Siliguri",
-    walk: "5 min walk",
-    bike: "2 min bike",
-    drive: "2 min drive",
+    alt: "Cosmos Mall on Sevoke Road, Siliguri",
+    km: 6.42,
   },
-  {
-    id: "city-centre",
-    title: "City Centre Mall, Siliguri",
-    description:
-      "A flagship lifestyle landmark in Uttorayon Matigara with grand open-air plazas, premier fashion retailers, gourmet restaurants, and family entertainment zones.",
-    image: "/assets/locations/city-centre.jpg",
-    alt: "City Centre Mall in Siliguri",
-    walk: "35 min walk",
-    bike: "15 min bike",
-    drive: "12 min drive",
-  },
+];
+
+type PlaceCategory = "shopping" | "transport" | "schools" | "health";
+
+const PLACE_CATEGORIES: { id: PlaceCategory; label: string }[] = [
+  { id: "shopping", label: "Shopping & leisure" },
+  { id: "transport", label: "Getting around" },
+  { id: "schools", label: "Schools" },
+  { id: "health", label: "Healthcare" },
 ];
 
 interface MapPlace {
   id: string;
   name: string;
-  category: string;
+  category: PlaceCategory;
+  kind: string;
   lat: number;
   lng: number;
-  address: string;
-  hours: string;
-  image: string;
-  walk: string;
-  bike: string;
-  drive: string;
+  km: number;
+  // Places without a photo show an icon tile instead
+  image?: string;
+  icon?: LucideIcon;
 }
 
+// Each category is listed nearest first
 const MAP_PLACES: MapPlace[] = [
-  {
-    id: "vega-circle-mall",
-    name: "Vega Circle Mall",
-    category: "Shopping & Movies",
-    lat: 26.7465,
-    lng: 88.4385,
-    address: "3rd Mile, Sevoke Road, Siliguri, West Bengal 734008",
-    hours: "10:30 AM – 9:30 PM Daily",
-    image: "/assets/locations/thumbs/modern-commercial-complex.jpg",
-    walk: "2 min walk",
-    bike: "1 min bike",
-    drive: "1 min drive",
-  },
-  {
-    id: "cosmos-mall",
-    name: "Cosmos Mall",
-    category: "Retail & Dining",
-    lat: 26.7386,
-    lng: 88.4339,
-    address: "Sevoke Road, 2nd Mile, Siliguri, West Bengal 734001",
-    hours: "10:00 AM – 10:00 PM Daily",
-    image: "/assets/locations/thumbs/cosmos-mall.jpg",
-    walk: "5 min walk",
-    bike: "2 min bike",
-    drive: "2 min drive",
-  },
-  {
-    id: "city-centre-mall",
-    name: "City Centre Siliguri",
-    category: "Flagship Mall",
-    lat: 26.7152,
-    lng: 88.3887,
-    address: "Uttorayon Township, Matigara, Siliguri, West Bengal 734010",
-    hours: "11:00 AM – 9:30 PM Daily",
-    image: "/assets/locations/thumbs/city-centre.jpg",
-    walk: "35 min walk",
-    bike: "15 min bike",
-    drive: "12 min drive",
-  },
-  {
-    id: "hong-kong-market",
-    name: "Hong Kong Market",
-    category: "Bazaar & Street Food",
-    lat: 26.7176,
-    lng: 88.4285,
-    address: "Hill Cart Road / 10th Ward, Siliguri, West Bengal 734001",
-    hours: "10:00 AM – 9:00 PM Daily",
-    image: "/assets/locations/thumbs/hong-kong-market.jpg",
-    walk: "20 min walk",
-    bike: "8 min bike",
-    drive: "6 min drive",
-  },
+  { id: "savin-kingdom", name: "Savin Kingdom", category: "shopping", kind: "Theme park", lat: 26.73956, lng: 88.40272, km: 4.48, image: "/assets/locations/thumbs/savin-kingdom.jpg" },
+  { id: "vega-circle-mall", name: "Vega Circle Mall", category: "shopping", kind: "Mall · by SGMG", lat: 26.75236, lng: 88.43878, km: 4.95, image: "/assets/locations/thumbs/vega-circle-mall.jpg" },
+  { id: "city-centre", name: "City Centre", category: "shopping", kind: "Mall", lat: 26.72433, lng: 88.3949, km: 4.98, image: "/assets/locations/thumbs/city-centre.jpg" },
+  { id: "hong-kong-market", name: "Hong Kong Market", category: "shopping", kind: "Street market", lat: 26.71543, lng: 88.42568, km: 5.7, image: "/assets/locations/thumbs/hong-kong-market.jpg" },
+  { id: "cosmos-mall", name: "Cosmos Mall", category: "shopping", kind: "Mall · by SGMG", lat: 26.73858, lng: 88.43401, km: 6.42, image: "/assets/locations/thumbs/cosmos-mall.jpg" },
+
+  { id: "tenzing-norgay-bus-terminus", name: "Tenzing Norgay Bus Terminus", category: "transport", kind: "Bus terminus", lat: 26.72512, lng: 88.41487, km: 3.93, icon: BusFront },
+  { id: "siliguri-junction", name: "Siliguri Junction", category: "transport", kind: "Railway station", lat: 26.72379, lng: 88.41371, km: 4.07, icon: TrainFront },
+  { id: "new-jalpaiguri", name: "New Jalpaiguri (NJP)", category: "transport", kind: "Railway junction", lat: 26.68286, lng: 88.44248, km: 12.19, icon: TrainFront },
+  { id: "bagdogra-airport", name: "Bagdogra Airport", category: "transport", kind: "Airport", lat: 26.68177, lng: 88.33006, km: 16.11, icon: Plane },
+
+  { id: "don-bosco-school", name: "Don Bosco School", category: "schools", kind: "School", lat: 26.74711, lng: 88.44359, km: 5.23, icon: GraduationCap },
+  { id: "delhi-public-school", name: "Delhi Public School Siliguri", category: "schools", kind: "School", lat: 26.74759, lng: 88.39731, km: 5.32, icon: GraduationCap },
+  { id: "techno-india-world-school", name: "Techno India Group World School", category: "schools", kind: "School", lat: 26.73295, lng: 88.38613, km: 6.74, icon: GraduationCap },
+  { id: "birla-divya-jyoti", name: "Birla Divya Jyoti", category: "schools", kind: "School", lat: 26.74104, lng: 88.39658, km: 6.76, icon: GraduationCap },
+
+  { id: "medica-north-bengal-clinic", name: "Medica North Bengal Clinic", category: "health", kind: "Clinic", lat: 26.72967, lng: 88.41642, km: 3.03, icon: Hospital },
+  { id: "greenage-hospitals", name: "Greenage Hospitals", category: "health", kind: "Hospital", lat: 26.74521, lng: 88.40043, km: 4.82, icon: Hospital },
+  { id: "neotia-getwel", name: "Neotia Getwel Multispecialty Hospital", category: "health", kind: "Hospital", lat: 26.72549, lng: 88.39367, km: 5.59, icon: Hospital },
+  { id: "anandaloke-hospital", name: "Anandaloke Multispeciality Hospital", category: "health", kind: "Hospital", lat: 26.72985, lng: 88.43091, km: 6.91, icon: Hospital },
 ];
 
-const SGMG_LOCATION = {
-  name: "SGMG Residences",
-  lat: 26.744,
-  lng: 88.4365,
-  address: "Sevoke Road, Siliguri, West Bengal 734008, India",
-  hours: "Site Office: 9:00 AM – 7:00 PM",
+const placesIn = (category: PlaceCategory) =>
+  MAP_PLACES.filter((place) => place.category === category);
+
+// Phones get the swipeable card strip over the map instead of the side panel
+const MOBILE_QUERY = "(max-width: 767px)";
+const isMobileViewport = () =>
+  typeof window !== "undefined" && window.matchMedia(MOBILE_QUERY).matches;
+
+// Keeps fitted pins clear of the zoom buttons and of whatever the place
+// cards cover: the side panel on desktop, the strip over the map on mobile.
+const mapFitPadding = (cardPanel: HTMLElement | null): L.FitBoundsOptions => {
+  if (isMobileViewport()) {
+    return {
+      paddingTopLeft: [32, 72],
+      paddingBottomRight: [56, (cardPanel?.offsetHeight ?? 0) + 16],
+    };
+  }
+  if (window.innerWidth > 991) {
+    return {
+      paddingTopLeft: [(cardPanel?.offsetWidth ?? 0) + 72, 88],
+      paddingBottomRight: [88, 56],
+    };
+  }
+  return { paddingTopLeft: [48, 72], paddingBottomRight: [64, 48] };
 };
+
+const CAR_ICON_PATH =
+  "M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z";
+
+function CarIcon() {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      style={{ display: "inline-block", verticalAlign: "middle", marginRight: "3px", opacity: 0.75 }}
+    >
+      <path d={CAR_ICON_PATH} />
+    </svg>
+  );
+}
+
+// Auto-pan keeps popups clear of the zoom buttons in the top-right corner
+const POPUP_OPTIONS: L.PopupOptions = {
+  autoPan: true,
+  autoPanPaddingTopLeft: [16, 16],
+  autoPanPaddingBottomRight: [60, 16],
+};
+
+const ARROW_UP_RIGHT_SVG = `<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>`;
 
 const LOCATION_FAQS = [
   {
-    q: "How close is SGMG to Vega Circle Mall and Cosmos Mall?",
-    a: "Vega Circle Mall is just a 2-minute walk (1-minute drive) along Sevoke Road, and Cosmos Mall is only 5 minutes away. You have world-class shopping, INOX/PVR multiplex cinemas, food courts, and hypermarkets right outside your door.",
+    q: "How far is Cosmos Prashil from the big malls?",
+    a: "City Centre and Vega Circle Mall are both about 5 km by road, roughly 12 minutes by car, and Cosmos Mall is about 6.4 km. Vega Circle and Cosmos Mall are SGMG projects too. For everyday shopping, Devidanga Bazaar is about 200 m from the site.",
   },
   {
-    q: "How is the connectivity to NJP Railway Station and Bagdogra Airport?",
-    a: "New Jalpaiguri (NJP) Railway Station is approximately 20 minutes away via Sevoke Road / Eastern Bypass, and Bagdogra International Airport (IXB) is easily reachable within 30 minutes via NH-27/NH-31.",
+    q: "How well connected is Devidanga to trains, buses and the airport?",
+    a: "The Tenzing Norgay Central Bus Terminus is 3.9 km away and Siliguri Junction 4.1 km. New Jalpaiguri (NJP) is about 12 km by road and Bagdogra Airport about 16 km, roughly 30 and 40 minutes depending on traffic.",
   },
   {
-    q: "What healthcare and educational facilities are nearby in Siliguri?",
-    a: "Leading hospitals like Medica North Bengal Clinic, Anandaloke Hospital, and Neotia Getwel Healthcare are within a 10–12 minute radius. Top institutions like Delhi Public School, Don Bosco, and North Bengal University are conveniently accessible.",
+    q: "Which schools and hospitals are nearby?",
+    a: "Sun Rise English Medium School is about 300 m from the site, and Don Bosco School and Delhi Public School Siliguri are about 5 km by road. For healthcare, Medica North Bengal Clinic is 3 km away, Greenage Hospitals 4.8 km and Neotia Getwel Multispecialty Hospital 5.6 km.",
   },
   {
-    q: "Is public transport easily available along Sevoke Road?",
-    a: "Yes. Auto-rickshaws, eco e-rickshaws (totos), taxis, and app-based cabs (Uber & Ola) operate continuously along Sevoke Road 24/7, making commuting across Siliguri effortless.",
+    q: "Is public transport available from Devidanga?",
+    a: "Yes. Auto-rickshaws, e-rickshaws (totos) and app-based cabs run across Siliguri, including the Champasari area, and the city’s central bus terminus is under 4 km away.",
   },
   {
-    q: "How do I schedule a visit to the SGMG site on Sevoke Road?",
-    a: "You can click “Schedule a Tour” or contact our Siliguri sales gallery. Our team is available 7 days a week from 9:00 AM to 7:00 PM for private walkthroughs.",
+    q: "How do I visit the Cosmos Prashil site?",
+    a: "Click “Schedule a Tour” to book a walkthrough, or meet our team at the SGMG sales office on the 2nd floor of Jeevandeep Tower, Salugara. The “Directions” link on the map takes you straight to the site.",
   },
   {
     q: "How do I apply for an apartment or reserve a residence?",
     a: "Click “Apply Now,” select your preferred floor plan and move-in timeline, and complete the digital application form. If applying together with family or partners, our dedicated advisors ensure seamless assistance throughout.",
   },
   {
-    q: "What lifestyle amenities are included with residency at SGMG?",
-    a: "Residents enjoy full access to our rooftop infinity swimming pool, fully equipped modern gymnasium, indoor games arena, landscaped party lawn, multi-purpose community hall, 24/7 power backup, and gated security.",
+    q: "What amenities does Cosmos Prashil have?",
+    a: "Residents get a rooftop swimming pool, a multi-gym with space for aerobics and yoga, an indoor games arena and a community hall, plus 24x7 power back-up, 24x7 filtered water, intercom-ready homes and automatic lifts. Every home is Vaastu-compliant.",
   },
 ];
 
-const ICON_WALK =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b47_walk.png";
-const ICON_BIKE =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b48_bike.png";
-const ICON_DRIVE =
-  "https://cdn.prod.website-files.com/6a31483f3822b51654193a68/6a31483f3822b51654193b49_drive.png";
+const ICON_DRIVE = "/assets/location/drive.png";
 
 export default function LocationPage() {
   // Hero Slideshow Refs & State
@@ -180,19 +228,25 @@ export default function LocationPage() {
   const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
   const touchStartXRef = useRef<number | null>(null);
 
-  // Map Selected Place
-  const [activePlaceId, setActivePlaceId] = useState<string>("vega-circle-mall");
+  // Map Selected Category & Place
+  const [activeCategory, setActiveCategory] = useState<PlaceCategory>(PLACE_CATEGORIES[0].id);
+  const visiblePlaces = placesIn(activeCategory);
+  const [activePlaceId, setActivePlaceId] = useState<string>(visiblePlaces[0].id);
+  const activePlaceIdRef = useRef(visiblePlaces[0].id);
+  const activeCategoryRef = useRef(activeCategory);
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
   const routePolylineRef = useRef<L.Polyline | null>(null);
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const mapCardsRef = useRef<HTMLDivElement | null>(null);
+  const cardsScrollRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cardsScrollTargetRef = useRef<number | null>(null);
 
   // Document title
   useEffect(() => {
-    document.title = "Locations • Siliguri Mall • SGMG";
+    document.title = "Location • Devidanga, Siliguri • SGMG";
   }, []);
 
   // -------------------------------------------------------------
@@ -404,27 +458,43 @@ export default function LocationPage() {
   // Leaflet Map Initialization & Interactive Behavior
   // -------------------------------------------------------------
   const selectPlace = useCallback(
-    (place: MapPlace, shouldFly = true) => {
+    (
+      place: MapPlace,
+      { fly = true, popup = true }: { fly?: boolean; popup?: boolean } = {}
+    ) => {
       setActivePlaceId(place.id);
+      activePlaceIdRef.current = place.id;
 
       const map = mapInstanceRef.current;
       if (!map) return;
 
-      // Smooth pan / fly to place coordinates with offset on desktop & mobile
-      if (shouldFly) {
-        const isDesktop = typeof window !== "undefined" && window.innerWidth > 991;
-        const targetLng = isDesktop ? place.lng - 0.007 : place.lng;
-        const targetLat = isDesktop ? place.lat : place.lat + 0.013;
-        map.flyTo([targetLat, targetLng], isDesktop ? 14.8 : 14.0, {
-          duration: 0.85,
-          easeLinearity: 0.25,
-        });
-      }
+      markersRef.current.forEach((marker, id) => {
+        const isActive = id === place.id;
+        marker.getElement()?.querySelector(".poi-marker-pin")?.classList.toggle("is-active", isActive);
+        marker.setZIndexOffset(isActive ? 1000 : 0);
+      });
 
-      // Open Popup
       const marker = markersRef.current.get(place.id);
-      if (marker) {
-        marker.openPopup();
+      if (fly) {
+        map.closePopup();
+        // Frame the site and the place together so the route reads end to end
+        map.flyToBounds(
+          L.latLngBounds([
+            [SGMG_LOCATION.lat, SGMG_LOCATION.lng],
+            [place.lat, place.lng],
+          ]),
+          { ...mapFitPadding(mapCardsRef.current), maxZoom: 15, duration: 0.85 }
+        );
+        // Opening mid-flight would make the popup's auto-pan fight the animation
+        if (popup) {
+          map.once("moveend", () => {
+            if (activePlaceIdRef.current === place.id) marker?.openPopup();
+          });
+        }
+      } else if (popup) {
+        marker?.openPopup();
+      } else {
+        map.closePopup();
       }
 
       // Draw dashed route from SGMG to Destination
@@ -450,15 +520,108 @@ export default function LocationPage() {
     []
   );
 
+  // Swap the pins and cards to another category, framing all of its places
+  const showCategory = useCallback(
+    (category: PlaceCategory, { animate = true }: { animate?: boolean } = {}) => {
+      const places = placesIn(category);
+      activeCategoryRef.current = category;
+      setActiveCategory(category);
+      cardsScrollTargetRef.current = null;
+      cardsScrollRef.current?.scrollTo({ left: 0 });
+
+      const map = mapInstanceRef.current;
+      if (!map) return;
+
+      markersRef.current.forEach((marker, id) => {
+        if (places.some((place) => place.id === id)) marker.addTo(map);
+        else marker.remove();
+      });
+      map.closePopup();
+
+      const bounds = L.latLngBounds([
+        [SGMG_LOCATION.lat, SGMG_LOCATION.lng],
+        ...places.map((place): L.LatLngTuple => [place.lat, place.lng]),
+      ]);
+      const options = { ...mapFitPadding(mapCardsRef.current), maxZoom: 15 };
+      if (animate) {
+        map.flyToBounds(bounds, { ...options, duration: 0.85 });
+      } else {
+        map.fitBounds(bounds, options);
+      }
+      selectPlace(places[0], { fly: false, popup: false });
+    },
+    [selectPlace]
+  );
+
+  // -------------------------------------------------------------
+  // Mobile Card Strip ↔ Map Sync
+  // -------------------------------------------------------------
+  const scrollCardIntoView = useCallback((idx: number) => {
+    const strip = cardsScrollRef.current;
+    const card = cardRefs.current[idx];
+    const firstCard = cardRefs.current[0];
+    if (!strip || !card || !firstCard) return;
+    const left = card.offsetLeft - firstCard.offsetLeft;
+    const maxLeft = strip.scrollWidth - strip.clientWidth;
+    if (Math.abs(Math.min(left, maxLeft) - strip.scrollLeft) < 1) return;
+    cardsScrollTargetRef.current = idx;
+    strip.scrollTo({ left, behavior: "smooth" });
+  }, []);
+
+  // Select whichever card the strip comes to rest on after a swipe
+  const handleCardsScroll = () => {
+    if (!isMobileViewport()) return;
+    if (cardsSettleTimerRef.current) clearTimeout(cardsSettleTimerRef.current);
+    cardsSettleTimerRef.current = setTimeout(() => {
+      const strip = cardsScrollRef.current;
+      const [firstCard, secondCard] = cardRefs.current;
+      if (!strip || !firstCard || !secondCard) return;
+      // Read the category from the ref: this timer can outlive a tab switch
+      const places = placesIn(activeCategoryRef.current);
+      const step = secondCard.offsetLeft - firstCard.offsetLeft;
+      const idx = Math.min(
+        places.length - 1,
+        Math.max(0, Math.round(strip.scrollLeft / step))
+      );
+      // A smooth scroll we started (pin or card tap) can pause on the way;
+      // its card is already selected, so ignore stops until it arrives.
+      if (cardsScrollTargetRef.current !== null) {
+        if (idx === cardsScrollTargetRef.current) cardsScrollTargetRef.current = null;
+        return;
+      }
+      const place = places[idx];
+      if (place.id !== activePlaceIdRef.current) {
+        selectPlace(place, { popup: false });
+      }
+    }, 120);
+  };
+
+  const handleCardClick = (place: MapPlace, idx: number) => {
+    if (!isMobileViewport()) {
+      selectPlace(place);
+      return;
+    }
+    if (place.id === activePlaceIdRef.current) {
+      // A second tap on the active card opens its details and directions
+      markersRef.current.get(place.id)?.openPopup();
+      return;
+    }
+    selectPlace(place, { popup: false });
+    scrollCardIntoView(idx);
+  };
+
   useEffect(() => {
     if (!mapContainerRef.current) return;
     if (mapInstanceRef.current) return;
 
     // Initialize Leaflet Map
     const map = L.map(mapContainerRef.current, {
-      center: [SGMG_LOCATION.lat, SGMG_LOCATION.lng + 0.005],
-      zoom: 14.5,
+      center: [SGMG_LOCATION.lat, SGMG_LOCATION.lng],
+      zoom: 13,
       scrollWheelZoom: false,
+      // A one-finger drag on a touch screen should scroll the page, not get
+      // trapped panning the map. Pinch and the zoom buttons still work.
+      dragging: !window.matchMedia("(pointer: coarse)").matches,
       zoomControl: false,
       attributionControl: false,
     });
@@ -485,36 +648,51 @@ export default function LocationPage() {
       }
     ).addTo(map);
 
-    // 3. Add Home Marker (SGMG Siliguri)
+    // 3. Project site marker: a named label over a dot, so it's obvious which
+    // point every distance is measured from. The zero-size icon lets the
+    // label size itself; CSS centres it above the dot.
     const homeIcon = L.divIcon({
       className: "home-marker-wrap",
       html: `
-        <div class="home-marker-pulse" title="SGMG Residences">
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-            <path fill="#121214" d="M12 3.2 3.5 10v10.2h6.2v-5.6h4.6v5.6h6.2V10L12 3.2zm7 15.5h-3.2v-5.6H8.2v5.6H5V10.7l7-5.6 7 5.6v8z"/>
-          </svg>
+        <div class="home-marker">
+          <div class="home-marker-label">
+            <span class="home-marker-icon">
+              <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                <path fill="currentColor" d="M12 3 3 10.2V21h6.5v-6h5v6H21V10.2L12 3z"/>
+              </svg>
+            </span>
+            <span class="home-marker-name">${SGMG_LOCATION.name}</span>
+          </div>
+          <span class="home-marker-dot"></span>
         </div>
       `,
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
-      popupAnchor: [0, -20],
+      iconSize: [0, 0],
+      iconAnchor: [0, 0],
+      popupAnchor: [0, -50],
     });
 
     const homePopupContent = `
+      <div class="popup-kicker">Project site</div>
       <div class="popup-title">${SGMG_LOCATION.name}</div>
       <div class="popup-address">${SGMG_LOCATION.address}</div>
-      <div class="popup-hours">${SGMG_LOCATION.hours}</div>
+      <div class="popup-footer">
+        <a href="${SGMG_DIRECTIONS_URL}" target="_blank" rel="noopener noreferrer" class="popup-link">
+          Directions ${ARROW_UP_RIGHT_SVG}
+        </a>
+      </div>
     `;
 
-    L.marker([SGMG_LOCATION.lat, SGMG_LOCATION.lng], { icon: homeIcon })
+    L.marker([SGMG_LOCATION.lat, SGMG_LOCATION.lng], {
+      icon: homeIcon,
+      zIndexOffset: 500,
+      title: `${SGMG_LOCATION.name}, ${SGMG_LOCATION.shortAddress}`,
+    })
       .addTo(map)
-      .bindPopup(homePopupContent, {
-        autoPan: true,
-        autoPanPadding: [35, 35],
-      });
+      .bindPopup(homePopupContent, POPUP_OPTIONS);
 
-    // 4. Add POI Markers
+    // 4. POI markers for every category; showCategory() puts one set on the map
     MAP_PLACES.forEach((place) => {
+      const idx = placesIn(place.category).indexOf(place);
       const pinIcon = L.divIcon({
         className: "poi-marker-wrap",
         html: `
@@ -531,6 +709,7 @@ export default function LocationPage() {
                 d="M27,13.5C27,19.07 20.25,27 14.75,34.5C14.02,35.5 12.98,35.5 12.25,34.5C6.75,27 0,19.22 0,13.5C0,6.04 6.04,0 13.5,0C20.96,0 27,6.04 27,13.5Z M13.5,8A5.5,5.5 0 1,0 13.5,19A5.5,5.5 0 1,0 13.5,8Z">
               </path>
             </svg>
+            <span class="poi-marker-num">${idx + 1}</span>
           </div>
         `,
         iconSize: [27, 41],
@@ -539,36 +718,31 @@ export default function LocationPage() {
       });
 
       const popupContent = `
+        <div class="popup-kicker">${place.kind}</div>
         <div class="popup-title">${place.name}</div>
-        <div class="popup-address">${place.address}</div>
-        <div class="popup-hours">${place.hours}</div>
-        <a href="https://www.google.com/maps/dir/?api=1&origin=${SGMG_LOCATION.lat},${SGMG_LOCATION.lng}&destination=${place.lat},${place.lng}"
-           target="_blank" rel="noopener noreferrer" class="popup-directions-link">
-          Get Directions ↗
-        </a>
+        <div class="popup-footer">
+          <span class="popup-distance">${formatKm(place.km)} · ${formatDrive(place.km)} drive</span>
+          <a href="${directionsUrl(place.lat, place.lng, true)}" target="_blank" rel="noopener noreferrer" class="popup-link">
+            Directions ${ARROW_UP_RIGHT_SVG}
+          </a>
+        </div>
       `;
 
       const marker = L.marker([place.lat, place.lng], { icon: pinIcon })
-        .addTo(map)
-        .bindPopup(popupContent, {
-          autoPan: true,
-          autoPanPaddingTopLeft: [15, 65],
-          autoPanPaddingBottomRight: [15, 15],
-          offset: [0, -38],
-        });
+        .bindPopup(popupContent, { ...POPUP_OPTIONS, offset: [0, -38] });
 
       marker.on("click", () => {
-        selectPlace(place, false);
+        selectPlace(place, { fly: false });
+        if (isMobileViewport()) scrollCardIntoView(idx);
       });
 
       markersRef.current.set(place.id, marker);
     });
 
-    // Default select Vega Circle Mall on desktop viewports
-    if (typeof window !== "undefined" && window.innerWidth > 767) {
-      const defaultPlace = MAP_PLACES[0];
-      selectPlace(defaultPlace, false);
-    }
+    // Open on the first category with all of its places in view and the
+    // nearest one's route drawn; details stay in the cards until asked for.
+    map.invalidateSize();
+    showCategory(activeCategoryRef.current, { animate: false });
 
     // Invalidate size after layout completes
     setTimeout(() => {
@@ -584,10 +758,11 @@ export default function LocationPage() {
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
+      if (cardsSettleTimerRef.current) clearTimeout(cardsSettleTimerRef.current);
       map.remove();
       mapInstanceRef.current = null;
     };
-  }, [selectPlace]);
+  }, [selectPlace, scrollCardIntoView, showCategory]);
 
 
 
@@ -606,7 +781,7 @@ export default function LocationPage() {
           onTouchEnd={handleTouchEnd}
         >
           <div data-slideshow="wrap" className="wrapper_slider">
-            <h1 className="sr-only">Siliguri Mall Location • SGMG</h1>
+            <h1 className="sr-only">Cosmos Prashil Location, Devidanga, Siliguri • SGMG</h1>
 
             {/* Bottom Thumbnail Navigation */}
             <div data-slideshow="nav" className="nav_cms">
@@ -659,23 +834,16 @@ export default function LocationPage() {
                         <div className="list_times">
                           <div className="flex_location">
                             <div className="icon_location">
-                              <img src={ICON_WALK} loading="lazy" alt="Walk" />
+                              <MapPin color="#ffffff" strokeWidth={1.5} size="100%" aria-hidden="true" />
                             </div>
-                            <div className="caption_location">{slide.walk}</div>
+                            <div className="caption_location">{formatKm(slide.km)} by road</div>
                           </div>
 
                           <div className="flex_location">
                             <div className="icon_location">
-                              <img src={ICON_BIKE} loading="lazy" alt="Bike" />
+                              <img src={ICON_DRIVE} loading="lazy" alt="" />
                             </div>
-                            <div className="caption_location">{slide.bike}</div>
-                          </div>
-
-                          <div className="flex_location">
-                            <div className="icon_location">
-                              <img src={ICON_DRIVE} loading="lazy" alt="Drive" />
-                            </div>
-                            <div className="caption_location">{slide.drive}</div>
+                            <div className="caption_location">{formatDrive(slide.km)} drive</div>
                           </div>
                         </div>
                       </div>
@@ -698,59 +866,83 @@ export default function LocationPage() {
         </section>
 
         {/* ==============================================================
-            SECTION 2: NEAR SILIGURI MALL & INTERACTIVE MAP
+            SECTION 2: NEARBY PLACES & INTERACTIVE MAP
             ============================================================== */}
         <section className="on_the_map" data-section="dark">
           <div className="location_on_map">
             <div className="locations_headings">
               <h2 className="h2 white specific_map">
-                Near{" "}
+                Quiet{" "}
                 <span
                   data-scribble="2"
                   className="scribble-wrap scribble-visible"
                 >
-                  Siliguri Mall
+                  Devidanga
                 </span>
-                .<br />Near Everything.
+                .<br />Close to Everything.
               </h2>
+              <p className="map_address_line">
+                {SGMG_LOCATION.name} · {SGMG_LOCATION.shortAddress}
+              </p>
             </div>
           </div>
 
+          <div className="map_tabs" role="tablist" aria-label="Nearby places">
+            {PLACE_CATEGORIES.map((category) => {
+              const isActive = category.id === activeCategory;
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`map_tab ${isActive ? "is-active" : ""}`}
+                  onClick={() => !isActive && showCategory(category.id)}
+                >
+                  {category.label}
+                </button>
+              );
+            })}
+          </div>
+
           <div className="map_sec">
-            {/* Left POI Cards Panel */}
-            <div className="map_cards">
-              {/* 4 Places List */}
-              <div className="cards_list_scroll">
-                {MAP_PLACES.map((place) => {
+            {/* Left POI Cards Panel (a swipeable strip over the map on mobile) */}
+            <div className="map_cards" ref={mapCardsRef}>
+              <div
+                className="cards_list_scroll"
+                ref={cardsScrollRef}
+                onScroll={handleCardsScroll}
+                onTouchStart={() => (cardsScrollTargetRef.current = null)}
+              >
+                {visiblePlaces.map((place, idx) => {
                   const isActive = place.id === activePlaceId;
+                  const PlaceIcon = place.icon;
                   return (
                     <div
                       key={place.id}
+                      ref={(el) => (cardRefs.current[idx] = el)}
                       className={`map_card ${isActive ? "is-active" : ""}`}
-                      onClick={() => selectPlace(place, true)}
+                      onClick={() => handleCardClick(place, idx)}
                     >
                       <div className="wrapper_map_card">
-                        <div className="image_map_card">
-                          <img
-                            alt={place.name}
-                            loading="lazy"
-                            src={place.image}
-                          />
+                        <div className={`image_map_card ${place.image ? "" : "is-icon"}`}>
+                          {place.image ? (
+                            <img alt={place.name} loading="lazy" src={place.image} />
+                          ) : (
+                            PlaceIcon && (
+                              <PlaceIcon size={26} strokeWidth={1.6} aria-hidden="true" />
+                            )
+                          )}
+                          <span className="map_card_num" aria-hidden="true">
+                            {idx + 1}
+                          </span>
                         </div>
                         <div className="content_info">
                           <div className="sub_box">
-                            <span className="subtitle_text">{place.category}</span>
+                            <span className="subtitle_text">{place.kind}</span>
                             <span className="transit_pill_card">
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                style={{ display: "inline-block", verticalAlign: "middle", marginRight: "3px", opacity: 0.75 }}
-                              >
-                                <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7" />
-                              </svg>
-                              {place.walk}
+                              <CarIcon />
+                              {formatKm(place.km)} · {formatDrive(place.km)}
                             </span>
                           </div>
                           <div className="title_map_card">{place.name}</div>
@@ -769,77 +961,34 @@ export default function LocationPage() {
               ref={mapContainerRef}
             ></div>
           </div>
+
+          <div className="map_footer">
+            <a
+              className="map_directions_link"
+              href={SGMG_DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Directions to {SGMG_LOCATION.name}
+              <ArrowUpRight size={15} strokeWidth={2} aria-hidden="true" />
+            </a>
+            <p className="map_note">
+              Distances are by road. Drive times are estimates and vary with traffic.
+            </p>
+          </div>
         </section>
 
         {/* ==============================================================
-            SECTION 3: FAQS SECTION (DARK)
+            SECTION 3: FAQS SECTION (DARK THEME)
             ============================================================== */}
-        <section className="faqs black" data-section="dark">
-          <div className="wrapper_general basic">
-            <div className="faq_heading white_ver">
-              <h2 className="h2 smaller">
-                Frequently asked<br />questions
-              </h2>
-            </div>
-            <div className="sides_faq">
-              <div className="short_left">
-                <div className="caption_faq white_ver">
-                  <div>Everything you might want to know before moving in.</div>
-                </div>
-                <div className="bottom_faq">
-                  <div className="caption_cta white_ver">
-                    Didn’t find what you were<br />looking for?
-                  </div>
-                  <div>
-                    <WebflowButton text="Explore FAQ" href="/faq" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="faq_general">
-                <div className="w-dyn-list">
-                  <div
-                    role="list"
-                    className="collection_faq white_ver w-dyn-items"
-                  >
-                    {LOCATION_FAQS.map((faq, idx) => {
-                      const isOpen = openFaq === idx;
-                      return (
-                        <div
-                          key={idx}
-                          role="listitem"
-                          className={`accordion-item white_ver w-dyn-item ${
-                            isOpen ? "is-open" : ""
-                          }`}
-                          onClick={() => setOpenFaq(isOpen ? null : idx)}
-                        >
-                          <div className="accordion_head-wrapper">
-                            <div className="item_head">
-                              <div className="title_wrapper">
-                                <div className="item_title">{faq.q}</div>
-                                <div className="icon_wrapper white_ver"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="item_content-wrapper">
-                            <div className="accordion_paragraph">
-                              <div className="item_paragraph w-richtext">
-                                <p>{faq.a}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          className="black"
+          faqs={LOCATION_FAQS}
+          caption="Everything you might want to know before moving in."
+        />
       </main>
 
-      <Footer />
+      <Footer hidePreFooterCta={true} />
     </div>
   );
 }

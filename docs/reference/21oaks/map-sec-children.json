@@ -1,0 +1,14 @@
+[
+  {
+    "tag": "DIV",
+    "className": "map_cards",
+    "id": "",
+    "htmlSnippet": "<div class=\"map_cards\"><div class=\"w-dyn-list\"><div role=\"list\" class=\"cards_list w-dyn-items\"><div data-location-id=\"Soda City Market\" role=\"listitem\" class=\"map_card w-dyn-item\"><div class=\"wrapper_map_card\"><div class=\"image_map_card\"><img alt=\"Soda City Market\" loading=\"lazy\" src=\"https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a31483f3822b51654193b8a_1%20(1).avif\" sizes=\"(max-width: 991px) 100vw, 2000px\" srcset=\"https://cdn.prod.website-files.com/6a31483f3822b51654193a69/6a3148"
+  },
+  {
+    "tag": "DIV",
+    "className": "map_box",
+    "id": "map",
+    "htmlSnippet": "<div id=\"map\" class=\"map_box\"><div class=\"map_script w-embed w-script\"><link rel=\"preconnect\" href=\"https://api.mapbox.com\" crossorigin=\"\">\n<link rel=\"dns-prefetch\" href=\"https://api.mapbox.com\">\n\n<style id=\"map-embed-styles\">\n  .map_card {\n    background: #ffffff;\n    transition: background-color 0.2s ease;\n    cursor: pointer;\n  }\n\n  .map_card.is-active {\n    background: #e8ceff;\n  }\n\n  #map {\n    position: relative;\n  }\n\n  .map_static_wrap {\n    position: absolute;\n    inset: 0;\n    z-index: "
+  }
+]

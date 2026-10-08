@@ -8,6 +8,7 @@ import "@splidejs/splide/css/core";
 import confetti from "canvas-confetti";
 import FooterIllustration from "../components/FooterIllustration";
 import Header from "../components/Header";
+import FaqSection from "../components/FaqSection";
 import { getUnitPathById } from "../data/apartmentsData";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -120,7 +121,7 @@ const apartments = [
     beds: "4 Bed",
     baths: "3 Baths",
     sqft: "1,685",
-    image: "/__l5e/assets-v1/f754fa92-f595-4bb8-b37d-ee32ca51f8f6/15-D2-Gen.avif",
+    image: "/images/apartments/d2/01-exterior.jpg",
     desc: "A stately 4-bedroom, 4-bath residence featuring grand double-aspect living zones, dedicated dining spaces, and generous private en-suites.",
   },
   {
@@ -130,7 +131,7 @@ const apartments = [
     beds: "4 Bed",
     baths: "4 Baths",
     sqft: "1,685",
-    image: "/__l5e/assets-v1/005428ee-de9a-4d26-8b99-1b654aea0707/16-D2-Hero.avif",
+    image: "/images/apartments/d2-premium/01-exterior.jpg",
     desc: "The pinnacle of luxury living — an expansive 4-bedroom signature home with custom Italian-inspired fittings, bespoke joinery, and private balconies.",
   },
   {
@@ -140,7 +141,7 @@ const apartments = [
     beds: "2 Bed",
     baths: "2 Baths",
     sqft: "1,105",
-    image: "/assets/plans/C1-Gen.avif",
+    image: "/images/apartments/c1/01-exterior.jpg",
     desc: "A luminous 3-bedroom, 3-bath residence engineered for optimal ventilation, featuring a seamless open floor plan and serene personal retreats.",
   },
   {
@@ -150,7 +151,7 @@ const apartments = [
     beds: "2 Bed",
     baths: "2 Baths",
     sqft: "1,105",
-    image: "/assets/plans/C1-Hero.avif",
+    image: "/images/apartments/c1-premium/01-exterior.jpg",
     desc: "A prestigious 3-bedroom luxury residence featuring curated designer aesthetics, grand entry foyer, and sweeping city and garden landscape views.",
   },
 ];
@@ -235,187 +236,15 @@ const faqsList = [
   },
 ];
 
-function HomeFaqItem({
-  faq,
-  isOpen,
-  onToggle,
-}: {
-  faq: { q: string; a: string };
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLDivElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    const content = contentRef.current;
-    const paragraph = paragraphRef.current;
-    const icon = iconRef.current;
-    if (!content || !paragraph) return;
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      if (isOpen) {
-        gsap.set(content, { height: "auto" });
-        gsap.set(paragraph, { opacity: 1, y: "0%", yPercent: 0 });
-        if (icon) gsap.set(icon, { rotateZ: 45 });
-      } else {
-        gsap.set(content, { height: 0 });
-        gsap.set(paragraph, { opacity: 0, y: "20%", yPercent: 0 });
-        if (icon) gsap.set(icon, { rotateZ: 0 });
-      }
-      return;
-    }
-
-    gsap.killTweensOf([content, paragraph, icon].filter(Boolean));
-
-    if (isOpen) {
-      content.style.overflow = "hidden";
-      const currentHeight = content.offsetHeight;
-      gsap.set(paragraph, { y: "0%", yPercent: 0 });
-      content.style.height = "auto";
-      const targetHeight = Math.ceil(content.scrollHeight);
-      content.style.height = `${currentHeight}px`;
-      gsap.set(paragraph, { y: "20%", yPercent: 0 });
-
-      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
-      gsap.to(content, {
-        height: targetHeight,
-        duration: 0.6,
-        ease: "power3.out",
-        onComplete: () => {
-          content.style.height = "auto";
-          content.style.overflow = "visible";
-          ScrollTrigger.refresh();
-        },
-      });
-
-      // 2. Plus icon rotation (0deg -> 45deg) exact 600ms outQuart
-      if (icon) {
-        gsap.to(icon, {
-          rotateZ: 45,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-      }
-
-      // 3. Paragraph slide and fade: 100ms delay, 600ms duration, outQuart
-      gsap.fromTo(
-        paragraph,
-        { opacity: 0, y: "20%", yPercent: 0 },
-        {
-          opacity: 1,
-          y: "0%",
-          yPercent: 0,
-          delay: 0.1,
-          duration: 0.6,
-          ease: "power3.out",
-        }
-      );
-    } else {
-      content.style.overflow = "hidden";
-      const currentHeight = content.offsetHeight;
-      content.style.height = `${currentHeight}px`;
-
-      // 1. Wrapper height animation: exact 600ms outQuart (power3.out)
-      gsap.to(content, {
-        height: 0,
-        duration: 0.6,
-        ease: "power3.out",
-        onComplete: () => {
-          content.style.height = "0px";
-          ScrollTrigger.refresh();
-        },
-      });
-
-      // 2. Plus icon rotation (45deg -> 0deg) exact 600ms outQuart
-      if (icon) {
-        gsap.to(icon, {
-          rotateZ: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        });
-      }
-
-      // 3. Paragraph fade and slide down: 100ms delay, 600ms duration, outQuart
-      gsap.to(paragraph, {
-        opacity: 0,
-        y: "20%",
-        yPercent: 0,
-        delay: 0.1,
-        duration: 0.6,
-        ease: "power3.out",
-      });
-    }
-  }, [isOpen]);
-
-  return (
-    <div
-      role="listitem"
-      className={`accordion-item w-dyn-item ${isOpen ? "is-open" : ""}`}
-      onClick={onToggle}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onToggle();
-        }
-      }}
-      tabIndex={0}
-      aria-expanded={isOpen}
-    >
-      <div className="accordion_head-wrapper">
-        <div className="item_head">
-          <div className="title_wrapper">
-            <div className="item_title">{faq.q}</div>
-            <div ref={iconRef} className="icon_wrapper" />
-          </div>
-        </div>
-      </div>
-
-      <div
-        ref={contentRef}
-        className="item_content-wrapper"
-        style={{ height: 0, overflow: "hidden" }}
-      >
-        <div className="accordion_paragraph">
-          <div
-            ref={paragraphRef}
-            className="item_paragraph w-richtext"
-            style={{
-              opacity: 0,
-            }}
-          >
-            <p>{faq.a}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function HomePage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [currentHeroImg, setCurrentHeroImg] = useState(heroSlides[0].image);
   const [nextHeroImg, setNextHeroImg] = useState(heroSlides[0].image);
-  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set());
-  const handleToggleFaq = (index: number) => {
-    setOpenFaqs((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
-  };
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
-  // Property Listing Card Slider State for "Everything modern living should be"
+  // Property listing card slider — desktop only ("Everything modern living should be")
   const [propertySlideIndex, setPropertySlideIndex] = useState(0);
   const [visibleSlides, setVisibleSlides] = useState(3);
   const [dragOffset, setDragOffset] = useState(0);
@@ -432,9 +261,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setVisibleSlides(1);
-      } else if (window.innerWidth < 1024) {
+      if (window.innerWidth < 1024) {
         setVisibleSlides(2);
       } else {
         setVisibleSlides(3);
@@ -470,7 +297,6 @@ export default function HomePage() {
     const dy = e.clientY - pointerStartYRef.current;
 
     if (!didDragRef.current) {
-      // If mostly vertical scrolling, cancel drag so user can scroll page normally
       if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) {
         isPointerDownRef.current = false;
         return;
@@ -486,7 +312,6 @@ export default function HomePage() {
 
     if (didDragRef.current) {
       let effectiveDx = dx;
-      // Boundary resistance factor for organic elastic feel
       if (propertySlideIndex === 0 && dx > 0) {
         effectiveDx = dx * 0.32;
       } else if (propertySlideIndex >= maxPropertySlideIndex && dx < 0) {
@@ -510,7 +335,7 @@ export default function HomePage() {
     if (didDragRef.current) {
       const dx = currentDragOffsetRef.current;
       const dt = Math.max(1, Date.now() - pointerStartTimeRef.current);
-      const velocity = dx / dt; // px per ms
+      const velocity = dx / dt;
 
       const viewportWidth = sliderViewportRef.current?.clientWidth || window.innerWidth;
       const slideWidth = viewportWidth / visibleSlides;
@@ -561,6 +386,8 @@ export default function HomePage() {
       }, 400);
     }
   };
+
+
 
   const apartmentsSectionRef = useRef<HTMLElement>(null);
 
@@ -1436,8 +1263,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PROPERTY LISTINGS SECTION */}
-        <section className="dynamic_section property_listing_section" id="residences" data-section="light">
+        {/* DYNAMIC SECTION (Everything modern living should be) */}
+        <section className="dynamic_section desktop_only" id="residences" data-section="light">
           <div className="middle">
             <h2 className="h2 second_h">
               Everything modern<br />
@@ -1445,173 +1272,171 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="property_slider_container">
-            <div className="property_slider_wrapper">
-              <div
-                ref={sliderViewportRef}
-                className={`property_slider_viewport ${isDragging ? "is-dragging" : ""}`}
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                onPointerCancel={handlePointerCancel}
-                onWheel={handleWheel}
-                onClickCapture={(e) => {
-                  if (didDragRef.current) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }
-                }}
-              >
+          <div className="property_listing_section only_desktop">
+            <div className="property_slider_container">
+              <div className="property_slider_wrapper">
                 <div
-                  className="property_slider_track"
-                  style={{
-                    transform: isDragging
-                      ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
-                      : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
-                    transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
+                  ref={sliderViewportRef}
+                  className={`property_slider_viewport ${isDragging ? "is-dragging" : ""}`}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={handlePointerUp}
+                  onPointerCancel={handlePointerCancel}
+                  onWheel={handleWheel}
+                  onClickCapture={(e) => {
+                    if (didDragRef.current) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }
                   }}
                 >
-                  {apartments.map((apart, apartIdx) => (
-                    <div
-                      className="property_slider_slide"
-                      key={apart.id}
-                      style={{ flex: `0 0 ${100 / visibleSlides}%` }}
-                      onClick={() => {
-                        if (!didDragRef.current) {
-                          setPropertySlideIndex(Math.min(apartIdx, maxPropertySlideIndex));
-                        }
-                      }}
-                    >
-                      <div className="apart_card">
-                        <Link
-                          to={getUnitPathById(apart.id)}
-                          className="apart_image"
-                          draggable={false}
-                          style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
-                          onClick={(e) => {
-                            if (didDragRef.current) {
-                              e.preventDefault();
-                            }
-                          }}
-                        >
-                          <div className="overlay_tags">
-                            <div className="tag_available">
-                              <div className="dot_available"></div>
-                              <div>Available</div>
-                            </div>
-                            <div className="tags_info">
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/bed-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.beds}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/bath-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.baths}</div>
-                              </div>
-                              <div className="tag_info">
-                                <div className="icon_tag">
-                                  <img src="/assets/icons/ft-icon.png" alt="" className="image" draggable={false} />
-                                </div>
-                                <div>{apart.sqft}</div>
-                                <div>ft<sup>2</sup></div>
-                              </div>
-                            </div>
-                          </div>
-                          <img src={apart.image} alt={apart.name} className="image" draggable={false} loading="lazy" decoding="async" />
-                        </Link>
-
-                        <div className="content_apart">
-                          <div className="apart_title_line">
-                            <div>
-                              <Link
-                                to={getUnitPathById(apart.id)}
-                                className="apart_title"
-                                draggable={false}
-                                style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
-                                onClick={(e) => {
-                                  if (didDragRef.current) {
-                                    e.preventDefault();
-                                  }
-                                }}
-                              >
-                                {apart.name}
-                              </Link>
-                            </div>
-                            <div className="price_box">
-                              <div className="icon_price">
-                                <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" draggable={false} />
-                              </div>
-                              <div className="price_txt">{apart.price}</div>
-                            </div>
-                          </div>
-
-                          <div className="desc_home">
-                            <div className="p_gen black specific">{apart.desc}</div>
-                          </div>
-
-                          <div className="explore_button" style={{ marginTop: "18px" }}>
-                            <WebflowButton
-                              text="Explore Details"
-                              href={getUnitPathById(apart.id)}
-                              onClick={(e) => {
+                  <div
+                    className="property_slider_track"
+                    style={{
+                      transform: isDragging
+                        ? `translateX(calc(-${propertySlideIndex * (100 / visibleSlides)}% + ${dragOffset}px))`
+                        : `translateX(-${propertySlideIndex * (100 / visibleSlides)}%)`,
+                      transition: isDragging ? "none" : "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
+                    }}
+                  >
+                    {apartments.map((apart) => (
+                      <div
+                        className="property_slider_slide"
+                        key={apart.id}
+                        style={{ flex: `0 0 ${100 / visibleSlides}%` }}
+                      >
+                        <div className="apart_card">
+                          <Link
+                            to={getUnitPathById(apart.id)}
+                            className="apart_image"
+                            draggable={false}
+                            style={{ display: "block", textDecoration: "none", cursor: "pointer" }}
+                            onClick={(e) => {
+                              if (didDragRef.current) {
                                 e.preventDefault();
-                                if (didDragRef.current) return;
-                                navigate(getUnitPathById(apart.id));
-                              }}
-                            />
+                              }
+                            }}
+                          >
+                            <div className="overlay_tags">
+                              <div className="tag_available">
+                                <div className="dot_available"></div>
+                                <div>Available</div>
+                              </div>
+                              <div className="tags_info">
+                                <div className="tag_info">
+                                  <div className="icon_tag">
+                                    <img src="/assets/icons/bed-icon.png" alt="" className="image" draggable={false} />
+                                  </div>
+                                  <div>{apart.beds}</div>
+                                </div>
+                                <div className="tag_info">
+                                  <div className="icon_tag">
+                                    <img src="/assets/icons/bath-icon.png" alt="" className="image" draggable={false} />
+                                  </div>
+                                  <div>{apart.baths}</div>
+                                </div>
+                                <div className="tag_info">
+                                  <div className="icon_tag">
+                                    <img src="/assets/icons/ft-icon.png" alt="" className="image" draggable={false} />
+                                  </div>
+                                  <div>{apart.sqft}</div>
+                                  <div>ft<sup>2</sup></div>
+                                </div>
+                              </div>
+                            </div>
+                            <img src={apart.image} alt={apart.name} className="image" draggable={false} />
+                          </Link>
+
+                          <div className="content_apart">
+                            <div className="apart_title_line">
+                              <div>
+                                <Link
+                                  to={getUnitPathById(apart.id)}
+                                  className="apart_title"
+                                  draggable={false}
+                                  style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                                  onClick={(e) => {
+                                    if (didDragRef.current) {
+                                      e.preventDefault();
+                                    }
+                                  }}
+                                >
+                                  {apart.name}
+                                </Link>
+                              </div>
+                              <div className="price_box">
+                                <div className="icon_price">
+                                  <img src="/assets/icons/rupee-icon.svg" alt="₹" className="image" draggable={false} />
+                                </div>
+                                <div className="price_txt">{apart.price}</div>
+                              </div>
+                            </div>
+
+                            <div className="desc_home">
+                              <div className="p_gen black specific">{apart.desc}</div>
+                            </div>
+
+                            <div className="explore_button" style={{ marginTop: "18px" }}>
+                              <WebflowButton
+                                text="Explore Details"
+                                href={getUnitPathById(apart.id)}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  if (didDragRef.current) return;
+                                  navigate(getUnitPathById(apart.id));
+                                }}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Slider Controls Row: Pagination Dots on Left, Navigation Arrow Buttons on Right */}
-              <div className="property_slider_controls">
-                <div className="property_slider_pagination">
-                  {Array.from({ length: maxPropertySlideIndex + 1 }).map((_, idx) => (
+                <div className="property_slider_controls">
+                  <div className="property_slider_pagination">
+                    {Array.from({ length: maxPropertySlideIndex + 1 }).map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        className={`property_slider_dot ${propertySlideIndex === idx ? "is-active" : ""}`}
+                        onClick={() => setPropertySlideIndex(idx)}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="property_slider_arrows">
                     <button
-                      key={idx}
                       type="button"
-                      className={`property_slider_dot ${propertySlideIndex === idx ? "is-active" : ""}`}
-                      onClick={() => setPropertySlideIndex(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="property_slider_arrows">
-                  <button
-                    type="button"
-                    className="property_slider_arrow is-prev"
-                    onClick={() => setPropertySlideIndex((prev) => Math.max(0, prev - 1))}
-                    disabled={propertySlideIndex === 0}
-                    aria-label="Previous property"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="property_slider_arrow is-next"
-                    onClick={() => setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1))}
-                    disabled={propertySlideIndex >= maxPropertySlideIndex}
-                    aria-label="Next property"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-                  </button>
+                      className="property_slider_arrow is-prev"
+                      onClick={() => setPropertySlideIndex((prev) => Math.max(0, prev - 1))}
+                      disabled={propertySlideIndex === 0}
+                      aria-label="Previous property"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      className="property_slider_arrow is-next"
+                      onClick={() => setPropertySlideIndex((prev) => Math.min(maxPropertySlideIndex, prev + 1))}
+                      disabled={propertySlideIndex >= maxPropertySlideIndex}
+                      aria-label="Next property"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+
         </section>
       </main>
 
@@ -2138,52 +1963,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQS SECTION */}
-      <section data-section="light" className="faqs" id="faq">
-        <div className="wrapper_general basic">
-          <div className="faq_heading">
-            <h2 className="h2 smaller">
-              Frequently asked<br />questions
-            </h2>
-          </div>
-
-          <div className="sides_faq">
-            <div className="short_left">
-              <div className="caption_faq">
-                <div>Everything you need to know about purchasing your SGMG home.</div>
-              </div>
-              <div className="bottom_faq">
-                <div className="p_gen black caption_cta">
-                  Didn’t find what you were<br />looking for?
-                </div>
-                <div>
-                  <WebflowButton
-                    text="Explore FAQ"
-                    href="/faq"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="faq_general">
-              <div className="w-dyn-list">
-                <div role="list" className="collection_faq w-dyn-items">
-                  {faqsList.map((faq, index) => {
-                    const isOpen = openFaqs.has(index);
-                    return (
-                      <HomeFaqItem
-                        key={faq.q}
-                        faq={faq}
-                        isOpen={isOpen}
-                        onToggle={() => handleToggleFaq(index)}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FaqSection faqs={faqsList} />
 
       {/* PRE-FOOTER CTA SECTION */}
       <section data-section="dark" id="contact">

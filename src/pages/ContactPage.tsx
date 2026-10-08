@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PillButton from "../components/PillButton";
-import FaqAccordionItem from "../components/FaqAccordionItem";
+import FaqSection from "../components/FaqSection";
 import confetti from "canvas-confetti";
 import {
   MapPin,
@@ -57,7 +57,6 @@ const CONTACT_PAGE_FAQS = [
 export default function ContactPage() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Form State
   const [firstName, setFirstName] = useState("");
@@ -72,12 +71,12 @@ export default function ContactPage() {
   // Setup theme mode & page title
   useEffect(() => {
     document.title = "Contact Us • SGMG | Sushil Gangadhar Mittal Group Siliguri";
-    document.body.classList.remove("is-hero");
-    document.body.classList.add("is-light");
+    document.body.classList.remove("is-hero", "is-light");
+    document.body.classList.add("is-dark");
     window.scrollTo(0, 0);
 
     return () => {
-      document.body.classList.remove("is-light");
+      document.body.classList.remove("is-dark");
     };
   }, []);
 
@@ -122,7 +121,7 @@ export default function ContactPage() {
       <Header />
 
       {/* Main Contact Section */}
-      <main data-section="light" className="contact">
+      <main data-section="dark" className="contact">
         <div className="wrapper_general gen_f">
           <div className="contact_h1">
             <h1 className="h1 black">Contact</h1>
@@ -422,49 +421,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Frequently Asked Questions Section (Exact 1:1 Live Webflow) */}
-      <section data-section="dark">
-        <section className="faqs black">
-          <div className="wrapper_general basic">
-            <div className="faq_heading white_ver">
-              <h2 className="h2 smaller">Frequently asked questions</h2>
-            </div>
-
-            <div className="sides_faq">
-              <div className="short_left">
-                <div className="caption_faq white_ver">
-                  <div>Everything you might want to know before purchasing your home.</div>
-                </div>
-                <div className="bottom_faq">
-                  <div className="p_gen caption_cta white_ver">
-                    Didn’t find what you were
-                    <br />
-                    looking for?
-                  </div>
-                  <div>
-                    <PillButton to="/faq" text="Explore FAQ" variant="default" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="faq_general">
-                <div className="collection_faq white_ver">
-                  {CONTACT_PAGE_FAQS.map((faq, index) => (
-                    <FaqAccordionItem
-                      key={index}
-                      question={faq.q}
-                      answer={faq.a}
-                      isOpen={openFaqIndex === index}
-                      onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                      className="white_ver"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
+      {/* Frequently Asked Questions Section */}
+      <FaqSection
+        faqs={CONTACT_PAGE_FAQS}
+        caption="Everything you might want to know before purchasing your home."
+      />
 
       {/* Toast Notification */}
       {toastMessage && (

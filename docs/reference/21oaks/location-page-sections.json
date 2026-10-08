@@ -1,0 +1,70 @@
+{
+  "children": [
+    {
+      "tag": "MAIN",
+      "className": "locations",
+      "id": "",
+      "heading": "Location",
+      "snippet": "<main class=\"locations\"><div data-slideshow=\"wrap\" class=\"wrapper_slider slideshow--ready\"><h1 class=\"sr-only\">Location</h1><div data-slideshow=\"nav\" class=\"nav_cms\"><div class=\"collection-list-wrapper-2 w-dyn-list\"><div role=\"list\" class=\"flex_nav w-dyn-items\"><div data-slide-index=\"1\" data-slidesh"
+    },
+    {
+      "tag": "SECTION",
+      "className": "on_the_map",
+      "id": "",
+      "heading": "Near Campus. Near Everything.",
+      "snippet": "<section class=\"on_the_map\"><div class=\"location_on_map\"><div class=\"locations_headings\"><h2 class=\"h2 white specific_map\">Near <span data-scribble=\"2\" class=\"scribble-wrap\">Campus</span>. Near Everything.</h2></div></div><section data-section=\"dark\" class=\"map_sec\"><div class=\"map_cards\"><div class"
+    },
+    {
+      "tag": "SECTION",
+      "className": "faqs black",
+      "id": "",
+      "heading": "Frequently asked questions",
+      "snippet": "<section class=\"faqs black\"><div class=\"wrapper_general basic\"><div class=\"faq_heading white_ver\"><h2 class=\"h2 smaller\">Frequently asked questions</h2></div><div class=\"sides_faq\"><div class=\"short_left\"><div class=\"caption_faq white_ver\"><div>Everything you might want to know before moving in.</di"
+    },
+    {
+      "tag": "FOOTER",
+      "className": "footer",
+      "id": "",
+      "heading": "",
+      "snippet": "<footer data-w-id=\"968d3c26-26cd-1126-ec70-692e38d5057a\" class=\"footer\"><div class=\"wrapper_footer\"><div class=\"flex_f_top\"><div class=\"caption_left\"><div class=\"cap_footer\">21Oaks</div><div class=\"cap_footer\">Your space. <span data-scribble=\"4\" class=\"scribble-wrap\">Still on.</span></div></div><div"
+    }
+  ],
+  "headings": [
+    {
+      "tag": "H1",
+      "className": "sr-only",
+      "text": "Location",
+      "parentClass": "wrapper_slider slideshow--ready"
+    },
+    {
+      "tag": "H2",
+      "className": "h2 locations_specific",
+      "text": "University of South Carolina",
+      "parentClass": "heading_h_carousel"
+    },
+    {
+      "tag": "H2",
+      "className": "h2 locations_specific",
+      "text": "",
+      "parentClass": "heading_h_carousel"
+    },
+    {
+      "tag": "H2",
+      "className": "h2 locations_specific",
+      "text": "",
+      "parentClass": "heading_h_carousel"
+    },
+    {
+      "tag": "H2",
+      "className": "h2 white specific_map",
+      "text": "Near Campus. Near Everything.",
+      "parentClass": "locations_headings"
+    },
+    {
+      "tag": "H2",
+      "className": "h2 smaller",
+      "text": "Frequently asked questions",
+      "parentClass": "faq_heading white_ver"
+    }
+  ]
+}

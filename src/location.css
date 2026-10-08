@@ -79,14 +79,19 @@
   will-change: transform;
 }
 
+/* Shades the top and left (title and description) and the bottom (travel
+   times and thumbnails) so white text stays readable on bright daytime photos */
 .hero_bg_overlay {
   z-index: 9;
-  background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.44),
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.1)
-  );
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.44),
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.1) 65%,
+      rgba(0, 0, 0, 0.5)
+    );
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -112,11 +117,11 @@
 
 .h2.locations_specific {
   color: #ffffff;
-  font-family: "Michroma", sans-serif !important;
-  font-size: 40.32px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -1.152px;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-location);
+  font-weight: var(--fw-heading, 400);
+  line-height: var(--lh-h2-location, 1.0);
+  letter-spacing: var(--ls-heading-tight, -0.02em);
   margin: 0;
 }
 
@@ -254,7 +259,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 2: ON THE MAP / NEAR SILIGURI MALL
+   SECTION 2: ON THE MAP / NEARBY PLACES
    -------------------------------------------------------------------------- */
 .on_the_map {
   background-color: #121214;
@@ -267,42 +272,125 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(7.5rem, 11vw, 11rem) 2rem 3.5rem;
+  padding: clamp(7.5rem, 11vw, 11rem) 2rem 2rem;
 }
 
 .locations_headings {
   text-align: center;
+  width: auto;
   max-width: 900px;
   margin-inline: auto;
 }
 
 .h2.white.specific_map {
   color: #ffffff;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3.4vw, 66px) !important;
-  font-weight: 600 !important;
-  line-height: 1.05 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: clamp(32px, 4.5vw, 64.8px) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: 1.0 !important;
   letter-spacing: -0.02em !important;
   margin: 0;
+}
+
+.map_address_line {
+  margin: 16px 0 0;
+  text-wrap: balance;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Category tabs above the map */
+.map_tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 2rem 1.5rem;
+}
+
+.map_tab {
+  appearance: none;
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.map_tab:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.map_tab.is-active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #121214;
+}
+
+.map_tab:focus-visible {
+  outline: 2px solid #2391cf;
+  outline-offset: 2px;
+}
+
+/* Directions link and distance note under the map */
+.map_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+
+.map_directions_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.map_directions_link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.map_note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* Map Section Outer Container */
 .on_the_map .map_sec {
   background-color: #121214;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 100vw !important;
-  height: 82vh;
-  min-height: 620px;
-  max-height: none;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 757px !important;
+  max-height: none !important;
+  min-height: 600px;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
   position: relative;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
   overflow: hidden;
-  box-shadow: none !important;
-  border: none !important;
+  border-radius: 0 !important;
 }
 
 /* Map Cards Left Floating Panel */
@@ -310,13 +398,12 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  width: 26rem;
-  max-width: calc(100vw - 3rem);
+  width: 345.6px;
+  max-width: calc(100vw - 4rem);
   position: absolute;
-  top: 1.5rem;
-  bottom: auto;
-  max-height: calc(100% - 3rem);
-  left: 1.5rem;
+  top: 32px;
+  bottom: 32px;
+  left: 32px;
   pointer-events: auto;
 }
 
@@ -324,7 +411,7 @@
 .cards_list_scroll {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 8px;
   overflow-y: auto;
   padding-right: 0.25rem;
   scrollbar-width: thin;
@@ -342,43 +429,41 @@
 
 .map_card {
   background-color: #ffffff;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  border: 1.5px solid #e2e8f0;
-  overflow: visible;
+  border: none;
+  overflow: hidden;
   height: auto;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   transform: none !important;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .map_card:hover {
-  transform: none !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
-  background-color: #f8fafc;
-  border-color: #cbd5e1;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
 }
 
 .map_card.is-active {
-  background-color: #f0f7fc !important;
-  border-color: #2391cf !important;
-  box-shadow: 0 6px 20px rgba(35, 145, 207, 0.2) !important;
+  background-color: var(--primary, #2391cf) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(35, 145, 207, 0.4) !important;
   transform: none !important;
 }
 
 .wrapper_map_card {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.75rem 0.95rem;
-  border-radius: 8px;
+  gap: 12px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .image_map_card {
-  width: 4.8rem;
-  height: 3.8rem;
-  border-radius: 6px;
+  width: 66px;
+  height: 66px;
+  border-radius: 3px;
   overflow: hidden;
   flex-shrink: 0;
   background-color: #e2e8f0;
@@ -391,6 +476,47 @@
   display: block;
 }
 
+/* Places without a photo get an icon tile */
+.image_map_card {
+  position: relative;
+}
+
+.image_map_card.is-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaf4fb;
+  color: #2391cf;
+}
+
+.map_card.is-active .image_map_card.is-icon {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* Number matching the card's pin */
+.map_card_num {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #121214;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.map_card.is-active .map_card_num {
+  background: #ffffff;
+  color: #121214;
+}
+
 .map_card:hover .image_map_card img {
   transform: none !important;
 }
@@ -399,7 +525,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.28rem;
+  gap: 3px;
   flex: 1;
   min-width: 0;
 }
@@ -412,47 +538,52 @@
 }
 
 .subtitle_text {
-  font-size: 0.7rem;
+  font-size: 11px;
   text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: #64748b;
   white-space: nowrap;
 }
 
 .map_card.is-active .subtitle_text {
-  color: #2391cf;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .transit_pill_card {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: 0.76rem;
+  font-size: 11px;
   font-weight: 500;
   color: #64748b;
   white-space: nowrap;
 }
 
 .map_card.is-active .transit_pill_card {
-  color: #0369a1;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
+.map_card.is-active .transit_pill_card svg {
+  fill: #ffffff !important;
+  opacity: 1 !important;
+}
+
 .title_map_card {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: 0.92rem !important;
-  font-weight: 500 !important;
-  color: #0f172a !important;
-  line-height: 1.35 !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  color: #121214 !important;
+  line-height: 1.25 !important;
   white-space: normal !important;
   overflow: visible !important;
   margin: 0 !important;
-  letter-spacing: -0.01em !important;
+  letter-spacing: var(--ls-heading-loose, -0.01em) !important;
 }
 
 .map_card.is-active .title_map_card {
-  color: #0f172a !important;
+  color: #ffffff !important;
 }
 
 /* Map Canvas Container */
@@ -462,6 +593,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 /* Custom Zoom Control on Top-Right */
@@ -497,37 +629,37 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Leaflet Popup Styling - Sleek Dark Theme */
+/* Leaflet Popup: a small dark card with a text link, no big button */
 .leaflet-popup-content-wrapper {
   background: #18181b !important;
   color: #ffffff !important;
-  border-radius: 14px !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35) !important;
   padding: 0 !important;
   overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .leaflet-popup-tip {
   background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35) !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .leaflet-popup-content {
-  margin: 1.15rem 1.35rem !important;
+  margin: 14px 16px !important;
   line-height: 1.4 !important;
-  min-width: 260px !important;
-  max-width: 300px !important;
+  min-width: 220px !important;
+  max-width: 260px !important;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-  color: rgba(255, 255, 255, 0.65) !important;
-  top: 10px !important;
-  right: 12px !important;
-  font-size: 18px !important;
-  width: 24px !important;
-  height: 24px !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  top: 8px !important;
+  right: 8px !important;
+  font-size: 16px !important;
+  width: 22px !important;
+  height: 22px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -537,94 +669,148 @@
 
 .leaflet-container a.leaflet-popup-close-button:hover {
   color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.popup-kicker {
+  margin-bottom: 4px;
+  padding-right: 20px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .popup-title {
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
+  padding-right: 20px;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
   font-size: 1rem !important;
   font-weight: 400 !important;
   color: #ffffff !important;
-  margin-bottom: 0.35rem !important;
   letter-spacing: -0.01em !important;
   line-height: 1.25 !important;
 }
 
 .popup-address {
-  font-size: 0.82rem !important;
-  color: rgba(255, 255, 255, 0.72) !important;
-  margin-bottom: 0.45rem !important;
-  line-height: 1.4 !important;
-  font-weight: 400 !important;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.popup-hours {
-  font-size: 0.8rem !important;
-  color: var(--logo-green, #a2cd3a) !important;
-  font-weight: 500 !important;
-  margin-bottom: 0.85rem !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.35rem !important;
-}
-
-.popup-meta {
-  display: none !important;
-}
-
-.popup-meta-row {
-  display: none !important;
-}
-
-.popup-directions-link {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.4rem !important;
-  width: 100% !important;
-  margin-top: 0.25rem !important;
-  padding: 0.65rem 1rem !important;
-  background: #2391cf !important;
-  color: #ffffff !important;
-  border-radius: 8px !important;
-  font-size: 0.82rem !important;
-  font-weight: 500 !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  letter-spacing: -0.01em !important;
-  text-decoration: none !important;
-  transition: all 0.25s ease !important;
-  box-shadow: 0 4px 14px rgba(35, 145, 207, 0.35) !important;
-  box-sizing: border-box !important;
-}
-
-.popup-directions-link:hover {
-  background: #1c7bb3 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 6px 18px rgba(35, 145, 207, 0.45) !important;
-}
-
-/* Home Marker Pulse */
-.home-marker-pulse {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  background: #2391cf;
-  border-radius: 50%;
+.popup-footer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2.5px solid #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-distance {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.leaflet-container a.popup-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4aa9e0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.leaflet-container a.popup-link:hover {
+  color: #ffffff;
+}
+
+/* Project site marker: a name label pointing at a pulsing dot. The Leaflet
+   icon is zero-size, so this centres the label above the exact point. */
+.home-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, calc(-100% + 6px));
   cursor: pointer;
 }
 
-.home-marker-pulse::after {
+.home-marker-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: #121214;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  white-space: nowrap;
+}
+
+.home-marker-label::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #121214;
+}
+
+.home-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2391cf;
+  color: #ffffff;
+}
+
+.home-marker-name {
+  font-family: var(--font-heading, "Exposure", Georgia, serif);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.home-marker-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-top: 7px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: #2391cf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.home-marker-dot::after {
   content: "";
   position: absolute;
   inset: -6px;
   border-radius: 50%;
   border: 2px solid #2391cf;
   animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-marker-dot::after {
+    display: none;
+  }
 }
 
 @keyframes pulse-ring {
@@ -638,8 +824,9 @@
   }
 }
 
-/* Destination Hollow Pink Pin */
+/* Destination Pin */
 .poi-marker-pin {
+  position: relative;
   width: 28px;
   height: 42px;
   cursor: pointer;
@@ -651,6 +838,30 @@
 .poi-marker-pin.is-active {
   transform: scale(1.15) translateY(-3px);
   filter: drop-shadow(0 6px 10px rgba(35, 145, 207, 0.45));
+}
+
+.poi-marker-pin.is-active path {
+  fill: #121214;
+  stroke: #ffffff;
+}
+
+/* Pin numbers sit over the pin's hole and match the cards */
+.poi-marker-num {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #121214;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -665,9 +876,10 @@
 }
 
 .faqs.black .wrapper_general.basic {
-  padding: 56px 32px 120px;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .faqs.black .faq_heading.white_ver {
@@ -684,11 +896,11 @@
 .faqs.black .h2.smaller,
 .faq_heading.white_ver .h2.smaller {
   color: #ffffff !important;
-  font-family: var(--font-heading, "Michroma", sans-serif) !important;
-  font-size: clamp(24px, 3.4vw, 66px) !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.02em !important;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
+  font-size: var(--fs-h2-section) !important;
+  font-weight: var(--fw-heading, 400) !important;
+  line-height: var(--lh-h2-section, 1.0) !important;
+  letter-spacing: var(--ls-heading-tight, -0.02em) !important;
   text-align: center;
   margin: 0;
 }
@@ -791,7 +1003,7 @@
 
 .faqs.black .item_title {
   color: #ffffff !important;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 17.28px !important;
   font-weight: 400 !important;
   line-height: 1.3 !important;
@@ -863,7 +1075,7 @@
 
 .faqs.black .item_paragraph.w-richtext p {
   color: rgba(255, 255, 255, 0.85) !important;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-family: var(--font-body, "Exposure", Georgia, sans-serif) !important;
   font-size: 12.96px !important;
   line-height: 18.14px !important;
   margin: 0 !important;
@@ -1095,6 +1307,29 @@
     letter-spacing: -0.02em !important;
   }
 
+  .map_address_line {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  /* Tabs scroll sideways instead of wrapping */
+  .map_tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 16px 16px;
+    scrollbar-width: none;
+  }
+
+  .map_tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map_tab {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+
   .on_the_map .map_sec {
     width: 100vw !important;
     max-width: 100vw !important;
@@ -1111,9 +1346,56 @@
     overflow: hidden !important;
   }
 
-  /* Completely hide location list / cards panel on mobile per user request */
+  /* Place cards become a swipeable strip over the bottom of the map */
   .map_cards {
-    display: none !important;
+    position: absolute;
+    top: auto;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cards_list_scroll {
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 16px 8px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .cards_list_scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Width leaves the next card peeking in, which shows the strip scrolls */
+  .map_card {
+    flex: 0 0 calc(100% - 64px);
+    max-width: 340px;
+    scroll-snap-align: start;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  .map_card:hover {
+    transform: none !important;
+  }
+
+  .wrapper_map_card {
+    height: 100%;
+    padding: 6px 12px 6px 6px;
+  }
+
+  .image_map_card {
+    width: 56px;
+    height: 56px;
   }
 
   .on_the_map .map_box {
@@ -1125,24 +1407,13 @@
   }
 
   .leaflet-popup-content {
-    min-width: 220px !important;
-    max-width: 260px !important;
-    margin: 0.95rem 1.1rem !important;
+    min-width: 200px !important;
+    max-width: 240px !important;
+    margin: 12px 14px !important;
   }
 
   .popup-title {
     font-size: 0.92rem !important;
-    color: #ffffff !important;
-  }
-
-  .popup-address {
-    font-size: 0.78rem !important;
-    color: rgba(255, 255, 255, 0.72) !important;
-  }
-
-  .popup-meta,
-  .popup-meta-row {
-    display: none !important;
   }
 
   .faqs.black .wrapper_general.basic {

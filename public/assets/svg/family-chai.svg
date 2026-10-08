@@ -1,0 +1,80 @@
+<svg width="768" height="768" viewBox="0 0 768 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <!-- Small displacement gives the clean paths a hand-inked wobble -->
+  <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+
+  <g id="chair">
+    <!-- backrest, drawn twice for the sketched double contour -->
+    <path d="M120 418C113 360 112 302 131 263C151 226 249 226 269 263C288 302 287 360 280 418" fill="#2391cf" stroke-width="3.6"/>
+    <path d="M131 404C126 354 126 308 142 276C160 245 240 245 258 276C273 308 273 354 269 404" stroke-width="1.9"/>
+    <!-- arms -->
+    <path d="M94 444C88 404 90 366 102 352C114 341 130 349 132 364L134 444" fill="#2391cf" stroke-width="3.6"/>
+    <path d="M306 444C312 404 310 366 298 352C286 341 270 349 268 364L266 444" fill="#2391cf" stroke-width="3.6"/>
+    <path d="M104 362C108 356 118 354 124 360" stroke-width="1.9"/>
+    <path d="M296 362C292 356 282 354 276 360" stroke-width="1.9"/>
+    <!-- seat cushion -->
+    <path d="M128 406C172 394 228 394 272 406C279 418 279 431 272 440C228 451 172 451 128 440C121 431 121 418 128 406Z" fill="#2391cf" stroke-width="3.6"/>
+    <path d="M140 414C180 406 220 406 260 414" stroke-width="1.9"/>
+    <!-- base and legs -->
+    <path d="M92 442C150 454 250 454 308 442L306 464C250 476 150 476 94 464Z" fill="#2391cf" stroke-width="3.6"/>
+    <path d="M110 470L101 516" stroke-width="3.6"/>
+    <path d="M290 470L299 516" stroke-width="3.6"/>
+    <path d="M152 476L148 498" stroke-width="2.8"/>
+    <path d="M248 476L252 498" stroke-width="2.8"/>
+  </g>
+</defs>
+
+<g filter="url(#ink)" stroke="#1c1a1b" stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- ground strokes -->
+  <path d="M58 528C86 522 104 530 134 524" stroke-width="2.8"/>
+  <path d="M262 530C286 524 306 532 336 526" stroke-width="2.8"/>
+  <path d="M72 548L112 542" stroke-width="1.9"/>
+  <path d="M226 550C246 546 262 552 282 548" stroke-width="1.9"/>
+  <path d="M432 530C462 524 482 532 506 526" stroke-width="2.8"/>
+  <path d="M634 528C664 522 684 530 712 524" stroke-width="2.8"/>
+  <path d="M488 550C508 546 524 552 544 548" stroke-width="1.9"/>
+  <path d="M656 548L696 542" stroke-width="1.9"/>
+  <path d="M352 530C370 526 398 526 416 530" stroke-width="1.9"/>
+
+  <!-- left armchair with an oblong cushion -->
+  <use href="#chair"/>
+  <path d="M160 330C178 316 222 316 240 330C248 352 246 378 238 396C220 404 180 404 162 396C154 378 152 352 160 330Z" fill="#2391cf" stroke-width="3.2"/>
+  <path d="M166 336L176 346" stroke-width="1.9"/>
+  <path d="M234 336L224 346" stroke-width="1.9"/>
+  <path d="M166 392L176 382" stroke-width="1.9"/>
+  <path d="M234 392L224 382" stroke-width="1.9"/>
+
+  <!-- right armchair (mirrored) with a round cushion -->
+  <use href="#chair" transform="translate(768 0) scale(-1 1)"/>
+  <path d="M568 316C598 314 616 336 614 362C612 388 590 402 566 400C542 398 524 380 526 356C528 332 544 318 568 316Z" fill="#2391cf" stroke-width="3.2"/>
+  <path d="M570 340C584 342 592 354 588 366C584 378 570 382 560 376C550 370 550 356 558 350C564 346 572 350 572 358" stroke-width="1.9"/>
+
+  <!-- side table -->
+  <path d="M378 440L373 502" stroke-width="3.4"/>
+  <path d="M390 440L395 502" stroke-width="3.4"/>
+  <path d="M348 508C348 502 364 498 384 498C404 498 420 502 420 508C420 514 404 518 384 518C364 518 348 514 348 508Z" fill="#2391cf" stroke-width="3.4"/>
+  <path d="M320 418C320 409 348 403 384 403C420 403 448 409 448 418L448 427C448 436 420 442 384 442C348 442 320 436 320 427Z" fill="#2391cf" stroke-width="3.6"/>
+  <path d="M320 418C320 427 348 433 384 433C420 433 448 427 448 418" stroke-width="1.9"/>
+
+  <!-- cup for you: handle towards the left chair -->
+  <path d="M338 415C338 411 348 408 360 408C372 408 382 411 382 415C382 419 372 421 360 421C348 421 338 419 338 415Z" fill="#2391cf" stroke-width="2.8"/>
+  <path d="M346 386C346 401 350 413 360 413C370 413 374 401 374 386" fill="#2391cf" stroke-width="3.2"/>
+  <path d="M346 386C346 382 352 380 360 380C368 380 374 382 374 386C374 390 368 391 360 391C352 391 346 390 346 386Z" stroke-width="2.4"/>
+  <path d="M346 392C336 390 334 402 347 404" stroke-width="2.8"/>
+  <path d="M356 370C350 362 362 356 356 346C350 336 360 330 356 322" stroke-width="2.4"/>
+  <path d="M366 368C362 362 370 356 366 348" stroke-width="1.9"/>
+
+  <!-- cup for them: handle towards the right chair -->
+  <path d="M386 415C386 411 396 408 408 408C420 408 430 411 430 415C430 419 420 421 408 421C396 421 386 419 386 415Z" fill="#2391cf" stroke-width="2.8"/>
+  <path d="M394 386C394 401 398 413 408 413C418 413 422 401 422 386" fill="#2391cf" stroke-width="3.2"/>
+  <path d="M394 386C394 382 400 380 408 380C416 380 422 382 422 386C422 390 416 391 408 391C400 391 394 390 394 386Z" stroke-width="2.4"/>
+  <path d="M422 392C432 390 434 402 421 404" stroke-width="2.8"/>
+  <path d="M410 370C404 362 416 356 410 346C404 336 414 330 410 322" stroke-width="2.4"/>
+  <path d="M400 366C396 360 404 354 400 346" stroke-width="1.9"/>
+
+</g>
+</svg>

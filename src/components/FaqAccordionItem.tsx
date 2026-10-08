@@ -136,7 +136,10 @@ export default function FaqAccordionItem({
         <div className="item_head">
           <div className="title_wrapper">
             <div className="item_title">{question}</div>
-            <div ref={iconRef} className="icon_wrapper" />
+            <div
+              ref={iconRef}
+              className={`icon_wrapper ${className.includes("white_ver") ? "white_ver" : ""}`.trim()}
+            />
           </div>
         </div>
       </div>
