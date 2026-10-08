@@ -1,34 +1,48 @@
 /* ==========================================================================
-   Amenities Page Styles - 100% Pixel-by-Pixel Parity with 21Oaks
+   SGMG ABOUT PAGE
+   The hero (heading, Siliguri sketch, scroll-drawn route to Jeevandeep Tower)
+   is the design from the old Amenities page, unchanged. Everything after it
+   uses ab- classes; index.css restyles any class containing "h1", "h2" or
+   "heading", and sizes on h2/h3 need !important to beat its heading rules.
    ========================================================================== */
 
-.amenities-page {
-  /* Fluid 1vw base scaling identical to 21oaks desktop Webflow system */
-  font-size: 1vw;
-  line-height: 1;
+.about-page {
+  --ab-black: #292929;
+  --ab-blue: var(--primary, #2391cf);
+  --ab-green: var(--logo-green, #a2cd3a);
+  --ab-muted: rgba(41, 41, 41, 0.72);
+  --ab-line: rgba(41, 41, 41, 0.12);
+  --ab-tint: #f5f8fa;
+
   background-color: #ffffff;
-  color: #292929;
+  color: var(--ab-black);
   width: 100%;
   overflow: visible;
 }
 
 /* ==========================================
-   HEADINGS & HERO SECTION
+   HERO (from the Amenities page)
    ========================================== */
 
-.amenities-page .wrapper_general.base_ab {
+.about-page .ab-hero {
+  /* Fluid 1vw base scaling identical to 21oaks desktop Webflow system */
+  font-size: 1vw;
+  line-height: 1;
+}
+
+.about-page .wrapper_general.base_ab {
   padding-top: 12em;
   padding-bottom: 7em;
   width: 100%;
   box-sizing: border-box;
 }
 
-.amenities-page .middle_h1 {
+.about-page .middle_h1 {
   text-align: center;
   width: 100%;
 }
 
-.amenities-page .h1.black.spec_amenities {
+.about-page .h1.black.spec_amenities {
   font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
   font-size: clamp(32px, 4.5vw, 64.8px) !important;
   font-weight: var(--fw-heading, 400);
@@ -41,13 +55,13 @@
 }
 
 /* Scribble Reveal Animation */
-.amenities-page [data-scribble] {
+.about-page [data-scribble] {
   position: relative;
   display: inline-block;
   padding-bottom: 0.25em;
 }
 
-.amenities-page [data-scribble]::after {
+.about-page [data-scribble]::after {
   content: '';
   position: absolute;
   left: 0;
@@ -61,15 +75,15 @@
   clip-path: inset(0 100% 0 0);
 }
 
-.amenities-page [data-scribble].scribble-visible::after {
+.about-page [data-scribble].scribble-visible::after {
   animation: scribble-reveal 1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
 }
 
-.amenities-page [data-scribble='1']::after {
+.about-page [data-scribble='1']::after {
   background-image: url('/assets/svg/scribble-1-21oaks.svg');
 }
 
-.amenities-page [data-scribble='5']::after {
+.about-page [data-scribble='5']::after {
   background-image: url('/assets/svg/scribble-5-21oaks.svg');
 }
 
@@ -79,30 +93,27 @@
   }
 }
 
-/* ==========================================
-   FULLSCREEN SKETCH & DRAWN SVG ROUTE
-   ========================================== */
-
-.amenities-page .amenities_fs {
+/* Fullscreen sketch & drawn SVG route */
+.about-page .amenities_fs {
   width: 100vw;
   max-width: 100%;
   height: auto;
   position: relative;
 }
 
-.amenities-page .box_fs_image {
+.about-page .box_fs_image {
   width: 100%;
   height: 100%;
 }
 
-.amenities-page .image.amenities_fs_spec {
+.about-page .image.amenities_fs_spec {
   object-fit: cover;
   width: 100%;
   height: auto;
   display: block;
 }
 
-.amenities-page .ovelay_fs_sketch {
+.about-page .ovelay_fs_sketch {
   z-index: 3;
   background-image: linear-gradient(#fff0, #fff0 81%, #fff);
   position: absolute;
@@ -110,7 +121,7 @@
   pointer-events: none;
 }
 
-.amenities-page .path_overlay {
+.about-page .path_overlay {
   z-index: 5;
   width: 100%;
   height: 100%;
@@ -119,13 +130,13 @@
   pointer-events: none;
 }
 
-.amenities-page .path_overlay .amenities-svg {
+.about-page .path_overlay .amenities-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.amenities-page .path_overlay .route-line {
+.about-page .path_overlay .route-line {
   fill: none;
   stroke: var(--primary, #2391cf);
   stroke-width: 6;
@@ -134,11 +145,8 @@
   opacity: 0.95;
 }
 
-/* ==========================================
-   INTERMEDIATE TEXT
-   ========================================== */
-
-.amenities-page .md_amenities {
+/* Centred line under the sketch */
+.about-page .md_amenities {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +155,7 @@
   box-sizing: border-box;
 }
 
-.amenities-page .md_txt {
+.about-page .md_txt {
   text-align: center;
   max-width: 680px;
   width: 100%;
@@ -159,603 +167,660 @@
   margin: 0 auto;
 }
 
-/* ==========================================
-   AMENITIES FLOW & STICKY SUN CLOCK
-   ========================================== */
-
-.amenities-page .amenities_flow {
-  background-color: #ffffff;
-  padding: 0;
-  position: relative;
-  transition: background-color 0.15s ease-out;
-}
-
-.amenities-page .amenities_wrapper {
-  padding: 10rem 2rem;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.amenities-page .amenities_cms,
-.amenities-page .amenities_parent {
-  position: relative;
-}
-
-.amenities-page .amenities_flex {
-  grid-row-gap: 3.25rem;
-  flex-flow: column;
-  display: flex;
-}
-
-.amenities-page .amenities_item {
-  display: flex;
-  position: relative;
-}
-
-.amenities-page .amenities_info {
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 45%;
-  display: flex;
-}
-
-.amenities-page .top_amen {
-  display: flex;
-}
-
-.amenities-page .tag_amen {
-  background-color: #f1f5f9;
-  color: #292929;
-  border: 1px solid rgba(41, 41, 41, 0.12);
-  border-radius: 4px;
-  padding: .45em .85em;
-  font-size: .85em;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-  font-weight: 600;
-  line-height: 1;
-  display: inline-flex;
-}
-
-.amenities-page .info_amen {
-  display: flex;
-  flex-direction: column;
-}
-
-.amenities-page .title_amen {
-  width: 15ch;
-  font-size: 3.5em;
-  line-height: 1.1;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-  color: #292929;
-  margin-top: 0.6em;
-  margin-bottom: 0;
-}
-
-.amenities-page .desc_amen {
-  width: 42ch;
-  font-size: 1.05em;
-  line-height: 1.4;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-  color: #292929;
-  margin-top: 1.2em;
-  margin-bottom: 0;
-}
-
-.amenities-page .included_box {
-  grid-row-gap: .6rem;
-  flex-flow: column;
-  margin-top: 14em;
-  display: flex;
-}
-
-.amenities-page .inc_title {
-  opacity: .65;
-  font-size: 1.05em;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-}
-
-.amenities-page .inc_desc {
-  width: 42ch;
-  font-size: 1.05em;
-  line-height: 1.35;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-}
-
-.amenities-page .amenities_img {
-  border-radius: .25em;
-  width: 50%;
-  height: 57em;
-  margin-left: auto;
-  overflow: hidden;
-  background-color: #e4e4e7;
-}
-
-.amenities-page .amenities_img .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Sticky Sun Clock Container */
-.amenities-page .sun-clock {
-  grid-column-gap: .4em;
-  justify-content: flex-start;
-  align-items: center;
-  width: 11em;
-  height: auto;
-  margin-left: 35em;
-  display: flex;
-  position: sticky;
-  inset: 9em auto auto 0%;
-  z-index: 99;
-}
-
-.amenities-page .lottie_on_scroll {
-  width: 6em;
-  height: 4.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.amenities-page .sun_changing {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.amenities-page .time_clock {
-  font-size: 1.4em;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-  color: #292929;
-}
-
-.amenities-page .time_clock [data-clock] {
-  position: relative;
-  display: inline-flex;
-  align-items: flex-end;
-  min-width: 5ch;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.amenities-page .time_clock .clock-digits {
-  display: inline-flex;
-}
-
-.amenities-page .time_clock .digit-wrap {
-  position: relative;
-  width: 1ch;
-  height: 1em;
-  line-height: 1em;
-  overflow: hidden;
-  display: inline-block;
-}
-
-.amenities-page .time_clock .digit-current,
-.amenities-page .time_clock .digit-next {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  white-space: nowrap;
-  will-change: transform;
-}
-
-.amenities-page .time_clock .clock-suffix {
-  position: absolute;
-  right: -2.2ch;
-  top: 0;
-  transform: translateY(-62%);
-  font-size: 0.56em;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  pointer-events: none;
-  opacity: 0.95;
-}
-
-/* ==========================================
-   PETS SECTION (LIGHT BRAND SECTION)
-   ========================================== */
-
-.amenities-page .pets,
-.amenities-page section.pets {
-  background-color: var(--primary, #2391cf) !important;
-  color: #292929;
-  position: relative;
-}
-
-.amenities-page .wrapper_pets {
-  padding: 5.1rem 2rem 3.15rem;
-  position: relative;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.amenities-page .pets_heading {
-  display: block;
-}
-
-.amenities-page .h2.pets_h {
-  font-size: var(--fs-h2-pets);
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
-  font-weight: var(--fw-heading, 400);
-  line-height: var(--lh-h2-pets, 1.15);
-  color: #292929;
+.about-page .md_txt p {
   margin: 0;
 }
 
-.amenities-page .pets_ill {
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 8rem;
-  display: flex;
-  position: relative;
+/* ==========================================
+   SHARED (sections after the hero)
+   ========================================== */
+
+.ab-wrap {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: clamp(16px, 2.2vw, 32px);
+  padding-right: clamp(16px, 2.2vw, 32px);
 }
 
-.amenities-page .box_pets {
-  background-image: url("/assets/svg/family-chai.svg");
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 35em;
-  height: 35em;
-  margin-left: auto;
-  margin-right: 6.5em;
-  position: static;
+.ab-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--ab-green);
   flex-shrink: 0;
 }
 
-.amenities-page .p_pets {
-  width: 39ch;
+.ab-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.78rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(41, 41, 41, 0.65);
 }
 
-.amenities-page .p_gen {
-  color: #292929;
-  letter-spacing: .01em;
-  font-size: .85em;
-  line-height: 1.5;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
+.ab-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: var(--fs-h2-section, clamp(28px, 4.6vw, 66.24px)) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--ab-black);
 }
 
-.amenities-page .p_gen.black {
-  color: #292929 !important;
-  font-size: .9em;
-  line-height: 1.4;
-}
-
-.amenities-page .pet_boxes {
-  grid-column-gap: 4rem;
-  grid-row-gap: 0px;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-columns: 1fr;
-  margin-top: 8rem;
+/* Heading on the left, a short paragraph on the right */
+.ab-intro {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  gap: 1.5rem 4rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.amenities-page .pet_box {
-  grid-row-gap: .45rem;
-  flex-flow: column;
-  display: flex;
+.ab-intro_text {
+  margin: 0;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+  color: var(--ab-muted);
 }
 
-.amenities-page .pet_title {
-  font-size: 24.48px !important;
-  font-weight: 400 !important;
-  line-height: 24.48px !important;
-  letter-spacing: normal !important;
-  font-family: var(--font-heading, "Exposure", Georgia, sans-serif) !important;
-  color: #292929;
-}
-
-.amenities-page .pet_desc {
-  width: 47ch;
-  font-size: .85em;
+.ab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  color: var(--ab-black);
+  font-size: 0.95rem;
   line-height: 1.4;
-  font-family: var(--font-body, "Exposure", Georgia, sans-serif);
-  color: rgba(41, 41, 41, 0.85);
+  text-decoration: underline;
+  text-decoration-color: rgba(41, 41, 41, 0.3);
+  text-underline-offset: 0.28em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.ab-link svg {
+  width: 1em;
+  height: 1em;
+}
+
+.ab-link:hover {
+  color: var(--ab-blue);
+  text-decoration-color: currentColor;
 }
 
 /* ==========================================
-   EXACT 21OAKS RESPONSIVE MEDIA QUERIES
+   AT A GLANCE
+   ========================================== */
+
+.ab-glance {
+  padding: clamp(1rem, 3vw, 2.5rem) 0 clamp(3.5rem, 7vw, 6rem);
+}
+
+.ab-glance_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+}
+
+.ab-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.75rem 1.5rem 0 1.5rem;
+  border-left: 1px solid var(--ab-line);
+}
+
+.ab-stat:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.ab-stat dd {
+  margin: 0;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(44px, 5.2vw, 80px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ab-black);
+}
+
+.ab-stat dt {
+  max-width: 14rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ab-muted);
+}
+
+/* ==========================================
+   OUR STORY
+   ========================================== */
+
+.ab-story {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--ab-line);
+}
+
+.ab-story_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+/* Heading stays in view while the story scrolls past */
+.ab-story_side {
+  position: sticky;
+  top: 7rem;
+}
+
+.ab-story_body > p {
+  margin: 0 0 1.25rem;
+  max-width: 38rem;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.7;
+  color: var(--ab-muted);
+}
+
+.ab-story_body > .ab-story_lead {
+  margin-bottom: 1.75rem;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(21px, 1.9vw, 30px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ab-black);
+}
+
+.ab-quote {
+  margin: 2.5rem 0 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 2px solid var(--ab-blue);
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.ab-quote p {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-italic, "Exposure Italic", Georgia, serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.5vw, 23px);
+  line-height: 1.4;
+  color: var(--ab-black);
+}
+
+.ab-quote_by {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(41, 41, 41, 0.6);
+}
+
+.ab-group {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border-radius: 0.6rem;
+  background: var(--ab-tint);
+}
+
+.ab-group p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ab-black);
+}
+
+.ab-group strong {
+  font-weight: 600;
+}
+
+/* index.css gives every ul flex-flow: column */
+.ab-chips {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.ab-chips li {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(41, 41, 41, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: var(--ab-black);
+}
+
+/* ==========================================
+   FEATURE IMAGE (centred)
+   ========================================== */
+
+.ab-feature {
+  margin: 0 auto;
+  padding: 0 clamp(16px, 2.2vw, 32px) clamp(4rem, 8vw, 7rem);
+  max-width: 1240px;
+  box-sizing: content-box;
+  text-align: center;
+}
+
+.ab-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.ab-feature figcaption {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ab-muted);
+}
+
+/* ==========================================
+   WHAT WE BUILD (project directory)
+   ========================================== */
+
+.ab-build {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background: var(--ab-tint);
+}
+
+.ab-build_grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: stretch;
+}
+
+.ab-dir {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.2vw, 2.25rem);
+  border-radius: 0.6rem;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(41, 41, 41, 0.04);
+}
+
+.ab-dir_icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.7rem;
+  background: #eaf4fb;
+  color: var(--ab-blue);
+}
+
+.ab-dir_icon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.ab-dir_name {
+  margin: 1.5rem 0 0 !important;
+  padding: 0 !important;
+  font-size: clamp(22px, 2vw, 30px) !important;
+  line-height: 1.1 !important;
+  color: var(--ab-black);
+}
+
+.ab-dir_text {
+  margin: 0.6rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ab-muted);
+}
+
+.ab-dir_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.ab-dir_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--ab-line);
+}
+
+.ab-dir_project {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  color: var(--ab-black);
+}
+
+.ab-dir_meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: var(--ab-muted);
+}
+
+.ab-dir_meta .ab-link {
+  font-size: inherit;
+}
+
+.ab-status {
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.ab-status.is-ongoing {
+  background: #e3f1fa;
+  color: #1a6fa0;
+}
+
+.ab-status.is-completed {
+  background: #eef6e0;
+  color: #44611a;
+}
+
+.ab-status.is-upcoming {
+  background: #f1f1f1;
+  color: #555555;
+}
+
+.ab-dir_more {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  align-self: flex-start;
+}
+
+/* ==========================================
+   LEADERSHIP (blue band)
+   ========================================== */
+
+.ab-leaders {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  background: var(--ab-blue);
+  color: var(--ab-black);
+}
+
+.ab-leaders .ab-intro_text {
+  color: var(--ab-black);
+}
+
+.ab-leaders_list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ab-leader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 2.2vw, 2.25rem);
+  border-radius: 0.6rem;
+  background: #ffffff;
+}
+
+/* Hand-drawn feel to match the hero sketch */
+.ab-leader_mono {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 2.5rem;
+  border: 1.5px solid var(--ab-black);
+  border-radius: 50%;
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ab-black);
+  box-shadow: 4px 4px 0 var(--ab-green);
+}
+
+.ab-leader_name {
+  font-family: var(--font-heading, "Exposure", Georgia, sans-serif);
+  font-size: clamp(20px, 1.6vw, 25px);
+  line-height: 1.2;
+  color: var(--ab-black);
+}
+
+.ab-leader_role {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(41, 41, 41, 0.7);
+}
+
+.ab-leaders_more {
+  margin-top: 2rem;
+  font-size: 1rem;
+  text-decoration-color: rgba(41, 41, 41, 0.45);
+}
+
+.ab-leaders_more:hover {
+  color: #ffffff;
+}
+
+/* ==========================================
+   VISIT (where the route ends)
+   ========================================== */
+
+.ab-visit {
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
+}
+
+.ab-visit_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ab-visit_pin {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.75rem;
+  border-radius: 50%;
+  background: var(--ab-blue);
+  color: #ffffff;
+}
+
+.ab-visit_pin svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.ab-visit_text {
+  margin: 1.5rem 0 0;
+  max-width: 32rem;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: var(--ab-muted);
+}
+
+.ab-visit_actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2.25rem;
+}
+
+/* ==========================================
+   MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hidden only once JS is running (useReveal adds .ab-js) */
+  .ab-js .ab-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ab-js .ab-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ab-js .ab-dir:nth-child(2) { transition-delay: 0.08s; }
+  .ab-js .ab-dir:nth-child(3) { transition-delay: 0.16s; }
+}
+
+/* ==========================================
+   RESPONSIVE
    ========================================== */
 
 /* Tablet (max-width: 991px) */
 @media screen and (max-width: 991px) {
-  .amenities-page {
+  .about-page .ab-hero {
     font-size: 1.35vw;
   }
-  .amenities-page .h1.black,
-  .amenities-page .h1.black.spec_amenities {
+  .about-page .h1.black,
+  .about-page .h1.black.spec_amenities {
     font-size: 6em;
   }
-  .amenities-page .p_gen { font-size: 1.4em; }
-  .amenities-page .p_gen.black { font-size: 1.6em; line-height: 1.34; }
-  .amenities-page .wrapper_general.base_ab {
+  .about-page .wrapper_general.base_ab {
     padding-top: 18em;
     padding-left: 1.35rem;
     padding-right: 1.35rem;
   }
-  .amenities-page .amenities_wrapper {
-    padding: 8rem 1.35rem;
+
+  .ab-intro,
+  .ab-story_grid {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .amenities-page .amenities_img {
-    border-radius: 4px;
+
+  .ab-intro {
+    align-items: start;
   }
-  .amenities-page .tag_amen {
-    border-radius: 2px;
-    font-size: 1.3em;
+
+  .ab-story_side {
+    position: static;
   }
-  .amenities-page .title_amen {
-    width: auto;
-    font-size: 4.5em;
+
+  .ab-glance_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2rem;
   }
-  .amenities-page .desc_amen {
-    width: 40ch;
-    font-size: 1.5em;
-    line-height: 1.3;
+
+  .ab-stat:nth-child(3) {
+    padding-left: 0;
+    border-left: none;
   }
-  .amenities-page .inc_title {
-    font-size: 1.5em;
+
+  .ab-build_grid,
+  .ab-leaders_list {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .amenities-page .inc_desc {
-    width: 38ch;
-    font-size: 1.5em;
+
+  .ab-leader {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 1.25rem;
+    align-items: center;
   }
-  .amenities-page .sun-clock {
-    top: 15em;
+
+  .ab-leader_mono {
+    grid-row: 1 / span 2;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
   }
-  .amenities-page .time_clock {
-    font-size: 1.6em;
+
+  .ab-leader_name {
+    align-self: end;
   }
-  .amenities-page .wrapper_pets {
-    padding: 3.125rem 1.35rem;
+
+  .ab-leader_role {
+    align-self: start;
+    margin-top: 0.25rem;
   }
-  .amenities-page .box_pets {
-    width: 40vw;
-    height: 40vw;
-    max-width: 400px;
-    max-height: 400px;
-    margin-left: 0;
-  }
-  .amenities-page .p_pets {
-    width: 59ch;
-  }
-  .amenities-page .pet_boxes {
-    grid-column-gap: 2rem;
-  }
-  .amenities-page .pet_title {
-    font-size: 2.15em;
-  }
-  .amenities-page .pet_desc {
-    width: auto;
-    font-size: 1.35em;
+
+  /* index.css makes every button full width below 992px */
+  .ab-visit_actions .button {
+    width: min(100%, 18rem) !important;
   }
 }
 
 /* Mobile (max-width: 767px) */
 @media screen and (max-width: 767px) {
-  .amenities-page {
+  .about-page .ab-hero {
     font-size: 2vw;
   }
-  .amenities-page .h1.black.spec_amenities {
+  .about-page .h1.black.spec_amenities {
     font-size: 7em;
   }
-  .amenities-page .p_gen,
-  .amenities-page .p_gen.black {
-    font-size: 2em;
-  }
-  .amenities-page .wrapper_general.base_ab {
+  .about-page .wrapper_general.base_ab {
     padding-top: 16em;
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .amenities-page .md_txt {
+  .about-page .md_txt {
     font-size: clamp(1.1rem, 3.8vw, 1.45rem) !important;
     max-width: 92%;
     width: 100%;
     line-height: 1.4 !important;
   }
-  .amenities-page .h2.pets_h {
-    font-size: clamp(28px, 6vw, 48px) !important;
-    line-height: 1.1 !important;
-  }
-  .amenities-page .amenities_wrapper {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .amenities-page .amenities_item {
-    flex-flow: column;
-  }
-  .amenities-page .amenities_info {
-    grid-column-gap: 1rem;
-    grid-row-gap: 3rem;
-    flex-flow: row;
-    grid-template-rows: auto auto;
-    grid-template-columns: .6fr 1fr;
-    grid-auto-columns: 1fr;
-    width: 100%;
-    margin-top: 1.25rem;
-    padding-right: 5rem;
-    display: grid;
-    position: static;
-  }
-  .amenities-page .amenities_img {
-    order: -9999;
-    width: 100%;
-    height: 64em;
-  }
-  .amenities-page .tag_amen {
-    border-radius: 2px;
-    font-size: 1.5em;
-  }
-  .amenities-page .desc_amen {
-    width: 100%;
-    font-size: 1.85em;
-    line-height: 1.3;
-  }
-  .amenities-page .inc_title {
-    font-size: 2em;
-  }
-  .amenities-page .inc_desc {
-    width: 100%;
-    font-size: 1.85em;
-  }
-  .amenities-page .included_box {
-    margin-top: 0;
-  }
-  .amenities-page .sun-clock {
-    z-index: 99;
-    grid-column-gap: .3rem;
-    background-color: #ffffff;
-    border: 1px solid rgba(41, 41, 41, 0.2);
-    border-radius: 6px;
-    justify-content: flex-start;
-    align-items: center;
-    width: 8.3rem;
-    margin-left: auto;
-    margin-right: 1rem;
-    padding: 0 .47rem;
-    position: fixed;
-    inset: auto 0 1.25rem 0%;
-  }
-  .amenities-page .lottie_on_scroll {
-    width: 3.15rem;
-    height: 3.15rem;
-  }
-  .amenities-page .time_clock {
-    font-size: 2.15em;
-  }
-  .amenities-page .wrapper_pets {
-    padding-top: 3.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .amenities-page .p_pets {
-    width: 71ch;
-  }
-  .amenities-page .pet_boxes {
-    grid-column-gap: 0rem;
-    grid-row-gap: 1.5rem;
-    grid-template-columns: 1fr;
-    margin-top: 5rem;
-  }
-  .amenities-page .pet_box {
-    width: 60%;
-  }
-  .amenities-page .pet_desc {
-    font-size: 1.89em;
-    width: auto;
-  }
 }
 
 /* Small Mobile (max-width: 479px) */
 @media screen and (max-width: 479px) {
-  .amenities-page {
+  .about-page .ab-hero {
     font-size: 3.2vw;
   }
-  .amenities-page .h1.black.spec_amenities {
+  .about-page .h1.black.spec_amenities {
     font-size: 8.7em;
   }
-  .amenities-page .h2.pets_h {
-    font-size: clamp(26px, 7vw, 38px) !important;
-    line-height: 1.1 !important;
-  }
-  .amenities-page .wrapper_general.base_ab {
+  .about-page .wrapper_general.base_ab {
     padding-top: 7.5rem;
     padding-bottom: 3rem;
   }
-  .amenities-page .md_amenities {
+  .about-page .md_amenities {
     padding: 2.5rem 1.25rem;
   }
-  .amenities-page .md_txt {
+  .about-page .md_txt {
     font-size: clamp(1.05rem, 4.5vw, 1.35rem) !important;
     max-width: 100%;
     width: 100%;
     line-height: 1.45 !important;
   }
-  .amenities-page .amenities_wrapper {
+
+  .ab-stat {
     padding-left: 1rem;
+    padding-right: 0.5rem;
   }
-  .amenities-page .amenities_flex {
-    grid-row-gap: 2rem;
-  }
-  .amenities-page .amenities_info {
-    grid-row-gap: 0rem;
-    flex-flow: column;
-    margin-top: 1.05rem;
-    padding-right: 0;
-    display: flex;
-  }
-  .amenities-page .amenities_img {
-    height: 102em;
-  }
-  .amenities-page .tag_amen {
-    font-size: 3.2em;
-  }
-  .amenities-page .title_amen {
-    font-size: 8em;
-  }
-  .amenities-page .desc_amen {
-    font-size: 3.5em;
-  }
-  .amenities-page .inc_title {
-    font-size: 3.5em;
-  }
-  .amenities-page .inc_desc {
-    font-size: 3.5em;
-    line-height: 1.4;
-  }
-  .amenities-page .included_box {
-    margin-top: 2rem;
-  }
-  .amenities-page .sun-clock {
-    justify-content: flex-start;
-    align-items: center;
-    width: 32em;
-    margin-left: auto;
-    margin-right: 1rem;
-    padding: 0 .45rem;
-    bottom: 5.5rem;
-  }
-  .amenities-page .time_clock {
-    font-size: 3.5em;
-  }
-  .amenities-page .wrapper_pets {
-    padding: 2.5rem 1rem 3rem;
-  }
-  .amenities-page .pets_ill {
-    grid-row-gap: 1rem;
-    flex-flow: column;
-    margin-top: 4rem;
-  }
-  .amenities-page .box_pets {
-    width: 100%;
-    height: 60vw;
-    max-height: 280px;
-    margin-right: 0;
-  }
-  .amenities-page .p_pets {
-    width: 100%;
-  }
-  .amenities-page .pet_boxes {
-    grid-column-gap: 0rem;
-    grid-row-gap: 1.75rem;
-    grid-template-columns: 1fr;
-    margin-top: 5.125rem;
-  }
-  .amenities-page .pet_box {
-    width: 100%;
-  }
-  .amenities-page .pet_title {
-    font-size: clamp(1.15rem, 4vw, 1.35rem) !important;
-  }
-  .amenities-page .pet_desc {
-    font-size: clamp(0.9rem, 3vw, 1rem) !important;
-    line-height: 1.5 !important;
+
+  .ab-visit_actions .button {
+    width: 100% !important;
   }
 }

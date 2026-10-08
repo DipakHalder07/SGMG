@@ -313,18 +313,6 @@ export default function Header({ darkTheme = false }: HeaderProps) {
                 <div>Commercial</div>
               </a>
               <a
-                href="/amenities"
-                className={`mobile_link w-inline-block ${location.pathname === "/amenities" ? "w--current" : ""}`}
-                onMouseEnter={() => prefetchRoute("/amenities")}
-                onTouchStart={() => prefetchRoute("/amenities")}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("/amenities");
-                }}
-              >
-                <div>Amenities</div>
-              </a>
-              <a
                 href="/location"
                 className={`mobile_link w-inline-block ${location.pathname === "/location" ? "w--current" : ""}`}
                 onMouseEnter={() => prefetchRoute("/location")}

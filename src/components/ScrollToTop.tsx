@@ -7,7 +7,7 @@ const ROUTE_TITLES: Record<string, string> = {
   "/apartments": "Floor Plans & Residences • SGMG",
   "/commercial": "Retail & Commercial • SGMG",
   "/location": "Neighborhood & Location Showcase • SGMG",
-  "/about": "About Us • SGMG Residences",
+  "/about": "About SGMG • Sushil Gangadhar Mittal Group",
   "/team": "Our Leadership Team • SGMG",
   "/careers": "Careers & Open Positions • SGMG",
   "/faq": "Frequently Asked Questions • SGMG",

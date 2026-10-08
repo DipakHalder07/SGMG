@@ -9,9 +9,8 @@ import HomePage from "./pages/HomePage";
 const ApartmentsPage = lazy(() => import("./pages/ApartmentsPage"));
 const ApartmentDetailPage = lazy(() => import("./pages/ApartmentDetailPage"));
 const CommercialPage = lazy(() => import("./pages/CommercialPage"));
-const AmenitiesPage = lazy(() => import("./pages/AmenitiesPage"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
-const HowToApplyPage = lazy(() => import("./pages/HowToApplyPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 const FaqPage = lazy(() => import("./pages/FaqPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -37,9 +36,8 @@ export default function App() {
           <Route path="/apartments" element={<ApartmentsPage />} />
           <Route path="/apartments/:slug" element={<ApartmentDetailPage />} />
           <Route path="/commercial" element={<CommercialPage />} />
-          <Route path="/amenities" element={<AmenitiesPage />} />
           <Route path="/location" element={<LocationPage />} />
-          <Route path="/about" element={<HowToApplyPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/team" element={<TeamPage />} />
@@ -50,6 +48,8 @@ export default function App() {
           {/* One address per page: old and alternate paths redirect. */}
           <Route path="/apartments-cards/:slug" element={<ApartmentsCardsRedirect />} />
           <Route path="/about-us" element={<Navigate to="/about" replace />} />
+          {/* The Amenities page became the About page */}
+          <Route path="/amenities" element={<Navigate to="/about" replace />} />
           <Route path="/how-to-apply" element={<Navigate to="/about" replace />} />
           <Route path="/faqs" element={<Navigate to="/faq" replace />} />
           <Route path="/our-team" element={<Navigate to="/team" replace />} />

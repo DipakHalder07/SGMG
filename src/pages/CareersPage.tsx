@@ -1,17 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  ArrowUpRight,
+  Calculator,
+  Check,
+  Copy,
+  Handshake,
+  HardHat,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PillButton from "../components/PillButton";
 import FaqSection from "../components/FaqSection";
-import "../story.css";
 import "../careers.css";
 
 interface WorkArea {
   id: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  // Where the work happens
+  place: string;
+  tasks: string[];
+  icon: LucideIcon;
 }
 
 /* The kinds of work SGMG does, not advertised vacancies: no openings,
@@ -21,28 +35,32 @@ const WORK_AREAS: WorkArea[] = [
     id: "sales",
     title: "Sales & Customer Care",
     description: "Help families choose a home and businesses find space, from the first site visit to handover.",
-    image: "/images/projects/green-view.jpg",
-    imageAlt: "Green View, an SGMG residential project",
+    place: "Office & sites",
+    tasks: ["Showing homes and shops on site", "Bookings, agreements and follow-up", "Keeping buyers updated until handover"],
+    icon: Handshake,
   },
   {
     id: "sites",
     title: "Sites & Engineering",
     description: "Build SGMG’s homes and commercial projects across Siliguri, from foundations to finishing.",
-    image: "/images/commercial/cosmos-connect.jpg",
-    imageAlt: "Cosmos Connect, an SGMG commercial project under construction",
+    place: "Project sites",
+    tasks: ["Site supervision", "Quality and safety checks", "Working with contractors and suppliers"],
+    icon: HardHat,
   },
   {
     id: "office",
     title: "Office & Accounts",
     description: "Keep the business running: accounts, purchasing, paperwork and administration.",
-    image: "/images/commercial/jeevandeep-complex.jpg",
-    imageAlt: "Jeevandeep Complex, home of the SGMG office",
+    place: "Jeevandeep Tower",
+    tasks: ["Accounts and billing", "Purchasing and vendor payments", "Records, registration and admin"],
+    icon: Calculator,
   },
 ];
 
 const CONTACT = {
   email: "sales@sgmg.in",
   phone: "+91 99333 21000",
+  whatsapp: "919933321000",
   address: "2nd Floor, Jeevandeep Tower, Salugara, Siliguri",
 };
 
@@ -60,6 +78,30 @@ const applyMailto = (area?: string) => {
   return `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 
+// Same desk as email; the CV can be attached in the chat
+const applyWhatsApp = (area?: string) =>
+  `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+    area
+      ? `Hello SGMG, I would like to apply for work in ${area}. My name is `
+      : "Hello SGMG, I would like to apply for a job. My name is "
+  )}`;
+
+/* Restates what the page already promises; no timelines are claimed */
+const APPLY_STEPS = [
+  {
+    title: "Pick an area of work",
+    text: "Sales, sites or the office. If you’re not sure, tell us what you’ve done before.",
+  },
+  {
+    title: "Send your CV",
+    text: "By email or on WhatsApp, with your name, phone number and experience.",
+  },
+  {
+    title: "Hear from the team",
+    text: "If there’s a role that fits, someone from SGMG will call you.",
+  },
+];
+
 const CAREER_FAQS = [
   {
     q: "Are there openings right now?",
@@ -67,7 +109,11 @@ const CAREER_FAQS = [
   },
   {
     q: "How do I apply?",
-    a: `Email your CV to ${CONTACT.email} with “Job application” and the area of work in the subject line. The Apply buttons on this page open that email for you, ready to fill in.`,
+    a: `Email your CV to ${CONTACT.email} with “Job application” and the area of work in the subject line. The Apply buttons on this page open that email for you, ready to fill in. You can also send your CV on WhatsApp to ${CONTACT.phone}.`,
+  },
+  {
+    q: "What should I send?",
+    a: "Your CV, plus your name, phone number, the area of work you’re interested in and your experience so far. The email the Apply buttons open already has space for each.",
   },
   {
     q: "Where would I work?",
@@ -79,190 +125,344 @@ const CAREER_FAQS = [
   },
 ];
 
-function WorkAreaCard({ area }: { area: WorkArea }) {
+// Fades sections in as they scroll into view. Content stays visible if the
+// observer never runs, because the hidden state needs the crs-js class.
+function useReveal() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const items = Array.from(root.querySelectorAll<HTMLElement>(".crs-reveal"));
+    if (!("IntersectionObserver" in window)) return;
+
+    root.classList.add("crs-js");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    items.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return rootRef;
+}
+
+// For visitors whose browser has no mail app set up, where mailto does nothing
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const t = window.setTimeout(() => setCopied(false), 2000);
+    return () => window.clearTimeout(t);
+  }, [copied]);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT.email);
+      setCopied(true);
+    } catch {
+      // Clipboard blocked: the address is still on screen to select by hand
+    }
+  };
+
   return (
-    <div role="listitem" className="apartment_item w-dyn-item">
-      {/* Same markup as the residence cards' photo area, with one photo */}
-      <div className="apart_image grid_apartments">
-        <div className="overlay_tags">
-          <div className="tag_available">
-            <div className="dot_available" />
-            <div className="txt_available">Siliguri</div>
-          </div>
-        </div>
+    <button type="button" className="crs-copy" onClick={copy} aria-live="polite">
+      {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+      {copied ? "Copied" : "Copy"}
+    </button>
+  );
+}
 
-        <div className="carousel_parent_apartments">
-          <div className="carousel_list">
-            <div className="carousel_item w-dyn-item">
-              <div className="carousel_apartments">
-                <img src={area.image} alt={area.imageAlt} className="image_carousel" loading="lazy" />
-              </div>
-            </div>
-          </div>
-        </div>
+function WorkAreaRow({ area, index }: { area: WorkArea; index: number }) {
+  const Icon = area.icon;
+  return (
+    <li className="crs-area crs-reveal" id={`area-${area.id}`}>
+      <div className="crs-area_icon" aria-hidden="true">
+        <Icon strokeWidth={1.5} />
       </div>
 
-      <div className="content_apart">
-        <div className="apart_title_line">
-          <div className="apartment_title">
-            <span className="apart_title">{area.title}</span>
-          </div>
-        </div>
-        <p className="careers_card_desc">{area.description}</p>
-
-        <div className="explore_button">
-          <PillButton text="Apply" href={applyMailto(area.title)} textBoxClassName="apartments_button" />
-        </div>
+      <div className="crs-area_main">
+        <span className="crs-area_num">{String(index + 1).padStart(2, "0")}</span>
+        <h3 className="crs-area_name">{area.title}</h3>
+        <span className="crs-area_place">
+          <MapPin aria-hidden="true" />
+          {area.place}
+        </span>
       </div>
-    </div>
+
+      <div className="crs-area_body">
+        <p className="crs-area_desc">{area.description}</p>
+        <ul className="crs-chips" aria-label={`What ${area.title} involves`}>
+          {area.tasks.map((task) => (
+            <li key={task}>{task}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="crs-area_actions">
+        <PillButton
+          text="Apply"
+          href={applyMailto(area.title)}
+          ariaLabel={`Apply for ${area.title} by email`}
+        />
+        <a
+          className="crs-link"
+          href={applyWhatsApp(area.title)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Apply for ${area.title} on WhatsApp`}
+        >
+          or WhatsApp
+        </a>
+      </div>
+    </li>
   );
 }
 
 export default function CareersPage() {
+  const rootRef = useReveal();
+
   useEffect(() => {
     document.title = "Careers • SGMG - Sushil Gangadhar Mittal Group";
   }, []);
 
   return (
-    <div className="page-wrapper apartments-page-view careers-page-view">
+    <div ref={rootRef} className="page-wrapper crs-page">
       <Header />
 
-      <main className="apartments-page-main" data-section="light">
-        {/* --- HEADING & WORK AREAS (Residences layout) --- */}
-        <section data-section="light">
-          <div className="wrapper_general apartments_gen">
-            <div className="heading_aparts">
-              <div className="heading_aparts_row">
-                <h1 className="h1 black spec_amenities">
-                  Build <span data-scribble="2" className="scribble-wrap scribble-visible">Siliguri</span>
-                  <br />
-                  with us
-                </h1>
+      <main>
+        {/* --- HERO --- */}
+        <section className="crs-hero" data-section="light">
+          <div className="crs-wrap crs-hero_grid">
+            <div className="crs-hero_copy">
+              <p className="crs-eyebrow">
+                <span className="crs-dot" aria-hidden="true" />
+                Careers at SGMG
+              </p>
+              <h1 className="crs-hero_title">
+                Build <span data-scribble="2" className="scribble-wrap scribble-visible">Siliguri</span>
+                <br />
+                with us
+              </h1>
+              <p className="crs-hero_lead">
+                Since 1985, SGMG has built the homes, malls and offices that people in
+                Siliguri use every day. If you want to build them with us, we’d like to
+                hear from you.
+              </p>
+
+              <div className="crs-hero_actions">
+                <PillButton text="Send Your CV" href={applyMailto()} />
+                <a className="crs-link" href={applyWhatsApp()} target="_blank" rel="noopener noreferrer">
+                  or apply on WhatsApp
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
               </div>
+
+              <nav className="crs-jump" aria-label="Areas of work">
+                <span className="crs-jump_label">Areas of work</span>
+                {WORK_AREAS.map((area) => (
+                  <a key={area.id} href={`#area-${area.id}`} className="crs-jump_chip">
+                    {area.title}
+                  </a>
+                ))}
+              </nav>
             </div>
 
-            <div className="apartments_sides">
-              {/* Left column: where the Residences page has its filters */}
-              <div className="careers_side">
-                <div className="filter_title"><div>Careers</div></div>
-                <p className="careers_side_text">
-                  SGMG has been building homes, malls and offices in Siliguri since 1985.
-                  We’re always glad to hear from people who want to build with us.
-                </p>
-                <div className="careers_side_cta">
-                  <PillButton text="Send Your CV" href={applyMailto()} />
-                </div>
+            <figure className="crs-hero_media">
+              <img
+                src="/assets/SideElevation_Day_.avif"
+                alt="Cosmos Prashil in Devidanga, an SGMG building with shops on the lower floors and homes above"
+                width={3000}
+                height={1550}
+                className="crs-hero_img"
+              />
+              <figcaption className="crs-badge">
+                <span className="crs-dot" aria-hidden="true" />
+                Cosmos Prashil, Devidanga
+              </figcaption>
 
-                <dl className="careers_contact">
-                  <div>
-                    <dt>Email</dt>
-                    <dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd>
-                  </div>
-                  <div>
-                    <dt>Office</dt>
-                    <dd>{CONTACT.address}</dd>
-                  </div>
-                </dl>
+              <div className="crs-hero_card" aria-hidden="true">
+                <span className="crs-hero_card_icon">
+                  <Mail strokeWidth={1.5} />
+                </span>
+                <span>
+                  <strong>Open applications</strong>
+                  <span>CVs welcome any time</span>
+                </span>
+              </div>
+            </figure>
+          </div>
+        </section>
+
+        {/* --- AREAS OF WORK --- */}
+        <section className="crs-areas" data-section="light" aria-labelledby="crs-areas-title">
+          <div className="crs-wrap">
+            <div className="crs-intro crs-reveal">
+              <h2 id="crs-areas-title" className="crs-title">
+                Three ways to
+                <br />
+                build with{" "}
+                <span data-scribble="5" className="scribble-wrap scribble-visible">us</span>
+              </h2>
+              <p className="crs-intro_text">
+                We don’t post fixed vacancies. Choose the kind of work that suits you and
+                send your CV. The team will call if there’s a role that fits.
+              </p>
+            </div>
+
+            <ol className="crs-areas_list">
+              {WORK_AREAS.map((area, i) => (
+                <WorkAreaRow key={area.id} area={area} index={i} />
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* --- HOW TO APPLY (dark band) --- */}
+        <section className="crs-apply" data-section="dark" aria-labelledby="crs-apply-title">
+          <div className="crs-wrap">
+            <div className="crs-intro crs-reveal">
+              <h2 id="crs-apply-title" className="crs-title is-light">
+                How to apply
+              </h2>
+              <p className="crs-intro_text">
+                No forms to fill in. Send your CV whichever way is easiest for you.
+              </p>
+            </div>
+
+            <ol className="crs-steps crs-reveal">
+              {APPLY_STEPS.map((step, i) => (
+                <li key={step.title} className="crs-step">
+                  <span className="crs-step_num">{i + 1}</span>
+                  <h3 className="crs-step_name">{step.title}</h3>
+                  <p className="crs-step_text">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="crs-contacts crs-reveal">
+              <div className="crs-contact">
+                <Mail className="crs-contact_icon" strokeWidth={1.5} aria-hidden="true" />
+                <span className="crs-contact_label">Email your CV</span>
+                <div className="crs-contact_row">
+                  <a href={applyMailto()} className="crs-contact_value">{CONTACT.email}</a>
+                  <CopyEmailButton />
+                </div>
               </div>
 
-              <div className="apartments_box">
-                <div className="apartments_grid" role="list">
-                  {WORK_AREAS.map((area) => (
-                    <WorkAreaCard key={area.id} area={area} />
-                  ))}
-                </div>
+              <div className="crs-contact">
+                <MessageCircle className="crs-contact_icon" strokeWidth={1.5} aria-hidden="true" />
+                <span className="crs-contact_label">Send it on WhatsApp</span>
+                <a
+                  href={applyWhatsApp()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="crs-contact_value"
+                >
+                  {CONTACT.phone}
+                </a>
+              </div>
+
+              <div className="crs-contact">
+                <MapPin className="crs-contact_icon" strokeWidth={1.5} aria-hidden="true" />
+                <span className="crs-contact_label">Visit the office</span>
+                <span className="crs-contact_value is-text">{CONTACT.address}</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* --- WHY SGMG (About page layout) --- */}
-        <section data-section="light" className="about_story_sec">
-          <div className="wrapper_about_story">
-            <div className="about_story_heading">
-              <h2 className="h2 about_story_h">
+        {/* --- WHY SGMG --- */}
+        <section className="crs-why" data-section="light" aria-labelledby="crs-why-title">
+          <div className="crs-wrap crs-why_grid">
+            <div className="crs-why_copy crs-reveal">
+              <h2 id="crs-why-title" className="crs-title">
                 Why work
                 <br />
-                at{" "}
-                <span data-scribble="5" className="scribble-wrap scribble-visible">
-                  SGMG.
-                </span>
+                at <span data-scribble="2" className="scribble-wrap scribble-visible">SGMG.</span>
               </h2>
+
+              <blockquote className="crs-quote">
+                <p>“Performance with purpose.”</p>
+                <span className="crs-quote_by">The SGMG vision</span>
+              </blockquote>
+
+              <ol className="crs-reasons">
+                <li>
+                  <h3 className="crs-reason_name">Work you can see</h3>
+                  <p>
+                    Our projects are homes, malls and offices that people in Siliguri use
+                    every day.
+                  </p>
+                </li>
+                <li>
+                  <h3 className="crs-reason_name">A family business</h3>
+                  <p>
+                    SGMG is led by its founder, Sushil Gangadhar Mittal, with Managing
+                    Directors Harshvardhan Mittal and Mehul Mittal.{" "}
+                    <Link to="/team" className="crs-link">Meet the team</Link>
+                  </p>
+                </li>
+                <li>
+                  <h3 className="crs-reason_name">More than one kind of project</h3>
+                  <p>
+                    Residential, retail and entertainment, from apartment blocks to the
+                    INOX at Vega Circle Mall.{" "}
+                    <Link to="/commercial" className="crs-link">See our projects</Link>
+                  </p>
+                </li>
+              </ol>
             </div>
 
-            <div className="about_story_showcase">
-              <div className="about_story_visual">
-                <div className="about_img_frame">
-                  <img
-                    src="/images/commercial/vega-circle-mall.jpg"
-                    alt="Vega Circle Mall, built by SGMG"
-                    loading="lazy"
-                    className="about_feature_img"
-                  />
-                  <div className="about_img_badge">
-                    <div className="badge_dot" />
-                    <span>Vega Circle Mall, built by SGMG</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="about_story_content">
-                <div className="about_story_lead">
-                  “Performance with purpose — neighbourhoods to live in, healthy
-                  environments to work in, and malls that serve as a complete family
-                  destination.”
-                </div>
-                <div className="p_gen black about_story_body">
-                  SGMG has built homes such as Cosmos Valley, Green View and Cosmos Prashil,
-                  and commercial landmarks such as Vega Circle Mall, Cosmos Mall and
-                  Jeevandeep Complex, where our office is. The group also runs the INOX
-                  multiplex at Vega Circle Mall.
-                </div>
-
-                <div className="about_story_stats">
-                  <div className="about_stat_box">
-                    <div className="about_stat_num">1985</div>
-                    <div className="about_stat_lbl">Established</div>
-                  </div>
-                  <div className="about_stat_box">
-                    <div className="about_stat_num">5</div>
-                    <div className="about_stat_lbl">Residential projects</div>
-                  </div>
-                  <div className="about_stat_box">
-                    <div className="about_stat_num">11</div>
-                    <div className="about_stat_lbl">Commercial projects</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="about_pillars">
-              <div className="about_pillar_item">
-                <div className="about_pillar_num">01</div>
-                <div className="about_pillar_title">Work You Can See</div>
-                <div className="about_pillar_desc">
-                  Our projects are homes, malls and offices that people in Siliguri use
-                  every day.
-                </div>
-              </div>
-
-              <div className="about_pillar_item">
-                <div className="about_pillar_num">02</div>
-                <div className="about_pillar_title">A Family Business</div>
-                <div className="about_pillar_desc">
-                  The founder and both managing directors work from the same office at
-                  Jeevandeep Tower.
-                </div>
-              </div>
-
-              <div className="about_pillar_item">
-                <div className="about_pillar_num">03</div>
-                <div className="about_pillar_title">More Than One Kind of Project</div>
-                <div className="about_pillar_desc">
-                  Residential, retail and entertainment, from apartment blocks to the
-                  INOX at Vega Circle Mall.
-                </div>
-              </div>
+            <div className="crs-mosaic crs-reveal">
+              <figure className="crs-tile is-wide">
+                <img
+                  src="/assets/gallery/Elevation_Evening_1.webp"
+                  alt="Cosmos Prashil towers lit up in the evening"
+                  width={1230}
+                  height={666}
+                  loading="lazy"
+                />
+                <figcaption className="crs-badge">
+                  <span className="crs-dot" aria-hidden="true" />
+                  Cosmos Prashil at dusk
+                </figcaption>
+              </figure>
+              <figure className="crs-tile">
+                <img
+                  src="/images/projects/green-valley.jpg"
+                  alt="A courtyard at Green Valley, a completed SGMG project"
+                  width={800}
+                  height={594}
+                  loading="lazy"
+                />
+                <figcaption className="crs-badge">
+                  <span className="crs-dot" aria-hidden="true" />
+                  Green Valley
+                </figcaption>
+              </figure>
+              <figure className="crs-tile">
+                <img
+                  src="/assets/SwimmingPoolView_Night_.avif"
+                  alt="The rooftop swimming pool at Cosmos Prashil"
+                  width={3000}
+                  height={1688}
+                  loading="lazy"
+                />
+                <figcaption className="crs-badge">
+                  <span className="crs-dot" aria-hidden="true" />
+                  Rooftop pool
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>
